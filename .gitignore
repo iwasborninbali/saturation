@@ -1,0 +1,23 @@
+# built binaries and scratch
+there
+there128
+walk
+__pycache__/
+*.pyc
+lns_fix_*.txt
+fix*.txt
+sat/*.cnf
+web/*.html
+web/*.few
+web/n*_rot4
+web/n*_rct4
+web/n*_dia*
+web/n*_rot2
+web/*.txt
+!web/README.txt
+sweep_*.log
+bench/*.txt
+!bench/trees.txt
+!bench/cmp36.txt
+!bench/cmp36b.txt
+bench/*.log
