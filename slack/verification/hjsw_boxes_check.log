@@ -27,4 +27,10 @@
 3. p=29: orbit lemma — (e,f) values over all c, boxes, generic orbits: [(0, 0), (0, 2), (1, 1), (2, 0)]
 3. p=31: orbit lemma — (e,f) values over all c, boxes, generic orbits: [(0, 0), (0, 2), (1, 1), (2, 0)]
 4. proof identities verified on 300 random (p,c,x0,y0) instances (all generic orbits each), p<=199
+5. p=3: per-orbit maxima/counts by pattern (brute force) = exc 6 (9|6), (0,0) 8 (1296), (1,1) 10 (144), (0,2)/(2,0) 12 (1) for all c, boxes
+5. p=5: per-orbit maxima/counts by pattern (brute force) = exc 6 (9|6), (0,0) 8 (1296), (1,1) 10 (144), (0,2)/(2,0) 12 (1) for all c, boxes
+5. p=7: per-orbit maxima/counts by pattern (brute force) = exc 6 (9|6), (0,0) 8 (1296), (1,1) 10 (144), (0,2)/(2,0) 12 (1) for all c, boxes
+5. p=11: per-orbit maxima/counts by pattern (brute force) = exc 6 (9|6), (0,0) 8 (1296), (1,1) 10 (144), (0,2)/(2,0) 12 (1) for all c, boxes
+5. p=13: per-orbit maxima/counts by pattern (brute force) = exc 6 (9|6), (0,0) 8 (1296), (1,1) 10 (144), (0,2)/(2,0) 12 (1) for all c, boxes
+6. exact maximum (MIP) = 12a+10b+8c+6s on 40 random boxes, p<=31
 all checks passed

@@ -7,7 +7,10 @@ Checked here (nothing of the proof is trusted; everything is recomputed from poi
   2. scan: for all primes p ≤ P1, all c, all boxes (x0,y0 mod p): Z + 2|L| ≤ 3(p−1)  (this is the theorem's inequality),
      with equality for some boxes;
   3. orbit lemma: for all p ≤ P2, all c, all boxes: every generic V4-orbit has (e_O,f_O) ∈ {(0,0),(0,2),(1,1),(2,0)};
-  4. proof identities (θ = c_a+c_b−k, η = c_b−c_a, split conditions, parity, "F1 ⇒ not(E1 and E2)") on random instances up to p=199.
+  4. proof identities (θ = c_a+c_b−k, η = c_b−c_a, split conditions, parity, "F1 ⇒ not(E1 and E2)") on random instances up to p=199;
+  5. per-orbit maxima and multiplicities by pattern (brute force, 2^16 subsets) for all p ≤ 13, all c, all boxes:
+     exceptional 6 (9 sets if split, 6 if shared), (0,0): 8 (1296), (1,1): 10 (144), (0,2)/(2,0): 12 (1);
+  6. exact maximum (MIP) = 12a+10b+8c+6s on random boxes up to p=31.
 usage: python3 slack/hjsw_boxes_check.py [P1=31] [P2=23]"""
 import sys, os, random
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -78,6 +81,46 @@ def proof_identities(p, c, x0, y0):
         assert E1 + E2 + F1 + F2 <= 2
 
 
+def formula_max(p, c, x0, y0):
+    """exact maximum by Theorem 2: 12a+10b+8c+6s from the orbit patterns; also the predicted number of maximum sets"""
+    ob, s = orbits(p, c, x0, y0)
+    a = sum(1 for e, f in ob if (e, f) in ((0, 2), (2, 0))); b = sum(1 for e, f in ob if (e, f) == (1, 1)); cc = sum(1 for e, f in ob if (e, f) == (0, 0))
+    assert a + b + cc == len(ob)
+    # exceptional pairs: split or shared
+    rx = lambda t: x0 + ((t - x0) % p); ry = lambda u: y0 + ((u - y0) % p); inv = lambda aa: pow(aa, -1, p)
+    d = lambda u, w: rx(u) - ry(w); e = lambda u, w: rx(u) + ry(w)
+    s1 = s2 = 0; seen = set()
+    for aa in range(1, p):
+        bb = c * inv(aa) % p
+        if aa in seen: continue
+        if aa == (-bb) % p:  # sigma-fixed: tau-pair {(a,-a),(-a,a)}
+            seen |= {aa, (-aa) % p}; sp = e(aa, bb) != e(bb, aa); s1 += sp; s2 += (not sp)
+        elif aa == bb:       # tau-fixed: sigma-pair {(a,a),(-a,-a)}
+            seen |= {aa, (-aa) % p}; sp = d(aa, bb) != d((-bb) % p, (-aa) % p); s1 += sp; s2 += (not sp)
+    assert s1 + s2 == s
+    return 12 * a + 10 * b + 8 * cc + 6 * s, 144 ** b * 1296 ** cc * 9 ** s1 * 6 ** s2
+
+
+def per_orbit_check(p, c, x0, y0):
+    """brute force per orbit: (max, #max) must be exc: (6,9)/(6,6); (0,0): (8,1296); (1,1): (10,144); (0,2)/(2,0): (12,1)"""
+    from hjsw_window_check import max_lawful_orbit, cls, orbit_of
+    from collections import defaultdict
+    P = pts(p, c, x0, y0); L = lines_ge3(P); orbs = defaultdict(list)
+    for q in P: orbs[orbit_of(cls(q, p), p)].append(q)
+    rx = lambda t: x0 + ((t - x0) % p); ry = lambda u: y0 + ((u - y0) % p)
+    d = lambda u, w: rx(u) - ry(w); e = lambda u, w: rx(u) + ry(w)
+    for o, qs in orbs.items():
+        Lo = [m for m in L.values() if orbit_of(cls(m[0], p), p) == o]
+        mx, cnt, _ = max_lawful_orbit(qs, Lo)
+        if len(qs) == 8:
+            assert mx == 6 and cnt in (6, 9), (p, c, x0, y0, o, mx, cnt); continue
+        aa, bb = min(o)
+        E = (d(aa, bb) != d((-bb) % p, (-aa) % p)) + (d((-aa) % p, (-bb) % p) != d(bb, aa))
+        F = (e(aa, bb) != e(bb, aa)) + (e((-bb) % p, (-aa) % p) != e((-aa) % p, (-bb) % p))
+        expect = {(0, 0): (8, 1296), (1, 1): (10, 144), (0, 2): (12, 1), (2, 0): (12, 1)}[(E, F)]
+        assert (mx, cnt) == expect, (p, c, x0, y0, o, (E, F), mx, cnt)
+
+
 if __name__ == "__main__":
     P1 = int(sys.argv[1]) if len(sys.argv) > 1 else 31
     P2 = int(sys.argv[2]) if len(sys.argv) > 2 else 23
@@ -110,4 +153,28 @@ if __name__ == "__main__":
         p = random.choice(primes(199)[3:]); c = random.randrange(1, p); x0 = random.randrange(-3 * p, 3 * p); y0 = random.randrange(-3 * p, 3 * p)
         proof_identities(p, c, x0, y0); n += 1
     print(f"4. proof identities verified on {n} random (p,c,x0,y0) instances (all generic orbits each), p<=199")
+    for p in primes(13):
+        for c in range(1, p):
+            for x0 in range(p):
+                for y0 in range(p):
+                    per_orbit_check(p, c, x0 - (p - 1) // 2, y0)
+        print(f"5. p={p}: per-orbit maxima/counts by pattern (brute force) = exc 6 (9|6), (0,0) 8 (1296), (1,1) 10 (144), (0,2)/(2,0) 12 (1) for all c, boxes", flush=True)
+    try:
+        import numpy as np
+        from scipy.optimize import milp, LinearConstraint, Bounds
+        from scipy.sparse import lil_matrix
+        from maxlawful_pysat import lines
+        def exact(P):
+            L = lines(P); n = len(P); A = lil_matrix((max(1, len(L)), n))
+            for i, mem in enumerate(L):
+                for k in mem: A[i, k] = 1
+            res = milp(-np.ones(n), constraints=LinearConstraint(A.tocsr(), -np.inf, 2), integrality=np.ones(n), bounds=Bounds(0, 1))
+            return int(round(-res.fun))
+        random.seed(2); m = 0
+        for _ in range(40):
+            p = random.choice(primes(31)[2:]); c = random.randrange(1, p); x0 = random.randrange(-p, p); y0 = random.randrange(-p, p)
+            assert exact(pts(p, c, x0, y0)) == formula_max(p, c, x0, y0)[0], (p, c, x0, y0); m += 1
+        print(f"6. exact maximum (MIP) = 12a+10b+8c+6s on {m} random boxes, p<=31")
+    except ImportError:
+        print("6. (scipy not available: MIP cross-check skipped)")
     print("all checks passed")
