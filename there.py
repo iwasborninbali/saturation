@@ -82,7 +82,7 @@ def search(n: int, secs: float, seeds: int = 8, syms=None, log=print) -> dict | 
         if sym == 8 and n % 2 == 0:
             continue
         t = time.time()
-        budget = min(secs, QUICK.get(sym, secs))
+        budget = secs if syms else min(secs, QUICK.get(sym, secs))
         with ThreadPoolExecutor(max_workers=seeds) as ex:
             futs = [ex.submit(run_one, n, sym, s, budget) for s in range(1, seeds + 1)]
             found, nones = None, 0
@@ -109,16 +109,17 @@ def search(n: int, secs: float, seeds: int = 8, syms=None, log=print) -> dict | 
     return None
 
 
-def find(n: int, secs: float = 600.0, seeds: int = 8) -> S.Book:
+def find(n: int, secs: float = 600.0, seeds: int = 8, syms=None) -> S.Book:
     """saturation.find, implemented at this end: cached if known, searched if not."""
     db = load()
-    if str(n) in db:
+    if str(n) in db and (syms is None or db[str(n)]["sym"] in syms):
         return S.saturated(frozenset(db[str(n)]["book"]), n)
-    res = search(n, secs, seeds)
+    res = search(n, secs, seeds, syms)
     if res is None:
         raise NotImplementedError(f"n={n}: not found within {secs}s per class at this end")
     db = load()
-    db[str(n)] = res
+    key = str(n) if str(n) not in db else f"{n}:sym{res['sym']}"
+    db[key] = res
     save(db)
     return frozenset(res["book"])
 
@@ -137,7 +138,7 @@ def unleaked_here() -> bool:
 
 if __name__ == "__main__":
     assert unleaked_here()
-    secs, seeds, args, skip = 600.0, 8, [], False
+    secs, seeds, args, skip, syms = 600.0, 8, [], False, None
     for i, a in enumerate(sys.argv[1:], 1):
         if skip:
             skip = False
@@ -146,6 +147,8 @@ if __name__ == "__main__":
             secs, skip = float(sys.argv[i + 1]), True
         elif a == "--seeds":
             seeds, skip = int(sys.argv[i + 1]), True
+        elif a == "--sym":                       # restrict to these classes, e.g. --sym 1 or --sym 8,1
+            syms, skip = tuple(int(x) for x in sys.argv[i + 1].split(",")), True
         elif not a.startswith("--"):
             args.append(a)
     lo = int(args[0]); hi = int(args[1]) if len(args) > 1 else lo
@@ -155,6 +158,6 @@ if __name__ == "__main__":
             print(S.certify(frozenset(db[str(n)]["book"]), n), f"(cached; sym={db[str(n)]['sym']})")
             continue
         try:
-            find(n, secs, seeds)
+            find(n, secs, seeds, syms)
         except NotImplementedError as e:
             print("open:", e)
