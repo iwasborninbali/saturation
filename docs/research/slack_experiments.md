@@ -69,3 +69,8 @@ same (a pair of lattice points spans ~1.8 ln N further lattice points, each hitt
 The structural part (congruent pairs on slopes 0,∞,±1 plus a point of the other hyperbola) is only O(N).  So the criterion of
 research 3 does not decide the question either way (removals of order N may still be needed); the limit of the ratio is
 decided only by exact maxima (computation A) or by an asymptotic upper bound.
+
+## Two-prime unions — conclusion (computation A complete)
+Exact maxima of H(1,p) ∪ H(1,q) in the N×N window (HJSW shift per modulus): N=22 (11,13): 32 = HJSW(11)+2; N=26 (13,17): 38 = +2;
+N=34 (17,19): ≥50 (SAT stalled at 51; +2 or +3); N=46 (23,29): 68 = +2 (MIP, third solver).  The advantage over a single hyperbola is
+a constant 2 points in every window computed — asymptotically the ratio is 3/2, exactly like HJSW.  Line closed (negative result).
