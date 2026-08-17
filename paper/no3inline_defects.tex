@@ -1,0 +1,284 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}[lemma]{Corollary}
+\newtheorem{proposition}[lemma]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[lemma]{Remark}
+\newtheorem{observation}[lemma]{Observation}
+
+\newcommand{\rot}{\rho}
+\newcommand{\Dfour}{D_4}
+\newcommand{\Csym}{\mathrm{rot4}}
+\newcommand{\Vsym}{\mathrm{dia2}}
+
+\title{No-three-in-line configurations with exact half-turn symmetry\\
+for $n=36,\,37,\,39$, and a balance lemma for symmetric defects}
+\author{Alex Komang\thanks{Independent researcher, Bali, Indonesia.  Correspondence: see the repository page.}\\[2pt]
+\small with two autonomous Claude agents (Anthropic) --- see the authorship statement in Section~\ref{sec:auth}}
+\date{August 2026 --- draft v0.1}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We report $2n$-point no-three-in-line configurations on the $n\times n$ grid whose symmetry group is exactly the half-turn
+$\{1,\rot^2\}$, for $n=36$, $37$ (two inequivalent configurations) and $39$.  For these sizes Flammenkamp's database
+(state 2026-08-11) listed no configuration in that class; a further such configuration is given for $n=33$.
+The configurations were found by \emph{exhaustive} branch-and-bound searches over small structured sub-classes of the
+half-turn class: quarter-turn-symmetric configurations with a controlled ``defect'' consisting of a few half-turn pairs.
+A simple \emph{balance lemma} restricts the admissible defects to Eulerian digraphs on the row classes $\{i,n-1-i\}$;
+the smallest defects are one diagonal loop (Flammenkamp's pseudo-class rct4), a directed 3-cycle of pairs (odd $n$) and one
+loop on each long diagonal (even $n$).  We give exhaustive counts of these families for small $n$, describe the solver and its
+validation against the known counts (OEIS A000769 and the class counts of the database), report measured growth rates of the
+search cost, and record negative results (empty families, failure of warm starts).  Code, logs and configurations are available.
+\end{abstract}
+
+\section{Introduction}
+The no-three-in-line problem (Dudeney, 1917) asks for the largest set of points of the $n\times n$ grid $\{0,\dots,n-1\}^2$
+containing no three collinear points.  Since a line parallel to an axis contains at most two points, at most $2n$ points can be
+placed, and $2n$-point configurations are the objects of interest.  Their existence for every $n$ is a well-known open problem;
+a probabilistic heuristic (Guy--Kelly, corrected form) suggests that for large $n$ fewer than $2n$ points can be placed.
+Computationally, $2n$-point configurations were known for all $n\le 46$ and for $n=48,50,52$ for decades
+\cite{Flammenkamp92,Flammenkamp98}; in 2025--2026 constraint programming \cite{Prellberg26}, GPU branch-and-bound and SAT
+solving extended this to all $n\le 70$ and to $n=72,74,76$ (see the database \cite{FlammenkampDB}, which also records, for each
+$n$, the number of configurations by their exact symmetry class under the dihedral group $\Dfour$ of the square, and marks the
+cells for which no configuration is known).
+
+This note concerns those cells rather than the record sizes.  Flammenkamp's table lists, for each $n$, the number of
+inequivalent $2n$-point configurations whose stabilizer in $\Dfour$ is exactly a given subgroup: trivial (\emph{iden}), the
+half-turn (\emph{rot2}), one diagonal reflection (\emph{dia1}), one axis reflection (\emph{ort1}), the quarter turns
+(\emph{rot4}), both diagonal reflections (\emph{dia2}), both axis reflections (\emph{ort2}) and the full group (\emph{full}),
+plus the pseudo-class \emph{rct4} $\subset$ rot2 (``rot4 symmetry except on the long diagonals'').  As of 2026-08-11 the
+rot2 column was complete for $n\le 31$ and empty (no configuration known) for $n=36,37,39,41,45,47,\dots$.
+
+\paragraph{Results.}
+(i)~A balance lemma (Section~\ref{sec:lemma}) describing which ``defects'' a half-turn-symmetric configuration may have relative
+to a larger subgroup $H\le\Dfour$: the defect pairs must form an Eulerian digraph on the row classes.  In particular a single
+half-turn pair must lie on a long diagonal (which explains why rct4 is the only one-pair pseudo-class), and the smallest
+larger defects are a directed 3-cycle of pairs (odd $n$) and one loop on each diagonal (even $n$).
+(ii)~Exhaustive enumerations of these families for small $n$ (Section~\ref{sec:results}); several of them are non-empty
+exactly where the pure classes are rare.
+(iii)~The first known configurations with exact rot2 symmetry for $n=36$ (two-loop family), $n=37$ (3-cycle family, two
+inequivalent configurations) and $n=39$ (3-cycle family), and a further one for $n=33$; the configurations are listed in the
+Appendix and were verified twice by independent programs.
+(iv)~A description of the exact solver and its validation, growth measurements for the cost of finding one $2n$-point
+configuration in the classes rot4, rct4 and rot2, and a list of negative results.
+
+\section{Symmetry classes and the balance lemma}\label{sec:lemma}
+Let $m=n-1$ and let $\Dfour$ act on the grid; write $\rot(u,v)=(v,m-u)$ for the quarter turn, so $\rot^2(u,v)=(m-u,m-v)$,
+$\sigma(u,v)=(v,u)$ for the reflection in the main diagonal and $\sigma'(u,v)=(m-v,m-u)$ for the reflection in the
+anti-diagonal.  A $2n$-point no-three-in-line configuration has exactly two points in every row and every column.
+
+Fix a subgroup $H\le\Dfour$ containing $\rot^2$ and consider a rot2-symmetric configuration $C$ (i.e.\ $\rot^2C=C$) which is
+a disjoint union of $H$-orbits and of a set $D$ of half-turn pairs $\{p,\rot^2p\}$ (the \emph{defect}) that are not
+$H$-orbits.  For $a\in\{0,\dots,m\}$ let $r_X(a)$, $c_X(a)$ denote the numbers of points of a set $X$ in row $a$ and in
+column $a$.
+
+\begin{lemma}[balance]\label{lem:balance}
+If $H$ contains a motion mapping column $a$ onto row $a$ for every $a$ (any quarter turn or any diagonal reflection does),
+then every $H$-orbit $O$ satisfies $r_O(a)=c_O(a)$ for all $a$.  Consequently the defect of a $2n$-point configuration
+satisfies $r_D(a)=c_D(a)$ for all $a$.
+\end{lemma}
+\begin{proof}
+If $g\in H$ maps column $a$ onto row $a$ then $g$ maps $O\cap\{\text{column }a\}$ bijectively onto $O\cap\{\text{row }a\}$
+because $gO=O$; hence $r_O(a)=c_O(a)$.  Summing over the orbits and using $r_C(a)=c_C(a)=2$ gives $r_D(a)=c_D(a)$.
+\end{proof}
+
+Interpret the pairs of $D$ as arcs of a digraph on the \emph{row classes} $\{i,m-i\}$: the pair $\{(x,y),(m-x,m-y)\}$
+occupies rows $x,m-x$ and columns $y,m-y$, i.e.\ it is an arc from class $\bar x$ to class $\bar y$ (a loop if
+$\bar x=\bar y$, i.e.\ if the pair lies on a long diagonal).  Lemma~\ref{lem:balance} says that in-degree equals out-degree at
+every class:
+
+\begin{corollary}\label{cor:euler}
+The defect $D$ is an Eulerian digraph on the row classes, hence a union of directed cycles.  A single defect pair must be a
+loop, i.e.\ must lie on a long diagonal.  For $H=\langle\rot\rangle$ every usable $H$-orbit has four points (the centre cell,
+a fixed point for odd $n$, cannot occur), so $2n=4a+2|D|$ and $|D|\equiv n\pmod 2$: for odd $n$ the smallest defects are one
+loop --- this is exactly the pseudo-class rct4 of \cite{FlammenkampDB} --- and a directed 3-cycle $(x,y),(y,z),(z,x')$ with
+$x'\in\{x,m-x\}$; for even $n$ the smallest defects are two loops.  (For $H=\langle\sigma,\sigma'\rangle$ the diagonal
+2-orbits $\{(i,i),(m-i,m-i)\}$ are themselves $H$-orbits, and the parity condition counts them together with $D$.)
+\end{corollary}
+
+For $H=\langle\rot\rangle$ (rot4) an $H$-orbit off the diagonals is $\{(u,v),(v,m-u),(m-u,m-v),(m-v,u)\}$; for
+$H=\langle\sigma,\sigma'\rangle$ (dia2) it is $\{(u,v),(v,u),(m-u,m-v),(m-v,m-u)\}$.  We call these the C4 base and the
+V2 base.  The following families are therefore the natural next steps beyond rct4:
+\begin{itemize}
+\item \textbf{3-cycle family} (odd $n$): $(n-3)/2$ orbits of the C4 base (or of the V2 base) plus a directed 3-cycle of
+half-turn pairs;
+\item \textbf{two-loop family} (even $n$): $n/2-1$ orbits of the C4 base plus one loop on each long diagonal,
+$\{(x,x),(m-x,m-x)\}$ and $\{(y,m-y),(m-y,y)\}$ with $y\notin\{x,m-x\}$ (for $y\in\{x,m-x\}$ the two loops form a rot4-orbit
+and the configuration is rot4-symmetric).
+\end{itemize}
+A configuration of these families is not $H$-symmetric (the defect breaks $H$), so its stabilizer is a proper subgroup of
+$H$ containing $\rot^2$; in every case found below the stabilizer is exactly $\{1,\rot^2\}$ (verified explicitly), so the
+configurations fall into the rot2 column of the database.  A two-loop configuration is ``rot4 symmetric except on the long
+diagonals'', i.e.\ of rct4 type for even $n$ (the database keeps rct4 as a pseudo-class for odd $n$ only).
+
+\begin{remark}
+The families of ``mixed bases'' --- C4-orbits together with at least one V2-orbit (plus one loop for odd $n$) --- are
+admissible by Lemma~\ref{lem:balance} but turned out to be empty in all our enumerations (all $n\le 23$ exhaustively, and
+randomized searches up to $n=33$); we have no structural explanation.
+\end{remark}
+
+\section{The solver}\label{sec:solver}
+All searches were done with an exact branch-and-bound program (\texttt{there.c}, about 600 lines of C, no external
+libraries).  Cells are $t=un+v$; a state keeps two bit-matrices, \emph{alive} by rows and by columns.  Every pair of chosen
+points ``shades'' all grid cells of the line through them (walked with the primitive direction obtained from a gcd table);
+shaded cells die, as do all cells of a row or column that already holds two points.  A symmetry class is imposed by choosing
+whole orbits: a cell is a candidate only if its whole orbit is alive, and the ``orbit-alive'' bit-masks are derived from the
+alive matrices by transposition and bit reversal (one word operation per group element).  Branching uses the most constrained
+reading class (row or column with the fewest orbit-alive cells) and dies as soon as some class cannot be completed.  A failed
+candidate is killed for its siblings, so that a search with a fixed symmetry class is complete: ``no configuration'' is a proof
+of absence for that class.  With restarts and randomized tie-breaking the same program is used to find one configuration
+quickly.  A \texttt{PAIRS} option fixes a set of half-turn pairs (the defect), kills their images under the base group, and
+searches the remaining orbits of the base; the same option with a diagonal pair reproduces rct4 exactly.
+
+\paragraph{Validation.}
+For $n\le 10$ the program enumerates all $2n$-point configurations without symmetry: $1,2,11,32,50,132,380,368,1135$ labelled
+configurations for $n=2,\dots,10$, which reduce to $1,1,4,5,11,22,57,51,156$ classes under $\Dfour$, in agreement with OEIS
+A000769.  For symmetric classes we compared the number $N_H$ of labelled configurations invariant under $H$ with the class
+counts $c_K$ of \cite{FlammenkampDB} through $N_H=\sum_{K\supseteq H}\,c_K\cdot|\Dfour|/|K|$: e.g.\ rot2 for $n=8$:
+$36=4\cdot7+2\cdot4$; $n=10$: $67=4\cdot13+2\cdot6+2\cdot1+1$; dia1 for $n=13$: $20=2\cdot9+2\cdot1$; $n=15$:
+$28=2\cdot13+2\cdot1$; dia2 for $n=11,\dots,25$: $0,2,2,0,0,0,2,4=2\cdot(0,1,1,0,0,0,1,2)$; rct4 for $n=9,17,19,21$:
+$2,2,4,2=2\cdot(1,1,2,1)$ --- all in agreement.  Two independent implementations (the two agents' programs) agree on every
+enumeration they both performed.  Every configuration reported here was finally re-checked by an independent script that
+tests all $\binom{2n}{3}$ triples in exact integer arithmetic and computes the stabilizer explicitly.
+
+\section{Results}\label{sec:results}
+
+\subsection{Exhaustive enumerations of the defect families}
+The defect sets were enumerated up to $\Dfour$ (one representative per orbit of $\Dfour$ acting on defects); for each
+representative the sub-class was searched exhaustively.  Table~\ref{tab:threecycle} gives, for odd $n$, the number of
+inequivalent 3-cycle defects and the number of pairwise inequivalent configurations found for the two bases;
+Table~\ref{tab:twoloop} gives the two-loop family for even $n$.  Counts marked with $\ge$ come from sweeps that were still
+running when this draft was written; the entries will be finalized.
+
+\begin{table}[ht]\centering
+\begin{tabular}{r r r r l}
+\toprule
+$n$ & 3-cycle defects (mod $\Dfour$) & C4 base & V2 base & status of the sweep\\
+\midrule
+13 & 80 & 5 & 2 & complete\\
+15 & 140 & 0 & 0 & complete\\
+17 & 224 & 0 & 1 & complete\\
+19 & 336 & 0 & 0 & complete\\
+21 & 480 & 0 & 0 & complete\\
+33 & 2240 & $\ge1$ & (0) & complete; final counts being collected\\
+37 & 3264 & $\ge2$ & 0 & V2 complete; C4 in progress\\
+39 & 3876 & $\ge1$ & (0) & half of each base swept\\
+41 & 4560 & --- & (0) & half of the V2 base swept; C4 in progress\\
+\bottomrule
+\end{tabular}
+\caption{The 3-cycle family (odd $n$): C4- or V2-orbits plus a directed 3-cycle of half-turn pairs; numbers of pairwise
+inequivalent configurations.  Parenthesised zeros are for partially swept bases (no configuration so far).}\label{tab:threecycle}
+\end{table}
+
+\begin{table}[ht]\centering
+\begin{tabular}{r r r}
+\toprule
+$n$ & sub-classes $(x,y)$ & inequivalent configurations\\
+\midrule
+14--22 & all & 0\\
+24 & 132 & 2\\
+26 & 156 & 1\\
+28 & 182 & 1\\
+36 & 306 & $\ge1$ (finding mode; 48 sub-classes searched)\\
+\bottomrule
+\end{tabular}
+\caption{The two-loop family (even $n$): C4-orbits plus one half-turn loop on each long diagonal.}\label{tab:twoloop}
+\end{table}
+
+\subsection{First configurations with exact half-turn symmetry for $n=36,37,39$}
+Table~\ref{tab:new} lists the new configurations; their coordinates and their encodings in the 90-character format of
+\cite{FlammenkampDB} are given in the Appendix.  ``First known'' refers to the state of the database on 2026-08-11, in which
+the rot2 cells for $n=36,37,39$ were empty; the $n=33$ configuration is new but the cell was not empty.
+
+\begin{table}[ht]\centering
+\begin{tabular}{r l l}
+\toprule
+$n$ & family and defect & remark\\
+\midrule
+36 & two loops: $(6,6),(29,29)$ and $(5,30),(30,5)$ & first known exact rot2\\
+37 & 3-cycle $(1,3),(3,31),(31,1)$, C4 base & first known exact rot2\\
+37 & 3-cycle $(2,4),(4,20),(20,34)$, C4 base & second, inequivalent\\
+39 & 3-cycle $(4,8),(8,20),(20,34)$, C4 base & first known exact rot2\\
+33 & 3-cycle $(2,3),(3,19),(19,2)$, C4 base & new (cell not empty)\\
+\bottomrule
+\end{tabular}
+\caption{New $2n$-point configurations with stabilizer exactly $\{1,\rot^2\}$.}\label{tab:new}
+\end{table}
+
+\subsection{Cost of finding one configuration, and growth}
+For orientation we report measured costs of finding one $2n$-point configuration on the $n\times n$ grid with the solver of
+Section~\ref{sec:solver}, on two consumer machines (Apple M3 laptop, 8 cores; a 12-core x86 server; 8--12 seeds in parallel;
+wall time to the first configuration):
+rot4 (even $n$): $n=36$: 10--60\,s, $n=40$: 70\,s; rct4 (odd $n$): $n=41$: 806\,s, $n=43$: about 6.7 core-hours,
+$n=45$: none within 3.3 core-hours; rot2: $n=24$: 10\,s, $n=27$: 137\,s.  The cost grows by roughly a factor $8$--$10$
+per $+4$ in $n$ for rot4/rct4 and by a factor of about $6$ per $+2$ for rot2, consistent with the exhaustive tree sizes
+(rot4: $\times20$ per $+4$; rot2 and dia1: $\times9$--$10$ per $+2$) divided by the slowly growing numbers of configurations,
+and consistent with the growth reported for CP-SAT in \cite{Prellberg26}.  Extrapolated to the open sizes $71,73,75,77,\dots$
+this gives $10^5$--$10^7$ core-hours for our program; the record computations of 2026 (SAT and GPU search on clusters) are
+of that order or use better tools.  Sub-class sweeps of the defect families are cheap because a fixed defect shades a large
+part of the grid: a sub-class of the 3-cycle family at $n=37$--$41$ is exhausted in seconds to a few minutes.
+
+\subsection{Negative results}
+\begin{itemize}
+\item A single defect pair off the diagonals is impossible (Corollary~\ref{cor:euler}); the ``rot4 except one pair anywhere''
+family is empty, as our enumerations for $n\le 27$ had shown before the lemma was found.
+\item Mixed bases (C4-orbits with at least one V2-orbit, plus a loop for odd $n$) are empty for all $n\le23$ (exhaustive)
+and no configuration was found by randomized search for $n\le33$.
+\item Warm starts do not work: shifting a known rot4 configuration for $n=44$ into the $46\times46$ grid (which preserves
+all its collinearities) and freeing $k$ of its $22$ orbits, no completion exists even for $k=15$ (exhaustive); configurations
+of neighbouring sizes appear to be uncorrelated.
+\item Local search on exactly $2n$ points (min-conflicts with tabu, simulated annealing) fails from $n\approx12$--$28$ on,
+although it produces large partial configurations easily (e.g.\ 134 points on the $71\times71$ grid); belief-propagation
+decimation without backtracking fails from $n=8$ on.
+\end{itemize}
+
+\section{Reproducibility}
+The programs, the sub-class lists, the sweep logs and the certified configurations are in the repository
+\url{https://github.com/iwasborninbali/saturation} (\texttt{there.c}, \texttt{kit71/there\_twisted\_experiment.c},
+\texttt{web/stab.py} for the exact class and the database encoding, \texttt{docs/SUBMISSION.md} for the configurations).
+Typical commands: \texttt{ALL=1 PAIRS="1,3;3,31;31,1" ./there 37 2} enumerates the sub-class that contains the first
+$n=37$ configuration (one configuration, $1.4\cdot10^7$ nodes); \texttt{PAIRS="6,6;5,30" ./there 36 2} finds the $n=36$
+configuration in about 100\,s.
+
+\section{Authorship and AI contribution statement}\label{sec:auth}
+This work was carried out by two autonomous AI agents (Claude Fable~5, Anthropic), running as independent solvers on two
+machines and communicating through the repository, under the direction of the author of record.  The agents wrote the
+programs, designed and ran the searches, found and proved the balance lemma (independently of each other, in two
+formulations), verified each other's results, and drafted this text; the author of record posed the problem, provided the
+computing environment, made all decisions about scope and publication, and takes responsibility for the content.  We
+estimate that about nine tenths of the technical work was done by the AI systems; we state this plainly because it is true
+and because current publication policies require disclosure of AI use rather than AI authorship.
+
+\section*{Acknowledgements}
+We thank Achim Flammenkamp for maintaining the no-three-in-line database and its class counts, without which the empty cells
+would not have been visible, and Thomas Prellberg for the detailed account of the CP-SAT computations.
+
+\begin{thebibliography}{9}
+\bibitem{Flammenkamp92} A.~Flammenkamp, Progress in the no-three-in-line problem, \emph{J. Combin. Theory Ser. A} 60 (1992)
+305--311.
+\bibitem{Flammenkamp98} A.~Flammenkamp, Progress in the no-three-in-line problem, II, \emph{J. Combin. Theory Ser. A} 81 (1998)
+108--113.
+\bibitem{FlammenkampDB} A.~Flammenkamp, The no-three-in-line problem, database and tables,
+\url{https://wwwhomes.uni-bielefeld.de/achim/no3in/readme.html} (accessed 2026-08-17; table state 2026-08-11).
+\bibitem{Prellberg26} T.~Prellberg, Constraint satisfaction programming for the no-three-in-line problem, arXiv:2602.07751 (2026).
+\bibitem{GuyKelly} R.~K.~Guy and P.~A.~Kelly, The no-three-in-line problem, \emph{Canad. Math. Bull.} 11 (1968) 527--531.
+\end{thebibliography}
+
+\appendix
+\section{The configurations}
+Rows and columns are numbered $0,\dots,n-1$ from the top-left corner; the encoding is the class character followed by two
+column characters per row (alphabet \texttt{0-9A-Za-z\#\$\%\&@?!()[]<>\{\}=*+|-/\textasciitilde\^{}\_:;,.} as in
+\cite{FlammenkampDB}).
+
+\input{appendix_configs.tex}
+
+\end{document}
