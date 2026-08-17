@@ -37,3 +37,7 @@ paper/*.log
 paper/*.out
 paper/build*.log
 web/all_known_solutions
+slack/liftmax
+slack/arcmod
+slack/algebraicity
+slack/*.cnf
