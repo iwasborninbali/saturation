@@ -1,0 +1,2450 @@
+                                                                             A DVANCES IN C OMBINATORICS , 2026:7, 41 pp.
+                                                                                  www.advancesincombinatorics.com
+
+
+
+
+                                            Randomised Algebraic Constructions for the
+                                                  No-(k + 1)-in-Line Problem
+                                                       Benedek Kovács*                      Zoltán Lóránt Nagy†                 Dávid R. Szabó‡
+arXiv:2508.07632v2 [math.CO] 21 Jul 2026
+
+
+
+
+                                                                         Received 5 September 2025; Published 18 September 2026
+
+
+
+
+                                                  Abstract: The no-(k + 1)-in-line problem seeks the maximum number fk (n) of points
+                                                  that can be selected from an n × n square lattice such that no k + 1 of them are collinear.
+                                                  The problem was first posed more than 100 years ago for the special case k = 2 and has
+                                                  remained open ever since. The general problem was recently resolved in the case k is not
+                                                  small compared to n, as Kovács, Nagy and Szabó proved that the upper bound kn can be
+                                                                                √
+                                                  attained, provided that k > C n log nfor an absolute constant C. 
+                                                      In this paper, we show that 1 − 2k kn ≤ fk (n) ≤ kn and 1 − 3k kn ≤ fk (n) ≤ kn hold for
+                                                  every even k and odd k, respectively, provided that n is large enough. This is asymptotically
+                                                  tight as k → ∞. Previously, only fk (n) = Ω(kn) was known due to Lefmann.
+                                                      We present further improvements on the lower bounds for constant values of k when
+                                                  k < 23 holds. All these bounds are based on randomised algebraic constructions.
+
+                                           Key words and phrases: no-(k+1)-in-line problem, algebraic constructions, probabilistic method
+
+
+                                           1     Introduction
+                                           A set of points in the plane is said to be in general position if no three of the points lie on a common
+                                           line. Following the riddle of Dudeney concerning the placement of 16 chess pieces on the chessboard in
+                                               * Supported by the EKÖP-25 University Research Scholarship Program of the Ministry for Culture and Innovation from
+                                           the source of the National Research, Development and Innovation Fund, the University Excellence Fund of Eötvös Loránd
+                                           University, and EXCELLENCE NKKP_24 grant number 151504.
+                                               † Supported by the University Excellence Fund of Eötvös Loránd University and the János Bolyai Research Scholarship of
+
+                                           the Hungarian Academy of Sciences.
+                                               ‡ Supported by the University Excellence Fund of Eötvös Loránd University.
+
+
+
+                                           © 2026 Benedek Kovács, Zoltán Lóránt Nagy, and Dávid R. Szabó
+                                           c b Licensed under a Creative Commons Attribution License (CC-BY)                                  DOI: 10.19086/aic.2026.7
+                   B ENEDEK KOV ÁCS , Z OLT ÁN L ÓR ÁNT NAGY, AND D ÁVID R. S ZAB Ó
+
+general position, the no-three-in-line problem was formulated, asking to determine the maximum number
+of grid points of an n × n grid so that the points are in general position. For the history and background of
+this celebrated problem, we refer to the excellent book of Brass, Moser, and Pach [5] and that of Eppstein
+[8]. It is easy to see using the pigeonhole principle that 2n is an upper bound. This theoretical upper
+bound can be attained when n is small [1, 9, 17]. Surprisingly, although it has been studied extensively,
+no progress has been reported concerning the lower bound, up to our best knowledge, since the result
+of Hall, Jackson, Sudbery, and Wild [13]. They showed fifty years ago that one can choose 1.5n − o(n)
+points in general position from the n × n grid.
+     Several conjectures were formulated concerning the asymptotical value of the answer to the no-three-
+in-line problem, and it is far from clear whether it is 1.5n, 2n or somewhere in between [5, 8, 11, 12].
+     Our main focus is to continue the investigation of the generalization of this problem.
+
+Definition 1.1. Let fk (n) denote the maximum size of a point set chosen from the points of the n × n grid
+G = [1, n] × [1, n] in which at most k points lie on any line.
+
+    Using this notation, the aforementioned cornerstone result is the following.
+
+Theorem 1.2 (Hall, Jackson, Sudbery, and Wild [13]).
+
+                                         1.5n − o(n) ≤ f2 (n) ≤ 2n.
+
+    Their construction relies on a well-chosen subset of the modular hyperbola {(x, y) ∈ Z2 : xy ≡ c
+(mod p)} where p denotes a prime number close to n/2, and c is a nonzero (mod p) residue. This
+construction, which we call the HJSW construction for short, will play a central role in our paper and will
+be discussed in detail in Section 2.
+    Later Lefmann, using graph-theoretic tools, proved that for fixed k, fk (n) = Ω(kn) holds for the gen-
+eral case [15]. Here we note
+                            that actually,
+                                       1simply  taking the disjoint union of ⌊k/2⌋ distinct constructions
+                              1
+                                            
+of HJSW type where p ∈ 2 − o(1) n, 2 n is fixed and c varies, we can obtain the following stronger
+observation for free from Theorem 1.2.
+
+Proposition 1.3 (Multiplicativity). Let k ≥ 2 be a fixed integer. Then as n → ∞, we have
+
+                            ( 34 − o(1)) · kn ≤ fk (n),                     if   2 | k,
+                        3    3
+                                       
+                        4 − 4k   − o(1)  · kn ≤ fk (n),                     if   2 ∤ k.
+
+    However, the present authors were recently able to show much stronger results, as we determined the
+precise value of fk (n) when k is not too small.
+
+Theorem 1.4 (Kovács, Nagy, Szabó [14]). For every C > 12.5, there exists an integer NC such that
+                         √
+whenever n ≥ NC and k ≥ C n log n, we have
+
+                                                  fk (n) = kn.
+
+     In this paper, we have two main objectives. First, we wish to extend the range of k = k(n) where
+fk (n) = (1 − o(1))kn holds. In this direction, our main result is the following.
+
+                              A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                   2
+           R ANDOMISED A LGEBRAIC C ONSTRUCTIONS FOR THE N O -(k + 1)- IN -L INE P ROBLEM
+
+Theorem 1.5. For every k ≥ 2, there exists Nk such that whenever n ≥ Nk , we have
+                                                    
+                         2        6             2
+        kn − 2n < 1 − + √                 −            kn ≤ fk (n) ≤ kn,          if 2 | k,
+                         k k πk + 14 k(k + 2)
+                                                    
+                           3      10            6
+         kn − 3n < 1 − + √                −            kn ≤ fk (n) ≤ kn,          if 2 ∤ k.
+                           k k πk + 7 k(k + 1)
+
+    We prove a slightly stronger result in Theorem 3.11. Note that for fixed k, Theorem 1.4 determines
+the exact value of fk (n) for small values of n, while Theorem 1.5 gives a near-optimal estimate for all
+large enough values of n.
+    While Theorem 1.2 and its consequence, Theorem 1.3 relied on a purely algebraic construction,
+namely the line intersection patterns of conics over a finite field, the recently proved exact result of
+Theorem 1.4 was essentially purely probabilistic in nature, as its construction was built from carefully
+constructed blockwise uniform random bipartite graphs. To obtain Theorem 1.5, we apply the combination
+of the two techniques.
+    Theorem 1.3 and the construction of Hall et al. [13] indicate that obtaining good lower bounds might
+depend on the parity of k. We investigate the case k = 3 in detail, in addition to the cases when k is a
+small constant, and improve upon the previous general lower bound with a different approach.
+
+Theorem 1.6. f3 (n) ≥ 1.973n for every sufficiently large n.
+
+Theorem 1.7. fk (n) ≥ (Ck − o(1))kn holds for k ∈ {2, . . . , 22} with coefficients Ck presented in Table 1.1.
+
+
+                 k            Ck           proof             k           Ck           proof
+                                                                    229
+                                                            12      256 ≈ 0.89453     §3
+                           3                                       4969
+                 2         4 ≈ 0.75000     §2 or §A         13     5824 ≈ 0.85319     §3
+                       26521                                       1621
+                 3     40320 ≈ 0.65776     §5 and §B        14     1792 ≈ 0.90458     §3
+                           3                                      13379
+                 4         4 ≈ 0.75000     §3 or §A         15    15360 ≈ 0.87103     §3
+                          41                                      11255
+                 5        60 ≈ 0.68333     §3 or §A         16    12288 ≈ 0.91593     §3
+                          59                                      34559
+                 6        72 ≈ 0.81944     §A               17    39168 ≈ 0.88233     §3
+                         171                                       2837
+                 7       224 ≈ 0.76339     §3               18     3072 ≈ 0.92350     §3
+                         109                                      43457
+                 8       128 ≈ 0.85156     §3 or §A         19    48640 ≈ 0.89344     §3
+                         193                                       4763
+                 9       240 ≈ 0.80417     §3               20     5120 ≈ 0.93027     §3
+                         559                                      17775
+                10       640 ≈ 0.87344     §3 or §A         21    19712 ≈ 0.90173     §3
+                           5                                      42307
+                11         6 ≈ 0.83333     §3               22    45056 ≈ 0.93899     §3
+
+Table 1.1: The values of Ck , together with the Section number where the corresponding bound is proved.
+
+
+   In this statement, the bound k ≤ 22 is chosen arbitrarily. For any concrete integer k, one could
+compute a lower bound slightly better than in Theorem 1.5 as detailed in Theorem 3.12.
+   Let us compare these results to the field analogue of the problem, when the maximum number of
+points is to be determined in finite projective planes PG(2, q) (or finite affine planes AG(2, q)) over a
+
+                              A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                    3
+                   B ENEDEK KOV ÁCS , Z OLT ÁN L ÓR ÁNT NAGY, AND D ÁVID R. S ZAB Ó
+
+finite field Fq of order q, provided that every line intersects the point set in at most k points. Such point
+sets of size K are called (K, k)-arcs in finite projective geometries. In general, for small k, i.e., k < q/2,
+the best constructions are obtained from the union of ⌊k/2⌋ conics [3]. We mention that in the case
+                                              √
+k = 3, there is a construction of size q + ⌊2 q⌋, (which only slightly exceeds the lower bound for k = 2,)
+while the known upper bound is K ≤ 2q + 1. Ball and Hirschfeld cite that any progress on determining a
+constant c such that the upper bound n/q < c < 2 for q large enough, or a construction where n/q > c > 1
+for infinitely many q will be rewarded by a cheque for 10,000 Hungarian forints from Prof. A. Blokhuis
+[3]. This underlines the different behavior of the cases k even and k odd.
+
+
+Outline of the paper Our paper is organized as follows. In Section 2, we set the main notation and the
+general tools for the proofs. We also recall the main ideas and properties of the construction for k = 2 by
+Hall et al. [13]. It relies on a construction over F p × F p with p ≤ n and the fact that for every n there
+is a prime number p = pn ≤ n with pn /n → 1 (see [2]) which enables us to embed the construction to
+[1, n] × [1, n] and get the same asymptotical result as for prime numbers. This theme will be applied in
+our constructions as well: the size of our randomised constructions will be parametrized by an arbitrary
+odd prime number, and this construction will be embedded into the grid [1, n] × [1, n].
+     Then in Section 3, we use this construction as a building block to prove Theorem 1.5. The more
+technical part of the argument, consisting mainly of the required computations, is carried out in the
+next section. The general lower bound of Theorem 1.5 can be slightly improved for sporadic cases of k
+via the combination of two further building blocks, relying on the construction for k = 2 by Hall et al.,
+and Appendix A is dedicated to the refinement of the techniques detailed in Section 3 in order to get
+improved bounds on fk (n) when k is a small constant. Using a slightly different technique, we improve
+the lower bound in the case k = 3 and sketch the proof of Theorem 1.6 in Section 5 to complete the table
+of Theorem 1.7. The exact calculations are carried out in Appendix B. Finally, we discuss some open and
+related problems in Section 6.
+
+
+Notes added Following the appearance of the current paper, Kwan and Grebennikov were able to
+extend Theorem 1.4 and prove the following general result:
+
+Theorem 1.8 (Kwan, Grebennikov [10]). For n ≥ k ≥ 1037 , we have
+
+                                                 fk (n) = kn.
+
+    This result thus gives an exact answer whenever k is large (independently of n). Our result mainly
+focuses on the behavior of fk (n) when k is rather small.
+
+
+2    Preliminaries
+Throughout the paper, F p = {0, 1, . . . , p − 1} denotes the set of integers modulo p, and F∗p = F p \ {0}.
+We let N denote the set of nonnegative integers.
+
+                              A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                    4
+            R ANDOMISED A LGEBRAIC C ONSTRUCTIONS FOR THE N O -(k + 1)- IN -L INE P ROBLEM
+
+2.1   Grids and secants
+Let us recall the following definitions and notations from the previous paper by the authors [14]. The
+notation [a, b] refers to the integer interval {x ∈ Z : a ≤ x ≤ b}. A grid is a set G = I1 ×I2 where I1 = [a1 , b1 ]
+and I2 = [a2 , b2 ] are integer intervals. We say that G is an n1 × n2 grid, where n j = |I j | = b j − a j + 1 for
+ j = 1, 2. We call G a square grid if n1 = n2 .
+    A secant ℓ of a grid G is a line in the Euclidean plane that meets G in at least two points. We call a line
+ℓ generic if it is not horizontal or vertical. Note that each generic secant ℓ has a unique direction vector
+v = (vx , vy ) such that vx ∈ Z+ , vy ∈ Z \ {0} and gcd(vx , vy ) = 1. The modulus of ℓ is M = max(|vx |, |vy |).
+    Given an integer k ≥ 2, we call S ⊆ G a no-(k + 1)-in-line set if |S ∩ ℓ| ≤ k for every Euclidean line ℓ
+(or equivalently, for every secant ℓ of G).
+
+2.2   The no-three-in-line construction of Hall, Jackson, Sudbery and Wild
+In this subsection, we recall the main construction of Hall, Jackson, Sudbery and Wild in [13], which
+gives a no-three-in-line set of size 3(p − 1) in a 2p × 2p grid for any prime p ≥ 3. We start by recalling
+their most important definitions and lemmas, as our new constructions are also based on these.
+
+Definition 2.1 (Congruent points in Z × Z). Two points (x1 , y1 ) and (x2 , y2 ) are called congruent mod p,
+or simply congruent, if x1 ≡ x2 (mod p) and y1 ≡ y2 (mod p). A class is the set of all points in Z × Z
+congruent to a certain point. Note that classes naturally correspond to elements of F p × F p . The base
+point of a class is its unique element in [0, p − 1] × [0, p − 1].
+
+Definition 2.2 (Modular hyperbola). Let c ∈ F∗p . Define the modular hyperbola to be
+
+                                H(c, p) := {(x, y) ∈ Z × Z : xy ≡ c (mod p)}.
+
+    A point (x, y) ∈ Z × Z will be called normal if p ∤ x and p ∤ y. In [13], Hall et al. introduce the
+following way to partition the normal points of Z × Z into subgrids of size p−1 p−1
+                                                                             2 × 2 , which we will call
+blocks.
+
+Definition 2.3 (Blocks). Define the following four p−1 p−1
+                                                    2 × 2 grids:
+                                                                    
+                                             p−1         p+1
+                                   A0,0 = 1,          ×        , p−1 ,
+                                               2           2
+                                                                        
+                                            p+1              p+1
+                                   B0,0 =        , p−1 ×            , p−1 ,
+                                             2                  2
+                                                               
+                                             p−1           p−1
+                                   C0,0 = 1,          × 1,          ,
+                                               2             2
+                                                                    
+                                            p+1                 p−1
+                                   D0,0 =        , p − 1 × 1,            .
+                                             2                    2
+
+For r, s ∈ Z, let Ar,s = A0,0 + (rp, sp), and similarly define Br,s , Cr,s , Dr,s . Figure 2.1 illustrates these sets
+for p = 11.
+
+                                A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                         5
+                      B ENEDEK KOV ÁCS , Z OLT ÁN L ÓR ÁNT NAGY, AND D ÁVID R. S ZAB Ó
+
+    We let                                                                [
+                                                                    A=           Ar,s ,
+                                                                         r,s∈Z
+
+which is the union of all classes that have their base point in A0,0 ; and we similarly define B, C, D. Note
+that the disjoint union A ⊔ B ⊔C ⊔ D is equal to the set of all normal points of Z × Z.
+
+             21                                                                       21
+                  B−1,1      A0,1        B0,1           A1,1
+             17                                                                       17
+             16                                                                       16
+                  D−1,1      C0,1        D0,1           C1,1
+             12                                                                       12
+             11                                                                       11
+             10                                                                       10
+                  B−1,0      A0,0        B0,0           A1,0
+             6                                                                            6
+             5                                                                            5
+                  D−1,0      C0,0        D0,0           C1,0
+             1                                                                            1
+             0                                                                            0
+                 −5   −1 1          56          10 12          16                             −5   −1 1   56   10 12   16
+
+
+
+
+Figure 2.1: The left side illustrates the blocks in Theorem 2.3 in the case p = 11, and the right side shows
+which of these are kept in the set T2 in Theorem 2.7.
+
+    Recall the following observation from [13]:
+Observation 2.4. For any c ∈ F∗p and any Euclidean line ℓ, the intersection points of H(c, p) and ℓ lie in
+at most two classes.
+   For certain types of lines, Hall et al. [13] describe their possible intersection patterns with H(c, p) in
+more detail:
+Observations 2.5.         (a) A line of slope 0 or ∞ meets H(c, p) in at most one class.
+
+  (b) A line of slope +1 meets H(c, p) in one of the following sets:
+
+          • the empty set,
+          • one class in A or D,
+          • two classes, with both in A, both in D, or one in B and the other in C.
+
+      In the last case, the two classes of the intersection points are (x, y) and (−y, −x) for some x, y ∈ F∗p .
+
+  (c) A line of slope −1 meets H(c, p) in one of the following sets:
+
+          • the empty set,
+          • one class in B or C,
+          • two classes, with both in B, both in C, or one in A and the other in D.
+
+                                    A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                              6
+           R ANDOMISED A LGEBRAIC C ONSTRUCTIONS FOR THE N O -(k + 1)- IN -L INE P ROBLEM
+
+      In the last case, the two classes of the intersection points are (x, y) and (y, x) for some x, y ∈ F∗p .
+
+    In the cases when a line of slope +1 or −1 meets H(c, p) in two classes, the base points of the two
+classes are reflections of each other in the lines x + y = p or x = y, respectively. The proof makes use of
+the symmetry of the modular hyperbola with respect to switching the coordinates and to multiplying each
+coordinate by −1.
+    The construction of Hall et al. is a subset of the grid
+                                                              
+                                                 p − 1 3p − 1
+                               G = G(p) := −           ,         × [0, 2p − 1],                       (2.1)
+                                                   2       2
+
+which has the following key property:
+
+Observation 2.6. In G, no three congruent points lie on the same line, and any pair of congruent points
+determine a line of slope 0, ∞, or ±1.
+
+Proof. The region contains 4 points of each class, laid out in the vertices of a square, from which the
+statement follows.
+
+    Now we are ready to recall the construction of Hall et al., and the proof of their main result, giving a
+no-(k + 1)-in-line set for k = 2:
+
+Construction 2.7 (HJSW construction [13]). Take the set T2 = T2 (p) ⊆ G(p) defined as the union of the
+following 12 blocks, three of each type:
+                                                                                          
+    T2 := A0,1 ⊔ A1,0 ⊔ A1,1 ⊔ B−1,0 ⊔ B−1,1 ⊔ B0,1 ⊔ C0,0 ⊔C1,0 ⊔C1,1 ⊔ D−1,0 ⊔ D−1,1 ⊔ D0,0 .
+
+Fix any value c ∈ F∗p , and take the modular hyperbola H(c, p). The HJSW construction is the set
+
+                                        S2 (c, p) := H(c, p) ∩ T2 (p).
+
+    The set T2 (p) is illustrated in Figure 2.1.
+
+Theorem 2.8 ([13]). For any odd prime p and c ∈ F∗p , the set S2 (c, p) defined in Theorem 2.7 is a
+no-three-in-line set of size 3(p − 1), hence f2 (2p) ≥ 3(p − 1).
+
+Proof. As H(c, p) altogether contains p − 1 classes of normal points, and T2 contains 3 points of every
+such class, |S2 (c, p)| = 3(p − 1).
+    We prove that S2 := S2 (c, p) ⊆ G is a no-three-in-line set. Suppose that line ℓ contains at least 3 points
+of S2 . By Theorem 2.4, ℓ ∩ S2 contains at least two congruent points, so by Theorem 2.6, ℓ has slope 0, ∞,
+or ±1.
+    If ℓ is horizontal or vertical, then it meets H(c, p) in at most one class. But this is a contradiction,
+since T2 has no three congruent points on a line.
+    If ℓ has slope ±1, and it meets H(c, p) in at most one class, then we similarly get a contradiction. So
+suppose that ℓ ∩ H(c, p) has points from two classes, and distinguish two cases based on the slope of ℓ.
+
+                              A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                         7
+                     B ENEDEK KOV ÁCS , Z OLT ÁN L ÓR ÁNT NAGY, AND D ÁVID R. S ZAB Ó
+
+Case 1: ℓ has slope +1.
+  In T2 , the only pairs of congruent points lying on a line of slope +1 consist of one point from B−1,0
+  and one from B0,1 , or one point from C0,0 and one from C1,1 . However, in these cases the line does not
+  intersect T2 ∩C, or T2 ∩ B, respectively, so by Theorem 2.5(b), the other class in ℓ ∩ H(c, p) does not
+  contain a point of T2 , giving a contradiction.
+
+Case 2: ℓ has slope −1.
+  In this case, we get an analogous contradiction using the block pairs {D−1,1 , D0,0 } and {A0,1 , A1,0 },
+  considering Theorem 2.5(c).
+
+      So S2 is indeed a no-three-in-line set.
+
+
+2.3     Extensions of the HJSW construction for k = 3 and k = 4
+We now show a way to supplement the HJSW construction S2 with additional points to obtain a no-4-in-
+line set S3 of at least 72 (p − 1) points, and a no-5-in-line set S4 of 4(p − 1) points. Although these sets
+turn out to be suboptimal, they will be useful building blocks later on.
+    To define this new construction, we introduce a new subdivision of Z × Z, which resembles a
+chessboard rotated by 45◦ . Let Z × Z = E ⊔ F, where
+
+                                                                                          
+                                                                  y+x     y−x
+        E = (x, y) ∈ Z × Z : (p | y + x) or (p | y − x) or             +        ≡0       (mod 2)   ,
+                                                                   p       p
+
+
+                                                                                               
+                                                                   y+x     y−x
+       F = (x, y) ∈ Z × Z : (p ∤ y + x) and (p ∤ y − x) and             +        ≡1           (mod 2)   .
+                                                                    p       p
+
+    Figure 2.2 shows this subdivision, where E is shaded brown (and also includes the boundary lines
+with p | y + x or p | y − x), while F is shaded light blue. The subdivision is compatible with translations
+by multiples of p along both axes, so every class lies fully in E or in F.
+    The subdivision has the following symmetry property:
+
+Observation 2.9. For any (x, y) ∈ F p × F p with x, y, y + x, y − x ̸= 0, the four points obtained by
+reflecting (x, y) in some subset of the two lines y + x = 0 and y − x = 0 are categorized as follows: either
+(x, y), (−x, −y) are in E and (y, x), (−y, −x) are in F, or vice versa. See the dark blue points of Figure 2.2
+for an example.
+
+    Recall the HJSW construction S2 = H(c, p) ∩ T2 for a modular hyperbola H(c, p), which was no-
+3-in-line. We are now ready to define our modified constructions Sk for k ∈ {3, 4}, which will also be
+no-(k + 1)-in-line.
+    In the grid G, the normal points form 16 blocks, with 12 of these forming the set T2 . We let M be the
+union of the four remaining blocks in the middle: M = A0,0 ⊔ B0,0 ⊔C0,1 ⊔ D0,1 .
+
+                               A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                   8
+           R ANDOMISED A LGEBRAIC C ONSTRUCTIONS FOR THE N O -(k + 1)- IN -L INE P ROBLEM
+
+                            2p
+
+
+
+
+                             p
+
+
+
+
+                             0
+                                              0                        p
+Figure 2.2: The sets E (brown) and F (light blue). The points of a set of four classes illustrating
+Theorem 2.9 are marked as dark blue.
+
+
+Construction 2.10 (Modular hyperbola construction in the grid). In the grid G from (2.1), let T3 :=
+T2 ⊔ (M ∩ E) and T4 := T2 ⊔ M. For any c ∈ F∗p , define
+
+                                                 S3 := S3 (c, p) := H(c, p) ∩ T3 ,
+                                 S := S(c, p) := S4 := S4 (c, p) := H(c, p) ∩ T4 ,
+
+where the modular hyperbola H(c, p) ⊂ Z2 is given in Theorem 2.2.
+    Note that the subscripts 2, 3 and 4 indicate the maximal intersection sizes of the respective sets with
+respect to lines. In the calculations of Section 3 and Section 4, we will use S instead of S4 for simplicity.
+    In Figure 2.3, the sets T2 ⊆ T3 ⊆ T4 are depicted simultaneously.
+Proposition 2.11. f3 (2p) ≥ |S3 | ≥ 3.5(p − 1) and f4 (2p) ≥ |S4 | = 4(p − 1) for every prime p ≥ 3.
+Proof. We prove that Sk contains at most k points on every line ℓ for k ∈ {3, 4}. Clearly, S2 ⊆ S3 ⊆ S4 .
+    Take any line ℓ; the points of ℓ ∩ Sk lie in at most two classes. By Theorem 2.6, if any two points in G
+are congruent then they determine a line of slope 0, ∞ or ±1, and on this line there cannot be any more
+points of G from the same class. So |ℓ ∩ S4 | ≤ 4, and if ℓ is of modulus ≥ 2, then |ℓ ∩ S4 | ≤ 2.
+    Horizontal and vertical lines only meet one class of H(c, p), so they meet S4 in at most 2 points. So it
+remains to show that |ℓ ∩ S3 | ≤ 3 for ℓ of slope ±1.
+    We already know that |ℓ ∩ S2 | ≤ 2, and now we show that |ℓ ∩ (S3 \ S2 )| = |ℓ ∩ (M ∩ E) ∩ H(c, p)| ≤ 1.
+Supposing the contrary, ℓ must meet (M ∩ E) ∩ H(c, p) in two noncongruent points, as no two points of
+M are congruent.
+    If ℓ has slope +1, then considering the possibilities in Theorem 2.5(b) for the two classes of ℓ∩H(c, p),
+we cannot have one class in B and the other in C, as such points are not on the same slope +1 line in M.
+
+                              A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                   9
+                                B ENEDEK KOV ÁCS , Z OLT ÁN L ÓR ÁNT NAGY, AND D ÁVID R. S ZAB Ó
+
+ 21                                                         21                                21
+         B−1,1      A0,1         B0,1           A1,1
+ 17                                                         17                                17
+ 16                                                         16                                16
+         D−1,1      C0,1         D0,1           C1,1
+ 12                                                         12                                12
+ 11                                                         11                                11
+ 10                                                         10                                10
+         B−1,0      A0,0         B0,0           A1,0
+    6                                                       6                                 6
+    5                                                       5                                 5
+         D−1,0      C0,0         D0,0           C1,0
+    1                                                       1                                 1
+    0                                                       0                                 0
+        −5   −1 1          56           10 12          16       −5   −1 1   56   10 12   16       −5   −1 1   56   10 12   16
+
+                           T4                                               T3                                T2
+
+Figure 2.3: The subsets T4 , T3 and T2 of G in the case p = 11, illustrated as the union of the four coloured
+subsets in each figure. The colours red, yellow, green and blue indicate the points of A, B, C and D,
+respectively.
+
+
+However we also cannot have two classes in A (or two in D), since the corresponding points would be
+reflections of each other in x + y = p (or x + y = 2p), but one point from every such pair in A0,0 and D0,1
+is missing from E.
+     If ℓ has slope −1, we get an analogous contradiction, giving that S3 is indeed no-4-in-line.
+     Now as H(c, p) consists of p − 1 full normal classes, and T4 contains 4 points of every normal class,
+|S4 | = 4(p − 1). The set T3 consists of T2 (having 3 points of each normal class), and M ∩ E (where M
+has 1 point of each normal class). By Theorem 2.9, normal classes (x, y) that do not lie on the diagonals
+y ± x ≡ 0 (mod p) can be subdivided into groups of two classes in E and two in F, with the value of xy
+being invariant modulo p within each group.
+     Altogether p − 1 classes satisfy xy ≡ c (mod p), and on the diagonals y − x ≡ 0 (mod p) and
+y + x ≡ 0 (mod p), there are at most two such classes each. Half of the remaining classes are in E, thus
+|S3 \ S2 | ≥ p−1
+               2 and hence |S3 | ≥ 3.5(p − 1) holds.
+
+
+3        Randomised algebraic construction for every k
+In this section, we prove Theorem 1.5 by giving a random point set of the grid, for which we select a set
+of random modular hyperbolae, and then delete some points from the union of their point sets lying in an
+n × n grid in order to obtain our no-(k + 1)-in-line set.
+                                                                                h             i
+                                                                                         3p−1
+Definition 3.1. Let p be an odd prime. In the 2p × 2p grid G = G(p) := − p−1        2  ,   2    × [0, 2p − 1],
+                                           h              i
+                                                    3p−1
+consider the 2p × (2p − 1) subgrid G′ := − p−1  2 , 2       × [1, 2p − 1] which we get from G by removing
+the bottom row. Let L′ be the set of lines of slope ±1 intersecting G′ . Define Ω p to be the set of subsets
+of {1, . . . , p − 1}.
+
+        In the following, we build on Theorem 2.10. In particular, recall that S(c, p) is the intersection of the
+
+                                            A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                      10
+           R ANDOMISED A LGEBRAIC C ONSTRUCTIONS FOR THE N O -(k + 1)- IN -L INE P ROBLEM
+
+modular hyperbola H(c, p) with the grid G(p).
+
+Construction 3.2 (Randomised construction using multiple modular hyperbolae). Let W ∈ Ω p and k ∈ N
+with k ≥ 2 |W |. Let S(W ) := c∈W S(c, p) ⊆ G′ , and pick a subset R ⊆ S(W ) of minimum size such that
+                               S
+
+|ℓ ∩ R| ≥ |ℓ ∩ S(W )| − k for every line ℓ ∈ L′ . Our construction is Pk (W ) := S(W ) \ R.
+
+    The remaining part of the section aims to determine the size of the construction above.
+
+Lemma 3.3 (Construction size). The trimmed point set Pk (W ) ⊆ G from Theorem 3.2 is a no-(k + 1)-in-
+line set of size
+                                |Pk (W )| ≥ 4(p − 1) |W | − Xk,p (W ),                          (3.1)
+where Xk,p (W ) := ∑ℓ∈L′ max{0, |ℓ ∩ S(W )| − k}.
+
+Proof. First we prove that |ℓ ∩ Pk (W )| ≤ k for every line ℓ intersecting G′ . Remember that modulo p
+congruence classes of Z × Z are called classes for short. We distinguish three cases depending on the
+slope of ℓ.
+
+Case 1: ℓ has slope 0 or ∞.
+  By Theorem 2.5(a), the line ℓ meets H(c, p) in at most one class for each c ∈ W . By Theorem 2.6,
+  ℓ ∩ G contains at most two points from this class, so ℓ ∩ S(c, p) = ℓ ∩ H(c, p) ∩ G has size at most 2.
+ Altogether,
+                              |ℓ ∩ Pk (W )| ≤ ∑ |ℓ ∩ S(c, p)| ≤ 2|W | ≤ k.
+                                                 c∈W
+
+Case 2: ℓ has slope ±1.
+  In this case, ℓ ∈ L′ , so |ℓ ∩ Pk (W )| = |ℓ ∩ S(W )| − |ℓ ∩ R| ≤ k by construction.
+
+Case 3: ℓ has slope different from 0, ∞ and ±1.
+  By Theorem 2.4, the line ℓ meets H(c, p) in at most two classes for each c ∈ W . By the application
+  of Theorem 2.6 to the current case, ℓ ∩ G contains at most one point from each class, so ℓ ∩ S(c, p) =
+  ℓ ∩ H(c, p) ∩ G has size at most 2. The conclusion is the same as in Case 1.
+
+    For the bound on |Pk (W )|, note that |S(W )| = 4(p − 1) |W | by Theorem 2.11. On the other hand, for
+every ℓ ∈ L′ , pick a subset Rℓ ⊆ ℓ ∩ S(W ) of size max{0, |ℓ ∩ S(W )| − k}. Then
+
+                                         |R| ≤ ∑ |Rℓ | = Xk,p (W )
+                                                ℓ∈L′
+
+by definition.
+
+Remark 3.4. Note that 12 Xk,p (W ) ≤ |R| ≤ Xk,p (W ) holds for the erased point set. Indeed, in the proof of
+Theorem 3.3, we must remove the necessary excess points Rℓ from S(W ) along the disjoint lines ℓ ∈ L′ of
+slope +1. Considering the symmetries of slope +1 and slope −1 lines (cf. Theorem 4.8), this gives the
+lower bound on |R|. The upper bound follows from Theorem 3.2. In order to improve the upper bound
+∑ℓ∈L′ |Rℓ | = Xk,p (W ), one might try to maximize (or bound from below) the number of excess points that
+
+                             A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                  11
+                       B ENEDEK KOV ÁCS , Z OLT ÁN L ÓR ÁNT NAGY, AND D ÁVID R. S ZAB Ó
+
+appear as excess points on lines of different slopes. This approach could also add a marginal numerical
+improvement, but we decide not to elaborate on it for general values of k.
+    Note however, that when k = 2, the underlying number theory enables finding this optimum, see
+Subsection 2.2 and Subsection 2.3. We will use similar ideas in Appendix A to gain some improvement
+for small constant values of k. In the general treatment of the current section, we will simply work with
+the above upper bound on |R|.
+
+Definition 3.5. For Ω p from Theorem 3.1, define F to be the set of subsets of Ω p , and a probability
+                             |A|
+measure P : F → R, A 7→ |Ω     p|
+                                  for all A ∈ F. In particular, P({W }) = |Ω1p | for every elementary event
+given by W ∈ Ω p .
+    Now Xk,p from Theorem 3.3 can be considered a random variable on the uniform random discrete
+probability space (Ω p , F, P). For t ∈ N, define the event At := {W ∈ Ω p : |W | = t} ∈ F.
+
+    One wishes to choose W ∈ Ω p with |W | ≤ k/2 so that (3.1) gives the largest lower bound for the
+construction size. Unfortunately, finding this optimal W exactly is hard. So instead, we use the standard
+averaging argument
+
+                                                                               1
+                             min{Xk,p (W ) : W ∈ At } ≤ E(Xk,p | At ) =                  Xk,p (W ),     (3.2)
+                                                                              |At | W∑
+                                                                                     ∈At
+
+which together with (3.1) gives
+
+                                               4(p − 1)t − E(Xk,p | At ) ≤ fk (2p).                     (3.3)
+
+In Theorem 3.10, we will see that it is the best to take W to be as large as possible, i.e., t = |W | = ⌊k/2⌋.
+    We need the following technical statements to evaluate the conditional expected value of (3.3).
+Their proof is computationally heavy, so it is separated to Section 4 enabling a better overview of the
+construction in the current section.
+
+Definition 3.6. For t, s ∈ N, define the positive number
+
+                                              b                       a                  !
+                          1                        2t − s + 1 − 4r t + 1                  t +1
+              Ft,s := t−1                     ∑                          + ∑ (t − s − 3r)               (3.4)
+                     2 (t + 1)                r=0         2          r     r=0              r
+              t−s         2t−s 
+where a :=     3       ≤      4       =: b.
+
+    The expected value E(Xk,p | At ) of the number of deleted points of Theorem 3.2 is given by the next
+statement.
+
+Proposition 3.7 (Asymptotic value). For every k,t, s ∈ N with k = 2t + s, we have
+
+                                                  E(Xk,p | At ) = Ft,s · p + O(1)                       (3.5)
+
+as the odd prime p tends to ∞, where Ft,s is given by Theorem 3.6.
+
+                                      A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                           12
+           R ANDOMISED A LGEBRAIC C ONSTRUCTIONS FOR THE N O -(k + 1)- IN -L INE P ROBLEM
+
+Proposition 3.8 (Upper bound). For every t, s ∈ N with s ≥ 1, the following inequalities hold for Ft,s ,
+defined in (3.4).
+                                                    12          2
+                               Ft,0 < 4 − √                +           < 4
+                                                  2πt + 14 t + 1
+                                                                                                (3.6)
+
+
+
+
+                                                                  <
+                                    ≤
+                                                    20             6
+                     Ft,s ≤ Ft,1 < 4 − p                      +
+                                                π(2t + 1) + 7    t + 1
+
+In particular, sup{Ft,s : t, s ∈ N} = 4.
+
+Theorem 3.9. Let k ∈ N. Pick t, s ∈ N with k = 2t + s. Then as n → ∞, we have
+
+                                      kn − s + 12 Ft,s + o(1) n ≤ fk (n).
+                                                             
+                                                                                                    (3.7)
+
+Proof. Pick ε > 0. Theorem 3.7 shows that there exists NE ∈ N, such that for every odd prime p ≥ NE ,
+we have E(Xk,p | At ) ≤ (Ft,s + ε)p. Pick 0 < δ ̸= 1 such that 2tδ < ε4 . The Prime number theorem
+implies the existence of NP such that whenever n ≥NP , then there is an odd prime number p satisfying
+                                                           2NP 16t
+(1 − δ )n ≤ 2p ≤ n. Define the threshold Nε := max NP , 1−δ   , ε .
+    Pick an arbitrary integer n ≥ Nε . Since n ≥ NP by the definition of Nε , there exists an odd prime p
+such that (1 − δ )n ≤ 2p ≤ n. Let At ⊆ Ω p be the event from Theorem 3.5 for this prime p. Now, we have
+
+            fk (n) ≥ fk (2p)                                           using 2p ≤ n,
+                  ≥ 4pt − 4t − E(Xk,p | At )                           using (3.3),
+                  ≥ 4pt − 4t − (Ft,s + ε)p                             using (3.5),
+                  ≥ 2nt(1 − δ ) − 4t − n 12 Ft,s + 2
+                                                   ε
+                                                     
+                                                                       using (1 − δ )n ≤ 2p ≤ n,
+                  = n(2t − 12 Ft,s − ε) + n ε2 − 2tδ
+                                                       
+                                                           − 4t
+                  ≥ n(2t − 21 Ft,s − ε) + ε4 n − 4t                    using 2tδ < ε4 ,
+                  ≥ n(2t − 12 Ft,s − ε)                                using n ≥ Nε ≥ 16t
+                                                                                       ε ,
+                  = kn − (s + 21 Ft,s + ε)n                            using k = 2t + s
+
+giving (3.7) as required.
+
+Remark 3.10. Note that Ft,s < 4 from Theorem 3.8 implies that Theorem 3.9 gives the following sharpest
+result when applied to t := ⌊k/2⌋ and s ∈ {0, 1}.
+
+Corollary 3.11. For every k ≥ 2, as n → ∞, we have
+
+                                  1
+                                                 
+                            1 − 2k  Fk/2,0 − o(1) kn ≤ fk (n),                    if   2 | k,
+                             1
+                    1 − 1k − 2k
+                                                 
+                                F(k−1)/2,1 − o(1) kn ≤ fk (n),                    if   2 ∤ k.
+
+    As an immediate application, we obtain one of the main statements of this paper.
+
+                               A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                             13
+                    B ENEDEK KOV ÁCS , Z OLT ÁN L ÓR ÁNT NAGY, AND D ÁVID R. S ZAB Ó
+
+Proof of Theorem 1.5. Apply Theorem 3.11 and use the upper bound of Theorem 3.8 to get
+                                                   
+                           2       6           2
+            kn − 2n < 1 − + √            −            kn ≤ fk (n),          if 2 | k,
+                           k k πk + 14 k(k + 2)
+                                                   
+                             3     10          6
+             kn − 3n < 1 − + √           −            kn ≤ fk (n),          if 2 ∤ k.
+                             k k πk + 7 k(k + 1)
+
+as stated. We have taken into account that we have strict inequality in Theorem 3.8 in order to get rid of
+the error term o(1).
+
+Remark 3.12. When k is a concrete number, Ft,s can be computed precisely using (3.4), so instead of
+using an upper bound on the function Ft,s using Stirling’s approximation as in Theorem 1.5, we can get a
+sharper bound of form
+                                         (Ck − o(1))kn ≤ fk (n)
+straight from Theorem 3.11. We summarize the results of this section for small values of k in Table 3.1,
+which also demonstrates the validity of the estimate in Theorem 1.5. These include the improved bounds
+of Theorem 1.7, except for the case when k ∈ {3, 6}, where even better results are obtained in the
+following sections.
+
+    k            Ck               Sk       Ck − Sk            k            Ck               Sk       Ck − Sk
+              1                                                         7
+   2          2 ≈ 0.50000      0.41612     0.08390           3         12 ≈ 0.58333      0.32249     0.26085
+              3                                                        41
+   4          4 ≈ 0.75000      0.70769     0.04230           5         60 ≈ 0.68333      0.61970     0.06363
+             13                                                       171
+   6         16 ≈ 0.81250      0.79948     0.01300           7        224 ≈ 0.76339      0.72961     0.03379
+            109                                                       193
+   8        128 ≈ 0.85156      0.84489     0.00667           9        240 ≈ 0.80417      0.78708     0.01709
+            559                                                         5
+   10       640 ≈ 0.87344      0.87237     0.00107           11         6 ≈ 0.83333      0.82284     0.01049
+            229                                                      4969
+   12       256 ≈ 0.89453      0.89097     0.00356           13      5824 ≈ 0.85319      0.84748     0.00572
+           1621                                                     13379
+   14      1792 ≈ 0.90458      0.90450     0.00008           15     15360 ≈ 0.87103      0.86562     0.00541
+          11255                                                     34559
+   16     12288 ≈ 0.91593      0.91483     0.00110           17     39168 ≈ 0.88233      0.87961     0.00272
+           2837                                                     43457
+   18      3072 ≈ 0.92350      0.92302     0.00048           19     48640 ≈ 0.89344      0.89076     0.00268
+           4763                                                     17775
+   20      5120 ≈ 0.93027      0.92968     0.00059           21     19712 ≈ 0.90173      0.89990     0.00184
+                                         6
+(a) For even k, we have Sk = 1 − 2k + k√πk+14      2
+                                              − k(k+2) .                                          10
+                                                           (b) For odd k, we have Sk = 1 − 3k + k√πk+7      6
+                                                                                                       − k(k+1) .
+
+Table 3.1: Let k ∈ N be fixed. The best lower bound of this section is (Ck − o(1))kn ≤ fk (n) from
+Theorem 3.11. Its approximated value is Sk · kn ≤ fk (n) from Theorem 1.5.
+
+
+
+4 Expected value of the number of deleted points: proofs of Theorem 3.7
+  and Theorem 3.8
+This section is devoted to the proofs of Theorem 3.7 and Theorem 3.8 to complete the proof of Theorem 3.9
+from Section 3.
+
+                              A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                        14
+            R ANDOMISED A LGEBRAIC C ONSTRUCTIONS FOR THE N O -(k + 1)- IN -L INE P ROBLEM
+
+    Since the proofs are rather long and technical, we start with an overview of the flow of the proofs. Let
+us recall that Theorem 3.7 states the following: For every k,t, s ∈ N with k = 2t + s, we have
+
+                                           E(Xk,p | At ) = Ft,s · p + O(1)
+
+for the expected number of deleted points of Theorem 3.2 as p → ∞ where Ft,s is given by Theorem 3.6,
+and At is the set of t-element subsets of F∗p , cf. Theorem 3.5. By Theorem 3.5 and Theorem 3.3, we have
+
+                                                    1     1
+                 E(Xk,p | At ) = ∑ Xk,p (W ) ·          =
+                                                   |At | |At | W∑    ∑ max{0, |ℓ ∩ S(W )| − k},                   (4.1)
+                                  W ∈At                         ∈At ℓ∈L′
+
+where S(W ) =      c∈W S(c, p) by Theorem 3.2. Note that |ℓ ∩ S(W )| − k depends only on s and the 5-tuple
+                 S
+
+
+                         gℓ (W ) := (|{c ∈ W : |S(c, p) ∩ ℓ| = j}| : j = 0, . . . , 4) ∈ N5 ,
+
+cf. (4.4). More explicitly, |ℓ ∩ S(W )| − k = ∆s (gℓ (W )), for the suitable function ∆s : N5 → Z from
+Theorem 4.4. Denote by
+
+                                T = T (t, s) = {gℓ (W ) : W ∈ At , ∆s (gℓ (W )) > 0}
+
+the set of 5-tuples induced by W ∈ At giving a positive contribution to (4.1), cf. Theorem 4.4. Then
+rearranging the order of the summation (and leaving the 0 terms) in (4.1) gives
+
+                                                       1
+                                    E(Xk,p | At ) =         ∑ ∆s (τ) ∑ ′ g−1
+                                                      |At | τ∈T           ℓ (τ),                                  (4.2)
+                                                                    ℓ∈L
+
+as we will see in depth in Subsection 4.1. Then in Subsection 4.2, we evaluate the asymptotic behaviour of
+the inner sum of (4.2) (as p → ∞) by carefully analysing the symmetries of the modular hyperbola S(c, p).
+Afterwards, in Subsection 4.3, we evaluate the asymptotic value of the outer sum of (4.2). Subsection 4.4
+concludes the proof of Theorem 3.7, and using various binomial identities, we compute a more explicit
+form of Ft,s , notable for the case s ∈ {0, 1}. Finally, in Subsection 4.5, using Stirling’s formula, we
+determine an upper bound for Ft,s in an explicit and closed form, thereby proving Theorem 3.8.
+
+Remark 4.1. Note that the sharpest upper bound for E(Xk,p | At ) will eventually be given by the cases
+Ft,0 and Ft,1 as noted in Theorem 3.10. To prove this, throughout this section, we keep s,t ∈ N arbitrary
+with k = 2t + s, as this essentially does not increase the length of the argument compared to assuming
+s ∈ {0, 1}. Nevertheless, for the first reading, one may wish to fix the values t = ⌊k/2⌋ (lower integer
+part), and s = k − 2t ∈ {0, 1} (depending on the parity of k) for the rest of this section if the goal is to
+prove Theorem 1.5 without worrying if a sharper result is possible to attain for a different choice of (t, s).
+
+4.1    Step 1: A general formula for the expected value
+To start, we need the following technical definitions.
+
+Definition 4.2. For j ∈ {0, . . . , 4} and line ℓ ∈ L′ , define M j (ℓ) := {c ∈ {1, . . . , p − 1} : |ℓ ∩ S(c, p)| = j}.
+
+                                A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                          15
+                    B ENEDEK KOV ÁCS , Z OLT ÁN L ÓR ÁNT NAGY, AND D ÁVID R. S ZAB Ó
+
+
+                                                j=0 (W ∩ M j (ℓ)) = W and |ℓ ∩ S(W )| = ∑ j=0 j · W ∩ M j (ℓ) .
+                                              S4                                         4
+Remark 4.3. For any W ∈ Ω p , we have
+
+Definition 4.4. Let t, s ∈ N. Define the function ∆s : N5 → Z by τ = (τ0 , . . . , τ4 ) 7→ 2τ4 + τ3 − τ1 − 2τ0 − s,
+and the index set T (t, s) := {τ = (τ0 , . . . , τ4 ) ∈ N5 : ∑4j=0 τ j = t, ∆s (τ) > 0}.
+
+    We will use the fact that |T (t, s)| is independent of p. While Xk,p (W ) is hard to compute for any
+fixed W ∈ Ω p , it turns out that the conditional expected value E(Xk,p | At ) (i.e., the average value of Xk,p
+restricted to At ⊆ Ω p ) can be expressed more explicitly.
+
+Lemma 4.5. For every k,t, s ∈ N with k = 2t + s, we have
+
+                                                                                4                
+                                               1                                        M j (ℓ)
+                           E(Xk,p | At ) =    p−1
+                                                      ∑      ∆s (τ)     ∑∏                        .          (4.3)
+                                               t    τ∈T (t,s)        ℓ∈L′ j=0            τj
+
+Proof. First, for ℓ ∈ L′ , we claim that the map
+
+                   gℓ : {W ∈ At : |ℓ ∩ S(W )| − k > 0} → T (t, s)
+                                                                                                              (4.4)
+                                                        W 7→ (|W ∩ M0 (ℓ)| , . . . , |W ∩ M4 (ℓ)|)
+
+is well-defined. Indeed, Theorem 4.3 shows that ∑4j=0 gℓ (W ) j = |W | = t. Hence, using the assumption,
+we see that k = s + 2 ∑4j=0 gℓ (W ) j . This together with Theorem 4.3 implies that
+
+                                        4                 4        
+                   |ℓ ∩ S(W )| − k =     j ·
+                                        ∑ ℓ jg (W )  − s + 2     (W )
+                                                             ∑ ℓ j = ∆s (gℓ (W ))
+                                                               g
+                                        j=0                               j=0
+
+
+by Theorem 4.4. So gℓ (W ) ∈ T (t, s) by definition as claimed.
+   Second, using the claim and (4.1), we can express the expected value as
+
+                                                    1
+                                E(Xk,p | At ) =           ∑′ ∑              ∑        ∆s (τ).
+                                                   |At | ℓ∈L τ∈T (t,s)   W ∈g−1
+                                                                             ℓ (τ)
+
+
+
+Finally note that the inverse image has cardinality g−1       4    |M j (ℓ)| and that |A | =          p−1
+                                                                                                          
+                                                     ℓ (τ) = ∏ j=0   τj                  t              t .
+
+
+    To express E(Xk,p | At ) more explicitly, using some technical definitions and elementary computa-
+tional results, we compute the right-hand side of (4.3) explicitly in two steps (see Subsection 4.2 and
+Subsection 4.3). Then we determine its exact asymptotic behaviour as p → ∞ to prove Theorem 3.7
+(see Subsection 4.4). Finally, we give a simple upper bound to this asymptotic to conclude the proof of
+Theorem 3.8 (see Subsection 4.5).
+
+
+4.2   Step 2: Determining the inner sum of (4.3)
+We start by computing M j (ℓ) explicitly for every ℓ ∈ L′ .
+
+                               A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                       16
+           R ANDOMISED A LGEBRAIC C ONSTRUCTIONS FOR THE N O -(k + 1)- IN -L INE P ROBLEM
+
+                                                                                        −
+Definition 4.6. For d ∈ Z, denote the lines of slope ±1 by ℓ+   d := ℓ[y = x + d] and ℓd := ℓ[y = −x + d]. Let
+          3p−3 5p−3                     p−3 7p−3                                                          5p−3
+D := [− 2 , 2 ] and D := [− 2 , 2 ], two integer intervals of size 4p − 2. Let D⊤ := [ p+1
+  +                            −
+                                                                                                      2 , 2 ],
+the top half of the interval D+ . Partition D⊤ into the following intervals of length p−1     p−1 p−1
+                                                                                       2 , 1, 2 , 2 and 2
+                                                                                                            p−1
+
+respectively: D2 := [ p+12 , p − 1], D3
+                                         := {p}, D4 := [p + 1, 3p−1
+                                                                 2 ], D5
+                                                                          := [ 3p+1
+                                                                                 2 , 2p − 1], D6
+                                                                                                 := [2p, 5p−3
+                                                                                                           2 ].
+
+Remark 4.7. Note that L′ from Theorem 3.1 can be expressed as
+
+                              L′ = ℓ+        +
+                                                 ∪ ℓ−         −
+                                                  
+                                    d :d∈D           d :d∈D     .
+
+Lemma 4.8. The exact value of |M j (ℓ)| for every ℓ ∈ L′ is given by the following statements.
+
+   1. We have |M j (ℓ−             +                     −                                  +             +
+                     d )| = |M j (ℓd−p )| for every d ∈ D . (So it is enough to find |M j (ℓd )| for d ∈ D .)
+
+   2. We have |M j (ℓ+               +                   +                                  +             ⊤
+                     p−d )| = |M j (ℓd )| for every d ∈ D . (So it is enough to find |M j (ℓd )| for d ∈ D .)
+
+   3. For every d ∈ D⊤ , the value of |M j (ℓ+
+                                             d )| is given in Table 4.1.
+
+                    M j (ℓ+
+                          d)      d ∈ D2      d ∈ D3      d ∈ D4        d ∈ D5        d ∈ D6
+                     j=0            p−1
+                                     2
+                                                p−1
+                                                 2
+                                                            p−1
+                                                             2
+                                                                          p−1
+                                                                           2         d − 3p+1
+                                                                                           2
+                     j=1            0            0           1         d − 3p−1
+                                                                             2
+                                                                                     5p−1
+                                                                                       2 −d
+                     j=2            1            0       d − p−1      2p − 1 − d        0
+                                                         3p−1
+                     j=3         d − p+1
+                                      2
+                                                p−1
+                                                 2         2 −d           0             0
+                     j=4         p−1−d           0           0            0             0
+
+Table 4.1: The value of |M j (ℓ+             ⊤
+                               d )| for d ∈ D and j ∈ {0, . . . , 4}. The intervals D2 , . . . , D6 are defined in
+Theorem 4.6.
+
+
+Proof. Recall Theorem 4.2 and Theorem 2.10. Denote by P′ the reflection of P ∈ G across any of the lines
+ℓ[y = ±x + ap] for a ∈ Z (indicated by dotted lines in Figure 4.1). Note that Theorem 2.5 imply a partial
+reflection symmetry: if P ∈ S(c, p) (for some c ∈ F∗p = {1, . . . , p − 1}) and P′ ∈ G, then P′ ∈ S(c, p).
+      For Part 1 and Part 2, note that the partial reflection symmetry above implies that |M j (ℓ)| is invariant
+under reflecting the line ℓ ∈ L′ across the lines y = x + 2p and x = 2p (indicated by dashed lines in
+Figure 4.1).
+      For Part 3, we first prove the case d ∈ D2 . Consider ℓ+   d (the red line in Figure 4.1) and its partial
+reflection symmetries to the lines ℓ[y = −x + ap] for a ∈ {0, 1, 2, 3}, i.e., the dotted lines orthogonal to
+ℓ+d . Let P := (x, y) ∈ ℓd ∩ G such that p ∤ x and p ∤ y. Then there is a unique c ∈ F p for which P ∈ S(c, p),
+                         +                                                             ∗
+
+i.e., c ≡ xy (mod p). To describe S(c, p), we separate the following disjoint cases based on which block
+(from Theorem 2.3) P belongs to. Let L := 3a=0 ℓ[y = −x + ap], the union of the points of our dotted
+                                                  S
+
+lines.
+
+    • If P ∈ ℓ+
+              d ∩ ((D−1,0 ∪ D0,1 ) \ L), then the partial reflection symmetries in the dotted lines give
+      four points of ℓ+
+                      d ∩ S(c, p) (including P): two from D−1,0 and two from D0,1 (indicated by       in
+      Figure 4.1).
+
+                               A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                      17
+                    B ENEDEK KOV ÁCS , Z OLT ÁN L ÓR ÁNT NAGY, AND D ÁVID R. S ZAB Ó
+
+
+                    ℓ(6)          ℓ(5)                           ℓ(4)          ℓ(3)     ℓ(2)
+                                                                                                             2p − 1
+          B−1,1                          A0,1                    B0,1
+D6
+                                                                                               A1,1
+                                                                                                             3p+1
+                                                                                                               2
+                                                                                                             3p−1
+                                                                                                               2
+          D−1,1                          C0,1
+D5
+                                                                        D0,1                   C1,1
+                                                                                                             p+1
+                                                                                                             p
+                                                                                                             p−1
+D4        B−1,0
+
+
+                                                A0,0                    B0,0                   A1,0
+                                                                                                             p+1
+D3                                                                                                            2
+                                                                                                             p−1
+                                                                                                              2
+
+
+D2
+                   D−1,0                        C0,0                    D0,0                   C1,0
+                                                                                                             1
+                                                                                                             0
+                                                                                                      3p−1
+      − p−1
+         2                 −1 0    1                   p−1 p+1
+                                                        2   2              p−1        p+1               2
+
+
+
+Figure 4.1: Illustration of the grid G and the sets {ℓ+d : d ∈ Dm } for each m ∈ {2, . . . , 6}, with each set
+shown as a differently coloured strip. In each set, one line ℓ(m) = ℓ+   dm (for some dm ∈ Dm ) is shown
+thickened as an example. As per Theorem 4.8, reflecting a line ℓ ∈ L′ across any of the two dashed axes
+does not change the values of |M j (ℓ)|, allowing us to deduce these values for all ℓ from just those for ℓ+d
+with d ∈ D⊤ . The set S(c, p) is symmetric to the dotted lines. For various values of c, this symmetry is
+indicated on S(c, p) ∩ ℓ(2) by the differently shaped grid points.
+
+
+     • Similarly, if P ∈ ℓ+d ∩ ((A0,0 ∪ A1,1 ) \ L), then the partial reflection symmetries yield again four
+       points of ℓ+
+                  d ∩ S(c, p): two from A0,0 and two from A1,1 (indicated by        in Figure 4.1).
+
+                              A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                           18
+           R ANDOMISED A LGEBRAIC C ONSTRUCTIONS FOR THE N O -(k + 1)- IN -L INE P ROBLEM
+
+    • If P ∈ ℓ+
+              d ∩ (B−1,0 ∪ C0,1 ∪ B0,1 ), then we obtain three points altogether by the partial reflection
+      symmetries: one from each block B−1,0 , C0,1 and B0,1 (indicated by in Figure 4.1).
+    • Otherwise, P ∈ ℓ+                                                  +               +
+                         d ∩ L, i.e., P is on a dotted line. Note that |ℓd ∩ L| = 2 and ℓd ∩ L ⊆ S(c, p). More
+      explicitly, depending on the parity of d, there are two cases. Either one point is from D−1,0 and
+      the other is its reflection in ℓ[x = −y + p] and belongs to D0,1 (as indicated by in Figure 4.1), or
+      there is one in A0,0 and one in A1,1 , its reflection in ℓ[x = −y + 2p].
+Since ℓ+                                                                      2
+        d ∩ H(c, p) ∩ ([a, a + p − 1] × [b, b + p − 1]) ≤ 2 for any (a, b) ∈ Z , the (iterated) reflections of
+                     +
+P give the full set ℓd ∩ S(c, p) in all cases above. Then a simple computation gives
+                     
+                     
+                     
+                      0,                                                                  if j = 1,
+                      1 ℓ+ ∩ L = 1,
+                     
+                                                                                           if j = 2,
+       |M j (ℓ+        2 d
+              d )| =  1 +                                     p+1
+                     
+                      3 ℓd ∩ (B−1,0 ∪C0,1 ∪ B0,1 ) = d − 2 ,                              if j = 3,
+                      1 ℓ+ ∩ (D
+                                                                  +
+                                                                        
+                       4    d       −1,0 ∪ D0,1 ∪ A0,0 ∪ A1,1 ) − ℓd ∩ L = p − 1 − d,      if j = 4.
+                                                                  p−1
+Finally, for j = 0, we have M0 (ℓ+           ∗     4        +
+                                    d ) = F p − ∑ j=1 M j (ℓd ) = 2 as stated in the D2 column of
+Table 4.1.
+   In the other cases, M j (ℓ+
+                             d ) can be expressed as
+
+          M j (ℓ+
+                d)         d ∈ D3             d ∈ D4              d ∈ D5                  d ∈ D6
+                                                                +                        +
+           j=1                0                  1             ℓd ∩ B−1,1 + 1          ℓd ∩ B−1,1
+                                            1     +
+           j=2                0             2   ℓ d ∩  (D −1,1 A0,1 ) − 1
+                                                              ∪                             0
+                          1 +
+           j=3            3 ℓd ∩ (B−1,0 ∪C0,1 ∪ B0,1 )                         0
+           j=4                                              0
+in a similar fashion. Computing these cardinalities carefully yields the stated values of Table 4.1.
+    Now, the asymptotics of the inner sum of (4.3) can be determined.
+Lemma 4.9 (Inner sum). Let t, s ∈ N, and pick τ ∈ T (t, s) from Theorem 4.4. Then as the odd prime
+p → ∞, we have
+                                                             t+1
+                                                                 
+                                4           
+                      1             |M j (ℓ)|                 τ
+                     p−1 ∑ ∏
+                                              = 4Φ(τ) t+1 0          · p + O(1),
+                      t       ′
+                          ℓ∈L j=0      τ j              2     (t + 1)
+where                         
+                              2, if τ1 = τ2 = τ4 = 0,
+                              
+                       Φ(τ) := 1, if τ1 = τ2 = 0 < τ4 or τ1 = τ4 = 0 < τ2 ,
+                              
+                               0 else.
+                              
+
+Proof. Recall the intervals Dm from Theorem 4.6. First, we claim that
+                                                      1  (p−1)/2 
+                                              (p−1)/2 0
+                                                 τ0  τ1  τ2  τ3 +τ4 +1 ,      if    m=2
+                                            
+                                            
+                                            
+                         4 
+                             |M j (ℓ+  )|
+                                           (p−1)/2 0 0 (p−1)/2 0 ,              if    m=3
+        Km (τ) := ∑ ∏                d    =      τ0  τ1  τ2       τ3       τ4                          (4.5)
+                                              (p−1)/2 1    (p−1)/2  0 
+                   d∈Dm j=0      τ j        
+                                            
+                                                τ0   τ1 τ2 +τ3 +1 τ4      ,       if    m=4
+                                            
+                                            0,                                    if    m ∈ {5, 6}.
+
+                             A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                    19
+                    B ENEDEK KOV ÁCS , Z OLT ÁN L ÓR ÁNT NAGY, AND D ÁVID R. S ZAB Ó
+
+Indeed, for m ∈ {2, 4}, note that for any a, b, q ∈ N, we have ∑qc=0 ac q−c               q+1
+                                                                                            
+                                                                                 b    =  a+b+1 as both sides
+express the number of subsets Y ⊆ {1, . . . , q + 1} of size a + b + 1 (and the left-hand side does so by
+grouping the cases when c + 1 ∈ Y with |Y ∩ {1, . . . , c}| = a). This implies the claim for m ∈ {2, 4} using
+the values given by Table 4.1. The case m = 3 is clear as D3 is a singleton. Finally, for m ∈ {5, 6},
+                                                                                + 
+note that 2τ4 + τ3 ≥ ∆s (τ) > 0, so τ j > 0 for some j ∈ {3, 4}, hence |M jτ(ℓj d )| = τ0j = 0 for d ∈ Dm by
+                                                                                          
+
+Table 4.1.
+    Next, we claim that
+                                t+1
+                                     
+                          
+                                          pt+1 + O(pt ), if m ∈ {2, 4} and τ1 = τm = 0
+                                 τ0
+                Km (τ) = 2t+1 (t + 1)!                                                                   (4.6)
+                          O(pt ),
+                          
+                                                             otherwise.
+
+Indeed, to start, observe that
+
+                                      1 c−1            ac
+                                  
+                             ap + b
+                                     = ∏ (ap + b − r) = pc + O(pc−1 )                                     (4.7)
+                               c      c! r=0           c!
+
+for fixed numbers a, b, c ∈ N. First consider the case m = 2. Now (4.7) with (4.5) shows that K2 (τ) is a
+polynomial in p of degree τ0 + τ3 + τ4 + 1 ≤ t + 1 as t = τ0 + · · · + τ4 . Hence, this degree is t + 1 if and
+only if τ1 = τ2 = 0. In this case, (4.7) shows that the leading term is
+
+                                                            t+1
+                                                                
+                                 (p/2)τ0 (p/2)τ3 +τ4 +1
+                                                                     pt+1 ,
+                                                             τ0
+                                                        =
+                                   τ0 ! (τ3 + τ4 + 1)! 2t+1 (t + 1)!
+
+as claimed. The case m = 4 is similar. If m ∈ {3, 5, 6}, then (4.7) shows that the degree of Km (τ) in p is
+at most τ0 + τ3 ≤ t as claimed.
+    We are now ready to prove the statement. Using Theorem 4.7 and Theorem 4.8, we have
+
+                                           4                       6
+                                 1              |M j (ℓ)|      4
+                                 p−1 ∑ ∏
+                                                          =        K (τ).
+                                                               p−1 ∑ m
+                                                                  
+                                  t   ℓ∈L′ j=0    τj            t   m=2
+
+
+                                                                               (t+1
+                                                                                 τ0 )
+Finally, note that p−1                t−1 ) by (4.7), and 6
+                        1 t
+                     t    = t! p + O(p                   ∑m=2 Km (τ) = Φ(τ)  t+1
+                                                                            2 (t+1)!
+                                                                                      pt+1 + O(pt ) by
+(4.6). The statement follows.
+
+
+4.3   Step 3: Determining the outer sum of (4.3)
+Since the right-hand side of the identity of Theorem 4.9 depends heavily on τ0 , the next definition and
+statement will be useful to determine the outer sum of (4.3).
+
+Definition 4.10. For t, s, r ∈ N with r ≤ t, define Tr (t, s) := {τ ∈ T (t, s) : τ0 = r} where T (t, s) is from
+Theorem 4.4.
+
+                              A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                    20
+             R ANDOMISED A LGEBRAIC C ONSTRUCTIONS FOR THE N O -(k + 1)- IN -L INE P ROBLEM
+
+Lemma 4.11 (Outer sum). For any t, s, r ∈ N with r ≤ t, we have
+                                     2t−s+1−4r
+                                    
+                                         2       + (t − s − 3r),         if 0 ≤ r ≤ t−s
+                                                                                      3 ,
+                                      2t−s+1−4r
+                                                                          if 3 < r ≤ 2t−s
+                                                                             t−s
+                                                
+                     ∑ ∆s (τ)Φ(τ) =  2 ,                                                4 ,
+                   τ∈Tr (t,s)                                                2t−s
+                                     0,                                   if   4 < r ≤ t,
+                                    
+
+
+where ∆s (τ) is from Theorem 4.4, and Φ(τ) is from Theorem 4.9.
+
+Proof. For computational simplicity, we use the variables A := t − s − 3r, B := 2t − s − 4r to replace s
+and t in the statement. Note that 0 ≤ s + 2r = B − 2A and 0 ≤ t − r = B − A by assumption. We write the
+index set Tr (t, s) of the summation as a union of two index sets I2 and I4 , which we define and compute
+below. First, let
+
+I2 := {τ ∈ Tr (t, s) : τ1 = τ2 = 0}
+  = {(r, 0, 0, τ3 , τ4 ) ∈ N5 : r + τ3 + τ4 = t, 2τ4 + τ3 − 2r − s > 0}          using Theorem 4.10,
+                          5
+  = {(r, 0, 0, τ3 , τ4 ) ∈ N : τ3 + τ4 = B − A, 2τ4 + τ3 + 2A − B > 0}           using the definition of A, B,
+  = {(r, 0, 0, B − d, d − A) ∈ Z5 : B − d ≥ 0, d − A ≥ 0, d > 0}                 d := 2τ4 + τ3 + 2A − B,
+                                     5
+  = {(r, 0, 0, B − d, d − A) ∈ N : max{1, A} ≤ d ≤ B}
+
+after noting that (τ3 , τ4 ) = (B − d, d − A) ⇐⇒ (τ3 + τ4 , 2τ4 + τ3 + 2A − B) = (B − A, d). Similarly, let
+
+I4 := {τ ∈ Tr (t, s) : τ1 = τ4 = 0}
+  = {(r, 0, τ2 , τ3 , 0) ∈ N5 : r + τ2 + τ3 = t, τ3 − 2r − s > 0}                using Theorem 4.10,
+  = {(r, 0, τ2 , τ3 , 0) ∈ N5 : τ2 + τ3 = B − A, τ3 + 2A − B > 0}                using the definitions of A, B,
+                                         5
+  = {(r, 0, A − d, B − 2A + d, 0) ∈ Z : A − d ≥ 0, B − 2A + d ≥ 0, d > 0} d := τ3 + 2A − B,
+  = {(r, 0, A − d, B − 2A + d, 0) ∈ N5 : 1 ≤ d ≤ A}                              using B − 2A ≥ 0,
+
+as (τ2 , τ3 ) = (A − d, B − 2A + d) ⇐⇒ (τ2 + τ3 , τ3 + 2A − B) = (B − A, d). Note that for every τ ∈ I2 ∪ I4 ,
+we have ∆s (τ) = d by definition. Note that the definition of Φ(τ) from Theorem 4.9 translates to
+Φ(τ) = 2 ⇐⇒ τ ∈ I2 ∩ I4 and to Φ(τ) = 1 ⇐⇒ τ ∈ (I2 ∪ I4 ) \ (I2 ∩ I4 ). Thus the sum from the statement
+can be expressed as
+                                                                                 B
+                                                                                                 0 ≤ A,
+                                                                             
+                                                                             A + ∑ d,      if
+                                                                             
+                                                             B        A
+                                                                             
+                                                                                     d=1
+         ∑ ∆s (τ)Φ(τ) = ∑ ∆s (τ) + ∑ ∆s (τ) =               ∑ d + ∑d= B
+      τ∈Tr (t,s)              τ∈I2           τ∈I4                d=1
+                                                        d=max{1,A}                          if   A < 0.
+                                                                      ∑ d,
+                                                                     
+                                                                     
+                                                                               d=1
+
+                                                           B+1
+Note that 0 ≤ A if and only if r ≤ t−s             B
+                                                                 if 0 ≤ B, i.e. when r ≤ 2t−s
+                                                               
+                                    3  . Finally, ∑d=1 d =  2                              4 , otherwise
+this sum is 0. Then the statement follows.
+
+                               A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                  21
+                     B ENEDEK KOV ÁCS , Z OLT ÁN L ÓR ÁNT NAGY, AND D ÁVID R. S ZAB Ó
+
+4.4    Step 4: Explicit formulae for the expected value E(Xk,p | At )
+We can now prove the first key statement of Section 3 about the asymptotic value of E(Xk,p | At ).
+
+Proof of Theorem 3.7. Using the results of the previous subsections, we have
+
+                                            4           
+                     1                     M j (ℓ)
+ E(Xk,p | At ) = p−1 ∑ ∆s (τ) ∑ ∏                                             using (4.3),
+                  t  τ∈T (t,s) ℓ∈L′ j=0       τj
+                                        t+1
+                                                                 !
+                                                    τ0
+              =     ∑ ∆s (τ) · 4Φ(τ) 2t+1 (t + 1) · p + O(1)                   using Theorem 4.9,
+                  τ∈T (t,s)
+                                                        !
+                                 t     
+                          2         t +1
+              =                 ∑ r
+                     2t (t + 1) r=0         ∑ ∆s (τ)Φ(τ) · p + O(1) using Theorem 4.10,
+                                          τ∈T (t,s)
+                                                r
+
+              = Ft,s · p + O(1)                                                using Theorem 4.11 and (3.4)
+
+as stated.
+
+    To find an upper bound for Ft,s from (3.4) and prove Theorem 3.8 in the next subsection, the following
+binomial identity will be useful.
+                                                                  2t−s 
+Lemma 4.12 (A more explicit form). Let t, s ∈ N. Write a := t−s  3    ≤ 4 =: b. Then Ft,s from (3.4)
+has the following alternative form.
+
+                                                             4(s + 1) a−1 1 t
+                                                                          
+                 (s + 1)(s + 2)       2(s + 1)     1 t
+      Ft,s = 4 +                + 2−             · t    − 2+            ∑ t r +
+                     t +1               t +1      2 a          t +1     r=0 2
+                                                                                                                  (4.8)
+                                                1 t      (s + 1)(s + 2) t−b 1 t
+                                                                                     
+                        + 4(t − s − 2b − 1) − 2 · t     − 4+                    ∑ t r
+                                                  2 b             t +1        r=b+1 2
+
+In particular, writing 1{2∤t} := 1 if t is odd, and 1{2∤t} := 0 if t is even, we have
+
+                                                                              4 ⌊ 3 ⌋−1  
+                                                                                   t
+                       2                                   2 
+                  6 + t+1  1{2∤t} t                  2 − t+1            2 + t+1
+                                                                 
+                                               2                 t                         t
+       Ft,0 = 4 −        t
+                                   t  +          +     t
+                                                               t  −
+                                                                            t      ∑         ,                    (4.9)
+                       2             2      t +1        2        3         2       r=0     r
+                                                                                  8 ⌊ 3 ⌋−1  
+                                                                                       t−1
+                         6                                   4 
+                  10 + t+1   1{2∤t} t                 2 − t+1              2 + t+1
+                                                                     
+                                                 6                 t                           t
+       Ft,1 = 4 −          t
+                                    t  +          +      t
+                                                                 t−1  −
+                                                                                t        ∑       .              (4.10)
+                        2              2      t +1       2         3           2        r=0    r
+
+                                                                                        x
+                                                                                            
+Remark 4.13. By convention, we use the following extension of the function              r       for integer values of x
+and r:
+
+  (a) xr = x(x−1)...(x−r+1)
+        
+                  r!        if r ≥ 0,
+
+  (b) xr = 0 if r < 0.
+        
+
+
+                              A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                            22
+           R ANDOMISED A LGEBRAIC C ONSTRUCTIONS FOR THE N O -(k + 1)- IN -L INE P ROBLEM
+
+Proof. We claim that for any t, s ∈ Z and α ∈ Z, we have
+
+                       α                                     α−1  
+                                     t +1        t                    t
+                      ∑ (t − s − 3r) r = (t − s) α − (t + 2s + 3) ∑ r .
+                      r=0                                         r=0
+
+This is true for α < 0 by Theorem
+                     t+1 t
+                               t+1
+                                    4.13(b),
+                                         t
+                                             and for
+                                                   t
+                                                      α ∈ N, it can be verified by induction on α using t+1the
+binomial identities α+1  α   =  α+1   =  α    +  α+1   . Similarly,   for any  t  ∈ N and s, β ∈ Z with β <  2 ,
+we claim that
+                                                                                    !
+ β                                                                 t−β                                 
+     2t − s + 1 − 4r t + 1                    (s + 1)(s + 2)        t           t                                t
+∑                              = 2t + 2 +                         2 −∑                +(t +1)(2t −2s−4β −3)
+r=0          2            r                          2                  r=β +1
+                                                                                r                                β
+
+holds by Theorem 4.13(b) and by induction on β using the identities 2x = x(x−1)
+                                                                                   
+                                                                                          2   (for any x ∈ Z),
+ t+1 t        t+1      t       t                          t        t
+                                                                
+β +1 β    =   β +1   = β   + β +1  for  β ̸ = −1, and   β    =  t−β   for t ≥ 0. Apply these two  claims with
+                                    2t−s
+            t−s                                                           t+1
+α := a = 3 , and β := b = 4 to (3.4) after noting that β < 2 as s ≥ 0. Substituting back to
+(3.4), a short computation produces (4.8) as stated.
+    We obtain (4.9) and (4.10) by simplifying (4.8) in the case s ∈ {0, 1}. More concretely, we need to
+evaluate the given weighted sum of the binomial coefficients rt for b ≤ r ≤ t − b. Depending on the
+parity of t and the value of s, we can express this set as follows.
+                                       
+                                          {b} = 2t ,
+                                                 
+                                       
+                                       
+                                                                                    if s = 0, 2 | t
+                                       {b, b + 1} =  t−1 , t+1 ,
+                                       
+                                                                                     if s = 0, 2 ∤ t
+          {r ∈ N : b ≤ r ≤ t − b} =                         2 2
+                                                                 t      t  t
+                                       
+                                       
+                                         {b, b + 1, b + 2} = 2 − 1, 2 , 2 + 1 , if s = 1, 2 | t
+                                       {b, b + 1} =  t−1 , t+1 ,
+                                       
+                                                                                     if s = 1, 2 ∤ t
+                                                            2   2
+
+                                                                                         t
+                                                                                            
+Note that all of the resulting binomial coefficients can be expressed as a multiple of ⌊t/2⌋  using standard
+                                           t       t        t           t        t    t
+                                                                                     
+binomial identities: for 2 | t, we have t/2 = ⌊t/2⌋ , (t/2)−1 = (t/2)+1 = t+2 ⌊t/2⌋ , whereas for 2 ∤ t,
+              t            t         t
+                                     
+we have (t−1)/2     = (t+1)/2   = ⌊t/2⌋  . A straightforward simplification of (4.8) using the observations
+above yield (4.9) and (4.10) as stated.
+
+
+4.5   Step 5: Determining an upper bound on Ft,s – Proof of Theorem 3.8
+The final ingredients are some estimates for the following special binomial coefficients.
+
+Lemma 4.14. For every t ∈ N, we have
+                                                                      
+                        1       1   t                            1    t
+                              ≤ t                      and                 ≤ 3 · 0.95t .
+                                                                 2t ⌊t/3⌋
+                    pπ      π
+                     2t +4− 2
+                               2 ⌊t/2⌋
+
+Proof. For√
+          both statements, we use the following variant of Stirling’s formula [18]: for any m ∈ Z+ , we
+                  m m                               1             1
+                    
+have m! = 2πm e exp(rm ) where rm satisfies 12m+1       < rm < 12m   .
+
+                             A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                    23
+                   B ENEDEK KOV ÁCS , Z OLT ÁN L ÓR ÁNT NAGY, AND D ÁVID R. S ZAB Ó
+
+    Consider the first statement. One can check that it holds for t ∈ {0, 1, . . . , 7}. Thus we let m :=
+⌈t/2⌉ ≥ 4. Now we have
+                                                                                      
+       1     t         1 2m                                     t         2m − 1            1 2m
+                   = m                        as for odd t,          =                   =       ,
+       2t ⌊t/2⌋       4     m                                 ⌊t/2⌋        m−1              2 m
+                      r
+                         exp(2r2m − 4rm )
+                   =                          by Stirling’s formula,
+                                 πm
+                      r
+                         1 + 2r2m − 4rm
+                   ≥                          as exp(x) ≥ 1 + x for every x ∈ R,
+                               πm
+                      s
+                               2     4
+                         1 + 25m  − 12m           1         1                          1
+                   >                          as 25m  < 12·2m+1  < r2m and rm < 12m       ,
+                               πm
+                              1                                   76−19π
+                   ≥p                         equivalently, m ≥ 300−94π  ≈ 3.5,
+                         π(m − 1) + 4
+                            1
+                   ≥q                         as m = ⌈t/2⌉ ≤ t+1 2 .
+                           t−1
+                         π 2 +4
+
+Note that the penultimate inequality is equivalent to (300 − 94π)m − (76 − 19π) ≥ 0 after squaring both
+sides and multiplying by the common denominator.
+    Consider the second part. It is true for t ∈ {0, 1, 2}. Otherwise, for m := ⌊t/3⌋ ≥ 1, and in a similar
+                      1             1
+fashion, using 0 < 12m+1  < rm < 12m   , we have
+                                                                           
+       1      t         1 3m + 2           1 (3m + 2)(3m + 1) 3m           1 9 3m
+                   ≤ 3m               = m                              ≤ m·
+       2t ⌊t/3⌋       2       m           8 (2m + 2)(2m + 1) m            8 4 m
+                         √                          m
+                        9 3                           27
+                   = √       exp(r3m − r2m − rm )
+                      8 πm                            32
+                         √                    m                m          t/3
+                        9 3             1         27               27            27
+                   < √       exp               ·         ≤ g(1) ·         < 3·          < 3 · 0.95t ,
+                      8 πm          12 · 3m       32               32            32
+                      |        {z            }
+                               g(m)
+
+since the function g(m) is strictly decreasing for m > 0.
+
+    Finally, we can now prove the second key statement of Section 3 about bounding the asymptotic
+value of E(Xk,p | At ).
+
+Proof of Theorem 3.8. The formula of (3.4) shows that s 7→ Ft,s is a decreasing function.
+    Now consider the upper bound for Ft,0 from (3.6). Using (4.9), a computer verifies the claim for
+                                                                            −1/2
+t < 300, so assume t ≥ 300. Now the function g : R → R, x 7→ π2 t + x              is strictly decreasing
+                                  ′
+and convex, so g(c) ≥ g(d) − g (d) · (d − c) for c  := 4 − 2 < 2 =: d. Note that −g′ (d) · (d − c) =
+                                                           π      7
+
+d−c π
+            −3/2
+  2  2t +d        ≥ 3 · 0.95t because t ≥ 300. Thus
+                                                 
+                      2       6     t      6     t
+         Ft,0 < 4 +       −              + t                              using (4.9),
+                    t + 1 2t ⌊t/2⌋         2 ⌊t/3⌋
+
+                            A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                  24
+           R ANDOMISED A LGEBRAIC C ONSTRUCTIONS FOR THE N O -(k + 1)- IN -L INE P ROBLEM
+
+                     2
+                        − 6 · g(c) − 3 · 0.95t
+                                               
+              ≤ 4+                                                            using Theorem 4.14,
+                   t +1
+                     2
+                        − 6 · g(d) − g′ (d) · (d − c) − 3 · 0.95t
+                                                                  
+              ≤ 4+                                                            using convexity,
+                   t +1
+                     2
+              ≤ 4+      − 6 · g(d)                                            as t ≥ 300,
+                   t +1
+                       12          2
+              = 4− √           +      ,
+                     2πt + 14 t + 1
+
+as stated.
+    The upper bound for Ft,1 from (3.6) follows similarly using (4.10) by separating the cases t < 300
+and t ≥ 300 and taking d = π4 + 74 .
+
+
+5    A better construction for k = 3
+In this section, we sketch the proof of Theorem 1.6, which is a lower bound on f3 (n) improving
+Theorem 2.11. The full proof is carried out in Appendix B.
+    The idea is similar to the HJSW construction, but this time we use a grid of size 3p × 3p (where
+p ≥ 3 is a prime), hence consisting of 6 × 6 blocks of normal points. Recall that a point (x, y) ∈ Z × Z
+is normal if p ∤ x and p ∤ y. Again we will take the points of the modular hyperbola H(c, p) that lie in
+certain areas of the grid.
+    The mod p parity of an integer z refers to the parity of the unique integer z0 ∈ [0, p − 1] such that
+z ≡ z0 (mod p).
+    In order to define the point set, we define new pairing maps between mod p congruence classes that
+relate to lines of modulus 2.
+    Recall from Theorem 2.5 that if a line of slope +1 met H(c, p) in two congruence classes, then these
+classes were (x, y) and (−y, −x) for some x, y ∈ F∗p , and for lines of slope −1 we had (x, y) and (y, x).
+Now we make similar observations for modulus 2 lines, that is, lines of slope ±2 or ± 12 .
+
+Observation 5.1. Let ℓ be a line of modulus 2. If ℓ meets H(c, p) in two congruence classes, with one
+of them being (x, y) for some x, y ∈ F∗p , then depending on whether ℓ has slope +2, −2, + 12 , or − 21 , the
+other congruence class must be − 2y , −2x , 2y , 2x , −2y, − 2x , or 2y, 2x respectively.
+                                                                        
+
+Proof. This can be obtained by considering the quadratic equation that
+                                                                    describes the intersections of the
+modular hyperbola xy = c and the line y = mx + d over F p for m ∈ ±2, ± 12 .
+
+    When ℓ meets H(c, p) in just one congruence class, the two mentioned congruence classes must
+coincide (e.g., we have y = −2x in the slope +2 case).
+    For the slope +2 case, Figure 5.1 gives a picture of the transformation (x, y) 7→ − 2y , −2x for p = 13.
+                                                                                                
+
+In this illustration, we depict the images of four out of the eight subsets obtained by partitioning the
+normal points of F2p based on their congruence class location (A, B, C, D) and their y-coordinate’s mod
+p parity. Mappings for the other slopes are similar in nature, with full columns mapped to full rows.
+However, for slopes ± 12 , the structure is based on the mod p parity of the x-coordinate instead of that of y.
+
+                             A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                     25
+                              B ENEDEK KOV ÁCS , Z OLT ÁN L ÓR ÁNT NAGY, AND D ÁVID R. S ZAB Ó
+
+ 13                                                                       13
+ 12 R                                  S                                  12
+                                                                                                           R       T
+ 11                                                                       11
+ 10                                                                       10
+  9                                                                       9
+  8       T                            U                                  8
+  7
+  6                                                                   →   7
+                                                                          6
+  5                                                                       5
+  4                                                                       4
+  3                                                                       3
+  2                                                                       2
+  1                                                                       1
+                                                                                                           S       U
+  0                                                                       0
+      0       1   2   3   4    5   6       7    8   9   10 11 12 13            0   1   2   3   4   5   6   7   8   9   10 11 12 13
+
+
+Figure 5.1: Illustration of the congruence class pairing map for slope +2 lines for p = 13, with the images
+of the four coloured subsets of F2p on the left marked with the same colour on the right. The change
+in orientation illustrated for the red set by the images of the points marked R, S, T , U is valid for each
+coloured set.
+
+                                                                                 h             i
+                                                                                          5p−1
+      Let n = 3p for an odd prime p, and take the 3p × 3p grid G+ = [0, 3p − 1] × − p−1
+                                                                                     2  ,   2   . In order
+to present our no-4-in-line construction in G+ , we introduce the following notion.
+Definition 5.2 (m-equivalent points). Let m ∈ R ∪ {∞}. We say that two points P, Q of G+ are m-
+equivalent, if there is a line ℓ of slope m that contains both points and there exists an element c ∈ F∗p such
+that {P, Q} ⊆ H(c, p).
+     For each direction m, this defines an equivalence relation on the normal points of G+ .
+     Our aim is the following. We first produce a subset T of G+ that contains at most 3 points in every
+m-equivalence class for every direction m, and then our no-4-in-line construction will be T ′ := T ∩ H(c, p)
+for one fixed value c ∈ F∗p .
+     In G+ , every normal congruence class is represented by 9 points arranged in a 3 × 3 grid-like manner,
+and by Theorem 2.4 and Theorem 2.5(a), every line can meet H(c, p) in at most two congruence classes,
+or in at most one if the line is horizontal or vertical. So on horizontal and vertical lines, T ′ can have at
+most 3 points. There are no two congruent points on a line of modulus ≥ 3, therefore such lines will meet
+T ′ in at most 2 points. So we only need to consider lines of modulus 1 or 2.
+     The class-pairing properties of H(c, p) described   in Theorem 2.5 and Theorem 5.1 will enable us
+to partition G+ into regions for every direction m ∈ ±1, ±2, ± 21 , such that each region only contains
+pairwise m-inequivalent points, and any two regions are either pointwise m-equivalent copies of each
+other or contain no pair of m-equivalent points at all.
+     To obtain our set T , we keep at most 3 regions in every such pointwise m-equivalent family of regions,
+and completely erase the other regions. To maximize the number of remaining points, our intention is to
+
+                                               A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                        26
+             R ANDOMISED A LGEBRAIC C ONSTRUCTIONS FOR THE N O -(k + 1)- IN -L INE P ROBLEM
+
+choose the erased regions for the different directions so that they overlap each other as much as possible.
+
+     Figure 5.2 depicts the set T , from which we retain each point belonging to the H(c, p) construction
+for one fixed c ∈ F∗p . According to the colours of the regions and the legend, in some of the regions we
+only put those points into T whose x-coordinate, y-coordinate, or both, have a certain mod p parity. The
+full procedure of obtaining T is presented in Appendix B.
+
+
+
+  5
+  2p
+                                                                                                       fully in T
+                                                                                                       odd y
+                                                                                                       even y
+ 2p                                                                                                    odd x
+                                                                                                       even x
+                                                                                                       odd x and odd y
+                                                                                                       odd x and even y
+  3
+  2p                                                                                                   even x and odd y
+                                                                                                       even x and even y
+                                                                                                       not in T
+
+  p
+
+
+
+  1
+  2p
+
+
+
+
+  0
+
+
+
+
+− 12 p
+                     1             p            3             2p            5            3p
+         0           2p                         2p                          2p
+
+
+
+Figure 5.2: Our final set T , from which the no-4-in-line construction T ′ is obtained via T ′ := T ∩ H(c, p).
+According to the legend, the colour of each area indicates restrictions on the mod p parity of the
+coordinates for a point in that area to be included in T .
+
+
+
+
+                             A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                    27
+                    B ENEDEK KOV ÁCS , Z OLT ÁN L ÓR ÁNT NAGY, AND D ÁVID R. S ZAB Ó
+
+6     Concluding remarks
+The main results of our paper establish a lower bound on fk (n) by | fk (n) − kn| = O(n) for any value
+of k. Yet, we believe that this holds in a stronger form, namely | fk (n) − kn| = o(n) also holds for
+k := k(n) ≫ 1. Notice however that Theorem 1.6 gives evidence that we cannot expect probabilistic
+bounds using multiple Hall–Jackson–Sudbery–Wild type 2p × 2p constructions to be near-optimal. As
+a matter of fact, we conjecture that even the Theorem 2.7 of Hall et al. might not be asymptotically
+tight. On the other hand, as we mentioned at the end of the introduction, Grebennikov and Kwan proved
+that | fk (n) − kn| = o(n) holds for k := k(n) ≫ 1 in a strong form: fk (n) − kn = 0 for k := k(n) ≥ 1037
+provided that n ≥ k.
+     Similarly to the case when k was not small, discussed in [14], the no-(k + 1)-in-line property of the
+presented constructions essentially relied on the fact that they intersect the lines with small modulus,
+i.e., lines of slope ±1 beside the horizontal and vertical lines, in at most k points. Several well-known
+problems have similar requirements, see e.g. [6, 7]. The most prominent example might be the so-called
+n-queens problem. To solve it, one aims to place n chess queens on an n × n chessboard so that no
+two queens share the same row, column, or diagonal. The number of such placements was determined
+asymptotically just recently by Simkin [19], see also the preceding work of Bowtell, Keevash [4] and
+Luria, Simkin [16].
+
+
+A     Improvement for certain small values of k
+A.1    The main idea
+Let us recall Theorem 3.2: we started from S(W ) ⊆ G and removed a point set R from it to obtain a
+no-(k + 1)-in-line construction P(W ). In this section, along the idea of Theorem 3.4, we alter the process
+of finding R from Section 3 to obtain stronger lower bounds for fk (n) when k is small, at least for certain
+values of k.
+     For example, in the case W = {c} and k = 2, Subsection 2.2 essentially details an optimal choice
+for the points R to be removed to gain the largest no-3-in-line set S2 (c, p) inside S(W ). This value of
+|Pk (W )| is a sharpening of the estimate of (3.1) that we used in Section 3. Similarly, for W = {c} and
+k = 3, removing the points described in Subsection 2.3 gives the largest no-4-in-line set inside S(W ),
+namely S3 (c, p).
+     We mix these optimal removals with the probabilistic process of Section 3 to obtain the following
+process. For arbitrary W ∈ Ω p and k ∈ N, we remove points from the disjoint union S0 := S(W ) =
+  c∈W S4 (c, p) ⊂ G in two steps to obtain a no-(k + 1)-in-line set.
+S
+
+
+    1. Manual removal. For an arbitrary function κ : W → {2, 3, 4}, we manually remove S4 (c, p) \
+       Sκ(c) (c, p) from S0 for every c ∈ W . In this way, we obtain an intermediate set S1 := c∈W Sκ(c) (c, p).
+                                                                                              S
+
+
+    2. Probabilistic removal. Finish by applying the (suboptimal) averaging argument as in Section 3 to
+       S1 to remove the remaining excess points to obtain a no-(k + 1)-in-line set S2 .
+
+Note that when κ(c) = 4 for every c, this simplifies to the method described in Section 3. If W = {c} and
+κ(c) = k ∈ {2, 3}, then we obtain the best no-(k + 1)-in-line set already after the manual step, i.e. the
+
+                              A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                    28
+             R ANDOMISED A LGEBRAIC C ONSTRUCTIONS FOR THE N O -(k + 1)- IN -L INE P ROBLEM
+
+probabilistic one has no effect.
+    In general, instead of removing the excess points from S0 in a single (and global) step, the process
+above artificially subdivides this problem into many (local) subproblems of removing some of the excess
+points from S4 (c, p) each c ∈ W (before applying a global removal step). The (manual) solution above
+to these local problems is optimal but fails to consider the global problem in its entirety, whereas the
+(probabilistic) solution above to the global problem is suboptimal. We expect the effect of the first
+(manual) step to be relevant for small k, and suspect that the second (probabilistic) one will dominate for
+large k.
+
+A.2      Improved construction
+We now expand the ideas above formally. The development and structure are very similar to Section 3, so
+here we are only highlighting the key steps.
+    As in Theorem 3.1, define Ω̄ p to be the set consisting of triplets W̄ = (W2 ,W3 ,W4 ) of pairwise disjoint
+subsets of F∗p = {1, . . . , p − 1}. Recall the hyperbola Si (c, p) ⊂ G from Section 2 for i ∈ {2, 3, 4} and
+Theorem 3.1.
+Construction A.1 (Extended randomised construction, cf. Theorem 3.2). Let W̄ ∈ Ω̄ p and k ∈ N with
+k ≥ 2(|W2 | + |W3 | + |W4 |). Let S(W̄ ) := 4i=2 c∈Wi Si (c, p) ⊂ G′ , and pick a subset R̄ ⊆ S(W̄ ) of minimal
+                                            S S
+
+size such that |ℓ ∩ R̄| ≥ |ℓ ∩ S(W̄ )| − k for every line ℓ ∈ L′ . Our construction is Pk (W̄ ) := S(W̄ ) \ R̄.
+Lemma A.2 (Construction size). Pk (W̄ ) ⊂ G from Theorem A.1 is a no-(k + 1)-in-line set of size
+
+                     |Pk (W̄ )| ≥ (p − 1) 3 |W2 | + 27 |W3 | + 4 |W4 | − X̄k,p (W̄ )
+                                                                      
+                                                                                                 (A.1)
+
+where X̄k,p (W̄ ) := ∑ℓ∈L′ max{0, |ℓ ∩ S(W̄ )| − k}.
+Proof. The proof is analogous to that of Theorem 3.3, but now we need to use |S2 | = 3(p − 1) from
+Theorem 2.8 and |S3 | ≥ 72 (p − 1), |S4 | = 4(p − 1) from Theorem 2.11.
+
+    As in Theorem 3.5, consider the uniform random discrete probability space on Ω̄ p on which X̄k,p is a
+random variable. For t¯ = (t2 ,t3 ,t4 ) ∈ N3 , define the event At¯ := {W̄ ∈ Ω̄ p : |Wi | = ti for i ∈ {2, 3, 4}}.
+    In the following statement, we find the conditional expected value E(X̄k,p | At¯) that expresses the
+number of deleted points from Theorem A.1.
+Lemma A.3 (Cf. Theorem 4.5). For every k ∈ N, t¯ = (t2 ,t3 ,t4 ) ∈ N3 and s ∈ N with k = 2t2 + 2t3 + 2t4 + s,
+we have
+                                                                 6        4 4 
+                                                                                 Mi, j (ℓ+
+                                                                                              
+                                    4                                                     d )
+           E(X̄k,p | At¯) = p−1  t2 +t3 +t4  ∑ ∆s (τ̄) ∑ ∑ ∏ ∏                                      (A.2)
+                            t +t +t · t ,t ,t τ̄∈T (t¯,s)       m=2 d∈Dm i=2 j=0    τi, j
+                                   2   3   4    2 3 4
+
+where
+      • T (t¯, s) is the index set consisting of those τ̄ := (τi, j ) ∈ N3×5 (i ∈ {2, 3, 4} and j ∈ {0, . . . , 4}) that
+        satisfy ∑4j=0 τi, j = ti for all i ∈ {2, 3, 4}, and 0 < ∆s (τ̄) := −s + ∑4i=2 ∑4j=0 ( j − 2)τi, j , and
+
+      • the value of Mi, j (ℓ) := {c ∈ F∗p : |ℓ ∩ Si (c, p)| = j} (for any line ℓ ∈ L′ ) is given in Table 4.1 (where
+        M j (ℓ) = M4, j (ℓ)) and Table A.1.
+
+                                 A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                          29
+                        B ENEDEK KOV ÁCS , Z OLT ÁN L ÓR ÁNT NAGY, AND D ÁVID R. S ZAB Ó
+
+                              d ∈ D2                         d ∈ D3                    d ∈ D4                       d ∈ D5              d ∈ D6
+       Mi, j (ℓ+
+               d)         i=2     i=3                      i=2 i=3                 i=2     i=3                    i ∈ {2, 3}          i ∈ {2, 3}
+           j=0                p−1
+                               2
+                                             p−1
+                                              2
+                                                            p−1
+                                                             2
+                                                                          p−1
+                                                                           2
+                                                                                     p−1
+                                                                                      2
+                                                                                                  p−1
+                                                                                                   2
+                                                                                                                     p−1
+                                                                                                                      2               d − 3p+1
+                                                                                                                                            2
+           j=1                 1            0                  0          0           1          1                d − 3p−1
+                                                                                                                        2
+                                                                                                                                      5p−1
+                                                                                                                                        2   − d
+                              p−3
+           j=2                 2         d − p−1
+                                              2
+                                                            p−1
+                                                             2            0          p−3
+                                                                                      2      d − p−1             2p − 1 − d               0
+                                                                          p−1                3p−1
+           j=3                 0         p−1−d                 0           2          0        2 −d                  0                    0
+           j=4                 0            0                  0          0           0          0                   0                    0
+
+Table A.1: The value of |Mi, j (ℓ+             ⊤
+                                 d )| for d ∈ D , i ∈ {2, 3} and j ∈ {0, . . . , 4} which can be obtained as in
+the proof of Theorem 4.8. The intervals D2 , . . . , D6 are defined in Theorem 4.6.
+
+
+Proof. The proof is analogous to that of Theorem 4.5 with the following minor modifications.
+     Note that similarly to Theorem 4.8, the symmetries |Mi, j (ℓ−                         +                   +
+                                                                            d ) = |Mi, j (ℓd−p )| and |Mi, j (ℓ p−d )| =
+|Mi, j (ℓ+
+         d )| hold for every d ∈ Z, i ∈ {2, 3, 4} and j ∈ {0, . . . , 4}, hence we may replace the summation on
+the lines ∑ℓ∈L′ by the summation 4 ∑6m=2 ∑d∈Dm as in the proof of Theorem 4.9.
+    The map is given by gℓ (W̄ )i, j := Wi ∩ Mi, j (ℓ) . With this setup, we have |ℓ ∩ S(W̄ )| − k = ∆s (gℓ (W̄ )),
+and g−1 (τ̄) = ∏4 ∏4            |Mi, j (ℓ)|. Finally |A ¯| = p−1  · t2 +t3 +t4  =         (p−1)!
+                                                                                                            .
+       ℓ                i=2        j=0       τi, j                    t         t2 +t3 +t4    t2 ,t3 ,t4        (p−1−t2 −t3 −t4 )!t2 !t3 !t4 !
+
+    We can determine the asymptotic behaviour of E(X̄k,p | At¯).
+Proposition A.4 (Cf. Theorem 3.7). For every k ∈ N, t¯ = (t2 ,t3 ,t4 ) ∈ N3 and s ∈ N satisfying k =
+2t2 + 2t3 + 2t4 + s, there exists Ft¯,s ∈ R independent of p such that as the odd prime p → ∞, we have
+
+                                                         E(X̄k,p | At¯) = Ft¯,s · p + O(1).                                                        (A.3)
+
+Proof of Theorem A.4. Define
+                                         6           4     4
+                                                                   Mi, j (ℓ+
+                                                                                                                                   
+                                                                           d)                                 p−1          t2 + t3 + t4
+       P := 4       ∑         ∆s (τ̄) ∑        ∑ ∏∏                               ,          Q :=                        ·               ,
+                τ̄∈T (t¯,s)          m=2 d∈Dm i=2 j=0                τi, j                                 t2 + t3 + t4      t2 ,t3 ,t4
+
+so that the expected value from the statement is E(X̄k,p | At¯) = QP using (A.2).
+       We claim that P is a polynomial in p of degree deg P ≤ t + 1 where t := t2 + t3 + t4 . Indeed, pick
+τ̄ ∈ T (t¯, s), m ∈ {2, . . . , 6} and d ∈ Dm . Now Table A.1 and Table 4.1 shows that Mi, j (ℓ+      d ) is a poly-
+nomial in p, d of total degree at most 1. Thus       |Mi, j (ℓ+
+                                                              d )|
+                                                                    is a polynomial in p, d of total degree at most
+                                                        τi, j
+                            (x − ι) for any x ∈ R and δ ∈ N. Hence Pτ̄,m (p, d) := ∏4i=2 ∏4j=0 |Mi,τji,(ℓj d )| is a
+                                                                                                           + 
+                       −1
+τi, j , as δx = δ1! ∏δι=0
+             
+
+polynomial in p, d of total degree at most ∑4i=2 ∑4j=0 τi, j = ∑4i=2 ti = t by the definition of τ̄ ∈ T (t¯, s) from
+Theorem A.3. Recall for x, δ ∈ N, the sum ∑xι=1 ι δ is a polynomial in x of degree δ + 1. This implies
+that ∑d∈Dm Pτ̄,m (p, d) is a polynomial in p of degree at most t + 1 because the integer interval Dm has
+endpoints given by linear polynomial expressions in p, see Theorem 4.6. This shows that P is indeed as
+claimed.
+       Next, note that Q is a polynomial of degree t2 + t3 + t4 = t in p. This means that E(X̄k,p | At¯) = QP is a
+rational function in p with deg(P) ≤ t + 1 = deg(Q) + 1, hence the statement follows.
+
+                                         A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                                                  30
+           R ANDOMISED A LGEBRAIC C ONSTRUCTIONS FOR THE N O -(k + 1)- IN -L INE P ROBLEM
+
+    We obtain the following general lower bound for fk (n).
+Theorem A.5 (Cf. Theorem 3.9). Let k ∈ N. Pick t¯ = (t2 ,t3 ,t4 ) ∈ N3 and s ∈ N with k = 2t2 + 2t3 + 2t4 + s.
+Then as n → ∞, we have
+                          kn − 21 t2 + 14 t3 + s + 21 Ft¯,s + o(1) n ≤ fk (n).
+                                                                  
+                                                                                                       (A.4)
+Proof. The proof is completely analogous to that of Theorem 3.9, but now we use (A.1) instead of (3.1),
+and (A.3) instead of (3.5).
+Remark A.6. Note that Theorem A.5 gives back Theorem 3.9 in the case t¯ = (0, 0,t).
+    While it is possible to compute E(X̄k,p | At¯) using (A.2) for concrete values of t¯ and s, it would be
+very tedious to develop a concrete general formula similar to (3.4) or to Theorem 4.12. So instead, we
+use a computer to check every possible setup in Theorem A.5 for 2 ≤ k ≤ 22. As expected, we find some
+improvements to Table 3.1, but these are limited to small k as summarised in Table A.2.
+
+          k        t¯       s         C̄k         C̄k −Ck      Comment about the type of t¯
+                                   3                    1
+          2     (1, 0, 0)   0      4 ≈ 0.75000          4      Using S2 is crucial only here.
+                (0, 1, 0)          7
+          3
+                (0, 0, 1)
+                            1     12 ≈ 0.58333          0      Types: (0, 1,t − 1), (0, 0,t).
+                (2, 0, 0)
+                (1, 1, 0)
+                (1, 0, 1)          3
+          4
+                (0, 2, 0)
+                            0      4 ≈ 0.75000          0      All possible setups are equally good.
+                (0, 1, 1)
+                (0, 0, 2)
+                (0, 1, 1)         41
+          5
+                (0, 0, 2)
+                            1     60 ≈ 0.68333          0      Types: (0, 1,t − 1), (0, 0,t).
+                (0, 2, 1)         59                     1
+          6
+                (0, 1, 2)
+                            0     72 ≈ 0.81944          144    Using S3 is crucial only here.
+                (0, 1, 3)        109
+          8
+                (0, 0, 4)
+                            0    128 ≈ 0.85156          0      Types: (0, 1,t − 1), (0, 0,t).
+                (0, 1, 4)        559
+          10
+                (0, 0, 5)
+                            0    640 ≈ 0.87344          0      Types: (0, 1,t − 1), (0, 0,t).
+
+Table A.2: For each k ≤ 22, all optimal setup(s) of Theorem A.5 w.r.t. t¯ are displayed giving the best
+bound (C̄k − o(1)) · kn ≤ fk (n). We do not display those values of k where this bound C̄k is the same
+as Ck from Table 3.1 and no other setup achieves C̄k . Actual improvement (C̄k −Ck ) happened only for
+k ∈ {2, 6}.
+
+    The following lower bounds are actual improvements to Theorem 3.9.
+Theorem A.7. As n → ∞, we have
+                             3
+                                      
+                             4 − o(1) · 2n ≤ f 2 (n)     (as done also by [13]), and
+                            59
+                                     
+                            72 − o(1) · 6n ≤ f 6 (n).
+
+
+                                A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                 31
+                   B ENEDEK KOV ÁCS , Z OLT ÁN L ÓR ÁNT NAGY, AND D ÁVID R. S ZAB Ó
+
+B     Full proof of Theorem 1.6 – the detailed case of k = 3
+In this section, we prove Theorem 1.6. The idea is similar to the HJSW construction, but this time we use
+a grid of size 3p × 3p (where p ≥ 3 is a prime), hence consisting of 6 × 6 blocks of normal points. Again
+we will take the points of the modular hyperbola H(c, p) that lie in certain areas of the grid.
+    Recall that a point (x, y) ∈ Z × Z is normal if p ∤ x and p ∤ y.
+
+B.1    Congruence class pairing for modulus 2 lines
+Recall from Theorem 2.5 that if a line of slope +1 met H(c, p) in two congruence classes, then these
+classes were (x, y) and (−y, −x) for some x, y ∈ F∗p , and for lines of slope −1 we had (x, y) and (y, x).
+Now we reiterate some observations for modulus 2 lines, that is, lines of slope ±2 or ± 21 from Section 5.
+Observation B.1. Let ℓ be a line of modulus 2. If ℓ meets H(c, p) in two congruence classes, with one
+of them being (x, y) for some x, y ∈ F∗p , then depending on whether ℓ has slope +2, −2, + 12 , or − 21 , the
+other congruence class must be − 2y , −2x , 2y , 2x , −2y, − 2x , or 2y, 2x respectively.
+                                                                        
+
+    When ℓ meets H(c, p) in just one congruence class, the two mentioned congruence classes must
+coincide (e.g., we have y = −2x in the slope +2 case).
+    For the slope +2 case, Figure 5.1 gave us a picture of the transformation (x, y) 7→ − 2y , −2x for
+                                                                                                          
+
+p = 13. In this illustration, we depicted the images of four out of the eight subsets obtained by partitioning
+the normal points of F2p based on their congruence class location (A, B, C, D) and their y-coordinate’s
+mod p parity. Mappings for the other slopes are similar in nature, with full columns mapped to full rows.
+However, for slopes ± 12 , the structure is based on the mod p parity of the x-coordinate instead of that of y.
+
+B.2    Proof of Theorem 1.6: the 6 × 6 block construction
+                                                                           h             i
+                                                                                    5p−1
+Let n = 3p for an odd prime p, and take the 3p × 3p grid G+ = [0, 3p − 1] × − p−1
+                                                                               2  ,   2   . In order to
+present our no-4-in-line construction in G+ , we introduce the following notion.
+Definition B.2 (m-equivalent points). Let m ∈ R ∪ {∞}. We say that two points P, Q of G+ are m-
+equivalent, if there is a line ℓ of slope m that contains both points and there exists an element c ∈ F∗p such
+that {P, Q} ⊆ H(c, p).
+     For each direction m, this defines an equivalence relation on the normal points of G+ .
+     Our aim is the following. We first produce a subset T of G+ that contains at most 3 points in every
+m-equivalence class for every direction m, and then our no-4-in-line construction will be T ′ := T ∩ H(c, p)
+for one fixed value c ∈ F∗p .
+     In G+ , every normal congruence class is represented by 9 points arranged in a 3 × 3 grid-like manner,
+and by Theorem 2.4 and Theorem 2.5(a), every line can meet H(c, p) in at most two congruence classes,
+or in at most one if the line is horizontal or vertical. So on horizontal and vertical lines, T ′ can have at
+most 3 points. There are no two congruent points on a line of modulus ≥ 3, therefore such lines will meet
+T ′ in at most 2 points. So we only need to consider lines of modulus 1 or 2.
+     The class-pairing properties of H(c, p) described  in Theorem 2.5 and Theorem 5.1 will enable us
+to partition G+ into regions for every direction m ∈ ±1, ±2, ± 21 , such that each region only contains
+
+                             A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                     32
+                R ANDOMISED A LGEBRAIC C ONSTRUCTIONS FOR THE N O -(k + 1)- IN -L INE P ROBLEM
+
+pairwise m-inequivalent points, and any two regions are either pointwise m-equivalent copies of each
+other or contain no pair of equivalent points at all.
+    To obtain our set T , we keep at most 3 regions in every such pointwise m-equivalent family of regions,
+and completely erase the other regions. To maximize the number of remaining points, our intention is to
+choose the erased regions for the different directions so that they overlap each other as much as possible.
+    In this subsection, the main grid lines in our figures are always of the form x = k · 2p or y = ℓ · 2p for
+some k, ℓ ∈ Z. As a result of this, our figures do not always emphasize the fact that our constructed
+sets only contain grid points with integer coordinates, but this is always implied. Also, for the sake of
+simplicity, any black segments on the figures (including grid lines) are considered not to be included
+in our final construction T , even though some of the areas resemble the regions E and F as defined in
+Section 2. Since H(c, p) meets every such segment in at most a constant number of points, this only
+results in a O(1) decrease in the  total size of the construction. The endpoints of such black segments are
+always of the form k · 8p , ℓ · 8p for some k, ℓ ∈ Z.
+    According to Theorem 2.5(b), for lines of slope +1 that meet H(c, p) in two congruence classes, the
+two classes are of the form (x, y) and (−y, −x). Using this fact, it is simple to partition G+ for m = +1 in
+the required way. Figure B.1(a) shows only those region classes that contain at least four (+1)-equivalent
+copies of each region.
+    It is easy to see that two points of G+ are (+1)-equivalent if and only if their images under the
+reflection in the line x = 32 p are (−1)-equivalent. Therefore by using this symmetry, we also get a
+corresponding decomposition for m = −1 as shown in Figure B.1(b).
+   5                                                                       5
+   2p                                                                      2p
+                                               2    3             6                 16           13 12
+                                          2             4    6                           16 14              12
+   2p                                                                      2p
+                                     1    3             5    7                           17 15              13 11
+   3                             1             4    5             8        3  18                 15 14                11
+   2p                                                                      2p
+                         2       3             6    7             10                20           17 16                13 12
+                     2               4    6             8    10                          20 18              16 14             12
+    p                                                                       p
+                1    3               5    7             9                                   19              17 15             13 11
+   1        1            4       5             8    9                      1                     19 18                15 14           11
+   2p                                                                      2p
+            3            6       7             10                                                      20             17 16           13
+                4    6               8    10                                                                20 18             16 14
+    0                                                                       0
+                5    7               9                                                                           19           17 15
+         5               8       9                                                                                    19 18           15
+  − 12 p            1                    3                  5             − 21 p          1                  3                 5
+                    2p
+                             p           2p
+                                                2p                 3p                     2p
+                                                                                                   p         2p
+                                                                                                                       2p              3p
+        0                                                   2p                  0                                              2p
+                             (a) m = +1                                                            (b) m = −1
+
+Figure B.1: Decompositions of G+ into families of m-equivalent regions for m = ±1, only showing
+families containing ≥ 4 regions. For fixed m, each family consists of all triangular regions with the same
+number.
+
+    Let us now define an initial set T1 ⊆ G+ via Figure B.2, by taking all normal points that lie in the
+cyan-coloured area. This includes 20 full blocks and 12 half-blocks (that is, the intersection of a block
+with either E or F, up to the prior remark on the boundary not being included). This area has been
+
+                                               A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                                   33
+                     B ENEDEK KOV ÁCS , Z OLT ÁN L ÓR ÁNT NAGY, AND D ÁVID R. S ZAB Ó
+
+ 5                                                          5
+ 2p                                                         2p
+
+
+ 2p                                                        2p
+
+ 3                                                          3
+ 2p                                                         2p
+
+
+  p                                                         p
+
+ 1                                                          1
+ 2p                                                         2p
+
+
+  0                                                         0
+
+− 12 p     1               3               5
+                                                          − 12 p     1             3              5
+           2p
+                    p      2p
+                                  2p            3p                   2p
+                                                                            p      2p
+                                                                                          2p            3p
+      0                                    2p                   0                                 2p
+                Figure B.2: The set T1 .                                        ∗
+                                                          Figure B.3: The set T1 , consisting of those points
+                                                          of T1 which have another congruent copy in T1
+                                                          falling on the same slope +2 line.
+
+
+constructed so that it contains exactly 3 regions from every family in Figure B.1(a) and Figure B.1(b),
+                                               class1 of G in at most 3 points for m = ±1.
+and therefore T1 meets every m-equivalence                   +
+
+      We continue with the directions m ∈ ±2, ± 2 . Note that lines in these directions can only meet G+
+in at most 2 points per congruence class, and in at most 4 points altogether. So such a line can lead to a
+violation of the no-4-in-line property only if it meets G+ ∩ H(c, p) in four points forming two congruent
+pairs, and all four of these points are in T1 .
+      First we focus on slope +2 lines. In T1 , a pair of congruent points on the same slope +2 line must
+differ by the vector (p, 2p). The set of points that belong to such pairs within T1 is shown by the pink
+areas of Figure B.3, and we call this set T1∗ . For every slope +2 line that contains two pairs of pink points
+in H(c, p), we must remove at least one of those four points, which we will perform by partitioning these
+points of T1∗ into families of four (+2)-equivalent regions, and removing one region from each family.
+      As mentioned in Theorem 5.1, for every congruence class containing two points of T1∗ , we may
+determinethe other congruence class lying on the same slope +2 line via the mod p mapping (x, y) 7→
+  − 2y , −2x . However, the (+2)-equivalence class of these two points may have size less than 4, or even
+if its size is 4, it is not necessarily the case that the other two points are also elements of T1∗ . (Note that
+the two classes may coincide, but in those cases the corresponding (+2)-equivalence class has size at
+most 2.)
+      Therefore, by using the aforementioned mapping, we need to locate the points of G+ that are (+2)-
+equivalent to some element of T1∗ . As the congruence class pairing transformations make use of the mod
+p parity of coordinates (cf. Theorem 5.1), we will use the following convention to illustrate these sets
+of points. Areas shaded with single, or double horizontal lines, are considered to include only those
+points whose y-coordinate is odd mod p, or even mod p, respectively. Single, or double vertical lines
+correspondingly indicate x-coordinates which are odd, or even, mod p.
+
+                                A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                   34
+           R ANDOMISED A LGEBRAIC C ONSTRUCTIONS FOR THE N O -(k + 1)- IN -L INE P ROBLEM
+
+   Figure B.4 illustrates the procedure of finding members of a (+2)-equivalence class. Here, as an
+example, we would like to find all points (+2)-equivalent to some point in the blue region B, defined as
+
+                    B := (x0 , y0 ) : 12 p < x0 < 34 p, 0 < y0 < 12 p, y0 ≡ 1
+                        
+                                                                                 (mod 2) .
+
+    Note that B is the set of all points in the left half of the block D0,0 having odd y-coordinate.
+
+                   5                                               P′
+                   2p
+
+
+
+                   2p
+                                                   Q1,3
+                   3
+                   2p
+
+
+
+                    p
+                               Q0,2                    Q1,2
+
+                   1                       P
+                   2p
+
+                                               B
+                    0
+                           Q0,1
+
+                  − 12 p
+                                      1            p          3         2p      5      3p
+                           0          2p                      2p                2p
+
+Figure B.4: The points P, P′ , Q0,1 , Q1,3 form a (+2)-equivalence class. Even though the two red points
+are also congruent to Q0,1 and Q1,3 , they do not belong to this equivalence class. The two green and
+two blue regions form a (+2)-equivalent family. Note that each region only contains points whose
+y-coordinate has a fixed mod p parity: odd for single, even for double horizontal shading.
+
+    Consider the point P = (x0 , y0 ), and its congruent  copy P′ = (x0 + p, y0 + 2p). Note that the con-
+                                          y0      
+gruence class paired to(x0 , y0 ) is − 2 , −2x0 , which consists of all points of the form Qℓ1 ,ℓ2 :=
+  p−y0
+   2 + ℓ1 p, −2x0 + ℓ2 p with ℓ1 , ℓ2 ∈ Z, keeping in mind that y0 is odd. However not all such points are
+on the same slope +2 line as P and P′ . Indeed, the difference vector p−y
+                                                                                                           
+                                                                          2 + ℓ1 p − x0 , −2x0 + ℓ2 p − y0
+                                                                           0
+
+must be a scalar multiple of (1, 2), which holds if and only if ℓ2 = 2ℓ1 + 1. So Q0,1 and Q1,3 lie on this
+line, whereas other points of G+ congruent to them, such as the two red points with Q0,2 and Q1,2 , do not.
+    It is easy to see that as P ranges over B, the points Q0,1 and Q1,3 range over the two green regions
+marked in the figure (attaining all points whose y-coordinates are even mod p). Therefore, the two green
+and two blue regions form a family of (+2)-equivalent regions.
+
+                               A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                35
+                   B ENEDEK KOV ÁCS , Z OLT ÁN L ÓR ÁNT NAGY, AND D ÁVID R. S ZAB Ó
+
+     Using a similar algebraic reasoning, one may obtain full families of (+2)-equivalent regions covering
+every block that intersects the set T1∗ shown in Figure B.3: see Figure B.5 and Figure B.6. Note that
+some regions, such as Region 5 in Figure B.5, are mapped to themselves, however, noting the change of
+orientation in Figure 5.1, one can see that most points in such regions are actually mapped to incongruent
+points in the same region, except for one diagonal segment in every such region which is pointwise fixed.
+     Using Figure B.5 and Figure B.6, as well as the change of orientation under the pairing map, we can
+now depict those points in T1∗ which have four (+2)-equivalent copies in G+ overall. These points and
+their regionwise equivalent images are shown in Figure B.7.
+     To obtain the (+2)-equivalence classes consisting of four points of T1 , we need to depict the overlap
+between the shaded regions in the two parts of Figure B.7. This is shown in Figure B.8, along with a
+full partitioning of all such areas into families of (+2)-equivalent regions, as obtained using the previous
+figures.
+     By following  an analogous procedure for slope + 12 lines, we can similarly obtain a partitioning with
+respect to + 12 -equivalence, see Figure B.9. Using symmetry in the line x = 32 p, the partitionings with
+                
+
+respect to m-equivalence for m = −2 and m = − 12 may be obtained by reflecting the partitionings for
+m = +2 and m = + 12 in this line.
+     To obtain our set T , we choose a set of points to be removed from T1 so that for all four partitionings,
+at least one region is fully erased from each family of m-equivalent regions. A way to do this is to remove
+all points indicated in Figure B.10 and Figure B.11, taking care of m = ±2 and m = ± 21 , respectively. In
+several places, we chose to remove overlapping areas in the two figures to reduce the number of points
+overall removed. The remaining set T was depicted in Section 5, in Figure 5.2.
+     The set T1 contains 13     2
+                            2 p − O(p) normal points (see Figure B.2), whereas in Figure B.10 and Fig-
+ure B.11, the number of normal points in the removed regions is 11      2              23 2
+                                                                    48 p + O(p) and 60 p + O(p), respect-
+                                                 29 2
+ively. However, the two regions intersect in 896    p − O(p) normal points, so all in all, T contains
+                                                  
+                             13 11 23           29                26521 2
+                                  − − +               p2 − O(p) =         p − O(p)
+                              2    48 60 896                       4480
+normal points. As our no-4-in-line set T ′ is constructed as T ′ := T ∩ H(c, p), there exists a value c ∈ F∗p
+for which
+                             26521              26521
+                    |T ′ | ≥       p − O(1) =          n − O(1) ≥ 1.97328n − O(1).
+                             4480               13440
+This concludes the proof of Theorem 1.6, as for sufficiently large n we can pick an odd prime p such that
+3p asymptotically equals (but does not exceed) n.
+
+
+
+
+                             A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                    36
+                     R ANDOMISED A LGEBRAIC C ONSTRUCTIONS FOR THE N O -(k + 1)- IN -L INE P ROBLEM
+
+ 5                                                                                   5
+ 2p                                                                                  2p
+                                      1   2        3    4        9   10 11 12                                              2                 16 10
+ 2p                                                                                  2p
+                                      5   6        7    8    13 14 15 16                                               5   3                 13 11
+ 3                                                                                   3
+ 2p                                                                                  2p
+                                                                                                                       6   4                 14 12
+  p                                                                              →   p
+                                                                                                  1                    7   9                 15
+ 1                                                                                   1
+ 2p                                                                                  2p
+             1   2        3   4       9   10 11 12                                                2                    8   10                16
+
+  0                                                                                  0
+             5   6        7   8       13 14 15 16                                             5   3                    13 11
+− 12 p                                                                           − 12 p
+                     1            p           3             2p        5     3p                        1            p           3            2p    5       3p
+         0           2p                       2p                      2p                  0           2p                       2p                 2p
+
+Figure B.5: The left figure shows regions covering all points of T1∗ having odd y-coordinate mod p. The
+right figure shows the regions (+2)-equivalent to those with the same number on the left, belonging to
+the image of the congruence class under our pairing map.
+
+
+
+
+ 5                                                                                   5
+ 2p                                                                                  2p
+                                      1   2        3    4        9   10 11 12                                                       6   4            14 12
+ 2p                                                                                  2p
+                                      5   6        7    8    13 14 15 16                                       1                    7   9            15
+ 3                                                                                   3
+ 2p                                                                                  2p
+                                                                                                               2                    8   10           16
+  p                                                                              →   p
+                                                                                                           5   3                13 11
+ 1                                                                                   1
+ 2p                                                                                  2p
+             1   2        3   4       9   10 11 12                                                         6   4                14 12
+
+  0                                                                                  0
+             5   6        7   8       13 14 15 16                                                          7   9                15
+− 12 p                                                                           − 12 p
+                     1            p           3             2p        5     3p                        1            p           3            2p    5       3p
+         0           2p                       2p                      2p                  0           2p                       2p                 2p
+
+Figure B.6: The left figure shows regions covering all points of T1∗ having even y-coordinate mod p. The
+right figure shows the regions (+2)-equivalent to those with the same number on the left, belonging to
+the image of the congruence class under our pairing map.
+
+
+
+
+                                                       A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                                            37
+                                       B ENEDEK KOV ÁCS , Z OLT ÁN L ÓR ÁNT NAGY, AND D ÁVID R. S ZAB Ó
+
+ 5                                                                                                      5                                                                                10
+ 2p                                                                        10        11                 2p                                                              6       4
+                                              2        3              9                   12                                                                   2                     8                14 12
+                                                             4
+ 2p                                                                                                     2p
+                                                                      13
+                                                                                                                                                                                    13       11
+                                       5                     8             14 15 16                                                                      5         3        9                         15
+ 3                                           6          7                                               3                                                               7
+ 2p                                                                                                     2p
+
+
+  p                                                                                                 →   p
+
+ 1                                                                                                      1                                                     10
+ 2p                                          10        11                                               2p                                6          4
+                 2        3            9                     12                                                          2                               8             14 12
+                               4
+  0                                     13
+                                                                                                        0
+                                                                                                                                                         13    11
+             5                 8             14 15 16                                                            5           3                  9                      15
+                 6         7                                                                                                              7
+− 12 p                                                                                              − 12 p
+                     1             p              3              2p             5              3p                                1                   p             3            2p                   5                   3p
+         0           2p                           2p                            2p                           0                   2p                                2p                                2p
+
+Figure B.7: The left figure shows all points of T1∗ that have four (+2)-equivalent copies in G+ , and the
+right figure shows their respective regionwise images under the mappings of Figure B.5 and Figure B.6.
+
+
+
+
+ 5                                            2                       8 10 11 12                        5
+ 2p                                                                                                     2p                                                                                   1
+                                                                                                                                                                                     1                2
+                                                                                                                                                                                             2                 3
+                                                            3                                                                                                                                         3
+                                                                      9
+ 2p                                                                                                     2p
+                                        5                   8         11                                                                                                                         4
+                                                                                                                                                                                         4             5
+                                                                                          15                                                                                                          6 6
+                                                  3 7                                                                                                                                            5
+ 3                                                               9                                      3
+ 2p                                                                                                     2p               1
+                                                                                                                 1                2                                                                    8
+                                                                                                                                                                                             7 7
+                                                                                                                         2        3        3                                                  8                 9
+                                                                                                                                                                                                          9
+  p                                                                                                     p
+                                                                                                                     4
+                                                                                                                             4
+                                                                                                                                   5                                                     10 10            11
+                                                                                                                             5    6 6                                                            11                 12
+ 1               2                      8 10 11 12                                                      1                                                                                                  12
+ 2p                                                                                                     2p
+                                                                                                                         7 7       8
+                                                                                                                          8                 9
+                               3                                                                                                      9
+                                        9
+  0                                                                                                     0
+             5                 8       11                                                                            10 10            11
+                                                            15
+                     3 7                                                                                                     11                 12
+                                   9                                                                                                   12
+− 12 p                                                                                              − 12 p
+                     1             p              3              2p             5              3p                                1                   p             3            2p                   5                   3p
+         0           2p                           2p                            2p                           0                   2p                                2p                                2p
+
+Figure B.8: Full partitioning of the union of all                                                   Figure
+                                                                                                          B.9: Full partitioning of the union of all
+(+2)-equivalence classes consisting of four ele-                                                     + 12 -equivalence classes consisting
+                                                                                                                                       of four ele-
+ments of T1 into families of (+2)-equivalent re-                                                    ments of T1∗ into families of + 21 -equivalent re-
+gions.                                                                                              gions.
+
+
+
+
+                                                            A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                                                                                                    38
+             R ANDOMISED A LGEBRAIC C ONSTRUCTIONS FOR THE N O -(k + 1)- IN -L INE P ROBLEM
+
+ 5                                                       5
+ 2p                                                      2p
+
+
+ 2p                                                      2p
+
+ 3                                                       3
+ 2p                                                      2p
+
+
+  p                                                       p
+
+ 1                                                       1
+ 2p                                                      2p
+
+
+  0                                                       0
+
+
+− 12 p                                                  − 12 p
+             1     p     3      2p     5     3p                      1     p    3      2p     5      3p
+         0   2p          2p            2p                        0   2p         2p            2p
+
+Figure B.10: Points removed from T1 because of          Figure B.11: Points removed from T1 because of
+the partitionings for m = ±2.                           the partitionings for m = ± 12 .
+
+
+Acknowledgments
+The authors are grateful to the anonymous referees for their useful comments and suggestions that helped
+us improve the presentation of the manuscript.
+
+
+References
+ [1] D. B. Anderson. Update on the no-three-in-line problem. Journal of Combinatorial Theory, Series
+     A, 27(3):365–366, 1979. ISSN 0097-3165. doi:10.1016/0097-3165(79)90025-6. 2
+
+ [2] R. C. Baker and G. Harman. The difference between consecutive primes. Proceedings of the London
+     Mathematical Society, s3-72(2):261–280, 1996. ISSN 0024-6115. doi:10.1112/plms/s3-72.2.261. 4
+
+ [3] S. Ball and J. Hirschfeld. Bounds on (n, r)-arcs and their application to linear codes. Finite Fields
+     and Their Applications, 11(3):326–336, 2005. ISSN 1071-5797. doi:10.1016/j.ffa.2005.04.002. 4
+
+ [4] C. Bowtell and P. Keevash. The n-queens problem, 2021. URL https://arxiv.org/abs/2109.
+     08083. 28
+
+ [5] P. Brass, W. O. J. Moser, and J. Pach. Lattice Point Problems, pages 417–433. Springer New York,
+     New York, NY, 2005. ISBN 978-0-387-29929-7. doi:10.1007/0-387-29929-7_11. 2
+
+ [6] U. S. V. Chandran, S. Klavžar, and J. Tuite. The general position problem: A survey, 2025. URL
+     https://arxiv.org/abs/2501.19385. 28
+
+                              A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                               39
+                  B ENEDEK KOV ÁCS , Z OLT ÁN L ÓR ÁNT NAGY, AND D ÁVID R. S ZAB Ó
+
+ [7] A. S. Cooper, O. Pikhurko, J. R. Schmitt, and G. S. Warrington. Martin Gardner’s min-
+     imum no-3-in-a-line problem. The American Mathematical Monthly, 121(3):213–221, 2014.
+     doi:10.4169/amer.math.monthly.121.03.213. 28
+
+ [8] D. Eppstein. Forbidden Configurations in Discrete Geometry. Cambridge University Press, 2018.
+     ISBN 9781108539180. doi:10.1017/9781108539180. 2
+
+ [9] A. Flammenkamp. Progress in the no-three-in-line problem, II. Journal of Combinatorial Theory,
+     Series A, 81(1):108–113, 1998. ISSN 0097-3165. doi:10.1006/jcta.1997.2829. 2
+
+[10] A. Grebennikov and M. Kwan. No-(k + 1)-in-line problem for large constant k, 2025. URL
+     https://arxiv.org/abs/2510.17743. 4
+
+[11] B. Green. 100 open problems. URL https://people.maths.ox.ac.uk/greenbj/papers/
+     open-problems.pdf. 2
+
+[12] R. K. Guy and P. A. Kelly. The no-three-in-line problem. Canadian Mathematical Bulletin, 11:
+     527–531, 1968. ISSN 0008-4395. doi:10.4153/CMB-1968-062-3. 2
+
+[13] R. Hall, T. Jackson, A. Sudbery, and K. Wild. Some advances in the no-three-in-line prob-
+     lem. Journal of Combinatorial Theory, Series A, 18(3):336–341, 1975. ISSN 0097-3165.
+     doi:10.1016/0097-3165(75)90043-6. 2, 3, 4, 5, 6, 7, 31
+
+[14] B. Kovács, Z. L. Nagy, and D. R. Szabó. Settling the no-(k + 1)-in-line problem when k is not small,
+     2025. URL https://arxiv.org/abs/2502.00176. 2, 5, 28
+
+[15] H. Lefmann. Extensions of the no-three-in-line problem, 2012. URL https://www.tu-chemnitz.
+     de/informatik/ThIS/downloads/publications/lefmann_no_three_submitted.pdf. 2
+
+[16] Z. Luria and M. Simkin. A lower bound for the n-queens problem, 2021. URL https://arxiv.
+     org/abs/2105.11431. 28
+
+[17] T. Prellberg. Constraint satisfaction programming for the no-three-in-line problem, 2026. URL
+     https://arxiv.org/abs/2602.07751. 2
+
+[18] H. Robbins. A remark on Stirling’s formula. The American Mathematical Monthly, 62(1):26–29,
+     1955. ISSN 00029890, 19300972. doi:10.2307/2308012. 23
+
+[19] M. Simkin. The number of n-queens configurations. Advances in Mathematics, 427:109127, 2023.
+     ISSN 0001-8708. doi:10.1016/j.aim.2023.109127. 28
+
+
+
+
+                            A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                                40
+       R ANDOMISED A LGEBRAIC C ONSTRUCTIONS FOR THE N O -(k + 1)- IN -L INE P ROBLEM
+
+AUTHORS
+
+   Benedek Kovács
+   Eötvös Loránd University
+   Budapest, Hungary
+   benoke981 gmail com
+
+
+   Zoltán Lóránt Nagy
+   Eötvös Loránd University
+   Budapest, Hungary
+   zoltan lorant nagy ttk elte hu
+
+
+   Dávid R. Szabó
+   Eötvös Loránd University & Alfréd Rényi Institute of Mathematics
+   Budapest, Hungary
+   szabo r david gmail com
+
+
+
+
+                        A DVANCES IN C OMBINATORICS, 2026:7, 41pp.                      41
+
