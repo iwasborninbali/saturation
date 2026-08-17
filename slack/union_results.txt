@@ -4,3 +4,4 @@ U p=17 N=34 k=19: unknown at s=51 within 2400s (best 50)
 U p=19 N=38 k=23: |cand|=128 SAT at s=53 (ratio 1.395)
 U p=19 N=38 k=23: |cand|=128 SAT at s=54 (ratio 1.421)
 U p=19 N=38 k=23: unknown at s=55 within 2400s (best 54)
+UNION DONE
