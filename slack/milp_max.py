@@ -1,5 +1,5 @@
 """milp_max.py — exact maximum lawful subset by mixed-integer programming (HiGHS via scipy.optimize.milp); witnesses verified by the law.
-usage: milp_max.py M p N k1,k2,... secs | milp_max.py U p q N secs | milp_max.py PH p k N secs   (same candidate generators as maxlawful_pysat.py)"""
+usage: milp_max.py M p N k1,k2,... secs | milp_max.py U p q N secs | milp_max.py PH p k N secs | milp_max.py file cands.txt [N] secs"""
 import sys, time, os
 sys.path.insert(0, '/home/claude/saturation/slack'); sys.path.insert(0, '/home/claude/saturation')
 import numpy as np
@@ -14,6 +14,9 @@ elif mode == 'U':
     p, q, N = int(sys.argv[2]), int(sys.argv[3]), int(sys.argv[4]); tl = int(sys.argv[5]); cands = cands_U(p, q, N); tag = f"U p={p} q={q} N={N}"
 elif mode == 'PH':
     p, k, N = int(sys.argv[2]), int(sys.argv[3]), int(sys.argv[4]); tl = int(sys.argv[5]); cands = cands_PH(p, k, N); tag = f"PH p={p} k={k} N={N}"
+elif mode == 'file':
+    cands = [tuple(map(int, l.split()[:2])) for l in open(sys.argv[2]) if l.strip() and not l.startswith('#')]
+    N = max(max(c) for c in cands) + 1; N = int(sys.argv[3]) if len(sys.argv) > 4 else N; tl = int(sys.argv[-1]); tag = f"file {sys.argv[2]} N={N}"
 L = lines(cands); n = len(cands)
 A = lil_matrix((len(L), n))
 for i, mem in enumerate(L):
