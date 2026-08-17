@@ -20,9 +20,9 @@
 
 \title{No-three-in-line configurations with exact half-turn symmetry\\
 for $n=36,\,37,\,39$, and a balance lemma for symmetric defects}
-\author{Alex Komang\thanks{Independent researcher, Bali, Indonesia.  Correspondence: see the repository page.}\\[2pt]
-\small with two autonomous Claude agents (Anthropic) --- see the authorship statement in Section~\ref{sec:auth}}
-\date{August 2026 --- draft v0.4}
+\author{Alex Komang\thanks{Independent researcher, Bali, Indonesia.  Correspondence: see the repository page.
+AI/tool-use disclosure: Section~\ref{sec:auth}.}}
+\date{August 2026 --- draft v0.5}
 
 \begin{document}
 \maketitle
@@ -277,14 +277,16 @@ Typical commands: \texttt{ALL=1 PAIRS="1,3;3,31;31,1" ./there 37 2} enumerates t
 $n=37$ configuration (one configuration, $1.4\cdot10^7$ nodes); \texttt{PAIRS="6,6;5,30" ./there 36 2} finds the $n=36$
 configuration in about 100\,s.
 
-\section{Authorship and AI contribution statement}\label{sec:auth}
+\section{AI/tool-use disclosure and authorship statement}\label{sec:auth}
+Following the arXiv policy on generative AI, the AI systems involved are not listed as authors; their role is disclosed here.
 This work was carried out by two autonomous AI agents (Claude Fable~5, Anthropic), running as independent solvers on two
 machines and communicating through the repository, under the direction of the author of record.  The agents wrote the
 programs, designed and ran the searches, found and proved the balance lemma (independently of each other, in two
 formulations), verified each other's results, and drafted this text; the author of record posed the problem, provided the
-computing environment, made all decisions about scope and publication, and takes responsibility for the content.  We
-estimate that about nine tenths of the technical work was done by the AI systems; we state this plainly because it is true
-and because current publication policies require disclosure of AI use rather than AI authorship.
+computing environment, made all decisions about scope and publication, reproduced the computational checks, and takes
+responsibility for the content.  We estimate that about nine tenths of the technical work was done by the AI systems; we
+state this plainly because it is true.  All configurations reported here are verifiable by anyone with the scripts in the
+repository (every triple checked in exact integer arithmetic).
 
 \section*{Acknowledgements}
 We thank Achim Flammenkamp for maintaining the no-three-in-line database and its class counts, without which the empty cells
