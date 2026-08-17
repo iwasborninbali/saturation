@@ -73,6 +73,11 @@ static bits *cmask, *cmaskT;                 /* per orbit: cells of clashing orb
 static unsigned char selfbad[MAXN * MAXN];
 static int use_compat = 1;
 static int fixed[2 * MAXN], nfixed;
+static int pairs[8][2], npairs;             /* PAIRS="a,b;c,d": half-turn pairs added to a quarter-turn class */
+static unsigned char cellkind[MAXN * MAXN]; /* sym 11: 0 dead, 1 quarter-turn orbit, 2 swap quadruple, 3 the axis pair */
+static double typep = 0.5;                  /* sym 11: probability of the swap type */
+static int nv2 = 1;                         /* sym 11: swap quadruples forced into every book (exact rot2 needs >= 1) */
+static int v2fixed[8], nv2fixed;
 static unsigned char gtab[MAXN][MAXN];
 static int chosen[2 * MAXN], nchosen;
 static uint64_t nodes, nodecap, totalnodes, trials, depthhist[MAXD], failhist[MAXD];
@@ -105,6 +110,7 @@ static const int groups[8][9] = {
     {0, 4, 5, 2, -1}, {0, 6, 7, 2, -1}, {0, 1, 2, 3, 4, 5, 6, 7, -1},
 };
 static void build_orbits(void) {
+    if (sym == 11) { for (int p = 0; p < n * n; p++) { orb[p][0] = p; orbk[p] = 1; } norb = n * n; for (int p = 0; p < n * n; p++) { oid[p] = p; rep[p] = p; } return; }
     for (int p = 0; p < n * n; p++) {
         int u = p / n, v = p % n, k = 0;
         if (sym == 8) {                       /* rct4: quarter turns off the two long axes, half turn on the main one, the other empty */
@@ -132,7 +138,7 @@ static int degenerate3(int a, int b, int c) {
 /* pairwise clashes between orbits: any degenerate triple inside the union,
    or more than two tokens in one reading class */
 static void build_compat(void) {
-    if (sym == 0) { use_compat = 0; return; }
+    if (sym == 0 || sym == 11) { use_compat = 0; return; }
     int *buf = malloc(sizeof(int) * norb);
     for (int a = 0; a < norb; a++) {
         int *A = orb[rep[a]], ka = orbk[rep[a]];
@@ -163,7 +169,10 @@ static void build_compat(void) {
     }
 }
 /* bits v of row u whose whole orbit is alive */
+static bits orow_scan(const State *s, int u);
+static bits ocol_scan(const State *s, int v);
 static bits orow(const State *s, int u) {
+    if (sym == 11) return orow_scan(s, u);
     bits r = s->alive[u];
     if (sym == 8) {
         bits r4 = r & s->aliveT[m - u] & rev(s->alive[m - u]) & rev(s->aliveT[u]);
@@ -183,6 +192,7 @@ static bits orow(const State *s, int u) {
 }
 /* bits u of col v whose whole orbit is alive */
 static bits ocol(const State *s, int v) {
+    if (sym == 11) return ocol_scan(s, v);
     bits r = s->aliveT[v];
     if (sym == 8) {
         bits r4 = r & rev(s->alive[v]) & rev(s->aliveT[m - v]) & s->alive[m - v];
@@ -197,6 +207,64 @@ static bits ocol(const State *s, int v) {
         case 5: r &= s->aliveT[m - v]; break;
         case 6: r &= s->alive[v]; break;
         case 7: r &= rev(s->alive[m - v]); break;
+    }
+    return r;
+}
+
+/* sym 11: rot2 books made of quarter-turn orbits, swap quadruples and one main-axis pair.
+   A random partition of the off-axis cells into the two orbit types is drawn per restart. */
+static void build_mixed_partition(void) {
+    int cells = n * n, order[MAXN * MAXN];
+    for (int p = 0; p < cells; p++) { order[p] = p; cellkind[p] = 0; orbk[p] = 0; }
+    for (int i = cells - 1; i > 0; i--) { int j = rnd() % (i + 1), t = order[i]; order[i] = order[j]; order[j] = t; }
+    static unsigned char used[MAXN * MAXN]; memset(used, 0, cells);
+    if (n & 1) {
+        int a = pairs[0][0];                                /* the axis pair (a,a),(m-a,m-a) */
+        int pa = a * n + a, pb = (m - a) * n + (m - a);
+        used[pa] = used[pb] = 1; cellkind[pa] = cellkind[pb] = 3;
+        orb[pa][0] = pa; orb[pa][1] = pb; orbk[pa] = 2; orb[pb][0] = pb; orb[pb][1] = pa; orbk[pb] = 2;
+    }
+    for (int u = 0; u < n; u++) { used[u * n + u] = 1; used[u * n + (m - u)] = 1; }   /* other axis cells: dead */
+    nv2fixed = 0;
+    for (int i = 0; i < cells && nv2fixed < nv2; i++) {                                 /* forced swap quadruples */
+        int p = order[i]; if (used[p]) continue;
+        int u = p / n, v = p % n;
+        if ((n & 1) && (u == m / 2 || v == m / 2)) continue;                              /* there swap = quarter turn */
+        int os[4] = { p, v * n + u, (m - u) * n + (m - v), (m - v) * n + (m - u) };
+        int ok = 1; for (int j = 1; j < 4; j++) if (used[os[j]]) ok = 0;
+        if (!ok) continue;
+        for (int j = 0; j < 4; j++) { used[os[j]] = 1; cellkind[os[j]] = 2; memcpy(orb[os[j]], os, sizeof(int) * 4); orbk[os[j]] = 4; }
+        v2fixed[nv2fixed++] = p;
+    }
+    for (int i = 0; i < cells; i++) {
+        int p = order[i]; if (used[p]) continue;
+        int u = p / n, v = p % n;
+        int oq[4] = { p, v * n + (m - u), (m - u) * n + (m - v), (m - v) * n + u };           /* quarter turns */
+        int os[4] = { p, v * n + u, (m - u) * n + (m - v), (m - v) * n + (m - u) };           /* swap quadruple */
+        int okq = 1, oks = 1;
+        for (int j = 1; j < 4; j++) { if (used[oq[j]]) okq = 0; if (used[os[j]]) oks = 0; }
+        int *o = NULL, kind = 0;
+        if (okq && oks) { if ((rnd() % 1000) < (uint64_t)(typep * 1000)) { o = os; kind = 2; } else { o = oq; kind = 1; } }
+        else if (okq) { o = oq; kind = 1; } else if (oks) { o = os; kind = 2; }
+        if (!o) { used[p] = 1; cellkind[p] = 0; continue; }                                 /* unassignable: dead */
+        for (int j = 0; j < 4; j++) { used[o[j]] = 1; cellkind[o[j]] = kind; memcpy(orb[o[j]], o, sizeof(int) * 4); orbk[o[j]] = 4; }
+    }
+}
+static bits orow_scan(const State *s, int u) {
+    bits r = 0;
+    for (int v = 0; v < n; v++) {
+        int p = u * n + v; if (!orbk[p]) continue;
+        int ok = 1; for (int j = 0; j < orbk[p]; j++) { int c = orb[p][j]; if (!(s->alive[c / n] & BIT(c % n))) { ok = 0; break; } }
+        if (ok) r |= BIT(v);
+    }
+    return r;
+}
+static bits ocol_scan(const State *s, int v) {
+    bits r = 0;
+    for (int u = 0; u < n; u++) {
+        int p = u * n + v; if (!orbk[p]) continue;
+        int ok = 1; for (int j = 0; j < orbk[p]; j++) { int c = orb[p][j]; if (!(s->alive[c / n] & BIT(c % n))) { ok = 0; break; } }
+        if (ok) r |= BIT(u);
     }
     return r;
 }
@@ -346,17 +414,27 @@ static int search(int lv) {
     return 0;
 }
 
-static void reset(void) {
+static int reset(void) {
     State *s = &st[0];
     for (int u = 0; u < n; u++) { s->alive[u] = s->aliveT[u] = (n == WORDBITS ? ~(bits)0 : (BIT(n) - 1)); s->ucount[u] = s->vcount[u] = 0; }
     if (use_compat) for (int a = 0; a < norb; a++) if (selfbad[a]) kill_orbit(s, rep[a]);
     if (sym == 8) for (int u = 0; u < n; u++) KILL(s, u, m - u);
+    if (npairs && sym == 2) { if (n & 1) KILL(s, m / 2, m / 2);
+        for (int i = 0; i < npairs; i++) { int a = pairs[i][0], b = pairs[i][1]; KILL(s, b, m - a); KILL(s, m - b, a); } }
+    if (sym == 11) {
+        if ((n & 1) && !getenv("PAIRS")) { pairs[0][0] = pairs[0][1] = rnd() % (m / 2); npairs = 1; }   /* random axis pair each restart */
+        build_mixed_partition();
+        for (int p = 0; p < n * n; p++) if (!orbk[p]) KILL(s, p / n, p % n);
+        nfixed = 0; if (n & 1) fixed[nfixed++] = pairs[0][0] * n + pairs[0][0];
+        for (int i = 0; i < nv2fixed; i++) fixed[nfixed++] = v2fixed[i];
+    }
     nchosen = 0; nodes = 0;
     for (int i = 0; i < nfixed; i++) {
         int p = fixed[i];
-        if (s->alive[p / n] & BIT(p % n)) { if (!take_orbit(s, p)) { fprintf(stderr, "fixed token %d cannot be taken\n", p); exit(65); } }
-        else { int j; for (j = 0; j < nchosen; j++) if (chosen[j] == p) break; if (j == nchosen) { fprintf(stderr, "fixed token %d is dead\n", p); exit(65); } }
+        if (s->alive[p / n] & BIT(p % n)) { if (!take_orbit(s, p)) { if (sym == 11) return 0; fprintf(stderr, "fixed token %d cannot be taken\n", p); exit(65); } }
+        else { int j; for (j = 0; j < nchosen; j++) if (chosen[j] == p) break; if (j == nchosen) { if (sym == 11) return 0; fprintf(stderr, "fixed token %d is dead\n", p); exit(65); } }
     }
+    return 1;
 }
 static int verify(void) {                 /* independent triple check, exact integers */
     for (int a = 0; a < nchosen; a++) for (int b = a + 1; b < nchosen; b++) for (int c = b + 1; c < nchosen; c++) {
@@ -378,13 +456,29 @@ int main(int argc, char **argv) {
     int growth = argc > 8 ? atoi(argv[8]) : 50;
     shave_slack = argc > 9 ? atoi(argv[9]) : -1;
     enumerate_all = getenv("ALL") != NULL; if (enumerate_all) nodecap = ~(uint64_t)0 >> 1;
-    if (n < 2 || n > MAXN || sym < 0 || sym > 8) return 64;
-    if (sym == 8 && !(n & 1)) { printf("skip n=%d sym=8: rct4 is for odd n\n", n); return 3; }
+    if (n < 2 || n > MAXN || sym < 0 || sym > 11 || sym == 9 || sym == 10) return 64;
+    if (sym == 8 && !(n & 1)) { printf("skip n=%d sym=%d: for odd n only\n", n, sym); return 3; }
+    if (sym == 11) { use_compat = 0; if (getenv("TYPEP")) typep = atof(getenv("TYPEP")); if (getenv("NV2")) nv2 = atoi(getenv("NV2")); }
     if (getenv("FIX")) { FILE *f = fopen(getenv("FIX"), "r"); int x; while (f && fscanf(f, "%d", &x) == 1) fixed[nfixed++] = x; if (f) fclose(f); }
-    if ((sym == 2 || sym == 4 || sym == 5 || sym == 7) && (n & 1)) {
+    if (getenv("PAIRS")) {                    /* only meaningful with sym 2 */
+        const char *q = getenv("PAIRS"); int a, b, k;
+        while (npairs < 8 && sscanf(q, "%d,%d%n", &a, &b, &k) == 2) { pairs[npairs][0] = a; pairs[npairs][1] = b; npairs++; q += k; if (*q == ';') q++; else break; }
+        if ((sym != 2 && sym != 11) || (n & 1) != (npairs & 1)) { printf("skip n=%d sym=%d pairs=%d: parity\n", n, sym, npairs); return 3; }
+    }
+    if (sym == 2 && (n & 1) && npairs) { /* odd n with a half-turn pair: allowed */ }
+    else if ((sym == 2 || sym == 4 || sym == 5 || sym == 7) && (n & 1)) {
         printf("skip n=%d sym=%d: impossible for odd n\n", n, sym); return 3;
     }
     build_orbits();
+    for (int i = 0; i < npairs; i++) {         /* the pair is a 2-orbit; its quarter-turn images are excluded */
+        int a = pairs[i][0], b = pairs[i][1], p = a * n + b, q = (m - a) * n + (m - b);
+        orb[p][0] = p; orb[p][1] = q; orbk[p] = (p == q) ? 1 : 2;
+        orb[q][0] = q; orb[q][1] = p; orbk[q] = (p == q) ? 1 : 2;
+        int r1 = b * n + (m - a), r2 = (m - b) * n + a;
+        orb[r1][0] = r1; orb[r1][1] = r2; orbk[r1] = (r1 == r2) ? 1 : 2;
+        orb[r2][0] = r2; orb[r2][1] = r1; orbk[r2] = (r1 == r2) ? 1 : 2;
+        fixed[nfixed++] = p;
+    }
     if (getenv("NOCOMPAT")) use_compat = 0;
     build_compat();
     for (int a = 0; a < MAXN; a++) for (int b = 0; b < MAXN; b++) gtab[a][b] = (a || b) ? gcd(a, b) : 1;
@@ -395,7 +489,9 @@ int main(int argc, char **argv) {
     t0 = now();
     int restarts = 0;
     for (;;) {
-        reset();
+        int tries = 0;
+        while (!reset() && ++tries < 1000) {}
+        if (tries >= 1000) { printf("none n=%d sym=%d: no admissible partition\n", n, sym); return 2; }
         int r = search(0);
         totalnodes += nodes;
         if (r == 1) {
@@ -407,6 +503,7 @@ int main(int argc, char **argv) {
             printf("\n");
             return 0;
         }
+        if (r == 0 && sym == 11 && !enumerate_all) { r = -1; }   /* one random partition exhausted: draw another */
         if (r == 0) {
             if (enumerate_all) { printf("all n=%d sym=%d: solutions=%llu nodes=%llu secs=%.2f\n", n, sym, (unsigned long long)solutions, (unsigned long long)totalnodes, now() - t0); return solutions ? 0 : 2; }
             printf("none n=%d sym=%d: exhausted (no book with this symmetry) nodes=%llu secs=%.2f\n",
