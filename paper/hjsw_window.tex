@@ -382,16 +382,16 @@ In LP-duality terms the dual solution assigns weight $1$ to every rich line and 
 of the $Z$ points on no rich line.  This proves (ii).
 
 \smallskip\noindent\emph{Equality.}  $|S|=3(p-1)$ holds iff all inequalities in \eqref{eq:count} are equalities, i.e.\ iff
-(1) $S$ contains all $Z$ points lying on no rich line; (2) $|S\cap\ell|=2$ for every $\ell\in\Lc$; (3) no point of $S$
+(I) $S$ contains all $Z$ points lying on no rich line; (II) $|S\cap\ell|=2$ for every $\ell\in\Lc$; (III) no point of $S$
 lies on two rich lines.  Since every rich line lies inside one $V$-orbit of classes (Proposition~\ref{prop:lines}),
-conditions (1)--(3) split into independent conditions on the orbits, and the number of maximum sets is the product of
+conditions (I)--(III) split into independent conditions on the orbits, and the number of maximum sets is the product of
 the numbers of admissible choices in the orbits.  In a generic orbit $\{\kappa,\sigma\kappa,\tau\kappa,\nu\kappa\}$ all four
 classes have distinct partners; the six rich lines meeting the orbit (two of type (a) or (b), four of type (c) or (d))
-meet no other orbit, its four middle copies have $m=2$ and are excluded by (3), and each of the six lines then retains
-exactly two points, both with $m=1$, which are forced into $S$ by (2): on a generic orbit $S$ coincides with
+meet no other orbit, its four middle copies have $m=2$ and are excluded by (III), and each of the six lines then retains
+exactly two points, both with $m=1$, which are forced into $S$ by (II): on a generic orbit $S$ coincides with
 $\Hc\cap T_2$, and there is exactly one admissible choice.  An exceptional orbit $\{\kappa,\nu\kappa\}$ ($\kappa$ and
 $\nu\kappa$ fixed by $\sigma$, or both fixed by $\tau$) meets exactly two rich lines, each with three points of $m=1$,
-and contains two points with $m=0$: conditions (1)--(3) allow $\binom32\binom32=9$ choices, and all of them are lawful
+and contains two points with $m=0$: conditions (I)--(III) allow $\binom32\binom32=9$ choices, and all of them are lawful
 by Corollary~\ref{cor:slopes}.  There are $s$ exceptional orbits, whence $9^{s}$ maximum sets, all agreeing with the
 HJSW set outside the exceptional orbits, i.e.\ outside the classes $(a,\pm a)$ with $a^2=\pm c$.  This proves (iii).
 
@@ -501,7 +501,8 @@ generic orbit, its copies on rich slope-$(+1)$ lines are $\kappa(0,0),\kappa(1,1
 these together with one of $\kappa(0,1),\kappa(1,0)$ if it is split; its copies on rich slope-$(-1)$ lines are
 $\kappa(0,1),\kappa(1,0)$, together with one of $\kappa(0,0),\kappa(1,1)$ if the $\tau$-pair is split.  So $\kappa$ has exactly
 $[\sigma\text{-pair split}]+[\tau\text{-pair split}]$ copies with $m=2$.  If $\kappa$ lies in an exceptional orbit, no copy has
-$m=2$ (if $\sigma\kappa=\kappa$, the slope-$(+1)$ lines through the copies of $\kappa$ carry two, one and one points of $\Pset_W$).
+$m=2$ (if $\sigma\kappa=\kappa$, the slope-$(+1)$ lines through the copies of $\kappa$ carry two, one and one points of $\Pset_W$;
+similarly for the slope-$(-1)$ lines if $\tau\kappa=\kappa$).
 Summing over the classes, $\#\{m=2\}=2\sum_O(e_O+f_O)$ over the generic orbits $O$ (each pair has two classes), and by
 Lemma~\ref{lem:orbit} this is at most $4\cdot\#\{\text{generic orbits}\}=p-1-2s$.  Therefore $|S|\le Z+2|\Lc|\le3(p-1)$.
 \end{proof}
