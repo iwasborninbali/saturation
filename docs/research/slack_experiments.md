@@ -12,11 +12,12 @@ x ∈ [−(p−1)/2, …], y ∈ [0, N−1]).  Every SAT witness is re-checked w
 | 11 | ≥12 | ≥1.09 | prime; 13 not refuted in 120 s |
 | 4 | 6 | 1.500 | |
 | 6 | 8 | 1.333 | |
-| 8 | 9 | 1.125 | |
-| 9 | 11 | 1.222 | |
-| 10 | 12 | 1.200 | = 3(p−1) for p=5: HJSW size |
-| 12 | 15 | 1.250 | |
-(continuing: 14 15 16 18 20 21 22 24 25 — see slack/results.txt)
+| 8 | 8 | 1.000 | corrected (partner, arcmod2: SAT 8, UNSAT 9); my first run reported an upper bound |
+| 9 | 9 | 1.000 | corrected (SAT 9, UNSAT 10) |
+| 10 | 12 | 1.200 | = 2p+2 for p=5 (Stępień–Szymaszkiewicz thm 3.1); not the HJSW size — HJSW is not a strong arc mod 2p |
+| 12 | 12 | 1.000 | corrected (SAT 12, UNSAT 13) |
+Note: my first driver claimed A(m)=s−1 at the first UNSAT without a witness at s−1 (bug, fixed); the values above are the
+partner's exact ones with witnesses.  Route closed anyway by submultiplicativity (deep research 2).
 
 ## Lifted hyperbola xy ≡ 1 (mod p): exact maximum lawful subset
 | p | window | candidates | exact max | ratio | remark |

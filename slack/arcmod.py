@@ -23,7 +23,11 @@ while True:
         print(f"m={m}: SAT at s={s} (ratio {s/m:.3f}); points={sorted(divmod(p, m) for p in pts)}", flush=True)
         s += 1
     elif "s UNSATISFIABLE" in r:
-        print(f"m={m}: UNSAT at s={s}  => A({m}) = {s-1} (ratio {(s-1)/m:.3f})", flush=True); break
+        if best is None:                                # no witness below yet: search downwards before claiming
+            print(f"m={m}: UNSAT at s={s}; no witness yet — stepping down", flush=True); s -= 1
+            if s <= 2: print(f"m={m}: degenerate", flush=True); break
+            continue
+        print(f"m={m}: UNSAT at s={s}  => A({m}) = {s-1} (ratio {(s-1)/m:.3f}) [witness at {best[0]}]", flush=True); break
     else:
         print(f"m={m}: unknown at s={s} within {secs}s (best so far {best[0] if best else None})", flush=True); break
     os.remove(cnf)
