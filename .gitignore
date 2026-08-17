@@ -21,3 +21,7 @@ bench/*.txt
 !bench/cmp36.txt
 !bench/cmp36b.txt
 bench/*.log
+there_tw
+kit71/bench/twist_sym*_n*.txt
+kit71/bench/cycle3_sym*_n*.txt
+kit71/bench/sweep3_*.txt
