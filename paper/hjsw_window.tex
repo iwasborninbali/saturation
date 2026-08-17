@@ -590,9 +590,11 @@ $S_2$.  The average number of blocking pairs per point grows like $\log p$ (abou
 $k\in\{2,3,-1\}$), and the number of unblocked points is $0$--$2$ for every $p\le101$ tested; freeing a point of the second
 hyperbola costs deletions in the first.  This suggests that unions of hyperbolae in the $2p\times2p$ box gain $O(1)$ (or
 $o(p)$) over the HJSW value, i.e.\ that their asymptotic ratio is still $3/2$; we have no proof.  The same picture appears
-for hyperbolae with different moduli in one box ($H(1,11)\cup H(1,13)$ in $22\times22$: $32$ vs $30$; $H(1,13)\cup H(1,17)$ in
-$26\times26$: $38$ vs $36$; $H(1,23)\cup H(1,29)$ in $46\times46$: at least $68$ vs $66$), where the number of collinear triples
-with points on both hyperbolae grows like $N\log N$, as for random sets of the same density.
+for hyperbolae with different moduli in one box: for $H(1,p)\cup H(1,q)$ in the $2p\times2p$ box (each hyperbola with its own
+HJSW shift) the exact maxima (MIP) exceed $3(p-1)$ by $1$, $2$ or $3$ in all eleven pairs computed, $7\le p<q\le29$ ---
+e.g.\ $32$ vs $30$ for $(11,13)$, $38$ vs $36$ for $(13,17)$, $50$ vs $48$ for $(17,19)$, $68$ vs $66$ for $(23,29)$ ---
+and the number of collinear triples with points on both hyperbolae grows like $N\log N$, as for random sets of the same
+density.
 
 \section{Independent computer verification}
 
