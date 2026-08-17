@@ -22,9 +22,9 @@ partner's exact ones with witnesses.  Route closed anyway by submultiplicativity
 ## Lifted hyperbola xy ≡ 1 (mod p): exact maximum lawful subset
 | p | window | candidates | exact max | ratio | remark |
 |---|--------|-----------|-----------|-------|--------|
-| 7 | [0,2p)² | 24 | 15 | 1.071 | wrong window (not HJSW) |
-| 11 | [0,2p)² | 40 | 27 | 1.227 | |
-| 13 | [0,2p)² | 48 | 33 | 1.269 | |
+| 7 | [0,2p)² | 24 | 14 | 1.000 | not the HJSW window; = 2(p−1)+2s (third solver, Theorem 2); my early driver printed 15/27/33 — the "no witness" bug |
+| 11 | [0,2p)² | 40 | 22 | 1.000 | |
+| 13 | [0,2p)² | 48 | 28 | 1.077 | |
 | 7 | HJSW G(p), 2p×2p | 24 | **18 = 3(p−1)** | 1.286 | HJSW is optimal in its window |
 | 11 | HJSW G(p) | 40 | **30 = 3(p−1)** | 1.364 | |
 | 13 | HJSW G(p) | 48 | **36 = 3(p−1)** | 1.385 | |
