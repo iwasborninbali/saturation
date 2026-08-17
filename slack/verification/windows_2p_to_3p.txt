@@ -51,3 +51,9 @@ p=17 N=48: |P|=127 max=65 (bound 65.0) ratio=1.354 time=1s
 p=17 N=49: |P|=133 max=66 (bound 66.0) ratio=1.347 time=5s
 p=17 N=50: |P|=138 max=67 (bound 67.0) ratio=1.340 time=7s
 p=17 N=51: |P|=144 max=69 (bound 69.0) ratio=1.353 time=6s
+# rectangular boxes (x-range with HJSW shift, y-range from 0), exact maxima (HiGHS MIP):
+# p=7:  14x21 -> 22, 21x14 -> 22, 14x28 -> 24, 28x14 -> 24        (3(p-1)=18; 4(p-1)=24)
+# p=11: 22x33 -> 36, 33x22 -> 38, 22x44 -> 40, 44x22 -> 40        (3(p-1)=30; 4(p-1)=40)
+# p=13: 26x39 -> 44, 39x26 -> 44, 26x52 -> 48, 52x26 -> 48        (3(p-1)=36; 4(p-1)=48)
+# in the 2p x 4p box the trivial column bound 4(p-1) (2 of the 4 collinear copies per column) is attained.
+# 3p x 3p for other c: p=11: c=2 -> 43, c=3 -> 43; p=13: c=2 -> 51, c=3 -> 54 (c=1: 52) — the 3p x 3p maximum depends on c.
