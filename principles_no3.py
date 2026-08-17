@@ -376,9 +376,14 @@ HOLES = (
     Hole("davies-619", "how were 619 iden/rot2 books for n=21..57 'constructed' in July 2026 (database entry)?",
          "the method is undocumented anywhere (deep research 2026-08-18); perturbation of known books is refuted by "
          "p_locally_rigid at n=41 (relax.py, relax0.py); door: ask Flammenkamp"),
-    Hole("integer-slack", "a set beating 3n/2 that lives in the integer slack (Green's question, arXiv 2607.05255 rem. 1.2)",
-         "greedy lawful subsets of the hyperbola xy=c mod p in a 3p x 3p grid reach only 1.0-1.26 n (this file's sibling "
-         "experiment); door: an exact maximum-lawful-subset search on structured sets, or a CRT gluing of arcs"),
+    Hole("integer-slack", "a set beating 3n/2 that lives in the integer slack (Green, Problem 72: he suspects 3/2 is optimal)",
+         "closed doors: strong modular arcs A(m) (no triple with det = 0 mod m) cannot beat 3/2 — submultiplicativity "
+         "A(ab) <= a A(b) gives A(m)/m <= 1 + 1/P for squarefree m (Stepien-Szymaszkiewicz 2018, Kurz), and ring-arc data at "
+         "prime powers (m2(Z_25^2) = 20) bound the det-arcs below m; our own values A(6)=8, A(10)=12 = 2p+2 agree with their "
+         "theorem 3.1; the HJSW set is NOT a strong arc mod 2p (it has congruent triples) — it is lawful over Z by design; "
+         "and it is exactly optimal in its own window (our exact maxima 18/30/36 for p=7/11/13), wider windows do not raise the ratio. "
+         "open doors: sets lawful over Z through coordinated conditions mod several primes (HJSW-style, three or four curves), "
+         "parametric symmetric families, det-arcs at prime powers p^a (being computed)"),
 )
 
 # --- what stays open ---------------------------------------------------------------------------
