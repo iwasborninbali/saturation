@@ -71,6 +71,8 @@ research 3 does not decide the question either way (removals of order N may stil
 decided only by exact maxima (computation A) or by an asymptotic upper bound.
 
 ## Two-prime unions — conclusion (computation A complete)
-Exact maxima of H(1,p) ∪ H(1,q) in the N×N window (HJSW shift per modulus): N=22 (11,13): 32 = HJSW(11)+2; N=26 (13,17): 38 = +2;
-N=34 (17,19): ≥50 (SAT stalled at 51; +2 or +3); N=46 (23,29): 68 = +2 (MIP, third solver).  The advantage over a single hyperbola is
-a constant 2 points in every window computed — asymptotically the ratio is 3/2, exactly like HJSW.  Line closed (negative result).
+Exact maxima of H(1,p) ∪ H(1,q) in the N×N window (HJSW shift per modulus; MIP, third solver, witnesses `slack/witnesses/union_*`):
+N=22 (11,13): 32 = HJSW(11)+2; N=26 (13,17): 38 = +2; N=34 (17,19): 50 = +2; N=38 (19,23): 55 = +1; N=46 (23,29): 68 = +2; small pairs
+(7,11): 21 = +3, (7,13): 20, (7,17): 20, (11,17): 32, (11,19): 32, (13,19): 39 = +3, (13,23): 37 = +1.  The advantage over a single
+hyperbola is 1–3 points in every window computed and does not grow — asymptotically the ratio is 3/2, exactly like HJSW.  Line closed
+(negative result with exact numbers).
