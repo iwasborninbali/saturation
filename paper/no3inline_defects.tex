@@ -22,7 +22,7 @@
 for $n=36,\,37,\,39$, and a balance lemma for symmetric defects}
 \author{Alex Komang\thanks{Independent researcher, Bali, Indonesia.  Correspondence: see the repository page.}\\[2pt]
 \small with two autonomous Claude agents (Anthropic) --- see the authorship statement in Section~\ref{sec:auth}}
-\date{August 2026 --- draft v0.2}
+\date{August 2026 --- draft v0.3}
 
 \begin{document}
 \maketitle
@@ -70,6 +70,22 @@ inequivalent configurations) and $n=39$ (3-cycle family), and a further one for 
 Appendix and were verified twice by independent programs.
 (iv)~A description of the exact solver and its validation, growth measurements for the cost of finding one $2n$-point
 configuration in the classes rot4, rct4 and rot2, and a list of negative results.
+
+\paragraph{Related work.}
+The best known lower bound, $3n/2-o(n)$ points, is the modular-hyperbola construction of Hall, Jackson, Sudbery and Wild
+\cite{HJSW75}; it has not been improved since 1975 (see the discussions in \cite{KNS25,GGGKKP26}).  All linear-size
+constructions are algebraic modulo a prime, and modulo a prime a set with no three collinear is an arc of the affine plane,
+of size at most $p+1$ by Segre's theorem \cite{Segre55}; Green asked whether every large no-three-in-line set reduces to an
+algebraic curve modulo some prime (as quoted in \cite{GGGKKP26}).  For $k\ge3$ points per line the asymptotic answer $kn$ was
+obtained recently by probabilistic methods \cite{KNS25,GGGKKP26}, which explicitly do not apply to $k=2$.  The
+probabilistic heuristic of Guy and Kelly \cite{GuyKelly}, in its corrected form \cite{Voutier26,Prellberg26}, predicts that
+$2n$-point configurations become rare for large $n$; Prellberg notes that the same heuristic wrongly predicts fewer than one
+symmetric configuration \cite{Prellberg26}, and Flammenkamp explains the abundance of rotationally symmetric configurations
+by the fact that a pair of points blocks only $O(\log n)$ cells in the rotational classes against $\Theta(n)$ in the
+axis-reflection classes \cite{FlammenkampDB}.  Machine-learning approaches (PatternBoost, reinforcement learning) have been
+compared with integer programming on this problem and do not scale beyond $n\approx14$ \cite{RJPDP25}.  We are not aware of
+an earlier formulation of the balance lemma or of the defect families, nor of previously published $2n$-point configurations
+with exact half-turn symmetry for $n=36,37,39$.
 
 \section{Symmetry classes and the balance lemma}\label{sec:lemma}
 Let $m=n-1$ and let $\Dfour$ act on the grid; write $\rot(u,v)=(v,m-u)$ for the quarter turn, so $\rot^2(u,v)=(m-u,m-v)$,
@@ -277,6 +293,16 @@ would not have been visible, and Thomas Prellberg for the detailed account of th
 \url{https://wwwhomes.uni-bielefeld.de/achim/no3in/readme.html} (accessed 2026-08-17; table state 2026-08-11).
 \bibitem{Prellberg26} T.~Prellberg, Constraint satisfaction programming for the no-three-in-line problem, arXiv:2602.07751 (2026).
 \bibitem{GuyKelly} R.~K.~Guy and P.~A.~Kelly, The no-three-in-line problem, \emph{Canad. Math. Bull.} 11 (1968) 527--531.
+\bibitem{HJSW75} R.~R.~Hall, T.~H.~Jackson, A.~Sudbery and K.~Wild, Some advances in the no-three-in-line problem,
+\emph{J. Combin. Theory Ser. A} 18 (1975) 336--341.
+\bibitem{Segre55} B.~Segre, Ovals in a finite projective plane, \emph{Canad. J. Math.} 7 (1955) 414--416.
+\bibitem{KNS25} B.~Kov\'acs, Z.~L.~Nagy and D.~R.~Szab\'o, Randomised algebraic constructions for the no-$(k+1)$-in-line problem,
+arXiv:2508.07632 (2025).
+\bibitem{GGGKKP26} A.~Ghosal, R.~Goenka, A.~Grebennikov, P.~Keevash, M.~Kwan and H.~T.~Pham, No-$(k+1)$-in-line problem for
+$k\ge3$, arXiv:2607.05255 (2026).
+\bibitem{Voutier26} P.~M.~Voutier, On the Guy--Kelly conjecture for the no-three-in-line problem, arXiv:2603.00215 (2026).
+\bibitem{RJPDP25} P.~Ramanathan, P.~D.~Joshi, T.~Prellberg, R.~A.~Dandekar and S.~Panat, Three methods, one problem: classical
+and AI approaches to no-three-in-line, arXiv:2512.11469 (2025).
 \end{thebibliography}
 
 \appendix
