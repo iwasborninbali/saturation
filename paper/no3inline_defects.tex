@@ -157,7 +157,8 @@ The defect sets were enumerated up to $\Dfour$ (one representative per orbit of 
 representative the sub-class was searched exhaustively.  Table~\ref{tab:threecycle} gives, for odd $n$, the number of
 inequivalent 3-cycle defects and the number of pairwise inequivalent configurations found for the two bases;
 Table~\ref{tab:twoloop} gives the two-loop family for even $n$.  Counts marked with $\ge$ come from sweeps that were still
-running when this draft was written; the entries will be finalized.
+running when this draft was written; the entries will be finalized.  (Sub-classes whose fixed defect cells already
+violate the law --- e.g.\ 24 of the 2240 at $n=33$, 28 of 3264 at $n=37$ --- are trivially empty and are counted as swept.)
 
 \begin{table}[ht]\centering
 \begin{tabular}{r r r r l}
@@ -169,10 +170,12 @@ $n$ & 3-cycle defects (mod $\Dfour$) & C4 base & V2 base & status of the sweep\\
 17 & 224 & 0 & 1 & complete\\
 19 & 336 & 0 & 0 & complete\\
 21 & 480 & 0 & 0 & complete\\
-33 & 2240 & $\ge1$ & (0) & complete; final counts being collected\\
-37 & 3264 & $\ge2$ & 0 & V2 complete; C4 in progress\\
-39 & 3876 & $\ge1$ & (0) & half of each base swept\\
-41 & 4560 & --- & (0) & half of the V2 base swept; C4 in progress\\
+23 & 660 & 0 & 0 & complete\\
+25 & 880 & 0 & 0 & complete\\
+33 & 2240 & 1 & 0 & complete (both bases)\\
+37 & 3264 & 2 & 0 & complete (both bases)\\
+39 & 3876 & $\ge1$ & 0 & V2 base complete (both halves); C4 base: one half in progress\\
+41 & 4560 & $\ge0$ & 0 & V2 base complete (both halves); C4 base in progress (no configuration so far)\\
 \bottomrule
 \end{tabular}
 \caption{The 3-cycle family (odd $n$): C4- or V2-orbits plus a directed 3-cycle of half-turn pairs; numbers of pairwise
