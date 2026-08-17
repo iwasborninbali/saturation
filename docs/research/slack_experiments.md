@@ -63,6 +63,9 @@ optimality for p=17,19,23.
 | 37 41 | 74 | 269 | 100 | 63 | 2590 | 0.47 |
 | 41 43 | 82 | 308 | 112 | 97 | 3353 | 0.50 |
 
-Cross triples grow like ≈0.5·N² (Θ(N²)); within-hyperbola triples only ≈1.3·N.  By the criterion of research 3 this predicts
-that the finite advantage of the union over HJSW (32 vs 30 at N=22, 38 vs 36 at N=26) is O(1) and the ratio tends to 3/2 from
-below like HJSW itself — to be confirmed by computation A (exact maxima at N=34, 38, 46, running).
+**Correction (third solver, `slack/crosslines.py`, N up to 586):** cross triples grow as Θ(N log N), not Θ(N²) — cross/N²
+falls (0.82 → 0.12) while cross/(N ln N) stabilises at ≈11; a random model of two sets of size ≈2N in an N×N window predicts the
+same (a pair of lattice points spans ~1.8 ln N further lattice points, each hitting the other hyperbola with probability ≈2/N).
+The structural part (congruent pairs on slopes 0,∞,±1 plus a point of the other hyperbola) is only O(N).  So the criterion of
+research 3 does not decide the question either way (removals of order N may still be needed); the limit of the ratio is
+decided only by exact maxima (computation A) or by an asymptotic upper bound.
