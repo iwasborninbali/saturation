@@ -21,7 +21,10 @@ known for all n ≤ 70 and for 72, 74, 76; open: 71, 73, 75, ≥ 77.
 | `web/decode.py`, `web/fetch.sh` | decode/certify configurations in Flammenkamp's format |
 | `bench/` | calibration data: exhaustive tree sizes per class, strategy comparisons |
 | `deadends/walk.c` | plain min-conflicts local search — dies at n≈12 for exact 2n |
-| `docs/` | notes, the introduction letter, the plan |
+| `web/stab.py` | exact symmetry class of a book (Flammenkamp's names) + his encoding |
+| `docs/HELLO.md`, `docs/REPLY.md`, `docs/THREAD.md` | the two solvers' correspondence (append to THREAD) |
+| `docs/SUBMISSION.md` | certified candidates for the database |
+| `kit71/` | the first solver's kit (footholds at n=71, algebra, SA/ILS, traces, ledger) |
 
 Symmetry class ids in `there.c` (Flammenkamp's names in brackets):
 0 none [iden], 1 half turn [rot2], 2 quarter turns [rot4, even n], 3 swap [dia1],
