@@ -292,8 +292,50 @@ def p_no_lift_between_sizes() -> Claim:
                  "exact completion search with the shifted book fixed")
 
 
+
+def p_free_pairs_are_eulerian() -> Claim:
+    """EVIDENCE (partner): in every half-turn-symmetric book, the pairs {p, rot2 p} that belong neither to a quarter-turn
+    orbit nor to a swap (dia2) orbit nor to a long diagonal — in any DISJOINT decomposition into such pieces — form an
+    Eulerian digraph on the row classes {i, m-i} (arc x->y for the pair {(x,y),(m-x,m-y)}): in-degree = out-degree.  This is the balance lemma applied
+    with the quarter-turn group, minus the (balanced) swap orbits and loops.  Checked on every rot2 book at n=9 and 11 with
+    the C searcher; skipped honestly if it is absent."""
+    binary = os.path.join(HERE, "there")
+    if not os.path.exists(binary):
+        return Claim("free pairs of a half-turn-symmetric book form an Eulerian digraph on the row classes",
+                     "proof only (searcher absent here): quarter-turn orbits, swap orbits and diagonal pairs are each balanced "
+                     "between row a and column a; every row and column holds exactly two points; hence the remaining pairs are balanced")
+    checked = 0
+    for n in (9, 11):
+        m = n - 1
+        out = subprocess.run([binary, str(n), "1", "1", "120"], capture_output=True, text=True,
+                             env=dict(os.environ, ALL="1", PRINTALL="1")).stdout
+        for line in out.splitlines():
+            if not line.startswith("sol"): continue
+            pts = {divmod(int(t), n) for t in line.split()[1:]}
+            S.saturated(frozenset(u * n + v for (u, v) in pts), n)
+            pairs = {frozenset({(u, v), (m - u, m - v)}) for (u, v) in pts}
+            used = set(); indeg, outdeg = {}, {}
+            for pr in sorted(pairs, key=min):                                        # a DISJOINT decomposition
+                if pr in used: continue
+                (u, v) = min(pr)
+                if u == v or u + v == m: used.add(pr); continue                     # loop: balanced
+                rp = frozenset({(v, m - u), (m - v, u)}); dp = frozenset({(v, u), (m - v, m - u)})
+                if rp in pairs and rp not in used: used |= {pr, rp}; continue       # quarter-turn orbit: balanced
+                if dp in pairs and dp not in used: used |= {pr, dp}; continue       # swap orbit: balanced
+                used.add(pr)                                                        # free pair: an arc
+                x, y = min(u, m - u), min(v, m - v)
+                outdeg[x] = outdeg.get(x, 0) + 1; indeg[y] = indeg.get(y, 0) + 1
+            for c in set(indeg) | set(outdeg):
+                assert indeg.get(c, 0) == outdeg.get(c, 0), (n, c, indeg, outdeg)
+            checked += 1
+    assert checked == 28 + 120, checked                                            # all rot2 books at n=9 and 11
+    return Claim("free pairs of a half-turn-symmetric book form an Eulerian digraph on the row classes",
+                 f"all {checked} rot2 books at n=9, 11 (labelled): in-degree = out-degree at every row class; "
+                 "proof: quarter-turn orbits, swap orbits and diagonal pairs are balanced between row a and column a")
+
 PRINCIPLES = (p_search_is_complete, p_modular_arcs_are_lawful, p_segre_wall,
-              p_books_use_integer_slack, p_balance_lemma, p_locally_rigid, p_no_lift_between_sizes)
+              p_books_use_integer_slack, p_balance_lemma, p_locally_rigid, p_no_lift_between_sizes,
+              p_free_pairs_are_eulerian)
 
 MEASURED = (
     Claim("the cost of one saturated book grows ×8–10 per +4 in n (rot4/rct4) and ×6 per +2 (rot2)",
