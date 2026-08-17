@@ -625,7 +625,7 @@ $p$ & $3(p-1)$ & $k$ & max & gain & LP relaxation & method\\
 \midrule
 11 & 30 & 3 & 35 & $+5$ & 36.00 & MIP; all $k$: $32$--$35$ ($k=2$: 33, also SAT twice)\\
 13 & 36 & 2 & 41 & $+5$ & 47.54 & SAT (two encodings), MIP; all $k$: $38$--$41$\\
-17 & 48 & $-1$ & 54 & $+6$ & 60.15 & MIP (11 min); $k=2$: 53 (MIP, 39 min)\\
+17 & 48 & $-1$ & 54 & $+6$ & 60.15 & MIP; all $k$: $49$--$54$ ($k=2$: 53)\\
 19 & 54 & $-1$ & 59 & $+5$ & 63.64 & MIP (2 min); local search 59\\
 \bottomrule
 \end{tabular}
@@ -633,8 +633,8 @@ $p$ & $3(p-1)$ & $k$ & max & gain & LP relaxation & method\\
 Three observations.  (i) The double count of Section~\ref{sec:proof} does not extend: rich lines of general slope
 appear (a line meets each hyperbola in at most two classes, and copies of four different classes can be collinear), there
 are $\Theta(p^2)$ of them, and the LP relaxation (``at most two per rich line'') is far from the truth (column ``LP''),
-whereas for one hyperbola it is exact (Theorem~\ref{thm:main}(ii)).  (ii) The gain over $3(p-1)$, maximised over $k$ ($+5,+5,+6,+5$ for $p=11,13,17,19$; all $k$ computed for $p\le13$,
-$k\in\{2,-1\}$ for $p=17$, $k=-1$ for $p=19$), shows no growth.  (iii) A heuristic explanation: fix the HJSW set
+whereas for one hyperbola it is exact (Theorem~\ref{thm:main}(ii)).  (ii) The gain over $3(p-1)$, maximised over $k$ ($+5,+5,+6,+5$ for $p=11,13,17,19$; all $k$ computed for $p\le17$,
+$k\in\{-1,3\}$ for $p=19$), shows no growth.  (iii) A heuristic explanation: fix the HJSW set
 $S_2$ of $H(1,p)$ and call a point $q$ of $H(k,p)\cap\Gp$ \emph{blocked} if some line through $q$ carries two points of
 $S_2$.  The average number of blocking pairs per point grows like $\log p$ (about $3.1$ at $p=11$ and $7$ at $p=101$ for
 $k\in\{2,3,-1\}$), and the number of unblocked points is $0$--$2$ for every $p\le101$ tested; freeing a point of the second

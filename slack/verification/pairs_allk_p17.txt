@@ -1,0 +1,14 @@
+# exact maximum lawful subset of H(1,17) u H(k,17) in the HJSW window 34x34, all k (HiGHS MIP, witnesses verified by the law; third solver)
+M p=17 ks=[1, 3] N=34: MIP value = 52.000 status=0 time=26.0s dual_bound=52.000 gap=0.0
+M p=17 ks=[1, 4] N=34: MIP value = 51.000 status=0 time=1102.5s dual_bound=51.000 gap=0.0
+M p=17 ks=[1, 5] N=34: MIP value = 52.000 status=0 time=722.1s dual_bound=52.000 gap=0.0
+M p=17 ks=[1, 6] N=34: MIP value = 51.000 status=0 time=4748.6s dual_bound=51.000 gap=0.0
+M p=17 ks=[1, 7] N=34: MIP value = 49.000 status=0 time=584.1s dual_bound=49.000 gap=0.0
+M p=17 ks=[1, 8] N=34: MIP value = 50.000 status=0 time=73.4s dual_bound=50.000 gap=0.0
+M p=17 ks=[1, 9] N=34: MIP value = 53.000 status=0 time=1043.0s dual_bound=53.000 gap=0.0
+M p=17 ks=[1, 10] N=34: MIP value = 49.000 status=0 time=981.9s dual_bound=49.000 gap=0.0
+M p=17 ks=[1, 11] N=34: MIP value = 52.000 status=0 time=276.8s dual_bound=52.000 gap=0.0
+M p=17 ks=[1, 12] N=34: MIP value = 52.000 status=0 time=1485.3s dual_bound=52.000 gap=0.0
+M p=17 ks=[1, 13] N=34: MIP value = 52.000 status=0 time=713.8s dual_bound=52.000 gap=0.0
+M p=17 ks=[1, 14] N=34: MIP value = 53.000 status=0 time=269.5s dual_bound=53.000 gap=0.0
+M p=17 ks=[1, 15] N=34: MIP value = 49.000 status=0 time=116.2s dual_bound=49.000 gap=0.0
