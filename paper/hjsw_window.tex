@@ -1,0 +1,334 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Fp}{\mathbb{F}_p}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Hc}{H(c,p)}
+\newcommand{\Gp}{G(p)}
+\newcommand{\Lc}{\mathcal{L}}
+\newcommand{\Pset}{\mathcal{P}}
+\newcommand{\cl}[1]{\langle #1\rangle}
+
+\title{The Hall--Jackson--Sudbery--Wild window is tight:\\
+a modular hyperbola in the $2p\times 2p$ grid $G(p)$ contains\\ no more than $3(p-1)$ points in general position}
+\author{Alex Komang\thanks{Independent researcher, Bali, Indonesia.}\\[2pt]
+\small with three autonomous Claude agents (Anthropic);\\ \small this note was written by the third agent --- see the statement at the end}
+\date{August 2026 --- draft v0.1}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $p$ be an odd prime, $c\in\Fp^*$, and let $\Hc=\{(x,y)\in\Z^2: xy\equiv c \pmod p\}$ be the modular hyperbola.
+Hall, Jackson, Sudbery and Wild (1975) observed that the window
+$\Gp=[-\tfrac{p-1}{2},\tfrac{3p-1}{2}]\times[0,2p-1]$ contains exactly four points of each of the $p-1$ residue classes of
+$\Hc$, at the vertices of a $p\times p$ square, and that keeping three of the four (the twelve outer blocks $T_2$ of the
+$4\times 4$ block subdivision of $\Gp$) yields $3(p-1)$ points with no three collinear.  We prove that this is optimal:
+\emph{every} subset of $\Hc\cap\Gp$ with no three collinear points has at most $3(p-1)$ points.  The proof is a
+double count over the lines of slope $\pm1$ that carry three or four points of $\Hc\cap\Gp$.  The argument also
+determines all maximum sets: their number is $9^{s}$, where $s\in\{0,1,2\}$ is the number of quadratic residues among
+$c$ and $-c$; for $s=0$ the HJSW set $\Hc\cap T_2$ is the unique maximum.  Everything is verified by an independent
+program for all primes $p\le 101$.
+\end{abstract}
+
+\section{Statement}
+
+Throughout, $p$ is an odd prime, $h=(p-1)/2$, $c\in\Fp^*$, and
+\[
+ \Hc=\{(x,y)\in\Z^2:\ xy\equiv c \pmod p\},\qquad
+ \Gp=\{-h,\dots,3h+1\}\times\{0,\dots,2p-1\},
+\]
+\[
+ \Pset:=\Hc\cap\Gp .
+\]
+$\Gp$ is a $2p\times2p$ grid (this is the grid $G$ of \cite[(2.1)]{KNS25}, taken from \cite{HJSW75}).  A set is
+\emph{lawful} (in general position, no-three-in-line) if it contains no three collinear points.
+
+Two points are \emph{congruent} if their coordinates agree modulo $p$; a \emph{class} is a congruence class,
+identified with an element of $\Fp\times\Fp$.  Points of $\Hc$ have both coordinates prime to $p$, so the classes of
+$\Hc$ are the $p-1$ pairs $\kappa=(a,b)\in\Fp^*\times\Fp^*$ with $ab=c$.  Since each coordinate range of $\Gp$ is an
+interval of $2p$ consecutive integers, it contains exactly two representatives of every residue class; hence
+every class $\kappa$ of $\Hc$ has exactly four points in $\Gp$ and $|\Pset|=4(p-1)$.  We write
+$(x_\kappa,y_\kappa)$ for the \emph{base copy} of $\kappa$, its unique point in
+$\{-h,\dots,h\}\times\{1,\dots,p-1\}$ (necessarily $x_\kappa\ne0$), and
+\[
+ \kappa(r,s):=(x_\kappa+rp,\;y_\kappa+sp),\qquad r,s\in\{0,1\},
+\]
+for its four points in $\Gp$.  Following \cite{HJSW75,KNS25} we sort the classes into four \emph{types} according
+to the position of the base copy:
+\[
+ A:\ x_\kappa>0,\ y_\kappa>h;\qquad B:\ x_\kappa<0,\ y_\kappa>h;\qquad C:\ x_\kappa>0,\ y_\kappa\le h;\qquad
+ D:\ x_\kappa<0,\ y_\kappa\le h .
+\]
+(In the notation of \cite[Def.~2.3]{KNS25}: $\kappa(0,0)\in A_{0,0}$, $B_{-1,0}$, $C_{0,0}$, $D_{-1,0}$ respectively; the
+HJSW set $T_2$ omits, for each type, the copy $A_{0,0}$, $B_{0,0}$, $C_{0,1}$, $D_{0,1}$, i.e.\ $\kappa(0,0)$ for
+$A$, $\kappa(1,0)$ for $B$, $\kappa(0,1)$ for $C$, $\kappa(1,1)$ for $D$; the union of these omitted blocks is the middle
+block $M$ of \cite[\S2.3]{KNS25}.)  We write $n_A,n_B,n_C,n_D$ for the numbers of classes of each type, so
+$n_A+n_B+n_C+n_D=p-1$.  Finally, for a class $\kappa$ put
+\[
+ d_\kappa:=x_\kappa-y_\kappa,\qquad e_\kappa:=x_\kappa+y_\kappa .
+\]
+
+Three involutions act on the classes of $\Hc$:
+\[
+ \sigma(a,b)=(-b,-a),\qquad \tau(a,b)=(b,a),\qquad \nu(a,b)=(-a,-b)=\sigma\tau(a,b)=\tau\sigma(a,b).
+\]
+$\sigma$ has fixed classes iff $-c$ is a quadratic residue (then exactly two: $(a,-a)$ with $a^2=-c$), $\tau$ has fixed
+classes iff $c$ is a quadratic residue (two: $(a,a)$ with $a^2=c$), and $\nu$ has none.  Put
+\[
+ f_\sigma:=\#\{\kappa:\sigma\kappa=\kappa\}\in\{0,2\},\qquad f_\tau:=\#\{\kappa:\tau\kappa=\kappa\}\in\{0,2\},
+\]
+\[
+ s:=\tfrac12(f_\sigma+f_\tau)=[\,-c\text{ is a QR}\,]+[\,c\text{ is a QR}\,]\in\{0,1,2\}.
+\]
+
+\begin{theorem}\label{thm:main}
+Every lawful subset of $\Pset=\Hc\cap\Gp$ has at most $3(p-1)$ points.  The bound is attained, and the number of
+lawful subsets of size $3(p-1)$ is exactly $9^{s}$.  In particular, if neither $c$ nor $-c$ is a quadratic residue
+modulo $p$, the HJSW set $\Hc\cap T_2$ is the unique maximum lawful subset of $\Pset$.
+\end{theorem}
+
+For $c=1$: there are $81$ maximum sets if $p\equiv1\pmod4$ and $9$ if $p\equiv3\pmod4$; all of them agree with the
+HJSW set outside the two or four classes $(\pm a,\mp a)$, $(\pm a,\pm a)$ with $a^2=\mp1$.
+
+\section{Lines through three points of $\Pset$}
+
+\begin{lemma}\label{lem:lagrange}
+Let $\ell$ be a line containing at least two points of $\Hc$.  Then the points of $\Hc\cap\ell$ lie in at most two
+classes.  More precisely, if $\ell$ contains a point of class $\kappa$, then the classes met by $\ell$ are:
+only $\kappa$ if $\ell$ has slope $0$ or $\infty$; among $\{\kappa,\sigma\kappa\}$ if $\ell$ has slope $+1$;
+among $\{\kappa,\tau\kappa\}$ if $\ell$ has slope $-1$.
+\end{lemma}
+
+\begin{proof}
+Let $(u,v)\in\Z^2$ be a primitive direction vector of $\ell$ and $(x_0,y_0)\in\Hc\cap\ell$.  The lattice points of
+$\ell$ are $(x_0+tu,y_0+tv)$, $t\in\Z$, and such a point lies on $\Hc$ iff
+$uv\,t^2+(x_0v+y_0u)\,t\equiv0\pmod p$ (we used $x_0y_0\equiv c$).  The class of the point depends only on
+$t\bmod p$.  If $uv\not\equiv0$, the congruence has at most two roots modulo $p$; if exactly one of $u,v$ is
+divisible by $p$ (both cannot be, as $\gcd(u,v)=1$), it reduces to $x_0v\,t\equiv0$ or $y_0u\,t\equiv0$ with a unit
+coefficient, so $t\equiv0$: one class.  For $(u,v)=(1,0),(0,1)$ this gives the claim for slopes $0,\infty$.
+For $(u,v)=(1,1)$ the roots are $t\equiv0$ and $t\equiv-(x_0+y_0)$, the latter giving the point
+$(-y_0,-x_0)$ modulo $p$, of class $\sigma\kappa$.  For $(u,v)=(1,-1)$ the roots are $t\equiv0$ and
+$t\equiv y_0-x_0$, giving $(y_0,x_0)$, of class $\tau\kappa$.
+\end{proof}
+
+\begin{lemma}\label{lem:copies}
+Two distinct points of one class in $\Gp$ differ by $\pm(p,0)$, $\pm(0,p)$, $\pm(p,p)$ or $\pm(p,-p)$; the line
+through them has slope $0,\infty,+1$ or $-1$ and contains no third point of that class.  The point $\kappa(r,s)$ lies
+on the slope-$(+1)$ line $x-y=d_\kappa+(r-s)p$ and on the slope-$(-1)$ line $x+y=e_\kappa+(r+s)p$.
+\end{lemma}
+
+\begin{proof}
+The four points of a class are the vertices of an axis-parallel square of side $p$; no three are collinear.
+The last sentence is a direct computation.
+\end{proof}
+
+\begin{corollary}\label{cor:slopes}
+A line containing at least three points of $\Pset$ has slope $+1$ or $-1$.
+\end{corollary}
+
+\begin{proof}
+By Lemma~\ref{lem:lagrange} the three points lie in at most two classes, so two of them are congruent, and by
+Lemma~\ref{lem:copies} the line has slope $0,\infty,\pm1$.  A line of slope $0$ or $\infty$ meets a single class
+(Lemma~\ref{lem:lagrange}), which has at most two points on it (Lemma~\ref{lem:copies}).
+\end{proof}
+
+\begin{lemma}[position of the partner classes]\label{lem:partners}
+Let $\kappa$ be a class of $\Hc$.
+\begin{enumerate}
+\item[(i)] If $\kappa\in A$ then $\sigma\kappa\in A$ and $d_{\sigma\kappa}=d_\kappa$; if $\kappa\in D$ then
+ $\sigma\kappa\in D$ and $d_{\sigma\kappa}=d_\kappa$; if $\kappa\in C$ then $\sigma\kappa\in B$ and
+ $d_{\sigma\kappa}=d_\kappa-p$; if $\kappa\in B$ then $\sigma\kappa\in C$ and $d_{\sigma\kappa}=d_\kappa+p$.
+\item[(ii)] If $\kappa\in B$ then $\tau\kappa\in B$ and $e_{\tau\kappa}=e_\kappa$; if $\kappa\in C$ then
+ $\tau\kappa\in C$ and $e_{\tau\kappa}=e_\kappa$; if $\kappa\in A$ then $\tau\kappa\in D$ and
+ $e_{\tau\kappa}=e_\kappa-p$; if $\kappa\in D$ then $\tau\kappa\in A$ and $e_{\tau\kappa}=e_\kappa+p$.
+\end{enumerate}
+In particular $\sigma$ preserves the types $A$, $D$ and interchanges $B$, $C$; $\tau$ preserves $B$, $C$ and
+interchanges $A$, $D$; the fixed classes of $\sigma$ lie in $A\cup D$ and those of $\tau$ in $B\cup C$; and
+$n_A=n_D$, $n_B=n_C$.
+\end{lemma}
+
+\begin{proof}
+Write $\kappa=(a,b)$ with base copy $(x_\kappa,y_\kappa)$, so $x_\kappa\equiv a$, $y_\kappa\equiv b$.  The base copy of
+$\sigma\kappa=(-b,-a)$ has first coordinate $-y_\kappa$ if $y_\kappa\le h$ and $p-y_\kappa$ if $y_\kappa>h$, and second
+coordinate $p-x_\kappa$ if $x_\kappa>0$ and $-x_\kappa$ if $x_\kappa<0$ (these are the representatives of $-b$ in
+$[-h,h]$ and of $-a$ in $[1,p-1]$).  Going through the four types:
+$\kappa\in A$: $(p-y_\kappa,\,p-x_\kappa)$, again of type $A$, difference $x_\kappa-y_\kappa$;
+$\kappa\in D$: $(-y_\kappa,\,-x_\kappa)$, type $D$, difference $x_\kappa-y_\kappa$;
+$\kappa\in C$: $(-y_\kappa,\,p-x_\kappa)$, type $B$, difference $x_\kappa-y_\kappa-p$;
+$\kappa\in B$: $(p-y_\kappa,\,-x_\kappa)$, type $C$, difference $x_\kappa-y_\kappa+p$.
+Similarly, the base copy of $\tau\kappa=(b,a)$ has first coordinate $y_\kappa$ if $y_\kappa\le h$ and $y_\kappa-p$
+otherwise, and second coordinate $x_\kappa$ if $x_\kappa>0$ and $x_\kappa+p$ otherwise:
+$\kappa\in B$: $(y_\kappa-p,\,x_\kappa+p)$, type $B$, sum $e_\kappa$;
+$\kappa\in C$: $(y_\kappa,\,x_\kappa)$, type $C$, sum $e_\kappa$;
+$\kappa\in A$: $(y_\kappa-p,\,x_\kappa)$, type $D$, sum $e_\kappa-p$;
+$\kappa\in D$: $(y_\kappa,\,x_\kappa+p)$, type $A$, sum $e_\kappa+p$.
+The remaining assertions follow ($\nu=\sigma\tau$ is a fixed-point-free involution interchanging $A\leftrightarrow D$
+and $B\leftrightarrow C$).
+\end{proof}
+
+Let $\Lc$ be the set of lines containing at least three points of $\Pset$.  For a class $\kappa$ let
+\begin{align*}
+ D_\kappa&:=\{x-y=d_\kappa\}\quad(\text{the diagonal of }\kappa;\ \text{it contains }\kappa(0,0),\kappa(1,1)),\\
+ E_\kappa&:=\{x+y=e_\kappa+p\}\quad(\text{the antidiagonal of }\kappa;\ \text{it contains }\kappa(0,1),\kappa(1,0)).
+\end{align*}
+
+\begin{proposition}\label{prop:lines}
+$\Lc$ consists of the following lines, and no others; for each we list its points in $\Pset$.
+\begin{enumerate}
+\item[(a)] For $\kappa\in A\cup D$ with $\sigma\kappa\ne\kappa$: the common diagonal $D_\kappa=D_{\sigma\kappa}$, with the
+ four points $\kappa(0,0),\kappa(1,1),\sigma\kappa(0,0),\sigma\kappa(1,1)$.
+\item[(b)] For $\kappa\in B\cup C$ with $\tau\kappa\ne\kappa$: the common antidiagonal $E_\kappa=E_{\tau\kappa}$, with the
+ four points $\kappa(0,1),\kappa(1,0),\tau\kappa(0,1),\tau\kappa(1,0)$.
+\item[(c)] For every $\kappa\in C$: $D_\kappa$ with the three points $\kappa(0,0),\kappa(1,1),\sigma\kappa(1,0)$
+ ($\sigma\kappa\in B$); for every $\kappa\in B$: $D_\kappa$ with the three points
+ $\kappa(0,0),\kappa(1,1),\sigma\kappa(0,1)$ ($\sigma\kappa\in C$).
+\item[(d)] For every $\kappa\in A$: $E_\kappa$ with the three points $\kappa(0,1),\kappa(1,0),\tau\kappa(1,1)$
+ ($\tau\kappa\in D$); for every $\kappa\in D$: $E_\kappa$ with the three points $\kappa(0,1),\kappa(1,0),\tau\kappa(0,0)$
+ ($\tau\kappa\in A$).
+\end{enumerate}
+Consequently
+\begin{equation}\label{eq:L}
+ |\Lc|=\frac{n_A+n_D-f_\sigma}{2}+\frac{n_B+n_C-f_\tau}{2}+(n_A+n_D)+(n_B+n_C)
+ =\frac32(p-1)-\frac{f_\sigma+f_\tau}{2}.
+\end{equation}
+Moreover, the points of $\Pset$ lying on \emph{no} line of $\Lc$ are exactly $\kappa(1,1)$ for $\sigma$-fixed
+$\kappa\in A$, $\kappa(0,0)$ for $\sigma$-fixed $\kappa\in D$, $\kappa(0,1)$ for $\tau$-fixed $\kappa\in B$ and
+$\kappa(1,0)$ for $\tau$-fixed $\kappa\in C$; their number is
+\begin{equation}\label{eq:Z}
+ Z:=\#\{q\in\Pset:\ q\text{ lies on no line of }\Lc\}=f_\sigma+f_\tau .
+\end{equation}
+The points lying on \emph{two} lines of $\Lc$ are exactly the ``middle-block'' copies $\kappa(0,0)$ ($\kappa\in A$),
+$\kappa(1,0)$ ($\kappa\in B$), $\kappa(0,1)$ ($\kappa\in C$), $\kappa(1,1)$ ($\kappa\in D$) of the classes $\kappa$ whose
+partner ($\sigma\kappa$ for $A,D$; $\tau\kappa$ for $B,C$) is different from $\kappa$; no point lies on three lines of
+$\Lc$.
+\end{proposition}
+
+\begin{proof}
+Let $\ell\in\Lc$.  By Corollary~\ref{cor:slopes} its slope is $\pm1$; say $+1$ (the case $-1$ is symmetric, with
+$\tau$, $e_\kappa$, $E_\kappa$ in place of $\sigma$, $d_\kappa$, $D_\kappa$).  By Lemma~\ref{lem:lagrange} the points of
+$\ell\cap\Pset$ lie in two classes $\kappa,\sigma\kappa$ (a single class carries at most two points on a line), and
+one of the classes, say $\kappa$, has two points on $\ell$; by Lemma~\ref{lem:copies} these are $\kappa(0,0),\kappa(1,1)$
+and $\ell=D_\kappa$, and $\sigma\kappa\ne\kappa$.  The points of $\sigma\kappa$ on $D_\kappa$ are the
+$\sigma\kappa(r,s)$ with $d_{\sigma\kappa}+(r-s)p=d_\kappa$.  By Lemma~\ref{lem:partners}(i): for $\kappa\in A\cup D$,
+$r=s$, giving (a); for $\kappa\in C$, $r-s=1$, giving $\sigma\kappa(1,0)$; for $\kappa\in B$, $r-s=-1$, giving
+$\sigma\kappa(0,1)$; this is (c).  Conversely each listed line has $\ge3$ points.  Note that for $\kappa\in B\cup C$
+the diagonals $D_\kappa$ and $D_{\sigma\kappa}$ are distinct lines, each in $\Lc$, whereas for $\kappa\in A\cup D$ they
+coincide.  Counting: (a) gives $(n_A+n_D-f_\sigma)/2$ lines, (b) $(n_B+n_C-f_\tau)/2$, (c) $n_B+n_C$, (d) $n_A+n_D$,
+which is \eqref{eq:L}.
+
+For the incidences of a single point, take $\kappa\in A$.  Its points $\kappa(0,1),\kappa(1,0)$ lie on $E_\kappa\in\Lc$
+(d), and on no line of type (a)/(c) (their slope-$(+1)$ lines $x-y=d_\kappa\pm p$ carry no second point of
+$\kappa$ and, by (i), no point of $\sigma\kappa$).  $\kappa(1,1)$ lies on $D_\kappa$, which is in $\Lc$ iff
+$\sigma\kappa\ne\kappa$, and on $x+y=e_\kappa+2p=e_{\tau\kappa}+3p$, which carries no point of $\tau\kappa$: so
+$\kappa(1,1)$ is on one line of $\Lc$ if $\sigma\kappa\neq\kappa$ and on none otherwise.  $\kappa(0,0)$ lies on
+$D_\kappa$ and on $x+y=e_\kappa=e_{\tau\kappa}+p$, i.e.\ on $E_{\tau\kappa}\in\Lc$: two lines if $\sigma\kappa\ne\kappa$,
+one otherwise.  The types $D$, $B$, $C$ are analogous (for $B$: $\kappa(1,0)\in D_{\sigma\kappa}$ since
+$d_\kappa+p=d_{\sigma\kappa}$, while $\kappa(0,1)$ lies on $x-y=d_\kappa-p=d_{\sigma\kappa}-2p$, which carries no point of
+$\sigma\kappa$; for $C$ the roles of $(1,0),(0,1)$ are exchanged; for $D$: $\kappa(1,1)\in E_{\tau\kappa}$ since
+$e_\kappa+2p=e_{\tau\kappa}+p$, and $\kappa(0,0)$ lies on $x+y=e_\kappa=e_{\tau\kappa}-p$).  This gives \eqref{eq:Z}
+and the last two assertions.
+\end{proof}
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+Let $S\subseteq\Pset$ be lawful.  For $q\in\Pset$ let $m(q)$ be the number of lines of $\Lc$ through $q$.  Every line
+of $\Lc$ carries at most two points of $S$, hence
+\begin{equation}\label{eq:count}
+\begin{aligned}
+ |S| \;&=\; \#\{q\in S: m(q)=0\}+\#\{q\in S: m(q)\ge1\}
+ \;\le\; Z+\sum_{q\in S}m(q)-\sum_{q\in S}\bigl(m(q)-1\bigr)^{+}\\
+ &=\; Z+\sum_{\ell\in\Lc}|S\cap\ell|-\sum_{q\in S}\bigl(m(q)-1\bigr)^{+}
+ \;\le\; Z+2|\Lc| ,
+\end{aligned}
+\end{equation}
+and by \eqref{eq:L}, \eqref{eq:Z}
+\[
+ Z+2|\Lc| \;=\; (f_\sigma+f_\tau)+3(p-1)-(f_\sigma+f_\tau) \;=\; 3(p-1).
+\]
+This proves the bound.  (Lawfulness of $S$ was used only through the lines of $\Lc$; conversely, since every line
+carrying three points of $\Pset$ belongs to $\Lc$, a set $S\subseteq\Pset$ is lawful iff $|S\cap\ell|\le2$ for all
+$\ell\in\Lc$.)
+
+\medskip
+\noindent\emph{Equality.}  $|S|=3(p-1)$ holds iff all inequalities in \eqref{eq:count} are equalities, i.e.\ iff
+(1) $S$ contains all $Z$ points lying on no line of $\Lc$; (2) $|S\cap\ell|=2$ for every $\ell\in\Lc$; (3) no point of $S$
+lies on two lines of $\Lc$.  Group the classes into orbits of the Klein four-group $\{1,\sigma,\tau,\nu\}$.  A generic
+orbit $\{\kappa,\sigma\kappa,\tau\kappa,\nu\kappa\}$ has four distinct classes, all with distinct partners; the six
+lines of $\Lc$ meeting it (Proposition~\ref{prop:lines}) meet no other orbit, its four middle-block copies have $m=2$
+and are excluded by (3), and each of the six lines then retains exactly two points with $m=1$, which are forced into
+$S$ by (2): on this orbit $S$ coincides with $\Hc\cap T_2$.  A non-generic orbit is $\{\kappa,\nu\kappa\}$ with
+$\kappa$ (and $\nu\kappa$) fixed by $\sigma$ or by $\tau$; it meets exactly two lines of $\Lc$, each with three points
+of $m=1$, plus two points with $m=0$: conditions (1)--(3) allow $3\cdot3=9$ choices, all lawful.  There are
+$s=(f_\sigma+f_\tau)/2$ non-generic orbits, whence $9^{s}$ maximum sets.  \qed
+
+\begin{remark}
+(a) The count \eqref{eq:count} is a linear-programming certificate: the dual solution assigns weight $1$ to every
+line of $\Lc$ (constraint $\sum_{q\in\ell}x_q\le2$) and weight $1$ to the upper bound $x_q\le1$ of each of the $Z$
+unconstrained points; so even the fractional relaxation of the problem has value $3(p-1)$.
+
+(b) The theorem says that no lawful set can use the middle block $M$ profitably: adding fourth copies to the HJSW
+set is impossible without removing at least as many points.  It complements Observations 2.4--2.6 of \cite{KNS25}
+(which yield the lower bound $3(p-1)$) and settles, for a single hyperbola in its own window, the question raised
+there whether the HJSW construction can be improved: within $\Hc\cap\Gp$ it cannot; any improvement must use
+points outside $\Hc\cap\Gp$ (another hyperbola, another window, or non-hyperbola points).
+
+(c) The proof uses only: at most two classes per line (Lagrange), the square arrangement of the four copies, and
+the position of the partner classes $\sigma\kappa$, $\tau\kappa$ (Lemma~\ref{lem:partners}).  It does not use $p\ge7$;
+$p=3$ and $p=5$ are covered as well.
+\end{remark}
+
+\section{Computer verification}
+
+The script \texttt{slack/hjsw\_window\_check.py} of the repository recomputes, from the point set alone (no part of the
+proof is trusted): all lines with at least three points of $\Pset$ (all have slope $\pm1$, three or four points, and lie
+inside one orbit of classes); the identity $2|\Lc|+Z=3(p-1)$; the exact maximum by exhaustive search inside each orbit
+(at most $2^{16}$ subsets), assembling a maximum witness which is passed through the independent verifier
+\texttt{saturation.the\_law} in grid coordinates; and the number of maximum sets, compared with $9^{s}$.  All checks pass
+for every prime $3\le p\le101$ (all $c\in\Fp^*$ for $p\le31$; $c\in\{1,2,3,-1,-2,(p+1)/2\}$ for larger $p$); log:
+\texttt{bench/hjsw\_window\_check\_all.log}.  The values agree with the exact maxima obtained earlier by SAT
+(kissat/CaDiCaL, two encodings, witnesses through the law): $18,30,36,48,54,66$ for $p=7,11,13,17,19,23$.
+
+\begin{table}[h]\centering\small
+\begin{tabular}{rrrrrrr}
+\toprule
+$p$ & $c$ & $|\Pset|$ & $|\Lc|$ & $Z$ & max & \#max sets\\
+\midrule
+7 & 1 & 24 & 8 & 2 & 18 & 9\\
+11 & 1 & 40 & 14 & 2 & 30 & 9\\
+13 & 1 & 48 & 16 & 4 & 36 & 81\\
+13 & 2 & 48 & 18 & 0 & 36 & 1\\
+17 & 1 & 64 & 22 & 4 & 48 & 81\\
+19 & 1 & 72 & 26 & 2 & 54 & 9\\
+23 & 1 & 88 & 32 & 2 & 66 & 9\\
+101 & 1 & 400 & 148 & 4 & 300 & 81\\
+\bottomrule
+\end{tabular}
+\caption{Sample values from the verification log ($|\Lc|=\tfrac32(p-1)-s$, $Z=2s$).}
+\end{table}
+
+\paragraph{Statement on authorship.}  The theorem, its proof and the verification program were produced by an
+autonomous Claude agent (the third agent of the project) working from the setup and the computational observations
+of the first two agents (exact maxima by SAT for $p\le23$); the owner set the question.  Everything is reproducible
+from the repository.
+
+\begin{thebibliography}{9}
+\bibitem{HJSW75} R.~R. Hall, T.~H. Jackson, A.~Sudbery, K.~Wild, Some advances in the no-three-in-line problem,
+ J. Combin. Theory Ser. A 18 (1975) 336--341.
+\bibitem{KNS25} B.~Kov\'acs, Z.~L. Nagy, D.~R. Szab\'o, Randomised algebraic constructions for the no-$(k+1)$-in-line
+ problem, arXiv:2508.07632 (2025); Advances in Combinatorics 2026:7.
+\end{thebibliography}
+
+\end{document}
