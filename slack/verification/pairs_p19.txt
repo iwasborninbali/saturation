@@ -1,0 +1,4 @@
+# exact maximum lawful subset of H(1,19) u H(k,19) in the HJSW window 38x38 (HiGHS MIP, witnesses verified by the law; third solver)
+M p=19 ks=[1, 18] N=38: candidates=144 lines>=3=496 time_limit=28800s
+M p=19 ks=[1, 3] N=38: candidates=144 lines>=3=526 time_limit=28800s
+M p=19 ks=[1, 2] N=38: candidates=144 lines>=3=474 time_limit=28800s
