@@ -10,6 +10,8 @@ int main(int argc, char **argv) {
         int ok = 0;
         if (mode == 'H') ok = (x % p) && (y % p) && (((long)x * y - k) % p == 0);
         else if (mode == 'W') { long xx = x - (p - 1) / 2; long xm = ((xx % p) + p) % p; ok = xm && (y % p) && (((xm * y) % p - k) % p == 0); }
+        else if (mode == 'K') { long xx = x - (p - 1) / 2; long xm = ((xx % p) + p) % p;
+                                ok = xm && (y % p) && ((((xm * y) % p) - 1) % p == 0 || (((xm * y) % p) - k) % p == 0); }
         else if (mode == 'U') { int q = k; long xp = ((x - (p - 1) / 2) % p + p) % p, xq = ((x - (q - 1) / 2) % q + q) % q;
                                 ok = (xp && (y % p) && (((xp * y) % p) - 1) % p == 0) || (xq && (y % q) && (((xq * y) % q) - 1) % q == 0); }
         else if (mode == 'P') ok = ((y - ((long)x * x + k) % p) % p == 0);
