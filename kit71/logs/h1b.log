@@ -1,0 +1,43 @@
+lawful hyperbola xy=41 mod 53: size 86
+lawful hyperbola xy=17 mod 59: size 80
+lawful hyperbola xy=19 mod 59: size 80
+lawful hyperbola xy=23 mod 59: size 80
+lawful hyperbola xy=26 mod 59: size 80
+lawful hyperbola xy=34 mod 59: size 80
+lawful hyperbola xy=37 mod 59: size 80
+lawful hyperbola xy=38 mod 59: size 80
+lawful hyperbola xy=39 mod 59: size 80
+lawful hyperbola xy=43 mod 59: size 80
+lawful hyperbola xy=46 mod 59: size 80
+lawful hyperbola xy=47 mod 59: size 80
+lawful hyperbola xy=52 mod 59: size 80
+lawful hyperbola xy=53 mod 59: size 80
+lawful hyperbola xy=57 mod 59: size 80
+lawful hyperbola xy=58 mod 59: size 80
+top pure: [(86, 53, 41, 0, 0), (80, 59, 58, 0, 0), (80, 59, 57, 0, 0), (80, 59, 53, 0, 0), (80, 59, 52, 0, 0), (80, 59, 47, 0, 0), (80, 59, 46, 0, 0), (80, 59, 43, 0, 0)]
+lawful shifted (x+11)(y+11)=31 mod 53: size 88
+lawful shifted (x+11)(y+25)=22 mod 53: size 88
+lawful shifted (x+17)(y+17)=19 mod 53: size 88
+lawful shifted (x+17)(y+17)=34 mod 53: size 88
+lawful shifted (x+17)(y+18)=19 mod 53: size 88
+lawful shifted (x+17)(y+18)=34 mod 53: size 88
+lawful shifted (x+17)(y+19)=19 mod 53: size 88
+lawful shifted (x+17)(y+19)=34 mod 53: size 88
+lawful shifted (x+18)(y+17)=19 mod 53: size 88
+lawful shifted (x+18)(y+17)=34 mod 53: size 88
+lawful shifted (x+18)(y+18)=18 mod 53: size 88
+lawful shifted (x+18)(y+18)=19 mod 53: size 88
+lawful shifted (x+18)(y+18)=34 mod 53: size 88
+lawful shifted (x+18)(y+18)=35 mod 53: size 88
+lawful shifted (x+18)(y+19)=19 mod 53: size 88
+lawful shifted (x+18)(y+19)=34 mod 53: size 88
+lawful shifted (x+19)(y+17)=19 mod 53: size 88
+lawful shifted (x+19)(y+17)=34 mod 53: size 88
+lawful shifted (x+19)(y+18)=19 mod 53: size 88
+lawful shifted (x+19)(y+18)=34 mod 53: size 88
+lawful shifted (x+19)(y+19)=19 mod 53: size 88
+lawful shifted (x+19)(y+19)=34 mod 53: size 88
+lawful shifted (x+25)(y+11)=22 mod 53: size 88
+lawful shifted (x+25)(y+25)=31 mod 53: size 88
+TOP: [(88, 53, 35, 18, 18), (88, 53, 34, 19, 19), (88, 53, 34, 19, 18), (88, 53, 34, 19, 17), (88, 53, 34, 18, 19)]
+Foothold(n=71, size=88, shortfall=54) fresh=True principle=pure hyperbola (x+18)(y+18)=35 mod 53 in box 71 no repair, no fill

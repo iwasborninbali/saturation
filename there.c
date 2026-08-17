@@ -24,19 +24,35 @@
 #include <stdint.h>
 #include <sys/time.h>
 
+/* portable 64-bit bit reversal: clang has a builtin, gcc does not */
+#if defined(__has_builtin)
+# if __has_builtin(__builtin_bitreverse64)
+#  define BITREV64(x) __builtin_bitreverse64(x)
+# endif
+#endif
+#ifndef BITREV64
+static inline uint64_t bitrev64_sw(uint64_t x) {
+    x = ((x >> 1) & 0x5555555555555555ULL) | ((x & 0x5555555555555555ULL) << 1);
+    x = ((x >> 2) & 0x3333333333333333ULL) | ((x & 0x3333333333333333ULL) << 2);
+    x = ((x >> 4) & 0x0F0F0F0F0F0F0F0FULL) | ((x & 0x0F0F0F0F0F0F0F0FULL) << 4);
+    return __builtin_bswap64(x);
+}
+# define BITREV64(x) bitrev64_sw(x)
+#endif
+
 #ifdef BIG
 #define MAXN 128
 typedef unsigned __int128 bits;
 #define POPCOUNT(x) (__builtin_popcountll((uint64_t)(x)) + __builtin_popcountll((uint64_t)((x) >> 64)))
 #define CTZ(x) ((uint64_t)(x) ? __builtin_ctzll((uint64_t)(x)) : 64 + __builtin_ctzll((uint64_t)((x) >> 64)))
-#define BITREV(x) (((bits)__builtin_bitreverse64((uint64_t)(x)) << 64) | (bits)__builtin_bitreverse64((uint64_t)((x) >> 64)))
+#define BITREV(x) (((bits)BITREV64((uint64_t)(x)) << 64) | (bits)BITREV64((uint64_t)((x) >> 64)))
 #define WORDBITS 128
 #else
 #define MAXN 64
 typedef uint64_t bits;
 #define POPCOUNT(x) __builtin_popcountll(x)
 #define CTZ(x) __builtin_ctzll(x)
-#define BITREV(x) __builtin_bitreverse64(x)
+#define BITREV(x) BITREV64(x)
 #define WORDBITS 64
 #endif
 #define MAXD (2 * MAXN + 2)
