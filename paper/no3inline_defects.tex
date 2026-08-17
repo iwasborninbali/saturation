@@ -22,7 +22,7 @@
 for $n=36,\,37,\,39$, and a balance lemma for symmetric defects}
 \author{Alex Komang\thanks{Independent researcher, Bali, Indonesia.  Correspondence: see the repository page.}\\[2pt]
 \small with two autonomous Claude agents (Anthropic) --- see the authorship statement in Section~\ref{sec:auth}}
-\date{August 2026 --- draft v0.1}
+\date{August 2026 --- draft v0.2}
 
 \begin{document}
 \maketitle
@@ -247,7 +247,10 @@ decimation without backtracking fails from $n=8$ on.
 \section{Reproducibility}
 The programs, the sub-class lists, the sweep logs and the certified configurations are in the repository
 \url{https://github.com/iwasborninbali/saturation} (\texttt{there.c}, \texttt{kit71/there\_twisted\_experiment.c},
-\texttt{web/stab.py} for the exact class and the database encoding, \texttt{docs/SUBMISSION.md} for the configurations).
+\texttt{web/stab.py} for the exact class and the database encoding, \texttt{docs/SUBMISSION.md} for the configurations;
+the family sweeps used \texttt{there\_twisted\_experiment.c} --- a variant of \texttt{there.c} with the two bases and the
+\texttt{PAIRS} defect built in --- driven by \texttt{kit71/bench/family\_sweep.sh} over the canonical defect lists produced by
+\texttt{kit71/bench/cycle\_family.py}).
 Typical commands: \texttt{ALL=1 PAIRS="1,3;3,31;31,1" ./there 37 2} enumerates the sub-class that contains the first
 $n=37$ configuration (one configuration, $1.4\cdot10^7$ nodes); \texttt{PAIRS="6,6;5,30" ./there 36 2} finds the $n=36$
 configuration in about 100\,s.
