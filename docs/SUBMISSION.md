@@ -10,3 +10,4 @@ with provenance (who, machine, seed, seconds).
 
 | n | class | encoded configuration | provenance |
 |---|-------|-----------------------|------------|
+| 33 | rot2 (:) | `:MOAC3H9J6GJOBS9B05PT0VPQHV5UEI2C4SKUEI2R1F671W37RWLN4L8DGQDNFTKM8A` | linux-12c, linux-12c: there_tw sym9 PAIRS=2,3;3,19;19,2 (C4 orbits + 3-cycle of half-turn pairs), exhaustive sub-class, 2026-08-17T00:50Z; note: the ':' cell at 33 shows '..' + n33.gif in the table (not empty); this book is inequivalent to the pictured one |
