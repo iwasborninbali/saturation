@@ -12,3 +12,5 @@ M p=17 ks=[1, 12] N=34: MIP value = 52.000 status=0 time=1485.3s dual_bound=52.0
 M p=17 ks=[1, 13] N=34: MIP value = 52.000 status=0 time=713.8s dual_bound=52.000 gap=0.0
 M p=17 ks=[1, 14] N=34: MIP value = 53.000 status=0 time=269.5s dual_bound=53.000 gap=0.0
 M p=17 ks=[1, 15] N=34: MIP value = 49.000 status=0 time=116.2s dual_bound=49.000 gap=0.0
+M p=17 ks=[1, 16] N=34: MIP value = 54.000 status=0 time=633.3s dual_bound=54.000 gap=0.0
+M p=17 ks=[1, 2] N=34: MIP value = 53.000 status=0 time=2360.3s dual_bound=53.000 gap=0.0
