@@ -346,6 +346,7 @@ static int search(int lv) {
     State *s = &st[lv];
     depthhist[lv]++;
     if (++nodes > nodecap) return -1;
+    if (enumerate_all && (nodes & 0xFFFF) == 0 && now() - t0 > tlimit) return -1;
     if (nchosen == 2 * n) {
         if (!enumerate_all) return 1;
         solutions++;
@@ -504,6 +505,7 @@ int main(int argc, char **argv) {
             return 0;
         }
         if (r == 0 && sym == 11 && !enumerate_all) { r = -1; }   /* one random partition exhausted: draw another */
+        if (r < 0 && enumerate_all) { printf("timeout-all n=%d sym=%d: incomplete, solutions_so_far=%llu nodes=%llu secs=%.2f\n", n, sym, (unsigned long long)solutions, (unsigned long long)totalnodes, now() - t0); return 1; }
         if (r == 0) {
             if (enumerate_all) { printf("all n=%d sym=%d: solutions=%llu nodes=%llu secs=%.2f\n", n, sym, (unsigned long long)solutions, (unsigned long long)totalnodes, now() - t0); return solutions ? 0 : 2; }
             printf("none n=%d sym=%d: exhausted (no book with this symmetry) nodes=%llu secs=%.2f\n",
