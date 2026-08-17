@@ -19,6 +19,23 @@ def cands_U(p, q, N):
             if ok: out.append((x, y))
     return out
 
+def cands_M(p, ks, N, shift=True):
+    """union of hyperbolas x*y = k (mod p), k in ks, x shifted by -(p-1)/2 (HJSW window) unless shift=False"""
+    out = []
+    for x in range(N):
+        for y in range(N):
+            xp = ((x - (p - 1) // 2) if shift else x) % p
+            if xp != 0 and y % p != 0 and ((xp * y) % p) in ks: out.append((x, y))
+    return out
+
+def cands_PH(p, k, N):
+    """parabola y = x^2 + k (mod p) together with the HJSW hyperbola xy = 1 (mod p)"""
+    out = set(cands_M(p, {1}, N))
+    for x in range(N):
+        for y in range(N):
+            if (y - x * x - k) % p == 0: out.add((x, y))
+    return sorted(out)
+
 def lines(cands):
     """all maximal collinear subsets (>=3) of the candidates, as index tuples"""
     idx = {c: i for i, c in enumerate(cands)}
@@ -58,6 +75,15 @@ if __name__ == "__main__":
         p, q, N = int(sys.argv[2]), int(sys.argv[3]), int(sys.argv[4]); cands = cands_U(p, q, N)
         lo = int(sys.argv[5]) if len(sys.argv) > 5 else 1; hi = int(sys.argv[6]) if len(sys.argv) > 6 else len(cands)
         tag = f"U p={p} q={q} N={N}"
+    elif sys.argv[1] == "M":
+        p, N = int(sys.argv[2]), int(sys.argv[3]); ks = {int(k) % p for k in sys.argv[4].split(",")}
+        cands = cands_M(p, ks, N)
+        lo = int(sys.argv[5]) if len(sys.argv) > 5 else 1; hi = int(sys.argv[6]) if len(sys.argv) > 6 else len(cands)
+        tag = f"M p={p} ks={sorted(ks)} N={N}"
+    elif sys.argv[1] == "PH":
+        p, k, N = int(sys.argv[2]), int(sys.argv[3]), int(sys.argv[4]); cands = cands_PH(p, k, N)
+        lo = int(sys.argv[5]) if len(sys.argv) > 5 else 1; hi = int(sys.argv[6]) if len(sys.argv) > 6 else len(cands)
+        tag = f"PH p={p} k={k} N={N}"
     else:
         cands = [tuple(map(int, l.split()[:2])) for l in open(sys.argv[2]) if l.strip()]
         N = max(max(x, y) for x, y in cands) + 1
