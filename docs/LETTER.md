@@ -11,7 +11,8 @@ with an exact bit-parallel branch-and-bound search and its symmetry classes.  Fo
 - n = 37, exact rot2 (stabilizer {e, rot180}), not rct4:
   :GJ39EP7VENDZJRSX7P6ZCF28IQ4VWYKQFa06COUa0LAG245WAISYLO1UBT389H1NDM5TBMRXHK
   structure: quarter-turn (C4) orbits plus a directed 3-cycle of half-turn pairs (1,3),(3,31),(31,1)
-  [second configuration of the same family: see docs/SUBMISSION.md]
+  second configuration of the same family (3-cycle (2,4),(4,20),(20,34)):
+  :FJ7E4PBGKO6U5VDZDH9RCF2X4QSTIZQa2X0SEM8a3Y0A1I78AW3YLO9RJN1N5V6UCGKPBWMTHL
 - n = 36, exact rot2, structure "rot4 except on the long diagonals" (rct4-type for even n):
   :3NEHFSVZ3FPU6E2BNQ8I5GDS08JOTYVXDP9Y1QAM2416BGRZ7MJUHR9COXLT5AKW047KILCW
   quarter-turn orbits plus a half-turn loop on each long diagonal: (6,6),(29,29) and (5,30),(30,5)
