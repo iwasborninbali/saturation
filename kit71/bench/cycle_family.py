@@ -25,8 +25,54 @@ def pair_cells(x, y, n):
     return {(x, y), (m - x, m - y)}
 
 
+def sample_cycles(n, length, k, rng, loops=False):
+    """random odd cycles of the given length (5 or 3+loops variants), canonical-deduped; yields PAIRS strings"""
+    m = n - 1; h = m // 2
+    seen = set(); out = []
+    classes = [i for i in range(h)]              # row classes 0..h-1 (h itself excluded: centre row)
+    tries = 0
+    while len(out) < k and tries < 50 * k:
+        tries += 1
+        cls = rng.sample(classes, length)
+        # representatives: first vertex x in class cls[0] (x or m-x irrelevant up to D4), others random sign
+        verts = [cls[0]] + [rng.choice((c, m - c)) for c in cls[1:]]
+        pairs = [(verts[i], verts[(i + 1) % length]) for i in range(length)]
+        # closing sign: replace last target by x or m-x
+        if rng.random() < 0.5:
+            pairs[-1] = (pairs[-1][0], m - pairs[-1][1])
+        cells = set()
+        for (a, b) in pairs:
+            cells |= pair_cells(a, b, n)
+        if len(cells) != 2 * length:
+            continue
+        if loops:
+            used = {c for (a, b) in pairs for c in (a, m - a, b, m - b)}
+            free = [c for c in classes if c not in used]
+            if len(free) < 2:
+                continue
+            d, e = rng.sample(free, 2)
+            pairs = pairs + [(d, d), (e, m - e)]
+            cells |= pair_cells(d, d, n) | pair_cells(e, m - e, n)
+            if len(cells) != 2 * length + 4:
+                continue
+        key = canon(cells, n)
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(";".join(f"{a},{b}" for a, b in pairs))
+    return out
+
+
 def main():
     n = int(sys.argv[1]); loops = "--loops" in sys.argv
+    if "--sample" in sys.argv:
+        import random
+        k = int(sys.argv[sys.argv.index("--sample") + 1])
+        length = int(sys.argv[sys.argv.index("--len") + 1]) if "--len" in sys.argv else 5
+        seed = int(sys.argv[sys.argv.index("--seed") + 1]) if "--seed" in sys.argv else 1
+        for s_ in sample_cycles(n, length, k, random.Random(seed), loops):
+            print(s_)
+        return
     m = n - 1; h = m // 2
     seen = set(); out = []
     for x in range(h):
