@@ -544,11 +544,13 @@ pairs of points; all have slope $\pm1$, three or four points, and lie inside one
 $2|\Lc|+Z=3(p-1)$; the exact maximum by exhaustive search inside each orbit (at most $2^{16}$ subsets), assembling a
 maximum witness which is passed through the independent verifier \texttt{saturation.the\_law} in grid coordinates; and
 the number of maximum sets, compared with $9^{s}$.  All checks pass for every prime $3\le p\le101$ (all $c\in\Fp^*$ for
-$p\le31$; $c\in\{1,2,3,-1,-2,(p+1)/2\}$ for larger $p$); log: \texttt{bench/hjsw\_window\_check\_all.log}.  For Theorem~\ref{thm:window} the same identities were checked for every box ($x_0,y_0\bmod p$) and every $c$ for
-all primes $p\le61$ (the quantity $Z+2|\Lc|$ computed from the point set never exceeds $3(p-1)$, and equals it for some
-boxes), and the orbit lemma was checked orbit by orbit ($(e_O,f_O)\in\{(0,0),(0,2),(1,1),(2,0)\}$ only) for all $p\le31$,
-all $c$ and all boxes and on random instances up to $p=199$; the exact maxima of Table~\ref{tab:shifts} are MIP optima
-with witnesses through the law.  The values
+$p\le31$; $c\in\{1,2,3,-1,-2,(p+1)/2\}$ for larger $p$); log: \texttt{slack/verification/hjsw\_window\_check\_all.log}.  For Theorem~\ref{thm:window} the script \texttt{slack/hjsw\_boxes\_check.py} (log \texttt{slack/verification/hjsw\_boxes\_check.log})
+checks, for every box ($x_0,y_0\bmod p$) and every $c$: the formula $Z+2|\Lc|=2(p-1)+2s+2\sum_O(e_O+f_O)$ against brute-force
+line enumeration (random boxes, $p\le19$); $Z+2|\Lc|\le3(p-1)$ for all primes $p\le61$ (with equality for some boxes); the
+orbit lemma orbit by orbit ($(e_O,f_O)\in\{(0,0),(0,2),(1,1),(2,0)\}$ only) for all $p\le31$; and every identity used in the
+proof of Lemma~\ref{lem:orbit} ($\theta=c_a+c_b-k$, $\eta=c_b-c_a$, the four split conditions, parity, and
+``$F_1\Rightarrow\neg(E_1\wedge E_2)$'') on random instances up to $p=199$.  The exact maxima of Table~\ref{tab:shifts} are MIP
+optima (HiGHS) with witnesses through the law.  The values
 agree with the exact maxima obtained earlier in the project by SAT solving (kissat/CaDiCaL, two encodings, witnesses
 through the law): $18,30,36,48,54,66$ for $p=7,11,13,17,19,23$.  An external referee report on v0.1 of this note (kept
 in \texttt{docs/reviews/}) re-derived the point sets and the rich lines with an independent implementation and confirmed

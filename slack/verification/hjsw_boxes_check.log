@@ -1,0 +1,30 @@
+1. formula Z+2|L| = 2(p-1)+2s+2*sum(e+f) agrees with brute force on 60 random boxes (p<=19)
+2. p=3: Z+2|L| <= 3(p-1) for all c and all 9 boxes; equality for 18 (c,box) pairs
+2. p=5: Z+2|L| <= 3(p-1) for all c and all 25 boxes; equality for 90 (c,box) pairs
+2. p=7: Z+2|L| <= 3(p-1) for all c and all 49 boxes; equality for 224 (c,box) pairs
+2. p=11: Z+2|L| <= 3(p-1) for all c and all 121 boxes; equality for 672 (c,box) pairs
+2. p=13: Z+2|L| <= 3(p-1) for all c and all 169 boxes; equality for 936 (c,box) pairs
+2. p=17: Z+2|L| <= 3(p-1) for all c and all 289 boxes; equality for 1592 (c,box) pairs
+2. p=19: Z+2|L| <= 3(p-1) for all c and all 361 boxes; equality for 2016 (c,box) pairs
+2. p=23: Z+2|L| <= 3(p-1) for all c and all 529 boxes; equality for 2960 (c,box) pairs
+2. p=29: Z+2|L| <= 3(p-1) for all c and all 841 boxes; equality for 4560 (c,box) pairs
+2. p=31: Z+2|L| <= 3(p-1) for all c and all 961 boxes; equality for 4936 (c,box) pairs
+2. p=37: Z+2|L| <= 3(p-1) for all c and all 1369 boxes; equality for 7440 (c,box) pairs
+2. p=41: Z+2|L| <= 3(p-1) for all c and all 1681 boxes; equality for 8824 (c,box) pairs
+2. p=43: Z+2|L| <= 3(p-1) for all c and all 1849 boxes; equality for 10728 (c,box) pairs
+2. p=47: Z+2|L| <= 3(p-1) for all c and all 2209 boxes; equality for 12160 (c,box) pairs
+2. p=53: Z+2|L| <= 3(p-1) for all c and all 2809 boxes; equality for 15784 (c,box) pairs
+2. p=59: Z+2|L| <= 3(p-1) for all c and all 3481 boxes; equality for 19184 (c,box) pairs
+2. p=61: Z+2|L| <= 3(p-1) for all c and all 3721 boxes; equality for 19944 (c,box) pairs
+3. p=3: orbit lemma — (e,f) values over all c, boxes, generic orbits: []
+3. p=5: orbit lemma — (e,f) values over all c, boxes, generic orbits: [(0, 0), (0, 2), (1, 1), (2, 0)]
+3. p=7: orbit lemma — (e,f) values over all c, boxes, generic orbits: [(0, 0), (0, 2), (1, 1), (2, 0)]
+3. p=11: orbit lemma — (e,f) values over all c, boxes, generic orbits: [(0, 0), (0, 2), (1, 1), (2, 0)]
+3. p=13: orbit lemma — (e,f) values over all c, boxes, generic orbits: [(0, 0), (0, 2), (1, 1), (2, 0)]
+3. p=17: orbit lemma — (e,f) values over all c, boxes, generic orbits: [(0, 0), (0, 2), (1, 1), (2, 0)]
+3. p=19: orbit lemma — (e,f) values over all c, boxes, generic orbits: [(0, 0), (0, 2), (1, 1), (2, 0)]
+3. p=23: orbit lemma — (e,f) values over all c, boxes, generic orbits: [(0, 0), (0, 2), (1, 1), (2, 0)]
+3. p=29: orbit lemma — (e,f) values over all c, boxes, generic orbits: [(0, 0), (0, 2), (1, 1), (2, 0)]
+3. p=31: orbit lemma — (e,f) values over all c, boxes, generic orbits: [(0, 0), (0, 2), (1, 1), (2, 0)]
+4. proof identities verified on 300 random (p,c,x0,y0) instances (all generic orbits each), p<=199
+all checks passed
