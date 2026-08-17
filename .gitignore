@@ -41,3 +41,5 @@ slack/liftmax
 slack/arcmod
 slack/algebraicity
 slack/*.cnf
+slack/arcmod2
+slack/results_linux.txt
