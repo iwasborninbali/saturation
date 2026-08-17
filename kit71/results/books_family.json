@@ -1,0 +1,41 @@
+[
+{
+"n": 13,
+"class": "rot2",
+"stabilizer": [
+"iden",
+"rot180"
+],
+"encoded": ":168A5C58139A0C239B4707246B",
+"tokens": [
+1,
+6,
+21,
+23,
+31,
+38,
+44,
+47,
+53,
+55,
+74,
+75,
+78,
+90,
+93,
+94,
+113,
+115,
+121,
+124,
+130,
+137,
+145,
+147,
+162,
+167
+],
+"certificate": "n=13: 26 tokens, every triple at full rank  [2600 triples checked in exact integer arithmetic]",
+"provenance": "linux-12c there_tw sym9 PAIRS=0,1;1,10;10,0 (3-cycle defect family), exhaustive"
+}
+]

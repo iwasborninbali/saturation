@@ -1,0 +1,10 @@
+n=13 sym=9 3-cycle defects: subclasses=960 with_books=60 raw_books=60 nodes=3180
+n=13 sym=10 3-cycle defects: subclasses=960 with_books=24 raw_books=24 nodes=3402
+n=15 sym=9 3-cycle defects: subclasses=1680 with_books=0 raw_books=0 nodes=10686
+n=15 sym=10 3-cycle defects: subclasses=1680 with_books=0 raw_books=0 nodes=10938
+n=17 sym=9 3-cycle defects: subclasses=2688 with_books=0 raw_books=0 nodes=38598
+n=17 sym=10 3-cycle defects: subclasses=2688 with_books=12 raw_books=12 nodes=35400
+n=19 sym=9 3-cycle defects: subclasses=4032 with_books=0 raw_books=0 nodes=150012
+n=19 sym=10 3-cycle defects: subclasses=4032 with_books=0 raw_books=0 nodes=120264
+n=21 sym=9 3-cycle defects: subclasses=5760 with_books=0 raw_books=0 nodes=560622
+n=21 sym=10 3-cycle defects: subclasses=5760 with_books=0 raw_books=0 nodes=445938

@@ -1,0 +1,1 @@
+# 2026-08-17T00:40:26Z ./there 47 8 seed 1500 (12 seeds in parallel, gcc -O3 -march=native, Debian 12 x86_64)

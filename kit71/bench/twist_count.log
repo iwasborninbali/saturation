@@ -1,0 +1,7 @@
+n=13 sym=9 twisted: books=0 (raw 0) nodes=452 | reference: all n=13 sym=8: solutions=0 nodes=239 secs=0.00
+all n=13 sym=6: solutions=2 nodes=416 secs=0.00
+n=13 sym=10 twisted: books=0 (raw 0) nodes=1596 | reference: all n=13 sym=6: solutions=2 nodes=416 secs=0.00
+n=15 sym=9 twisted: books=0 (raw 0) nodes=900 | reference: all n=15 sym=8: solutions=0 nodes=585 secs=0.00
+all n=15 sym=6: solutions=2 nodes=1005 secs=0.00
+n=15 sym=10 twisted: books=0 (raw 0) nodes=4460 | reference: all n=15 sym=6: solutions=2 nodes=1005 secs=0.00
+n=17 sym=9 twisted: books=0 (raw 0) nodes=2120 | reference: all n=17 sym=8: solutions=2 nodes=2038 secs=0.01

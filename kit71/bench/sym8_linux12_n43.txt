@@ -1,0 +1,15 @@
+# 2026-08-17T00:05:24Z ./there 43 8 seed 1500 (12 seeds in parallel, gcc -O3 -march=native, Debian 12 x86_64)
+book n=43 sym=8 seed=7 order=0 value=0 shave=-1 restarts=23 nodes=54653941 secs=756.15
+timeout n=43 sym=8 order=0 value=0 shave=-1 restarts=26 nodes=151493135 trials=322560365 secs=1984.91
+timeout n=43 sym=8 order=0 value=0 shave=-1 restarts=26 nodes=151493135 trials=322867502 secs=2019.39
+timeout n=43 sym=8 order=0 value=0 shave=-1 restarts=26 nodes=151493135 trials=329219406 secs=2026.39
+timeout n=43 sym=8 order=0 value=0 shave=-1 restarts=26 nodes=151493135 trials=325597465 secs=2047.81
+timeout n=43 sym=8 order=0 value=0 shave=-1 restarts=26 nodes=151493135 trials=329312612 secs=2050.40
+timeout n=43 sym=8 order=0 value=0 shave=-1 restarts=26 nodes=151493135 trials=329577781 secs=2072.39
+timeout n=43 sym=8 order=0 value=0 shave=-1 restarts=26 nodes=151493135 trials=329615320 secs=2073.58
+timeout n=43 sym=8 order=0 value=0 shave=-1 restarts=26 nodes=151493135 trials=329541797 secs=2075.60
+timeout n=43 sym=8 order=0 value=0 shave=-1 restarts=26 nodes=151493135 trials=331922481 secs=2088.83
+timeout n=43 sym=8 order=0 value=0 shave=-1 restarts=26 nodes=151493135 trials=329567435 secs=2097.69
+timeout n=43 sym=8 order=0 value=0 shave=-1 restarts=26 nodes=151493135 trials=334957424 secs=2102.34
+# done 2026-08-17T00:40:26Z
+# done 2026-08-17T00:40:40Z
