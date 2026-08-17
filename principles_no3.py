@@ -346,6 +346,11 @@ MEASURED = (
           "kit71 exhaustive lists n<=23; there.c sym 11 with NV2>=1, 8 seeds up to 500 s at n=21..33"),
     Claim("the 3-cycle defect family has books at n=13,17,33,37,39 and none at 15,19,21,23,25; the two-loop family has 2/1/1 books at n=24/26/28 and none for 14..22",
           "kit71/bench/cycle3_summary.txt, family sweeps; bench/twoloop_*; paper tables"),
+    Claim("known extremal (2n) configurations for n=41..76 are less algebraic mod every prime in [11,61] than random 2-per-row sets: "
+          "largest subset on a line/parabola/hyperbola over F_p is 16% of the points on average (max 22%) vs 19% for random",
+          "slack/algebraicity.c on 142 database configurations and 192 random controls; slack/algebraicity_summary.txt"),
+    Claim("strong modular arcs (no det = 0 triple mod m) cannot beat 3n/2: A(ab) <= a A(b) for coprime a, b (submultiplicativity), so A(m)/m <= 1 + 1/P",
+          "Stepien-Szymaszkiewicz 2018 lemma 2.2 / theorem 3.1 (A(2p) <= 2p+2), Kurz; our A(6)=8, A(10)=12 agree; docs/research/deep_research_2_2026-08-18.md"),
 )
 
 FORBIDDEN = frozenset({

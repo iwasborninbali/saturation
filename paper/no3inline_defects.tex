@@ -22,7 +22,7 @@
 for $n=36,\,37,\,39$, and a balance lemma for symmetric defects}
 \author{Alex Komang\thanks{Independent researcher, Bali, Indonesia.  Correspondence: see the repository page.}\\[2pt]
 \small with two autonomous Claude agents (Anthropic) --- see the authorship statement in Section~\ref{sec:auth}}
-\date{August 2026 --- draft v0.3}
+\date{August 2026 --- draft v0.4}
 
 \begin{document}
 \maketitle
@@ -255,6 +255,12 @@ and no configuration was found by randomized search for $n\le33$.
 \item Warm starts do not work: shifting a known rot4 configuration for $n=44$ into the $46\times46$ grid (which preserves
 all its collinearities) and freeing $k$ of its $22$ orbits, no completion exists even for $k=15$ (exhaustive); configurations
 of neighbouring sizes appear to be uncorrelated.
+\item The known extremal configurations are not ``algebraic modulo a prime'' in any cheap sense: for the rot4/rct4
+configurations of the database with $41\le n\le76$ (142 configurations) the largest subset lying on one line, axis-parallel
+parabola or shifted hyperbola over $\mathbb F_p$, maximised over primes $11\le p\le61$, is on average $16\%$ of the points
+(never above $22\%$), \emph{less} than for random sets with two points per row ($19\%$ on average).  In the finite range the
+$2n$-point sets do not reduce modulo a prime to a low-degree curve (cf.\ Green's remark on Problem 72 of \cite{Green}), while
+the best asymptotic constructions do.
 \item Local search on exactly $2n$ points (min-conflicts with tabu, simulated annealing) fails from $n\approx12$--$28$ on,
 although it produces large partial configurations easily (e.g.\ 134 points on the $71\times71$ grid); belief-propagation
 decimation without backtracking fails from $n=8$ on.
@@ -301,6 +307,8 @@ arXiv:2508.07632 (2025).
 \bibitem{GGGKKP26} A.~Ghosal, R.~Goenka, A.~Grebennikov, P.~Keevash, M.~Kwan and H.~T.~Pham, No-$(k+1)$-in-line problem for
 $k\ge3$, arXiv:2607.05255 (2026).
 \bibitem{Voutier26} P.~M.~Voutier, On the Guy--Kelly conjecture for the no-three-in-line problem, arXiv:2603.00215 (2026).
+\bibitem{Green} B.~Green, 100 open problems, manuscript (version of December 2025), Problem 72,
+\url{https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf}.
 \bibitem{RJPDP25} P.~Ramanathan, P.~D.~Joshi, T.~Prellberg, R.~A.~Dandekar and S.~Panat, Three methods, one problem: classical
 and AI approaches to no-three-in-line, arXiv:2512.11469 (2025).
 \end{thebibliography}

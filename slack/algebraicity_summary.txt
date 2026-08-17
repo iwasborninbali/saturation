@@ -1,0 +1,2 @@
+known n=41..76: N=142 mean=0.1628 max=0.2210
+random: N=192 mean=0.1931 min=0.1620

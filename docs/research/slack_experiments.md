@@ -33,3 +33,11 @@ x ∈ [−(p−1)/2, …], y ∈ [0, N−1]).  Every SAT witness is re-checked w
 Reading: the modular hyperbola supports ~1.5·(usable copies per class)/(copies per class) — 3 of 4 in a 2×2 window,
 ~4.5 of 9 in a 3×3 window — i.e. the ratio tends to 3/2 whatever the window.  Beating 3/2 needs a different object,
 not a wider window.  Greedy repair is far below the exact maximum (1.0–1.26 vs 1.29–1.39): use exact search.
+
+## Algebraicity of the known extremal configurations (Green's Problem 72 remark)
+`slack/algebraicity.c`: for a point set and each prime p in [11,61], the largest subset lying on one curve of the cheap
+families over F_p — lines, parabolas y=ax²+bx+c and x=ay²+by+c, hyperbolas (x−h)(y−k)=c.  Known 2n-configurations
+(rot4/rct4 records, n=41..76, up to 6 per n) versus random 2-per-row sets of the same size:
+the known ones have the *smaller* algebraic subsets (see slack/algebraicity_summary.txt: means ≈0.16 vs ≈0.19 of the points;
+every known configuration below 0.21).  In the finite range the extremal sets do not "reduce mod p to a curve"; they are less
+algebraic than random.  (Cheap families only; general conics would raise both statistics alike.)
