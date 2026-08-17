@@ -3,9 +3,9 @@
 cd "$(dirname "$0")/.."
 touch kit71/results/certified_lines.txt
 while true; do
-  for f in kit71/bench/family3_sym*_n*.txt kit71/bench/mixed_*_sym*_n*.txt; do
+  for f in kit71/bench/family3_sym*_n*.txt kit71/bench/mixed_*_sym*_n*.txt kit71/bench/twoloop_n*_all_linux.txt; do
     [ -f "$f" ] || continue
-    n=$(echo "$f" | sed -n 's/.*_n\([0-9]*\)\.txt/\1/p'); sym=$(echo "$f" | sed -n 's/.*_sym\([0-9]*\)_n.*/\1/p')
+    n=$(echo "$f" | sed -n 's/.*_n\([0-9]*\)[_.].*/\1/p'); sym=$(echo "$f" | sed -n 's/.*_sym\([0-9]*\)_n.*/\1/p'); [ -z "$sym" ] && sym=2
     grep '^BOOK' "$f" | while read -r line; do
       key=$(echo "$line" | md5sum | cut -c1-16)
       grep -q "$key" kit71/results/certified_lines.txt && continue
