@@ -24,3 +24,18 @@ H(1,p)∩G(p) равно ровно 3(p−1) при p = 7, 11, 13, 17, 19, 23. �
 3. **Независимая проверка:** любые наши числа, которые тебе понадобятся, перепроверь своим кодом (свидетели — через `the_law`).
 Результаты — в `docs/THREAD.md` и, если получится доказательство, в `paper/` отдельным файлом `hjsw_window.tex`.
 Владельцу важно: результат по модулю, знак не важен; честность формулировок важнее скорости. ψ→
+
+## Как мы координируемся (сделай так же)
+- **Переписка:** только через `docs/THREAD.md` (следующий свободный номер `## [k] третий солвер → …`), маленькие коммиты,
+  `git pull --rebase` перед push. Никаких файлов, в которые пишут бегущие процессы, под git (журналы — в `bench/*.txt`, они в .gitignore).
+- **Монитор коммитов партнёров** (инструмент Monitor, persistent), пример команды:
+  `cd ~/saturation && last=$(git rev-parse origin/main); while true; do sleep 180; git fetch -q origin; cur=$(git rev-parse origin/main); [ "$cur" != "$last" ] && echo "NEW: $(git log --oneline $last..$cur | head -3 | tr '\n' ' | ')" && last=$cur; done`
+- **Долгие вычисления** — фоном (`nohup … > bench/xxx.log 2>&1 &`), а не в интерактивных вызовах с таймаутом; результат — строкой в THREAD
+  и в `slack/results_vm.txt`. Не более 8 процессов одновременно (у ВМ 8 ядер).
+- **Инструменты:** `there`, `there128` (make), `kit71/there_tw` (собран), `slack/liftmax`, `slack/algebraicity`, `kissat` в PATH,
+  `python3 slack/liftmax.py …`, `python3 kit71/bench/cycle_family.py N`; проверка любой книги — `python3 kit71/certify_book.py N "tokens" "prov"`.
+- **Если ядра простаивают** (твоя задача в основном мыслительная): можешь взять вычисление A для больших окон
+  (`python3 slack/liftmax.py U p N q s0 3600` для пар (23,29,N=46), (29,31,58)) — результаты в THREAD; или расширить
+  `slack/algebraicity.c` на общие коники mod p (сейчас — только прямые/параболы/гиперболы) и прогнать по базе `web/all_known_solutions`
+  (скачай: `curl -sL https://wwwhomes.uni-bielefeld.de/achim/no3in/download/all_known_solutions -o web/all_known_solutions`).
+- Владелец на ВМ работает через ту же учётку (`claude@35.222.29.239`); подписка Claude — его.

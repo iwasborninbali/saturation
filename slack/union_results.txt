@@ -1,0 +1,3 @@
+U p=17 N=34 k=19: |cand|=116 SAT at s=49 (ratio 1.441)
+U p=17 N=34 k=19: |cand|=116 SAT at s=50 (ratio 1.471)
+U p=17 N=34 k=19: unknown at s=51 within 2400s (best 50)
