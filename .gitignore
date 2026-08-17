@@ -30,3 +30,5 @@ kit71/bench/twoloop_n*_all_linux.txt
 kit71/bench/hunt_n*.txt.raw
 kit71/bench/*.log
 family3A_sym*_n*.txt
+kit71/bench/family3B_sym*_n*.txt
+there_tw
