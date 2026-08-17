@@ -43,3 +43,4 @@ slack/algebraicity
 slack/*.cnf
 slack/arcmod2
 slack/results_linux.txt
+.vm_zone
