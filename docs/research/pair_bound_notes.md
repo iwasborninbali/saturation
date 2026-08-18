@@ -1057,3 +1057,28 @@ Tools: `slack/chain_cert.py` (dual cover of ONE pair (G_d, G_{−d}) with rows/c
    its cycles have length 4 (a → −a → a) so every group is its own closed run (saving 2 per group, no interference): that IS Theorem 17.
    The cycle LP is a one-dimensional problem, so the exact optimum for a given arrangement is computable in linear time (DP); the theorem reduces to
    bounding it from above for the actual arrangements — the honest difficulty is that the arrangement is only "random-like", not controlled.
+
+## 26. First solver (19.08): theorem C ⇐ (local rule with positive expected net) + (Kloosterman-level equidistribution of windows along the ⟨k⟩-cycle)
+Data first (`slack/cycle_stats.py`, primitive root k, single cycle of length 2(p−1); log `slack/verification/cycle_stats_prim_p700.txt`, primes 101…700):
+- K = M EXACTLY for every p (each 8-group contributes two κ- and two μ-specials, and every special class lies on the one cycle) — the walk returns to 0;
+- walk range (max − min of the running #K − #M) = 0.50·√p on average, ≤ 1.0·√p always — square-root fluctuations, no drift;
+- density of specials 4G₈/p ≈ 0.668 (K/p = M/p = 0.334); K→M transitions in the cyclic special sequence ≈ 0.201·p (a random K/M sequence of the same
+  density gives 0.167·p), so the naive ½-scheme saves 2·0.20p = 0.40p against line cost 3G₈ = 0.50p — loses, as in §25;
+- adjacent classes are independent-like: frequency of (κ_a special, μ_{ka} special) = 0.112 = q² (q = 0.334): no local correlation.
+The reduction.  Along the cycle the position j carries the class pair (κ_{k^j a}, μ_{k^{j+1}a}); "special" is a condition on the signs of the least
+residues of (k^j a, k^{−j}a^{−1}) [κ] and (k^{j+1}a, k^{−j}a^{−1}) [μ] (§24/C4: sign X(x) ≠ sign X(1/x) for the H(1) class x, sign X(y) ≠ sign X(k/y)
+for the H(k) class y, on the +1 slope; same-sign on the −1 slope; plus the group partner's condition — a bounded number of least residues of
+c·k^{±j}a^{±1}).  Hence for a WINDOW of w consecutive positions the special-pattern is a function of the least residues of finitely many quantities
+c_i·k^{j_i}·a^{±1}, and #{a ∈ F_p^*: the window at a has pattern π} = p·vol(π) + O_w(√p log^{m} p) by the box-lifting of the additive expansion:
+the relevant exponential sums Σ_a e((Σ_i m_i c_i k^{j_i} a + Σ_i n_i c_i' k^{j_i'} a^{−1})/p) are Kloosterman sums, |·| ≤ 2√p — no curve, no Bombieri.
+Therefore: for ANY local rule (weights 0/½/1 on the lines of the group at position j and the row/column weights around it decided from the pattern in
+a window of length w around j) the total saving is p·E_π[net(π)] + O_w(√p log^m p), where E is over the limiting window distribution (explicit
+polytope volumes; numerically = frequencies).  So theorem C for primitive k reduces to exhibiting ONE local rule with E_π[net] > 0 — a finite
+computation (the cycle LP restricted to window-w rules; the free LP's 0.75–0.9 per group of §25 is an upper bound for what rules can achieve, and
+window rules should approach it as w grows) — plus the equidistribution lemma above.  For k of order L: the cycles have length 2L; the same argument
+works with windows shorter than the cycle when L → ∞ (L ≥ p^{1/2+ε} suffices for the error term); for bounded L (many short cycles) the pattern is
+periodic in j and one needs the equidistribution over the cycles instead — separate, easier case (a → k a is then a bounded-order map).
+Honest status: the arithmetic half (window equidistribution) is routine Kloosterman; the combinatorial half (a local rule with positive expected
+net) is what C1 is really asking, and I have not constructed one — but the data (adjacent independence, saving concentrated in short runs) suggest
+w = 2…4 will already give net > 0 (the free LP nets +0.75; the transitions count shows 0.4p of the 0.5p cost is recovered by the ½-scheme alone,
+so a rule that drops the lines of "isolated" groups and keeps ½ on groups whose specials have a K→M neighbour should tip the balance).
