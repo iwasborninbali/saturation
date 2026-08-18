@@ -531,3 +531,37 @@ Honest assessment: Step 1 is a finite, checkable statement (compute the exact R-
 dual written down explicitly — one afternoon), and if it holds it isolates T1 into "how many diagonal-pair classes can a lawful S afford
 outside the blocks", which is where Theorem (block cover) already lives.  If the R-LP is *not* tight (gap growing with p), the idea dies
 quickly and cheaply.  What I cannot judge without computing: whether the R-dual has a p-independent shape.
+
+## B.13 (third solver, task T2.9, deadline 10:00 WITA) The "unbalanced regime" — result: NEGATIVE, and sharper than expected: the
+## trade-off between the two hyperbolae has slope exactly 1 at every t, so there is no easier regime
+Setup as in §19: S lawful, |S₁| = 3(p−1) − t, M₁ = a maximum set of H(1) (HJSW), R = M₁ \ S₁, A = S \ M₁ (added points).  Then
+|S| = 3(p−1) − |R| + |A| and, by the equality analysis of Theorem 1 applied orbit by orbit, |A ∩ H(1)| ≤ |R| − t (each orbit of H(1)
+loses at least as many M₁-points as S₁ adds there), so |S| ≤ 3(p−1) + (|S₂| − t): T1 (O(1) form) ⇔  f(t) := max{|S₂|: |S₁| ≥ 3(p−1)−t} ≤ t + C.
+DATA (`slack/unbalanced_tradeoff.py`, HiGHS MIP with the extra constraint |S₁| ≥ 3(p−1)−t; witnesses exact):
+  p=11, k=3:  f(t) = 2,2,4,6,7,9,10,11,12,13,14,16,16 for t = 0…12  ⇒ f(t) − t = 2,1,2,3,3,4,4,4,4,4,4,5,4;
+  p=13, k=2:  f(t) = 2,4,6,7,8,9,10,11,12,13,14,15,16,18,18 (t = 0…14) ⇒ f(t) − t = 2,3,4,4,4,4,4,4,4,4,4,4,4,5,4;
+  p=17, k=−1: f(t) = 2,4,5,6,8,9,11,12,… (t = 0…7) ⇒ f(t) − t = 2,3,3,3,4,4,5,5 (running).
+So EVERY deletion from HJSW buys almost exactly one point of the second hyperbola, uniformly in t, and the excess f(t) − t stays in
+{2,…,5}: the maximum |S| = 3(p−1) + max_t (f(t) − t) is attained in the balanced regime only because the offset drifts up by 1–2 there;
+there is no regime in which |S₂| = o(p) beyond t = O(1).  Consequently the split of §19 does not isolate an easier half — the correct
+statement is the same "one-for-one" inequality at every t.
+What is provable about the trade-off (rigorous, elementary):
+(1) Blocking pairs form a matching.  For q ∈ P₂ let 𝔅(q) = {{a,b} ⊆ M₁ : a,b,q collinear}.  Two distinct blocking pairs are disjoint:
+    a common point a would put a,b,b′,q on one line, i.e. three points of the lawful M₁ on a line.  Hence q ∈ S₂ (unblocked by S₁ ⊇ M₁∖R)
+    forces |R ∩ ∪𝔅(q)| ≥ B(q) := |𝔅(q)| — R must contain a transversal of the matching.
+(2) Charging: |S₂| ≤ #{q: B(q) = 0} + Σ_{x∈R} deg(x)/B_min′, where deg(x) = #{q ∈ P₂ : x ∈ ∪𝔅(q)} and B_min′ = min B(q) over the other q.
+    With HJSW data (k=−1): median B(q) = 3,4,5,6,7 and max deg = 12,17,20,28,31 at p = 17,19,31,61,101 (mean deg 8–20), so this charging
+    gives |S₂| ≲ 4–5·|R|: it certifies slope ≈ 4–5, not 1.  The loss is intrinsic to counting: a deleted point x lies in ∪𝔅(q) for ~deg(x)
+    ≈ 2·mean(B)·|P₂|/|M₁| points q, but fully unblocks only ~1 of them because each q needs ALL its B(q) pairs hit — the "(2δ)^{B(q)}"
+    effect, which holds for RANDOM R and cannot be established for adversarial R by any moment bound (that is exactly the union-bound
+    obstacle of B.12 in a different guise).
+(3) Rows/columns give a partial injection: a row of M₁ with two points can host a point of S₂ only after one of them is deleted, and each
+    such deletion hosts at most one added point; the same for columns.  This charges the added points lying in full rows or full columns
+    with slope ≤ 2 (a point may need both a row and a column deletion but each deletion serves one point), and leaves the ~(p−1)/4
+    candidates in (half-row, half-column) positions uncharged — for those only the blocking pairs (2) apply.
+Verdict: T2.9 negative.  The "unbalanced regime" is not weaker than T1 — f(t) − t is bounded (data) at all t, and any proof of it is a proof
+of T1.  What the exercise clarified: (a) T1 ⇔ f(t) ≤ t + C, a one-for-one exchange statement; (b) the exchange is not certifiable by
+degree/moment counting of the blocking hypergraph (constants 4–5, and no independence for adversarial R); (c) a proof would need an
+INJECTION from S₂ (minus O(1)) into R that respects the structure "R contains a transversal of 𝔅(q)" — e.g. a matching argument in the
+bipartite graph {q ∈ S₂} — {x ∈ R}, x ∈ ∪𝔅(q), which by Hall would need |∪_{q∈Q}∪𝔅(q) ∩ R| ≥ |Q| for all Q ⊆ S₂: this is where the
+data say it holds (with defect ≤ 5) and where I have no argument.
