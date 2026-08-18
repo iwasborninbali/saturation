@@ -1,0 +1,22 @@
+# arc_imbalance.py — primitive k; DFT of special indicators along the cycle; Tue Aug 18 11:13:18 PM UTC 2026
+p=101 g=2: |K|=|M|=32  max_m|S_K|/sqrt p=1.30  max|S_M|/sqrt p=1.69  max|S_D|/sqrt p=1.98  (log p=4.6)  max arc |imbalance|=10 = 1.00 sqrt p
+p=199 g=3: |K|=|M|=68  max_m|S_K|/sqrt p=1.61  max|S_M|/sqrt p=1.18  max|S_D|/sqrt p=1.91  (log p=5.3)  max arc |imbalance|=4 = 0.28 sqrt p
+p=401 g=3: |K|=|M|=116  max_m|S_K|/sqrt p=2.20  max|S_M|/sqrt p=2.07  max|S_D|/sqrt p=2.32  (log p=6.0)  max arc |imbalance|=5 = 0.25 sqrt p
+p=599 g=7: |K|=|M|=208  max_m|S_K|/sqrt p=1.88  max|S_M|/sqrt p=1.86  max|S_D|/sqrt p=2.39  (log p=6.4)  max arc |imbalance|=16 = 0.65 sqrt p
+p=997 g=7: |K|=|M|=368  max_m|S_K|/sqrt p=2.20  max|S_M|/sqrt p=2.35  max|S_D|/sqrt p=2.71  (log p=6.9)  max arc |imbalance|=16 = 0.51 sqrt p
+p=1499 g=2: |K|=|M|=504  max_m|S_K|/sqrt p=2.01  max|S_M|/sqrt p=1.74  max|S_D|/sqrt p=2.44  (log p=7.3)  max arc |imbalance|=23 = 0.59 sqrt p
+p=1999 g=3: |K|=|M|=656  max_m|S_K|/sqrt p=2.13  max|S_M|/sqrt p=2.04  max|S_D|/sqrt p=2.57  (log p=7.6)  max arc |imbalance|=17 = 0.38 sqrt p
+
+# arc_imbalance_k.py — general k
+p=401 k=2 L=200 r=2: |K|=128 |M|=128 max_ψ|S_K|/√p=1.85 max|S_M|/√p=1.86 max coset |Δ|=8 (0.40√p) max drift-free walk range=8.8 (0.44√p)
+p=401 k=4 L=100 r=4: |K|=116 |M|=116 max_ψ|S_K|/√p=1.80 max|S_M|/√p=2.00 max coset |Δ|=16 (0.80√p) max drift-free walk range=4.9 (0.24√p)
+p=401 k=16 L=50 r=8: |K|=92 |M|=92 max_ψ|S_K|/√p=1.84 max|S_M|/√p=2.20 max coset |Δ|=12 (0.60√p) max drift-free walk range=5.2 (0.26√p)
+p=601 k=3 L=75 r=8: |K|=188 |M|=188 max_ψ|S_K|/√p=1.94 max|S_M|/√p=1.87 max coset |Δ|=10 (0.41√p) max drift-free walk range=8.3 (0.34√p)
+p=601 k=9 L=75 r=8: |K|=200 |M|=200 max_ψ|S_K|/√p=2.13 max|S_M|/√p=2.23 max coset |Δ|=4 (0.16√p) max drift-free walk range=4.9 (0.20√p)
+p=601 k=5 L=12 r=50: |K|=180 |M|=180 max_ψ|S_K|/√p=2.12 max|S_M|/√p=1.54 max coset |Δ|=6 (0.24√p) max drift-free walk range=2.0 (0.08√p)
+p=1009 k=2 L=504 r=2: |K|=332 |M|=332 max_ψ|S_K|/√p=1.98 max|S_M|/√p=2.14 max coset |Δ|=20 (0.63√p) max drift-free walk range=11.8 (0.37√p)
+p=1009 k=4 L=252 r=4: |K|=324 |M|=324 max_ψ|S_K|/√p=2.31 max|S_M|/√p=1.94 max coset |Δ|=16 (0.50√p) max drift-free walk range=9.1 (0.29√p)
+p=1009 k=3 L=168 r=6: |K|=292 |M|=292 max_ψ|S_K|/√p=2.39 max|S_M|/√p=1.92 max coset |Δ|=12 (0.38√p) max drift-free walk range=7.0 (0.22√p)
+p=2003 k=5 L=2002 r=1: |K|=668 |M|=668 max_ψ|S_K|/√p=2.16 max|S_M|/√p=2.20 max coset |Δ|=0 (0.00√p) max drift-free walk range=22.0 (0.49√p)
+p=2003 k=4 L=143 r=14: |K|=644 |M|=644 max_ψ|S_K|/√p=2.33 max|S_M|/√p=1.65 max coset |Δ|=3 (0.07√p) max drift-free walk range=13.4 (0.30√p)
+p=2003 k=-1 L=2 r=1001: |K|=592 |M|=592 max_ψ|S_K|/√p=1.93 max|S_M|/√p=1.93 max coset |Δ|=0 (0.00√p) max drift-free walk range=0.0 (0.00√p)
