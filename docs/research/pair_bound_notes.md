@@ -1083,7 +1083,7 @@ net) is what C1 is really asking, and I have not constructed one — but the dat
 w = 2…4 will already give net > 0 (the free LP nets +0.75; the transitions count shows 0.4p of the 0.5p cost is recovered by the ½-scheme alone,
 so a rule that drops the lines of "isolated" groups and keeps ½ on groups whose specials have a K→M neighbour should tip the balance).
 
-## 26. C1 continued (second solver, 19.08 07:20 WITA): the exact saving formula, the numbers to p = 997, and the SELECTION LEMMA that theorem C needs
+## 26. C1 continued (second solver, 19.08 06:50 WITA): the exact saving formula, the numbers to p = 997, and the SELECTION LEMMA that theorem C needs
 Setting of §25 (class-graph cycles; a (4,8,4) group with weight t on its three lines gives its 4 classes demand 1−t).  Exact accounting for the
 row/column part (proved by the explicit patterns; each edge = the two rows (or columns) joining a κ- and a μ-class, baseline weight ½, cost 4 per unit):
 * t = 1 on a set S of groups ("full blocks", demand 0): between two consecutive S-specials along a cycle put the pattern "row-edges 0 / column-edges 1"
