@@ -595,8 +595,10 @@ Let $C$ be a non-degenerate conic over $\Fp$ and $c\ge2$.  If the projective clo
 $(1{:}0{:}0)$ and $(0{:}1{:}0)$, then $C$ is a shifted modular hyperbola $(x+e)(y+d)=c'$, and for $c=2$ every lawful subset of its
 lift into a $2p\times2p$ box has at most $3(p-1)$ points (Theorem~\ref{thm:window} after the shift).  Otherwise every lawful subset
 of the lift of $C$ into a box of side $cp$ has at most $c(p+3)$ points; for $c=2$ and $p\ge11$ this is less than $3(p-1)$.  Hence
-for $p\ge11$ the modular hyperbolae are exactly the conics whose lifts into a $2p\times2p$ box admit a lawful subset of $3(p-1)$
-points, and no conic admits more.
+for $p\ge11$ no conic admits more than $3(p-1)$ lawful points in a $2p\times2p$ box, and only the shifted modular hyperbolae can
+attain $3(p-1)$ (they do so exactly in the boxes described by Theorem~\ref{thm:window}, e.g.\ the HJSW box; a shifted hyperbola in
+a box where $n_1+n_0>0$ attains less, and a conic that is $\Fp$-affinely equivalent to a hyperbola without being one, e.g.\
+$(x-y)y=1$, is not covered by the shift and satisfies only the bound $c(p+3)$ --- for $p=7$ its lift into $G(7)$ has maximum $16<18$).
 \end{corollary}
 \begin{proof}
 A conic through $(1{:}0{:}0)$ and $(0{:}1{:}0)$ has no $x^2$ and no $y^2$ term, so its equation is $xy+dx+ey+f=0$, i.e.\
@@ -607,8 +609,10 @@ side $cp$ the lift of $C$ therefore meets at most $c(p+3)/2$ rows, and a lawful 
 symmetric argument applies if $(0{:}1{:}0)\notin C$.
 \end{proof}
 (A degenerate conic is a union of at most two lines, and the lift of an $\Fp$-line into a box of side $cp$ lies on $O(c\sqrt p)$
-integer lines, so it contains $O(c\sqrt p)$ lawful points.  The observation that only the shifted hyperbolae contain both axial
-points at infinity was made independently by reasoning agents consulted by the author of record.)
+integer lines, so it contains $O(c\sqrt p)$ lawful points.  Note that $\Fp$-affine equivalence is \emph{not} a symmetry of the
+lifted problem: only integer translations of the box are.  The observation that only the shifted hyperbolae contain both axial
+points at infinity was made independently by reasoning agents consulted by the author of record, who also supplied the $p=7$
+example.)
 
 \begin{remark}[algorithmic consequence]
 Selecting a largest subset in general position from an arbitrary point set is NP-hard \cite{FKNN17}; for

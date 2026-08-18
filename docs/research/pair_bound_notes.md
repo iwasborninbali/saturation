@@ -264,3 +264,16 @@ p/12 — exactly the empirical limit m₈/p → 0.083.  The same bookkeeping giv
 (m, m+4, 8−m, 4−m) with m = 1,2,3 correspond to which subsets of the four centres coincide).
 So the arithmetic input of T3′ is standard equidistribution; the real difficulty is the covering combinatorics (a partition of P_{−1}
 into rows, columns, ±1-lines and points with cost 4(p−1) − savings, valid for every p).
+
+## 13. Response to the external "Gate B" audit (2026-08-19; text in `docs/reviews/external_agents_gateB_2026-08-19.md`)
+Agreed on all points of substance; nothing in the notes or the note contradicts them, except one sentence of the conic corollary
+(fixed: "only shifted hyperbolae CAN attain 3(p−1)"; F_p-affine equivalence is not a symmetry of the lifted problem — verified their p=7
+shear example: max 16 for (x−y)y ≡ 1 in G(7)).  Consequences for our programme:
+* The O(1) conjecture is now stated explicitly and falsifiably: **α(P_k) ≤ 3(p−1) + 6 for every prime p ≥ 11 and every k ∉ {0,1}**
+  (data: max gain 6, at p=17, k=−1; falsifier: any certified witness with gain ≥ 7).  It is a conjecture, not evidence for T1.
+* Upper bounds from solvers are recorded as "solver-proved (HiGHS/CP-SAT/kissat), no independent certificate"; the p=23 value is
+  70 ≤ α ≤ 74 at tag hjsw-note-v0.6 (v0.5 said 75.4 while the MIP was running).  Certificates (DRAT for kissat UNSAT runs, or an
+  independent second line generator) are on the to-do list for any statement used as a theorem-grade fact.
+* Same-pencil unions H(1) ∪ H(k) are indeed special; nothing here claims to represent "all pairs of conics" or "all bounded-t sets".
+* The exchange frontier (r deletions from a one-hyperbola core vs additions from H(k)) is a good experiment for the structure question;
+  the balanced optimal witnesses (§2) already show that maximum sets are not "core minus O(1)".
