@@ -65,3 +65,12 @@ Drmota–Tichy).  Theorem numbers in the citations to be pinned (deep-research b
 |---|---|
 | `paper/hjsw_window.pdf` | `b16c4fc14f0c4371c42b8ec4aa1a5a744c7db5fe90cf87b52486eb476fc93388` |
 | `paper/hjsw_window.tex` | `b19cfc988e8d5494197cd5c7863f7748c7b829bf6ccaa82a8177637862e3f86c` |
+
+## hjsw-note-v0.9.1 (2026-08-19)
+v0.9 with the third solver's two expository fixes in the proof of Prop. m8asym (W₁ explanation; boundary hyperplanes) and the intro
+paragraph on Section "Two hyperbolae".
+
+| file | SHA-256 |
+|---|---|
+| `paper/hjsw_window.pdf` | `7e4f4fb27e5e05a6866b61bd1af85dca2a1a21705f4252fd57148d2c38e087d4` |
+| `paper/hjsw_window.tex` | `d2de96435596e46639a01b4e9edc7404698a627da2ecf3fa2af5ff10a3914e95` |
