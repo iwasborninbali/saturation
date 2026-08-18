@@ -599,3 +599,6 @@ E ≥ 4(p−1) would need the general-slope triples (the ±1 lines contribute on
 Status: this is the first place where "for ALL orientations" has a certificate mechanism (SDP/spectral) rather than a union bound; it
 concerns the vertical-pair MODEL only.  Recorded for the note's §6 as a numerical observation; a theorem needs the two arithmetic
 inputs above (weeks, not hours).
+Addendum 2 (exact minima over ALL orientations, vectorised; `/tmp/vpmin.py`, to be moved to slack/vp_min.py): p=19: 48 (spectral 45.5);
+p=23: 80 = 3.64(p−1) (spectral 63.9).  True minima 24, 28, 42, 48, 80 for p = 11…23, i.e. 2.4, 2.3, 2.6, 2.7, 3.6 per (p−1) — growing, as
+E does; the spectral bound is within a factor 1.05–1.25 of the truth.  p=29 running.
