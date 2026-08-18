@@ -485,7 +485,7 @@ them, so ℓ¹ control fails; what would suffice is a "sparse spectrum" statemen
 may enforce) — untested.  I do not know that either works; (a) is checkable in a day for p ≤ 31 and would at least reveal whether a
 structured certificate exists.
 
-## 19 (T2.8) One untried idea each — third solver: split T1 into an "unbalanced" and a "balanced" regime
+**Third solver.** Split T1 into an "unbalanced" and a "balanced" regime.
 Write S = S₁ ∪ S₂ (S_i ⊆ H(i)-part), |S₁| = 3(p−1) − t₁, |S₂| = 3(p−1) − t₂, so |S| = 3(p−1) + (3(p−1) − t₁ − t₂).  By the equality
 analysis of Theorem 1, S₁ agrees with a maximum set of H(1) on all but ≤ t₁ generic orbits (each orbit contributes ≤ 12 with a unique
 maximiser), i.e. S₁ ⊇ M₁ \ (≤ 12t₁ points) for a maximum set M₁; likewise S₂ ⊇ M₂ \ (≤ 12t₂ points).
