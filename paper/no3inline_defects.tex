@@ -40,7 +40,7 @@ corresponding families exhaustively for small $n$ with an exact branch-and-bound
 and the class counts of Flammenkamp's database): the $3$-cycle family for odd $n\le25$, $33$ and (in part) $37$, $39$,
 $41$; the two-loop family for even $n\le28$ and $n=36$; the mixed families for $n\le27$ (all empty).  Among the
 configurations found are: for $n=36$, the first located $2n$-point configurations whose symmetry group is exactly the
-half-turn (exactly three inequivalent ones in the two-loop family); for $n=37$ (two) and $n=39$ (three), the first located configurations of that
+half-turn (exactly three inequivalent ones in the two-loop family); for $n=37$ (two) and $n=39$ (four), the first located configurations of that
 symmetry group outside the rct4 pseudo-class (Flammenkamp's rct4 configurations of 1997/98 already have exactly
 half-turn symmetry); and a further one for $n=33$.  ``First located'' refers to the public files of Flammenkamp's
 database as of 2026-08-11 (confirmed by its maintainer, who has added the configurations to the database).  Configurations,
@@ -80,7 +80,7 @@ reflections; three pairs form a directed $3$-cycle or a loop plus a $2$-cycle.
 (ii)~Exhaustive enumerations of the resulting families for small $n$ (Section~\ref{sec:results}), with all sub-classes
 listed and their journals kept: the $3$-cycle family, the two-loop family and the mixed families.
 (iii)~New $2n$-point configurations with stabilizer exactly the half-turn: three inequivalent ones for $n=36$ (two-loop
-family; both database entries were empty), two for $n=37$ and three for $n=39$ ($3$-cycle family; the first located
+family; both database entries were empty), two for $n=37$ and four for $n=39$ ($3$-cycle family; the first located
 configurations of that stabilizer that are not of rct4 type), and one more for $n=33$; the configurations are listed in
 the Appendix and were verified by independent programs.
 (iv)~A description of the exact solver and its validation, measured growth of the cost of finding one $2n$-point
@@ -242,8 +242,8 @@ $n$ & defects mod $\Dfour$ (central) & C4 base & V2 base & status of the sweep\\
 25 & 946 (66) & 0 & 0 & complete\\
 33 & 2360 (120) & 1 & 0 & complete (both bases)\\
 37 & 3417 (153) & 2 & 0 & complete (both bases)\\
-39 & 4047 (171) & $\ge3$ & $\ge0$ & C4 base: all 171 central sub-classes complete (2 configurations) and 300 of the 3876 non-central swept (1 configuration), rest in progress; V2 base: central complete (none), 3277 non-central swept (none)\\
-41 & 4750 (190) & $\ge0$ & 0 & V2 base complete (none); C4 base: all 190 central sub-classes complete (none), 3030 of the 4560 non-central swept (none), rest in progress\\
+39 & 4047 (171) & 4 & 0 & complete (both bases): C4 base 4 configurations (2 through the central class), V2 base none\\
+41 & 4750 (190) & $\ge0$ & 0 & V2 base complete (none); C4 base: all 190 central sub-classes complete (none), 3396 of the 4750 sub-classes swept (none), rest in progress\\
 45 & 6391 (231) & --- & $\ge0$ & V2 base: 400 sub-classes swept (none); C4 base not started\\
 \bottomrule
 \end{tabular}
@@ -283,9 +283,10 @@ has since confirmed that the \texttt{:} entries for $n=36,37,39$ were empty on t
 Table~\ref{tab:new} to the database.  For $n=36$ both database entries were empty; for $n=37$ and $39$ the
 column \texttt{c} (rct4) was populated, so the configurations below are new representatives of exact half-turn symmetry
 outside the rct4 structure, not the first configurations with that stabilizer; the $n=33$ configuration is new but the entry
-was not empty.  All nine configurations were checked to be pairwise inequivalent (canonical forms under $\Dfour$).  The
+was not empty.  All ten configurations were checked to be pairwise inequivalent (canonical forms under $\Dfour$).  The
 second and third $n=39$ configurations have their defects through the central class --- they were found only after the
-correction of the generator described above.
+correction of the generator described above; the fourth was found when the exhaustive C4-base sweep of $n=39$ completed
+(18 August 2026) and is not yet in the database.
 
 \begin{table}[ht]\centering\small
 \begin{tabular}{r l l}
@@ -300,6 +301,7 @@ $n$ & family and defect & remark\\
 39 & 3-cycle $(4,8),(8,20),(20,34)$, C4 base & first located outside rct4 (column \texttt{:})\\
 39 & 3-cycle $(1,5),(5,19),(19,1)$ through the central class, C4 base & second, inequivalent\\
 39 & 3-cycle $(4,7),(7,19),(19,4)$ through the central class, C4 base & third, inequivalent\\
+39 & 3-cycle $(1,3),(35,14),(24,1)$, C4 base & fourth, inequivalent (found by the exhaustive C4-base sweep, 18 August 2026)\\
 33 & 3-cycle $(2,3),(3,19),(19,2)$, C4 base & new (entry not empty)\\
 \bottomrule
 \end{tabular}

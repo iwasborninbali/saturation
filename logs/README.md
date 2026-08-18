@@ -17,3 +17,9 @@ list every labelled solution (PRINTALL=1).  Header lines (`#`) give date, sub-cl
 | `sweeps/family3A_sym10_n41.txt` | first half of the 41 list, V2 base | complete (0) |
 | `sweeps/family3A_sym10_n39_partial.txt`, `family3A_sym9_n41_partial.txt` | first halves of 39 (V2, 1339/1938) and 41 (C4, 1325/2280 at stop) | partial snapshots (0 books); both sweeps STOPPED on the first solver's machine (superseded by the full reruns with the corrected generator on VM2/VM4) |
 | (VM2/VM4) `family3full_*_n{33,39,41}`, `central3_*_n{37,39,41,45}` | full reruns with the corrected generator (defects3.py, central classes included) | 33: complete; 37 central: complete; 39: sym10 done, sym9 running (VM2); 41 half A (VM4): sym10 884/2375, 41 half B (VM2): sym9 253/2375 — running unattended; 45 central: stopped; 47: stopped (`sweeps/f47A_sym10_n47_stopped.txt`, 0 sub-classes finished) |
+
+## 2026-08-19 07:55 WITA — n=39 C4-base sweep finished (VM2): `logs/sweeps/family3full_sym9_n39.txt` — 4047 sub-classes, books=4, exhausted=4016, dead=31, timeouts=0.
+The four solutions fall into 4 D4-classes: 3 are the known n=39 configurations, ONE IS NEW (PAIRS 1,3;35,14;24,1; stabilizer {1,rot180}; verified: 78 points,
+no three collinear, two per row/column, rot180-invariant). Added to docs/configs.json (39: 4 entries), paper appendix (configuration 4), main paper table.
+Not yet in Flammenkamp's database. V2 base for 39: complete, none (earlier). n=41: V2 complete (none); C4 base in progress (41A sym10 2165/2375 on VM4,
+41B sym9 1231/2375 on VM2), no solutions so far.
