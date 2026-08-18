@@ -995,7 +995,7 @@ per-group versions Sol_G, Δ_G; and a symmetrised (R,R′-averaged) optimal dual
 1. Census (B_t per slope) and values.  p=113: S = 64; (8,4,4): 8, (7,5,3,1): 10, (6,6,2,2): 11, (5,4,2,1): 4, (4,2,2): 28, (3,3,1,1): 20.
    p=137: S = 83.3; 12, 12, 13, 2, 28, 28 (+ (6,3,3): 2).  p=199: S = 108; 16, 10, 22, 2, 56, 43.
 2. Solitary savings are LOCAL only for two types: (8,4,4): Sol_G = 4 for every group (2 per 8-line — the block-cover theorem); (7,5,3,1): Sol_G = 2
-   for every group at p=113 (1 per slope-group; collectively 2.0/1.67/1.6 per group at 113/137/199 — already sub-additive within the type);
+   for every group at p = 113, 137, 199 (1 per slope-group; collectively 2.0/1.67/1.6 per group — already sub-additive within the type);
    ALL other types have Sol = 0 alone (6-lines, 5-lines of 3-class groups, 4-lines: no saving by themselves).
 3. Marginals are large where solitaries vanish: Δ_t/B_t = 1.8/1.0/1.3 for (6,6,2,2), 0.4–0.6 for the (4,2,2) groups (a 4-point ±1 line!), 1.5–2.7 for
    (7,5,3,1), 2.75–3.4 for (8,4,4) (< 4: partly replaceable); per-group Δ_G varies inside a type from 0 to 5.33 for (6,6,2,2), 0–1.33 for (4,2,2),
