@@ -1,0 +1,8 @@
+p=17 |S|=53 (t=5): OPTIMAL min_triples=0 bound=0.0 time=13s
+p=17 |S|=54 (t=6): OPTIMAL min_triples=0 bound=0.0 time=80s
+p=17 |S|=55 (t=7): FEASIBLE min_triples=1 bound=0.0 time=300s
+p=17 |S|=56 (t=8): FEASIBLE min_triples=3 bound=0.0 time=300s
+p=17 |S|=57 (t=9): FEASIBLE min_triples=5 bound=0.0 time=300s
+p=17 |S|=58 (t=10): FEASIBLE min_triples=8 bound=0.0 time=300s
+p=17 |S|=59 (t=11): FEASIBLE min_triples=10 bound=0.0 time=300s
+p=17 |S|=60 (t=12): FEASIBLE min_triples=14 bound=1.0 time=300s
