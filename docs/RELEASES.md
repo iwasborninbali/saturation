@@ -74,3 +74,14 @@ paragraph on Section "Two hyperbolae".
 |---|---|
 | `paper/hjsw_window.pdf` | `7e4f4fb27e5e05a6866b61bd1af85dca2a1a21705f4252fd57148d2c38e087d4` |
 | `paper/hjsw_window.tex` | `d2de96435596e46639a01b4e9edc7404698a627da2ecf3fa2af5ff10a3914e95` |
+
+## hjsw-note-v1.0 (2026-08-19, 02:50 WITA)
+Note version 1.0 (draft for the author's audit): Theorems 1, 3 (one hyperbola, all boxes), Corollary (conics), Theorem (two hyperbolae,
+k=−1: α ≤ 4(p−1) − 4m₈), Propositions (m₈ formula; m₈ = p/12 + o(p), sketch quoting Bombieri/ETK — references to be pinned by
+deep-research 6, which also suggests C₀ is smooth of genus 1 and a better error term), §6 rewritten with final data incl. the spectral
+observation for the vertical-pair model, referee pass by the third agent, claim→artifact manifest `docs/MANIFEST_hjsw.md`.
+
+| file | SHA-256 |
+|---|---|
+| `paper/hjsw_window.pdf` | `093c58f0f99df23a6cfc4e6b17f6e814fb4f274fd98b8ced07d42d5b3926b281` |
+| `paper/hjsw_window.tex` | `8e32f84d4b042efdb5cc2a840c5b0bb8205f234075b011a9584cf890297e85e1` |
