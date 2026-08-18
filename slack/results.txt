@@ -14,3 +14,9 @@ m=18: unknown at s=24 within 400s (best so far None)
 m=20: unknown at s=26 within 400s (best so far None)
 m=21: unknown at s=28 within 400s (best so far None)
 m=22: unknown at s=29 within 400s (best so far None)
+# --- linux-12c: A(m) = max det-arc in Z_m^2 (no triple with det = 0 mod m); kissat (arcmod2, symmetry-broken) and CP-SAT (arcmod_cpsat, 8 workers);
+# witnesses verified by the det condition and saturation.the_law. Exact unless bracket [lb, ub]; ub from CP-SAT bound or literature.
+A(4)=6  A(5)=6  A(6)=8  A(7)=8  A(8)=8  A(9)=9  A(10)=12  A(12)=12
+A(14) in [12,13]   A(15) in [15,16]   A(16) in [13,15]   A(18) in [17,22]   A(20) in [18,26]   A(21) in [18,24]   A(22) in [18,30]   A(24) in [20,36]
+A(25) = 20  (witness 20 by CP-SAT/FIX1; upper bound 20 = ring-arc maximum m2(Z_25^2) since det-arcs are ring-arcs for p^2 | m)
+# ratio A(m)/m <= 1.2 for all m >= 7 measured (1.5 only at the degenerate m=4, 1.33 at m=6); p^2 route closed: A(9)/9 = 1, A(25)/25 = 0.8
