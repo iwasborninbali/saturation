@@ -985,3 +985,34 @@ c₁ = 2·(N₄/p) = 1/2 exactly if the fractions are exactly (1/3,1/3,1/3) and 
 Consequently the T3′ target "α ≤ 4(p−1) − c₁(p−1) + o(p) with c₁ = 1/2 per slope" is a statement about the joint distribution of the
 two sign events on C₀; the m₈ proposition (m₈ ~ p/12) already contains the "both" third; the same equidistribution argument on C₀ with the
 sign polytopes for the other cells should give the 1/3–1/3–1/3 law (the polytope volumes are computable — I have not done it).
+
+## B.19 (third solver, task T2.17, 2026-08-18 20:50 UTC) Anatomy of the LP(1) saving by residue-group types (p = 113, 137, 199): the dual is GLOBAL
+Data: `slack/verification/lp1_types_p113_137_199.txt`; tools `slack/lp1_types.py`, `slack/lp1_anatomy.py`.  Notation: S = 4(p−1) − LP(1) (the saving),
+groups = slope-(+1) residue groups G_d (d = x−y mod p) with type = (line-size profile; #κ, #λ classes), R-images are the slope-(−1) groups; all
+savings below count BOTH slopes (a group and its R-image).  Because optimal duals are far from unique, I measured dual-independent quantities:
+Sol_t = saving of the LP with rows, columns and ONLY the ±1 lines of the type-t groups; Δ_t = LP(1)[without type t's lines] − LP(1) (marginal);
+per-group versions Sol_G, Δ_G; and a symmetrised (R,R′-averaged) optimal dual for "which lines carry weight".
+1. Census (B_t per slope) and values.  p=113: S = 64; (8,4,4): 8, (7,5,3,1): 10, (6,6,2,2): 11, (5,4,2,1): 4, (4,2,2): 28, (3,3,1,1): 20.
+   p=137: S = 83.3; 12, 12, 13, 2, 28, 28 (+ (6,3,3): 2).  p=199: S = 108; 16, 10, 22, 2, 56, 43.
+2. Solitary savings are LOCAL only for two types: (8,4,4): Sol_G = 4 for every group (2 per 8-line — the block-cover theorem); (7,5,3,1): Sol_G = 2
+   for every group at p=113 (1 per slope-group; collectively 2.0/1.67/1.6 per group at 113/137/199 — already sub-additive within the type);
+   ALL other types have Sol = 0 alone (6-lines, 5-lines of 3-class groups, 4-lines: no saving by themselves).
+3. Marginals are large where solitaries vanish: Δ_t/B_t = 1.8/1.0/1.3 for (6,6,2,2), 0.4–0.6 for the (4,2,2) groups (a 4-point ±1 line!), 1.5–2.7 for
+   (7,5,3,1), 2.75–3.4 for (8,4,4) (< 4: partly replaceable); per-group Δ_G varies inside a type from 0 to 5.33 for (6,6,2,2), 0–1.33 for (4,2,2),
+   2–4 for (7,5,3,1), and only (8,4,4) is stable (3.25–4).  Sums: Σ_t Sol_t = 52/68/80 < S = 64/83/108 < Σ_t Δ_t = 77/93/132.  So the saving is
+   NOT additive over types: super-additive relative to solitaries (types help each other), and marginals overlap.
+4. Where the saving comes from: restricted LPs.  Only ≥5-point ±1 lines: 22/34/43 (a third of S); only ≥6: 11/21/32; all lines except the 4-point ones:
+   27/40/47; the two strong types with ALL their lines (incl. their 4-, 3-, 1-lines): 44/68/76 — less than 4B₈+2B₇ = 52/72/84.  I.e. the 4-point
+   (and 3-point) ±1 lines carry more than half of the LP(1) saving, although none of them saves anything alone: an 8- or 7-line forces its points down
+   to ≈ 1/4, the LP compensates on the other points of those rows/columns, and the small ±1 lines through the compensating points cap the compensation.
+5. Which lines carry weight (symmetrised dual): 8-lines ≈ 1 and — surprisingly — the 4-lines of the same groups ≈ 0.8–1.0; (7,5,3,1): 7 and 5 ≈ 0.6–0.75,
+   the 3-line ≈ 0.4–0.6; 6-lines 0.2–0.4; 4-lines of 2-class groups 0.1–0.17; (3,3,1,1)-groups 0; rows/columns mean weight 0.12–0.23 (mostly 0 or 1);
+   z-mass 10–15 on 12–28 points.  Closure under R/R′: the optimal face is R,R′-invariant, so a symmetric optimal dual exists (used above); nothing forces
+   the individual vertex duals to be symmetric.
+6. Consequence for T3″ (α ≤ 4(p−1) − Σ_t s_t B_t + O(1)).  Local constants that the data allow: s₈ = 4 (proved), s₇ = 2?  But even the two strong types
+   together do not certify 4B₈ + 2B₇ (their restricted LP gives 44 < 52 at p=113, 68 < 72, 76 < 84): the additive formula with s₇ = 2 is not
+   LP-certifiable by those groups' lines alone; s₇ = 1 (both slopes) is (44 ≥ 42, 68 ≥ 60, 76 ≥ 74).  A THEOREM of the type "block lemma for
+   (7,5,3,1) groups: 1 forced deletion per slope-group" would give α ≤ 4(p−1) − 4m₈ − B₇ + O(1) — asymptotically 11/3 − b₇ with b₇ = lim B₇/p (to be
+   supplied by T2.18: B₇/p = 0.088, 0.088, 0.050 at 113, 137, 199 — fluctuating, ~ half of m₈/p?), i.e. ≈ 3.6, not 3.45: the remaining ≈ 0.15(p−1) of
+   LP(1)'s saving is the global 4-line/6-line interplay and has no local certificate.  Bottom line: LP(1) is a global object; the locally
+   provable part is exactly the block covers of the 8- and (plausibly) 7-point groups.
