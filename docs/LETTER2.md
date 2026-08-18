@@ -1,4 +1,4 @@
-# Letter 2 to Achim Flammenkamp — draft (second solver sends after the 39/41 sweeps finish)
+# Letter 2 to Achim Flammenkamp — SENT 2026-08-19 (second solver, from studio@nusadua.dev, in the existing thread; 41 central sweeps still running — a further note will follow if they produce configurations)
 
 ```
 Subject: no-three-in-line: two more n = 36 configurations (three in total), two more n = 39, and a correction to my wording
