@@ -55,3 +55,13 @@ sketch quoting standard estimates) ⇒ α(P₋₁) ≤ (11/3 + o(1))(p−1).
 |---|---|
 | `paper/hjsw_window.pdf` | `00fb945d4c504b78478a75eb33c266c880dbbbead4e244a0b08ddd237571085b` |
 | `paper/hjsw_window.tex` | `ed3bfe446ac67d05bd06800c734059e5d3da99196d57e72973ad1da40820de7a` |
+
+## hjsw-note-v0.9 (2026-08-19)
+Note v0.9: full proof of Proposition (m₈ = p/12 + O(p^{5/6} log³ p)) — absolute irreducibility of the cubic, the four polytopes and their
+volumes, Bombieri sums, Erdős–Turán–Koksma, box-to-polytope; references added (Bombieri 1966, Iwaniec–Kowalski, Aubry–Perret,
+Drmota–Tichy).  Theorem numbers in the citations to be pinned (deep-research brief 6).
+
+| file | SHA-256 |
+|---|---|
+| `paper/hjsw_window.pdf` | `b16c4fc14f0c4371c42b8ec4aa1a5a744c7db5fe90cf87b52486eb476fc93388` |
+| `paper/hjsw_window.tex` | `b19cfc988e8d5494197cd5c7863f7748c7b829bf6ccaa82a8177637862e3f86c` |

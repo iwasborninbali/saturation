@@ -23,7 +23,7 @@
 
 \title{Extremal no-three-in-line subsets of a modular hyperbola\\ in the Hall--Jackson--Sudbery--Wild window}
 \author{Alex Komang\thanks{Independent researcher, Bali, Indonesia.  See the AI/tool-use disclosure at the end.}}
-\date{August 2026 --- draft v0.7}
+\date{August 2026 --- draft v0.9}
 
 \begin{document}
 \maketitle
@@ -805,29 +805,61 @@ Since $a-1/a+b+1/b\equiv0$ on the cubic, the integer $L=X(a)-X(1/a)+X(b)+X(1/b)\
 the last condition selects one of these three values.
 
 \begin{proposition}\label{prop:m8asym}
-$m_8(p)=\tfrac{1}{12}\,p+o(p)$ (with an error term $O(p^{5/6}\log^3p)$ from the argument below).  Consequently
-$\alpha(\Pset_{-1})\le\bigl(\tfrac{11}{3}+o(1)\bigr)(p-1)$.
+$m_8(p)=\tfrac{1}{12}\,p+O(p^{5/6}\log^3p)$.  Consequently $\alpha(\Pset_{-1})\le\tfrac{11}{3}(p-1)+O(p^{5/6}\log^3p)$.
 \end{proposition}
-\begin{proof}[Proof (sketch; standard estimates are quoted)]
-Let $C_0$ be the affine cubic $ab^2+(a^2-1)b+a=0$.  Its points have $a\ne0\ne b$ except $(0,0)$; as a polynomial in $b$ over
-$\overline{\Fp}(a)$ its discriminant $a^4-6a^2+1=(a^2-3)^2-8$ has four distinct roots, hence is not a square, so $C_0$ is absolutely
-irreducible and $|C_0(\Fp)|=p+O(\sqrt p)$ (Weil).  On $C_0$ we have $1/b\equiv-(a-1/a+b)$, so the least residues satisfy
-$X(1/b)=X(-(a-1/a+b))$ and the conditions of Proposition~\ref{prop:m8} are conditions on the point $(a,1/a,b)\bmod p$ of the
-$3$-torus $\Fp^3$: writing $T=X(a)-X(1/a)+X(b)$, we have $X(1/b)=-T+p\,\varepsilon$ with $\varepsilon\in\{-1,0,1\}$ chosen so that
-$|{-T}+p\varepsilon|\le h$, and $L=p\varepsilon$; going through the four sign patterns ($X(a)>0>X(1/a)$ or $X(a)<0<X(1/a)$; $X(b),X(1/b)$
-both positive or both negative), the conditions of Proposition~\ref{prop:m8} become: $(X(a),X(1/a),X(b))$ lies in one of four
-polytopes of $[-h,h]^3$, namely (up to $O(1)$ boundary effects) $\{x_1>0>x_2,\ x_3>0,\ p/2<x_1-x_2+x_3<p\}$,
-$\{x_1>0>x_2,\ x_3<0,\ 0<x_1-x_2+x_3<p/2\}$, $\{x_1<0<x_2,\ x_3>0,\ -p/2<x_1-x_2+x_3<0\}$, $\{x_1<0<x_2,\ x_3<0,\ -p<x_1-x_2+x_3<-p/2\}$,
-each of relative volume $\tfrac18\cdot\tfrac23=\tfrac1{12}$ in $[-h,h]^3$ (for independent uniform $U_i$ on $(0,1)$,
-$\Pr[1<U_1+U_2+U_3<2]=\Pr[0<U_1+U_2-U_3<1]=\tfrac23$), total $\tfrac13$.  For $(u,v,w)\in\Fp^3\setminus\{0\}$ the function
-$f=ua+v/a+wb$ is non-constant on $C_0$ ($b\notin\overline{\Fp}(a)$, and $ua+v/a$ is non-constant unless $u=v=0$), so by Bombieri's
-estimate for exponential sums along an absolutely irreducible curve \cite{Bombieri66} the sums $\sum_{P\in C_0(\Fp)}e(f(P)/p)$ are
-$O(\sqrt p)$ with a constant depending only on the degrees.  By the Erd\H os--Tur\'an--Koksma inequality the (box) discrepancy of the point
-set $\{(a,1/a,b)\bmod p:(a,b)\in C_0(\Fp)\}$ in the $3$-torus is $O(p^{-1/2}\log^3p)$; for a convex polytope with a bounded number of
-faces the number of points is (relative volume)$\cdot|C_0(\Fp)|+O(p^{5/6}\log^3p)$ (cover the polytope by $O(M^2)$ boxes of side
-$p/M$ up to a boundary layer of relative measure $O(1/M)$ and take $M=p^{1/6}$).  Thus the number of pairs in
-Proposition~\ref{prop:m8} is $\tfrac13p+O(p^{5/6}\log^3p)$ (the excluded points $a^2\equiv-1$, $b^2\equiv1$ are $O(1)$), and
-$m_8(p)=\tfrac1{12}p+O(p^{5/6}\log^3p)$.  The second statement follows from Theorem~\ref{thm:two}.
+\begin{proof}
+Let $C_0=\{(a,b)\in\Fp^2:\ ab^2+(a^2-1)b+a=0\}$.  Its only point with $a=0$ or $b=0$ is $(0,0)$.
+
+\emph{Step 1: $C_0$ is absolutely irreducible and $|C_0(\Fp)|=p+O(\sqrt p)$.}  As a polynomial in $b$ over $K=\overline{\Fp}(a)$,
+$F=ab^2+(a^2-1)b+a$ has discriminant $\Delta=(a^2-1)^2-4a^2=a^4-6a^2+1=(a^2-3)^2-8$, whose four roots $a^2=3\pm2\sqrt2$ are distinct
+(their product is $1\ne0$ and $3\pm2\sqrt2$ are distinct, $p\ne2$), so $\Delta$ is not a square in $K$ and $F$ is irreducible over $K$;
+being primitive in $b$ (its coefficients $a$, $a^2-1$, $a$ have no common factor), $F$ is irreducible in $\overline{\Fp}[a,b]$ (Gauss).
+Hence $C_0$ is an absolutely irreducible plane cubic and, by the Weil bound for (possibly singular) absolutely irreducible curves,
+$|C_0(\Fp)|=p+O(\sqrt p)$ (\cite[Ch.~11]{IK}; for singular curves \cite{AubryPerret}).
+
+\emph{Step 2: the conditions of Proposition~\ref{prop:m8} are polytope conditions on three least residues.}  On $C_0$ we have
+$1/b=-(a-1/a+b)$, so with $x_1=X(a)$, $x_2=X(1/a)$, $x_3=X(b)$ and $T=x_1-x_2+x_3\in(-3p/2,3p/2)$ the fourth least residue is
+$X(1/b)=-T+p\varepsilon$ with $\varepsilon\in\{-1,0,1\}$ chosen so that $|-T+p\varepsilon|\le h$, and $L=T+X(1/b)=p\varepsilon$.  The
+conditions $X(a)X(1/a)<0$, $X(b)X(1/b)>0$, $L=p([x_1>0]-[x_3<0])$ therefore hold iff $(x_1,x_2,x_3)$ lies in one of the four sets
+\begin{align*}
+ W_1&=\{x_1>0>x_2,\ x_3>0,\ p/2<T<p\},& W_2&=\{x_1>0>x_2,\ x_3<0,\ 0<T<p/2\},\\
+ W_3&=\{x_1<0<x_2,\ x_3>0,\ -p/2<T<0\},& W_4&=\{x_1<0<x_2,\ x_3<0,\ -p<T<-p/2\}
+\end{align*}
+(intersected with $[-h,h]^3$; the boundary cases $T\in\{0,\pm p/2,\pm p\}$ and $x_i=0$ affect $O(p^2)$ triples and are irrelevant
+below).  Indeed, for $x_1>0>x_2$, $x_3>0$ we have $T\in(0,3p/2)$, $X(1/b)>0$ iff $T<p/2$ (then $\varepsilon=0$, $L=0$) or
+$p/2<T<p$ (then $\varepsilon=1$, $L=p$); the required value is $L=p$, giving $W_1$; the other three cases are analogous.  Each
+$W_i$ is a convex polytope; writing $x_i=\pm\tfrac p2U_i$ with $U_i$ uniform on $(0,1)$, its relative volume in $[-h,h]^3$ is
+$\tfrac18\Pr[1<U_1+U_2+U_3<2]=\tfrac18\cdot\tfrac23$ for $W_1,W_4$ and $\tfrac18\Pr[0<U_1+U_2-U_3<1]=\tfrac18\cdot\tfrac23$ for
+$W_2,W_3$ (the density of $U_1+U_2+U_3$ has mass $\tfrac16$ on $[0,1]$ and on $[2,3]$; that of $U_1+U_2-U_3$ has mass $\tfrac16$ on
+$[-1,0]$ and on $[1,2]$), in total $\tfrac13+O(1/p)$.
+
+\emph{Step 3: equidistribution.}  For $\mathbf h=(h_1,h_2,h_3)\in\Fp^3\setminus\{0\}$ the rational function $f_{\mathbf h}=h_1a+h_2a^{-1}+h_3b$
+on $C_0$ is non-constant: if $h_3\ne0$ a constant value would give $b\in K$, contradicting the irreducibility of $F$ over $K$; if $h_3=0$
+then $h_1a+h_2/a=c$ for infinitely many $a$ forces $h_1=h_2=0$.  Its degree is bounded independently of $p$, so it is not of the form
+$g^p-g+c$ for $p$ large, and Bombieri's estimate for exponential sums along an absolutely irreducible curve
+\cite{Bombieri66} (see also \cite[Ch.~11]{IK}) gives
+\[
+ S(\mathbf h):=\sum_{(a,b)\in C_0(\Fp),\,a\ne0}e\Bigl(\frac{h_1a+h_2a^{-1}+h_3b}{p}\Bigr)=O(\sqrt p)
+\]
+with an absolute implied constant.  Consider the point set $\{(a,1/a,b)/p\}\subset[0,1)^3$ (identified with the torus) indexed by the
+$N=|C_0(\Fp)|-1=p+O(\sqrt p)$ points of $C_0$ with $a\ne0$.  By the Erd\H os--Tur\'an--Koksma inequality \cite{DrmotaTichy}
+its discrepancy $D_N$ satisfies, for every $H\ge1$,
+\[
+ D_N\ \le\ C\Bigl(\frac1H+\frac1N\sum_{0<\|\mathbf h\|_\infty\le H}\frac{|S(\mathbf h)|}{r(\mathbf h)}\Bigr),\qquad r(\mathbf h)=\prod_i\max(1,|h_i|),
+\]
+and with $|S(\mathbf h)|=O(\sqrt p)$, $\sum_{\|\mathbf h\|_\infty\le H}1/r(\mathbf h)=O(\log^3H)$ and $H=\sqrt p$ we get
+$D_N=O(p^{-1/2}\log^3p)$.  Least residues are a fixed translate of the standard residues, so axis-parallel boxes in least-residue
+coordinates are (unions of at most eight) boxes in the torus, and for every such box $B$ the number of points in $B$ is
+$N\lambda(B)+O(\sqrt p\log^3p)$.
+
+\emph{Step 4: from boxes to the polytopes.}  Fix $M\ge1$.  Each $W_i$ is $\{(x_1,x_2)\in Q_i,\ x_3\in J_i(x_1-x_2)\}$ with $Q_i$ a
+quadrant square and $J_i(s)$ an interval whose endpoints are affine in $s$ with slopes $\pm1$.  Cutting $Q_i$ into $M^2$ squares of side
+$p/(2M)$ and taking on each square the interval $J_i$ common to all its points, we obtain $M^2$ boxes inside $W_i$ whose union misses a
+subset of $W_i$ of relative measure $O(1/M)$; hence the number of our points in $W_i$ is $N\lambda(W_i)+O(M^2\sqrt p\log^3p+p/M)$, and
+with $M=\lceil p^{1/6}\rceil$ this is $N\lambda(W_i)+O(p^{5/6}\log^3p)$.  Summing over $i$ and using $N=p+O(\sqrt p)$,
+$\sum_i\lambda(W_i)=\tfrac13+O(1/p)$: the number of pairs $(a,b)$ satisfying the conditions of Proposition~\ref{prop:m8}, up to the
+$O(1)$ excluded pairs with $a^2\equiv-1$ or $b^2\equiv1$, is $\tfrac13p+O(p^{5/6}\log^3p)$, so $m_8(p)=\tfrac1{12}p+O(p^{5/6}\log^3p)$.
+The last statement follows from Theorem~\ref{thm:two}.
 \end{proof}
 The data agree: $m_8(p)/p$ has mean $0.0825$ over the $193$ primes in $[200,1500]$ (range $0.058$--$0.108$; $1/12=0.0833$).
 
@@ -838,8 +870,9 @@ $p=19$ on: for $k=-1$ the trivial bound $4(p-1)$ is never attained once an eight
 $M_8=2m_8$ of eight-point lines of both slopes the bound reads $4(p-1)-2M_8$.  For $p=19,23,29,37,47$ it coincides with the best rank-1 (LP) certificate using rows, columns and slope-$(\pm1)$ lines,
 which is $64,80,96,128,160$; for other $p$ that LP is somewhat smaller (it also exploits $5$--$7$-point lines with fractional weights).
 (b) Proposition~\ref{prop:m8asym} makes the bound asymptotically explicit: $\alpha(\Pset_{-1})\le(11/3+o(1))(p-1)$, against the
-trivial $4(p-1)$ and the computed maxima $3(p-1)+O(1)$ for $p\le23$.  The proof of the proposition is a sketch that quotes standard
-estimates; the theorem itself is elementary and unconditional.
+trivial $4(p-1)$ and the computed maxima $3(p-1)+O(1)$ for $p\le23$.  The proposition quotes standard estimates (Bombieri,
+Erd\H os--Tur\'an--Koksma) with unspecified absolute constants; the theorem itself is elementary and unconditional, and the exponent
+$5/6$ is not optimised.
 (c) The argument uses that $R$ and $R'$ are symmetries of $\Pset_{-1}$; for a general second hyperbola $H(k)$ the rows pair a class of
 $H(1)$ with a class of $H(k)$ that is not the image of the first under a symmetry, and the analogous cover has waste.  Rank-1
 certificates below $4(p-1)$ do exist for other $k$ at large $p$ (data: LP with rows, columns, $\pm1$ lines is $3.61$--$3.89\,(p-1)$ for
@@ -956,6 +989,12 @@ public in the repository.
  problem, arXiv:2508.07632 (v1 11 Aug 2025, v2 21 Jul 2026); Advances in Combinatorics 2026:7, doi:10.19086/aic.2026.7
  (to appear).
 \bibitem{Bombieri66} E.~Bombieri, On exponential sums in finite fields, Amer.\ J. Math.\ 88 (1966) 71--105.
+\bibitem{IK} H.~Iwaniec and E.~Kowalski, Analytic Number Theory, Amer.\ Math.\ Soc.\ Colloq.\ Publ.\ 53, 2004 (Chapter 11).
+\bibitem{AubryPerret} Y.~Aubry and M.~Perret, A Weil theorem for singular curves, in: Arithmetic, Geometry and Coding Theory
+ (Luminy, 1993), de Gruyter, 1996, 1--7.
+\bibitem{DrmotaTichy} M.~Drmota and R.~F. Tichy, Sequences, Discrepancies and Applications, Lecture Notes in Math.\ 1651, Springer,
+ 1997 (the Erd\H os--Tur\'an--Koksma inequality); see also L.~Kuipers and H.~Niederreiter, Uniform Distribution of
+ Sequences, Wiley, 1974.
 \bibitem{Shp12} I.~E. Shparlinski, Modular hyperbolas, Jpn.\ J. Math.\ 7 (2012) 235--294; arXiv:1103.2879.
 \bibitem{KMSW} M.~R. Khan, R.~Magner, S.~Senger, A.~Winterhof, Two combinatorial geometric problems involving modular
  hyperbolas, arXiv:1304.6943.
