@@ -611,3 +611,29 @@ route: (model theorem) ⇐ [E(p) ≥ (|λ_min(C_p)| + δ)(p−1) for large p], b
 project, not tonight.
 Addendum 4: p=29 exact minimum over all 2^{28} orientations = 136 = 4.86(p−1) (spectral bound 129.1 — within 5 %).  Sequence of exact minima
 24, 28, 42, 48, 80, 136 (p = 11…29): superlinear, tracking E; the spectral certificate is nearly tight from p = 23 on.
+
+## B.14 (third solver, task T2.10, 2026-08-18 18:45 UTC) Norm/trace diagnostics of C_p (k = −1): the moments are NOT bounded — C_p is Wigner-like
+Data: `slack/verification/vp_moments_km1.txt` (42 primes 11 ≤ p ≤ 199), tool `slack/vp_traces.py` (builds C_p from the collinear
+point-triples of P₋₁ over all slopes, lines by pair hashing — O(p²) instead of the O(p³) class-triple enumeration; identical E, λ_min to
+`vp_quadratic.py` at p ≤ 19).  Notation m_{2k} := tr(C_p^{2k})/(p−1); m₂ = ‖C_p‖_F²/(p−1) = mean squared row ℓ²-norm.
+1. Shape of C_p: zero diagonal; entries in (1/8)ℤ, |c| ≤ 1.75; about (p−1)/2 nonzeros per row (32.6 / 66.7 / 97.7 at p = 41 / 101 / 199)
+   — the matrix is DENSE (density ≈ 1/2), not sparse: ~24·E/(p−1) ≈ 400 patterns per row at p=199 collapse onto ~100 nonzero entries.
+   Row norms at p = 41 / 101 / 199: mean ℓ¹ 14.1 / 26.8 / 38.0 (max 17.8 / 36.0 / 50.5); mean ℓ² 2.96 / 3.91 / 4.59 (max 3.6 / 5.1 / 5.6);
+   max ℓ²/√m₂ ∈ [1.21, 1.29] at all p (rows homogeneous in ℓ²).  Gershgorin is hopeless (−50 vs true λ_min ≈ −9 at p=199).
+2. Moments grow: m₂ = 4.0 (p=11) → 21.3 (p=199), m₄ = 41 → 1014, m₆ = 531 → 67 043; fits m₂ ≈ 5.4 log p − 10.9 ≈ 1.48·E/(p−1) − 4.2
+   (the Frobenius mass tracks the pattern density E/(p−1) ≈ 3.6 log p − 4.4, both with large prime-to-prime fluctuations, e.g. E/(p−1) =
+   11.8 at p=193 vs 17.6 at p=191).  So there is NO bounded moment: a trace method with fixed k cannot give |λ_min| = O(1), and the
+   premise of the T2.10 question (tr C^{2k}/(p−1) ≤ (2c)^{2k} Cat_k with c fixed) fails already at k=1.
+3. But the NORMALISED moments are stable and semicircle-like: m₄/m₂² ∈ [1.99, 2.56] (Wigner: Cat₂ = 2), m₆/m₂³ ∈ [4.98, 9.95] (Cat₃ = 5) —
+   a slightly heavier tail than the semicircle, no growth with p.  The spectral edge scales like Wigner's 2σ: −λ_min/(2√m₂) ∈ [0.58, 1.07],
+   λ_max/(2√m₂) ∈ [0.94, 1.42]; the tightest fit of all is −λ_min ≈ 2.38 √m₂ − 2.13 (rms 0.36 over 42 primes), i.e. |λ_min| ≍ √m₂ ≍ √(log p),
+   consistent with the partner's "log-like drift" of λ_min (−λ_min ≈ 1.94 log p − 2.3 fits with rms 0.84 — worse).
+4. Consequence for the spectral route (§20): E + (p−1)λ_min ≈ (p−1)[E/(p−1) − c√(E/(p−1))] with c ≈ 2.4·√1.48 ≈ 2.9, so the spectral bound
+   is E(1 − o(1)) as soon as E/(p−1) → ∞ — the model theorem "min_ε T ≥ (1−o(1))E" needs (i) E/(p−1) → ∞ (partner's direction sums) and
+   (ii) a Wigner-type edge estimate λ_min(C_p) ≥ −K√m₂, and (ii) via traces means m_{2k} ≤ (K′m₂)^k·Cat_k for k ≍ log p: closed walks of
+   length 2k in the weighted pattern graph, weighted by products of entries — the deterministic analogue of the moment method for random
+   matrices, where the "randomness" must come from equidistribution of collinear patterns (Weil-type cancellation in the walk sums).  Data
+   check on the needed inequality: E/(p−1) − 2√m₂ = 1.35, 0.18, 1.01, 1.73, 1.78 for p = 11…23, ≥ 2.6 for p ≥ 29, 4.6…8.3 for p ≥ 149 —
+   positive at every prime, growing slowly (like log p − √log p).
+Bottom line: the answer to T2.10 is "no bounded moments, but a clean Wigner picture": λ_min ~ −2.4√(tr C²/(p−1)) ~ −√(log p), o(E/(p−1)).
+The trace method is still the right tool, but the target is a Wigner-type bound (K√m₂), not a constant.
