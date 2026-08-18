@@ -22,14 +22,14 @@
 for $n=36,\,37,\,39$, and a balance lemma for symmetric defects}
 \author{Alex Komang\thanks{Independent researcher, Bali, Indonesia.  Correspondence: see the repository page.
 AI/tool-use disclosure: Section~\ref{sec:auth}.}}
-\date{August 2026 --- draft v0.5}
+\date{August 2026 --- draft v0.6}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
 We report $2n$-point no-three-in-line configurations on the $n\times n$ grid whose symmetry group is exactly the half-turn
-$\{1,\rot^2\}$, for $n=36$, $37$ (two inequivalent configurations) and $39$.  For these sizes Flammenkamp's database
+$\{1,\rot^2\}$, for $n=36$ (two inequivalent configurations), $37$ (two) and $39$.  For these sizes Flammenkamp's database
 (state 2026-08-11) listed no configuration in that class; a further such configuration is given for $n=33$.
 The configurations were found by \emph{exhaustive} branch-and-bound searches over small structured sub-classes of the
 half-turn class: quarter-turn-symmetric configurations with a controlled ``defect'' consisting of a few half-turn pairs.
@@ -65,8 +65,9 @@ half-turn pair must lie on a long diagonal (which explains why rct4 is the only 
 larger defects are a directed 3-cycle of pairs (odd $n$) and one loop on each diagonal (even $n$).
 (ii)~Exhaustive enumerations of these families for small $n$ (Section~\ref{sec:results}); several of them are non-empty
 exactly where the pure classes are rare.
-(iii)~The first known configurations with exact rot2 symmetry for $n=36$ (two-loop family), $n=37$ (3-cycle family, two
-inequivalent configurations) and $n=39$ (3-cycle family), and a further one for $n=33$; the configurations are listed in the
+(iii)~The first known configurations with exact rot2 symmetry for $n=36$ (two-loop family, two inequivalent
+configurations), $n=37$ (3-cycle family, two inequivalent configurations) and $n=39$ (3-cycle family), and a further one for
+$n=33$; the configurations are listed in the
 Appendix and were verified twice by independent programs.
 (iv)~A description of the exact solver and its validation, growth measurements for the cost of finding one $2n$-point
 configuration in the classes rot4, rct4 and rot2, and a list of negative results.
@@ -173,11 +174,11 @@ The defect sets were enumerated up to $\Dfour$ (one representative per orbit of 
 representative the sub-class was searched exhaustively.  Table~\ref{tab:threecycle} gives, for odd $n$, the number of
 inequivalent 3-cycle defects and the number of pairwise inequivalent configurations found for the two bases;
 Table~\ref{tab:twoloop} gives the two-loop family for even $n$.  Counts marked with $\ge$ come from sweeps that were still
-running when this draft was written; the entries will be finalized.  (Sub-classes whose fixed defect cells already
+running when this draft was written (the number of sub-classes already swept is stated); the entries will be finalized.  (Sub-classes whose fixed defect cells already
 violate the law --- e.g.\ 24 of the 2240 at $n=33$, 28 of 3264 at $n=37$ --- are trivially empty and are counted as swept.)
 
-\begin{table}[ht]\centering
-\begin{tabular}{r r r r l}
+\begin{table}[ht]\centering\small
+\begin{tabular}{r r r r p{6.2cm}}
 \toprule
 $n$ & 3-cycle defects (mod $\Dfour$) & C4 base & V2 base & status of the sweep\\
 \midrule
@@ -190,16 +191,18 @@ $n$ & 3-cycle defects (mod $\Dfour$) & C4 base & V2 base & status of the sweep\\
 25 & 880 & 0 & 0 & complete\\
 33 & 2240 & 1 & 0 & complete (both bases)\\
 37 & 3264 & 2 & 0 & complete (both bases)\\
-39 & 3876 & $\ge1$ & 0 & V2 base complete (both halves); C4 base: one half in progress\\
-41 & 4560 & $\ge0$ & 0 & V2 base complete (both halves); C4 base in progress (no configuration so far)\\
+39 & 3876 & $\ge1$ & $\ge0$ & C4 base: 300 of 3876 sub-classes swept (1 configuration); V2 base: 3277 of 3876 swept (none)\\
+41 & 4560 & $\ge0$ & 0 & V2 base complete; C4 base: 3030 of 4560 sub-classes swept (none)\\
+45 & 6160 & --- & $\ge0$ & V2 base: 400 of 6160 sub-classes swept (none); C4 base not started\\
 \bottomrule
 \end{tabular}
 \caption{The 3-cycle family (odd $n$): C4- or V2-orbits plus a directed 3-cycle of half-turn pairs; numbers of pairwise
-inequivalent configurations.  Parenthesised zeros are for partially swept bases (no configuration so far).}\label{tab:threecycle}
+inequivalent configurations.  A sub-class is one defect (one directed 3-cycle up to $\Dfour$) together with one base;
+``complete'' means every sub-class was searched exhaustively.}\label{tab:threecycle}
 \end{table}
 
-\begin{table}[ht]\centering
-\begin{tabular}{r r r}
+\begin{table}[ht]\centering\small
+\begin{tabular}{r r p{9.5cm}}
 \toprule
 $n$ & sub-classes $(x,y)$ & inequivalent configurations\\
 \midrule
@@ -207,10 +210,14 @@ $n$ & sub-classes $(x,y)$ & inequivalent configurations\\
 24 & 132 & 2\\
 26 & 156 & 1\\
 28 & 182 & 1\\
-36 & 306 & $\ge1$ (finding mode; 48 sub-classes searched)\\
+36 & 306 & $\ge2$ --- finding mode (about $2$ min per sub-class): $81$ sub-classes tried, two configurations found in two
+of them, one sub-class exhausted empty, the rest timed out; an exhaustive sweep is in progress\\
 \bottomrule
 \end{tabular}
-\caption{The two-loop family (even $n$): C4-orbits plus one half-turn loop on each long diagonal.}\label{tab:twoloop}
+\caption{The two-loop family (even $n$): C4-orbits plus one half-turn loop on each long diagonal.  Sub-classes are the
+ordered pairs $(x,y)$, $0\le x,y<n/2$, $x\ne y$ ($x$ = row class of the main-diagonal loop, $y$ = row class of the
+anti-diagonal loop); the quarter turn maps the sub-class $(x,y)$ onto $(y,x)$, so $n(n-2)/8$ of them suffice for the
+enumeration.  For $n\le28$ every sub-class was searched exhaustively.}\label{tab:twoloop}
 \end{table}
 
 \subsection{First configurations with exact half-turn symmetry for $n=36,37,39$}
@@ -224,6 +231,7 @@ the rot2 cells for $n=36,37,39$ were empty; the $n=33$ configuration is new but 
 $n$ & family and defect & remark\\
 \midrule
 36 & two loops: $(6,6),(29,29)$ and $(5,30),(30,5)$ & first known exact rot2\\
+36 & two loops: $(1,1),(34,34)$ and $(9,26),(26,9)$ & second, inequivalent (different loop rows)\\
 37 & 3-cycle $(1,3),(3,31),(31,1)$, C4 base & first known exact rot2\\
 37 & 3-cycle $(2,4),(4,20),(20,34)$, C4 base & second, inequivalent\\
 39 & 3-cycle $(4,8),(8,20),(20,34)$, C4 base & first known exact rot2\\
@@ -261,6 +269,11 @@ parabola or shifted hyperbola over $\mathbb F_p$, maximised over primes $11\le p
 (never above $22\%$), \emph{less} than for random sets with two points per row ($19\%$ on average).  In the finite range the
 $2n$-point sets do not reduce modulo a prime to a low-degree curve (cf.\ Green's remark on Problem 72 of \cite{Green}), while
 the best asymptotic constructions do.
+\item On the ``algebraic'' side, the modular-hyperbola construction of \cite{HJSW75} is optimal within its own
+$2p\times2p$ box: no lawful subset of the hyperbola in that box has more than $3(p-1)$ points, and the maximum sets are
+classified; unions of two hyperbolae in the box gain only a bounded amount as far as computed ($+5,+5,+6,+5$ over $3(p-1)$
+for $p=11,13,17,19$, exact; at $p=23$ between $+4$ and $+12$).  These results are proved and documented in the companion note
+\cite{Companion} from the same project.
 \item Local search on exactly $2n$ points (min-conflicts with tabu, simulated annealing) fails from $n\approx12$--$28$ on,
 although it produces large partial configurations easily (e.g.\ 134 points on the $71\times71$ grid); belief-propagation
 decimation without backtracking fails from $n=8$ on.
@@ -268,19 +281,22 @@ decimation without backtracking fails from $n=8$ on.
 
 \section{Reproducibility}
 The programs, the sub-class lists, the sweep logs and the certified configurations are in the public repository
-\url{https://github.com/iwasborninbali/saturation} (tag \texttt{paper-v0.5}; \texttt{there.c}, \texttt{kit71/there\_twisted\_experiment.c},
-\texttt{web/stab.py} for the exact class and the database encoding, \texttt{docs/SUBMISSION.md} for the configurations;
-the family sweeps used \texttt{there\_twisted\_experiment.c} --- a variant of \texttt{there.c} with the two bases and the
-\texttt{PAIRS} defect built in --- driven by \texttt{kit71/bench/family\_sweep.sh} over the canonical defect lists produced by
-\texttt{kit71/bench/cycle\_family.py}).
+\url{https://github.com/iwasborninbali/saturation} (tag \texttt{paper-v0.6}): \texttt{there.c};
+\texttt{kit71/there\_twisted\_experiment.c} --- a variant of \texttt{there.c} with the two bases and the \texttt{PAIRS}
+defect built in, used for the family sweeps and driven by \texttt{kit71/bench/family\_sweep.sh} over the canonical defect
+lists produced by \texttt{kit71/bench/cycle\_family.py}; \texttt{web/stab.py} for the exact class and the database encoding;
+\texttt{docs/SUBMISSION.md} for the configurations.
 Typical commands: \texttt{ALL=1 PAIRS="1,3;3,31;31,1" ./there 37 2} enumerates the sub-class that contains the first
-$n=37$ configuration (one configuration, $1.4\cdot10^7$ nodes); \texttt{PAIRS="6,6;5,30" ./there 36 2} finds the $n=36$
-configuration in about 100\,s.
+$n=37$ configuration (one configuration, $1.4\cdot10^7$ nodes); \texttt{PAIRS="6,6;5,30" ./there 36 2} finds the first
+$n=36$ configuration in about 100\,s and \texttt{PAIRS="1,1;9,26} \texttt{./there 36 2} the second in about 30\,s (wall time on
+the laptop); the sub-class $(6,5)$ is exhausted in about $7$ min and contains exactly two labelled configurations, i.e.\ one
+up to the diagonal reflections, which preserve both loops.
 
 \section{AI/tool-use disclosure and authorship statement}\label{sec:auth}
 Following the arXiv policy on generative AI, the AI systems involved are not listed as authors; their role is disclosed here.
 This work was carried out by two autonomous AI agents (Claude Fable~5, Anthropic), running as independent solvers on two
-machines and communicating through the repository, under the direction of the author of record.  The agents wrote the
+machines and communicating through the repository, under the direction of the author of record (a third agent of the same
+kind joined the project later and worked on the companion note \cite{Companion}).  The agents wrote the
 programs, designed and ran the searches, found and proved the balance lemma (independently of each other, in two
 formulations), verified each other's results, and drafted this text; the author of record posed the problem, provided the
 computing environment, made all decisions about scope and publication, reproduced the computational checks, and takes
@@ -311,6 +327,8 @@ $k\ge3$, arXiv:2607.05255 (2026).
 \bibitem{Voutier26} P.~M.~Voutier, On the Guy--Kelly conjecture for the no-three-in-line problem, arXiv:2603.00215 (2026).
 \bibitem{Green} B.~Green, 100 open problems, manuscript (version of December 2025), Problem 72,
 \url{https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf}.
+\bibitem{Companion} A.~Komang, Extremal no-three-in-line subsets of a modular hyperbola in the Hall--Jackson--Sudbery--Wild
+window, companion note (draft v0.5), \url{https://github.com/iwasborninbali/saturation} (\texttt{paper/hjsw\_window.pdf}).
 \bibitem{RJPDP25} P.~Ramanathan, P.~D.~Joshi, T.~Prellberg, R.~A.~Dandekar and S.~Panat, Three methods, one problem: classical
 and AI approaches to no-three-in-line, arXiv:2512.11469 (2025).
 \end{thebibliography}
@@ -318,8 +336,8 @@ and AI approaches to no-three-in-line, arXiv:2512.11469 (2025).
 \appendix
 \section{The configurations}
 Rows and columns are numbered $0,\dots,n-1$ from the top-left corner; the encoding is the class character followed by two
-column characters per row (alphabet \texttt{0-9A-Za-z\#\$\%\&@?!()[]<>\{\}=*+|-/\textasciitilde\^{}\_:;,.} as in
-\cite{FlammenkampDB}).
+column characters per row, with the 90-character alphabet of \cite{FlammenkampDB}:\\
+\centerline{\texttt{0-9A-Za-z\#\$\%\&@?!()[]<>\{\}=*+|-/\textasciitilde\^{}\_:;,.}}
 
 \input{appendix_configs.tex}
 

@@ -23,7 +23,7 @@
 
 \title{Extremal no-three-in-line subsets of a modular hyperbola\\ in the Hall--Jackson--Sudbery--Wild window}
 \author{Alex Komang\thanks{Independent researcher, Bali, Indonesia.  See the AI/tool-use disclosure at the end.}}
-\date{August 2026 --- draft v0.4}
+\date{August 2026 --- draft v0.5}
 
 \begin{document}
 \maketitle
@@ -615,18 +615,19 @@ equals $30$ for $76$ boxes but is attained for $20$ (the others have a $(1,1)$-o
 
 Theorems~\ref{thm:main} and \ref{thm:window} concern a single hyperbola.  Unions of two hyperbolae in the same box do
 exceed $3(p-1)$, but --- as far as we can compute --- only by a few points.  For $\Pset_{k}=(H(1,p)\cup H(k,p))\cap\Gp$
-($8(p-1)$ candidate points) exact maximum lawful subsets were computed in the project by three independent methods (SAT with
-two cardinality encodings, kissat and CaDiCaL; and mixed-integer programming, HiGHS; every witness verified by an
-independent checker):
-\begin{center}\small
-\begin{tabular}{rrrrrrl}
+($8(p-1)$ candidate points) exact maximum lawful subsets were computed in the project by four independent methods (SAT with
+two cardinality encodings, kissat and CaDiCaL; mixed-integer programming, HiGHS; and constraint programming, CP-SAT; every
+witness verified by an independent checker):
+\begin{center}\footnotesize
+\begin{tabular}{rrrrrrp{6.8cm}}
 \toprule
-$p$ & $3(p-1)$ & $k$ & max & gain & LP relaxation & method\\
+$p$ & $3(p-1)$ & $k$ & max & gain & LP relax. & method\\
 \midrule
 11 & 30 & 3 & 35 & $+5$ & 36.00 & MIP; all $k$: $32$--$35$ ($k=2$: 33, also SAT twice)\\
 13 & 36 & 2 & 41 & $+5$ & 47.54 & SAT (two encodings), MIP; all $k$: $38$--$41$\\
 17 & 48 & $-1$ & 54 & $+6$ & 60.15 & MIP; all $k$: $49$--$54$ ($k=2$: 53)\\
 19 & 54 & $-1$ & 59 & $+5$ & 63.64 & MIP (2 min); local search 59\\
+23 & 66 & $-1$ & $70$--$75$ & $\ge+4$ & --- & CP-SAT (8 workers, 4 h): 70, dual bound 78; MIP: 70, dual bound 75.4 (running); $k=2$: 68--80, $k=3$: 69--78\\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -634,7 +635,10 @@ Three observations.  (i) The double count of Section~\ref{sec:proof} does not ex
 appear (a line meets each hyperbola in at most two classes, and copies of four different classes can be collinear), there
 are $\Theta(p^2)$ of them, and the LP relaxation (``at most two per rich line'') is far from the truth (column ``LP''),
 whereas for one hyperbola it is exact (Theorem~\ref{thm:main}(ii)).  (ii) The gain over $3(p-1)$, maximised over $k$ ($+5,+5,+6,+5$ for $p=11,13,17,19$; all $k$ computed for $p\le17$,
-$k\in\{-1,3\}$ for $p=19$), shows no growth.  (iii) A heuristic explanation: fix the HJSW set
+$k\in\{-1,3\}$ for $p=19$; at $p=23$ the exact value is not settled, $70\le\max\le75$ for $k=-1$), shows no growth.  A parabola $y=x^2+k$ together
+with $H(1)$ in the same box behaves alike: exact maxima $34,39,51,58$ for $p=11,13,17,19$ ($+4,+3,+3,+4$; MIP).
+Three hyperbolae $H(1)\cup H(2)\cup H(3)$ ($12(p-1)$ candidates) give $37$ at $p=11$ (exact, MIP; $+7$) and at least
+$42$ at $p=13$ (MIP, dual bound $47$; $+6$ so far) --- again a few points more than two hyperbolae, not a new order of growth.  (iii) A heuristic explanation: fix the HJSW set
 $S_2$ of $H(1,p)$ and call a point $q$ of $H(k,p)\cap\Gp$ \emph{blocked} if some line through $q$ carries two points of
 $S_2$.  The average number of blocking pairs per point grows like $\log p$ (about $3.1$ at $p=11$ and $7$ at $p=101$ for
 $k\in\{2,3,-1\}$), and the number of unblocked points is $0$--$2$ for every $p\le101$ tested; freeing a point of the second
