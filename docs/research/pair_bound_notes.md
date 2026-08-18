@@ -243,3 +243,24 @@ group by group; the p = 29 dual (8 rows, 8 columns, 28 lines, 8 points) is the m
   (≥5-lines)/p → ≈ 0.414, and the third solver's savings 2m₈+1.5m₇+m₆+0.5m₅ per slope → ≈ 0.50·(p−1) (range 0.43–0.55).  So the natural
   T3′ target is α(P_{−1}) ≤ 3.5(p−1) + o(p) (one slope's savings) — consistent with LP(1) ≈ 3.45(p−1); the constants look like exact
   limits (1/12, 1/2), which a Weil-type count should reproduce.
+
+## 12. k = −1: exact arithmetic of the 8-point lines (second solver, 2026-08-19)
+Write X(u) ∈ [−h,h] for the least absolute residue and Y(u) = X(u) + p·[X(u)<0] ∈ [1,p−1] for the least positive residue.
+For κ = (a, 1/a): d_κ = X(a) − Y(1/a); σκ = (−1/a, −a) and d_{σκ} = X(a) − X(1/a) − p·[X(a)>0], while d_κ = X(a) − X(1/a) − p·[X(1/a)<0].
+So the σ-pair is **shared iff X(a) and X(1/a) have opposite signs** (= types A/D), and then d_κ = X(a) − X(1/a) − p·[X(a)>0].
+For λ = (b, 1/b): e_λ = X(b) + Y(1/b); the τ-pair is **shared iff X(b), X(1/b) have the same sign** (types B/C), and then
+e_λ = X(b) + X(1/b) + p·[X(b)<0].
+An 8-point slope-(+1) line at residue d needs κ with a − 1/a ≡ d, λ with b + 1/b ≡ −d, both pairs shared, and d_κ = −e_λ (exact
+integers).  Eliminating d: (a,b) lies on the cubic  C₀: a b² + (a²−1) b + a ≡ 0  (mod p)  (the third solver's x'(x²−1)+x(x'²+1) ≡ 0),
+which for each a has 0 or 2 solutions b = [(1−a²) ± √(a⁴−6a²+1)]/(2a).  The exact condition d_κ = −e_λ reads
+   X(a) − X(1/a) + X(b) + X(1/b) = p·([X(a)>0] − [X(b)<0]) ∈ {−p, 0, p};
+and since a − 1/a + b + 1/b ≡ 0 (mod p) on C₀, the integer L := X(a) − X(1/a) + X(b) + X(1/b) ∈ [−4h, 4h] is automatically ≡ 0 (mod p),
+i.e. L ∈ {−2p+2… } ∩ pZ = {−p, 0, p} (|L| ≤ 2p−2).  Hence the 8-point lines correspond to the points of C₀(F_p) whose 4-tuple of least
+residues (X(a), X(1/a), X(b), X(1/b)) lies in an explicit union of polytopes of the cube [−h,h]⁴ (sign conditions and the value of L),
+and their number is (vol/…)·p + O(√p log⁴ p) by equidistribution of least residues along the curve (Bombieri/Weil for character sums
+along C₀, provided C₀ is absolutely irreducible — to be checked; the two branches b(a) are conjugate under √, so irreducibility over
+F_p(a) is the point).  Heuristic volume: (curve points ≈ p) × (sign conditions 1/4) × (L takes the required one of three values 1/3) =
+p/12 — exactly the empirical limit m₈/p → 0.083.  The same bookkeeping gives the counts of 7-, 6-, 5-point lines (patterns
+(m, m+4, 8−m, 4−m) with m = 1,2,3 correspond to which subsets of the four centres coincide).
+So the arithmetic input of T3′ is standard equidistribution; the real difficulty is the covering combinatorics (a partition of P_{−1}
+into rows, columns, ±1-lines and points with cost 4(p−1) − savings, valid for every p).
