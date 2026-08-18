@@ -20,3 +20,12 @@ Environment used to build and verify (this release): macOS 26.5 (Apple M3), Pyth
 VM checks (VM2): Debian 12, Python 3.11.2, OR-tools 9.15 (CP-SAT), scipy 1.17.1 (embedded HiGHS), python-sat 1.9.dev15,
 kissat 4.0.4.
 Solver runs that are only lower bounds (feasible witnesses without proof of optimality) are marked as such in the notes.
+
+## defects-v0.7 (2026-08-18)
+Main paper `no3inline_defects` draft v0.7 — after the external audit of v0.6 (`docs/reviews/no3inline_defects_deep_research_audit_2026-08-18.md`).
+
+| file | SHA-256 |
+|---|---|
+| `paper/no3inline_defects.pdf` | `a401e316e11a94f5b02bfb4a6c3577c9ce88b42ecf84c4dda839310ea74206ad` |
+| `paper/no3inline_defects.tex` | `2ba8bdac8608e507c2376232a0e257c85150a4a59a0477ca1eb46c735899dedb` |
+| `paper/appendix_configs.tex` | `0e187738a4ba7c875df9209f860494d4f73ef566906de3d93b3df6cc9ccdda05` |
