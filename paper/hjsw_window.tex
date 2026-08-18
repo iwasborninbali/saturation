@@ -939,7 +939,16 @@ almost feasible; certificates need lines with at least five candidates (Section~
 rows, columns and slope-$(\pm1)$ lines give $\approx3.45\,(p-1)$ for $k=-1$ ($19\le p\le199$) and $3.6$--$3.9\,(p-1)$ for $k=2,3$
 ($p\le199$), and the integer optimum of that restricted system equals its LP value up to $2$ ($k=-1$, $p\le59$; \texttt{slack/verification/ip1\_km1.log}): so no local
 inequality of any rank on those lines can certify less; the remaining loss down to $3(p-1)+O(1)$ is carried by lines of unboundedly
-many slopes.  (iii) Structure of the exact maxima: they are balanced between the two hyperbolae ($23+18$ at $p=13$, $30+29$ at
+many slopes.  The anatomy of the rank-$1$ optimum for $k=-1$ is explicit: the slope-$(\pm1)$ lines with at least three points fall into
+residue groups (all lines $x\mp y\equiv c\pmod p$) of four classes with line sizes $(4,8,4)$ [both the $\sigma$-pair of $\kappa$ and the
+$\tau$-pair of $\lambda$ share their centres], $(3,7,5,1)$ [exactly one shares] or $(2,6,6,2)$ [neither], with densities $\to\tfrac1{12},
+\tfrac1{12},\tfrac16$ per slope (each type is a polytope condition on $C_0$ as in Proposition~\ref{prop:m8asym}; \texttt{slack/km1\_lines\_5678.py}).
+The optimum takes the three lines of every $(4,8,4)$ group (this is Theorem~\ref{thm:two}: saving $2$ per group), the lines $(7,5,3)$ of
+the $(3,7,5,1)$ groups (locally certifiable saving $1$ per group and slope), and fractional weights on the six-point lines, whose saving
+has no local certificate: forcing the $8$- and $7$-groups and optimising the rest reproduces the LP value for $p\le113$
+(\texttt{slack/block\_cover2.py}, \texttt{slack/verification/lp1\_types\_p113\_137\_199.txt}).  A block lemma for the $(3,7,5,1)$ groups
+would therefore improve Theorem~\ref{thm:two} to about $3.6\,(p-1)$; the LP constant $\approx3.45$ is not reachable by local
+arguments, and neither constant is the truth.  (iii) Structure of the exact maxima: they are balanced between the two hyperbolae ($23+18$ at $p=13$, $30+29$ at
 $p=19$), use one or two copies of almost every class, and the two copies of a class are usually in one column or one row (at $p=19$
 the optimum consists of $23$ such vertical pairs and $13$ single copies; at $p=17$ some classes use three copies).  For $k=-1$ the
 points fall into $(p-1)/2$ ``orbit blocks'' (the $16$ points of $\{\kappa,\nu\kappa,R\kappa,R'\kappa\}$ form a full $4\times4$ grid on
@@ -961,10 +970,12 @@ Kloosterman count of directions $|u|,|v|\le p/(s_1+s_2)$ with $uv\equiv2e/(s_1s_
 squares modulo $p$ are never absent from a dyadic scale of Gaussian norms (if all norms in $[M,2M)$ were non-residues, their pairwise
 products, of norm in $[M^2,4M^2)$, would be residues, and the multiplicative energy of Gaussian integers, $\ll M^2\log M$, makes them
 $\gg M^2/\log M$ in number).  Hence $\min_rT(r)\ge E+(p-1)\lambda_{\min}(C)$, and numerically this spectral bound is $\ge1.9\,(p-1)$ for
-$11\le p\le19$ (true minima $24,28,42,48$; $80$ at $p=23$ and $136$ at $p=29$ against spectral bounds $64$ and $129$) and $\ge3.6\,(p-1)$
-for $41\le p\le71$: every orientation carries many collinear triples, with a certificate that is not a union bound.  What is missing for a
-theorem is a Wigner-type edge estimate $\lambda_{\min}(C)\ge-K\sqrt{\operatorname{tr}C^2/(p-1)}$ (numerically $\lambda_{\min}\approx
--2\sqrt{\operatorname{tr}C^2/(p-1)}\sim-\sqrt{\log p}$, semicircle-like normalised moments; $\operatorname{tr}C^2/(p-1)=O(E/(p-1))$ is
+$11\le p\le19$ (true minima $24,28,42,48$; $80$ at $p=23$ and $136$ at $p=29$ against spectral bounds $64$ and $129$), $\ge3.6\,(p-1)$
+for $41\le p\le71$, and $8.3,\,8.5,\,10.0,\,14.5,\,15.3\,(p-1)$ at $p=199,499,997,1999,4001$ ($E/(p-1)=17.2,\dots,28.1$;
+\texttt{slack/vp\_lines.c}, \texttt{vp\_circulant.py}): every orientation carries many collinear triples, with a certificate that is not
+a union bound.  What is missing for a
+theorem is a Wigner-type edge estimate $\lambda_{\min}(C)\ge-K\sqrt{\operatorname{tr}C^2/(p-1)}$ (numerically $\lambda_{\min}=-(1.9\ldots2.1)\sqrt{\operatorname{tr}C^2/(p-1)}$ for all $p\le4001$
+computed, $\sim-\sqrt{\log p}$, semicircle-like normalised moments; $\operatorname{tr}C^2/(p-1)=O(E/(p-1))$ is
 proved), which would give $\min_rT\ge(1-o(1))E$; the trace method reduces it to a power-saving cancellation of signed sums over closed
 chains of such quadruples --- an arithmetic statement we could not settle
 (\texttt{docs/research/spectral\_programme.md}, \texttt{model\_theorem\_conditional.md}, \texttt{slack/vp\_*.py}).
