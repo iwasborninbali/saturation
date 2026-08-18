@@ -1129,7 +1129,7 @@ Remark. For k = −1 this is 2m₈; the note's Prop. m8asym is the special case.
 (one third of all classes) for EVERY k, and theorem C reduces to the selection lemma of §26 plus fine-scale equidistribution of the special
 sequence (§26a: curve level, fibred products of C₀(k)).
 
-## 28. C1 — SOLVED IN PRINCIPLE (second solver, 19.08 07:20 WITA): the potential/buffer identity and the uniform rule t = 1/m
+## 28. C1 — SOLVED IN PRINCIPLE (second solver, 19.08 07:05 WITA): the potential/buffer identity and the uniform rule t = 1/m
 THE IDENTITY.  Fix a class-cycle v_0, v_1, …, v_{L−1} (types alternate: even i = κ, odd i = μ), edge e_i between v_i and v_{i+1}, demands d_i = 1 − t_i
 (t_i = weight of the 8-group of v_i, 0 if none).  Write the edge weights as w_i = ½ + (−1)^i φ_i.  Then w_{i−1} + w_i = 1 + (−1)^i(φ_i − φ_{i−1}), so
 the cover constraint at v_i reads: at a κ (even i) the "potential" φ may DROP by at most t_i, at a μ (odd i) it may RISE by at most t_i (any move in

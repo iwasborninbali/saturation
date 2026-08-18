@@ -314,6 +314,15 @@ def run_instance(p, k, thresholds=(2, 3, 4), verbose=True):
         rows.append(ev)
         prune_results[thr] = (S, info, hist, ev)
 
+    # Rule B with the genuinely-local (single-pass, no wraparound two-case) greedy matcher, at the
+    # threshold that won with the exact matcher -- locality check: does pruning still work if BOTH the
+    # matching AND the pruning decisions are made by a bounded-window automaton, not a global DP?
+    best_thr_exact = max(prune_results, key=lambda thr: prune_results[thr][3]['lp_saving_per_G8'])
+    Sg, infog, histg = rule_prune(M, threshold=best_thr_exact, matcher=greedy_matching)
+    ev_g = evaluate_pure_half(M, Sg, greedy_matching, f"B:prune>={best_thr_exact}+greedy")
+    ev_g['rounds'] = len(histg)
+    rows.append(ev_g)
+
     # Rule C: mixed, promote fully matched groups within the best pruned S
     best_thr = max(prune_results, key=lambda thr: prune_results[thr][3]['lp_saving_per_G8'])
     mix = rule_mixed(M, threshold=best_thr, promote_min=4)
