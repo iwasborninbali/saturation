@@ -691,3 +691,27 @@ Consequences.
     explicit character sum, not a sum over "hundreds of directions" each needing its own count.
 Nothing here touches Conjecture B (the Wigner edge); the same parametrization gives the entries of C_p (each quadruple contributes ±1/16 to
 the C entries of its class pairs), which may help to organise the closed-walk sums.
+
+## 21. T2.12 (second solver, 19.08): Conjecture A via B.15 — what is provable, and the exact input needed
+From B.15: E(p) = (1/8)Σ_{e=±1}Σ_{s₁≤s₂}[s₁²+s₂² ≡ □ (mod p)]·N_box(s₁,s₂,e), where a family (s₁,s₂) has residue directions on the hyperbola
+uv ≡ 2e/(s₁s₂) and contributes the box lifts of its quadruples: an integer direction D̃ ≡ (u,v) fits iff (s₁+s₂)|D̃|_∞ ≲ 2p, so
+N_box(s₁,s₂) ≈ (number of small solutions of uv ≡ c with |u|,|v| ≤ 2p/(s₁+s₂)) × (lift multiplicity 1–4) × (sub-triples ≤ 4)
+≈ c₀·p/(s₁+s₂)² by Kloosterman equidistribution — rigorously only when 2p/(s₁+s₂) ≥ p^{3/4+ε}, i.e. s₁+s₂ ≤ p^{1/4−ε} (the count of solutions
+of uv ≡ c in a box of side L is 4L²/p + O(√p log²p), meaningful for L ≥ p^{3/4+ε}).
+(1) **Unconditional linear bound** (no growth): the Pythagorean families (s₁,s₂) = d·(3,4), d·(5,12), d·(8,15), … have s₁²+s₂² a perfect
+    square, hence a QR for every p; Σ_{Pythagorean, s₁+s₂ ≤ p^{1/4−ε}} c₀ p/(s₁+s₂)² converges to c₁·p with an explicit c₁ > 0 (the sum
+    Σ 1/(s₁+s₂)² over Pythagorean pairs converges), each term certified by the Kloosterman count.  So E(p) ≥ c₁(p−1) for all large p,
+    unconditionally — but c₁ ≈ 1 (data: (3,4) alone gives ~0.4(p−1)), far below the ≈ 9 needed against |λ_min|.
+(2) **Growth** needs the non-Pythagorean present families, i.e. the density of quadratic residues among the values s₁²+s₂², s₁,s₂ ≤ S,
+    for S as small as p^{ε}: this is a Burgess-type question (character sums over norms N(s₁+is₂) ≤ 2S² — the complete 2D sum
+    Σ_{s∈F_p²} χ(s₁²+s₂²) e(⟨h,s⟩/p) has modulus ≈ p (χ∘Q is self-dual), so plain completion gives nothing below S ≈ √p·log p; Burgess's
+    method for polynomial/norm values should give a positive proportion for S ≥ p^{1/8+ε} — to be cited from the literature (this is the
+    precise input to request in the deep research)).  Granting it: E(p)/(p−1) ≥ c₂ log p (sum over scales σ ≤ p^{1/4−ε} of ≈ σ/2 present
+    pairs × c₀/σ²), matching the observed 3.6 log p up to the constant.
+(3) Also needed for the model theorem in the form of §20/B.14: m₂ = tr C²/(p−1) = O(E/(p−1)) — true since the codegree of a class pair is
+    ≤ 32 (the lifts of two classes span ≤ 16 lines, each with ≤ 2 further candidates), so |c_ab| ≤ 4 and Σ c_ab² ≤ 4·Σ|c_ab| ≤ 4·(3/8)·8E.
+Bottom line for A: E ≥ c₁(p−1) unconditionally with small c₁ (Pythagorean families + Kloosterman); E/(p−1) → ∞ ⇐ Burgess-type
+equidistribution of QRs among small sums of two squares.  With B (Wigner edge, λ_min ≥ −K√m₂), the model theorem would follow for all
+large p; without growth, the inequality E/(p−1) > K√m₂ ≈ 2.9√(E/(p−1)) needs E/(p−1) ≳ 9, observed for p ≥ 29 but not provable from (1).
+Request for the owner's deep research 7 (later): "character sums of Legendre symbol over sums of two squares / Gaussian norms in short
+ranges (Burgess-type)" and "deterministic Wigner-type spectral edge bounds for arithmetic ±1 matrices (trace method with Weil cancellation)".
