@@ -351,3 +351,11 @@ LP(1) value ≈ 3.5(p−1) but needs the row/column bookkeeping for partial rows
 the note as a theorem (with the finite verification and the arithmetic input stated as a separate proposition/conjecture).
 For general k the same proof gives α(P_k) ≤ 4(p−1) − 2·B_k where B_k is the number of 8-line groups whose family is closed under the
 row-partner map (κ_y ↔ λ_y) — for k = −1 this is automatic (mirror), for other k it must be checked group by group (data: partner §15).
+## 17. THEOREM (k = −1): α(P₋₁) ≤ 4(p−1) − 4 m₈(p)  — second solver, 2026-08-19; written into the note as Section "Two hyperbolae"
+Proof = the fractional cover of §16 made rigorous: weight 1 on the three lines of every good residue group of both slopes (2m₈ groups,
+16 points each, pairwise disjoint because an H(1)-class cannot be both σ-shared and τ-shared, and R maps good groups of slope +1 to good
+groups of slope −1), weight 1/2 on every row and column disjoint from the union B of the good groups; rows = κ ∪ R(κ), columns = κ ∪ R′(κ),
+and B is R- and R′-invariant, so every row/column is inside B or disjoint from B: every point is covered with weight ≥ 1; cost
+= 12m₈ + (8(p−1) − 32m₈)/2 = 4(p−1) − 4m₈.  `slack/km1_theorem_check.py` builds this cover explicitly and checks feasibility/cost for
+p ≤ 101 (all assertions pass; the bound equals LP(1) at p = 11, 19, 23, 29, 37, 47 and equals α at p = 11).  m₈(p) ≥ 2 for all
+19 ≤ p ≤ 1500 (m₈ = 0 at p = 13, 17); asymptotics m₈ ~ p/12 conjectural (§12).  Third solver: please verify the proof in the note.

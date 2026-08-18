@@ -23,7 +23,7 @@
 
 \title{Extremal no-three-in-line subsets of a modular hyperbola\\ in the Hall--Jackson--Sudbery--Wild window}
 \author{Alex Komang\thanks{Independent researcher, Bali, Indonesia.  See the AI/tool-use disclosure at the end.}}
-\date{August 2026 --- draft v0.6}
+\date{August 2026 --- draft v0.7}
 
 \begin{document}
 \maketitle
@@ -49,7 +49,9 @@ $12n_{2}+10n_{1}+8n_{0}+6s$ in terms of the numbers $n_2,n_1,n_0$ of generic orb
 kind); the HJSW box is among the boxes where
 $3(p-1)$ is attained.  The classification also gives the no-four-in-line
 analogue: the largest no-four-in-line subset of $\Hc\cap\Gp$ has exactly $\tfrac72(p-1)+s$ points, so the set $S_3$ of
-Kov\'acs--Nagy--Szab\'o is optimal as well.
+Kov\'acs--Nagy--Szab\'o is optimal as well.  For the union of two hyperbolae $H(1)\cup H(-1)$ in the HJSW box we prove
+$\alpha\le4(p-1)-4m_8(p)$ by an explicit weighted line cover, where $m_8(p)$ (the number of eight-point diagonals) is positive for all
+$19\le p\le1500$ and numerically $\approx p/12$; to our knowledge this is the first bound below the trivial $4(p-1)$ for a union of two hyperbolae.
 The proofs are elementary and self-contained; independent programs check the statements about the HJSW box for all
 $p\le101$ (all $c$ for $p\le31$), the bound $3(p-1)$ for all boxes with $p\le61$, and the box formula and orbit lemma
 for all boxes with $p\le13$ and $p\le31$ respectively.
@@ -694,6 +696,107 @@ with the formula of Theorem~\ref{thm:window}) range from $2(p-1)+2s=22$ to $3(p-
 equals $30$ for $76$ boxes but is attained for $20$ (the others have a $(1,1)$-orbit).}
 \label{tab:shifts}
 \end{table}
+
+\section{Two hyperbolae: a first bound for $H(1)\cup H(-1)$}\label{sec:two}
+
+Theorems~\ref{thm:main} and \ref{thm:window} concern one hyperbola.  For a union of two hyperbolae in the same box the exact maxima
+are known only computationally (Section~\ref{sec:beyond}); the trivial bound is $4(p-1)$, because every column and every row of the
+box that is not $\equiv0$ contains four candidate points (two lifts from each hyperbola) and a lawful set takes at most two of them.
+Here we prove, for $k=-1$, a bound below the trivial one by an explicit weighted line cover.  Throughout this section
+\[
+ \Pset_{-1}:=\bigl(H(1,p)\cup H(-1,p)\bigr)\cap\Gp,\qquad |\Pset_{-1}|=8(p-1),
+\]
+and, for a slope-$(\pm1)$ integer line $\ell$, $|\ell|$ denotes the number of points of $\Pset_{-1}$ on $\ell$.  Let $m_8(p)$ be the
+number of slope-$(+1)$ lines $x-y=d'$ with $|\ell|=8$.
+
+\begin{theorem}\label{thm:two}
+For every odd prime $p$, every lawful subset of $\Pset_{-1}$ has at most $4(p-1)-4\,m_8(p)$ points.
+\end{theorem}
+
+The proof rests on the two reflections of the box.  Put $R(x,y)=(p-x,\,y)$ and $R'(x,y)=(x,\,2p-y)$.  Both map $\Gp\cap\{xy\not\equiv0\}$
+onto itself (the $x$-range $[-h,3h+1]$ is symmetric about $p/2$, the $y$-range $[1,2p-1]$ about $p$; the two omitted lines
+$y=0$ and $x\in\{0,p\}$ carry no candidates), both map $H(1)$ onto $H(-1)$ and vice versa (since $(p-x)y\equiv-xy$ and
+$x(2p-y)\equiv-xy$), and both interchange slope $+1$ and slope $-1$ lines: $R\{x-y=d'\}=\{x+y=p-d'\}$, $R'\{x-y=d'\}=\{x+y=2p+d'\}$.
+
+\begin{lemma}\label{lem:rowsRR}
+Every column $x\not\equiv0$ of the box contains exactly four points of $\Pset_{-1}$: the two lifts of the $H(1)$-class $\kappa=(x,1/x)$
+and the two lifts of the $H(-1)$-class $R'(\kappa)=(x,-1/x)$.  Every row $y\not\equiv0$ contains exactly four points: the two lifts of
+$\kappa=(1/y,y)\in H(1)$ and the two lifts of $R(\kappa)=(-1/y,y)\in H(-1)$.
+\end{lemma}
+\begin{proof}
+On the column $x$ the candidates are the $y\in[0,2p)$ with $xy\equiv\pm1$: two lifts of $y\equiv1/x$ and two of $y\equiv-1/x$.  Rows
+likewise.
+\end{proof}
+
+\begin{lemma}[residue groups]\label{lem:groups}
+Fix a residue $d\in\Fp$.  The points of $\Pset_{-1}$ on the slope-$(+1)$ lines $x-y\equiv d\pmod p$ are: the four lifts of each $H(1)$-class
+$\kappa$ with $x_\kappa-y_\kappa\equiv d$ (at most two classes, $\kappa$ and $\sigma\kappa$), lying on the three lines $x-y=c_\kappa-p,\,c_\kappa,\,c_\kappa+p$
+with $1,2,1$ points, where $c_\kappa=x_\kappa-y_\kappa$ is computed from the base copy; and the images under $R$ of the four lifts of each
+$H(1)$-class $\lambda$ with $x_\lambda+y_\lambda\equiv-d$ (at most two classes, $\lambda$ and $\tau\lambda$), lying on the lines
+$x-y=c'_\lambda-p,\,c'_\lambda,\,c'_\lambda+p$ with $1,2,1$ points, where $c'_\lambda=-(x_\lambda+y_\lambda)$.  All these centres lie in the
+interval $[-h-p+1,\,h-1]$ of length $2p-2$, so a residue $d$ involves at most two distinct centres, $c$ and $c+p$.  In particular
+$|\ell|\le8$ for every slope-$(\pm1)$ line, and $|\ell|=8$ for $\ell=\{x-y=c\}$ iff four distinct classes ($\kappa,\sigma\kappa,\lambda,\tau\lambda$;
+none fixed by $\sigma$ resp.\ $\tau$) have the common centre $c$; then the sixteen points of these four classes lie on the three lines
+$x-y=c-p,c,c+p$ with $4,8,4$ points, and no other point of $\Pset_{-1}$ lies on these three lines.  We call this a \emph{good residue group}
+of slope $+1$; good residue groups of slope $-1$ are defined symmetrically (they are the images under $R$ of the good groups of slope
+$+1$, so there are $m_8(p)$ of each slope).
+\end{lemma}
+\begin{proof}
+The copies of $\kappa$ are $(x_\kappa+rp,y_\kappa+sp)$, on $x-y=c_\kappa+(r-s)p$: one point each for $(r,s)=(1,0),(0,1)$ and two for
+$(0,0),(1,1)$.  A point of $H(-1)$ on $x-y=d'$ is $R(q)$ for a point $q$ of $H(1)$ on $x+y=p-d'$; the copies of $\lambda$ lie on
+$x+y=x_\lambda+y_\lambda+(r+s)p$, whose $R$-images lie on $x-y=-(x_\lambda+y_\lambda)-(r+s)p+p$, i.e.\ centre $c'_\lambda$ with pattern $1,2,1$
+(with $r+s=1$ on the centre line).  Since $x_\kappa\in[-h,h]$, $y_\kappa\in[1,p-1]$, both centres lie in $[-h-p+1,h-1]$.  A class fixed
+by $\sigma$ (resp.\ $\tau$) is its own partner and contributes only its own two points to the centre line, so an $8$-point line needs four
+distinct classes with a common centre; the count of points on $c\pm p$ is then $1+1+1+1$.  Only the classes with $x-y\equiv d$
+(resp.\ $x+y\equiv-d$) have points on lines of residue $d$, so no other points occur.
+\end{proof}
+
+\begin{lemma}\label{lem:closure}
+Let $\mathcal G$ be the set of all good residue groups of both slopes and let $B\subseteq\Pset_{-1}$ be the union of their points.
+Then (i) two distinct good groups have no point in common; (ii) $R(B)=R'(B)=B$; (iii) every row and every column of the box is either
+contained in $B$ or disjoint from $B$.
+\end{lemma}
+\begin{proof}
+(i) Two good groups of the same slope have different residues, hence disjoint point sets.  A good group of slope $+1$ contains, from
+$H(1)$, a $\sigma$-pair $\{\kappa,\sigma\kappa\}$ with $c_\kappa=c_{\sigma\kappa}$ (a \emph{shared} pair, i.e.\ $x_\kappa$ and $x_{\sigma\kappa}=-y_\kappa\bmod p$
+have opposite signs, types $A/D$ of Lemma~\ref{lem:partners}), and from $H(-1)$ the $R$-images of a shared $\tau$-pair (types $B/C$).
+A good group of slope $-1$ is the $R$-image of one of slope $+1$, so it contains from $H(1)$ a shared $\tau$-pair and from $H(-1)$ the
+$R$-images of a shared $\sigma$-pair.  Since a class cannot be both $\sigma$-shared and $\tau$-shared (Lemma~\ref{lem:partners}: the former
+means $\kappa\in A\cup D$, the latter $\kappa\in B\cup C$), an $H(1)$-class lies in at most one good group, and the same holds for
+$H(-1)$-classes by applying $R$.  Hence the point sets are pairwise disjoint.
+(ii) $R$ and $R'$ map $\Pset_{-1}$ onto itself and slope-$(+1)$ lines onto slope-$(-1)$ lines, so they permute the good groups.
+(iii) By Lemma~\ref{lem:rowsRR} a row consists of the lifts of $\kappa$ and of $R(\kappa)$; the four lifts of a class are in $B$ or all
+outside $B$ (good groups consist of whole classes), and $\kappa\subseteq B$ iff $R(\kappa)\subseteq B$ by (ii).  Columns: $\kappa$ and $R'(\kappa)$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:two}]
+Let $S\subseteq\Pset_{-1}$ be lawful.  For every line $\ell$ we have $|S\cap\ell|\le2$, and $|S\cap\{q\}|\le1$ for points.  Hence for
+non-negative weights $y_\ell$ on lines and $z_q$ on points such that every $q\in\Pset_{-1}$ satisfies $\sum_{\ell\ni q}y_\ell+z_q\ge1$
+(a fractional cover), $|S|\le\sum_q(\sum_{\ell\ni q}y_\ell+z_q)\,[q\in S]\le\sum_\ell 2y_\ell+\sum_q z_q$.  We use the following cover:
+$y_\ell=1$ for the three lines of every good residue group (both slopes), $y_\ell=\tfrac12$ for every row and every column disjoint
+from $B$, all other weights $0$.  A point of $B$ lies on exactly one line of its group (Lemma~\ref{lem:groups}), so it is covered with
+weight $1$; a point outside $B$ lies on a row and a column disjoint from $B$ (Lemma~\ref{lem:closure}(iii)), so it is covered with
+$\tfrac12+\tfrac12=1$.  The cost: $2\cdot1\cdot3\cdot2m_8=12m_8$ for the group lines; the rows disjoint from $B$ contain exactly the
+$8(p-1)-16\cdot2m_8$ points outside $B$, four per row, and likewise the columns, so their number is $2\cdot(8(p-1)-32m_8)/4$ and their
+cost is $2\cdot\tfrac12$ each: $4(p-1)-16m_8$.  Altogether $|S|\le12m_8+4(p-1)-16m_8=4(p-1)-4m_8$.
+\end{proof}
+
+\begin{remark}
+(a) The bound is attained at $p=11$: $m_8(11)=2$ and $\alpha(\Pset_{-1})=32=4\cdot10-8$ (exact maximum, Section~\ref{sec:beyond});
+$m_8(13)=m_8(17)=0$ (no gain), and $m_8(p)\ge2$ for every prime $19\le p\le1500$ (computed), so the bound is below $4(p-1)$ from
+$p=19$ on.  For $p=19,23,29,37,47$ it coincides with the best rank-1 (LP) certificate using rows, columns and slope-$(\pm1)$ lines,
+which is $64,80,96,128,160$; for other $p$ that LP is somewhat smaller (it also exploits $5$--$7$-point lines with fractional weights).
+(b) Arithmetically, $m_8(p)$ is one quarter of the number of pairs $(a,b)\in(\Fp^*)^2$ with $ab^2+(a^2-1)b+a\equiv0$, $a^2\not\equiv-1$,
+$b^2\not\equiv1$, $X(a)X(1/a)<0$, $X(b)X(1/b)>0$ and $X(a)-X(1/a)+X(b)+X(1/b)=p\,([X(a)>0]-[X(b)<0])$, where $X(u)\in[-h,h]$ is the
+least absolute residue (verified for all $p\le199$; the last condition is automatic modulo $p$, so it selects one of three possible
+values of an integer in $(-2p,2p)$).  Numerically $m_8(p)/p\to0.083\approx1/12$ (all $p\le1500$; the mean over $200\le p\le1500$ is
+$0.0825$), so the theorem gives $\alpha(\Pset_{-1})\le(11/3+o(1))(p-1)$ \emph{if} $m_8(p)\ge(1/12-o(1))p$, a statement about the
+distribution of least residues of $(a,1/a,b,1/b)$ along the cubic, which we expect to follow from Weil-type bounds but have not proved.
+(c) The argument uses that $R$ and $R'$ are symmetries of $\Pset_{-1}$; for a general second hyperbola $H(k)$ the rows pair a class of
+$H(1)$ with a class of $H(k)$ that is not the image of the first under a symmetry, and the analogous cover has waste.  Rank-1
+certificates below $4(p-1)$ do exist for other $k$ at large $p$ (data: LP with rows, columns, $\pm1$ lines is $3.61$--$3.89\,(p-1)$ for
+$k=2$, $29\le p\le199$), but we have no clean theorem there.
+\end{remark}
 
 \section{Computational observations beyond one hyperbola}\label{sec:beyond}
 

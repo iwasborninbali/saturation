@@ -29,3 +29,12 @@ Main paper `no3inline_defects` draft v0.7 — after the external audit of v0.6 (
 | `paper/no3inline_defects.pdf` | `a401e316e11a94f5b02bfb4a6c3577c9ce88b42ecf84c4dda839310ea74206ad` |
 | `paper/no3inline_defects.tex` | `2ba8bdac8608e507c2376232a0e257c85150a4a59a0477ca1eb46c735899dedb` |
 | `paper/appendix_configs.tex` | `0e187738a4ba7c875df9209f860494d4f73ef566906de3d93b3df6cc9ccdda05` |
+
+## hjsw-note-v0.7 (2026-08-19)
+Note `hjsw_window` draft v0.7: new Section "Two hyperbolae: a first bound for H(1) ∪ H(−1)" — Theorem: α(P₋₁) ≤ 4(p−1) − 4 m₈(p) by an
+explicit weighted line cover (verified numerically by `slack/km1_theorem_check.py` for p ≤ 101); Corollary "all conics" corrected.
+
+| file | SHA-256 |
+|---|---|
+| `paper/hjsw_window.pdf` | `116e67ccc3496f7729439aa7874ce441013613fe4eb722a672ea893a7505e6bd` |
+| `paper/hjsw_window.tex` | `be5f8e1a9a1e0aa66c92a7295c85dc7be3f12d8046d48c0bf252e01dabb81347` |
