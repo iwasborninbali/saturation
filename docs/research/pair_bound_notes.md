@@ -277,3 +277,23 @@ shear example: max 16 for (x−y)y ≡ 1 in G(7)).  Consequences for our program
 * Same-pencil unions H(1) ∪ H(k) are indeed special; nothing here claims to represent "all pairs of conics" or "all bounded-t sets".
 * The exchange frontier (r deletions from a one-hyperbola core vs additions from H(k)) is a good experiment for the structure question;
   the balanced optimal witnesses (§2) already show that maximum sets are not "core minus O(1)".
+
+## 14. k = −1: anatomy of the integral LP(1) cover at p = 29 (`slack/lp1_pieces.py`; matches B.7)
+The optimal dual is a PARTITION of the 224 points into 44 lines + 8 singletons, organised by residue groups:
+* 4 "dia blocks" and 4 "ant blocks": each block = one residue group with all four centres coinciding (pattern (4,8,4)): the 8-point line
+  (copies (0,0),(1,1) of the four classes κ, σκ, R(λ), R(τλ)) plus the two 4-point lines c−p, c+p (copies (0,1) resp. (1,0) of the same four
+  classes).  Cost 6 per 16 points — saving 2 per block; 8 blocks ↔ the 4+4 eight-point lines (m₈ per slope = 4).
+* the exceptional part (classes with a² ≡ −1 or a = ±1, i.e. σ- or τ-fixed): 2+2 six-point lines + 8 singleton points, 32 points, cost 16
+  (no saving, no waste);
+* everything else: 8 rows + 8 columns, in pairs (a column pair of residue a covers the 8 points of the two classes (a,1/a) ∈ H(1),
+  (a,−1/a) ∈ H(−1); a row pair likewise) — cost 1/2 per point.
+So LP(1) = 4(p−1) − 2·(number of blocks) = 112 − 16 = 96, and the blocks are exactly the 8-point-line groups.  Same at p = 37 (integral).
+At p = 31, 41 the LP optimum is fractional (some 1/3, 1/4 weights): the "rest" cannot always be partitioned without waste.
+Theorem scheme (T3′): show that for every p one can take all 8-point-line groups (both slopes) as blocks and cover the rest with rows,
+columns and ±1-lines with waste O(1) — then α(P_{−1}) ≤ 4(p−1) − 4m₈(p) + O(1) = (4 − 1/3 + o(1))(p−1) ≈ 3.67(p−1) (m₈ ~ p/12).
+Obstacles: a class can lie in a good dia group AND a good ant group (double cover, waste 2 per such class), and the row/column pairs
+(κ with R(κ) in rows, κ with R′(κ) in columns) are broken when exactly one member is in a block.  The interaction graph is finite-type
+(each class has one dia group, one ant group, one row partner R(κ), one column partner R′(κ); the half-turn ν = RR′ preserves goodness),
+so a case analysis with an explicit tie-breaking rule may bound the waste — this is the combinatorial half of T3′; the arithmetic half
+(m₈ = (1/12+o(1))p) is §12.  A weaker but cleaner statement first: α ≤ 4(p−1) − 2·(number of *disjoint* good blocks) + O(1), with a
+greedy choice of blocks avoiding overlaps, and then a lower bound on that number.
