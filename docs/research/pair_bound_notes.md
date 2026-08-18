@@ -602,3 +602,10 @@ inputs above (weeks, not hours).
 Addendum 2 (exact minima over ALL orientations, vectorised; `/tmp/vpmin.py`, to be moved to slack/vp_min.py): p=19: 48 (spectral 45.5);
 p=23: 80 = 3.64(p−1) (spectral 63.9).  True minima 24, 28, 42, 48, 80 for p = 11…23, i.e. 2.4, 2.3, 2.6, 2.7, 3.6 per (p−1) — growing, as
 E does; the spectral bound is within a factor 1.05–1.25 of the truth.  p=29 running.
+Addendum 3 (composition of E; `/tmp/eslopes.py`): the collinear distinct-class patterns of P₋₁ are spread over hundreds of directions
+(278 at p=41, 540 at p=71): slopes ±1 carry only 12–15 %, directions with max(|u|,|v|) ≤ 2 about 22–27 %, ≤ 4 about 44 %; the leading
+directions after ±1 are (2,±1),(1,±2),(2,±3),(3,±1),(3,±2),(1,±3),(4,±3)… with roughly 1/(|u||v|)-like decay.  So E(p) is a sum over
+all small directions (an N log N-type count), and any proof of E ≥ c(p−1) with c > |λ_min| ≈ 4–6 must control a growing family of
+directions — the same equidistribution machinery as for m₈, direction by direction, plus a tail bound.  Bottom line of the spectral
+route: (model theorem) ⇐ [E(p) ≥ (|λ_min(C_p)| + δ)(p−1) for large p], both sides being explicit arithmetic quantities; feasible as a
+project, not tonight.
