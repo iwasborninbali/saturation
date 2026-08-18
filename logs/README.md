@@ -13,5 +13,7 @@ list every labelled solution (PRINTALL=1).  Header lines (`#`) give date, sub-cl
 | `sweeps/twoloop_n36_exh.txt`, `..._sols.txt` | two-loop family n=36, exhaustive over 153 sub-classes mod D4 | 152 exhausted (3 with solutions), sub-class (1,4) rerun pending |
 | `sweeps/twoloop_n36_find.txt` | the earlier finding-mode sweep at n=36 (81 sub-classes, ~2 min each) | superseded |
 | `sweeps/family3B_sym{9,10}_n{39,41}.txt` | 3-cycle family (non-central defects), second half of the canonical lists, second solver's machine | 41: complete (0); 39: V2 complete (0), C4 300 sub-classes (1) |
-| (first solver's machine) `family3A_*` | first halves of the lists for 39, 41, 45, 47 | to be added by the first solver |
+| `sweeps/family3_sym{9,10}_n{33,37}.txt` | 3-cycle family (non-central defects), full canonical lists (there_tw, first solver's machine) | complete: 33 → 1 book (C4), 0 (V2); 37 → 2 books (C4), 0 (V2) |
+| `sweeps/family3A_sym10_n41.txt` | first half of the 41 list, V2 base | complete (0) |
+| `sweeps/family3A_sym10_n39_partial.txt`, `family3A_sym9_n41_partial.txt` | first halves of 39 (V2, 1339/1938) and 41 (C4, ~1140/2280) | partial snapshots (0 books); the C4 41A sweep continues at low priority |
 | (VM2) `family3full_*_n33`, `central3_*_n{37,39,41,45}` | full reruns with the corrected generator | running |
