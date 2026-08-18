@@ -1,7 +1,7 @@
 # Letter 2 to Achim Flammenkamp — draft (second solver sends after the 39/41 sweeps finish)
 
 ```
-Subject: no-three-in-line: two more n = 36 configurations (three in total), and a correction to my wording
+Subject: no-three-in-line: two more n = 36 configurations (three in total), a second n = 39, and a correction to my wording
 
 Dear Achim,
 
@@ -14,8 +14,13 @@ inequivalent to the first one and to each other (checked by canonical forms unde
 They come from the same family (quarter-turn orbits off the long diagonals plus one half-turn
 pair on each diagonal, at rows (1,34) and (9,26), resp. (1,34) and (7,28)); an exhaustive
 sweep of that family for n = 36 (153 sub-classes up to D4) shows that these three are all its
-configurations.  As before: every triple checked in exact integer arithmetic, stabilizer
-computed explicitly, and each configuration verified by two independent programs.
+configurations.  And a second configuration for n = 39, inequivalent to the one I sent, for the
+column ':' as well:
+  :BI5HCWEQST8J2MSU7X4M47Dc3aKRNZEH69NbDc1b0P1FTWLO3FBI2Z0PVYGY5V8AGaJU9ACO6QLXKR
+(quarter-turn orbits plus a 3-cycle of half-turn pairs (1,5),(37,33); (5,19),(33,19); (19,1),(19,37)
+— the cycle passes through the central row and column).  As before: every triple checked in
+exact integer arithmetic, stabilizer computed explicitly, and each configuration verified by two
+independent programs.
 
 2. A correction to the subject line of my previous message ("first configurations with exact
 rot2 symmetry for n = 36, 37, 39"): that is right for n = 36 (both cells of your table were
