@@ -43,8 +43,8 @@ configurations found are: for $n=36$, the first located $2n$-point configuration
 half-turn (exactly three inequivalent ones in the two-loop family); for $n=37$ (two) and $n=39$ (three), the first located configurations of that
 symmetry group outside the rct4 pseudo-class (Flammenkamp's rct4 configurations of 1997/98 already have exactly
 half-turn symmetry); and a further one for $n=33$.  ``First located'' refers to the public files of Flammenkamp's
-database as of 2026-08-11 and awaits confirmation by its maintainer.  Configurations, programs and sweep journals are
-public.
+database as of 2026-08-11 (confirmed by its maintainer, who has added the configurations to the database).  Configurations,
+programs and sweep journals are public.
 \end{abstract}
 
 \section{Introduction}
@@ -58,7 +58,7 @@ Computationally, $2n$-point configurations were known for all $n\le 46$ and for 
 which also records, for each $n$, the number of configurations by their exact symmetry class under the dihedral group
 $\Dfour$ of the square, and marks the cells for which no configuration is known).
 
-This note concerns those cells rather than the record sizes.  Flammenkamp's table lists, for each $n$, the number of
+This note concerns those entries rather than the record sizes.  Flammenkamp's table lists, for each $n$, the number of
 inequivalent $2n$-point configurations whose stabilizer in $\Dfour$ is exactly a given subgroup: trivial (\emph{iden}), the
 half-turn (\emph{rot2}), one diagonal reflection (\emph{dia1}), one axis reflection (\emph{ort1}), the quarter turns
 (\emph{rot4}), both diagonal reflections (\emph{dia2}), both axis reflections (\emph{ort2}) and the full group (\emph{full}).
@@ -80,7 +80,7 @@ reflections; three pairs form a directed $3$-cycle or a loop plus a $2$-cycle.
 (ii)~Exhaustive enumerations of the resulting families for small $n$ (Section~\ref{sec:results}), with all sub-classes
 listed and their journals kept: the $3$-cycle family, the two-loop family and the mixed families.
 (iii)~New $2n$-point configurations with stabilizer exactly the half-turn: three inequivalent ones for $n=36$ (two-loop
-family; both database cells were empty), two for $n=37$ and three for $n=39$ ($3$-cycle family; the first located
+family; both database entries were empty), two for $n=37$ and three for $n=39$ ($3$-cycle family; the first located
 configurations of that stabilizer that are not of rct4 type), and one more for $n=33$; the configurations are listed in
 the Appendix and were verified by independent programs.
 (iv)~A description of the exact solver and its validation, measured growth of the cost of finding one $2n$-point
@@ -99,7 +99,8 @@ reinforcement learning) have been compared with integer programming on this prob
 \cite{RJPDP25}.  The abstract content of the balance lemma --- a zero-divergence condition and its cycle decomposition --- is
 standard (see e.g.\ \cite{EKM} for balanced two-coloured degree sequences and alternating cycles); its application to
 symmetric no-three-in-line configurations, and the resulting search families, we have not found in the literature.
-Flammenkamp uses ``defect'' for the shortfall from $2n$ points; to avoid a clash we say \emph{orbit defect}.
+Flammenkamp uses ``defect'' for the shortfall from $2n$ points and calls a no-three-in-line set with exactly $2n$ points a
+\emph{solution}; to avoid a clash we say \emph{orbit defect}, and our ``$2n$-point configuration'' is his ``solution''.
 
 \section{Symmetry classes and the balance lemma}\label{sec:lemma}
 Let $m=n-1$ and let $\Dfour$ act on the grid; write $\rot(u,v)=(v,m-u)$ for the quarter turn, so $\rot^2(u,v)=(m-u,m-v)$,
@@ -277,11 +278,11 @@ $78$ at $n=27$): no configuration exists in them.  We have no structural explana
 
 \subsection{New configurations with exactly half-turn symmetry}
 Table~\ref{tab:new} lists the new configurations; their coordinates and their encodings in the 90-character format of
-\cite{FlammenkampDB} are given in the Appendix.  ``First located'' refers to the public files of the database on 2026-08-11
-(the database's history page mentions further contributions in preparation at that time), and to a search of the
-literature; it awaits the maintainer's confirmation.  For $n=36$ both database cells were empty; for $n=37$ and $39$ the
+\cite{FlammenkampDB} are given in the Appendix.  ``First located'' refers to the public files of the database on 2026-08-11 and to a search of the literature; the maintainer
+has since confirmed that the \texttt{:} entries for $n=36,37,39$ were empty on that date and has added the configurations of
+Table~\ref{tab:new} to the database.  For $n=36$ both database entries were empty; for $n=37$ and $39$ the
 column \texttt{c} (rct4) was populated, so the configurations below are new representatives of exact half-turn symmetry
-outside the rct4 structure, not the first configurations with that stabilizer; the $n=33$ configuration is new but the cell
+outside the rct4 structure, not the first configurations with that stabilizer; the $n=33$ configuration is new but the entry
 was not empty.  All nine configurations were checked to be pairwise inequivalent (canonical forms under $\Dfour$).  The
 second and third $n=39$ configurations have their defects through the central class --- they were found only after the
 correction of the generator described above.
@@ -299,7 +300,7 @@ $n$ & family and defect & remark\\
 39 & 3-cycle $(4,8),(8,20),(20,34)$, C4 base & first located outside rct4 (column \texttt{:})\\
 39 & 3-cycle $(1,5),(5,19),(19,1)$ through the central class, C4 base & second, inequivalent\\
 39 & 3-cycle $(4,7),(7,19),(19,4)$ through the central class, C4 base & third, inequivalent\\
-33 & 3-cycle $(2,3),(3,19),(19,2)$, C4 base & new (cell not empty)\\
+33 & 3-cycle $(2,3),(3,19),(19,2)$, C4 base & new (entry not empty)\\
 \bottomrule
 \end{tabular}
 \caption{New $2n$-point configurations with stabilizer exactly $\{1,\rot^2\}$.}\label{tab:new}
