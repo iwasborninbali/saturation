@@ -922,16 +922,29 @@ the optimum consists of $23$ such vertical pairs and $13$ single copies; at $p=1
 points fall into $(p-1)/2$ ``orbit blocks'' (the $16$ points of $\{\kappa,\nu\kappa,R\kappa,R'\kappa\}$ form a full $4\times4$ grid on
 its rows and columns), the trivial bound is $8$ per block, and the optima have $\approx6$ per block on average with the deficits
 spread over most blocks; pairs and triples of blocks essentially never conflict, so the loss is a global effect.  Restricted models
-(only vertical/horizontal copy pairs; or $y$-periodic sets) reach $3(p-1)+O(1)$ but not the optimum.  In the ``vertical-pair''
-model for $k=-1$ (every class contributes both lifts in one of its two columns; $2^{p-1}$ orientations, each a $2$-factor of the
-row/column structure) the number $T$ of collinear triples is a \emph{quadratic} form $E+\varepsilon^{\mathsf T}C\varepsilon$ in the
-orientation signs (odd degrees vanish by the reflection $R'$), so $\min T\ge E+(p-1)\lambda_{\min}(C)$; numerically this spectral bound
-is $\ge1.9\,(p-1)$ for $11\le p\le19$ (true minima $24,28,42,48$; $80$ at $p=23$ and $136$ at $p=29$ against spectral bounds
-$64$ and $129$) and $\ge3.6\,(p-1)$ for $41\le p\le71$ --- every orientation
-carries linearly many collinear triples, with a certificate that is not a union bound; turning it into a theorem would need the growth of
-$E$ ($E/(p-1)\approx3.6\log p-4.4$ up to $p=199$) and a Wigner-type edge estimate for the dense $\pm$-matrix $C$ (numerically
-$\lambda_{\min}\approx-2.4\sqrt{\operatorname{tr}C^2/(p-1)}\sim-\sqrt{\log p}$, with semicircle-like normalised moments), both
-arithmetic statements about $\Pset_{-1}$ (\texttt{slack/vp\_quadratic.py}, \texttt{slack/vp\_traces.py}).
+(only vertical/horizontal copy pairs; or $y$-periodic sets) reach $3(p-1)+O(1)$ but not the optimum.  
+
+\paragraph{The vertical-pair model.}  For $k=-1$ consider the sets $S(r)$, $r\in\{0,1\}^{p-1}$, in which the class $\kappa_a=(a,1/a)$
+contributes both lifts in the column $X(a)+r_ap$ and the class $(a,-1/a)$ both lifts in the other column $X(a)+(1-r_a)p$; every $S(r)$
+has $4(p-1)$ points, two in every row and column.  Let $T(r)$ be the number of collinear triples of $S(r)$.  Three facts are proved:
+(i) with $\varepsilon_a=(-1)^{r_a}$, $T$ is a quadratic form $T=E+\varepsilon^{\mathsf T}C\varepsilon$ ($S(1-r)=R'S(r)$ and $R'$ is a symmetry
+of $\Pset_{-1}$, so the odd-degree Walsh coefficients vanish); here $8E$ is the number of collinear triples of $\Pset_{-1}$ with three
+distinct classes, and $C$ is an explicit symmetric matrix with entries in $\tfrac18\mathbb Z$ and zero diagonal.  (ii) Every such collinear
+triple is a sub-triple of a symmetric quadruple $q,\,q+s_1D,\,q+s_2D,\,q+(s_1+s_2)D$ ($D$ an integer direction, $uv\equiv2e/(s_1s_2)$,
+$e=\pm1$) whose points lie alternately on the two hyperbolae, and the family $(s_1,s_2)$ occurs iff $s_1^2+s_2^2$ is a square modulo $p$
+(the product $xy$ along a line is a quadratic in the parameter, symmetric about the midpoint of two equal-sign points).  (iii) Consequently
+$E\ge c\,(p-1)\log\log p$ for all large $p$: for coprime $(s_1,s_2)$ with $s_1+s_2\le p^{1/4-\epsilon}$ and $\chi(s_1^2+s_2^2)=1$ the
+Kloosterman count of directions $|u|,|v|\le p/(s_1+s_2)$ with $uv\equiv2e/(s_1s_2)$ gives $\gg p/(s_1+s_2)^2$ box-lifted triples, and
+squares modulo $p$ are never absent from a dyadic scale of Gaussian norms (if all norms in $[M,2M)$ were non-residues, their pairwise
+products, of norm in $[M^2,4M^2)$, would be residues, and the multiplicative energy of Gaussian integers, $\ll M^2\log M$, makes them
+$\gg M^2/\log M$ in number).  Hence $\min_rT(r)\ge E+(p-1)\lambda_{\min}(C)$, and numerically this spectral bound is $\ge1.9\,(p-1)$ for
+$11\le p\le19$ (true minima $24,28,42,48$; $80$ at $p=23$ and $136$ at $p=29$ against spectral bounds $64$ and $129$) and $\ge3.6\,(p-1)$
+for $41\le p\le71$: every orientation carries many collinear triples, with a certificate that is not a union bound.  What is missing for a
+theorem is a Wigner-type edge estimate $\lambda_{\min}(C)\ge-K\sqrt{\operatorname{tr}C^2/(p-1)}$ (numerically $\lambda_{\min}\approx
+-2\sqrt{\operatorname{tr}C^2/(p-1)}\sim-\sqrt{\log p}$, semicircle-like normalised moments; $\operatorname{tr}C^2/(p-1)=O(E/(p-1))$ is
+proved), which would give $\min_rT\ge(1-o(1))E$; the trace method reduces it to a power-saving cancellation of signed sums over closed
+chains of such quadruples --- an arithmetic statement we could not settle
+(\texttt{docs/research/spectral\_programme.md}, \texttt{model\_theorem\_conditional.md}, \texttt{slack/vp\_*.py}).
 
 \paragraph{Other unions.}  A parabola $y=x^2+k$ together with $H(1)$ in the same box: exact maxima $34,39,51,58$ for
 $p=11,13,17,19$ ($+4,+3,+3,+4$; MIP).  Three hyperbolae $H(1)\cup H(2)\cup H(3)$ ($12(p-1)$ candidates): $37$ at $p=11$ (exact, MIP;
