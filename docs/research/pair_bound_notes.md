@@ -239,3 +239,7 @@ between the least-residue coordinates of (a, 1/a): #{a: X_a − Y_{1/a} = −(X_
 handled by hyperbola-in-box equidistribution (Shparlinski's survey), so an asymptotic c·p + O(√p log² p) is plausible; the constant c
 and the fluctuations are visible in the data.  Then the covering combinatorics (which rows/columns can be dropped) has to be organised
 group by group; the p = 29 dual (8 rows, 8 columns, 28 lines, 8 points) is the model.
+* Asymptotics from data (`slack/km1_lines.py`, 193 primes 200 ≤ p ≤ 1500): m₈/p → ≈ 0.083 (mean 0.0825, range 0.058–0.108; 1/12 = 0.0833),
+  (≥5-lines)/p → ≈ 0.414, and the third solver's savings 2m₈+1.5m₇+m₆+0.5m₅ per slope → ≈ 0.50·(p−1) (range 0.43–0.55).  So the natural
+  T3′ target is α(P_{−1}) ≤ 3.5(p−1) + o(p) (one slope's savings) — consistent with LP(1) ≈ 3.45(p−1); the constants look like exact
+  limits (1/12, 1/2), which a Weil-type count should reproduce.
