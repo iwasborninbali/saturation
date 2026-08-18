@@ -467,3 +467,8 @@ long-range triples of many slopes with only arithmetic (not combinatorial) struc
 model: check whether the minimising orientations for p=11…19 (and their triple sets) have a common arithmetic description (e.g. r_a as a
 function of X(a), X(1/a) signs) — if the minimiser is "structured", its T could be computed by counting and then H4′ reduces to showing
 no unstructured r does better, which is again the union-bound obstacle.  Otherwise: close the note with what is proved.
+Addendum (18:40 UTC): the last idea checked.  At p = 11 and 19 the triple-minimising orientation is exactly the parity rule
+r_a = [X(a) even] (T = 24, 48), but at p = 13, 17 the minimisers follow no simple rule (agreement with sign/parity/QR/|X|≤p/4 rules and
+their complements ≈ 50–60 %, i.e. chance), and for p = 23, 31, 43, 47 the parity orientation is no better than random (T = 180, 212,
+332, 400 ≈ 7–9 (p−1) versus random ≈ 6–9 (p−1); p = 59: 342 vs ≈ 620).  So there is no structured minimiser to count; H4′ would have to be
+proved for arbitrary r — the union-bound obstacle stands.  (`slack/orient_min_km1.py`; rules tested in the scratch script.)
