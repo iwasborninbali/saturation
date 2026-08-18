@@ -781,18 +781,40 @@ $2(p-1)-8m_8$ of them, and $|S|\le2\,(6m_8+2(p-1)-8m_8)=4(p-1)-4m_8$.
 Theorem~\ref{thm:two} was found independently, on the same day, by two of the agents mentioned in the disclosure; the point-by-point
 verification of the cover for all $19\le p<320$ is \texttt{slack/block\_cover\_km1.py}, and for $p\le101$ \texttt{slack/km1\_theorem\_check.py}.)
 
+\begin{proposition}[the number of eight-point lines]\label{prop:m8}
+Let $X(u)\in[-h,h]$ denote the least absolute residue of $u\in\Fp^*$.  Then $4\,m_8(p)$ is the number of pairs $(a,b)\in(\Fp^*)^2$ with
+\[
+ ab^2+(a^2-1)b+a\equiv0\pmod p,\qquad a^2\not\equiv-1,\quad b^2\not\equiv1,\qquad X(a)X(1/a)<0,\quad X(b)X(1/b)>0,
+\]
+\[
+ X(a)-X(1/a)+X(b)+X(1/b)\;=\;p\,\bigl([X(a)>0]-[X(b)<0]\bigr).
+\]
+\end{proposition}
+\begin{proof}
+By Lemma~\ref{lem:groups} an eight-point line $x-y=c$ corresponds to a residue $d$ with an $H(1)$-class $\kappa=(a,1/a)$, $a-1/a\equiv d$,
+whose $\sigma$-pair is shared and non-degenerate ($\sigma\kappa\ne\kappa$, i.e.\ $a^2\not\equiv-1$), and an $H(1)$-class $\lambda=(b,1/b)$,
+$b+1/b\equiv-d$, whose $\tau$-pair is shared and non-degenerate ($b^2\not\equiv1$), with $c_\kappa=c'_\lambda$.  Eliminating $d$ from
+$a-1/a\equiv-(b+1/b)$ gives the cubic.  Writing the base copies with $Y(u)=X(u)+p[X(u)<0]$: $c_\kappa=X(a)-Y(1/a)$ and
+$c_{\sigma\kappa}=X(-1/a)-Y(-a)=X(a)-X(1/a)-p[X(a)>0]$, so the $\sigma$-pair is shared iff $X(a)$ and $X(1/a)$ have opposite signs, and then
+$c_\kappa=X(a)-X(1/a)-p[X(a)>0]$; likewise $e_\lambda=X(b)+Y(1/b)$, $e_{\tau\lambda}=X(1/b)+Y(b)$, the $\tau$-pair is shared iff $X(b)$, $X(1/b)$
+have the same sign, and then $c'_\lambda=-e_\lambda=-X(b)-X(1/b)-p[X(b)<0]$.  The equality $c_\kappa=c'_\lambda$ is the displayed equation.
+Each line arises from exactly four pairs ($a\in\{a,-1/a\}$, $b\in\{b,1/b\}$).
+\end{proof}
+Since $a-1/a+b+1/b\equiv0$ on the cubic, the integer $L=X(a)-X(1/a)+X(b)+X(1/b)\in[-4h,4h]$ is a multiple of $p$, i.e.\ $L\in\{-p,0,p\}$;
+the last condition selects one of these three values.  So $m_8(p)$ counts the $\Fp$-points of the cubic whose least residues
+$(X(a),X(1/a),X(b),X(1/b))$ fall into an explicit union of polytopes of $[-h,h]^4$, and equidistribution of least residues along the curve
+(Weil/Bombieri estimates for character sums along an absolutely irreducible curve) should give $m_8(p)=(c_0+o(1))p$ with the volume
+constant $c_0$; the heuristic value $c_0=\tfrac1{12}$ (one quarter of the points survive the sign conditions, one third of those have the
+right value of $L$) agrees with the data ($m_8(p)/p\to0.083$, all $p\le1500$).  We do not carry this out here.
+
 \begin{remark}
 (a) The bound is attained at $p=11$: $m_8(11)=2$ and $\alpha(\Pset_{-1})=32=4\cdot10-8$ (exact maximum, Section~\ref{sec:beyond});
 $m_8(13)=m_8(17)=0$ (no gain), and $m_8(p)\ge2$ for every prime $19\le p\le1500$ (computed), so the bound is below $4(p-1)$ from
 $p=19$ on: for $k=-1$ the trivial bound $4(p-1)$ is never attained once an eight-point line exists.  In terms of the total number
 $M_8=2m_8$ of eight-point lines of both slopes the bound reads $4(p-1)-2M_8$.  For $p=19,23,29,37,47$ it coincides with the best rank-1 (LP) certificate using rows, columns and slope-$(\pm1)$ lines,
 which is $64,80,96,128,160$; for other $p$ that LP is somewhat smaller (it also exploits $5$--$7$-point lines with fractional weights).
-(b) Arithmetically, $m_8(p)$ is one quarter of the number of pairs $(a,b)\in(\Fp^*)^2$ with $ab^2+(a^2-1)b+a\equiv0$, $a^2\not\equiv-1$,
-$b^2\not\equiv1$, $X(a)X(1/a)<0$, $X(b)X(1/b)>0$ and $X(a)-X(1/a)+X(b)+X(1/b)=p\,([X(a)>0]-[X(b)<0])$, where $X(u)\in[-h,h]$ is the
-least absolute residue (verified for all $p\le199$; the last condition is automatic modulo $p$, so it selects one of three possible
-values of an integer in $(-2p,2p)$).  Numerically $m_8(p)/p\to0.083\approx1/12$ (all $p\le1500$; the mean over $200\le p\le1500$ is
-$0.0825$), so the theorem gives $\alpha(\Pset_{-1})\le(11/3+o(1))(p-1)$ \emph{if} $m_8(p)\ge(1/12-o(1))p$, a statement about the
-distribution of least residues of $(a,1/a,b,1/b)$ along the cubic, which we expect to follow from Weil-type bounds but have not proved.
+(b) With Proposition~\ref{prop:m8}: if $m_8(p)\ge(1/12-o(1))p$ (numerically true; not proved), then
+$\alpha(\Pset_{-1})\le(11/3+o(1))(p-1)$.
 (c) The argument uses that $R$ and $R'$ are symmetries of $\Pset_{-1}$; for a general second hyperbola $H(k)$ the rows pair a class of
 $H(1)$ with a class of $H(k)$ that is not the image of the first under a symmetry, and the analogous cover has waste.  Rank-1
 certificates below $4(p-1)$ do exist for other $k$ at large $p$ (data: LP with rows, columns, $\pm1$ lines is $3.61$--$3.89\,(p-1)$ for
