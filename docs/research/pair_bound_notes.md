@@ -178,3 +178,24 @@ data).  Both steps are research, not routine; but this is a well-posed programme
 ## 9. Symmetry for k = −1
 y ↦ 2p−y and x ↦ p−x map the box to itself and swap H(1) ↔ H(−1); their product is the half-turn of the box, preserving each
 hyperbola.  P_{−1} therefore has a Klein-four symmetry; the p=19 optimum (parity orientation) is not symmetric under it, though.
+
+## 10. Remarks obtained from the owner's external agents (ChatGPT, 2026-08-18; their limit is exhausted until 25 Aug) — audited by us
+(a) **Conic reduction (their claim, our proof).**  Let C be a non-degenerate conic over F_p whose projective closure misses one of the
+two axial points at infinity, say (1:0:0) ∉ C.  Then the projection (x,y) ↦ y is at most 2-to-1 on C(F_p) and its image has at most
+(p+1)/2 + O(1) residues... more precisely each residue b occurs for ≤ 2 points, so the lift of C into a box of side cp has points in at
+most c·(number of residues b covered) ≤ c·(|C(F_p)|/… ) rows — for the parabola y = x² exactly the (p−1)/2 quadratic residues plus 0,
+i.e. c(p+1)/2 rows, each with ≤ 2c candidates.  A lawful set has ≤ 2 points per row, hence α ≤ 2·c(p+1)/2 = c(p+1): ratio ≤ 1 + o(1)
+to the side, far below 3/2.  Conics containing BOTH axial points at infinity have equations xy + dx + ey + f = 0, i.e. are shifted
+modular hyperbolas (x+e)(y+d) = de − f.  So among conics only the (shifted) hyperbolas can compete with HJSW; this is why HJSW use
+the hyperbola, and it reduces the "conic barrier" question to hyperbolas — for one hyperbola and c = 2 our theorem gives 3/2 exactly.
+(Reducible conics = pairs of lines are covered by (b).)
+(b) **Line components are useless (their lemma (iv), correct).**  The lift of an F_p-line ux+vy ≡ w into a box of side cp: choose
+(U,V) ≡ t(u,v) (mod p) with |U|,|V| ≤ √p (pigeonhole over the p multiples); the lift satisfies Ux+Vy ≡ W (mod p), Ux+Vy ranges over an
+interval of length O(c p^{3/2}), so the lift lies on O(c√p) parallel integer lines; a lawful set takes ≤ 2 from each: ≤ O(c√p) points.
+Hence curves with line components gain nothing; only the non-linear components matter.
+(c) **Copy-template lemma (their (iii)):** if Ã ⊂ Z² lifts an arc A ⊂ F_p² and Q ⊂ Z² is lawful with no secant direction (primitive,
+reduced mod p) among the secant directions of A, then Ã + pQ is lawful.  (A construction principle for lower bounds; not relevant to
+upper bounds.)
+(d) Their audit of "T1–T4 with these ingredients": all FAIL — consistent with Parts A/B: the 4(p−1) bound is not strict via lines
+with ≤ 4 candidates (x ≡ 1/2 is LP-feasible), so any strict LP bound needs lines with ≥ 5 candidates — exactly the k = −1 opening of
+Part B (8-point slope-±1 lines).
