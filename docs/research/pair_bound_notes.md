@@ -319,3 +319,35 @@ compensations through ±1 lines when a row is partially inside a block).  So the
 via an explicit FRACTIONAL cover: weight 1 on the 3 lines of each block, and a weight assignment on rows/columns/±1 lines of cost
 ≤ (#rest points)/2 covering the rest — the latter is the combinatorial lemma to establish (waste 0, or O(1)).  Note that fractional covers
 suffice for the bound (LP duality), so no integral partition is needed.  Together with m₈ ~ p/12 (§12) this gives ≈ (4 − 1/3)(p−1).
+
+## B.9 (third solver, 2026-08-19) THEOREM (block cover, k = −1): α(P_{−1}) ≤ 4(p−1) − 2·m₈(p) — unconditional, elementary
+Notation: P_{−1} = (H(1)∪H(−1)) ∩ G(p); R: x' ↦ p−x' the reflection of the box (H(−1) = R(H(1)); rows are R-stable, R exchanges
+slope +1 and −1); m₈(p) = number of lines of slope ±1 carrying 8 points of P_{−1}.
+Facts (from §11 and the note): a slope-(+1) line x−y=d' carries only the classes of its residue group {κ, σκ, R(λ), R(τλ)}, and it has 8
+points iff the four centres coincide (pattern (4,8,4)): then the three lines c−p, c, c+p carry exactly the 16 copies of the four classes
+(4 = copies (0,1); 8 = copies (0,0),(1,1); 4 = copies (1,0)).  Call such a group a *block*.
+Lemma 1 (blocks are disjoint and mirror-closed).  An H(1)-class lies in a slope-(+1) block only if it is of type A∪D (σ-shared), in a
+slope-(−1) block only if it is of type B∪C (τ-shared); an H(−1)-class R(λ) lies in a (+1)-block only if λ ∈ B∪C and in a (−1)-block only
+if λ ∈ A∪D.  Hence no class lies in two blocks (blocks of one slope are on distinct residue lines; blocks of opposite slopes use disjoint
+class types), and the mirror R(G) of a block G is a block (R preserves the point set and exchanges the slopes); G ∩ R(G) = ∅ for the same
+type reason.  So the blocks form an R-symmetric family of pairwise disjoint 16-point sets, |family| = m₈.
+Lemma 2 (rows outside the blocks are full).  Row y contains the copies (0,0),(1,0) of κ_y = (1/y, y) ∈ H(1) and of R(κ_y) ∈ H(−1) (same
+y-residue), and nothing else.  Since the block family is R-closed, κ_y is in a block iff R(κ_y) is; hence every row contains 0 or 4 points
+outside the blocks (likewise rows y+p).
+Proof of the theorem (LP dual / cover).  Give weight 1 to the three lines of every block and weight 1 to every row containing points
+outside the blocks.  Every block point lies on one of its block lines; every other point lies on its row.  All these lines carry ≥ 3
+candidates, so "≤ 2 per line" holds for every lawful S, and |S| ≤ Σ_lines 2·w = 2·(3m₈) + 2·#rows = 6m₈ + 2·(8(p−1) − 16m₈)/4 =
+4(p−1) − 2m₈.  ∎
+Verified point by point for every prime 19 ≤ p < 320 (`slack/block_cover_km1.py`, log `slack/verification/block_cover_km1.log`): the
+greedy family always contains ALL 8-line groups (no conflicts), all used rows have exactly 4 outside points, cost = 4(p−1) − 2m₈; the
+resulting bounds are 3.43–3.87 (p−1) (m₈ = 4…56 in that range).  Note this is exactly the LP(1) value at p = 19, 23, 29, 37, 43, 47 (and
+never below LP(1), as it must be); at p = 61 the LP(1) is 207.3 while the theorem gives 232 (m₈ = 4 there) — the LP also exploits 5–7-point
+lines, which the block scheme ignores.
+Consequences.  (i) Unconditionally, for every p with m₈(p) ≥ 1, α(P_{−1}) ≤ 4(p−1) − 2, i.e. the trivial 2-factor bound is never attained
+for k = −1 when an 8-point line exists (m₈(p) ≥ 4 for all 19 ≤ p < 320).  (ii) With §12 (m₈(p) = (1/6 + o(1))p — both slopes — via the
+count of least residues on the cubic C₀; needs the Weil/Bombieri estimate) this gives α(P_{−1}) ≤ (11/3 + o(1))(p−1), i.e. T3 with
+ε = 1/3 − o(1).  (iii) The same cover with the 6- and 7-point lines (patterns (2,6,6,2), (1,5,7,3)/(3,7,5,1)) added would approach the
+LP(1) value ≈ 3.5(p−1) but needs the row/column bookkeeping for partial rows; the pure 8-line statement is clean and I would put it into
+the note as a theorem (with the finite verification and the arithmetic input stated as a separate proposition/conjecture).
+For general k the same proof gives α(P_k) ≤ 4(p−1) − 2·B_k where B_k is the number of 8-line groups whose family is closed under the
+row-partner map (κ_y ↔ λ_y) — for k = −1 this is automatic (mirror), for other k it must be checked group by group (data: partner §15).
