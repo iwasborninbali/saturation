@@ -81,4 +81,20 @@ p=19 hyp: best alpha=54 at shift (0, 10); ratio to N=2p: 1.421; 3(p-1)=54
 p=19 cub: best alpha=28 at shift (0, 0); ratio to N=2p: 0.737; 3(p-1)=54
 p=19 cubx: best alpha=39 at shift (0, 8); ratio to N=2p: 1.026; 3(p-1)=54
 p=19 cub2: best alpha=40 at shift (0, 4); ratio to N=2p: 1.053; 3(p-1)=54
+p=19 ell1: best alpha=36 at shift (0, 0); ratio to N=2p: 0.947; 3(p-1)=54
+p=19 ell2: best alpha=36 at shift (0, 0); ratio to N=2p: 0.947; 3(p-1)=54
+p=19 quart: best alpha=43 at shift (4, 16); ratio to N=2p: 1.132; 3(p-1)=54
+p=19 circ: best alpha=40 at shift (0, 0); ratio to N=2p: 1.053; 3(p-1)=54
+p=19 xy2: best alpha=36 at shift (0, 4); ratio to N=2p: 0.947; 3(p-1)=54
 ```
+
+### LP upper bounds (fractional cover by all lines with ≥ 3 points; `scratch lpcurves.py`), ratio LP/(2p) — the hyperbola is at 1.43–1.47 (→ 3/2):
+```
+p=43 : hyp 1.430  cub 0.698  cubx 0.976  ell 0.744      (lines>=3: hyp 59, cub 465, cubx 540, ell 303)
+p=61 : hyp 1.451  cub 0.689  cubx 0.978  ell 0.742      (85, 766, 799, 554)
+p=101: hyp 1.470  cub 1.098  cubx 1.059  ell 0.851      (145, 1517, 1417, 1734)
+```
+So for these cubics the LP certifies α ≤ 0.7–1.1 N per p — far below 3/2 N: Conjecture G holds for them with a large margin, and the question is a
+UNIFORM fractional-cover construction (the rich lines of a lifted cubic are the lifts of the ≍ p² residue-collinear triples that happen to be
+integer-collinear; their arithmetic is the analogue of the ±1 residue-group structure of the hyperbola).  Suggested first target: graphs y ≡ f(x),
+deg f = 3 — a theorem α ≤ (3 − c)p for an explicit c would be the first "curves cannot beat HJSW" statement beyond conics.
