@@ -1058,7 +1058,7 @@ Tools: `slack/chain_cert.py` (dual cover of ONE pair (G_d, G_{−d}) with rows/c
    The cycle LP is a one-dimensional problem, so the exact optimum for a given arrangement is computable in linear time (DP); the theorem reduces to
    bounding it from above for the actual arrangements — the honest difficulty is that the arrangement is only "random-like", not controlled.
 
-## 26. First solver (19.08): theorem C ⇐ (local rule with positive expected net) + (Kloosterman-level equidistribution of windows along the ⟨k⟩-cycle)
+## 26a. First solver (19.08): theorem C ⇐ (local rule with positive expected net) + (equidistribution of windows along the ⟨k⟩-cycle) — CORRECTED: the window statistics are curve-level (Bombieri), not Kloosterman-level
 Data first (`slack/cycle_stats.py`, primitive root k, single cycle of length 2(p−1); log `slack/verification/cycle_stats_prim_p700.txt`, primes 101…700):
 - K = M EXACTLY for every p (each 8-group contributes two κ- and two μ-specials, and every special class lies on the one cycle) — the walk returns to 0;
 - walk range (max − min of the running #K − #M) = 0.50·√p on average, ≤ 1.0·√p always — square-root fluctuations, no drift;
@@ -1078,7 +1078,7 @@ computation (the cycle LP restricted to window-w rules; the free LP's 0.75–0.9
 window rules should approach it as w grows) — plus the equidistribution lemma above.  For k of order L: the cycles have length 2L; the same argument
 works with windows shorter than the cycle when L → ∞ (L ≥ p^{1/2+ε} suffices for the error term); for bounded L (many short cycles) the pattern is
 periodic in j and one needs the equidistribution over the cycles instead — separate, easier case (a → k a is then a bounded-order map).
-Honest status: the arithmetic half (window equidistribution) is routine Kloosterman; the combinatorial half (a local rule with positive expected
+CORRECTION (after reading the second solver's §26): the special-indicator at a cycle position is NOT a function of least residues of rational functions of a alone: 'κ_x special' = (own pair {x, −1/x} shared) AND (partner pair {b, −k/b} shared) where b solves b² − (x − 1/x)·b − k ≡ 0 — an algebraic (square-root) function of x.  So a window of w positions is a point on the fibre product of w copies of the group curve b² − (x−1/x)b − k = 0 linked by x_j = k^j x, and its equidistribution in a box needs character sums along that curve (Bombieri/Weil, absolute irreducibility for each fixed w) — the same machinery as Prop m8asym and as the second solver's 'coarse-scale' remark, NOT plain Kloosterman.  Only the own-pair conditions (X(x), X(1/x)) are Kloosterman-level.  The reduction stands (local rule ⇒ theorem C, with an error term from the curve equidistribution), but the arithmetic half is heavier than I wrote.  Honest status: the arithmetic half (window equidistribution) is curve-level and unproved for w ≥ 2; the combinatorial half (a local rule with positive expected
 net) is what C1 is really asking, and I have not constructed one — but the data (adjacent independence, saving concentrated in short runs) suggest
 w = 2…4 will already give net > 0 (the free LP nets +0.75; the transitions count shows 0.4p of the 0.5p cost is recovered by the ½-scheme alone,
 so a rule that drops the lines of "isolated" groups and keeps ½ on groups whose specials have a K→M neighbour should tip the balance).
