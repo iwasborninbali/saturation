@@ -984,23 +984,68 @@ conditions are again interval conditions on the four linear forms $x_1,x_2,x_3,x
 symmetric.  All constants depend only on degrees.
 \end{proof}
 
-\begin{corollary}[conditional on Lemma~\ref{lem:arc}]\label{cor:general}
-There are absolute constants $c,C>0$ such that for every prime $p$ and every $k\notin\{0,1\}$ with $\operatorname{ord}(k)\ge p^{1/2}\log^{C}p$,
+\begin{lemma}[arc imbalance]\label{lem:arc}
+There is an absolute constant $C$ such that for every prime $p$, every $k\in\Fp\setminus\{0,1\}$, every coset $a_0\langle k\rangle$ and every
+arc $I=\{a_0k^j:\ J_1\le j\le J_2\}$ of the corresponding cycle,
 \[
- \alpha(\Pset_k)\ \le\ 4(p-1)-c\,\sqrt p/\log^{C}p .
+ \Bigl|\sum_{j=J_1}^{J_2}\bigl(s(\kappa_{a_0k^j})-s(\mu_{a_0k^{j+1}})\bigr)\Bigr|\ \le\ C\sqrt p\,\log^5p .
 \]
-\end{corollary}
-\begin{lemma}[arc imbalance; proof to be supplied]\label{lem:arc}
-For every arc $\{a_0k^j:\ J_1\le j\le J_2\}$ of a cycle,
-$\bigl|\sum_{j=J_1}^{J_2}\bigl(s(\kappa_{a_0k^j})-s(\mu_{a_0k^{j+1}})\bigr)\bigr|\le C\sqrt p\log^{C}p$.
+Consequently $R\le2C\sqrt p\log^5p$ and $|A_c-B_c|\le C\sqrt p\log^5p$ for every cycle $c$; if $k$ is a primitive root, $A_c=B_c$ exactly.
 \end{lemma}
-Lemma~\ref{lem:arc} gives $R\le2C\sqrt p\log^Cp$ and $|A_c-B_c|\le C\sqrt p\log^Cp$ for each of the $(p-1)/\operatorname{ord}(k)$ cycles, and
-Proposition~\ref{prop:g8k} gives $G_8\ge p/7$; the corollary follows from Theorem~\ref{thm:general}.  The lemma is a statement about
-incomplete sums of the indicator ``the class belongs to an eight-group'' along geometric progressions: completing the interval in $j$ by the
-characters of $\langle k\rangle$ reduces it to complete sums $\sum_{x}f(x)\psi(x)$ over $\Fp^*$ with $\psi$ multiplicative, where $f$ is a
-combination of products of sign conditions on $x$, $1/x$ and the two roots $b,-k/b$ of the partner quadratic (for either slope); Selberg's
-polynomials and the Bombieri--Perel'muter bound for mixed character sums along the curve $C_0(k)$ (and its slope-$(-1)$ twin) then give
-$O(\sqrt p\log^Cp)$.  We state it as a lemma because its proof is not written out in this version.
+\begin{proof}
+(This argument is due to the first of the agents mentioned in the disclosure; \texttt{docs/research/arc\_imbalance\_lemma.md}.)
+\emph{Fact 0.}  The own-pair conditions of the two slopes are complementary (for slope $+1$ the pair $\{a,-1/a\}$ shares its centre iff $X(a)$,
+$X(1/a)$ have opposite signs, for slope $-1$ the pair $\{a,1/a\}$ shares iff they have equal signs; likewise for $\mu_b$ with $X(b),X(k/b)$), so
+a class lies in an eight-group of at most one slope: $s(v)\in\{0,1\}$, $s=f^+_K+f^-_K$ on $H(1)$-classes and $s=f^+_M+f^-_M$ on $H(k)$-classes,
+where $f^{\pm}_K(x)$ (resp.\ $f^\pm_M(y)$) is the indicator that $\kappa_x$ (resp.\ $\mu_y$) is a class of an eight-group of slope $\pm1$;
+in particular $\sum_cA_c=\sum_cB_c=2G_8$.
+
+\emph{Step 1 (complete character sums).}  For a nontrivial multiplicative character $\psi$ of $\Fp^*$ we show
+$|\sum_xf^+_K(x)\psi(x)|\le C_1\sqrt p\log^4p$ (the three other functions are identical up to signs and the roles of $x,b$).  Now
+$f^+_K(x)=1$ iff $x^2\ne-1$, the partner quadratic $b^2-(x-1/x)b-k=0$ has two roots (its discriminant $Q(x)=(x^4+(4k-2)x^2+1)/x^2$ is a
+nonzero square), $X(x)X(1/x)<0$, and $X(b)X(k/b)<0$ for one (equivalently both) of the roots.  On the affine curve
+$C_0(k):\ xb^2-(x^2-1)b-kx=0$ there are exactly two points over each such $x$, so
+$\sum_xf^+_K(x)\psi(x)=\tfrac12\sum_{(x,b)\in C_0(k)(\Fp)}B_1(x)B_2(b)\psi(x)+O(1)$, where $B_1(x)$ is the indicator of
+$X(x)X(1/x)<0$ and $B_2(b)$ that of $X(b)X(k/b)<0$.  Each of $B_1,B_2$ is a sum of two products of two interval indicators on $\Z/p$, and an interval
+indicator has a Fourier expansion $\sum_m\hat c(m)e(mu/p)$ with $\sum_m|\hat c(m)|\le\log p+3$; hence
+$\sum_xf^+_K\psi=\tfrac12\sum c^1_{m_1n_1}c^2_{m_2n_2}\,T(\psi;f)+O(1)$ with $\sum|c^1|,\sum|c^2|\le2(\log p+3)^2$ and
+\[
+ T(\psi;f)=\sum_{(x,b)\in C_0(k)(\Fp)}\psi(x)\,e\bigl(f(x,b)/p\bigr),\qquad f=m_1x+n_1x^{-1}+m_2b+n_2kb^{-1}.
+\]
+$C_0(k)$ is absolutely irreducible of genus one (its function field is $\Fp(x,\sqrt{Q_1(x)})$ with $Q_1=x^4+(4k-2)x^2+1$ squarefree for
+$k\notin\{0,1\}$), the function $x$ has divisor $P_0^++P_0^--P_\infty^+-P_\infty^-$ with all multiplicities $\pm1$, so $x$ is not a $d$-th power
+times a constant for any $d\ge2$ and the Kummer sheaf $\mathcal L_\psi(x)$ is geometrically nontrivial; the Artin--Schreier sheaf
+$\mathcal L_e(f)$ has order $p$, coprime to the order of $\psi$, so $\mathcal L_\psi(x)\otimes\mathcal L_e(f)$ is nontrivial for \emph{every} $f$
+(including $f=0$), and $f$ has at most four poles, all of order $\le1$.  By the Weil--Bombieri bound for mixed sums along curves
+(\cite{Perelmuter}, \cite{Perret}; see also \cite[Ch.~11]{IK}) $|T(\psi;f)|\le C_2\sqrt p$ with $C_2$ absolute.  Summing, $|\sum_xf^+_K\psi|\le
+2C_2\sqrt p(\log p+3)^4+O(1)$.
+
+\emph{Step 2 (completion of the arc).}  Let $L=\operatorname{ord}(k)$, $r=(p-1)/L$, and $F(y)=s(\kappa_y)-s(\mu_{ky})$ (so the sum in the lemma is
+$\sum_{j\in I}F(a_0k^j)$).  Expanding the indicator of $I\subset\Z/L$ in the characters $\chi_m(k^j)=e(mj/L)$ of $\langle k\rangle$ gives
+$\bigl|\sum_{j\in I}F(a_0k^j)-\tfrac{|I|}{L}\hat F(0)\bigr|\le(\log L+1)\max_{m\ne0}|\hat F(m)|$ with $\hat F(m)=\sum_jF(a_0k^j)e(-mj/L)$; each
+$\chi_m$ is the restriction of exactly $r$ characters $\psi$ of $\Fp^*$, and $\hat F(m)=\tfrac1r\sum_{\psi|\langle k\rangle=\chi_{-m}}\bar\psi(a_0)
+\sum_yF(y)\psi(y)$, where for $m\ne0$ all these $\psi$ are nontrivial; by Step~1 (applied to $s(\kappa_y)$ and to $s(\mu_{ky})$, the latter being
+$\bar\psi(k)$ times the sum for $s(\mu_y)$) $|\hat F(m)|\le4C_1\sqrt p\log^4p$.  Finally $\hat F(0)=\sum_{y\in a_0\langle k\rangle}F(y)=A_c-B_c$ is
+$\tfrac1r\sum_{\psi|\langle k\rangle=1}\bar\psi(a_0)\sum_yF\psi$; the term $\psi=1$ is $(2G_8-2G_8)/r=0$ by Fact~0 and the others are again
+$\le4C_1\sqrt p\log^4p$ (there are none if $r=1$).  Both bounds together give the lemma with $C=8C_1+O(1)$.
+\end{proof}
+
+\begin{corollary}\label{cor:general}
+There are absolute constants $c,C>0$ such that for every prime $p$ and every $k\in\Fp\setminus\{0,1\}$ with $\operatorname{ord}(k)\ge C\sqrt p\log^5p$,
+\[
+ \alpha(\Pset_k)\ \le\ 4(p-1)-c\,\frac{\sqrt p}{\log^5p}\qquad(p\ge p_0).
+\]
+In particular this holds for every primitive root $k$, and for all but $O(p^{1/2+o(1)})$ values of $k$ (the elements of order $\le M$ in a
+cyclic group of order $p-1$ number at most $\tau(p-1)\,M$).
+\end{corollary}
+\begin{proof}
+By Proposition~\ref{prop:g8k}, $G_8\ge p/7$ for $p\ge p_0$; by Lemma~\ref{lem:arc}, $R\le2C\sqrt p\log^5p$ and
+$\sum_c|A_c-B_c|\le\frac{p-1}{\operatorname{ord}(k)}\,C\sqrt p\log^5p\le G_8/2$ once $\operatorname{ord}(k)\ge14C\sqrt p\log^5p$.  Theorem~\ref{thm:general}
+gives $\alpha(\Pset_k)\le4(p-1)-G_8/R\le4(p-1)-p/(14C\sqrt p\log^5p)$.
+\end{proof}
+The saving $\sqrt p/\log^5p$ is what the ``never blocking'' potential gives from the arc bound alone; numerically the potential cover with the
+uniform weight $t=1/m$, $m=4,\dots,8$, saves a positive proportion of $G_8$ (Remark below), and Lemma~\ref{lem:arc} is numerically sharp
+without the logarithms ($\max_\psi|\sum f_K\psi|/\sqrt p\in[1.2,2.7]$ for $p\le2003$, arcs $\le1.0\sqrt p$).
 
 \begin{remark}
 (a) The potential construction is exact in the following sense: for fixed line weights $t_G$ on the eight-groups, the cheapest assignment of
@@ -1179,6 +1224,8 @@ public in the repository.
 \bibitem{Montgomery} H.~L. Montgomery, Ten Lectures on the Interface between Analytic Number Theory and Harmonic Analysis,
  CBMS Regional Conf.\ Ser.\ in Math.\ 84, Amer.\ Math.\ Soc., 1994 (Chapter 1).
 \bibitem{Vaaler} J.~D. Vaaler, Some extremal functions in Fourier analysis, Bull.\ Amer.\ Math.\ Soc.\ 12 (1985) 183--216.
+\bibitem{Perelmuter} G.~I. Perel'muter, Estimate of a sum along an algebraic curve, Mat.\ Zametki 5 (1969) 373--380.
+\bibitem{Perret} M.~Perret, Multiplicative character sums and Kummer coverings, Acta Arith.\ 59 (1991) 279--290.
 \bibitem{Shp12} I.~E. Shparlinski, Modular hyperbolas, Jpn.\ J. Math.\ 7 (2012) 235--294; arXiv:1103.2879.
 \bibitem{KMSW} M.~R. Khan, R.~Magner, S.~Senger, A.~Winterhof, Two combinatorial geometric problems involving modular
  hyperbolas, arXiv:1304.6943.
