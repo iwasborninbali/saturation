@@ -565,3 +565,23 @@ degree/moment counting of the blocking hypergraph (constants 4–5, and no indep
 INJECTION from S₂ (minus O(1)) into R that respects the structure "R contains a transversal of 𝔅(q)" — e.g. a matching argument in the
 bipartite graph {q ∈ S₂} — {x ∈ R}, x ∈ ∪𝔅(q), which by Hall would need |∪_{q∈Q}∪𝔅(q) ∩ R| ≥ |Q| for all Q ⊆ S₂: this is where the
 data say it holds (with defect ≤ 5) and where I have no argument.
+## 20. H4′ has a spectral handle: T(ε) is a QUADRATIC form on the cube (second solver, 19.08 04:30 WITA; `slack/vp_fourier.py`, `slack/vp_quadratic.py`)
+Vertical-pair model, k=−1: S(r) as in §3/B.12; write ε_a = (−1)^{r_a}.  Expanding the collinear lift patterns of class triples,
+T(ε) = number of collinear triples of S(r) is a polynomial of degree ≤ 3, and **all odd-degree coefficients vanish** (because
+S(1−r) = R′(S(r)) and R′ is a symmetry: T(−ε) = T(ε)).  So
+   T(ε) = E(p) + εᵀ C_p ε,   E(p) = (number of collinear (class-triple, orientation, lift) patterns)/8,   C_p an explicit symmetric
+   (p−1)×(p−1) matrix with entries c_ab/2, c_ab = (1/8)·(#patterns in which a and b need equal bits − #patterns needing different bits).
+Consequence (trivial): min_ε T(ε) ≥ E(p) + (p−1)·λ_min(C_p).  DATA:
+  p:      11    13    17    19    23    29    31    37    41
+  E:     53.5  51.5  71.5  118  141.5  255  269.5  293  362.5      (E/(p−1): 5.4, 4.3, 4.5, 6.6, 6.4, 9.1, 9.0, 8.1, 9.1 — growing, ~ p log p?)
+  λ_min: −3.21 −2.37 −2.44 −4.03 −3.53 −4.50 −4.38 −4.35 −4.50   (bounded so far)
+  bound: 21.4  23.1  32.5  45.5  63.9  129  138  136  183           (≥ 1.9(p−1); 4.6(p−1) at 29–41)
+  true min (brute force ≤ 19): 24, 28, 42, 48 — the spectral bound is close.
+So H4′ (T(S(r)) ≥ c·p for EVERY orientation) is TRUE numerically with an explicit spectral certificate, and would be a THEOREM for the
+model if (i) E(p) ≥ c₁·p and (ii) λ_min(C_p) ≥ −c₂ with c₂ < c₁ (or E(p)/(p−1) → ∞ with λ_min bounded) can be proved — both are statements
+about explicit arithmetic quantities (E: a count of collinear lift patterns like the m₈ count; C_p: an explicit sparse ±-matrix whose
+operator norm looks bounded — 32 nonzeros per row at p=41 with |entries| ≤ 3 but λ_min ≈ −4.5, i.e. random-matrix-like cancellation).
+What it would give: every vertical-pair 2-factor has ≥ E + (p−1)λ_min collinear triples; with maximum triple-degree Δ per point (data: 4–7
+at p ≤ 19; likely O(log p)) at least (E + (p−1)λ_min)/Δ deletions are needed ⇒ a bound for the MODEL of the form 4(p−1) − c·p/log p or
+better; not T1 (singles/mixed pairs are outside the model), but the first rigorous handle on "why every orientation is bad".
+Running: p = 43…101 (`bench/vp_quadratic_large.log`) to see whether λ_min stays bounded and how E grows.
