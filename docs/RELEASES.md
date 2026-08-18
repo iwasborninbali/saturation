@@ -46,3 +46,12 @@ Same as v0.7 with the integral cover proof (third solver's variant) and cross-re
 |---|---|
 | `paper/hjsw_window.pdf` | `b93af4c50e93a09cf9f92dc4dab4586dd02e6c981069b8e6d61b1066dfe82c94` |
 | `paper/hjsw_window.tex` | `9f03d7d4c81583b75842189d3eb8d8cc424a2e7841a0b2b0ae6e52738df69ab2` |
+
+## hjsw-note-v0.8 (2026-08-19)
+Note v0.8: Proposition (arithmetic formula for m₈, proved) and Proposition (m₈ = p/12 + o(p) via Bombieri + Erdős–Turán–Koksma; proof
+sketch quoting standard estimates) ⇒ α(P₋₁) ≤ (11/3 + o(1))(p−1).
+
+| file | SHA-256 |
+|---|---|
+| `paper/hjsw_window.pdf` | `00fb945d4c504b78478a75eb33c266c880dbbbead4e244a0b08ddd237571085b` |
+| `paper/hjsw_window.tex` | `ed3bfe446ac67d05bd06800c734059e5d3da99196d57e72973ad1da40820de7a` |

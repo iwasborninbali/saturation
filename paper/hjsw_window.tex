@@ -51,7 +51,8 @@ $3(p-1)$ is attained.  The classification also gives the no-four-in-line
 analogue: the largest no-four-in-line subset of $\Hc\cap\Gp$ has exactly $\tfrac72(p-1)+s$ points, so the set $S_3$ of
 Kov\'acs--Nagy--Szab\'o is optimal as well.  For the union of two hyperbolae $H(1)\cup H(-1)$ in the HJSW box we prove
 $\alpha\le4(p-1)-4m_8(p)$ by an explicit weighted line cover, where $m_8(p)$ (the number of eight-point diagonals) is positive for all
-$19\le p\le1500$ and numerically $\approx p/12$; to our knowledge this is the first bound below the trivial $4(p-1)$ for a union of two hyperbolae.
+$19\le p\le1500$ and equals $(1/12+o(1))\,p$ (by Bombieri's estimate along a cubic), so that
+$\alpha\le(11/3+o(1))(p-1)$; to our knowledge this is the first bound below the trivial $4(p-1)$ for a union of two hyperbolae.
 The proofs are elementary and self-contained; independent programs check the statements about the HJSW box for all
 $p\le101$ (all $c$ for $p\le31$), the bound $3(p-1)$ for all boxes with $p\le61$, and the box formula and orbit lemma
 for all boxes with $p\le13$ and $p\le31$ respectively.
@@ -801,11 +802,34 @@ have the same sign, and then $c'_\lambda=-e_\lambda=-X(b)-X(1/b)-p[X(b)<0]$.  Th
 Each line arises from exactly four pairs ($a\in\{a,-1/a\}$, $b\in\{b,1/b\}$).
 \end{proof}
 Since $a-1/a+b+1/b\equiv0$ on the cubic, the integer $L=X(a)-X(1/a)+X(b)+X(1/b)\in[-4h,4h]$ is a multiple of $p$, i.e.\ $L\in\{-p,0,p\}$;
-the last condition selects one of these three values.  So $m_8(p)$ counts the $\Fp$-points of the cubic whose least residues
-$(X(a),X(1/a),X(b),X(1/b))$ fall into an explicit union of polytopes of $[-h,h]^4$, and equidistribution of least residues along the curve
-(Weil/Bombieri estimates for character sums along an absolutely irreducible curve) should give $m_8(p)=(c_0+o(1))p$ with the volume
-constant $c_0$; the heuristic value $c_0=\tfrac1{12}$ (one quarter of the points survive the sign conditions, one third of those have the
-right value of $L$) agrees with the data ($m_8(p)/p\to0.083$, all $p\le1500$).  We do not carry this out here.
+the last condition selects one of these three values.
+
+\begin{proposition}\label{prop:m8asym}
+$m_8(p)=\tfrac{1}{12}\,p+o(p)$ (with an error term $O(p^{5/6}\log^3p)$ from the argument below).  Consequently
+$\alpha(\Pset_{-1})\le\bigl(\tfrac{11}{3}+o(1)\bigr)(p-1)$.
+\end{proposition}
+\begin{proof}[Proof (sketch; standard estimates are quoted)]
+Let $C_0$ be the affine cubic $ab^2+(a^2-1)b+a=0$.  Its points have $a\ne0\ne b$ except $(0,0)$; as a polynomial in $b$ over
+$\overline{\Fp}(a)$ its discriminant $a^4-6a^2+1=(a^2-3)^2-8$ has four distinct roots, hence is not a square, so $C_0$ is absolutely
+irreducible and $|C_0(\Fp)|=p+O(\sqrt p)$ (Weil).  On $C_0$ we have $1/b\equiv-(a-1/a+b)$, so the least residues satisfy
+$X(1/b)=X(-(a-1/a+b))$ and the conditions of Proposition~\ref{prop:m8} are conditions on the point $(a,1/a,b)\bmod p$ of the
+$3$-torus $\Fp^3$: writing $T=X(a)-X(1/a)+X(b)$, we have $X(1/b)=-T+p\,\varepsilon$ with $\varepsilon\in\{-1,0,1\}$ chosen so that
+$|{-T}+p\varepsilon|\le h$, and $L=p\varepsilon$; going through the four sign patterns ($X(a)>0>X(1/a)$ or $X(a)<0<X(1/a)$; $X(b),X(1/b)$
+both positive or both negative), the conditions of Proposition~\ref{prop:m8} become: $(X(a),X(1/a),X(b))$ lies in one of four
+polytopes of $[-h,h]^3$, namely (up to $O(1)$ boundary effects) $\{x_1>0>x_2,\ x_3>0,\ p/2<x_1-x_2+x_3<p\}$,
+$\{x_1>0>x_2,\ x_3<0,\ 0<x_1-x_2+x_3<p/2\}$, $\{x_1<0<x_2,\ x_3>0,\ -p/2<x_1-x_2+x_3<0\}$, $\{x_1<0<x_2,\ x_3<0,\ -p<x_1-x_2+x_3<-p/2\}$,
+each of relative volume $\tfrac18\cdot\tfrac23=\tfrac1{12}$ in $[-h,h]^3$ (for independent uniform $U_i$ on $(0,1)$,
+$\Pr[1<U_1+U_2+U_3<2]=\Pr[0<U_1+U_2-U_3<1]=\tfrac23$), total $\tfrac13$.  For $(u,v,w)\in\Fp^3\setminus\{0\}$ the function
+$f=ua+v/a+wb$ is non-constant on $C_0$ ($b\notin\overline{\Fp}(a)$, and $ua+v/a$ is non-constant unless $u=v=0$), so by Bombieri's
+estimate for exponential sums along an absolutely irreducible curve \cite{Bombieri66} the sums $\sum_{P\in C_0(\Fp)}e(f(P)/p)$ are
+$O(\sqrt p)$ with a constant depending only on the degrees.  By the Erd\H os--Tur\'an--Koksma inequality the (box) discrepancy of the point
+set $\{(a,1/a,b)\bmod p:(a,b)\in C_0(\Fp)\}$ in the $3$-torus is $O(p^{-1/2}\log^3p)$; for a convex polytope with a bounded number of
+faces the number of points is (relative volume)$\cdot|C_0(\Fp)|+O(p^{5/6}\log^3p)$ (cover the polytope by $O(M^2)$ boxes of side
+$p/M$ up to a boundary layer of relative measure $O(1/M)$ and take $M=p^{1/6}$).  Thus the number of pairs in
+Proposition~\ref{prop:m8} is $\tfrac13p+O(p^{5/6}\log^3p)$ (the excluded points $a^2\equiv-1$, $b^2\equiv1$ are $O(1)$), and
+$m_8(p)=\tfrac1{12}p+O(p^{5/6}\log^3p)$.  The second statement follows from Theorem~\ref{thm:two}.
+\end{proof}
+The data agree: $m_8(p)/p$ has mean $0.0825$ over the $193$ primes in $[200,1500]$ (range $0.058$--$0.108$; $1/12=0.0833$).
 
 \begin{remark}
 (a) The bound is attained at $p=11$: $m_8(11)=2$ and $\alpha(\Pset_{-1})=32=4\cdot10-8$ (exact maximum, Section~\ref{sec:beyond});
@@ -813,8 +837,9 @@ $m_8(13)=m_8(17)=0$ (no gain), and $m_8(p)\ge2$ for every prime $19\le p\le1500$
 $p=19$ on: for $k=-1$ the trivial bound $4(p-1)$ is never attained once an eight-point line exists.  In terms of the total number
 $M_8=2m_8$ of eight-point lines of both slopes the bound reads $4(p-1)-2M_8$.  For $p=19,23,29,37,47$ it coincides with the best rank-1 (LP) certificate using rows, columns and slope-$(\pm1)$ lines,
 which is $64,80,96,128,160$; for other $p$ that LP is somewhat smaller (it also exploits $5$--$7$-point lines with fractional weights).
-(b) With Proposition~\ref{prop:m8}: if $m_8(p)\ge(1/12-o(1))p$ (numerically true; not proved), then
-$\alpha(\Pset_{-1})\le(11/3+o(1))(p-1)$.
+(b) Proposition~\ref{prop:m8asym} makes the bound asymptotically explicit: $\alpha(\Pset_{-1})\le(11/3+o(1))(p-1)$, against the
+trivial $4(p-1)$ and the computed maxima $3(p-1)+O(1)$ for $p\le23$.  The proof of the proposition is a sketch that quotes standard
+estimates; the theorem itself is elementary and unconditional.
 (c) The argument uses that $R$ and $R'$ are symmetries of $\Pset_{-1}$; for a general second hyperbola $H(k)$ the rows pair a class of
 $H(1)$ with a class of $H(k)$ that is not the image of the first under a symmetry, and the analogous cover has waste.  Rank-1
 certificates below $4(p-1)$ do exist for other $k$ at large $p$ (data: LP with rows, columns, $\pm1$ lines is $3.61$--$3.89\,(p-1)$ for
@@ -930,6 +955,7 @@ public in the repository.
 \bibitem{KNS25} B.~Kov\'acs, Z.~L. Nagy, D.~R. Szab\'o, Randomised algebraic constructions for the no-$(k+1)$-in-line
  problem, arXiv:2508.07632 (v1 11 Aug 2025, v2 21 Jul 2026); Advances in Combinatorics 2026:7, doi:10.19086/aic.2026.7
  (to appear).
+\bibitem{Bombieri66} E.~Bombieri, On exponential sums in finite fields, Amer.\ J. Math.\ 88 (1966) 71--105.
 \bibitem{Shp12} I.~E. Shparlinski, Modular hyperbolas, Jpn.\ J. Math.\ 7 (2012) 235--294; arXiv:1103.2879.
 \bibitem{KMSW} M.~R. Khan, R.~Magner, S.~Senger, A.~Winterhof, Two combinatorial geometric problems involving modular
  hyperbolas, arXiv:1304.6943.
