@@ -958,3 +958,30 @@ short character sums below the Burgess range in two variables — beyond current
 (e.g. an exact identity making the family sums complete, or a non-spectral argument that avoids per-scale cancellation).  I recommend: freeze the
 conditional theorem (model_theorem_conditional.md, updated with the p ≤ 4001 data), keep the hypothesis as ONE clean conjecture with the numbers, and
 put the fresh-eyes/agents on the two questions (β′)/(α′) as stated in fresh_eyes_task_B; no more numerics needed on this vector.
+
+## 24. T2.18 (first solver, 19.08): exact classification of the 5/6/7/8-point ±1 lines for k = −1, and the constants to p = 500
+Setting as in §11–12: residue d, H(1) classes κ, σκ (a − 1/a ≡ d; one class if a² ≡ −1), H(−1) classes R(λ), R(τλ) (b + 1/b ≡ −d; one
+class if b² ≡ 1); centres d_κ = X(a) − X(1/a) − p[X(1/a)<0], d_σκ = X(a) − X(1/a) − p[X(a)>0], −e_λ = −X(b) − X(1/b) − p[X(1/b)<0],
+−e_τλ = −X(b) − X(1/b) − p[X(b)<0].  Two facts make the classification exact:
+(F1) each pair's two centres are either EQUAL or differ by EXACTLY p (the difference is p·(difference of two 0/1 brackets)); the σ-pair
+     shares its centre iff sign X(a) ≠ sign X(1/a), the τ-pair iff sign X(b) = sign X(1/b) (§12);
+(F2) LEMMA (automatic cross-coincidence): if both pairs share their centres, then the two centres coincide.  Proof: cross-equality
+     d_κ = −e_λ ⇔ L := X(a) − X(1/a) + X(b) + X(1/b) = p([X(1/a)<0] − [X(1/b)<0]); L ≡ 0 (mod p) on C₀ and |L| ≤ 2p−2, so L ∈ {−p,0,p};
+     with sign X(a) ≠ sign X(1/a) and sign X(b) = sign X(1/b) the four sign cases give L ∈ (0,4h] / [−2h+2,2h−2] / [−2h+2,2h−2] / [−4h,0)
+     and required values p / 0 / 0 / −p respectively — in each case the only multiple of p in the range is the required one. ∎
+     (So the third condition of §12 for an 8-point line is implied by the first two.)
+CLASSIFICATION (4-class groups, i.e. both quadratics solvable and non-degenerate): pattern (m, m+4, 8−m, 4−m) with
+   both pairs shared  ⇒ m = 4: lines (4, 8, 4)          — one 8-point line;
+   exactly one shared ⇒ m ∈ {1,3}: (3,7,5,1) or (1,5,7,3) — one 7-point AND one 5-point line;
+   neither shared     ⇒ m = 2: (2, 6, 6, 2)             — two 6-point lines.
+Hence m₈ = #(both), m₇ = #(one) = m₅ − O(1) (the O(1): 3-class groups with a σ- or τ-fixed class give extra 5-lines), m₆ = 2·#(neither).
+2-class groups (one quadratic solvable) give only (2,4,2) or (1,3,3,1).  Verified against `slack/km1_lines.py` for all p ≤ 500
+(`slack/km1_lines_5678.py`, log `slack/verification/km1_lines_5678_p500.txt`; assertion "centres ∈ {c, c+p}" never fails).
+COUNTS (primes 200 ≤ p ≤ 500, totals): 4-class groups N₄/p = 0.2429 (→ 1/4); among them both-shared 32.7 %, one-shared 32.9 %,
+neither 34.4 % — i.e. (1/3, 1/3, 1/3), NOT the (1/4, 1/2, 1/4) of independent signs: on the curve C₀ the events "σ shared" and "τ shared"
+are negatively correlated (P(both) = P(neither) = 1/3 empirically).  Densities: m₈/p = 0.0795, m₇/p = 0.0800, m₅/p = 0.0835,
+m₆/p = 0.1677 (→ 1/12, 1/12, 1/12, 1/6); savings per slope (2m₈ + 1.5m₇ + m₆ + 0.5m₅)/p = 0.488 → the limiting constant is
+c₁ = 2·(N₄/p) = 1/2 exactly if the fractions are exactly (1/3,1/3,1/3) and N₄/p → 1/4 (savings per 4-class group = (2 + 1.5 + 2 + 0.5)/3 = 2).
+Consequently the T3′ target "α ≤ 4(p−1) − c₁(p−1) + o(p) with c₁ = 1/2 per slope" is a statement about the joint distribution of the
+two sign events on C₀; the m₈ proposition (m₈ ~ p/12) already contains the "both" third; the same equidistribution argument on C₀ with the
+sign polytopes for the other cells should give the 1/3–1/3–1/3 law (the polytope volumes are computable — I have not done it).
