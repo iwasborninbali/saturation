@@ -423,3 +423,47 @@ Consequences.
 Recommendation for the 02:40 sync: the k=−1 upper-bound line via covers is exhausted at 11/3 (clean) / ≈3.45 (LP, non-clean); the
 next real step is either the LOWER-bound construction (3(p−1)+c for all p; second solver's line) or a genuinely global argument
 (counting cross triples of all slopes for dense S — pseudo-randomness), not more local inequalities.
+
+## B.12 (third solver, task H4, deadline 03:40 WITA) H4 made precise; what it implies; what tool it needs; data for the vertical-pair model
+**H4 (precise).** For every S ⊆ P₋₁ with at most two points in every row and every column, T(S) := #{collinear triples in S} ≥
+c·(|S| − 3(p−1) − C₀) for absolute constants c > 0, C₀ (all slopes count; the row/column hypothesis is harmless since a lawful S
+satisfies it and every S can be trimmed to it by ≤ Σ_rows(|S∩row|−2)⁺ + … deletions).  Consequences: T(S) = 0 forces |S| ≤ 3(p−1)+C₀,
+i.e. H4 ⇒ T1 in the strong O(1) form; conversely T1(O(1)) ⇒ H4 with c = 1 (delete one point per triple).  So H4 is not an intermediate
+hypothesis but the target itself in "supersaturation" form; the useful content is the linear growth of the loss, which is what a proof
+technique would have to deliver.  Weaker, still meaningful: H4(ε): T(S) ≥ c·|S| whenever |S| ≥ (3+ε)(p−1) — this gives T2 (α ≤ (3+ε)(p−1)).
+**H4′ (vertical-pair model, second solver's orientation problem).** S(r): class κ_a takes both lifts in column X_a + r_a p, its column
+partner R′(κ_a) in the other column (r ∈ {0,1}^{p−1}); every S(r) is a 2-factor (4(p−1) points, 2 per row and column).  Brute force over
+ALL 2^{p−1} orientations (`slack/orient_min_km1.py`):
+  p=11: min_r T(S(r)) = 24 (mean 53.5, max 86; 2 minimisers);  p=13: 28 (mean 51.5);  p=17: 42 (mean 71.5; 4 minimisers);
+  p=19: 48 (mean 118, max 196; 2 minimisers).  So min_r T ≈ 2.2–2.7 (p−1) — linear, and far below the mean (≈ 4–6 (p−1)).
+  In the minimising orientation the maximum number of triples through one point is 5, 4, 6, 7, and the exact minimum number of
+  deletions making S(r*) lawful is 10, 12, 16, 13 → lawful subsets 30, 36, 48, 59 = 3(p−1) + 0, 0, 0, 5: the triple-minimising
+  orientation is NOT the one whose best lawful subset is largest (except p=19); "few triples" and "few forced deletions" are different
+  optimisation problems (deletions must hit every triple; a point of degree Δ kills ≤ Δ triples, so #deletions ≥ T/Δ_max, but the
+  optimum uses the hypergraph structure).
+**What H4′ would give.**  If T(S(r)) ≥ c₁(p−1) for all r and the maximum triple-degree is ≤ Δ, then every lawful subset of a
+vertical-pair 2-factor has ≤ 4(p−1) − c₁(p−1)/Δ points — a T2-type bound for the model (with c₁ ≈ 2.4, Δ ≈ 7 this is ≈ 3.66(p−1),
+i.e. nothing beyond the block theorem unless Δ is shown to be O(1) and c₁ larger; the exact deletion numbers above show the truth for
+the model is 3(p−1)+O(1), far better than T/Δ).
+**Tools, honestly.**
+(i) H4′ is a MAX-3-SAT lower bound for a STRUCTURED 3-CNF on p−1 bits with ~30p clauses (each mod-p collinear class triple contributes
+   ≤ 8 lift patterns).  For a random 3-CNF of that density every assignment violates Θ(p) clauses (first moment + Chernoff over 2^p
+   assignments).  Here the indicators "clause violated" (for random r) are dependent only through shared variables, so Janson-type
+   concentration applies, but the union bound over 2^{p−1} assignments fails by constants (dependency degree ≈ 3·(clauses per variable)
+   ≈ 270; the exponent c·δ²·E/Δ with E ≈ 4p is far below p·ln 2).  No first-moment proof.
+(ii) Unsatisfiable cores (small variable sets on which the clauses cannot all be satisfied) would give T ≥ #disjoint cores for every r
+   deterministically; the second solver's T2.1 data say the loss is global (no 2–3-block conflicts, one 4-block core at p=19 near the
+   central cross), so Θ(p) disjoint SMALL cores do not exist — cores, if any, are long-range.
+(iii) Second-moment / pseudo-randomness gives statements for MOST r (T ≥ E − o(E) typically), not for all r; the minimisers are 2–4
+   special orientations far below the mean, so "typical" bounds cannot reach them.
+(iv) A global geometric argument would need an UPPER bound on the number of distinct lines spanned by S (lawful ⇔ S spans C(|S|,2)
+   lines); Beck/Szemerédi–Trotter give lower bounds on spanned lines, not upper ones; nothing in the literature we know bounds the
+   directions spanned by a dense subset of a lifted hyperbola pair from above.
+(v) Sum-of-squares/SDP certificates of min_r T(S(r)) ≥ c(p−1) can be computed for each p (degree-3 polynomial on the cube), but that
+   is a per-p certificate, not a proof for all p, unless the certificate has a p-independent structure — untested.
+**Conclusion for the sync:** H4/H4′ are the right quantitative targets and the data support them (min over all orientations ≈ 2.4(p−1)
+triples), but I do not see a tool that gives "for ALL orientations" — the obstacle is the same as before: the loss is created by
+long-range triples of many slopes with only arithmetic (not combinatorial) structure.  The one concrete thing I would still try in the
+model: check whether the minimising orientations for p=11…19 (and their triple sets) have a common arithmetic description (e.g. r_a as a
+function of X(a), X(1/a) signs) — if the minimiser is "structured", its T could be computed by counting and then H4′ reduces to showing
+no unstructured r does better, which is again the union-bound obstacle.  Otherwise: close the note with what is proved.
