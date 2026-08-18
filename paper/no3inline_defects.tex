@@ -40,7 +40,7 @@ corresponding families exhaustively for small $n$ with an exact branch-and-bound
 and the class counts of Flammenkamp's database): the $3$-cycle family for odd $n\le25$, $33$ and (in part) $37$, $39$,
 $41$; the two-loop family for even $n\le28$ and $n=36$; the mixed families for $n\le27$ (all empty).  Among the
 configurations found are: for $n=36$, the first located $2n$-point configurations whose symmetry group is exactly the
-half-turn (three inequivalent ones); for $n=37$ (two) and $n=39$ (one), the first located configurations of that
+half-turn (exactly three inequivalent ones in the two-loop family); for $n=37$ (two) and $n=39$ (one), the first located configurations of that
 symmetry group outside the rct4 pseudo-class (Flammenkamp's rct4 configurations of 1997/98 already have exactly
 half-turn symmetry); and a further one for $n=33$.  ``First located'' refers to the public files of Flammenkamp's
 database as of 2026-08-11 and awaits confirmation by its maintainer.  Configurations, programs and sweep journals are
@@ -240,8 +240,8 @@ $n$ & defects mod $\Dfour$ (central) & C4 base & V2 base & status of the sweep\\
 23 & 715 (55) & 0 & 0 & complete\\
 25 & 946 (66) & 0 & 0 & complete\\
 33 & 2360 (120) & 1 & 0 & complete (both bases)\\
-37 & 3417 (153) & $\ge2$ & 0 & V2 base complete; C4 base: 3264 non-central sub-classes complete (2 configurations), the 153 central ones in progress\\
-39 & 4047 (171) & $\ge1$ & $\ge0$ & C4 base: 300 sub-classes swept (1 configuration); V2 base: 3277 swept (none)\\
+37 & 3417 (153) & 2 & 0 & complete (both bases)\\
+39 & 4047 (171) & $\ge1$ & $\ge0$ & C4 base: 300 non-central sub-classes swept (1 configuration), central in progress; V2 base: 3277 non-central swept (none), central complete (none)\\
 41 & 4750 (190) & $\ge0$ & $\ge0$ & V2 base: 4560 non-central sub-classes complete (none), central in progress; C4 base: 3030 swept (none)\\
 45 & 6391 (231) & --- & $\ge0$ & V2 base: 400 sub-classes swept (none); C4 base not started\\
 \bottomrule
@@ -260,8 +260,8 @@ $n$ & sub-classes $\{x,y\}$ mod $\Dfour$ & inequivalent configurations\\
 24 & 66 & 2 (complete)\\
 26 & 78 & 1 (complete)\\
 28 & 91 & 1 (complete)\\
-36 & 153 & $\ge3$: 152 sub-classes exhausted (three of them contain a configuration, two labelled solutions each, i.e.\ one
-configuration up to the diagonal reflections); the sub-class $\{1,4\}$ exceeded the one-hour limit and is being rerun\\
+36 & 153 & 3 (complete: three sub-classes contain a configuration, two labelled solutions each, i.e.\ one configuration
+up to the diagonal reflections; the sub-class $\{1,4\}$ needed a rerun without time limit, $4.9\cdot10^7$ nodes)\\
 \bottomrule
 \end{tabular}
 \caption{The two-loop family (even $n$): C4-orbits plus one half-turn loop on each long diagonal.  A sub-class is an
@@ -354,8 +354,9 @@ contains the first $n=37$ configuration (one configuration, $1.4\cdot10^7$ nodes
 finds the first $n=36$ configuration in about 100\,s and \texttt{PAIRS="1,1;9,26" ./there 36 2} the second in about 30\,s
 (wall time on the laptop); the sub-class $\{5,6\}$ is exhausted in about $7$ min and contains exactly two labelled
 configurations, i.e.\ one up to the diagonal reflections, which preserve both loops.  Journals of the early sweeps run on the
-first agent's machine (the first halves of the lists for $n=39,41,45$) are being added; the $n=33$ and non-central $n=37$
-rows are being rerun with the corrected generator on a cloud machine, journals to follow.  All exhaustive statements are
+first agent's machine (the first halves of the lists for $n=39,41,45$) are being added; the $n=33$ row was rerun in full with
+the corrected generator on a cloud machine (\texttt{logs/sweeps/family3full\_*\_n33.txt}: $2360$ sub-classes per base, one
+configuration), and the $n=37$ row was completed by sweeping the $153$ central sub-classes for both bases.  All exhaustive statements are
 computer-assisted results of a trusted program (validated as in Section~\ref{sec:solver}); no independent certificates of
 non-existence are produced.
 
