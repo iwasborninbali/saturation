@@ -383,3 +383,17 @@ Findings (`/tmp/.../gadget66*.py`, k = −1, p ≤ 199):
    gadget bound is ≥ LP(1) for every p, as it must be; an earlier version double-counted ν(G).)
 Conclusion: keep Theorem (11/3) as the clean statement; the gap 11/3 → ≈3.45 is what fractional certificates buy through non-local
 sharing, and the true α (3(p−1)+O(1) in data) is far below both — the remaining loss is not visible to rank-1 certificates at all.
+
+## 18. k = −1: orbit blocks and the periodic model (second solver, 2026-08-19; `slack/orbit_blocks.py`, `slack/periodic_model.py`)
+* **Orbit blocks.**  Under Γ = {1, R, R′, ν} the classes fall into (p−1)/2 orbits {κ, νκ} ∪ {Rκ, R′κ}; the 16 points of an orbit form a FULL
+  4×4 grid on the rows {y ≡ 1/a} ∪ {y ≡ −1/a} (two lifts each) and the columns {x ≡ a} ∪ {x ≡ −a}, and every row/column of the box lies inside
+  one orbit block.  So the row/column constraints are block-local: ≤ 8 points per block (a 2-factor of K₄,₄ at most), 4(p−1) in total; the
+  entire loss comes from lines joining different blocks (slopes ±1 and general).  Data (p=19 optimum, 59 = 8+8+7+6+4+7+6+6+7 over the
+  blocks a = ±1…±9): full blocks (8) at small |X_a| — each of the four classes takes a vertical pair in its own column — and deficits
+  growing with |X_a| (block a=±5: only 4 points, one per class, all in the lower rows).  Truth ≈ 6 points per block on average.
+* **Periodic model** (S = union of vertical pairs; per column choose H(1), H(−1) or nothing; y ↦ y+p invariance): exact optimum
+  24, 34, 48, 52, 60 for p = 11, 13, 17, 19, 23 (= 3(p−1) − 6, −2, 0, −2, −6), i.e. 12/20, 17/24, 24/32, 26/36, 30/44 columns used — well
+  below α (32, 40, 54, 59, 70–74): the singles/mixed pairs of the true optima are worth +6…+10.  So neither the pure periodic model nor the
+  restricted model R captures α; the extremal structure mixes vertical pairs (inner blocks) with singles (outer blocks).
+* Consequence for T1 (k=−1): a proof must handle mixed structures; a clean statement about "blocks" (≤ 6 per block on average, i.e.
+  Σ_blocks(8 − n_B) ≥ (p−1) − O(1)) is what the data say, and the theorem gives Σ(8 − n_B) ≥ 4m₈ ≈ p/3.
