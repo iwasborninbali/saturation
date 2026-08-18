@@ -916,3 +916,45 @@ circulant part: ‖C̄‖ ≈ √(2 log p)·‖w̄‖₂ = √(2 log p · 0.1 m�
 Consequences: (β′) is expected to hold with c ≈ 0.7 for all p, but not with c → 1; the model theorem via the split C̄ + C̃ would read
 min_r T(r) ≥ (0.65 − o(1))·E(p); the arithmetic input it needs is exactly "the character sums over the family disc are at the random level
 (≤ K√(log p)·‖w‖₂ for every ψ)" — a large-sieve-type statement for one explicit sequence, which is what brief 7 should ask for.
+
+## 23. T2.16 (second solver, 19.08 04:20 WITA) — the model theorem is a sub-Burgess statement: circulant part measured to p = 4001, the scale accounting, and what a proof would need
+Tools: `slack/vp_lines.c` (O(n² log n) enumeration of all collinear triples of the doubled vertical-pair set; reproduces `vp_quadratic.py` exactly at
+p = 19, 23: E, λ_min, nnz), `slack/vp_circulant.py` (multiplier circulant C̄ via discrete logs + FFT, C̃ = C − C̄, spectra); log
+`slack/verification/vp_circulant_p199-4001.log`.
+**Data** (E/(p−1); m₂; ‖w̄‖₂²; ‖w̄‖₁/(E/(p−1)); ‖C̄‖/(E/(p−1)); λ_min(C)/(E/(p−1)); λ_min(C)/√m₂; ‖C̃‖/√m₂(C̃); (E+(p−1)λ_min)/(p−1)):
+p=199: 17.2; 21.3; 2.13; 0.68; 0.29; −0.52; −1.94; 2.27; 8.3     p=499: 17.2; 21.9; 1.38; 0.58; 0.21; −0.51; −1.87; 2.36; 8.5
+p=997: 20.0; 27.1; 0.83; 0.65; 0.28; −0.50; −1.94; 2.47; 10.0    p=1999: 26.6; 36.2; 2.33; 0.71; 0.30; −0.46; −2.01; 2.55; 14.5
+p=4001: 28.1; 37.7; 2.31; 0.70; 0.30; −0.45; −2.08; 2.40; 15.3.
+E/((p−1) ln p) = 3.3, 2.8, 2.9, 3.5, 3.4 (≍ log p with the QR fluctuations of B.15(a)); m₂/(E/(p−1)) = 1.24–1.35; λ_min(C) ≈ −(1.9…2.1)√m₂ at every p
+(the Wigner edge, K ≈ 2 in Conjecture B); the spectral bound is positive and growing (15.3 (p−1) at p = 4001), so the model theorem is TRUE numerically
+with a wide margin up to p = 4001.  Two corrections to the reading of B.18: (i) ‖w̄‖₂² is O(1) (0.8–2.3, no growth while m₂ goes 21 → 38), NOT 0.1·m₂:
+the ratio 0.10 → 0.06 is only a small-p coincidence; (ii) ‖C̄‖/(E/(p−1)) is flat at 0.2–0.3 for the same reason it looks flat at 41 ≤ p ≤ 199 (see below).
+**Structure.**  The multiplier of a family and slot, μ_F(t,t′) = (z_F+t′)/(z_F+t), depends only on the RATIO s₂/s₁ (z_F is homogeneous of degree 1 in
+(s₁,s₂)): all scalings (ks₁,ks₂) of a coprime family share the multiplier, with weights ∝ 1/k² and (by P_diff ≈ |Δt||u|/p, scale-invariant) the same
+mean sign — no cancellation across scales, and Σ_k k^{−2} < ∞.  Explicitly, with r = √(s₁²+s₂²) and σ = s₁+s₂: the same-type slots give
+μ = −(σ ± r)²/(2s₁s₂) and μ′ = (s₂−s₁ ± r)²/(2s₁s₂), so ψ(μ) = ψ(−1)ψ̄(2s₁s₂)ψ(σ±r)²; for the quadratic character ψ(μ) = ψ(∓2s₁s₂) is a Legendre
+symbol of an integer polynomial.  The largest |w̄_μ| are the smallest present coprime families: at p ≡ ±1 (mod 5) the golden family (1,2)
+(μ′ = (3±√5)/2 = n+2, 1−n with n²+n−1 ≡ 0; w̄ ≈ +0.50, and its two mixed pairs ≈ −0.41, −0.40 at p = 199, 499, 1999, 4001), at p = 997 (5 non-
+residue) the family (2,3) (μ′ = (7±√13)/6 = 741, 923; w̄ = 0.31).  Hence ‖w̄‖₂ = O(1) is PROVABLE (Σ_F σ_F^{−4} < ∞ over coprime families plus a
+bound p^{1/2+o(1)} on accidental coincidences μ(λ) = μ(λ′) for each small λ), while the ℓ¹ mass ‖w̄‖₁ ≈ Σ_j (mass of dyadic scale j) has ≍ 1 per scale.
+**Heuristic for the circulant norm.**  ŵ(ψ) = Σ_j (scale-j sum); scale j has ~4^j coprime families of weight ~4^{−j} (ℓ¹ ≍ 1, ℓ² ≍ 2^{−j}); a fixed
+number of small families can be aligned by some ψ (Dirichlet), the bulk is at the random level max_ψ ≈ √(2 log p)·2^{−j}: ‖C̄‖ ≲ Σ_j min(1, √(2 log p)2^{−j})
+≍ log log p ≪ E/(p−1) ≍ log p.  So (β′) is expected with c → 1, but the decay of ‖C̄‖/(E/(p−1)) is like log log p/log p — invisible at any computable p
+(this is the "constant 0.2–0.3").  The observed ℓ¹ cancellation (0.58–0.71 instead of the per-family ≥ 1 of B.18) is the collision effect at the TOP
+dyadic scale only (≈ 2–3 items per multiplier there); it should tend to the per-family value slowly.
+**What a proof needs — the honest accounting.**  (β′) ‖C̄‖ ≤ (1−c)E/(p−1) needs, for every ψ, cancellation of a fixed fraction of the ℓ¹ mass — i.e.
+≥ 50 % cancellation of the family character sums Σ_{λ at scale S} W_λ ψ(μ(λ)) on a positive log-proportion of scales S ∈ [p^ε, p^{1/2}].  Known
+technology (Burgess in 2D: Chang's F_{p²}-boxes for p ≡ 3 (mod 4), Pierce's multi-dimensional Burgess, or 1D Burgess in s₂ for fixed s₁ — all with
+the twist that the summand is a character of the algebraic function σ ± √(s₁²+s₂²), i.e. a sum over the conic r² = s₁²+s₂² with SMALL (s₁,s₂) and
+FREE r ∈ F_p) reaches at best the scales S ≥ p^{1/4+ε}, i.e. half of the log-mass; with the per-family ratio L ≈ 1.25·E/(p−1) that leaves
+0.625 + (1/2)·0.625 ≈ 0.94 — barely below 1 with 50 % cancellation, and it also needs strong A (mass ≍ 1 at every scale ≥ p^{1/4+ε}, itself a
+2D-Burgess statement).  Sub-p^{1/4} scales carry the other half of the mass and NO known character-sum tool touches them; the multiplier set of a
+scale is a set of ~S² algebraic residues, complete-sum methods give nothing.  The same holds for (α′): m₂(C̃) has ≍ 1 per scale, the trace method needs
+k ≍ log p and cancellation across all scales.  Equivalent picture: T(ε) = 8E − (unsatisfied) for a MAX-3-CONJ instance with 8E ≈ 24 p ln p clauses on
+p−1 variables (density ≍ log p): random instances at that density have min T = E(1 − O(1/√log p)) (Achlioptas–Naor–Peres); our instance behaves
+exactly like a random one (λ_min ≈ −2√m₂), and proving that IS proving pseudo-randomness of the arithmetic instance at all scales.
+**Conclusion (for the roadmap).**  The model theorem is numerically certain and structurally reduced (§20–22, B.15–B.18, this §), but its proof needs
+short character sums below the Burgess range in two variables — beyond current tools; a proof "with known technology" would need a genuinely new idea
+(e.g. an exact identity making the family sums complete, or a non-spectral argument that avoids per-scale cancellation).  I recommend: freeze the
+conditional theorem (model_theorem_conditional.md, updated with the p ≤ 4001 data), keep the hypothesis as ONE clean conjecture with the numbers, and
+put the fresh-eyes/agents on the two questions (β′)/(α′) as stated in fresh_eyes_task_B; no more numerics needed on this vector.
