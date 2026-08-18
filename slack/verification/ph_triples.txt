@@ -1,0 +1,7 @@
+# parabola y=x^2+k (mod p) u H(1,p), HJSW window (partner's lists slack/cands/ph_*.txt); exact maxima by HiGHS MIP (third solver), witnesses via the law
+p=11 k=3: 34 ; p=11 k=0: 33 ; p=13 k=3: 39 ; p=13 k=0: 38   (from interactive runs, seconds each)
+file slack/cands/ph_p17_k0.txt N=34: MIP value = 50.000 status=0 time=55.0s dual_bound=50.000 gap=0.0
+file slack/cands/ph_p19_k0.txt N=38: MIP value = 55.000 status=0 time=479.9s dual_bound=55.000 gap=0.0
+file slack/cands/ph_p19_k3.txt N=38: MIP value = 58.000 status=0 time=263.9s dual_bound=58.000 gap=0.0
+file slack/cands/ph_p17_k3.txt N=34: MIP value = 51.000 status=0 time=32.6s dual_bound=51.000 gap=0.0
+# triples H(1)uH(2)uH(3): p=11: 37 (5350 s); p=13: running
