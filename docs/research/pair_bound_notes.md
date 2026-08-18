@@ -484,3 +484,24 @@ cubic-type varieties with the collinearity carries) — Weil-type bounds might g
 them, so ℓ¹ control fails; what would suffice is a "sparse spectrum" statement (most T̂(A) exactly zero, which the arithmetic structure
 may enforce) — untested.  I do not know that either works; (a) is checkable in a day for p ≤ 31 and would at least reveal whether a
 structured certificate exists.
+
+## 19 (T2.8) One untried idea each — third solver: split T1 into an "unbalanced" and a "balanced" regime
+Write S = S₁ ∪ S₂ (S_i ⊆ H(i)-part), |S₁| = 3(p−1) − t₁, |S₂| = 3(p−1) − t₂, so |S| = 3(p−1) + (3(p−1) − t₁ − t₂).  By the equality
+analysis of Theorem 1, S₁ agrees with a maximum set of H(1) on all but ≤ t₁ generic orbits (each orbit contributes ≤ 12 with a unique
+maximiser), i.e. S₁ ⊇ M₁ \ (≤ 12t₁ points) for a maximum set M₁; likewise S₂ ⊇ M₂ \ (≤ 12t₂ points).
+Unbalanced regime (t₁ ≤ εp): every q ∈ S₂ must be unblocked by S₁ ⊇ M₁ minus ≤ 12εp points, i.e. every one of its blocking pairs
+{a,b} ⊂ M₁ (pairs of M₁ collinear with q) must lose a point.  Claim to prove ("spread of the blocking hypergraph", a statement about the
+explicit algebraic set M₁ = HJSW set): for all but O(1)+o(p) points q of H(k)∩G(p) there are ≥ 2 pairwise DISJOINT blocking pairs, and
+the family {B(q)} (B(q) = union of q's blocking pairs, |B(q)| ≈ 2 ln p) is such that a set R of ≤ 12εp points of M₁ meets ≥ 2 pairs
+of only o(p) of the q's — a second-moment statement Σ_{x,y∈R} #{q: x,y ∈ B(q)} = o(p) for |R| ≤ 12εp, which reduces to bounding
+#{q : x,y ∈ B(q)} for pairs x,y ∈ M₁ (how many class copies q are collinear both with x and some point of M₁ and with y and some
+point of M₁) — an incidence count on the lifted hyperbola that Weil/Kloosterman-type equidistribution should give as ≈ (ln p)²/p per
+pair, hence Σ ≈ (12ε)²p(ln p)²/… — the constants decide; if it works, |S₂| = o(p) whenever t₁ ≤ εp, so |S| ≤ 3(p−1) + o(p) in this
+regime (and symmetrically for t₂ ≤ εp).  This half is the one I would actually try to prove: it needs no integrality, only
+equidistribution of the blocking pairs of the explicit set M₁, and it is exactly the heuristic of B.5 made rigorous.
+Balanced regime (t₁, t₂ ≥ εp): both S_i are far from their maxima; then |S| ≤ 6(p−1) − t₁ − t₂ ≤ (6 − 2ε)(p−1) — useless — so here one
+needs the row/column structure: with t_i ≥ εp both S_i have ≤ 2 copies in most classes and the problem becomes the 2-factor / orientation
+problem of §3 with singles; the data (balanced optima 23+18, 30+29) say THIS is where the maximum lives, so the split isolates the hard core:
+T1 ⇔ "no two half-density subsets S₁ ⊆ P₁, S₂ ⊆ P₂ (≈ 2 copies per class each, ≤ 2 per row/column) without cross triples have
+|S₁|+|S₂| ≥ 3(p−1)+ω(1)".  I see no tool for the core beyond H4′ (B.12); but proving the unbalanced half would at least turn the heuristic
+into a theorem and show that any counterexample to T1 must be balanced.
