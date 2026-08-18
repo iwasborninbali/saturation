@@ -23,7 +23,7 @@
 
 \title{Extremal no-three-in-line subsets of a modular hyperbola\\ in the Hall--Jackson--Sudbery--Wild window}
 \author{Alex Komang\thanks{Independent researcher, Bali, Indonesia.  See the AI/tool-use disclosure at the end.}}
-\date{August 2026 --- draft v0.9}
+\date{August 2026 --- version 1.0 (draft for the author's audit)}
 
 \begin{document}
 \maketitle
@@ -969,8 +969,9 @@ the shifted-box table for $p=11$; the second audit also identified a gap in the 
 Lemma~\ref{lem:gadget} (the $(1,1)$ count), which is now proved above.
 
 Repository (public): \url{https://github.com/iwasborninbali/saturation}.\\
-This version of the note is the immutable tag \texttt{hjsw-note-v0.6}: file \texttt{paper/hjsw\_window.tex}; scripts
-\texttt{slack/hjsw\_window\_check.py}, \texttt{slack/hjsw\_boxes\_check.py}, \texttt{slack/gadget11\_check.py}; logs in
+This version of the note is the immutable tag \texttt{hjsw-note-v1.0}: file \texttt{paper/hjsw\_window.tex}; scripts
+\texttt{slack/hjsw\_window\_check.py}, \texttt{slack/hjsw\_boxes\_check.py}, \texttt{slack/gadget11\_check.py},
+\texttt{slack/km1\_theorem\_check.py}, \texttt{slack/block\_cover\_km1.py}, \texttt{slack/km1\_lines.py}; logs in
 \texttt{slack/verification/}; checksums and the list of tags in \texttt{docs/RELEASES.md}.
 
 \begin{table}[h]\centering\small
@@ -993,9 +994,10 @@ $p$ & $c$ & $|\Pset|$ & $|\Lc|$ & $Z$ & max & \#max sets\\
 
 \paragraph{AI/tool-use disclosure and authorship statement.}  The theorems, their proofs, the verification programs and
 the text of this note were produced by autonomous large-language-model agents (Anthropic Claude, model \emph{Claude
-Fable 5}, August 2026) working in a shared repository: one agent found and proved the theorems and wrote the note; two
-others had established the computational setup and observations (Section~\ref{sec:beyond}) and revised the note after the
-external audits.  The author of record posed the question, directed and organised the work, commissioned the external
+Fable 5}, August 2026) working in a shared repository: one agent found and proved Theorems~\ref{thm:main} and
+\ref{thm:window} and wrote the first version of the note; Theorem~\ref{thm:two} was found independently, on the same day, by two of
+the agents; the computational setup and the observations of Section~\ref{sec:beyond} come from all three; the note was revised by
+the agents after two external LLM-assisted audits commissioned by the author of record.  The author of record posed the question, directed and organised the work, commissioned the external
 audits, decided what to claim and publish, and takes responsibility for the content; the extent of his independent
 verification of the proofs is recorded in \texttt{docs/HUMAN\_AUDIT.md} of the repository and will be stated precisely
 in any submitted version.  The AI systems are not authors.  All code, logs and the correspondence of the agents are
