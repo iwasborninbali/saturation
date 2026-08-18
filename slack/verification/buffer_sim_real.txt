@@ -31,3 +31,29 @@ REAL p=100019 k=2 slots=200036 G8=16784 #κspec=33568 #μspec=33568 density=0.33
   m= 5 t=1/5: unblocked μ=29840 β=0.1111 net/group=+0.2223
   m= 6 t=1/6: unblocked μ=30396 β=0.0945 net/group=+0.2073
   m= 8 t=1/8: unblocked μ=31106 β=0.0733 net/group=+0.1767
+m=4: U=28878 net=+0.2142
+   W=   24: E[g_W]=   2.640  W/8=   3.00  loss/window= 0.826  certified net/group=-0.1942
+   W=   36: E[g_W]=   4.241  W/8=   4.50  loss/window= 0.957  certified net/group=-0.1014
+   W=   48: E[g_W]=   5.913  W/8=   6.00  loss/window= 1.017  certified net/group=-0.0377
+   W=   60: E[g_W]=   7.611  W/8=   7.50  loss/window= 1.053  certified net/group=+0.0058
+   W=   72: E[g_W]=   9.309  W/8=   9.00  loss/window= 1.087  certified net/group=+0.0345
+   W=   96: E[g_W]=  12.777  W/8=  12.00  loss/window= 1.084  certified net/group=+0.0798
+   W=  120: E[g_W]=  16.250  W/8=  15.00  loss/window= 1.076  certified net/group=+0.1071
+   W=  150: E[g_W]=  20.609  W/8=  18.75  loss/window= 1.049  certified net/group=+0.1308
+   W=  200: E[g_W]=  27.865  W/8=  25.00  loss/window= 1.012  certified net/group=+0.1541
+   W=  300: E[g_W]=  42.299  W/8=  37.50  loss/window= 1.017  certified net/group=+0.1723
+   W=  600: E[g_W]=  85.616  W/8=  75.00  loss/window= 1.017  certified net/group=+0.1924
+   W= 1200: E[g_W]= 172.289  W/8= 150.00  loss/window= 0.975  certified net/group=+0.1977
+m=6: U=30256 net=+0.1974
+   W=   24: E[g_W]=   2.640  W/8=   3.00  loss/window= 0.991  certified net/group=-0.1294
+   W=   36: E[g_W]=   4.242  W/8=   4.50  loss/window= 1.204  certified net/group=-0.0674
+   W=   48: E[g_W]=   5.921  W/8=   6.00  loss/window= 1.341  certified net/group=-0.0239
+   W=   60: E[g_W]=   7.630  W/8=   7.50  loss/window= 1.446  certified net/group=+0.0065
+   W=   72: E[g_W]=   9.349  W/8=   9.00  loss/window= 1.543  certified net/group=+0.0274
+   W=   96: E[g_W]=  12.907  W/8=  12.00  loss/window= 1.615  certified net/group=+0.0640
+   W=  120: E[g_W]=  16.486  W/8=  15.00  loss/window= 1.667  certified net/group=+0.0869
+   W=  150: E[g_W]=  20.995  W/8=  18.75  loss/window= 1.696  certified net/group=+0.1076
+   W=  200: E[g_W]=  28.591  W/8=  25.00  loss/window= 1.664  certified net/group=+0.1315
+   W=  300: E[g_W]=  43.673  W/8=  37.50  loss/window= 1.710  certified net/group=+0.1511
+   W=  600: E[g_W]=  89.045  W/8=  75.00  loss/window= 1.721  certified net/group=+0.1735
+   W= 1200: E[g_W]= 179.849  W/8= 150.00  loss/window= 1.683  certified net/group=+0.1815
