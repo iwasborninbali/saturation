@@ -397,3 +397,29 @@ sharing, and the true α (3(p−1)+O(1) in data) is far below both — the remai
   restricted model R captures α; the extremal structure mixes vertical pairs (inner blocks) with singles (outer blocks).
 * Consequence for T1 (k=−1): a proof must handle mixed structures; a clean statement about "blocks" (≤ 6 per block on average, i.e.
   Σ_blocks(8 − n_B) ≥ (p−1) − O(1)) is what the data say, and the theorem gives Σ(8 − n_B) ≥ 4m₈ ≈ p/3.
+
+## B.11 (third solver, task T2.2, 2026-08-19 18:30 UTC deadline) Rank ≥ 2 certificates on rows/columns/±1 (and ±2) lines for k = −1: nothing beyond LP(1)
+Question: can a Chvátal–Gomory / clique / odd-cycle inequality on the D=1 structure (rows, columns, slope-±1 lines; blocks and residue
+groups) prove α(P₋₁) ≤ (11/3 − δ)(p−1) or ≤ 3.5(p−1)?
+Data (`bench/ip1_km1.log`, HiGHS MIP, k=−1): the INTEGER optimum of the D=1 system (rows/columns/±1 lines only) versus its LP:
+p=17: 62/62; 19: 64/64; 23: 80/80; 29: 96/96; 31: 107/108; 37: 128/128; 41: 142/142.67; 43: 140/140; 47: 159/160; 53: 182/182.67;
+59: 197/198.67 — integrality gap 0–2 points.  With slopes ±2, ±1/2 added (D=2): 60/60.25, 64/64, 78/78.5, 95/95.87, 105/107.09,
+127/128, 142/142.67, 140/140, 159/160, 180/182.02 — again gap ≤ 2.
+Consequences.
+1. Any inequality valid for the integer points of the D=1 (or D=2) system — CG cuts of any rank, clique/odd-cycle inequalities of the
+   underlying "≤ 2 per line" hypergraph, block/orbit inequalities — cannot certify anything below IP(1) ≥ LP(1) − 2 ≈ 3.45(p−1) (resp.
+   IP(2)).  So on the block structure "rank ≥ 2 does not suffice" in the strongest sense: the D=1 polytope is essentially integral, and
+   its optimum is the LP value.  In particular ≤ 3.5(p−1) cannot be proved from D=1/D=2 lines at p = 31, 41, 47, 53 (IP(1)/(p−1) =
+   3.57, 3.55, 3.46, 3.50) — the value fluctuates around 3.5 with the arithmetic of the ≥5-point lines.
+2. Beating 11/3 IS possible with rank-1 (fractional) certificates — LP(1) ≈ 3.45(p−1) < 11/3(p−1) for all 19 ≤ p ≤ 199 — but only
+   through the non-local dual solutions of B.10 (weights 1/3, 2/3, 1/4 spread over several residue groups); the block+rows theorem
+   (11/3) is the largest CLEAN (locally describable) part of that certificate, and self-sufficient (2,6,6,2)-systems add 16/3 each
+   (rare).  A clean intermediate statement would need a rule for those non-local weights; I do not have one.
+3. The true integrality gap — from ≈3.45(p−1) down to the observed 3(p−1)+O(1) — lives entirely in the general-slope lines: only
+   IP(∞) shows it (54 vs 60.15 at p=17; 59 vs 63.6 at p=19), and IP(D) descends gradually with D (B.2).  Hence a proof of T1 (or of any
+   bound below ≈3.4(p−1)) must use collinearities of unboundedly many slopes; local certificates on residue groups (any rank) are
+   provably insufficient (data up to p=59, D ≤ 2), and by the same computation the strongest thing "local + integrality" can give is
+   IP(1)/(p−1) ∈ [3.33, 3.6].
+Recommendation for the 02:40 sync: the k=−1 upper-bound line via covers is exhausted at 11/3 (clean) / ≈3.45 (LP, non-clean); the
+next real step is either the LOWER-bound construction (3(p−1)+c for all p; second solver's line) or a genuinely global argument
+(counting cross triples of all slopes for dense S — pseudo-randomness), not more local inequalities.
