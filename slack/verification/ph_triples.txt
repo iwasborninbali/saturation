@@ -4,4 +4,4 @@ file slack/cands/ph_p17_k0.txt N=34: MIP value = 50.000 status=0 time=55.0s dual
 file slack/cands/ph_p19_k0.txt N=38: MIP value = 55.000 status=0 time=479.9s dual_bound=55.000 gap=0.0
 file slack/cands/ph_p19_k3.txt N=38: MIP value = 58.000 status=0 time=263.9s dual_bound=58.000 gap=0.0
 file slack/cands/ph_p17_k3.txt N=34: MIP value = 51.000 status=0 time=32.6s dual_bound=51.000 gap=0.0
-# triples H(1)uH(2)uH(3): p=11: 37 (5350 s); p=13: >= 42 (HiGHS MIP primal after 7200 s, dual bound 47 — not closed)
+# triples H(1)uH(2)uH(3): p=11: 37 (5350 s); p=13: >= 43 (CP-SAT 3 h, bound 48; HiGHS 2 h: 42, bound 47 — not closed)
