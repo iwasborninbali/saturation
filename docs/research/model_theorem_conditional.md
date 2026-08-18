@@ -12,8 +12,8 @@ Consequently every lawful subset of every S(r) misses at least T(r)/Δ_r points,
    box lift, distinct classes, injectivity) + B.17 (square scales are never empty: NR·NR = QR and multiplicative energy of Gaussian integers).
    Lemma K rests on the classical estimate #{(u,v) ∈ [−L,L]²: uv ≡ w} = (2L+1)²/p + O(√p log²p) [Kloosterman; IK / Shparlinski].
 4. [PROVED, B.17 remark]  m₂ := tr C²/(p−1) ≤ K₀·E/(p−1) (codegree of a class pair ≤ 384), so √m₂ = O(√(E/(p−1))) = o(E/(p−1)).
-5. [ASSUMED — Conjecture B / CH_δ]  λ_min(C_p) ≥ −K·√m₂ for an absolute K.  Numerically K ≈ 2 (edge inside the semicircle), never below −9 for
-   p ≤ 199.  Trace-method reduction (B.16): doubled trees give the main term Cat_k·Σ_a rn_a^{2k}; the needed input is CH_δ = power-saving
+5. [ASSUMED — Conjecture B / CH_δ]  λ_min(C_p) ≥ −K·√m₂ for an absolute K.  Numerically K ≈ 2 (edge inside the semicircle): λ_min(C)/√m₂ = −1.94, −1.87, −1.94, −2.01, −2.08 at p = 199, 499, 997, 1999, 4001
+   (§23; `slack/vp_lines.c`, `vp_circulant.py`); the spectral bound (E+(p−1)λ_min)/(p−1) = 8.3, 8.5, 10.0, 14.5, 15.3 — positive and growing.  Trace-method reduction (B.16): doubled trees give the main term Cat_k·Σ_a rn_a^{2k}; the needed input is CH_δ = power-saving
    cancellation of the signed sums over closed walk shapes of positive cyclomatic number (4-cycles cancel to Wigner level p^{−0.9} in data);
    with CH_δ, tr C^{2k} ≤ (1+o(1))Cat_k Σ_a rn_a^{2k} for k ≤ p^{δ/3−ε}, whence max|λ| ≤ 2 max_a rn_a (1+o(1)) ≤ 2.6√m₂.
 6. [1–5 ⇒ theorem]  T(r) ≥ E − K(p−1)√m₂ ≥ E − K′(p−1)√(E/(p−1)) = E(1 − o(1)) ≥ c(p−1) log log p.
@@ -22,5 +22,7 @@ Consequently every lawful subset of every S(r) misses at least T(r)/Δ_r points,
 the first uniform statement about the model that does not go through a union bound.  It does not give T1 (singles/mixed pairs are outside
 the model), and the deletion bound T/Δ is weak (Δ ~ log p?); the exact model optimum 3(p−1)+O(1) (data) is far stronger.
 
-**Open input (the whole difficulty):** CH_δ.  Precise formulation and the torus-line description of closed walks: B.16 addendum.
+**Open input (the whole difficulty):** CH_δ.  Precise formulation and the torus-line description of closed walks: B.16 addendum; the split C = C̄ + C̃
+(B.18) and the scale accounting of §23 show that BOTH parts need cancellation of two-dimensional character sums over the family disc at scales
+below p^{1/4} — outside the Burgess range; this is why the theorem stays conditional.
 **Strong form of A (E ≫ p log p):** Burgess-type QR-density among small sums of two squares (deep-research brief 7); not needed for the theorem.
