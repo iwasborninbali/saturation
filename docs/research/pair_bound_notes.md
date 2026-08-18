@@ -297,3 +297,13 @@ Obstacles: a class can lie in a good dia group AND a good ant group (double cove
 so a case analysis with an explicit tie-breaking rule may bound the waste — this is the combinatorial half of T3′; the arithmetic half
 (m₈ = (1/12+o(1))p) is §12.  A weaker but cleaner statement first: α ≤ 4(p−1) − 2·(number of *disjoint* good blocks) + O(1), with a
 greedy choice of blocks avoiding overlaps, and then a lower bound on that number.
+
+## 15. LP(1) for general k (second solver; `slack/lp1_dual.py p k`)
+Lines with ≥5 points of slope ±1 exist for general k as well (8-point lines need coinciding centres of a shared H(1) σ-pair and a
+shared H(k) σ-pair on the same residue line; density comparable to k=−1 for large p: at p=101, k=2: 8+8 eight-point lines, 42+42 lines
+with ≥5 points).  LP(1)/(p−1): k=2: 3.61 (p=29), 3.82 (37), 3.89 (53), 3.77 (101), 3.74 (199); k=3: 3.79 (29), 3.75 (53), 3.70 (101),
+3.65 (199); k=−1: 3.43, 3.56, 3.51, 3.53, 3.46 (same p).  So rank-1 covers by rows/columns/±1 lines beat the trivial bound for
+every k tested once p is large (the third solver's LP(1) = 4(p−1) cases at p = 13, 17 are small-p accidents), with k = −1 giving the
+strongest constants (its reflection symmetry doubles the coincidences).  For general k the optimal duals are fractional and messy;
+for k = −1 they are integral partitions at p = 29, 37 (§14).  A T3-type theorem for all k via covers is therefore not excluded, but
+k = −1 is the right first target.
