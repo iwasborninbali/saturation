@@ -906,3 +906,13 @@ symbol ŵ(ψ) receives from the mixed slots the factor (1 + ψ(−1)): for ODD c
 sign +) survive.  (ii) C commutes with the class involution a ↦ −a (R): C = PCPᵀ exactly (checked p = 101, 199), so C = C₊ ⊕ C₋ on the R-symmetric
 and R-antisymmetric sectors, each of dimension (p−1)/2; the extreme eigenvectors are delocalised (IPR 1–2× the delocalised value 3/(p−1);
 max |v_a| ≈ 0.2), with no correlation with sign X(a), |X(a)| or QR(a) at p = 199 — the negative edge is collective, not carried by a few classes.
+Addendum 2 to B.18 (21:05 UTC) — the barrier statement quantified numerically.  Model sum: S_p(ψ) = Σ_{s₁,s₂ ≥ 1, s₁+s₂ ≤ √p, s₁²+s₂² QR} (s₁+s₂)⁻² ψ(z_F)
+(and with z_F + s₁, or (z_F+s₁)/z_F), max/rms over the nontrivial characters ψ (FFT over discrete logs):
+  p = 199 / 499 / 997 / 1999 / 4001 (families 34 / 53 / 106 / 280 / 533, Σw = 0.86 / 0.42 / 0.45 / 1.20 / 1.25):
+  max_ψ|S|/Σw = 0.65 / 0.49 / 0.48 / 0.52 / 0.54,  rms_ψ|S|/Σw = 0.34 / 0.30 / 0.20 / 0.25 / 0.24;  ‖w‖₂/‖w‖₁ ≈ 1/(c·log √p) is the "random" level.
+So the family character sums cancel exactly as much as random signs would (rms ≈ ‖w‖₂, max ≈ 2.2·rms ≈ √(2 log p)·rms) — no more, no less; the
+ratio to the trivial bound decays only like 1/log p because the weights 1/(s₁+s₂)² are dominated by the smallest families.  Transferred to the
+circulant part: ‖C̄‖ ≈ √(2 log p)·‖w̄‖₂ = √(2 log p · 0.1 m₂) ≍ log p ≍ E/(p−1) — which is why ‖C̄‖/(E/(p−1)) is a CONSTANT (0.2–0.35), not o(1).
+Consequences: (β′) is expected to hold with c ≈ 0.7 for all p, but not with c → 1; the model theorem via the split C̄ + C̃ would read
+min_r T(r) ≥ (0.65 − o(1))·E(p); the arithmetic input it needs is exactly "the character sums over the family disc are at the random level
+(≤ K√(log p)·‖w‖₂ for every ψ)" — a large-sieve-type statement for one explicit sequence, which is what brief 7 should ask for.
