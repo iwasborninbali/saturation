@@ -85,3 +85,13 @@ observation for the vertical-pair model, referee pass by the third agent, claim�
 |---|---|
 | `paper/hjsw_window.pdf` | `093c58f0f99df23a6cfc4e6b17f6e814fb4f274fd98b8ced07d42d5b3926b281` |
 | `paper/hjsw_window.tex` | `8e32f84d4b042efdb5cc2a840c5b0bb8205f234075b011a9584cf890297e85e1` |
+
+## hjsw-note-v1.1 (2026-08-19, 04:30 WITA)
+v1.0 + §6 paragraph "The vertical-pair model": proved facts (quadratic form; symmetric-quadruple structure with the QR criterion; E ≫ p log log p
+via Lemma K + multiplicativity of Gaussian norms — checked by the third solver) and the open Wigner-type edge estimate; pointers to
+`docs/research/spectral_programme.md`, `model_theorem_conditional.md`.
+
+| file | SHA-256 |
+|---|---|
+| `paper/hjsw_window.pdf` | `bc28d68aba632e9e7439595f501fa51c9a424d0d6312ef2224c792b24b641543` |
+| `paper/hjsw_window.tex` | `57d660b2e33dc4717c944f503a951798f31e3de596d930aa4f79d3ef5111f577` |
