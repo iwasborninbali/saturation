@@ -1109,3 +1109,22 @@ Selberg machinery as Prop m8asym) is provable; the lemma needs FINE-scale struct
 a purely combinatorial statement about a cyclic ±-sequence built from discrete logarithms of the 8-group residues.  Alternatives: (a) hand it to
 fresh eyes/external agents as a stand-alone problem (definition + data + generator); (b) prove a weaker, computable-per-p statement (the LP certificate
 is a rigorous bound for each p: α(P_k) ≤ LP(1)_k(p) < 4(p−1) — a table, not a theorem); (c) look for a certificate NOT of the run/pattern type.
+
+## 27. C3 (second solver, 19.08 07:05 WITA): the number of eight-point lines for a general second hyperbola — statement and proof pointers
+PROPOSITION (uniform in k).  For every prime p and every k ∈ F_p \ {0,1}, the number G₈(k,p) of slope-(±1) lines carrying eight points of
+P_k = (H(1) ∪ H(k)) ∩ G(p) satisfies  G₈(k,p) = p/6 + O(√p log⁴p)  with an ABSOLUTE implied constant.
+Proof (same as Prop. m8asym of the note, with three changes).  (1) Curve: the classes κ_a = (a,1/a) and μ_b = (b,k/b) lie in the same slope-(+1)
+residue group iff b − k/b ≡ a − 1/a, i.e. (a,b) ∈ C₀(k): ab² − (a²−1)b − ka = 0.  Its discriminant in b over F̄_p(a) is a⁴ + (4k−2)a² + 1, a quartic
+in a with roots a² = 1 − 2k ± 2√(k²−k), distinct and nonzero for k ∉ {0,1}; hence not a square, F irreducible over F̄_p(a), primitive in b, so C₀(k)
+is absolutely irreducible: |C₀(k)(F_p)| = p + O(√p) (Weil/Aubry–Perret), and Bombieri's bound holds for the exponential sums of h₁a + h₂/a + h₃b along
+it (non-constancy exactly as in Step 3 of the note).  (2) Conditions: by the general-k version of Lemma F2 (§24; C4 of the first solver: centres of a pair
+are equal or differ by exactly p, the σ-pair {a,−1/a} shares iff sign X(a) ≠ sign X(1/a), the H(k)-pair {b,−k/b} shares iff sign X(b) ≠ sign X(k/b), and
+both sharing forces the cross-coincidence), an eight-point line of slope +1 corresponds to exactly four pairs (a,b) ∈ C₀(k) with X(a)X(1/a) < 0 and
+X(b)X(k/b) < 0.  On C₀(k) we have k/b ≡ b − a + 1/a, so with x₁ = X(a), x₂ = X(1/a), x₃ = X(b) the fourth least residue X(k/b) is determined by
+T = x₃ − x₁ + x₂ exactly as X(1/b) was by x₁ − x₂ + x₃ in the note (substitute b ↦ −b: X(−b) = −X(b)); the two conditions are again interval conditions
+on the four linear forms x₁, x₂, x₃, x₃ − x₁ + x₂ (mod 1) with total volume 1/3.  (3) Selberg polynomials + Bombieri: count = (1/3)p + O(√p log⁴p),
+so slope +1 gives p/12 + O(√p log⁴p) eight-point lines; slope −1 is the same with the pairs {a,1/a}, {b,k/b} (sharing iff equal signs) — same volume.
+Uniformity: every constant depends only on degrees.  Data (first solver, C4): G₈/p = 0.160–0.164 averaged over primes 100…500 for k = −1, 2, 3, 5, 7.
+Remark. For k = −1 this is 2m₈; the note's Prop. m8asym is the special case.  Consequently the class-graph model of §25–26 has ≈ (2/3)p specials
+(one third of all classes) for EVERY k, and theorem C reduces to the selection lemma of §26 plus fine-scale equidistribution of the special
+sequence (§26a: curve level, fibred products of C₀(k)).
