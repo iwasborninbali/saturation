@@ -1,7 +1,7 @@
 # Letter 2 to Achim Flammenkamp — draft (second solver sends after the 39/41 sweeps finish)
 
 ```
-Subject: no-three-in-line: two more n = 36 configurations (three in total), a second n = 39, and a correction to my wording
+Subject: no-three-in-line: two more n = 36 configurations (three in total), two more n = 39, and a correction to my wording
 
 Dear Achim,
 
@@ -14,11 +14,13 @@ inequivalent to the first one and to each other (checked by canonical forms unde
 They come from the same family (quarter-turn orbits off the long diagonals plus one half-turn
 pair on each diagonal, at rows (1,34) and (9,26), resp. (1,34) and (7,28)); an exhaustive
 sweep of that family for n = 36 (153 sub-classes up to D4) shows that these three are all its
-configurations.  And a second configuration for n = 39, inequivalent to the one I sent, for the
-column ':' as well:
+configurations.  And two further configurations for n = 39, inequivalent to the one I sent and to each
+other, for the column ':' as well:
   :BI5HCWEQST8J2MSU7X4M47Dc3aKRNZEH69NbDc1b0P1FTWLO3FBI2Z0PVYGY5V8AGaJU9ACO6QLXKR
-(quarter-turn orbits plus a 3-cycle of half-turn pairs (1,5),(37,33); (5,19),(33,19); (19,1),(19,37)
-— the cycle passes through the central row and column).  As before: every triple checked in
+  :AEIUHR9P678GRYJP1XHZNc26CQ37NcAEIXTaMb4Y1G295KOS0FVZCQWa0F3L5bDJ4BMUVWDTBL8KOS
+(quarter-turn orbits plus a 3-cycle of half-turn pairs (1,5),(37,33); (5,19),(33,19); (19,1),(19,37),
+resp. (4,7),(34,31); (7,19),(31,19); (19,4),(19,34) — the cycles pass through the central row
+and column).  As before: every triple checked in
 exact integer arithmetic, stabilizer computed explicitly, and each configuration verified by two
 independent programs.
 
