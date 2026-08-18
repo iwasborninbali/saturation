@@ -250,14 +250,14 @@ For κ = (a, 1/a): d_κ = X(a) − Y(1/a); σκ = (−1/a, −a) and d_{σκ} = 
 So the σ-pair is **shared iff X(a) and X(1/a) have opposite signs** (= types A/D), and then d_κ = X(a) − X(1/a) − p·[X(a)>0].
 For λ = (b, 1/b): e_λ = X(b) + Y(1/b); the τ-pair is **shared iff X(b), X(1/b) have the same sign** (types B/C), and then
 e_λ = X(b) + X(1/b) + p·[X(b)<0].
-An 8-point slope-(+1) line at residue d needs κ with a − 1/a ≡ d, λ with b + 1/b ≡ −d, both pairs shared, and d_κ = −e_λ (exact
-integers).  Eliminating d: (a,b) lies on the cubic  C₀: a b² + (a²−1) b + a ≡ 0  (mod p)  (the third solver's x'(x²−1)+x(x'²+1) ≡ 0),
+An 8-point slope-(+1) line at residue d needs κ with a − 1/a ≡ d, λ with b + 1/b ≡ −d, both pairs shared and non-degenerate (a² ≢ −1,
+b² ≢ 1: a σ-fixed or τ-fixed class contributes only its own two copies, e.g. p = 17, a = 4), and d_κ = −e_λ (exact integers).  Eliminating d: (a,b) lies on the cubic  C₀: a b² + (a²−1) b + a ≡ 0  (mod p)  (the third solver's x'(x²−1)+x(x'²+1) ≡ 0),
 which for each a has 0 or 2 solutions b = [(1−a²) ± √(a⁴−6a²+1)]/(2a).  The exact condition d_κ = −e_λ reads
    X(a) − X(1/a) + X(b) + X(1/b) = p·([X(a)>0] − [X(b)<0]) ∈ {−p, 0, p};
 and since a − 1/a + b + 1/b ≡ 0 (mod p) on C₀, the integer L := X(a) − X(1/a) + X(b) + X(1/b) ∈ [−4h, 4h] is automatically ≡ 0 (mod p),
 i.e. L ∈ {−2p+2… } ∩ pZ = {−p, 0, p} (|L| ≤ 2p−2).  Hence the 8-point lines correspond to the points of C₀(F_p) whose 4-tuple of least
 residues (X(a), X(1/a), X(b), X(1/b)) lies in an explicit union of polytopes of the cube [−h,h]⁴ (sign conditions and the value of L),
-and their number is (vol/…)·p + O(√p log⁴ p) by equidistribution of least residues along the curve (Bombieri/Weil for character sums
+and their number is exactly 4·m₈ (each line ↔ 4 pairs (a,b): a ∈ {a, −1/a}, b ∈ {b, 1/b}; verified for p ≤ 199), i.e. m₈ = (vol/…)·p + O(√p log⁴ p) by equidistribution of least residues along the curve (Bombieri/Weil for character sums
 along C₀, provided C₀ is absolutely irreducible — to be checked; the two branches b(a) are conjugate under √, so irreducibility over
 F_p(a) is the point).  Heuristic volume: (curve points ≈ p) × (sign conditions 1/4) × (L takes the required one of three values 1/3) =
 p/12 — exactly the empirical limit m₈/p → 0.083.  The same bookkeeping gives the counts of 7-, 6-, 5-point lines (patterns
