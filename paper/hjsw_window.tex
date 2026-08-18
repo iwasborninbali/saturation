@@ -830,9 +830,10 @@ conditions $X(a)X(1/a)<0$, $X(b)X(1/b)>0$, $L=p([x_1>0]-[x_3<0])$ therefore hold
  W_1&=\{x_1>0>x_2,\ x_3>0,\ p/2<T<p\},& W_2&=\{x_1>0>x_2,\ x_3<0,\ 0<T<p/2\},\\
  W_3&=\{x_1<0<x_2,\ x_3>0,\ -p/2<T<0\},& W_4&=\{x_1<0<x_2,\ x_3<0,\ -p<T<-p/2\}
 \end{align*}
-(intersected with $[-h,h]^3$; the boundary cases $T\in\{0,\pm p/2,\pm p\}$ and $x_i=0$ affect $O(p^2)$ triples and are irrelevant
-below).  Indeed, for $x_1>0>x_2$, $x_3>0$ we have $T\in(0,3p/2)$, $X(1/b)>0$ iff $T<p/2$ (then $\varepsilon=0$, $L=0$) or
-$p/2<T<p$ (then $\varepsilon=1$, $L=p$); the required value is $L=p$, giving $W_1$; the other three cases are analogous.  Each
+(intersected with $[-h,h]^3$; the boundary hyperplanes $T\in\{0,\pm p/2,\pm p\}$, $x_i=0$ have relative measure $O(1/p)$ and, by
+the box estimate of Step~3 applied to a thin box, contain $O(\sqrt p\log^3p)$ of our points, so they are irrelevant below).  Indeed, for $x_1>0>x_2$, $x_3>0$ we have $T\in(0,3p/2)$; for $T<p/2$ we get $\varepsilon=0$ and $X(1/b)=-T<0$ (excluded,
+as $X(b)>0$), for $p/2<T<p$ we get $\varepsilon=1$, $X(1/b)=p-T>0$ and $L=p$, which is the required value $p([x_1>0]-[x_3<0])$,
+and for $T>p$ again $X(1/b)=p-T<0$; this gives $W_1$, and the other three cases are analogous.  Each
 $W_i$ is a convex polytope; writing $x_i=\pm\tfrac p2U_i$ with $U_i$ uniform on $(0,1)$, its relative volume in $[-h,h]^3$ is
 $\tfrac18\Pr[1<U_1+U_2+U_3<2]=\tfrac18\cdot\tfrac23$ for $W_1,W_4$ and $\tfrac18\Pr[0<U_1+U_2-U_3<1]=\tfrac18\cdot\tfrac23$ for
 $W_2,W_3$ (the density of $U_1+U_2+U_3$ has mass $\tfrac16$ on $[0,1]$ and on $[2,3]$; that of $U_1+U_2-U_3$ has mass $\tfrac16$ on
