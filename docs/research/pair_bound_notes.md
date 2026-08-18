@@ -899,3 +899,10 @@ Data: scratch computations (third solver) at p = 101, 151, 193, 199; reproducibl
    Bottom line: everything the model theorem still needs is ONE kind of statement — cancellation in sums over families F in the disc
    |s₁+is₂| ≤ p^{1/2−ε} of multiplicative-character-type functions of the algebraic numbers z_F + t mod p; numerically it holds with room
    (a factor 3–5 in (β), Wigner level in (α)); classical Weil/completion gives nothing at that side length, Burgess-type inputs are the tools.
+Addendum to B.18 (20:50 UTC): two exact symmetries worth recording.  (i) Within a family, z(z+σ) = −s₁s₂/2 and (z+s₁)(z+s₂) = +s₁s₂/2, hence
+(z+σ)/(z+s₂) = −(z+s₁)/z and (z+σ)/(z+s₁) = −(z+s₂)/z: the four MIXED slots come in pairs μ ↔ −μ with equal signs (−) and, by the R-symmetry
+(x ↦ p−x, which maps the family's lifted quadruples onto themselves with positions reversed), equal mean weights.  Consequently the circulant
+symbol ŵ(ψ) receives from the mixed slots the factor (1 + ψ(−1)): for ODD characters ψ only the four same-type slots ((0,σ), (s₁,s₂) and inverses,
+sign +) survive.  (ii) C commutes with the class involution a ↦ −a (R): C = PCPᵀ exactly (checked p = 101, 199), so C = C₊ ⊕ C₋ on the R-symmetric
+and R-antisymmetric sectors, each of dimension (p−1)/2; the extreme eigenvectors are delocalised (IPR 1–2× the delocalised value 3/(p−1);
+max |v_a| ≈ 0.2), with no correlation with sign X(a), |X(a)| or QR(a) at p = 199 — the negative edge is collective, not carried by a few classes.
