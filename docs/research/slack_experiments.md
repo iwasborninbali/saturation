@@ -76,3 +76,7 @@ N=22 (11,13): 32 = HJSW(11)+2; N=26 (13,17): 38 = +2; N=34 (17,19): 50 = +2; N=3
 (7,11): 21 = +3, (7,13): 20, (7,17): 20, (11,17): 32, (11,19): 32, (13,19): 39 = +3, (13,23): 37 = +1.  The advantage over a single
 hyperbola is 1–3 points in every window computed and does not grow — asymptotically the ratio is 3/2, exactly like HJSW.  Line closed
 (negative result with exact numbers).
+## Hyperbola pairs H(1)∪H(k) in the 2p×2p window — status at p=23 (CP-SAT, 8 workers, 4 h each, VM2)
+k=−1: best 70 (dual bound 78); k=2: 68 (80); k=3: 69 (78).  Best known at 23: 70 = HJSW+4 (ratio 1.522); exact maximum in [70,78].
+Best-known gaps over HJSW by p: 11: +5 (35, k=3), 13: +5 (41), 17: +6 (54, k=−1), 19: +5 (59, k=−1), 23: ≥+4 (≤ +12 by the bound).
+No sign of growth; a 12-hour CP-SAT run for k=−1 at 23 continues.
