@@ -1016,3 +1016,19 @@ per-group versions Sol_G, Δ_G; and a symmetrised (R,R′-averaged) optimal dual
    supplied by T2.18: B₇/p = 0.088, 0.088, 0.050 at 113, 137, 199 — fluctuating, ~ half of m₈/p?), i.e. ≈ 3.6, not 3.45: the remaining ≈ 0.15(p−1) of
    LP(1)'s saving is the global 4-line/6-line interplay and has no local certificate.  Bottom line: LP(1) is a global object; the locally
    provable part is exactly the block covers of the 8- and (plausibly) 7-point groups.
+Addendum to B.19 (21:20 UTC) — three exact facts behind the numbers (checked at p = 113, scratch `orbits.py`/`orbit_dual.py`):
+(a) ORBIT CLOSURE.  For every residue d put Ω_d := G_d ∪ G_{−d} ∪ G′_d ∪ G′_{−d} (the +1 groups at ±d and the −1 groups at ±d).  Ω_d is closed under
+    rows and columns: a row consists of κ ∪ Rκ and R maps G_d onto G′_{−d} (R{x−y=c} = {x+y=p−c}); a column consists of κ ∪ R′κ and R′ maps G_d onto
+    G′_d (R′{x−y=c} = {x+y=2p+c}); RR′ maps G_d onto G_{−d}, so all four groups have the same type.  Hence for a lawful S: |S| ≤ |S ∩ Ω| + (|P| − |Ω|)/2
+    for any union Ω of orbits (rows outside Ω), i.e. the LP(1) saving of a group localises to its orbit: saving(Ω) = |Ω|/2 − LP(Ω).
+(b) INTEGRAL COVERS OF ORBITS.  (8,4,4)-orbits (64 points): LP(Ω) = 24 = 32 − 8 (2 per 8-line, Theorem 17); (7,5,3,1)-orbits (64 points): LP(Ω) = 28 = 32 − 4
+    for ALL ten orbits at p=113, with an INTEGRAL dual: weight 1 on the twelve lines of sizes 7, 5, 3 of the four groups (covering 60 points) plus the
+    four points of the 1-lines as singletons — a pure cover: |S ∩ Ω| ≤ 2·12 + 4 = 28.  So "a (7,5,3,1) group saves 1 per slope" is a cover lemma exactly
+    like Theorem 17 (three lines + one point instead of the four lines), once the orbit is disjoint from the others.
+(c) OVERLAPS (why the savings do not add).  Orbits of the same type overlap: 4 of 28 pairs of (8,4,4)-orbits and 5 of 45 pairs of (7,5,3,1)-orbits at
+    p=113 share points — through the −1 groups: the H(1) class κ = (a,1/a) of G_d (d = a − 1/a) has its points in the −1 group at residue e = a + 1/a
+    (and σκ at −e), so Ω_d meets Ω_e whenever the +1 group at e = a+1/a exists (any type).  For the GOOD groups the union B is still a disjoint,
+    row/column-closed union (Lemma 20: no class is both σ- and τ-shared), which is why Theorem 17 loses nothing; the union B₇ of all (7,5,3,1) groups of
+    both slopes is row/column-closed by the same R/R′ argument but NOT disjoint (a class of a +1 7-group can lie in a −1 7-group or in a −1 good group),
+    and the double-covered points cost the difference between 2 per (+1)-group (solitary) and the collective 1.6–1.67 — the "clean fraction θ" of [102].
+    A rigorous version: α ≤ 4(p−1) − 4m₈ − #(clean (7,5,3,1) groups, both slopes) + O(1), clean = not meeting a good group or another 7-group.
