@@ -221,3 +221,21 @@ form "for all sufficiently large p, α(P_{−1}) ≤ (4 − c)(p−1)" with a sm
 (plus the partition combinatorics of the leftover points); no elementary route.  I stop here unless the owner wants exactly this
 statement; the LP certificates for each p ≤ 199 (and the integral partitions) are available on request as machine-checkable
 covers.
+## 11. k = −1: the residue-group structure of the slope-±1 lines (second solver, 2026-08-19; `slack/km1_lines.py`)
+For k = −1, P = P₁ ∪ R(P₁) with R: x ↦ p−x.  A slope-(+1) integer line x−y = d′ carries H(1) points of the classes κ with d_κ ≡ d′ (mod p)
+and H(−1) points R(q) for the H(1) points q on the antidiagonal x+y = p−d′, i.e. of the classes λ with e_λ ≡ −d′.  Per residue d the
+relevant classes are the ≤ 2 solutions of a − 1/a ≡ d (κ, σκ) and the ≤ 2 solutions of a + 1/a ≡ −d (λ, τλ): a *residue group* of
+n_d ∈ {0,2,4} classes, 4n_d points.  Each class contributes to three consecutive integer lines c−p, c, c+p with 1,2,1 points, where the
+*centre* c is d_κ = X_a − Y_{1/a} for κ (copies (0,0),(1,1) on the centre line) and −e_λ = −(X_b + Y_{1/b}) for R(λ).  All centres lie in
+the interval [−h−p+1, h−1] of length 2p−2, hence a residue group has at most TWO distinct centres, c and c+p.  Consequently:
+* every slope-±1 line carries at most 8 points of P (this is the k = −1 special feature; for general k the H(k) points on x−y ≡ d come
+  from another pair of classes with independent centres, and the same statement holds with the same proof: ≤ 2 centres per pair, so ≤ 8);
+* a 4-class group with all centres equal spans 3 lines with sizes (4, 8, 4); with m centres at c and 4−m at c+p it spans 4 lines with
+  sizes (m, m+4, 8−m, 4−m) — i.e. (1,5,7,3), (2,6,6,2), (3,7,5,1); a 2-class group spans 3 lines (2,4,2) or 4 lines (1,3,3,1).
+* Data (`slack/km1_lines.py`, all p ≤ 199): number of 8-point +1 lines ≈ 0.03–0.18 p (fluctuating), lines with ≥ 5 points ≈ 0.26–0.53 p
+  per slope; matches the third solver's LP(1) input (p = 29: 8:4, 7:2, 6:6, 5:2 per slope; p = 199: 164 lines ≥ 5 over both slopes).
+Any cover-type theorem (T3′) is therefore a statement about how many residue groups have coinciding centres — a coincidence count
+between the least-residue coordinates of (a, 1/a): #{a: X_a − Y_{1/a} = −(X_b + Y_{1/b}) with a − 1/a ≡ −(b + 1/b)} — of the type
+handled by hyperbola-in-box equidistribution (Shparlinski's survey), so an asymptotic c·p + O(√p log² p) is plausible; the constant c
+and the fluctuations are visible in the data.  Then the covering combinatorics (which rows/columns can be dropped) has to be organised
+group by group; the p = 29 dual (8 rows, 8 columns, 28 lines, 8 points) is the model.
