@@ -23,7 +23,7 @@
 
 \title{Extremal no-three-in-line subsets of a modular hyperbola\\ in the Hall--Jackson--Sudbery--Wild window}
 \author{Alex Komang\thanks{Independent researcher, Bali, Indonesia.  See the AI/tool-use disclosure at the end.}}
-\date{August 2026 --- version 1.2}
+\date{August 2026 --- version 1.4 (draft)}
 
 \begin{document}
 \maketitle
@@ -146,7 +146,9 @@ The four-point rich lines are pairwise disjoint, which settles the no-four-in-li
 Section~\ref{sec:two} turns to unions of two hyperbolae: for $H(1)\cup H(-1)$ in the HJSW box, Theorem~\ref{thm:two} gives
 $\alpha\le4(p-1)-4m_8(p)$ by an explicit line cover built from the eight-point diagonals and the two reflections of the box, and
 Proposition~\ref{prop:m8asym} evaluates $m_8(p)=(1/12+o(1))p$; Corollary~\ref{cor:conics} shows that among all conics only the shifted
-hyperbolae can reach $3(p-1)$ in a $2p\times2p$ box.  Section~\ref{sec:beyond} collects the computations that motivate the (unproved)
+hyperbolae can reach $3(p-1)$ in a $2p\times2p$ box.  Section~\ref{sec:general} treats an arbitrary second hyperbola $H(k)$: an explicit
+``potential'' cover along the cycles of the row/column incidence graph gives $\alpha(\Pset_k)\le4(p-1)-(2G_8-2\sum_c|A_c-B_c|)/R$
+(Theorem~\ref{thm:general}), which is below the trivial bound whenever the eight-point lines are not too unevenly distributed along the cycles.  Section~\ref{sec:beyond} collects the computations that motivate the (unproved)
 expectation that unions of hyperbolae gain only $O(1)$ over $3(p-1)$.
 
 \section{Notation}
@@ -903,9 +905,112 @@ polynomials) with unspecified absolute constants; the theorem itself is elementa
 had the error term $O(p^{5/6}\log^3p)$, obtained by covering the polytopes $W_i$ with boxes; the present $O(\sqrt p\log^4p)$ uses that
 the $W_i$ are cut out by four linear forms, a simplification pointed out by an external referee-style report.)
 (c) The argument uses that $R$ and $R'$ are symmetries of $\Pset_{-1}$; for a general second hyperbola $H(k)$ the rows pair a class of
-$H(1)$ with a class of $H(k)$ that is not the image of the first under a symmetry, and the analogous cover has waste.  Rank-1
-certificates below $4(p-1)$ do exist for other $k$ at large $p$ (data: LP with rows, columns, $\pm1$ lines is $3.61$--$3.89\,(p-1)$ for
-$k=2$, $29\le p\le199$), but we have no clean theorem there.
+$H(1)$ with a class of $H(k)$ that is not the image of the first under a symmetry.  Section~\ref{sec:general} replaces the block cover by a
+``potential'' cover along the cycles of the row/column incidence graph and obtains an exact bound for every $k$; the case $k=-1$ is the one
+where all cycles have length four, and Theorem~\ref{thm:two} is recovered.
+\end{remark}
+
+
+\section{Every second hyperbola: the potential cover}\label{sec:general}
+
+Fix $k\in\Fp\setminus\{0,1\}$ and let $\Pset_k=(H(1)\cup H(k))\cap\Gp$.  Its $8(p-1)$ points fall into the classes
+$\kappa_a=(a,1/a)\in H(1)$ and $\mu_b=(b,k/b)\in H(k)$, $a,b\in\Fp^*$, four points each (the two lifts of the $x$- and of the
+$y$-coordinate).  Two elementary facts organise the box: every non-empty row $y$ carries exactly the four points of $\kappa_{1/y}$ and
+$\mu_{k/y}$, and every non-empty column $x$ exactly those of $\kappa_x$ and $\mu_x$.  Hence, if we join two classes when they share a row
+(``row-edge'') or a column (``column-edge''), every class has one edge of each kind and the \emph{class graph} is a disjoint union of even
+cycles
+\[
+ \kappa_x\ \text{---}\ \mu_{kx}\ \text{---}\ \kappa_{kx}\ \text{---}\ \mu_{k^2x}\ \text{---}\ \cdots\ \text{---}\ \kappa_x ,
+\]
+one for each coset of $\langle k\rangle$ in $\Fp^*$, of length $2\operatorname{ord}(k)$, with the $\kappa$'s at the even and the $\mu$'s at
+the odd positions.  A row-edge stands for two rows ($y$ and $y+p$), a column-edge for two columns; each of these lines carries two points of
+each of its two classes.  Slope-$(\pm1)$ lines are organised in residue groups exactly as in Section~\ref{sec:two} (the residue $d$ groups the
+classes with $a-1/a\equiv d$ and $b-k/b\equiv d$ for slope $+1$, and $a+1/a\equiv d$, $b+k/b\equiv d$ for slope $-1$); a group whose three
+lines have $4,8,4$ points (an ``eight-group'') consists of four classes, two of each hyperbola, and each of its classes has two points on the
+eight-point line and one point on each four-point line.  (Lemma~\ref{lem:groups} and its proof carry over with the obvious changes: the $H(k)$-classes of the slope-$(+1)$ group of residue
+$d$ are $\mu_b,\mu_{-k/b}$ with $b-k/b\equiv d$, their two centres are equal or differ by exactly $p$, and they coincide iff $X(b)$ and
+$X(k/b)$ have opposite signs; when both pairs of a group share their centres the two centres coincide automatically, for every $k$ ---
+the sign bookkeeping of the proof of Proposition~\ref{prop:m8}; verified for all $p\le500$ and $k\in\{-1,2,3,5,7\}$, \texttt{slack/g8\_general.py}.)  Let
+$G_8=G_8(k,p)$ be the number of eight-point lines of both slopes and $s(v)\in\{0,1,2\}$ the number of eight-groups containing the class $v$.
+On a cycle $c$ put $A_c=\sum_{\kappa\in c}s(\kappa)$, $B_c=\sum_{\mu\in c}s(\mu)$ (so $\sum_cA_c=\sum_cB_c=2G_8$), and let $R_c$ be the range
+(maximum minus minimum) of the walk $W_i=\sum_{j\le i}\varepsilon_js(v_j)$ along the cycle $v_0,v_1,\dots,v_{L-1}$, where $\varepsilon_j=+1$
+at even and $-1$ at odd positions; $R=\max_cR_c$.
+
+\begin{theorem}[every second hyperbola]\label{thm:general}
+For every prime $p$ and every $k\in\Fp\setminus\{0,1\}$ with $G_8(k,p)\ge1$,
+\[
+ \alpha(\Pset_k)\ \le\ 4(p-1)\ -\ \frac{2G_8-2\sum_c|A_c-B_c|}{R}.
+\]
+For $k=-1$ all cycles have length four, $A_c=B_c$ and $R=1$, and the bound is $4(p-1)-2G_8=4(p-1)-4m_8$: Theorem~\ref{thm:two}.
+\end{theorem}
+\begin{proof}
+We exhibit a fractional cover: non-negative weights on lines such that every point receives total weight at least one; since a lawful set
+meets every line in at most two points, its size is at most twice the total weight.  Put $t=1/R$ and weight $t$ on the three lines of every
+eight-group (cost $6tG_8$; a point of a class $v$ receives $s(v)\,t$ from these lines).  On a cycle $v_0,\dots,v_{L-1}$ let $e_i$ be the
+edge $\{v_i,v_{i+1}\}$ and give both lines of $e_i$ the weight
+\[
+ w_i=\tfrac12+(-1)^i\varphi_i,\qquad \varphi_i\in[-\tfrac12,\tfrac12].
+\]
+Every point of $v_i$ lies on one line of $e_{i-1}$ and one of $e_i$, hence receives $w_{i-1}+w_i=1+(-1)^i(\varphi_i-\varphi_{i-1})$ from rows
+and columns; so the cover is feasible as soon as $\varphi_i-\varphi_{i-1}\ge-t\,s(v_i)$ at even $i$ and $\varphi_i-\varphi_{i-1}\le t\,s(v_i)$
+at odd $i$ (the ``potential'' may drop by at most $ts$ at a $\kappa$ and rise by at most $ts$ at a $\mu$; moves in the other direction are
+free), and $w\in[0,1]$ because $|\varphi|\le\frac12$.  The rows and columns of the cycle cost $4\sum_iw_i=2L+4\sum_i(-1)^i\varphi_i$, and for
+even $L$ the alternating sum telescopes: $\sum_i(-1)^i\varphi_i=-\sum_{i\ \mathrm{odd}}(\varphi_i-\varphi_{i-1})$ (indices mod $L$).  Choose
+$\varphi_i=\varphi_0-tW_i$ for $1\le i\le L-1$ (full moves at every special class); since $W$ ranges over an interval of length $R_c\le R=1/t$,
+some $\varphi_0$ keeps $|\varphi|\le\frac12$ throughout.  The traversal ends at $\varphi_{L-1}=\varphi_0-t(A_c-B_c)$; close the cycle by one
+free move at $v_0$ (a rise at the $\kappa$ $v_0$ if $A_c>B_c$, a drop at the $\mu$ $v_{L-1}$ if $B_c>A_c$; both endpoints are values of the
+walk, so the move stays inside $[-\frac12,\frac12]$).  The sum of the odd-position jumps is then $tB_c-t\max(0,B_c-A_c)=t\min(A_c,B_c)$, and
+the total cost is
+\[
+ \sum_c\bigl(2L_c-4t\min(A_c,B_c)\bigr)+6tG_8=4(p-1)-4t\Bigl(2G_8-\tfrac12\sum_c|A_c-B_c|\Bigr)+6tG_8=4(p-1)-t\Bigl(2G_8-2\sum_c|A_c-B_c|\Bigr),
+\]
+using $\sum_cL_c=2(p-1)$ and $\min(A,B)=\frac12(A+B-|A-B|)$.
+\end{proof}
+
+The bound is exact for the cover with uniform line weight $1/R$: the class-level linear program with these line weights has exactly this
+value for every $(p,k)$ we computed (\texttt{slack/exact\_c.py}, \texttt{slack/cyc\_model.py}), e.g.\ $\alpha(\Pset_3)\le3.914\,(p-1)$ at $p=199$
+($G_8=34$, $R=4$) and $\alpha(\Pset_3)\le3.952\,(p-1)$ at $p=401$; when $\operatorname{ord}(k)$ is small the cycles are many and the
+imbalance term can cancel the gain ($p=401$, $k=5$: sixteen cycles, $\sum_c|A_c-B_c|=G_8$, bound $4(p-1)$).
+
+\begin{proposition}\label{prop:g8k}
+For every $k\in\Fp\setminus\{0,1\}$, $G_8(k,p)=\tfrac16p+O(\sqrt p\log^4p)$ with an absolute implied constant.
+\end{proposition}
+\begin{proof}[Proof (sketch)]
+The proof of Proposition~\ref{prop:m8asym} goes through with the cubic $C_0(k):\ ab^2-(a^2-1)b-ka=0$ (from $b-k/b\equiv a-1/a$): its
+discriminant in $b$, $a^4+(4k-2)a^2+1$, has the four distinct nonzero roots $a^2=1-2k\pm2\sqrt{k^2-k}$ when $k\notin\{0,1\}$, so $C_0(k)$ is
+absolutely irreducible; an eight-point line of slope $+1$ corresponds to four points $(a,b)$ of $C_0(k)$ with $X(a)X(1/a)<0$ and
+$X(b)X(k/b)<0$, and on $C_0(k)$ the fourth residue $X(k/b)$ is determined by $X(b)-X(a)+X(1/a)$ (substitute $b\mapsto-b$ in Step~2), so the
+conditions are again interval conditions on the four linear forms $x_1,x_2,x_3,x_3-x_1+x_2$ of total volume $\frac13$; slope $-1$ is
+symmetric.  All constants depend only on degrees.
+\end{proof}
+
+\begin{corollary}[conditional on Lemma~\ref{lem:arc}]\label{cor:general}
+There are absolute constants $c,C>0$ such that for every prime $p$ and every $k\notin\{0,1\}$ with $\operatorname{ord}(k)\ge p^{1/2}\log^{C}p$,
+\[
+ \alpha(\Pset_k)\ \le\ 4(p-1)-c\,\sqrt p/\log^{C}p .
+\]
+\end{corollary}
+\begin{lemma}[arc imbalance; proof to be supplied]\label{lem:arc}
+For every arc $\{a_0k^j:\ J_1\le j\le J_2\}$ of a cycle,
+$\bigl|\sum_{j=J_1}^{J_2}\bigl(s(\kappa_{a_0k^j})-s(\mu_{a_0k^{j+1}})\bigr)\bigr|\le C\sqrt p\log^{C}p$.
+\end{lemma}
+Lemma~\ref{lem:arc} gives $R\le2C\sqrt p\log^Cp$ and $|A_c-B_c|\le C\sqrt p\log^Cp$ for each of the $(p-1)/\operatorname{ord}(k)$ cycles, and
+Proposition~\ref{prop:g8k} gives $G_8\ge p/7$; the corollary follows from Theorem~\ref{thm:general}.  The lemma is a statement about
+incomplete sums of the indicator ``the class belongs to an eight-group'' along geometric progressions: completing the interval in $j$ by the
+characters of $\langle k\rangle$ reduces it to complete sums $\sum_{x}f(x)\psi(x)$ over $\Fp^*$ with $\psi$ multiplicative, where $f$ is a
+combination of products of sign conditions on $x$, $1/x$ and the two roots $b,-k/b$ of the partner quadratic (for either slope); Selberg's
+polynomials and the Bombieri--Perel'muter bound for mixed character sums along the curve $C_0(k)$ (and its slope-$(-1)$ twin) then give
+$O(\sqrt p\log^Cp)$.  We state it as a lemma because its proof is not written out in this version.
+
+\begin{remark}
+(a) The potential construction is exact in the following sense: for fixed line weights $t_G$ on the eight-groups, the cheapest assignment of
+row and column weights is $2L-4D$ per cycle, where $D$ is the total deposit of a buffer of width one driven along the cycle, every $\kappa$
+of an eight-group withdrawing at most $t_G$ and every $\mu$ depositing at most $t_G$; Theorem~\ref{thm:general} is the case of uniform
+$t=1/R$, where the buffer never blocks.  (b) Numerically the uniform weight $t=1/m$ with $m=4,\dots,8$ is much better: it saves about
+$0.2$ per eight-group on every $(p,k)$ computed ($p\le997$, $k=2,3,5$) and also on synthetic instances with randomly placed groups, i.e.\
+$\alpha(\Pset_k)\le(4-c_0+o(1))(p-1)$ with $c_0\approx0.03$ appears to hold for every $k$; a proof needs the local statistics of the eight-group
+classes along the cycles (a fixed-window equidistribution at the level of fibred products of $C_0(k)$), which we have not carried out.  The
+LP with rows, columns and the eight-groups' lines saves about one per eight-group ($p\le601$), the ceiling of certificates of this kind.
 \end{remark}
 
 \section{Computational observations beyond one hyperbola}\label{sec:beyond}
