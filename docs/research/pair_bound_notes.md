@@ -816,3 +816,27 @@ Addendum to B.16 (19:08 UTC) — three exact structural facts for the trace meth
     families and positions "randomly" (accidental identities among the algebraic numbers z_F + t mod p) — plus counting of the structured types
     (rational z_F: Pythagorean families; same-line cliques; commutator walks μ,ν,μ⁻¹,ν⁻¹ of biased multipliers), which give the observed
     positive 1 % bias.  This is the precise shape of the arithmetic input for B.
+## 22. T2.14 (second solver): the per-family count — statement, proof, and the bookkeeping that avoids primitivity
+LEMMA K.  Let p be a prime, s₁ ≤ s₂ positive integers with gcd(s₁,s₂) = 1 and χ(s₁²+s₂²) = +1 (nonzero QR), e = ±1, and put
+L = ⌊p/(s₁+s₂)⌋.  Then the number of collinear point-triples of P₋₁ with three distinct classes that are sub-triples of a quadruple
+q, q+s₁D, q+s₂D, q+(s₁+s₂)D with D = (u,v) ∈ Z², |u|,|v| ≤ L, uv ≡ 2e/(s₁s₂) (mod p), is at least
+     N_box(s₁,s₂,e) ≥ 2·( (2L+1)²/p − C√p log²p )        (C absolute; two roots z of z² + (s₁+s₂)z + s₁s₂/2 ≡ 0),
+and different (coprime) families and different D give different triples.  In particular N_box ≥ c₀ p/(s₁+s₂)² whenever s₁+s₂ ≤ p^{1/4−ε}.
+Proof.  (i) Residue quadruples (B.15): for each u ∈ F_p* and each root z there is exactly one residue quadruple with base (x,y) = (zu, e/(zu))
+and direction (u, v ≡ 2e/(s₁s₂u)); its four residue points have xy ≡ e, −e, −e, e.  (ii) Kloosterman: #{(u,v) ∈ [−L,L]²: uv ≡ w (mod p)} =
+(2L+1)²/p + O(√p log²p) for every w ≢ 0 (Kloosterman sums + completion; e.g. Iwaniec–Kowalski Ch. 11 / Shparlinski's survey), no primitivity
+required.  (iii) Box lift: given an integer D = (u,v) with |u|,|v| ≤ L and the residue base point (x,y), choose the lift x̃ of x in [−h,h] if
+u ≥ 0 and in [h+1, 3h+1] if u < 0, and ỹ of y in [0,p) if v ≥ 0 and in [p,2p) if v < 0; then x̃ + tu ∈ [−h, 3h+1] and ỹ + tv ∈ [0, 2p−1] for
+0 ≤ t ≤ s₁+s₂ ≤ p/L, so the whole quadruple lies in the box: at least one lift per (D, z).  (iv) Distinct classes: two of the four points are
+congruent iff (t−t′)D ≡ 0 (mod p), impossible for 0 < |t−t′| < p and u,v ≢ 0.  (v) Injectivity: a triple determines its line, its primitive
+direction D′ and its primitive spacings (S₁,S₂); if it arises from the coprime family (s₁,s₂) with step D = dD′ then (s₁,s₂) = (S₁/g, S₂/g)
+with g = gcd(S₁,S₂) and d = g are forced — so coprime families with arbitrary (not necessarily primitive) D count each triple at most once.
+Hence the number of distinct triples ≥ Σ_{roots z} #{D} ≥ 2((2L+1)²/p − C√p log²p), and each quadruple contains 4 sub-triples of which at
+least one has three distinct classes (all four points are in distinct classes by (iv), so all 4 sub-triples qualify: the bound can be
+multiplied by 4 minus box-truncation).  ∎
+Remark (why not primitive directions): the Möbius/trivial-bound treatment of primitivity costs Σ_{d} 2L/d ≈ 2L log L, which exceeds the main
+term 4L²/p when L < p log L; counting coprime FAMILIES with all D avoids the issue entirely.  Similarly, non-coprime present families are the same
+triples as their coprime reductions (QR status is invariant under (s₁,s₂) ↦ (ds₁,ds₂)), so B.17's density lemma applies through the
+identity Σ_g P(T/g²) ≥ c T/log T ⇒ Σ_T P(T)/T ≥ (c/ζ(2)) log log p for the counts P(T) of present coprime families with norm in [T,2T).
+Consequence (with B.17): E(p) ≥ (1/8) Σ_{coprime present, s₁+s₂ ≤ p^{1/4−ε}} N_box ≥ c (p−1) log log p, unconditionally, for all large p.
+(To be checked by the third; then it becomes a Proposition of the note's §6 or of a future v1.1: "Conjecture A weak form".)
