@@ -612,7 +612,7 @@ project, not tonight.
 Addendum 4: p=29 exact minimum over all 2^{28} orientations = 136 = 4.86(p−1) (spectral bound 129.1 — within 5 %).  Sequence of exact minima
 24, 28, 42, 48, 80, 136 (p = 11…29): superlinear, tracking E; the spectral certificate is nearly tight from p = 23 on.
 
-## B.14 (third solver, task T2.10, 2026-08-18 18:45 UTC) Norm/trace diagnostics of C_p (k = −1): the moments are NOT bounded — C_p is Wigner-like
+## B.14 (third solver, task T2.10, 2026-08-18 18:30 UTC) Norm/trace diagnostics of C_p (k = −1): the moments are NOT bounded — C_p is Wigner-like
 Data: `slack/verification/vp_moments_km1.txt` (42 primes 11 ≤ p ≤ 199), tool `slack/vp_traces.py` (builds C_p from the collinear
 point-triples of P₋₁ over all slopes, lines by pair hashing — O(p²) instead of the O(p³) class-triple enumeration; identical E, λ_min to
 `vp_quadratic.py` at p ≤ 19).  Notation m_{2k} := tr(C_p^{2k})/(p−1); m₂ = ‖C_p‖_F²/(p−1) = mean squared row ℓ²-norm.
@@ -644,7 +644,7 @@ p = 41/71/101/199: (1,±1): 4.4/7.7/7.6/7.4 each; (2,±1): 1.9/2.8/3.0/3.1; (1,�
 family F of directions — dozens of directions, each a Weil-type count in the style of Prop. m₈ (or one uniform argument in (u,v)).
 Together with B.14 (Wigner edge): the spectral programme is well-posed and heavy on both sides; parked here with all data and tools.
 
-## B.15 (third solver, 2026-08-18 20:00 UTC) The arithmetic structure of E(p): every collinear pattern of P₋₁ is a symmetric quadruple, present iff s₁²+s₂² is a square mod p
+## B.15 (third solver, 2026-08-18 18:40 UTC) The arithmetic structure of E(p): every collinear pattern of P₋₁ is a symmetric quadruple, present iff s₁²+s₂² is a square mod p
 Tools/logs: `slack/e_structure.py`, `slack/verification/e_structure_p191_p193.log`, `e_structure_small.log`.
 Setup.  A compatible collinear pattern (three points of P₋₁ from three distinct classes, all present for one orientation) lies on a
 primitive integer direction D = (u,v): the points are q, q+t₁D, q+t₂D (0 < t₁ < t₂).  Neither u nor v is ≡ 0 (mod p) (a vertical or
@@ -719,7 +719,7 @@ Correction to §21(1) (data, `/tmp/pyth.py`): the Pythagorean families carry onl
 p = 41, 71, 101, 151, 199 (families (3,4), (6,8), (5,12), (9,12), (7,24), … present as predicted).  So the unconditional constant is
 c₁ ≈ 0.1, not ≈ 1: the growth of E rests entirely on the QR-density of non-Pythagorean sums of two squares (Burgess-type input, brief 7).
 
-## B.16 (third solver, task T2.13, 2026-08-18 21:30 UTC) Conjecture B on the quadruple structure: the trace method — main term, cancellations, what arithmetic is needed
+## B.16 (third solver, task T2.13, 2026-08-18 18:55 UTC) Conjecture B on the quadruple structure: the trace method — main term, cancellations, what arithmetic is needed
 Data: `slack/verification/vp_moments_k.txt` (tool `slack/vp_moments_k.py`; primes 97, 101, 151, 193, 199; k ≤ 12).
 1. C_p in quadruple language.  Π = box lifts of sub-triples of symmetric quadruples q_F (F = (s₁,s₂,e), direction D on uv ≡ 2e/(s₁s₂), root z,
    lift ℓ; B.15).  For a ≠ b: C_ab = (1/16)Σ_{π ∋ a,b} σ_π(a)σ_π(b), where σ_π(a) = +1 iff the lifted point of class a used by π is the one present
@@ -766,7 +766,7 @@ negative edge inside 2√m₂, positive outliers from the PSD part).  Conjecture
 equidistribution statement for closed chains of collinear quadruples of {xy ≡ ±1} with half-box sign weights — a project, not a lemma;
 what is NOT needed: k ≍ log p subtleties (CH_δ buys k up to p^{δ/3}), bounded moments, or sparsity.
 
-## B.17 (third solver, 2026-08-18 23:10 UTC) Conjecture A, weak form, is a theorem modulo the per-family Kloosterman count: E(p)/(p−1) ≫ log log p
+## B.17 (third solver, 2026-08-18 19:05 UTC) Conjecture A, weak form, is a theorem modulo the per-family Kloosterman count: E(p)/(p−1) ≫ log log p
 Idea: multiplicativity of Gaussian norms.  Identify a family (s₁,s₂) with z = s₁ + i s₂ ∈ ℤ[i]; s₁²+s₂² = N(z) and χ(N(zw)) = χ(N(z))χ(N(w))
 (χ = Legendre symbol mod p).  So NR·NR = QR: products of two "absent" families are present.  Even if all small families are absent
 (p = 193: 5, 10, 13, 17, 26, 29, 34 are all non-residues), their pairwise products 25, 50, 65 = 5·13, 85 = 5·17, 130, 170, 221 = 13·17, …
@@ -793,7 +793,7 @@ families at a positive proportion of scales (hence E ≫ p log p, the observed r
 Consequence for the programme: (spectral model theorem) ⇐ Conjecture B alone (given the Kloosterman count): min_r T(S(r)) ≥ (1−o(1))·E(p) ≥
 c(p−1) log log p for all large p, and ≥ c(p−1) log p if the QR density is bounded below on a positive proportion of scales.
 
-Addendum to B.16 (23:40 UTC) — three exact structural facts for the trace method, all verified at p = 101/199 (scratch checks, third solver):
+Addendum to B.16 (19:08 UTC) — three exact structural facts for the trace method, all verified at p = 101/199 (scratch checks, third solver):
 (a) SIGN LAW.  For a pattern π and two of its classes a, b (lifted points with integer x-coordinates x_a, x_b ∈ [−h, 3h+1]):
     σ_π(a)σ_π(b) = e_a e_b · (+1 if x_a, x_b lie in the same half of the box [−h,h] / [h+1,3h+1], −1 otherwise),  e = the hyperbola signs
     (e,−e,−e,e) of the quadruple positions.  Verified on all pattern pairs at p = 199 (identity holds for 100 %).  The same-half probability
