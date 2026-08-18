@@ -585,3 +585,17 @@ What it would give: every vertical-pair 2-factor has ≥ E + (p−1)λ_min colli
 at p ≤ 19; likely O(log p)) at least (E + (p−1)λ_min)/Δ deletions are needed ⇒ a bound for the MODEL of the form 4(p−1) − c·p/log p or
 better; not T1 (singles/mixed pairs are outside the model), but the first rigorous handle on "why every orientation is bad".
 Running: p = 43…101 (`bench/vp_quadratic_large.log`) to see whether λ_min stays bounded and how E grows.
+Addendum (05:00 WITA) — larger p (`bench/vp_quadratic_large.log`): p=43: E/(p−1)=9.36, λ_min=−4.62, bound 4.74(p−1); 47: 8.82, −4.95, 3.87;
+53: 9.51, −5.82, 3.69; 59: 11.04, −6.11, 4.94; 61: 11.18, −6.00, 5.18; 67: 10.63, −5.85, 4.78; 71: 12.84, −6.40, 6.44.  So E/(p−1) grows
+slowly (like log p; E ≈ (1/8)·#collinear point-triples of P₋₁ with three distinct classes, i.e. essentially the number of rich lines of
+all slopes ~ p log p) and λ_min drifts down slowly (−4.5 → −6.4, also log-like?), the spectral bound staying ≥ 3.7(p−1) and trending up.
+Precise conjecture (checkable): λ_min(C_p) ≥ −c log p and E(p) ≥ c′ (p−1) log p with c′ > c, so min_ε T(S(r)) ≥ (c′−c)(p−1) log p.
+Structure for a proof: on the cube, εᵀC_pε = (1/16)Σ_π (s_π·ε)² − (3/2)E with s_π ∈ {±1}³ the required-bit signs of pattern π (a
+collinear point triple with three distinct classes), i.e. C_p = (1/16)Σ_π s_π s_πᵀ − (1/16)D (D = diagonal of pattern degrees), a PSD
+Gram part minus a diagonal; λ_min(C_p) ≥ −c is a "spectral expansion" statement for the sign-pattern hypergraph of collinear triples —
+provable, if at all, by a trace/moment method whose terms are counts of closed chains of collinear triples of P₋₁ (arithmetic again).
+E(p): the count of collinear point-triples of the explicit set P₋₁ — a fixed-set counting problem (no adversary), Weil-type; even
+E ≥ 4(p−1) would need the general-slope triples (the ±1 lines contribute only ≈ 10 m₈ ≈ (5/6)p).
+Status: this is the first place where "for ALL orientations" has a certificate mechanism (SDP/spectral) rather than a union bound; it
+concerns the vertical-pair MODEL only.  Recorded for the note's §6 as a numerical observation; a theorem needs the two arithmetic
+inputs above (weeks, not hours).
