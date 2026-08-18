@@ -98,3 +98,30 @@ So for these cubics the LP certifies α ≤ 0.7–1.1 N per p — far below 3/2 
 UNIFORM fractional-cover construction (the rich lines of a lifted cubic are the lifts of the ≍ p² residue-collinear triples that happen to be
 integer-collinear; their arithmetic is the analogue of the ±1 residue-group structure of the hyperbola).  Suggested first target: graphs y ≡ f(x),
 deg f = 3 — a theorem α ≤ (3 − c)p for an explicit c would be the first "curves cannot beat HJSW" statement beyond conics.
+
+## 7. G3 — cubic graphs y = f(x): the structure of the collinear triples (second solver, 19.08 08:15 WITA; `scratch cubic_lines.py`, `cubic_fam.py`)
+Take f(x) = x³ + ax + b (every cubic is a translate of a depressed one; translations move the box, which is allowed).  Three residue points
+(x_i, f(x_i)) are collinear mod p iff x₁+x₂+x₃ ≡ 0 (they are then the roots of f(x) − mx − c); this is the "sum0" signature of every rich line of the
+lift with three distinct residues (verified: 1415/1417 three-point lines at p = 101, all four-to-six-point lines).
+FAMILY STRUCTURE (proved, one line of algebra; verified for 797/799 lines at p = 61 and 1416/1417 at p = 101 for f = x³ + x): a three-point line with
+integer direction (u,v) (u ≠ 0) and integer steps i, j (the other two points at q + i(u,v), q + j(u,v)) has base residue x ≡ −(i+j)u/3, and then
+v ≡ c₁u³ + a·u (mod p) with c₁ = (i² − ij + j²)/3 — for EVERY u ∈ F_p^* and every pair of steps (i ≠ j) there is exactly one residue triple
+(x, x+iu, x+ju), and the line exists in the box iff (u,v) has an integer representative with |iu|,|ju|,|iv|,|jv| inside the box.  So the three-point
+lines are organised in families (i,j) (the analogue of the (s₁,s₂) families of the pair of hyperbolae), each family living on the "direction curve"
+v = c₁u³ + au — a cubic GRAPH mod p (Weil-type counts of its small solutions, no genus-1 curve needed): family (i,j) has ≈ 4p/J² lines,
+J = max(|i|,|j|,|i−j|), and the number of families at scale J is ≈ 2J, whence ≈ 8p·log(J_max) three-point lines in total (data: 14p at p = 101).
+Lines with 4–6 points can only have slopes 0, ±1 (two lifts of one residue on a line) — the "wrap-around" lines of the hyperbola story: rows with three
+preimages (a 1/6 fraction of the values for a generic cubic), diagonals f(x) − x ≡ c and antidiagonals f(x) + x ≡ c with three roots (1/6 each);
+their count is ≈ 2p/3, they cover ≈ 3p of the 4p points at cost 1/3 per point.  A special role is played by the centre of symmetry (0, f(0)) of the
+depressed cubic: ~p/2 three-point lines pass through its lifts (pairs of symmetric residues).
+LP values (fractional cover by rows, columns and all rich lines): f = x³ (p ≡ 2 mod 3, bijective): 1.10 N at p = 101; f = x³ + x: 0.98–1.06 N (p = 61, 101);
+elliptic curves: 0.74–0.85 N (columns half empty).  Expected asymptotics: 6-lines cover 3p points at cost p, the remaining points by three-point lines
+at 2/3 per point ⇒ LP → (5/3)p = 0.83 N for cubics with three-preimage rows; ≤ (4/3 + o(1)) N for any cubic graph if the three-point-line hypergraph is
+near-regular on the leftover points (uniform weight 1/d on a d-regular 3-graph costs 2n/3).
+CONJECTURE G3 (cubic graphs): for every cubic f over F_p and every 2p×2p box, α ≤ (4/3 + o(1))·2p — strictly below the hyperbola's 3/2.
+Proof programme: (i) family structure (done); (ii) equidistribution of the small solutions of v ≡ c₁u³ + au (Weil for polynomial exponential sums, boxes
+of side ≥ p^{3/4+ε} ⇒ families with J ≤ p^{1/4−ε} — still ≍ log p lines per point); (iii) the degrees d_q of points in the restricted family and their
+concentration — the delicate step: the events "u = −3x/(i+j) has a small representative" for different (i,j) are correlated (APs with different
+differences), so a second-moment argument must be done carefully, or the cover must be organised by families rather than by uniform weights (as the
+block cover was for the pair of hyperbolae); (iv) the fractional cover.  Honest estimate: several days; the payoff is the first "curves of degree three
+cannot beat HJSW" theorem, in the direction Green suggests.
