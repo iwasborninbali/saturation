@@ -105,3 +105,16 @@ box covering (Erdős–Turán–Koksma no longer needed).  Version strings fixed
 |---|---|
 | `paper/hjsw_window.pdf` | `72390623b6eac6c8b22d4d0a82dec479d28971107f8831a4597a3f565735ea43` |
 | `paper/hjsw_window.tex` | `e9cb004f94c62c79aae19e651c1ac5ce04e3073dc9e22015387e917c343a8ab2` |
+
+## hjsw-note-v1.4 (2026-08-19, 07:55 WITA)
+v1.2 + Section "Every second hyperbola: the potential cover": Theorem (exact) α(P_k) ≤ 4(p−1) − (2G₈ − 2Σ_c|A_c−B_c|)/R for every k ∉ {0,1}
+(potential/buffer cover along the cycles of the row/column class graph; k = −1 recovers Theorem two); Proposition G₈(k,p) = p/6 + O(√p log⁴p)
+uniformly in k; Lemma (arc imbalance, first solver's proof: mixed character sums along the partner curve, Perel'muter/Castro–Moreno);
+Corollary: α(P_k) ≤ 4(p−1) − c√p/log⁵p for every k with ord(k) ≥ C√p log⁵p (all primitive roots; all but p^{1/2+o(1)} values of k).
+Also: §7 LP-anatomy paragraph, p ≤ 4001 spectral data, references (Ghosal'26, Perel'muter, Perret, Castro–Moreno). Reviewed by the first
+solver (THREAD[119]).
+
+| file | SHA-256 |
+|---|---|
+| `paper/hjsw_window.pdf` | `303b1caa3f9a68bef14c27db424b175663b631d500b3264fdbf6564ff8ccd213` |
+| `paper/hjsw_window.tex` | `49d8f3fc4acee4845ccd088495effaef5a30965dea2b9dc0156b68e6a3e3399f` |

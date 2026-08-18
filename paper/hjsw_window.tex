@@ -23,7 +23,7 @@
 
 \title{Extremal no-three-in-line subsets of a modular hyperbola\\ in the Hall--Jackson--Sudbery--Wild window}
 \author{Alex Komang\thanks{Independent researcher, Bali, Indonesia.  See the AI/tool-use disclosure at the end.}}
-\date{August 2026 --- version 1.4 (draft)}
+\date{August 2026 --- version 1.4}
 
 \begin{document}
 \maketitle
@@ -937,8 +937,8 @@ $X(k/b)$ have opposite signs; when both pairs of a group share their centres the
 the sign bookkeeping of the proof of Proposition~\ref{prop:m8}; verified for all $p\le500$ and $k\in\{-1,2,3,5,7\}$, \texttt{slack/g8\_general.py}.)  Let
 $G_8=G_8(k,p)$ be the number of eight-point lines of both slopes and $s(v)\in\{0,1,2\}$ the number of eight-groups containing the class $v$.
 On a cycle $c$ put $A_c=\sum_{\kappa\in c}s(\kappa)$, $B_c=\sum_{\mu\in c}s(\mu)$ (so $\sum_cA_c=\sum_cB_c=2G_8$), and let $R_c$ be the range
-(maximum minus minimum) of the walk $W_i=\sum_{j\le i}\varepsilon_js(v_j)$ along the cycle $v_0,v_1,\dots,v_{L-1}$, where $\varepsilon_j=+1$
-at even and $-1$ at odd positions; $R=\max_cR_c$.
+(maximum minus minimum) of the $L+1$ partial sums $W_{-1}=0,\ W_i=\sum_{j\le i}\varepsilon_js(v_j)$ ($0\le i\le L-1$) along the cycle
+$v_0,v_1,\dots,v_{L-1}$, where $\varepsilon_j=+1$ at even and $-1$ at odd positions; $R=\max_cR_c$.
 
 \begin{theorem}[every second hyperbola]\label{thm:general}
 For every prime $p$ and every $k\in\Fp\setminus\{0,1\}$ with $G_8(k,p)\ge1$,
@@ -960,8 +960,8 @@ and columns; so the cover is feasible as soon as $\varphi_i-\varphi_{i-1}\ge-t\,
 at odd $i$ (the ``potential'' may drop by at most $ts$ at a $\kappa$ and rise by at most $ts$ at a $\mu$; moves in the other direction are
 free), and $w\in[0,1]$ because $|\varphi|\le\frac12$.  The rows and columns of the cycle cost $4\sum_iw_i=2L+4\sum_i(-1)^i\varphi_i$, and for
 even $L$ the alternating sum telescopes: $\sum_i(-1)^i\varphi_i=-\sum_{i\ \mathrm{odd}}(\varphi_i-\varphi_{i-1})$ (indices mod $L$).  Choose
-$\varphi_i=\varphi_0-tW_i$ for $1\le i\le L-1$ (full moves at every special class); since $W$ ranges over an interval of length $R_c\le R=1/t$,
-some $\varphi_0$ keeps $|\varphi|\le\frac12$ throughout.  The traversal ends at $\varphi_{L-1}=\varphi_0-t(A_c-B_c)$; close the cycle by one
+$\varphi_i=\varphi_0-tW_i$ for $0\le i\le L-1$ (full moves at every special class; the value before $v_0$ is $\varphi_0-tW_{-1}=\varphi_0$); since the
+$L+1$ partial sums range over an interval of length $R_c\le R=1/t$, some $\varphi_0$ keeps $|\varphi|\le\frac12$ throughout.  The traversal ends at $\varphi_{L-1}=\varphi_0-t(A_c-B_c)$; close the cycle by one
 free move at $v_0$ (a rise at the $\kappa$ $v_0$ if $A_c>B_c$, a drop at the $\mu$ $v_{L-1}$ if $B_c>A_c$; both endpoints are values of the
 walk, so the move stays inside $[-\frac12,\frac12]$).  The sum of the odd-position jumps is then $tB_c-t\max(0,B_c-A_c)=t\min(A_c,B_c)$, and
 the total cost is
@@ -995,7 +995,8 @@ arc $I=\{a_0k^j:\ J_1\le j\le J_2\}$ of the corresponding cycle,
 \[
  \Bigl|\sum_{j=J_1}^{J_2}\bigl(s(\kappa_{a_0k^j})-s(\mu_{a_0k^{j+1}})\bigr)\Bigr|\ \le\ C\sqrt p\,\log^5p .
 \]
-Consequently $R\le2C\sqrt p\log^5p$ and $|A_c-B_c|\le C\sqrt p\log^5p$ for every cycle $c$; if $k$ is a primitive root, $A_c=B_c$ exactly.
+Consequently $R\le C\sqrt p\log^5p$ (the range of the partial sums is the maximum of an arc sum) and $|A_c-B_c|\le C\sqrt p\log^5p$ for every
+cycle $c$; if $k$ is a primitive root, $A_c=B_c$ exactly.
 \end{lemma}
 \begin{proof}
 (This argument is due to the first of the agents mentioned in the disclosure; its write-up with numerical checks is the file
@@ -1023,7 +1024,8 @@ $k\notin\{0,1\}$), the function $x$ has divisor $P_0^++P_0^--P_\infty^+-P_\infty
 times a constant for any $d\ge2$ and the Kummer sheaf $\mathcal L_\psi(x)$ is geometrically nontrivial; the Artin--Schreier sheaf
 $\mathcal L_e(f)$ has order $p$, coprime to the order of $\psi$, so $\mathcal L_\psi(x)\otimes\mathcal L_e(f)$ is nontrivial for \emph{every} $f$
 (including $f=0$), and $f$ has at most four poles, all of order $\le1$.  By the Weil--Bombieri bound for mixed sums along curves
-(\cite{Perelmuter}, \cite{Perret}; see also \cite[Ch.~11]{IK}) $|T(\psi;f)|\le C_2\sqrt p$ with $C_2$ absolute.  Summing, $|\sum_xf^+_K\psi|\le
+(\cite{Perelmuter}; explicit form in \cite[Thm.~1]{CastroMoreno}: at most $(2g-2+\deg(f)_\infty+\#(f)_\infty+\#\operatorname{supp}\operatorname{div}(x))\sqrt p$
+for the smooth model, here $\le12\sqrt p$, plus $O(1)$ for the excluded points) $|T(\psi;f)|\le12\sqrt p+8$.  Summing, $|\sum_xf^+_K\psi|\le
 2C_2\sqrt p(\log p+3)^4+O(1)$.
 
 \emph{Step 2 (completion of the arc).}  Let $L=\operatorname{ord}(k)$, $r=(p-1)/L$, and $F(y)=s(\kappa_y)-s(\mu_{ky})$ (so the sum in the lemma is
@@ -1045,7 +1047,7 @@ In particular this holds for every primitive root $k$, and for all but $O(p^{1/2
 cyclic group of order $p-1$ number at most $\tau(p-1)\,M$).
 \end{corollary}
 \begin{proof}
-By Proposition~\ref{prop:g8k}, $G_8\ge p/7$ for $p\ge p_0$; by Lemma~\ref{lem:arc}, $R\le2C\sqrt p\log^5p$ and
+By Proposition~\ref{prop:g8k}, $G_8\ge p/7$ for $p\ge p_0$; by Lemma~\ref{lem:arc}, $R\le C\sqrt p\log^5p$ and
 $\sum_c|A_c-B_c|\le\frac{p-1}{\operatorname{ord}(k)}\,C\sqrt p\log^5p\le G_8/2$ once $\operatorname{ord}(k)\ge14C\sqrt p\log^5p$.  Theorem~\ref{thm:general}
 gives $\alpha(\Pset_k)\le4(p-1)-G_8/R\le4(p-1)-p/(14C\sqrt p\log^5p)$.
 \end{proof}
@@ -1182,7 +1184,7 @@ the shifted-box table for $p=11$; the second audit also identified a gap in the 
 Lemma~\ref{lem:gadget} (the $(1,1)$ count), which is now proved above.
 
 Repository (public): \url{https://github.com/iwasborninbali/saturation}.\\
-This version of the note is the immutable tag \texttt{hjsw-note-v1.2} (v1.0: the theorems as first verified; v1.1: Section~\ref{sec:beyond} on the vertical-pair model; v1.2: the error term of Proposition~\ref{prop:m8asym}): file \texttt{paper/hjsw\_window.tex}; scripts in
+This version of the note is the immutable tag \texttt{hjsw-note-v1.4} (v1.0: the theorems as first verified; v1.1: Section~\ref{sec:beyond} on the vertical-pair model; v1.2: the error term of Proposition~\ref{prop:m8asym}; v1.4: Section~\ref{sec:general}, every second hyperbola): file \texttt{paper/hjsw\_window.tex}; scripts in
 \texttt{slack/}: \texttt{hjsw\_window\_check.py}, \texttt{hjsw\_boxes\_check.py}, \texttt{gadget11\_check.py},
 \texttt{km1\_theorem\_check.py}, \texttt{block\_cover\_km1.py}, \texttt{km1\_lines.py}, \texttt{cyc\_model.py},
 \texttt{exact\_c.py}, \texttt{arc\_imbalance.py}; logs in \texttt{slack/verification/};
@@ -1233,6 +1235,7 @@ public in the repository.
 \bibitem{Vaaler} J.~D. Vaaler, Some extremal functions in Fourier analysis, Bull.\ Amer.\ Math.\ Soc.\ 12 (1985) 183--216.
 \bibitem{Perelmuter} G.~I. Perel'muter, Estimate of a sum along an algebraic curve, Mat.\ Zametki 5 (1969) 373--380.
 \bibitem{Perret} M.~Perret, Multiplicative character sums and Kummer coverings, Acta Arith.\ 59 (1991) 279--290.
+\bibitem{CastroMoreno} F.~N. Castro and C.~J. Moreno, Mixed exponential sums over finite fields, Proc.\ Amer.\ Math.\ Soc.\ 128 (2000) 2529--2537.
 \bibitem{Shp12} I.~E. Shparlinski, Modular hyperbolas, Jpn.\ J. Math.\ 7 (2012) 235--294; arXiv:1103.2879.
 \bibitem{KMSW} M.~R. Khan, R.~Magner, S.~Senger, A.~Winterhof, Two combinatorial geometric problems involving modular
  hyperbolas, arXiv:1304.6943.
