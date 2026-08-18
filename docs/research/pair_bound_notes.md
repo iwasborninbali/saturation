@@ -505,3 +505,29 @@ problem of §3 with singles; the data (balanced optima 23+18, 30+29) say THIS is
 T1 ⇔ "no two half-density subsets S₁ ⊆ P₁, S₂ ⊆ P₂ (≈ 2 copies per class each, ≤ 2 per row/column) without cross triples have
 |S₁|+|S₂| ≥ 3(p−1)+ω(1)".  I see no tool for the core beyond H4′ (B.12); but proving the unbalanced half would at least turn the heuristic
 into a theorem and show that any counterexample to T1 must be balanced.
+
+**First solver (T2.8).** Prove T1 in two steps that separate the *combinatorial* core from the *arithmetic* one, using the restricted
+model R (§ [67]/[74]: no class uses a diagonal or antidiagonal pair of copies; only vertical/horizontal pairs and singles) as the core.
+Step 1 (R-model theorem, purely combinatorial): claim α_R(P_{−1}) ≤ 3(p−1) + O(1).  In R every 2-copy class occupies one column
+(vertical pair) or one row (horizontal pair) entirely, so a lawful S ∈ R is determined by (i) a set V of "vertical" classes, (ii) a set H
+of "horizontal" classes, (iii) singles, with the constraints: a column with a vertical pair holds no other point (its partner class
+of the other hyperbola is dead there), a row with a horizontal pair likewise; hence |S| = 2|V| + 2|H| + #singles and the row/column
+constraints alone give |S| ≤ 2·(2p−2) minus the columns/rows killed by pairs — an explicit *matching* structure on the 2-factor of
+rows/columns (each class = one edge column↔row of its two copies... precisely: class (a,b) has copies in columns a', a'+p and rows b, b+p;
+a vertical pair uses one column and two rows, a horizontal pair two columns and one row).  The only non-row/column constraints in R are
+the ±1 lines through vertical/horizontal pairs of *different* classes and the "singles" — i.e. exactly the residue-group blocks of §11
+and their 6/7/8-point lines.  My conjecture: in R the LP over rows, columns and ±1 lines is tight up to O(1) (data: R-optimum − 3(p−1) ∈
+[−2,+4] for p=17…29 with the max at k=−1 = R = full optimum at 19, and LP(1) ≈ 3.45(p−1) is the same LP), so an integral (or 1/2-)
+dual for R could be *constructed* along the residue groups (the k=−1 blocks are R-closed) — the mirror lemma 2 gives full rows outside
+blocks; inside blocks the R-restriction removes exactly the diagonal copies that made 8-point lines pay 6 for 16.  So R-theorem =
+"cover of the block scheme with the R-forbidden copies deleted", plausibly provable by the same double counting as Theorem 1.
+Step 2 (arithmetic): a general lawful S is R plus a set D of classes using a diagonal/antidiagonal pair or 3 copies; each such class
+lies on a ±1 line with ≥ 3 candidate points (its own two copies plus the residue-group partners), and the k=−1 theorem's block cover
+already charges these lines: show |S| ≤ α_R + 2·(number of D-classes not in blocks) + O(1) and that D-classes off the blocks are O(1)
+(the copies (0,0),(1,1) of a class κ ∈ D and the partner σκ… are collinear over Z only when the carries match — the arithmetic condition of
+§12; off the 8-point groups those coincidences are counted by m₆, m₇, which are O(p) *in total* but each D-class costs a whole ±1 line
+of the cover — the count that matters is the number of D-classes whose ±1 line carries no block, and §11 says such lines have ≤ 2 centres).
+Honest assessment: Step 1 is a finite, checkable statement (compute the exact R-optimum and its LP for p ≤ 41 with the residue-group
+dual written down explicitly — one afternoon), and if it holds it isolates T1 into "how many diagonal-pair classes can a lawful S afford
+outside the blocks", which is where Theorem (block cover) already lives.  If the R-LP is *not* tight (gap growing with p), the idea dies
+quickly and cheaply.  What I cannot judge without computing: whether the R-dual has a p-independent shape.
