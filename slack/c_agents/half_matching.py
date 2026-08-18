@@ -384,8 +384,15 @@ if __name__ == "__main__":
 
     print("\n################ SYNTHETIC INSTANCES (>=2 sizes, >=5 seeds) ################")
     syn_results = {}
-    for (p, k) in [(199, 2), (601, 2)]:
+    for (p, k) in [(199, 2), (401, 2), (601, 2)]:
         syn_results[(p, k)] = run_synthetic(p, k, seeds=(0, 1, 2, 3, 4, 5, 6))
+
+    print("\n################ AGGREGATE (rule B, threshold=3, over all synthetic seeds/sizes) ################")
+    all_vals = []
+    for (p, k), (accum, mixed_accum) in syn_results.items():
+        all_vals.extend(accum['B:prune>=3'])
+    print(f"  n={len(all_vals)}  mean={sum(all_vals)/len(all_vals):+.4f}  "
+          f"min={min(all_vals):+.4f}  max={max(all_vals):+.4f}")
 
     print("\n################ SUMMARY ################")
     print("real instances, per-group net (lp exact), best rule among A/B/C:")

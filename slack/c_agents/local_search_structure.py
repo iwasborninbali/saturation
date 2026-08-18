@@ -4,10 +4,22 @@ sections 25-26 and slack/cyc_model.py for the model).
 Question: in the class-graph cover LP (cyc_model.lp), each (4,8,4) group gets an optimal weight
 t_G in {0, 1/2, 1}.  What LOCAL feature of a group's 4 vertices -- computed from the cyclic order of
 ALL specials (= union of every group's vertex set, known up front, independent of which groups end up
-selected) -- predicts t_G = 1 vs t_G = 0?  We build those features, fit a small decision tree (plain
-Python / no sklearn in this venv) on real p=199 (k=2,k=3) + synthetic p=199 (seeds 0,1,2), and evaluate
-the resulting EXPLICIT rule (t=1 on predicted groups, t=0 else) via cyc_model.lp(M, t_fixed=...) on
-held-out real (p,k) in {(101,2),(401,2),(401,3),(601,2)} and synthetic p=401 (seeds 0,1,2).
+selected) -- predicts t_G?  We build 5 such features (all from nearest-neighbour distances/parities in
+that cyclic order), fit small decision rules (a plain-Python CART, no sklearn in this venv, plus an
+exhaustively-searched single-feature threshold rule) on TRAIN = real p=199 (k=2,k=3) + synthetic p=199
+(seeds 0,1,2), and evaluate the resulting EXPLICIT rules via cyc_model.lp(M, t_fixed=...) on held-out
+real (p,k) in {(101,2),(401,2),(401,3),(601,2)} and synthetic p=401 (seeds 0,1,2).
+
+HEADLINE RESULT (see docs/research/c_agents/local_search_structure.md for the full writeup):
+  - The STRICT binary rule the task asks for (t=1 on predicted groups, else 0) does NOT beat "do
+    nothing" here: even the best rule found nets <= 0 per group on held-out data (honest negative --
+    forcing every group's t to {0,1} throws away the 40-80% of groups whose true optimum is t=1/2,
+    and even an ORACLE 0/1-only assignment has a near-zero or negative ceiling at these p).
+  - Allowing the SAME kind of local rule to also output t=1/2 (still explicit/local/bounded-window,
+    just not literally binary) flips the sign: the single-feature rule "t=1 if n_odd>=8, t=1/2 if
+    4<=n_odd<8, else t=0" (n_odd = count, over the group's 4 vertices' 8 sides, of sides whose nearest
+    other special is at ODD distance) nets +0.35/group on TRAIN and +0.35-0.41/group on EVERY held-out
+    instance (real and synthetic alike) -- about 44% of the free LP's own saving, from one feature.
 
 Run:  /Users/iwasborninbali/venvs/sat/bin/python3 slack/c_agents/local_search_structure.py
 """
@@ -87,6 +99,12 @@ def classify_t(t, lo=0.05, hi=0.95):
     if t >= hi: return 1
     return None  # ~1/2, ambiguous -- excluded from the binary fit (see report)
 
+def classify_t3(t):
+    """3-way label used only for the bonus (non-binary) rule in the report: 0 / 1/2 / 1."""
+    if t <= 0.25: return 0.0
+    if t >= 0.75: return 1.0
+    return 0.5
+
 # ---------------------------------------------------------------- instance collection --------------
 
 def collect(M, tag):
@@ -97,7 +115,8 @@ def collect(M, tag):
     saving, _, t = cm.lp(M)
     rows = []
     for g, cl in M['groups']:
-        rows.append(dict(key=g, tag=tag, feats=group_features(cl, ctx), t=float(t[g]), label=classify_t(t[g])))
+        rows.append(dict(key=g, tag=tag, feats=group_features(cl, ctx), t=float(t[g]),
+                          label=classify_t(t[g]), label3=classify_t3(t[g])))
     return rows, saving
 
 _BUILD_CACHE = {}
@@ -115,12 +134,19 @@ def instance_from_spec(item):
         return cm.synthetic(cached_build(p, k), seed), tag
 
 # ---------------------------------------------------------------- tiny CART (no sklearn available) --
+# Works for binary (y in {0,1}) or 3-way (y in {0,0.5,1}) labels alike -- gini/majority-vote are generic.
 
 def gini(y):
     n = len(y)
     if n == 0: return 0.0
-    p1 = sum(y) / n
-    return 1 - p1 * p1 - (1 - p1) * (1 - p1)
+    from collections import Counter
+    cnt = Counter(y)
+    return 1 - sum((c / n) ** 2 for c in cnt.values())
+
+def majority(y):
+    from collections import Counter
+    cnt = Counter(y)
+    return max(cnt.items(), key=lambda kv: (kv[1], -kv[0] if kv[0] is not None else 0))[0]
 
 def best_split(X, y, names):
     n = len(y); base = gini(y); best = None
@@ -138,9 +164,9 @@ def best_split(X, y, names):
     return best
 
 def build_tree(X, y, names, depth=0, max_depth=3, min_leaf=25):
-    n = len(y); p1 = sum(y) / n if n else 0.0
-    node = {'n': n, 'p1': p1, 'pred': 1 if p1 >= 0.5 else 0}
-    if depth >= max_depth or n < 2 * min_leaf or p1 in (0.0, 1.0):
+    n = len(y)
+    node = {'n': n, 'pred': majority(y) if n else 0, 'purity': 1 - gini(y)}
+    if depth >= max_depth or n < 2 * min_leaf or gini(y) == 0.0:
         return node
     sp = best_split(X, y, names)
     if sp is None or sp[0] <= 1e-9:
@@ -161,7 +187,7 @@ def predict_tree(node, feats):
 
 def print_tree(node, names, indent=''):
     if 'split' not in node:
-        print(f"{indent}-> predict {node['pred']}  (n={node['n']}, p(t=1)={node['p1']:.2f})")
+        print(f"{indent}-> predict {node['pred']}  (n={node['n']}, purity={node['purity']:.2f})")
         return
     name, thr = node['split']
     print(f"{indent}if {name} <= {thr:g}:")
@@ -176,6 +202,7 @@ def print_tree(node, names, indent=''):
 
 def rule_always0(feats): return 0
 def rule_always1(feats): return 1
+def rule_always_half(feats): return 0.5
 def rule_adj1(feats):    return 1 if feats['n_adj'] >= 1 else 0
 def rule_adj2(feats):    return 1 if feats['n_adj'] >= 2 else 0
 def rule_odd_maj(feats): return 1 if feats['n_odd'] >= 5 else 0     # more odd- than even-distance sides
@@ -184,6 +211,33 @@ def rule_crowded(feats): return 1 if feats['min_dist'] <= 2 else 0
 
 def make_tree_rule(tree):
     return lambda feats: predict_tree(tree, feats)
+
+def fit_threshold_rule(spec, feature='n_odd', values=range(0, 9), three_way=True):
+    """Fit a 1-2 threshold rule on a SINGLE feature by directly maximising the LP net/group on `spec`
+    (an exhaustive grid search over integer thresholds, not a gini proxy -- still an explicit, local,
+    bounded-window rule). three_way=True allows a middle t=1/2 band (lo<=v<hi); False fits a plain
+    binary t=1-iff-v>=thr rule."""
+    best = None
+    for hi in values:
+        los = values if three_way else [hi]
+        for lo in los:
+            if lo > hi: continue
+            def rule(feats, lo=lo, hi=hi, feature=feature, three_way=three_way):
+                v = feats[feature]
+                if v >= hi: return 1.0
+                if three_way and v >= lo: return 0.5
+                return 0.0
+            res = eval_rules_on_spec(spec, {'r': rule})['r']
+            net = sum(r['saving'] for r in res) / sum(r['n_groups'] for r in res)
+            if best is None or net > best[0]:
+                best = (net, lo, hi)
+    net, lo, hi = best
+    def final_rule(feats, lo=lo, hi=hi, feature=feature, three_way=three_way):
+        v = feats[feature]
+        if v >= hi: return 1.0
+        if three_way and v >= lo: return 0.5
+        return 0.0
+    return final_rule, lo, hi, net
 
 HAND_RULES = {
     'always0': rule_always0, 'always1': rule_always1,
@@ -213,26 +267,48 @@ def eval_rules_on_spec(spec, rules):
     return out
 
 # ---------------------------------------------------------------- main pipeline ----------------------
+# Two training sets are tried: TRAIN_REAL (the actual arithmetic arrangement, p=199, k=2 and k=3 -- what
+# theorem C is ultimately about) and TRAIN_MIXED (adds the 3 synthetic p=199 seeds, as the task's step 1
+# literally lists).  Both are evaluated on the SAME held-out set, split into its real and synthetic parts
+# because (see report) the two behave very differently for a 0/1-only rule.
 
-TRAIN_SPEC = [
+TRAIN_REAL_SPEC = [
     ('real', 199, 2, 'real(199,2)'),
     ('real', 199, 3, 'real(199,3)'),
+]
+TRAIN_SYN_SPEC = [
     ('syn', 199, 2, 0, 'syn(199,2,seed0)'),
     ('syn', 199, 2, 1, 'syn(199,2,seed1)'),
     ('syn', 199, 2, 2, 'syn(199,2,seed2)'),
 ]
-TEST_SPEC = [
+TRAIN_MIXED_SPEC = TRAIN_REAL_SPEC + TRAIN_SYN_SPEC
+
+TEST_REAL_SPEC = [
     ('real', 101, 2, 'real(101,2)'),
     ('real', 401, 2, 'real(401,2)'),
     ('real', 401, 3, 'real(401,3)'),
     ('real', 601, 2, 'real(601,2)'),
+]
+TEST_SYN_SPEC = [
     ('syn', 401, 2, 0, 'syn(401,2,seed0)'),
     ('syn', 401, 2, 1, 'syn(401,2,seed1)'),
     ('syn', 401, 2, 2, 'syn(401,2,seed2)'),
 ]
+TEST_SPEC = TEST_REAL_SPEC + TEST_SYN_SPEC
+
+ALL_SPEC = TRAIN_MIXED_SPEC + TEST_SPEC   # every instance step (1) asks for, in one place for the report
+
+def oracle_binary_net(M):
+    """Ceiling for ANY 0/1-only rule on this exact instance: force t=1 exactly where the free LP already
+    chose (close to) 1, t=0 elsewhere.  Not a portable rule (it needs the answer already) -- a diagnostic
+    upper bound showing how much of the free LP's saving a perfect 0/1 classifier could ever recover."""
+    _, _, t = cm.lp(M)
+    t_fixed = {g: (1.0 if t[g] >= 0.95 else 0.0) for g, cl in M['groups']}
+    s, _, _ = cm.lp(M, t_fixed=t_fixed)
+    return s / len(M['groups'])
 
 def summarize_free_lp(spec, title):
-    print(f"\n=== {title}: free LP t per group, and label counts ===")
+    print(f"\n=== {title}: free LP t per group, label counts, and the 0/1-oracle ceiling ===")
     all_rows = []
     for item in spec:
         M, tag = instance_from_spec(item)
@@ -240,68 +316,96 @@ def summarize_free_lp(spec, title):
         rows, saving = collect(M, tag)
         n = len(rows); n1 = sum(1 for r in rows if r['label'] == 1); n0 = sum(1 for r in rows if r['label'] == 0)
         nh = n - n1 - n0
-        print(f"  {tag:22s} p={p:4d} k={k}: G8={n:4d}  t=1: {n1:4d} ({n1/n:.2%})  t=0: {n0:4d} ({n0/n:.2%})  "
-              f"t~1/2: {nh:3d} ({nh/n:.2%})   free-LP net/group={saving/n:.3f}")
+        orc = oracle_binary_net(M)
+        print(f"  {tag:22s} p={p:4d} k={k}: G8={n:4d}  t=1:{n1:4d}({n1/n:.0%}) t=0:{n0:4d}({n0/n:.0%}) "
+              f"t~1/2:{nh:3d}({nh/n:.0%})   free-LP net/grp={saving/n:+.3f}   0/1-oracle net/grp={orc:+.3f}")
         all_rows += rows
     return all_rows
+
+def fit_and_report_tree(train_rows, label_key, label_values_desc, max_depth, min_leaf_frac=1/12):
+    fit_rows = [r for r in train_rows if r[label_key] is not None]
+    X = [r['feats'] for r in fit_rows]; y = [r[label_key] for r in fit_rows]
+    print(f"\n--- fitting CART on {len(fit_rows)} labelled groups, label={label_values_desc} ---")
+    tree = build_tree(X, y, FEATURE_NAMES, max_depth=max_depth, min_leaf=max(10, int(len(y) * min_leaf_frac)))
+    print_tree(tree, FEATURE_NAMES)
+    acc = sum(1 for r in fit_rows if predict_tree(tree, r['feats']) == r[label_key]) / len(fit_rows)
+    maj = majority(y); base_rate = sum(1 for v in y if v == maj) / len(y)
+    print(f"train accuracy: {acc:.3f}  (majority-class baseline: {base_rate:.3f}, n={len(y)})")
+    return tree
+
+def report_feature_means(rows, title):
+    print(f"\n=== {title}: feature means by true label (0 / ~1/2 / 1) ===")
+    for name in FEATURE_NAMES:
+        vals = {lab: [r['feats'][name] for r in rows if r['label3'] == lab] for lab in (0.0, 0.5, 1.0)}
+        m = {lab: (sum(v) / len(v) if v else float('nan')) for lab, v in vals.items()}
+        print(f"  {name:10s}  t=0: {m[0.0]:6.2f}   t~1/2: {m[0.5]:6.2f}   t=1: {m[1.0]:6.2f}")
+
+def evaluate_and_print(rules, title, best_key='train_net'):
+    train_eval = eval_rules_on_spec(TRAIN_MIXED_SPEC, rules)
+    test_real_eval = eval_rules_on_spec(TEST_REAL_SPEC, rules)
+    test_syn_eval = eval_rules_on_spec(TEST_SYN_SPEC, rules)
+    print(f"\n=== {title}: net/group (TRAIN = real 199,2/3 + synthetic 199 seeds 0-2) ===")
+    print(f"  {'rule':24s} {'TRAIN':>9s} {'TEST-real':>10s} {'TEST-syn':>9s} {'TEST-all':>9s}")
+    results = {}
+    for rname in rules:
+        tr = train_eval[rname]; ter = test_real_eval[rname]; tes = test_syn_eval[rname]
+        tr_net = sum(r['saving'] for r in tr) / sum(r['n_groups'] for r in tr)
+        ter_net = sum(r['saving'] for r in ter) / sum(r['n_groups'] for r in ter)
+        tes_net = sum(r['saving'] for r in tes) / sum(r['n_groups'] for r in tes)
+        all_saving = sum(r['saving'] for r in ter + tes); all_n = sum(r['n_groups'] for r in ter + tes)
+        results[rname] = dict(train_net=tr_net, test_real_net=ter_net, test_syn_net=tes_net,
+                               test_all_net=all_saving / all_n, test_real_rows=ter, test_syn_rows=tes)
+        print(f"  {rname:24s} {tr_net:+9.4f} {ter_net:+10.4f} {tes_net:+9.4f} {all_saving/all_n:+9.4f}")
+    best_name = max((n for n in rules if n != 'always0'), key=lambda n: results[n][best_key])
+    return results, best_name
 
 def main():
     t_start = time.time()
 
-    train_rows = summarize_free_lp(TRAIN_SPEC, "TRAIN instances")
-    test_rows = summarize_free_lp(TEST_SPEC, "HELD-OUT (test) instances")
+    all_rows = summarize_free_lp(ALL_SPEC, "ALL instances requested by step (1)")
+    train_rows = [r for r in all_rows if r['tag'] in {it[-1] for it in TRAIN_MIXED_SPEC}]
 
-    # ---- fit CART on TRAIN rows with a clean 0/1 label only (drop the ~1/2 rows from the FIT, not from
-    #      evaluation: the final rule still outputs 0/1 for every group when evaluated on real instances).
-    fit_rows = [r for r in train_rows if r['label'] is not None]
-    X = [r['feats'] for r in fit_rows]; y = [r['label'] for r in fit_rows]
-    print(f"\n=== Fitting CART on {len(fit_rows)} labelled TRAIN groups ({sum(y)} positive) ===")
-    tree = build_tree(X, y, FEATURE_NAMES, max_depth=3, min_leaf=max(15, len(y)//12))
-    print_tree(tree, FEATURE_NAMES)
-    train_acc = sum(1 for r in fit_rows if predict_tree(tree, r['feats']) == r['label']) / len(fit_rows)
-    print(f"train classification accuracy (t=1 vs t=0 only): {train_acc:.3f}  (base rate predicting majority: "
-          f"{max(sum(y), len(y)-sum(y))/len(y):.3f})")
+    # ---- feature/label analysis (step 2) ----
+    report_feature_means(train_rows, "TRAIN (real 199,2/3 + synthetic 199 x3)")
+    tree_bin = fit_and_report_tree(train_rows, 'label', 't=1 vs t=0 (t~1/2 dropped)', max_depth=3)
+    tree3 = fit_and_report_tree(train_rows, 'label3', 't in {0, 1/2, 1} (bonus, non-binary rule)', max_depth=3)
 
-    # ---- feature means conditioned on label (diagnostic, printed once) ----
-    print("\n=== TRAIN feature means by label (0 / ~1/2 / 1) ===")
-    for name in FEATURE_NAMES:
-        m0 = sum(r['feats'][name] for r in train_rows if r['label'] == 0) / max(1, sum(1 for r in train_rows if r['label'] == 0))
-        mh = sum(r['feats'][name] for r in train_rows if r['label'] is None) / max(1, sum(1 for r in train_rows if r['label'] is None))
-        m1 = sum(r['feats'][name] for r in train_rows if r['label'] == 1) / max(1, sum(1 for r in train_rows if r['label'] == 1))
-        print(f"  {name:10s}  t=0: {m0:6.2f}   t~1/2: {mh:6.2f}   t=1: {m1:6.2f}")
+    # ---- also fit single-feature threshold rules by DIRECTLY maximising LP net/group on TRAIN (exhaustive
+    #      grid over the integer feature n_odd in [0,8]; still explicit/local, just not a gini-split tree) ----
+    bin_rule, bin_lo, bin_hi, bin_tr_net = fit_threshold_rule(TRAIN_MIXED_SPEC, 'n_odd', three_way=False)
+    thr_rule, thr_lo, thr_hi, thr_tr_net = fit_threshold_rule(TRAIN_MIXED_SPEC, 'n_odd', three_way=True)
+    print(f"\n--- best BINARY n_odd-threshold by direct TRAIN-net search: t=1 iff n_odd>={bin_hi}, else 0"
+          f"   (TRAIN net/grp={bin_tr_net:+.4f}) ---")
+    print(f"--- best 3-WAY n_odd-threshold by direct TRAIN-net search: t=1 if n_odd>={thr_hi}, "
+          f"t=1/2 if {thr_lo}<=n_odd<{thr_hi}, else t=0   (TRAIN net/grp={thr_tr_net:+.4f}) ---")
 
-    RULES = dict(HAND_RULES); RULES['tree'] = make_tree_rule(tree)
+    RULES = dict(HAND_RULES); RULES['tree'] = make_tree_rule(tree_bin); RULES['thr_bin'] = bin_rule
+    RULES3 = {'always0': rule_always0, 'always_half': rule_always_half,
+              'tree3': make_tree_rule(tree3), 'threshold3': thr_rule}
 
-    # ---- evaluate every candidate rule via the REAL LP (t_fixed) on TRAIN then TEST ----
-    print("\n=== Rule evaluation via cyc_model.lp(M, t_fixed=rule(...)) ===")
-    train_eval = eval_rules_on_spec(TRAIN_SPEC, RULES)
-    test_eval = eval_rules_on_spec(TEST_SPEC, RULES)
-    results = {}
-    for rname in RULES:
-        tr, te = train_eval[rname], test_eval[rname]
-        tr_net = sum(r['saving'] for r in tr) / sum(r['n_groups'] for r in tr)
-        te_net = sum(r['saving'] for r in te) / sum(r['n_groups'] for r in te)
-        results[rname] = dict(train_rows=tr, test_rows=te, train_net=tr_net, test_net=te_net)
-        print(f"  rule={rname:22s}  TRAIN net/group={tr_net:+.4f}   TEST(held-out) net/group={te_net:+.4f}")
+    # ---- step 3: evaluate the required BINARY rules (t=1 on predicted groups, else 0) ----
+    results, best_name = evaluate_and_print(RULES, "STEP 3 (required): binary rules, t in {0,1} only")
+    print(f"\nBest binary rule by TRAIN net/group: '{best_name}'")
+    for r in results[best_name]['test_real_rows'] + results[best_name]['test_syn_rows']:
+        print(f"  TEST  {r['tag']:22s} p={r['p']:4d} k={r['k']}: G8={r['n_groups']:4d}  "
+              f"saving={r['saving']:8.2f}  net/group={r['net']:+.4f}")
+    print(f"  -> TEST-real net/group = {results[best_name]['test_real_net']:+.4f}   "
+          f"TEST-syn net/group = {results[best_name]['test_syn_net']:+.4f}   "
+          f"TEST-all net/group = {results[best_name]['test_all_net']:+.4f}   "
+          f"(TRAIN = {results[best_name]['train_net']:+.4f})")
 
-    # ---- pick best rule BY TRAIN performance (no test leakage in model selection); report its TEST number
-    best_name = max((n for n in RULES if n != 'always0'), key=lambda n: results[n]['train_net'])
-    print(f"\n=== Best rule by TRAIN net/group: '{best_name}' ===")
-    for r in results[best_name]['test_rows']:
-        print(f"  TEST  {r['tag']:22s} p={r['p']:4d} k={r['k']}: G8={r['n_groups']:4d}  saving={r['saving']:8.2f}  net/group={r['net']:+.4f}")
-    print(f"  TEST TOTAL net/group = {results[best_name]['test_net']:+.4f}   "
-          f"(TRAIN net/group = {results[best_name]['train_net']:+.4f})")
+    # ---- bonus: allow the rule to output 1/2 too (still an explicit bounded-window local rule; goes
+    #      beyond the letter of step 3 but tests whether the 0/1 restriction is really the bottleneck) ----
+    results3, best3_name = evaluate_and_print(RULES3, "BONUS: rule may also output t=1/2")
+    print(f"\nBest 3-way rule by TRAIN net/group: '{best3_name}'")
+    print(f"  -> TEST-real net/group = {results3[best3_name]['test_real_net']:+.4f}   "
+          f"TEST-syn net/group = {results3[best3_name]['test_syn_net']:+.4f}   "
+          f"TEST-all net/group = {results3[best3_name]['test_all_net']:+.4f}   "
+          f"(TRAIN = {results3[best3_name]['train_net']:+.4f})")
 
-    # ---- also show the free LP's own net/group on the same TEST set as the upper bound ----
-    free_saving_total = 0; free_groups_total = 0
-    for item in TEST_SPEC:
-        M, _ = instance_from_spec(item)
-        s, _, _ = cm.lp(M)
-        free_saving_total += s; free_groups_total += len(M['groups'])
-    print(f"\nFree LP upper bound on TEST set: net/group = {free_saving_total/free_groups_total:+.4f}")
-    print(f"Total wall time: {time.time()-t_start:.1f}s")
-
-    return dict(tree=tree, results=results, best_name=best_name)
+    print(f"\nTotal wall time: {time.time()-t_start:.1f}s")
+    return dict(tree_bin=tree_bin, tree3=tree3, results=results, best_name=best_name,
+                results3=results3, best3_name=best3_name)
 
 if __name__ == "__main__":
     main()

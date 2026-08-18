@@ -1159,3 +1159,37 @@ WHAT THEOREM C NOW NEEDS.
     The finite computation of E_π[g_W] can be replaced by a rigorous bound from the pattern frequencies (a table for one W), and the LP value shows the
     ceiling of this certificate type is ≈ 1 per group (c₀ ≈ 1/6).
 Both forms are UNIFORM in k (all constants come from degrees), and the k = −1 theorem is the extreme case where the cycles have length 4.
+
+## 29. THEOREM C, exact form (second solver, 19.08 07:35 WITA) — elementary, for every k; verified numerically (`slack/exact_c.py`)
+Setting.  p odd prime, k ∈ F_p \ {0,1}, P_k = (H(1) ∪ H(k)) ∩ G(p).  Classes κ_a = (a,1/a) ∈ H(1), μ_b = (b,k/b) ∈ H(k) (a,b ∈ F_p^*), four points
+each.  Facts (checked for (p,k) = (101,2),(101,3),(199,5),(199,7),(401,2),(313,10), `scratch struct_check.py`; proofs are one-liners from the
+definitions): every non-empty row of the box carries exactly the four points of κ_{1/y} and μ_{k/y}; every non-empty column exactly those of κ_x
+and μ_x; hence the "class graph" (rows and columns as edges) is a disjoint union of even cycles  κ_x — μ_{kx} — κ_{kx} — μ_{k²x} — …, one per coset
+of ⟨k⟩ in F_p^*, of length 2·ord(k) (κ at even positions, μ at odd).  In every (4,8,4)-group (either slope) each of the four classes has exactly two
+points on the eight-point line and one on each four-point line.  Let G₈ = number of eight-point lines of both slopes, s(v) ∈ {0,1,2} = number of
+(4,8,4)-groups containing the class v, and on each cycle c: A_c = Σ_{κ ∈ c} s, B_c = Σ_{μ ∈ c} s (so Σ_c A_c = Σ_c B_c = 2G₈), and R_c = max − min of
+the walk W_i = Σ_{j ≤ i} (+s(v_j) if v_j is a κ, −s(v_j) if a μ) over one traversal; R = max_c R_c (R ≥ 1 if G₈ ≥ 1).
+THEOREM C.   α(P_k) ≤ 4(p−1) − (2G₈ − 2Σ_c |A_c − B_c|)/R.
+Proof.  Take t = 1/R.  Cover: weight t on the three lines of every (4,8,4)-group (cost 2·3t per group = 6tG₈ in total; a point of a class with
+s(v) = σ receives σt from lines).  Rows/columns: on a cycle v_0…v_{L−1} put weight w_i = ½ + (−1)^i φ_i on BOTH lines of the edge e_i = {v_i,v_{i+1}}
+(the two rows y ≡ 1/a, y ≡ 1/a + p of κ_a = v_i when i is even; the two columns of μ_b = v_i when i is odd), with φ_i ∈ [−½,½] chosen below.
+Every point of v_i lies on one line of e_{i−1} and one of e_i, so it receives w_{i−1} + w_i = 1 + (−1)^i(φ_i − φ_{i−1}) from rows and columns; the cover
+is feasible iff  φ_i − φ_{i−1} ≥ −t·s(v_i) at even i  and  φ_i − φ_{i−1} ≤ t·s(v_i) at odd i  (drops at κ's and rises at μ's are capped, the opposite
+moves are free), and w ∈ [0,1] iff |φ| ≤ ½.  Its cost is 4Σ_i w_i = 2L + 4Σ_i(−1)^iφ_i = 2L − 4·(Σ of the jumps φ_i − φ_{i−1} over ODD i)
+(for even L the alternating sum telescopes to minus the sum of the odd-position jumps).  Choice of φ: φ_i = φ_0 − t·W_i for i = 1..L−1 (full moves:
+every κ drops ts, every μ rises ts); as W ranges over an interval of length R_c ≤ R = 1/t we can pick φ_0 with |φ| ≤ ½ throughout; the traversal ends
+at φ_{L−1} = φ_0 − t·W_{L−1} = φ_0 − t(A_c − B_c) — close the cycle with one free move at v_0 (a raise at the κ v_0 if A_c > B_c, a drop at the μ v_{L−1}
+if B_c > A_c; both are in the uncapped direction and stay inside [−½,½] since both endpoints are values of the walk).  Sum of the odd jumps = t·B_c
+minus the closing drop t·max(0, B_c − A_c) = t·min(A_c,B_c).  Total cost = Σ_c (2L_c − 4t·min(A_c,B_c)) + 6tG₈ = 4(p−1) − 4t(2G₈ − ½Σ_c|A_c−B_c|) + 6tG₈
+= 4(p−1) − t(2G₈ − 2Σ_c|A_c − B_c|), because Σ_c L_c = 2(p−1) and min(A,B) = (A+B−|A−B|)/2.  A lawful set meets every line in ≤ 2 points, so its size
+is at most the cost. ∎
+Checks (`slack/exact_c.py`, and the value coincides with the class-level LP at uniform t = 1/R): p=101,k=2: G₈=16, R=10 ⇒ saving 3.2; p=199,k=3: G₈=34,
+R=4 ⇒ 17.0 (α ≤ 3.914(p−1)); p=401,k=3: R=6 ⇒ 19.3; p=401,k=2 (2 cycles): Σ|A−B| = 16 ⇒ 6.9; p=997,k=2 (3 cycles): 9.1; p=401,k=5 (16 cycles): Σ|A−B| = 48
+= G₈ ⇒ 0 (the drift eats everything: small orders need the local certificate).  For k = −1: cycles of length 4, s ≡ 1 on block classes, A_c = B_c, R = 1
+⇒ saving 2G₈ = 4m₈ = Theorem 17 exactly.
+COROLLARY (asymptotic, needs the two analytic lemmas): with G₈ = p/6 + O(√p log⁴p) (§27) and the ARC LEMMA "|Σ_{v in an arc of a cycle} (±s(v))| ≤ C√p log^c p"
+(⇒ R ≤ 2C√p log^c p and Σ_c|A_c − B_c| ≤ #cycles·C√p log^c p): for every k with ord(k) ≥ p^{1/2+ε},   α(P_k) ≤ 4(p−1) − c√p/log^c p.
+The arc lemma is a mixed multiplicative/additive character sum along C₀(k) and its slope-(−1) twin (completion of the interval in j via characters of ⟨k⟩,
+Selberg polynomials for the sign conditions, Bombieri–Perel'muter for the sums e((h₁x+h₂/x+h₃b+h₄k/b)/p)ψ(x) over the curve) — first solver, C(a).
+The LINEAR improvement (uniform t = 1/m, m = 4…6: net ≈ 0.2 per group ⇒ (4 − c₀)(p−1)) is what the LP certifies for every (p,k) computed and remains
+conjectural for general p (it needs the local law of §28(b)).
