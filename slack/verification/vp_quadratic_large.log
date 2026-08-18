@@ -1,0 +1,11 @@
+p=43: E=393.0 (9.357(p-1)); lambda_min(C)=-4.616, spectral bound E+(p-1)lambda_min = 199.1 (4.741(p-1)); nnz(C)=754
+p=47: E=405.5 (8.815(p-1)); lambda_min(C)=-4.945, spectral bound E+(p-1)lambda_min = 178.0 (3.870(p-1)); nnz(C)=736
+p=53: E=494.5 (9.510(p-1)); lambda_min(C)=-5.821, spectral bound E+(p-1)lambda_min = 191.8 (3.689(p-1)); nnz(C)=1126
+p=59: E=640.5 (11.043(p-1)); lambda_min(C)=-6.105, spectral bound E+(p-1)lambda_min = 286.4 (4.938(p-1)); nnz(C)=1252
+p=61: E=670.5 (11.175(p-1)); lambda_min(C)=-5.998, spectral bound E+(p-1)lambda_min = 310.6 (5.177(p-1)); nnz(C)=1412
+p=67: E=701.5 (10.629(p-1)); lambda_min(C)=-5.848, spectral bound E+(p-1)lambda_min = 315.5 (4.781(p-1)); nnz(C)=1578
+p=71: E=898.5 (12.836(p-1)); lambda_min(C)=-6.397, spectral bound E+(p-1)lambda_min = 450.7 (6.439(p-1)); nnz(C)=1784
+p=79: E=1074.0 (13.769(p-1)); lambda_min(C)=-7.195, spectral bound E+(p-1)lambda_min = 512.8 (6.574(p-1)); nnz(C)=2152
+p=83: E=893.0 (10.890(p-1)); lambda_min(C)=-6.352, spectral bound E+(p-1)lambda_min = 372.1 (4.538(p-1)); nnz(C)=2332
+p=89: E=1190.0 (13.523(p-1)); lambda_min(C)=-6.680, spectral bound E+(p-1)lambda_min = 602.2 (6.843(p-1)); nnz(C)=2616
+p=97: E=903.5 (9.411(p-1)); lambda_min(C)=-5.335, spectral bound E+(p-1)lambda_min = 391.3 (4.077(p-1)); nnz(C)=2580
