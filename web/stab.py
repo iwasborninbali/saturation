@@ -25,11 +25,12 @@ def classify(book, n):
     if st == {"iden"}:
         return "iden"
     if st == {"iden", "rot180"}:
-        # rct4 = rot4 symmetry except on the long axes: check off-axis cells are closed under rot90
+        # rct4 = rot4 symmetry except on the long axes (Flammenkamp's pseudo-class, kept for ODD n only; its true stabilizer
+        # is {1, rot180}, i.e. rot2): check off-axis cells are closed under rot90
         m = n - 1
         pts = {divmod(t, n) for t in book}
         off = {(u, v) for (u, v) in pts if u != v and u + v != m}
-        if {(v, m - u) for (u, v) in off} == off:
+        if (n & 1) and {(v, m - u) for (u, v) in off} == off:
             return "rct4"
         return "rot2"
     if st == {"iden", "swap"} or st == {"iden", "antiswap"}:
