@@ -765,3 +765,30 @@ Bottom line for B: the picture is internally consistent at all levels (bulk semi
 negative edge inside 2√m₂, positive outliers from the PSD part).  Conjecture B (K = 2.6) ⇐ CH_δ for some δ > 0; CH_δ is a Weil-type
 equidistribution statement for closed chains of collinear quadruples of {xy ≡ ±1} with half-box sign weights — a project, not a lemma;
 what is NOT needed: k ≍ log p subtleties (CH_δ buys k up to p^{δ/3}), bounded moments, or sparsity.
+
+## B.17 (third solver, 2026-08-18 23:10 UTC) Conjecture A, weak form, is a theorem modulo the per-family Kloosterman count: E(p)/(p−1) ≫ log log p
+Idea: multiplicativity of Gaussian norms.  Identify a family (s₁,s₂) with z = s₁ + i s₂ ∈ ℤ[i]; s₁²+s₂² = N(z) and χ(N(zw)) = χ(N(z))χ(N(w))
+(χ = Legendre symbol mod p).  So NR·NR = QR: products of two "absent" families are present.  Even if all small families are absent
+(p = 193: 5, 10, 13, 17, 26, 29, 34 are all non-residues), their pairwise products 25, 50, 65 = 5·13, 85 = 5·17, 130, 170, 221 = 13·17, …
+are present — exactly the 4-point families seen at p = 193 in B.15 ((0,3,4,7)→25, (0,1,7,8)→50, (0,7,11,18)→170, (0,1,13,14)→170).
+Setup.  For M ≥ 2 let A_M = {z ∈ ℤ[i] up to units: M ≤ N(z) < 2M} (|A_M| = (π/4)M + O(√M)); for 2M < p every z ∈ A_M has χ(N(z)) = ±1;
+Q_M, R_M = the QR / NR parts, δ_p(M) = |Q_M|/|A_M|.  Multiplicative energy E×(A_M) = #{(z₁,z₂,z₃,z₄) ∈ A_M⁴ : z₁z₂ = z₃z₄} ≪ M² log M
+(gcd parametrisation: z₁ = ga, z₃ = gb, gcd(a,b) = 1, z₂ = bc, z₄ = ac; norms in [M,2M) force N(a) ≍ N(b) =: m and #g ≪ M/m + 1, #c ≪ M/m + 1;
+summing (πm)²(M/m + 1)² over dyadic m ≤ 2M gives ≪ M² log M — and this is sharp).
+LEMMA (square scales are never empty).  For every p and every M with 4M² < p:  δ_p(M²) + δ_p(2M²) ≥ c/log M  (absolute c > 0).
+Proof.  max(|Q_M|,|R_M|) ≥ |A_M|/2 =: B and B·B ⊂ Q_{[M²,4M²)} (QR·QR = NR·NR = QR; norms multiply into [M², 4M²)); by Cauchy–Schwarz
+|B·B| ≥ |B|⁴/E×(B) ≥ (|A_M|/2)⁴/(C M² log M) ≥ c M²/log M, while |A_{M²}| + |A_{2M²}| ≤ (π/4)·3M² + O(M).  ∎
+PROPOSITION (A, weak form).  Assume the per-family count of B.15(b): for s₁+s₂ ≤ p^{1/2−ε} a present family contributes N_box(s₁,s₂) ≥ c₀·p/(s₁+s₂)²
+box-lifted patterns (Weil–Kloosterman equidistribution of the primitive directions D on uv ≡ 2e/(s₁s₂) in the box |D|_∞ ≤ 2p/(s₁+s₂); the
+second solver's §21).  Then  E(p) ≥ (1/8)Σ_{present (s₁,s₂)} N_box ≥ c₁ p Σ_{M = 2^j ≤ p^{1−2ε}} δ_p(M)·|A_M|/M ≥ c₂ p Σ_{j ≤ (1−2ε)log₂p /2} 1/j
+≥ c₃ (p−1) log log p   [(s₁+s₂)² ≍ N(z) ≍ M on the scale M, so N_box ≍ p/M; the Lemma applied to M = 2^j gives δ_p at scale 2^{2j} or 2^{2j+1}].
+Hence E(p)/(p−1) → ∞ for EVERY p — Conjecture A in the form needed by the spectral programme (which needs only E/(p−1) → ∞ and √m₂ = o(E/(p−1)):
+rigorously m₂ = ‖C‖_F²/(p−1) ≤ (3/16)·N₀·E/(p−1) with N₀ = max #patterns through a pair of classes ≤ 64·6 = 384 (64 point pairs, ≤ 6 patterns
+per line), so √m₂ ≤ 8.5√(E/(p−1)) = o(E/(p−1)) unconditionally).
+Remarks.  (i) The rate log log p is what multiplicativity alone gives; the energy bound M² log M is sharp, so a positive proportion of present
+families at a positive proportion of scales (hence E ≫ p log p, the observed rate) still needs the short character-sum input of §21
+(χ(s₁²+s₂²) on boxes of side ≤ √p, Burgess/Davenport–Lewis type).  (ii) The Lemma is visible in the data: p = 193 has δ = 0/1, 1/3, 2/6,
+3/12 on the scales [4,8) … [32,64) and recovers to 10/25, 29/49 on [64,128), [128,256); p = 197: 0/1, 0/1, 1/3, then 3/6, 6/12, 11/25.
+(iii) The same trick gives, for any p and any T ≥ 2, at least c T²/log T present families with s₁+s₂ ≤ 2T — a "no total desert" statement.
+Consequence for the programme: (spectral model theorem) ⇐ Conjecture B alone (given the Kloosterman count): min_r T(S(r)) ≥ (1−o(1))·E(p) ≥
+c(p−1) log log p for all large p, and ≥ c(p−1) log p if the QR density is bounded below on a positive proportion of scales.
