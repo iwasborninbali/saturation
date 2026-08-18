@@ -359,3 +359,27 @@ and B is R- and R′-invariant, so every row/column is inside B or disjoint from
 = 12m₈ + (8(p−1) − 32m₈)/2 = 4(p−1) − 4m₈.  `slack/km1_theorem_check.py` builds this cover explicitly and checks feasibility/cost for
 p ≤ 101 (all assertions pass; the bound equals LP(1) at p = 11, 19, 23, 29, 37, 47 and equals α at p = 11).  m₈(p) ≥ 2 for all
 19 ≤ p ≤ 1500 (m₈ = 0 at p = 13, 17); asymptotics m₈ ~ p/12 conjectural (§12).  Third solver: please verify the proof in the note.
+
+## B.10 (third solver, 2026-08-19) Can 6/7-point diagonals give a clean Theorem′ with 3.5? — answer: not by local gadgets
+Assignment [67]: LP(1) ≈ 3.45(p−1) versus the theorem's 4(p−1) − 4m₈ ≈ 3.67(p−1); is there a clean fractional cover using the mirror
+pairs of (2,6,6,2)/(1,5,7,3) groups (weights ½) without waste?
+Findings (`/tmp/.../gadget66*.py`, k = −1, p ≤ 199):
+1. A (2,6,6,2) group G (two shared pairs with centres c₁ and c₁+p) generates a closed system {G, R(G), R′(G), ν(G)} of 4 groups = 16
+   classes = 64 points, closed under rows (κ ∪ R(κ)) and columns (κ ∪ R′(κ)) and disjoint from the 8-line blocks (each class lies in one
+   +1 and one −1 residue group; block classes are shared/shared, group classes shared/shared with different centres — a class of type A∪D
+   in a +1 (2,6,6,2)-group is τ-split, so it is in no −1 block).  Systems are pairwise disjoint (careful: ν(G) is another +1 group of the same
+   system — dedupe by classes).
+2. Weight 1 on the eight 6-point lines of a system + ½ on rows/columns for its 16 outer points (the 2-point lines) costs 16 + 16 = 32 =
+   the trivial rate ½·64: NO gain.  The local LP of a system with only its INTERNAL lines (all candidates inside) is 32 (trivial) unless the
+   16 outer points lie on eight internal 4-point ±1 lines (4 diagonals + 4 antidiagonals); then it is 80/3 = 26.67 with the rational dual
+   2/3 on the eight 6-lines, 1/3 on 8 rows, 8 columns and the eight internal 4-lines — a clean gadget saving 16/3 per system.  Such
+   "self-sufficient" systems are rare: 0,0,0,0,1,1,1,0,0,1,0,2,2,2,0,3,1,1,3,3 for p = 19,29,37,43,53,61,71,79,89,101,107,113,131,139,151,
+   163,173,181,193,199 (out of 1–11 systems each), so the corresponding Theorem′ (α ≤ 4(p−1) − 4m₈ − (16/3)s₆, verified as an explicit
+   cover, e.g. p=41: 146.67, p=109: 378.67) improves the constant only marginally.
+3. With ALL lines (partially inside), every system's local LP is 26.67 — the extra saving comes from lines shared with OTHER groups
+   (fractional weights 1/3, 1/4, 2/3 spanning several residue groups; at p=61 the global optimum uses 12 four-point diagonals at 1/3, 16
+   rows/16 columns at 1/3, 12 six-lines at 2/3, 6 five/seven-lines at ½ …).  So the LP's ≈ 3.45(p−1) is a genuinely non-local
+   combination; I found no local rule reproducing it, hence no clean Theorem′ with constant 3.5.  (Data check: with the correct dedupe the
+   gadget bound is ≥ LP(1) for every p, as it must be; an earlier version double-counted ν(G).)
+Conclusion: keep Theorem (11/3) as the clean statement; the gap 11/3 → ≈3.45 is what fractional certificates buy through non-local
+sharing, and the true α (3(p−1)+O(1) in data) is far below both — the remaining loss is not visible to rank-1 certificates at all.
