@@ -965,9 +965,10 @@ some $\varphi_0$ keeps $|\varphi|\le\frac12$ throughout.  The traversal ends at 
 free move at $v_0$ (a rise at the $\kappa$ $v_0$ if $A_c>B_c$, a drop at the $\mu$ $v_{L-1}$ if $B_c>A_c$; both endpoints are values of the
 walk, so the move stays inside $[-\frac12,\frac12]$).  The sum of the odd-position jumps is then $tB_c-t\max(0,B_c-A_c)=t\min(A_c,B_c)$, and
 the total cost is
-\[
- \sum_c\bigl(2L_c-4t\min(A_c,B_c)\bigr)+6tG_8=4(p-1)-4t\Bigl(2G_8-\tfrac12\sum_c|A_c-B_c|\Bigr)+6tG_8=4(p-1)-t\Bigl(2G_8-2\sum_c|A_c-B_c|\Bigr),
-\]
+\begin{align*}
+ \sum_c\bigl(2L_c-4t\min(A_c,B_c)\bigr)+6tG_8&=4(p-1)-4t\Bigl(2G_8-\tfrac12\sum_c|A_c-B_c|\Bigr)+6tG_8\\
+ &=4(p-1)-t\Bigl(2G_8-2\sum_c|A_c-B_c|\Bigr),
+\end{align*}
 using $\sum_cL_c=2(p-1)$ and $\min(A,B)=\frac12(A+B-|A-B|)$.
 \end{proof}
 
@@ -1183,7 +1184,8 @@ Lemma~\ref{lem:gadget} (the $(1,1)$ count), which is now proved above.
 Repository (public): \url{https://github.com/iwasborninbali/saturation}.\\
 This version of the note is the immutable tag \texttt{hjsw-note-v1.2} (v1.0: the theorems as first verified; v1.1: Section~\ref{sec:beyond} on the vertical-pair model; v1.2: the error term of Proposition~\ref{prop:m8asym}): file \texttt{paper/hjsw\_window.tex}; scripts in
 \texttt{slack/}: \texttt{hjsw\_window\_check.py}, \texttt{hjsw\_boxes\_check.py}, \texttt{gadget11\_check.py},
-\texttt{km1\_theorem\_check.py}, \texttt{block\_cover\_km1.py}, \texttt{km1\_lines.py}; logs in \texttt{slack/verification/};
+\texttt{km1\_theorem\_check.py}, \texttt{block\_cover\_km1.py}, \texttt{km1\_lines.py}, \texttt{cyc\_model.py},
+\texttt{exact\_c.py}, \texttt{arc\_imbalance.py}; logs in \texttt{slack/verification/};
 checksums and the list of tags in \texttt{docs/RELEASES.md}.
 
 \begin{table}[h]\centering\small
