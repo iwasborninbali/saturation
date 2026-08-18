@@ -909,11 +909,12 @@ $p$ & $3(p-1)$ & $k$ & max & gain & LP relax. & method / all $k$\\
 \end{center}
 Observations.  (i) The gain over $3(p-1)$ is between $+1$ and $+6$ for \emph{every} $k$ at $p=11,13,17$ and shows no growth up to
 $p=19$; the exact value at $p=23$ is not settled.  As an explicit falsifiable conjecture: $\alpha(\Pset_k)\le3(p-1)+6$ for all $p\ge11$
-and all $k\notin\{0,1\}$ (a certified witness with gain $\ge7$ would refute it).  (ii) The LP relaxation with all rich lines is far
+and all $k\notin\{0,1\}$ (consistent with all exact values; at $p=23$ the range $70$--$74$ still allows $+8$; a certified witness with
+gain $\ge7$ would refute it).  (ii) The LP relaxation with all rich lines is far
 from the truth (column ``LP''; $\approx4(p-1)-\varepsilon$), because for two hyperbolae the fractional $2$-factor $x\equiv\tfrac12$ is
 almost feasible; certificates need lines with at least five candidates (Section~\ref{sec:two}).  Rank-$1$ certificates using only
 rows, columns and slope-$(\pm1)$ lines give $\approx3.45\,(p-1)$ for $k=-1$ ($19\le p\le199$) and $3.6$--$3.9\,(p-1)$ for $k=2,3$
-($p\le199$), and the integer optimum of that restricted system equals its LP value up to $2$ ($k=-1$, $p\le59$): so no local
+($p\le199$), and the integer optimum of that restricted system equals its LP value up to $2$ ($k=-1$, $p\le59$; \texttt{slack/verification/ip1\_km1.log}): so no local
 inequality of any rank on those lines can certify less; the remaining loss down to $3(p-1)+O(1)$ is carried by lines of unboundedly
 many slopes.  (iii) Structure of the exact maxima: they are balanced between the two hyperbolae ($23+18$ at $p=13$, $30+29$ at
 $p=19$), use one or two copies of almost every class, and the two copies of a class are usually in one column or one row (at $p=19$
@@ -969,10 +970,10 @@ the shifted-box table for $p=11$; the second audit also identified a gap in the 
 Lemma~\ref{lem:gadget} (the $(1,1)$ count), which is now proved above.
 
 Repository (public): \url{https://github.com/iwasborninbali/saturation}.\\
-This version of the note is the immutable tag \texttt{hjsw-note-v1.0}: file \texttt{paper/hjsw\_window.tex}; scripts
-\texttt{slack/hjsw\_window\_check.py}, \texttt{slack/hjsw\_boxes\_check.py}, \texttt{slack/gadget11\_check.py},
-\texttt{slack/km1\_theorem\_check.py}, \texttt{slack/block\_cover\_km1.py}, \texttt{slack/km1\_lines.py}; logs in
-\texttt{slack/verification/}; checksums and the list of tags in \texttt{docs/RELEASES.md}.
+This version of the note is the immutable tag \texttt{hjsw-note-v1.0}: file \texttt{paper/hjsw\_window.tex}; scripts in
+\texttt{slack/}: \texttt{hjsw\_window\_check.py}, \texttt{hjsw\_boxes\_check.py}, \texttt{gadget11\_check.py},
+\texttt{km1\_theorem\_check.py}, \texttt{block\_cover\_km1.py}, \texttt{km1\_lines.py}; logs in \texttt{slack/verification/};
+checksums and the list of tags in \texttt{docs/RELEASES.md}.
 
 \begin{table}[h]\centering\small
 \begin{tabular}{rrrrrrr}
