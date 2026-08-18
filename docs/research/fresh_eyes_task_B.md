@@ -16,3 +16,20 @@ tr C^{2k} ≤ (p−1)(K′ m₂)^k Cat_k for k ≍ log p, i.e. show that closed 
 tree-like (backtracking) walks — the arithmetic input being the equidistribution of the directions D on the hyperbolas uv ≡ 2e/(s₁s₂) and of the
 base points q (Weil/Kloosterman-type cancellation for the non-backtracking walks).  Any partial result (e.g. λ_min ≥ −K·m₂^{3/4}, or the bound
 under a "generic position" hypothesis on the patterns) is useful.  Deliver: statement + proof, or the precise obstruction.
+
+## Refinement (third solver, 2026-08-18 21:20 UTC): the two sub-problems that together give λ_min(C) ≥ −(1−c)·E/(p−1)
+
+Write b/a = μ ∈ F_p^* for a pair of residues; every entry of C lives on such a "multiplier": C_{a,μa} = w_μ(a).  Split
+   C = C̄ + C̃,   C̄_{a,μa} := w̄_μ = (1/(p−1)) Σ_a w_μ(a)  (a circulant on the cyclic group F_p^*),   C̃ := C − C̄  (mean zero along every μ).
+Facts (numerical, p ≤ 199): C̄ carries ~10 % of ‖C‖_F², its operator norm max_ψ|Σ_μ w̄_μ ψ(μ)| (ψ = multiplicative characters) is
+(0.20–0.35)·E/(p−1), and behaves like a random circulant (max ≈ √(2 log p) × rms); C̃ is Wigner-like: λ_min(C̃) ≈ −2.1·√(tr C̃²/(p−1)),
+its 4-cycle sums cancel to level ~1/p.  Since εᵀCε ≥ −(p−1)(‖C̄‖ + ‖C̃‖), it suffices to prove:
+ (β′)  ‖C̄‖_op ≤ (1−c)·E/(p−1)  — a character-sum statement: the weights w̄_μ are explicit sums over "slots" (F = (s₁,s₂), e, root z, positions t,t′)
+       with μ = (z_F+t)/(z_F+t′), z_F a root of z² + (s₁+s₂)z + s₁s₂/2 (mod p), weight ≍ (s₁+s₂)⁻², sign = hyperbola-position parity times the
+       mean of a half-box indicator; needed: |Σ_slots (±w) ψ(μ_slot)| ≤ K √(log p) · (Σ_slots w²)^{1/2} for every ψ ≠ 1 (numerically true; the
+       trivial triangle bound gives a per-family ratio (2s₁+s₂)/(s₁+s₂) ≥ 1, i.e. is NOT enough — cancellation across slots is essential);
+ (α′)  ‖C̃‖_op = o(E/(p−1))  — the Wigner statement for a zero-mean geometric matrix: in the trace expansion, closed walks are lattice-rule sums
+       Σ_{u ∈ F_p^*} Π_j f_j(X(λ_j u)) (X = least residue, f_j = interval indicators / their centred versions); for closed-walk types without small
+       integer relations among the λ_j the main term vanishes (product of independent centred functions), the remainder is discrepancy
+       (Erdős–Turán–Koksma); the work is counting the types WITH small relations (structured: same line, rational z_F, commutator walks) uniformly.
+Either statement alone would be a real result; both together give the model theorem  min_r T(r) ≥ c·E(p) ≥ c′(p−1) log log p.
