@@ -1,0 +1,55 @@
+== 17 slack/witnesses/pair_p17_km1_s54.txt
+p=17: 8 orbit blocks, points 54; per-block counts: [(6, 4), (7, 2), (8, 2)]
+  a=± 1 cols [-1, 1, 16, 18] rows [1, 16, 18, 33]: n=6 rowsums [2, 1, 1, 2] colsums [2, 0, 2, 2]  grid 0011 1000 0001 1010
+  a=± 2 cols [-2, 2, 15, 19] rows [8, 9, 25, 26]: n=8 rowsums [2, 2, 2, 2] colsums [2, 2, 2, 2]  grid 0101 1001 1010 0110
+  a=± 3 cols [-3, 3, 14, 20] rows [6, 11, 23, 28]: n=6 rowsums [1, 2, 1, 2] colsums [2, 1, 2, 1]  grid 0001 1100 0010 1010
+  a=± 4 cols [-4, 4, 13, 21] rows [4, 13, 21, 30]: n=6 rowsums [1, 2, 1, 2] colsums [2, 1, 1, 2]  grid 1000 0011 1000 0101
+  a=± 5 cols [-5, 5, 12, 22] rows [7, 10, 24, 27]: n=7 rowsums [2, 1, 2, 2] colsums [1, 2, 2, 2]  grid 1100 0010 0101 0011
+  a=± 6 cols [-6, 6, 11, 23] rows [3, 14, 20, 31]: n=7 rowsums [2, 2, 1, 2] colsums [2, 1, 2, 2]  grid 0110 1001 0001 1010
+  a=± 7 cols [-7, 7, 10, 24] rows [5, 12, 22, 29]: n=6 rowsums [2, 1, 2, 1] colsums [2, 1, 1, 2]  grid 1010 1000 0101 0001
+  a=± 8 cols [-8, 8, 9, 25] rows [2, 15, 19, 32]: n=8 rowsums [2, 2, 2, 2] colsums [2, 2, 2, 2]  grid 0011 1100 1001 0110
+== 17 slack/witnesses/pair_p17_km1_s54_mip.txt
+p=17: 8 orbit blocks, points 54; per-block counts: [(5, 2), (6, 1), (7, 2), (8, 3)]
+  a=± 1 cols [-1, 1, 16, 18] rows [1, 16, 18, 33]: n=6 rowsums [2, 1, 1, 2] colsums [2, 0, 2, 2]  grid 1010 0001 1000 0011
+  a=± 2 cols [-2, 2, 15, 19] rows [8, 9, 25, 26]: n=8 rowsums [2, 2, 2, 2] colsums [2, 2, 2, 2]  grid 0110 1010 1001 0101
+  a=± 3 cols [-3, 3, 14, 20] rows [6, 11, 23, 28]: n=7 rowsums [2, 2, 2, 1] colsums [2, 1, 2, 2]  grid 1010 0011 1100 0001
+  a=± 4 cols [-4, 4, 13, 21] rows [4, 13, 21, 30]: n=5 rowsums [2, 1, 1, 1] colsums [2, 1, 0, 2]  grid 0101 1000 0001 1000
+  a=± 5 cols [-5, 5, 12, 22] rows [7, 10, 24, 27]: n=8 rowsums [2, 2, 2, 2] colsums [2, 2, 2, 2]  grid 0011 1100 0011 1100
+  a=± 6 cols [-6, 6, 11, 23] rows [3, 14, 20, 31]: n=7 rowsums [2, 1, 2, 2] colsums [2, 1, 2, 2]  grid 1010 0001 1001 0110
+  a=± 7 cols [-7, 7, 10, 24] rows [5, 12, 22, 29]: n=5 rowsums [2, 1, 1, 1] colsums [2, 0, 1, 2]  grid 1001 0001 1000 0010
+  a=± 8 cols [-8, 8, 9, 25] rows [2, 15, 19, 32]: n=8 rowsums [2, 2, 2, 2] colsums [2, 2, 2, 2]  grid 0110 1001 1100 0011
+== 19 slack/witnesses/pair_p19_km1_s59.txt
+p=19: 9 orbit blocks, points 59; per-block counts: [(4, 1), (5, 1), (6, 1), (7, 4), (8, 2)]
+  a=± 1 cols [-1, 1, 18, 20] rows [1, 18, 20, 37]: n=8 rowsums [2, 2, 2, 2] colsums [2, 2, 2, 2]  grid 1001 0110 1001 0110
+  a=± 2 cols [-2, 2, 17, 21] rows [9, 10, 28, 29]: n=8 rowsums [2, 2, 2, 2] colsums [2, 2, 2, 2]  grid 1001 0110 1001 0110
+  a=± 3 cols [-3, 3, 16, 22] rows [6, 13, 25, 32]: n=7 rowsums [2, 2, 2, 1] colsums [2, 2, 2, 1]  grid 0110 1001 0110 1000
+  a=± 4 cols [-4, 4, 15, 23] rows [5, 14, 24, 33]: n=5 rowsums [1, 2, 0, 2] colsums [2, 0, 1, 2]  grid 0010 1001 0000 1001
+  a=± 5 cols [-5, 5, 14, 24] rows [4, 15, 23, 34]: n=4 rowsums [0, 0, 2, 2] colsums [1, 1, 1, 1]  grid 0000 0000 1001 0110
+  a=± 6 cols [-6, 6, 13, 25] rows [3, 16, 22, 35]: n=7 rowsums [2, 1, 2, 2] colsums [2, 2, 1, 2]  grid 1001 0100 1001 0110
+  a=± 7 cols [-7, 7, 12, 26] rows [8, 11, 27, 30]: n=6 rowsums [2, 2, 0, 2] colsums [2, 1, 1, 2]  grid 0110 1001 0000 1001
+  a=± 8 cols [-8, 8, 11, 27] rows [7, 12, 26, 31]: n=7 rowsums [2, 1, 2, 2] colsums [2, 1, 2, 2]  grid 1001 0010 1001 0110
+  a=± 9 cols [-9, 9, 10, 28] rows [2, 17, 21, 36]: n=7 rowsums [2, 2, 2, 1] colsums [1, 2, 2, 2]  grid 0110 1001 0110 0001
+== 19 slack/witnesses/pair_p19_km1_s59_mip.txt
+p=19: 9 orbit blocks, points 59; per-block counts: [(4, 1), (6, 3), (7, 3), (8, 2)]
+  a=± 1 cols [-1, 1, 18, 20] rows [1, 18, 20, 37]: n=8 rowsums [2, 2, 2, 2] colsums [2, 2, 2, 2]  grid 0110 1001 0110 1001
+  a=± 2 cols [-2, 2, 17, 21] rows [9, 10, 28, 29]: n=8 rowsums [2, 2, 2, 2] colsums [2, 2, 2, 2]  grid 0110 1001 0110 1001
+  a=± 3 cols [-3, 3, 16, 22] rows [6, 13, 25, 32]: n=7 rowsums [1, 2, 2, 2] colsums [1, 2, 2, 2]  grid 0001 0110 1001 0110
+  a=± 4 cols [-4, 4, 15, 23] rows [5, 14, 24, 33]: n=6 rowsums [2, 0, 2, 2] colsums [2, 1, 1, 2]  grid 1001 0000 1001 0110
+  a=± 5 cols [-5, 5, 14, 24] rows [4, 15, 23, 34]: n=4 rowsums [2, 2, 0, 0] colsums [1, 1, 1, 1]  grid 0110 1001 0000 0000
+  a=± 6 cols [-6, 6, 13, 25] rows [3, 16, 22, 35]: n=7 rowsums [2, 2, 1, 2] colsums [2, 1, 2, 2]  grid 0110 1001 0010 1001
+  a=± 7 cols [-7, 7, 12, 26] rows [8, 11, 27, 30]: n=6 rowsums [2, 0, 2, 2] colsums [2, 1, 1, 2]  grid 1001 0000 1001 0110
+  a=± 8 cols [-8, 8, 11, 27] rows [7, 12, 26, 31]: n=6 rowsums [2, 2, 0, 2] colsums [2, 1, 1, 2]  grid 0110 1001 0000 1001
+  a=± 9 cols [-9, 9, 10, 28] rows [2, 17, 21, 36]: n=7 rowsums [1, 2, 2, 2] colsums [2, 2, 2, 1]  grid 1000 0110 1001 0110
+== 23 slack/witnesses/pair_p23_km1_s70_mip.txt
+p=23: 11 orbit blocks, points 70; per-block counts: [(4, 2), (6, 5), (8, 4)]
+  a=± 1 cols [-1, 1, 22, 24] rows [1, 22, 24, 45]: n=6 rowsums [2, 1, 1, 2] colsums [1, 2, 2, 1]  grid 0011 0100 0010 1100
+  a=± 2 cols [-2, 2, 21, 25] rows [11, 12, 34, 35]: n=4 rowsums [1, 1, 1, 1] colsums [1, 1, 1, 1]  grid 0100 1000 0001 0010
+  a=± 3 cols [-3, 3, 20, 26] rows [8, 15, 31, 38]: n=6 rowsums [1, 2, 2, 1] colsums [2, 1, 1, 2]  grid 1000 0011 1100 0001
+  a=± 4 cols [-4, 4, 19, 27] rows [6, 17, 29, 40]: n=4 rowsums [2, 0, 0, 2] colsums [1, 1, 1, 1]  grid 1010 0000 0000 0101
+  a=± 5 cols [-5, 5, 18, 28] rows [9, 14, 32, 37]: n=6 rowsums [2, 1, 1, 2] colsums [2, 1, 1, 2]  grid 0101 0001 1000 1010
+  a=± 6 cols [-6, 6, 17, 29] rows [4, 19, 27, 42]: n=8 rowsums [2, 2, 2, 2] colsums [2, 2, 2, 2]  grid 1010 0011 1100 0101
+  a=± 7 cols [-7, 7, 16, 30] rows [10, 13, 33, 36]: n=8 rowsums [2, 2, 2, 2] colsums [2, 2, 2, 2]  grid 1010 1010 0101 0101
+  a=± 8 cols [-8, 8, 15, 31] rows [3, 20, 26, 43]: n=8 rowsums [2, 2, 2, 2] colsums [2, 2, 2, 2]  grid 0011 0101 1010 1100
+  a=± 9 cols [-9, 9, 14, 32] rows [5, 18, 28, 41]: n=6 rowsums [1, 2, 2, 1] colsums [1, 2, 2, 1]  grid 0100 1010 0101 0010
+  a=±10 cols [-10, 10, 13, 33] rows [7, 16, 30, 39]: n=8 rowsums [2, 2, 2, 2] colsums [2, 2, 2, 2]  grid 0011 1100 0011 1100
+  a=±11 cols [-11, 11, 12, 34] rows [2, 21, 25, 44]: n=6 rowsums [2, 1, 1, 2] colsums [2, 1, 1, 2]  grid 0101 1000 0001 1010
