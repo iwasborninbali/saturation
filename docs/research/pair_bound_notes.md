@@ -718,3 +718,50 @@ ranges (Burgess-type)" and "deterministic Wigner-type spectral edge bounds for a
 Correction to §21(1) (data, `/tmp/pyth.py`): the Pythagorean families carry only 2–4 % of E: E_pyth/(p−1) = 0.03, 0.10, 0.09, 0.11, 0.08 at
 p = 41, 71, 101, 151, 199 (families (3,4), (6,8), (5,12), (9,12), (7,24), … present as predicted).  So the unconditional constant is
 c₁ ≈ 0.1, not ≈ 1: the growth of E rests entirely on the QR-density of non-Pythagorean sums of two squares (Burgess-type input, brief 7).
+
+## B.16 (third solver, task T2.13, 2026-08-18 21:30 UTC) Conjecture B on the quadruple structure: the trace method — main term, cancellations, what arithmetic is needed
+Data: `slack/verification/vp_moments_k.txt` (tool `slack/vp_moments_k.py`; primes 97, 101, 151, 193, 199; k ≤ 12).
+1. C_p in quadruple language.  Π = box lifts of sub-triples of symmetric quadruples q_F (F = (s₁,s₂,e), direction D on uv ≡ 2e/(s₁s₂), root z,
+   lift ℓ; B.15).  For a ≠ b: C_ab = (1/16)Σ_{π ∋ a,b} σ_π(a)σ_π(b), where σ_π(a) = +1 iff the lifted point of class a used by π is the one present
+   for r_a = 0 (κ_a in the left column X(a), or κ′_a in the right column X(a)+p) — a "which copy" sign; C_aa = 0.  Gauge-invariant form of a
+   closed walk a₁→…→a_{2k}→a₁ through patterns π_i ∋ {a_i,a_{i+1}}:  Π_i σ_{π_i}(a_i)σ_{π_i}(a_{i+1}) = Π_i comp(a_i; π_{i−1}, π_i),
+   comp = +1 iff the two patterns pass through COMPATIBLE copies of a_i (both present in the same orientation r_{a_i}).
+2. Trace expansion and the classification of closed walks (standard, Wigner/Füredi–Komlós):
+   (T) doubled trees — every edge traversed twice, back and forth: contribution (16C_ab)² ≥ 0 per edge, no sign problem; summed over labels
+       they give the row-norm functionals: tree₂ = 2Σ_a rn_a⁴, tree₃ = 2Σ_a rn_a⁶ + 3(rn²)ᵀ(C∘C)(rn²) (Cat₂ = 2, Cat₃ = 5 plane trees), and in
+       general Cat_k·(p−1)·m₂^k·(1 + O(k²·Var(rn²)/m₂²)).  Data: tr C⁴/tree₂ = 1.07–1.13 (1.002 at p=97), tr C⁶/tree₃ = 1.26–1.48; the row-norm
+       inhomogeneity (rel. std of rn² = 0.20–0.25; max rn/√m₂ = 1.21–1.29) is worth ~5 % at k=2.  ⇒ the doubled trees ARE the main term.
+   (M) tree-shaped walks with an edge used ≥ 3 times / coinciding vertices: relative size ≲ Σ_b C_ab⁴/rn_a⁴ ~ max|C|²/rn² ≈ 1–2 %.  This is the
+       one non-standard feature: entries are O(1) (in (1/8)ℤ, ≤ 1.75) while rn² ≈ 5.4 log p, so the semicircle limit is approached only at rate
+       1/log p — harmless for bounds of the type "≤ (K′m₂)^k Cat_k".
+   (C) shapes with cyclomatic number g ≥ 1: signed sums.  Data for g = 1, k = 2 (genuine 4-cycles a-b-c-d-a, a≠c, b≠d): N₄/A₄ (signed / absolute)
+       = 1.4 %, 0.9 %, 1.5 %, 0.8 % at p = 101, 151, 193, 199 — a Wigner matrix gives ≈ 1/p = 1.0 %, 0.7 %, 0.5 %, 0.5 %; i.e. the sign products
+       around 4-cycles cancel to Wigner level (relative saving ≈ p^{−0.9}), with a small POSITIVE residual bias; since A₄ ≈ 7–11 × tree₂
+       (dense matrix), the residual still adds +9…15 % to tr C⁴.  Off-diagonal Frobenius mass: ‖offdiag C²‖/‖offdiag |C|²‖ = 0.22–0.28,
+       C³: 0.06–0.09.
+3. Consequences seen in the spectrum.  ESD of λ/√m₂ is semicircular (Kolmogorov distance 0.055 → 0.043 from p = 97 to 199, 90 % quantile 1.54–
+   1.63 vs 1.62); NEGATIVE edge inside the semicircle radius: λ_min = −(1.69…1.97)√m₂ for p ≥ 97 (the earlier fit −2.38√m₂ − 2.1 is the same
+   thing with a small-p intercept); POSITIVE outliers: 2–5 eigenvalues above 2√m₂, λ_max = 2.4–2.6√m₂ — the PSD Gram part G/16 pushes a few
+   eigenvalues up, not down.  Hence ρ_k = m_{2k}/(m₂^k Cat_k) grows like (λ_max²/4m₂)^k, ρ_k^{1/k} → 1.5–1.65: the trace method is limited by
+   λ_max, and can at best certify |λ_min| ≤ λ_max ≈ 2.6√m₂ (or ≤ 2·max_a rn_a ≈ 2.6√m₂ via the tree term) — still enough for the model theorem
+   (it needs |λ_min| = o(E/(p−1)) with √m₂ ≍ √(E/(p−1))); the truth is |λ_min| ≤ 2√m₂.
+4. What has to be proved (Cancellation Hypothesis CH_δ).  For every closed-walk shape with cyclomatic number g ≥ 1, the signed chain sum is
+   ≤ p^{−δg} × the absolute chain sum.  Standard combinatorics (shape counting: ≤ (2k)^{3g}·Cat_k shapes of excess g; A-sums ≤ 10^g × tree)
+   then gives tr C^{2k} ≤ (1+o(1))·Cat_k·Σ_a rn_a^{2k} for all k ≤ p^{δ/3−ε} — far beyond k ≍ log p — hence max|λ| ≤ 2·max_a rn_a·(1+o(1)) ≤
+   2.6√m₂: Conjecture B with K = 2.6.  Without CH nothing: the absolute cycle sums are 10× the trees.
+   Arithmetic content of CH_δ: comp(a; π, π′) is decided by the COLUMNS of the two lifted points of class a used by π and π′, i.e. by half-box
+   indicators [x ≤ h] of x = x₀ + t·u — least residues of rational functions of the pattern parameters (family w = 2e/(s₁s₂), direction u on
+   the hyperbola uv ≡ w, root z, lift).  So CH_δ = equidistribution, with power saving, of products of 2g+… half-box indicators along closed
+   chains of collinear quadruples of A = {xy ≡ ±1}: for each shape, expand the indicators (Erdős–Turán–Koksma / Fourier completion) and bound
+   the complete sums over the free direction parameters (Weil/Kloosterman on the hyperbolas uv ≡ w with the incidence relations of the chain)
+   — exactly the machinery of Prop. 21–22 (m₈), applied to a chain variety instead of the cubic C₀.  Per shape and per family this is a
+   finite Weil computation; the hard part is UNIFORMITY over the families F (up to ~√p scales per pattern) and over shapes — the error terms
+   must be summed against a main term of size ~p·m₂^k, so the saving must hold for the aggregated sums (data say it does at g = 1: p^{−0.9}).
+5. Structured positive terms (why the bias is positive): patterns living on the same rich line share sign vectors (all sub-triples of one
+   quadruple, and the ±1-slope 8-point lines) and give closed chains with product +1 (cliques): O(p)·O(1) in total, negligible against
+   p·m₂^k but visible as the +1 % of N₄/A₄ and the positive outliers.  A refined statement would separate "local" (same-line) chains from
+   "global" ones and demand cancellation only for the global part.
+Bottom line for B: the picture is internally consistent at all levels (bulk semicircle, tree main term, Wigner-level cancellation of 4-cycles,
+negative edge inside 2√m₂, positive outliers from the PSD part).  Conjecture B (K = 2.6) ⇐ CH_δ for some δ > 0; CH_δ is a Weil-type
+equidistribution statement for closed chains of collinear quadruples of {xy ≡ ±1} with half-box sign weights — a project, not a lemma;
+what is NOT needed: k ≍ log p subtleties (CH_δ buys k up to p^{δ/3}), bounded moments, or sparsity.

@@ -1,0 +1,51 @@
+vp_moments_k.txt — T2.13 (third solver, 2026-08-18 21:00 UTC): high-order trace moments of C_p (vertical-pair model, k=-1) against the
+semicircle law, doubled-tree (Catalan) main term, cycle cancellation.  Tool: slack/vp_moments_k.py (uses slack/vp_traces.py).
+Notation: m_2k = tr C^{2k}/(p-1); rho_k = m_2k/(m_2^k Cat_k) (=1 for an exact semicircle of variance m_2); rn_a^2 = sum_b C_ab^2 (row norms);
+tree_2 = 2 sum_a rn_a^4, tree_3 = 2 sum_a rn_a^6 + 3 (rn^2)^T (C∘C) (rn^2) = exact contribution of the backtracking (doubled-tree) closed
+walks of length 4 and 6 (Cat_2 = 2, Cat_3 = 5 plane trees), N4 = signed sum over genuine 4-cycles a-b-c-d-a (a≠c, b≠d), A4 = the same with
+absolute values.
+p=97: E/(p-1)=9.41  m2=10.027  lam_min=-5.335 (=-1.685 sqrt m2)  lam_max=6.806 (=2.149 sqrt m2)  rn2 max/mean=1.565 min/mean=0.533
+   k:             1        2        3        4        5        6        7        8        9       10       11       12
+   rho_k:     1.000    1.054    1.186    1.405    1.719    2.138    2.681    3.369    4.230    5.298    6.616    8.234
+   rho^1/k:   1.000    1.027    1.059    1.089    1.114    1.135    1.151    1.164    1.174    1.181    1.187    1.192
+   tree parts: tr C^4 = 20339.7, doubled-tree part 20305.9 (ratio 1.002, cycle excess +0.002);  tr C^6 = 574070.9, tree part 546227.6 (ratio 1.051, excess +0.051)
+   ESD vs semicircle(var m2): KS distance 0.055; mass outside [-2,2]: 0.021 (2 eigenvalues); quantiles of |lam|/sqrt(m2) at 90/99%: 1.55/2.09
+p=101: E/(p-1)=13.57  m2=15.509  lam_min=-7.751 (=-1.968 sqrt m2)  lam_max=10.206 (=2.592 sqrt m2)  rn2 max/mean=1.662 min/mean=0.576
+   k:             1        2        3        4        5        6        7        8        9       10       11       12
+   rho_k:     1.000    1.187    1.674    2.698    4.742    8.757   16.564   31.623   60.428  115.092  218.034  410.511
+   rho^1/k:   1.000    1.089    1.187    1.282    1.365    1.436    1.493    1.540    1.577    1.607    1.632    1.651
+   tree parts: tr C^4 = 57095.5, doubled-tree part 50541.0 (ratio 1.130, cycle excess +0.130);  tr C^6 = 3121701.9, tree part 2104336.5 (ratio 1.483, excess +0.483)
+   ESD vs semicircle(var m2): KS distance 0.047; mass outside [-2,2]: 0.030 (3 eigenvalues); quantiles of |lam|/sqrt(m2) at 90/99%: 1.54/2.11
+p=151: E/(p-1)=16.28  m2=19.922  lam_min=-8.398 (=-1.882 sqrt m2)  lam_max=11.044 (=2.474 sqrt m2)  rn2 max/mean=1.547 min/mean=0.422
+   k:             1        2        3        4        5        6        7        8        9       10       11       12
+   rho_k:     1.000    1.139    1.457    2.054    3.109    4.925    8.023   13.272   22.130   37.021   61.963  103.590
+   rho^1/k:   1.000    1.067    1.134    1.197    1.255    1.304    1.346    1.382    1.411    1.435    1.455    1.472
+   tree parts: tr C^4 = 135606.0, doubled-tree part 125775.2 (ratio 1.078, cycle excess +0.078);  tr C^6 = 8640695.4, tree part 6744672.1 (ratio 1.281, excess +0.281)
+   ESD vs semicircle(var m2): KS distance 0.042; mass outside [-2,2]: 0.027 (4 eigenvalues); quantiles of |lam|/sqrt(m2) at 90/99%: 1.57/2.16
+p=193: E/(p-1)=11.77  m2=12.935  lam_min=-6.137 (=-1.706 sqrt m2)  lam_max=8.686 (=2.415 sqrt m2)  rn2 max/mean=1.609 min/mean=0.295
+   k:             1        2        3        4        5        6        7        8        9       10       11       12
+   rho_k:     1.000    1.153    1.527    2.227    3.427    5.405    8.601   13.706   21.789   34.506   54.408   85.415
+   rho^1/k:   1.000    1.074    1.151    1.222    1.279    1.325    1.360    1.387    1.408    1.425    1.438    1.449
+   tree parts: tr C^4 = 74083.9, doubled-tree part 68260.1 (ratio 1.085, cycle excess +0.085);  tr C^6 = 3172329.8, tree part 2398901.6 (ratio 1.322, excess +0.322)
+   ESD vs semicircle(var m2): KS distance 0.044; mass outside [-2,2]: 0.026 (5 eigenvalues); quantiles of |lam|/sqrt(m2) at 90/99%: 1.56/2.34
+p=199: E/(p-1)=17.22  m2=21.311  lam_min=-8.964 (=-1.942 sqrt m2)  lam_max=11.430 (=2.476 sqrt m2)  rn2 max/mean=1.465 min/mean=0.560
+   k:             1        2        3        4        5        6        7        8        9       10       11       12
+   rho_k:     1.000    1.116    1.385    1.895    2.801    4.370    7.055   11.611   19.288   32.157   53.622   89.277
+   rho^1/k:   1.000    1.056    1.115    1.173    1.229    1.279    1.322    1.359    1.389    1.415    1.436    1.454
+   tree parts: tr C^4 = 200735.5, doubled-tree part 187049.1 (ratio 1.073, cycle excess +0.073);  tr C^6 = 13274437.0, tree part 10535810.3 (ratio 1.260, excess +0.260)
+   ESD vs semicircle(var m2): KS distance 0.043; mass outside [-2,2]: 0.015 (3 eigenvalues); quantiles of |lam|/sqrt(m2) at 90/99%: 1.63/2.16
+
+4-cycle cancellation (signed/absolute), tree term = 2 sum_a rn_a^4:
+p=101: N4/tree=+0.149  A4/tree=10.29  N4/A4=+0.0144  (Wigner ~ 1/p=0.0099);  ||offdiag C^2||_F/||offdiag |C|^2||_F = 0.242; C^3: 0.086;  diag(C^2) rel.std=0.225
+p=151: N4/tree=+0.094  A4/tree=10.77  N4/A4=+0.0087  (Wigner ~ 1/p=0.0066);  ||offdiag C^2||_F/||offdiag |C|^2||_F = 0.227; C^3: 0.071;  diag(C^2) rel.std=0.237
+p=193: N4/tree=+0.104  A4/tree=6.81  N4/A4=+0.0152  (Wigner ~ 1/p=0.0052);  ||offdiag C^2||_F/||offdiag |C|^2||_F = 0.283; C^3: 0.094;  diag(C^2) rel.std=0.250
+p=199: N4/tree=+0.087  A4/tree=11.36  N4/A4=+0.0076  (Wigner ~ 1/p=0.0050);  ||offdiag C^2||_F/||offdiag |C|^2||_F = 0.220; C^3: 0.063;  diag(C^2) rel.std=0.200
+
+Reading: (1) the doubled trees give the main term: tr C^4 / tree_2 = 1.07-1.13 (1.002 at p=97), tr C^6 / tree_3 = 1.26-1.48; the row-norm
+inhomogeneity (rel. std 0.20-0.25 of rn^2) accounts for ~5 % of rho_2. (2) genuine 4-cycles cancel almost completely: N4/A4 = 0.8-1.5 %
+(a Wigner matrix: ~1/p = 0.5-1 %); the residual is a small POSITIVE bias. (3) rho_k^{1/k} increases slowly and saturates towards
+(lam_max/(2 sqrt m_2))^2 ~ 1.5-1.65: the moments are dominated for large k by the few POSITIVE outliers (2-5 eigenvalues above 2 sqrt m_2,
+lam_max = 2.4-2.6 sqrt m_2 — the PSD Gram part), while the negative edge is INSIDE the semicircle radius: lam_min = -(1.69..1.97) sqrt m_2 for
+p >= 97. (4) the empirical spectral distribution of lam/sqrt(m_2) is semicircular: Kolmogorov distance 0.055/0.047/0.042/0.044/0.043 at
+p = 97/101/151/193/199 (decreasing), 90 % quantile of |lam|/sqrt(m_2) = 1.54-1.63 (semicircle: 1.62), 99 % quantile 2.09-2.34 (semicircle
+1.92: heavier tail from the outliers).
