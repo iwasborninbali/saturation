@@ -861,3 +861,41 @@ details of the proof need repair:
     the coprime-family reduction of B.17 (Σ_g P(T/g²) ≥ cT/log T ⇒ Σ_T P(T)/T ≫ log log p) ✓ — note the scale range shrinks to M ≤ p^{1/2−2ε}
     (σ ≤ p^{1/4−ε}), still ≍ log p dyadic scales, so E ≥ c(p−1) log log p stands.
 So: Proposition (A, weak form) = Lemma K (with the two repairs) + B.17 — OK for the note's §6 / v1.1.
+
+## B.18 (third solver, task T2.15, 2026-08-18 20:30 UTC) CH_δ at g = 1: the exact 4-cycle sum, its main-term/fluctuation split, and where the barrier is
+Data: scratch computations (third solver) at p = 101, 151, 193, 199; reproducible with `slack/vp_traces.py` (build C) + 20 lines of numpy.
+1. Exact form.  With B.15/B.16: a pattern is (F = (s₁,s₂), e, root z, direction u ∈ F_p^*, integer step D ≡ (u, 2e/(s₁s₂u)), base lift, sub-triple);
+   its classes are the x-residues (z+t)u, t ∈ {0,s₁,s₂,s₁+s₂}; the pair-sign is σσ = e_te_{t′}·[same half].  A closed 4-walk a→b→c→d→a through
+   patterns π₁…π₄ (π_i containing the consecutive classes at positions (t_i, t′_i)) forces u_{i+1} = u_i·ρ_i, ρ_i = (z_i+t′_i)/(z_{i+1}+t_{i+1}),
+   and closes iff  ρ₁ρ₂ρ₃ρ₄ ≡ 1 (mod p)  (an identity among the algebraic numbers z_F + t reduced mod p).  Hence
+      N₄ = 16⁻⁴ Σ_{Θ closed} Σ_{u₁ ∈ F_p^*} Σ_{lifts} Π_i e_{t_i}e_{t′_i} · Π_i [x_i(t_i), x_i(t′_i) in the same half],   Θ = (F_i, e_i, z_i, t_i, t′_i)_{i≤4},
+   where every quantity in the inner sum is a function of the least residues X(λ_j u₁) of finitely many fixed multiples of u₁ (λ_j = products of
+   z_i + t and the c_i = ρ₁⋯ρ_{i−1}): a lattice-rule (torus-line) sum.  Its value is p·(signed polytope volume) + O(discrepancy), the discrepancy
+   being controlled by the small integer relations Σ m_j λ_j ≡ 0 (Erdős–Turán–Koksma).
+2. Main terms vs fluctuations = the split C = C̄ + C̃ (B.16 addendum (b)): C̄_{a,μa} = w̄_μ := mean_a C_{a,μa} (a circulant on the cyclic group
+   F_p^*, eigenvalues ŵ(ψ) = Σ_μ w̄_μψ(μ) over the multiplicative characters ψ), C̃ = C − C̄ (mean zero along every multiplier).  For a closed
+   type whose λ_j have no small relations, the torus-line average of a product of zero-mean functions of "independent" coordinates vanishes:
+   the main term of every generic type of C̃ is ZERO; the main terms of C are exactly the C̄-terms.  So CH_δ splits into
+   (α) [fluctuation part] the closed-walk sums of C̃ are pure discrepancy + structured types (same function at the same multiple; small
+       relations; rational z_F = Pythagorean families; same-line cliques): a counting problem — how many closed types have a small relation
+       among their λ's — plus Erdős–Turán–Koksma; elementary in principle, uniformity over families/shapes is the work;
+   (β) [main-term part] the operator norm of the circulant C̄: ‖C̄‖ = max_ψ |Σ_μ w̄_μψ(μ)| = max_ψ |Σ_{slots (F,e,z,t,t′)} (sign·mean weight)·ψ((z_F+t)/(z_F+t′))|
+       — a character sum over the multiplier set (families in the disc |s₁+is₂| ≲ p^{1/4}, weights ≍ 1/(s₁+s₂)²).
+3. Numbers.  (i) 4-cycles: N₄/A₄ = 1.44 %, 0.87 %, 0.76 % (C), 6.0 %, 19.7 %, 8.9 % (C̄), 0.91 %, 0.34 %, 0.38 % (C̃) at p = 101, 151, 199 — the bias sits
+   in the circulant part, the fluctuation part is at Wigner level (~1/p) and improving with p.  (ii) g = 2 (bowties Σ_a (C³)_aa²): 2.8 %, 2.1 %, 1.9 %
+   of tree₃, i.e. 1.35 %, 1.15 %, 1.13 % of the absolute bowtie sum; doubled triangles 0.4 %, 0.3 %, 0.2 % of tree₃; "4-cycle + pendant edge" ≈ 3–6 %.
+   (iii) triangles: tr C³ / Σ|·| = +9.4 % at all three p (constant): the same-line/same-quadruple cliques (a triple's three pairs always multiply
+   to +1) — harmless for even traces except through bowties.  (iv) circulant part: ‖C̄‖_op/(E/(p−1)) = 0.27, 0.28, 0.33, 0.22, 0.24, 0.35, 0.20, 0.29
+   for p = 41, 61, 83, 101, 127, 151, 173, 199 (no trend); ℓ¹(w̄)/(E/(p−1)) = 0.51–0.68; ‖C̄‖_F² = 9–10 % of ‖C‖_F²; max_ψ|ŵ(ψ)| ≈ 3.4 × rms ≈ √(2 log p)·rms
+   (a "random circulant").  ‖C̃‖ ≈ (2.0–2.3)√m₂(C̃) — Wigner.  (v) the free-sign model (signs chosen independently in the two halves, C′ on 2p−2
+   integer columns; C = Mᵀ C′ M for the antisymmetric embedding) has λ_min(C′)/√m₂′ = −2.8, −3.15: its bottom eigenvector is nearly SYMMETRIC
+   (ε′(x+p) = ε′(x)), so the R′-antisymmetry of the vertical-pair model is essential — the model is the good sector of C′.
+4. What follows and what is the barrier.  Model theorem ⇐ (β′) ‖C̄‖_op ≤ (1−c)·E/(p−1)  and  (α′) ‖C̃‖_op = o(E/(p−1))  [since εᵀCε ≥ −(p−1)(‖C̄‖+‖C̃‖)].
+   (α′) is the Wigner statement for a zero-mean geometric matrix — provable-looking via (α).  (β′) is NOT provable by the triangle inequality:
+   with the explicit same-half probabilities (P_diff ≈ |Δt|·|u|/p, |u| ≤ p/σ) the per-family ratio [Σ_slots |mean sign|·weight] / [E-weight] equals
+   (2s₁+s₂)/(s₁+s₂) ∈ [1, 1.5] — always ≥ 1; the observed 0.5–0.68 (ℓ¹) and 0.2–0.35 (operator norm) come from CANCELLATION ACROSS slots
+   (different families with the same multiplier μ, or the characters ψ), i.e. from equidistribution of the values (z_F+t)/(z_F+t′) mod p over
+   the family disc — a two-dimensional short character sum (side ≲ p^{1/4}…p^{1/2}), the very same barrier as the log-p rate of E (§21).
+   Bottom line: everything the model theorem still needs is ONE kind of statement — cancellation in sums over families F in the disc
+   |s₁+is₂| ≤ p^{1/2−ε} of multiplicative-character-type functions of the algebraic numbers z_F + t mod p; numerically it holds with room
+   (a factor 3–5 in (β), Wigner level in (α)); classical Weil/completion gives nothing at that side length, Burgess-type inputs are the tools.
