@@ -135,3 +135,21 @@ Consequence: the "uniform weight on 3-lines ⇒ (4/3)N" argument needs degree co
 between families — arithmetic progressions with different differences through the same residue — suggest CV stays ≍ 1).  So a proof of G3 must be
 organised by families/positions with adaptive weights (as the LP does), or find another mechanism; the LP itself certifies ≈ 1.1 N for each p.
 Status: G3 = well-supported conjecture + explicit structure + per-p certificates; a general proof needs a new idea (estimated days–weeks, uncertain).
+
+## 8. CORRECTION and reduction (first solver, THREAD[125]; second solver, 07:55 WITA): the projection bound
+For ANY function f: F_p → F_p and any 2p × 2p box, the lifted graph has exactly 2|f⁻¹(c)| points in each of the two rows with residue c, and
+2|f(F_p)| non-empty rows; a lawful set has ≤ 2 points per row, hence   α(graph f) ≤ 4·|f(F_p)|.   More generally, for any curve C,
+α(C, box) ≤ 4·min(|π_x(C(F_p))|, |π_y(C(F_p))|).
+Consequences.  (a) A generic cubic (Galois group S₃ of f(x) − c over F_p(c)) has |Im f| = (2/3)p + O(√p) ⇒ α ≤ (8/3)p + O(√p) = (4/3 + o(1))·N — the
+constant of Conjecture G3 for free; the A₃ case (f = a(x+b)³ + c, p ≡ 1 mod 3): |Im| = (p+2)/3 ⇒ α ≤ (2/3)N + O(1) (LP = 4|Im| exactly at p = 103).
+(b) The only cubic graphs for which the bound is trivial (4p = 2N) are the PERMUTATION cubics f = a(x+b)³ + c with p ≡ 2 (mod 3) (Dickson).
+(c) For elliptic curves and all curves with a projection of degree ≥ 3 the projection misses ≈ 1/3 of the residues ⇒ α ≤ (4/3 + o(1))N trivially;
+Conjecture G is non-trivial only for BI-SURJECTIVE curves (graphs of algebraic bijections: x ↦ 1/x — the hyperbola, x ↦ x^k with gcd(k,p−1)=1, Dickson,
+Rédei, …), and among those the hyperbola is special: no three of its residue points are collinear, so only the ±1 "wrap-around" lines carry three points.
+REFINED CONJECTURE G′.  For every bi-surjective curve of degree ≥ 3 (permutation polynomial graphs in particular): α ≤ (3/2 − c_d)·N.
+Data (first solver, `slack/lp_curve.py`, `slack/verification/lp_curve.txt`): y = x³, p ≡ 2 mod 3, p = 101…197: LP with rows/columns/±1 lines only =
+1.317–1.355 N (≈ 4/3, slightly increasing), full LP (all rich lines) = 1.098–1.108 N; y = x⁵ (p=197, permutation): 1.355 / 1.072 N; hyperbola in the HJSW
+box: 3(p−1) exactly (calibration).  So for permutation cubics the ±1 lines ALONE give ≈ (4/3)N — a "block-cover" theorem of the type of Theorem two
+(residue groups of ax³ + b ∓ x ≡ c with three roots; Bombieri for the counts) should give α ≤ (3/2 − c)N (weak form G3′) — assigned to the first solver
+(G3.5); the strong form (4/3 or ≈ 1.1) needs the 3-line families (§7) and adaptive covers (§7a).  Together with the projection bound this would give:
+"NO CUBIC GRAPH BEATS HJSW in the natural box" — a clean statement in the direction of Green's remark.
