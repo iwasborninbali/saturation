@@ -1033,7 +1033,7 @@ Addendum to B.19 (21:20 UTC) — three exact facts behind the numbers (checked a
     and the double-covered points cost the difference between 2 per (+1)-group (solitary) and the collective 1.6–1.67 — the "clean fraction θ" of [102].
     A rigorous version: α ≤ 4(p−1) − 4m₈ − #(clean (7,5,3,1) groups, both slopes) + O(1), clean = not meeting a good group or another 7-group.
 
-## 25. C1 (second solver, 19.08 07:20 WITA): the class-graph cycle picture for a general second hyperbola H(k) — what the 8-group certificates really are
+## 25. C1 (second solver, 19.08 06:40 WITA): the class-graph cycle picture for a general second hyperbola H(k) — what the 8-group certificates really are
 Tools: `slack/chain_cert.py` (dual cover of ONE pair (G_d, G_{−d}) with rows/columns/points; prints weights along the ⟨k⟩-chains), `slack/chain_walk.py`
 (cycles, specials, walk range, LP with all 8-groups' lines forced at 1/2), scratch `free8.py` (LP with the lines free).
 1. Structure.  Row-mate of κ_a = (a,1/a) is μ_{ka} = (ka, k/(ka)); column-mate of κ_a is μ_a.  So the "class graph" (rows and columns as edges between the
