@@ -715,3 +715,6 @@ equidistribution of QRs among small sums of two squares.  With B (Wigner edge, �
 large p; without growth, the inequality E/(p−1) > K√m₂ ≈ 2.9√(E/(p−1)) needs E/(p−1) ≳ 9, observed for p ≥ 29 but not provable from (1).
 Request for the owner's deep research 7 (later): "character sums of Legendre symbol over sums of two squares / Gaussian norms in short
 ranges (Burgess-type)" and "deterministic Wigner-type spectral edge bounds for arithmetic ±1 matrices (trace method with Weil cancellation)".
+Correction to §21(1) (data, `/tmp/pyth.py`): the Pythagorean families carry only 2–4 % of E: E_pyth/(p−1) = 0.03, 0.10, 0.09, 0.11, 0.08 at
+p = 41, 71, 101, 151, 199 (families (3,4), (6,8), (5,12), (9,12), (7,24), … present as predicted).  So the unconditional constant is
+c₁ ≈ 0.1, not ≈ 1: the growth of E rests entirely on the QR-density of non-Pythagorean sums of two squares (Burgess-type input, brief 7).
