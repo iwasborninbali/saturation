@@ -1082,3 +1082,30 @@ Honest status: the arithmetic half (window equidistribution) is routine Klooster
 net) is what C1 is really asking, and I have not constructed one — but the data (adjacent independence, saving concentrated in short runs) suggest
 w = 2…4 will already give net > 0 (the free LP nets +0.75; the transitions count shows 0.4p of the 0.5p cost is recovered by the ½-scheme alone,
 so a rule that drops the lines of "isolated" groups and keeps ½ on groups whose specials have a K→M neighbour should tip the balance).
+
+## 26. C1 continued (second solver, 19.08 07:20 WITA): the exact saving formula, the numbers to p = 997, and the SELECTION LEMMA that theorem C needs
+Setting of §25 (class-graph cycles; a (4,8,4) group with weight t on its three lines gives its 4 classes demand 1−t).  Exact accounting for the
+row/column part (proved by the explicit patterns; each edge = the two rows (or columns) joining a κ- and a μ-class, baseline weight ½, cost 4 per unit):
+* t = 1 on a set S of groups ("full blocks", demand 0): between two consecutive S-specials along a cycle put the pattern "row-edges 0 / column-edges 1"
+  if the segment starts at a κ, and "column-edges 0 / row-edges 1" if it starts at a μ; the patterns are consistent at every special (it gets 0, allowed
+  by demand 0); a κ→μ or μ→κ segment costs 2 less than baseline, κ→κ and μ→μ segments cost the same.  Hence
+        cost(S) = 4(p−1) − 2·changes(S) + 6|S|,   changes(S) = number of type changes in the cyclic sequence of S-specials,
+  i.e. net saving 2·changes(S) − 6|S| — positive iff more than 3/4 of consecutive S-specials alternate.  (k = −1: cycles of length 4, every cycle
+  fully special and alternating, changes = 4|S| ⇒ saving 2|S| = Theorem 17.)
+* t = ½ (demand ½, cost 3 per group): only vertex-disjoint changing segments can be activated (each endpoint keeps ½ from its other edge), saving 2 each:
+  net = 2·M(S) − 3|S| with M(S) a matching in the changing-adjacency graph of S-specials (≤ 2|S|); positive iff more than 3/4 of S-specials are matched.
+* mixed t ∈ {0,½,1}: the LP does this; the free LP over rows, columns and the lines of all 8-groups (`scratch free8.py`) has net saving per 8-group
+  0.75 (p=101,k=2), 0.81 (199,2), 0.88 (199,3), 0.94 (401,2), 0.86 (401,3), 0.96 (601,2), 1.06 (601,3) — increasing towards ≈ 1 = the isolated value.
+Numbers for S = all groups (`scratch changes.py`): changes/specials = 0.375, 0.50, 0.53, 0.64, 0.48, 0.63, 0.66, 0.645, 0.61 for (p,k) = (101,2), (199,2),
+(199,3), (401,2), (401,3), (601,2), (601,3), (997,2), (997,3) — always below 3/4, so the all-groups full-block scheme LOSES (−0.7 … −3 per group);
+random thinning of S cannot help (thinning drives the change ratio to ½).  The LP wins by a CORRELATED selection (at p=401,k=2: 12 pairs (G_d,G_{−d})
+at t=1, 5 pairs (1,0), 3 pairs (½,½), 10 pairs unused; net 60 for 64 groups).
+SELECTION LEMMA (what theorem C reduces to).  Let Σ be the cyclic sequence of the classes of all (4,8,4) groups of P_k along the ⟨k⟩-cycles (each group
+contributes κ_a, κ_{−1/a}, μ_b, μ_{−k/b} at positions log a, L/2 − log a, log b, L/2 + log k − log b, L = ord(k), possibly on different cycles).
+Find S ⊂ groups with 2·changes(S) − 6|S| ≥ c·G₈ (or the ½-version), c > 0 absolute, for all large p and all k (or all primitive roots k).
+Numerically S exists with c ≈ 1; the arrangement Σ is "random-like with two reflection symmetries", its change ratio for the full set is 0.5–0.66,
+and only coarse-scale equidistribution of Σ (arcs of length ≥ p^{1/2+ε}, via multiplicative-character sums along the curve C₀(k) — the same Bombieri +
+Selberg machinery as Prop m8asym) is provable; the lemma needs FINE-scale structure (adjacent types).  This is the honest obstacle to theorem C:
+a purely combinatorial statement about a cyclic ±-sequence built from discrete logarithms of the 8-group residues.  Alternatives: (a) hand it to
+fresh eyes/external agents as a stand-alone problem (definition + data + generator); (b) prove a weaker, computable-per-p statement (the LP certificate
+is a rigorous bound for each p: α(P_k) ≤ LP(1)_k(p) < 4(p−1) — a table, not a theorem); (c) look for a certificate NOT of the run/pattern type.
