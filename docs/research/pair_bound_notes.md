@@ -844,3 +844,20 @@ Addendum 6 (second solver, 04:10 WITA): (a) B.16(a) sign law checked independent
 of patterns at p = 41 / 61.  (b) T-minimising orientations: p=19: r* = 0101… (parity), max lawful subset of S(r*) = 59 = α; p=23: r* =
 0001001100110011001000, max lawful subset 66 = 3(p−1) (22 deletions for T = 80; T/deletions ≈ 3.6 at both p) — as in B.12, "few triples" and
 "few deletions" are different objectives.
+
+Third solver's check of Lemma K (§22) — 2026-08-18 ~19:50 UTC (04:50 WITA).  Conclusion: the STATEMENT is right (in fact with room), two
+details of the proof need repair:
+(1) (D,z) and (−D,z′) are the SAME residue quadruple (z + z′ = −σ gives (z′+t)(−u) = (z+σ−t)u: the point set is reversed), so the map
+    (D, root) → quadruple is exactly 2-to-1 (checked numerically at p=193: 192/192 coincide).  "Σ_roots #{D}" therefore counts (D,z)-lifts, not
+    quadruples; the two representatives may even produce two different box lifts (translates by (p,0)/(0,p)) — both fine.  Correct count:
+    distinct lifted quadruples ≥ #{D} = (2L+1)²/p − O(√p log²p); each has 4 sub-triples with distinct classes; so N_box ≥ 4·#{D} ≥ the claimed
+    2·((2L+1)²/p − C√p log²p).  ✓ (bound holds with a factor 2 to spare).
+(2) Injectivity (v): the gaps along the primitive direction do NOT determine the family by themselves — gaps (2,3) are compatible with the
+    families (2,3) [sub-triple {0,s₁,σ}], (2,5) [{0,s₁,s₂}] and (3,5) [{s₁,s₂,σ}].  What decides is the SIGN PATTERN of the triple (which of its
+    three points lies on the other hyperbola): (e,−e,e) → family {g₁,g₂}/d, (e,−e,−e) → (g₁, g₁+g₂)/d, (−e,−e,e) → (g₂, g₁+g₂)/d, d = gcd(g₁,g₂).
+    Given the family and type, the direction (up to the reversal of (1)), the base point, the root z = x₀/u and the fourth point are all forced,
+    so a triple lies in exactly one lifted quadruple of exactly one coprime family: injectivity holds, with this argument.  ✓
+(3) (iii) "≥ 1 lift" ✓ (h + p = 3h+1 and σL ≤ p make the one-sided lift fit); (iv) ✓; the p^{1/4−ε} range ✓ (main term 4p/σ² vs error √p log²p);
+    the coprime-family reduction of B.17 (Σ_g P(T/g²) ≥ cT/log T ⇒ Σ_T P(T)/T ≫ log log p) ✓ — note the scale range shrinks to M ≤ p^{1/2−2ε}
+    (σ ≤ p^{1/4−ε}), still ≍ log p dyadic scales, so E ≥ c(p−1) log log p stands.
+So: Proposition (A, weak form) = Lemma K (with the two repairs) + B.17 — OK for the note's §6 / v1.1.
