@@ -199,3 +199,25 @@ upper bounds.)
 (d) Their audit of "T1–T4 with these ingredients": all FAIL — consistent with Parts A/B: the 4(p−1) bound is not strict via lines
 with ≤ 4 candidates (x ≡ 1/2 is LP-feasible), so any strict LP bound needs lines with ≥ 5 candidates — exactly the k = −1 opening of
 Part B (8-point slope-±1 lines).
+
+## B.8 Follow-up on the k = −1 opening: what the covers look like, and where the arithmetic enters (third solver)
+Minimum-cost integer covers of P_{−1} by rows, columns, slope-±1 lines (cost 2 each) and single points (cost 1), computed exactly
+(MIP): p=17: 64; 19: 64; 23: 80; 29: 96; 31: 108; 37: 128; 41: 152; 43: 140; 47: 160; 53: 188; 59: 208; 61: 220 — i.e.
+3.33–3.8 (p−1); equal to LP(1) except p = 41, 53, 59, 61 where the LP is fractional (142.7, 182.7, 198.7, 207.3).  The optimal
+covers are PARTITIONS of the 8(p−1) points into lines: e.g. p = 29: 8 rows, 16 columns, 4+4 eight-point diagonals, 8+8 four-point
+diagonals — 48 lines, no overlaps, cost 96; p = 47: 24 rows, 20 columns, 6+6 eight-point, 12+12 four-point lines — cost 160.
+Bookkeeping: if a partition uses m_i lines with i points, cost = 4(p−1) − Σ_{i≥5} (i/2 − 2)·m_i + Σ_{i≤3} penalties, so the saving over
+the trivial bound is 2m₈ + 1.5m₇ + m₆ + 0.5m₅ (minus small penalties): a saving of Ω(p) requires Ω(p) "extra points" on slope-±1
+lines with ≥ 5 points.  For P_{−1} such a line is a diagonal x−y=d with n₊(d) + n₋(p−d) ≥ 5, where n₊, n₋ are the slope-(+1)/(−1)
+profiles of the SINGLE hyperbola (Proposition 8 of the note: n₊ ∈ {4 (A/D shared σ-pairs, d ∈ [1−p,−1]), 3 (B/C classes), 2, 1, 0}
+and mirror for n₋); an 8-point line = a shared σ-diagonal D_κ (κ ∈ A∪D) whose mirror R(D_κ) is a shared τ-antidiagonal E_{κ'}
+(κ' ∈ B∪C), i.e. e_{κ'} = −d_κ, i.e. x' + 1/x' + x − 1/x ≡ 0 (mod p) with (x, 1/x, x', 1/x') in prescribed half-intervals.
+Both value sets (−d_κ over shared A/D pairs; e_{κ'} over shared B/C pairs) have ~p/4 elements in the same interval [1,p−1] of
+length p−1, so NO pigeonhole forces coincidences; their number (8, 8, 12, 12, 8, 4, 16, 20, 16, 24, 32, 28, 40, 32 for
+p = 29, 37, 43, 47, 59, 61, 71, 89, 113, 137, 151, 173, 191, 199 — the fluctuations of LP(1)/(p−1) between 3.33 and 3.6 are these
+counts) is the number of F_p-points of the cubic curve x'(x²−1) + x(x'²+1) = 0 in a box of residues: main term ≈ p/16, error
+O(√p log²p) by Weil/completion — useless for realistic p and delicate even asymptotically.  Conclusion: T3′ is provable in the
+form "for all sufficiently large p, α(P_{−1}) ≤ (4 − c)(p−1)" with a small explicit c only through such an equidistribution count
+(plus the partition combinatorics of the leftover points); no elementary route.  I stop here unless the owner wants exactly this
+statement; the LP certificates for each p ≤ 199 (and the integral partitions) are available on request as machine-checkable
+covers.
