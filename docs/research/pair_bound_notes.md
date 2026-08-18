@@ -792,3 +792,27 @@ families at a positive proportion of scales (hence E ≫ p log p, the observed r
 (iii) The same trick gives, for any p and any T ≥ 2, at least c T²/log T present families with s₁+s₂ ≤ 2T — a "no total desert" statement.
 Consequence for the programme: (spectral model theorem) ⇐ Conjecture B alone (given the Kloosterman count): min_r T(S(r)) ≥ (1−o(1))·E(p) ≥
 c(p−1) log log p for all large p, and ≥ c(p−1) log p if the QR density is bounded below on a positive proportion of scales.
+
+Addendum to B.16 (23:40 UTC) — three exact structural facts for the trace method, all verified at p = 101/199 (scratch checks, third solver):
+(a) SIGN LAW.  For a pattern π and two of its classes a, b (lifted points with integer x-coordinates x_a, x_b ∈ [−h, 3h+1]):
+    σ_π(a)σ_π(b) = e_a e_b · (+1 if x_a, x_b lie in the same half of the box [−h,h] / [h+1,3h+1], −1 otherwise),  e = the hyperbola signs
+    (e,−e,−e,e) of the quadruple positions.  Verified on all pattern pairs at p = 199 (identity holds for 100 %).  The same-half probability
+    decreases linearly in |x_a − x_b|/p (0.98, 0.91, 0.83, …, 0.08 for |Δx|/p in [0,0.1), [0.1,0.2), …, [0.9,1); 0 for |Δx| ≥ p — 13 % of pairs).
+    So C = C_e − 2C_diff with C_e = (1/16)Σ e_a e_b (hyperbola signs only, no box) and C_diff the different-half part; spectra at p=199:
+    C_e: λ_min/√m₂ = −3.12 (worse than C's −1.94!), C_diff: ±2.5, C: −1.94/+2.48 — the half-box flips make the matrix MORE Wigner-like.
+(b) MULTIPLIER STRUCTURE.  Along a quadruple the x-residues are (z_F + t)·u, so two classes a, b in one pattern satisfy b/a = μ = (z_F+t_b)/(z_F+t_a)
+    with z_F = (−(s₁+s₂) ± √(s₁²+s₂²))/2 (e.g. (1,2): z = −φ², positions −φ², −φ, −φ⁻¹, φ⁻² — golden-ratio multipliers ±φ^{±1..4}).  Hence
+    C = Σ_μ C^{(μ)}, C^{(μ)} supported on {(a, μa)}: a sum of signed multiplication operators on F_p^*; the mass is spread over essentially all
+    μ (196 of 197 at p=199; top-10 multipliers 20 %, top-30 41 %), a few multipliers are strongly sign-biased (μ = 63 at p=199: mean sign +0.89
+    on 150 entries — short-direction patterns, same-half pairs, fixed e_ae_b) — the source of the positive outliers/bias.  The multiplier-mean
+    (circulant on F_p^*) part C̄ carries only 9–10 % of ‖C‖_F² and has spectrum within ±5; C − C̄ has the same edges as C (−8.6/+9.9 vs
+    −9.0/+11.4 at p=199): the Wigner behaviour lives in the geometric fluctuation, not in a group-circulant.
+(c) CLOSED WALKS = TORUS LINES.  In a closed walk a → μ₁a → μ₁μ₂a → … the weights are functions of least residues of fixed multiples λ_j·a
+    (positions of the lifted APs relative to the box middle: half indicators, fitting conditions), so each closed-walk TYPE (choice of families,
+    positions, lifts, multipliers with Π μ_i = 1 in F_p^*) contributes  Σ_{a ∈ F_p^*} Π (interval indicators of X(λ_j a)) × (fixed sign)  =
+    p·(signed volume of a polytope) + error controlled by small integer relations Σ m_j λ_j ≡ 0 (mod p) (Erdős–Turán–Koksma; lattice-rule
+    discrepancy — no Weil needed for a single type).  The main terms are NOT zero type by type (a fixed type has a definite sign = product of
+    position parities e_ae_b and a positive volume); CH_δ therefore has to come from cancellation ACROSS types — the closure Π μ_i ≡ 1 mixes
+    families and positions "randomly" (accidental identities among the algebraic numbers z_F + t mod p) — plus counting of the structured types
+    (rational z_F: Pythagorean families; same-line cliques; commutator walks μ,ν,μ⁻¹,ν⁻¹ of biased multipliers), which give the observed
+    positive 1 % bias.  This is the precise shape of the arithmetic input for B.
