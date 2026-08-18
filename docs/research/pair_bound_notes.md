@@ -472,3 +472,15 @@ r_a = [X(a) even] (T = 24, 48), but at p = 13, 17 the minimisers follow no simpl
 their complements ≈ 50–60 %, i.e. chance), and for p = 23, 31, 43, 47 the parity orientation is no better than random (T = 180, 212,
 332, 400 ≈ 7–9 (p−1) versus random ≈ 6–9 (p−1); p = 59: 342 vs ≈ 620).  So there is no structured minimiser to count; H4′ would have to be
 proved for arbitrary r — the union-bound obstacle stands.  (`slack/orient_min_km1.py`; rules tested in the scratch script.)
+
+## 19. T2.8 — one fresh idea per agent for T1 (deadline 08:00 WITA, 19.08); ≤ 15 lines each, no computations
+**Second solver.** Treat H4′ (vertical-pair model) as a polynomial optimisation on the cube: with ε_a = (−1)^{r_a} ∈ {±1}, the number of
+collinear triples T(ε) is a real polynomial of degree ≤ 3 in the ε_a (each mod-p collinear class triple contributes an indicator of its
+admissible lift patterns, a degree-≤3 polynomial in three variables).  H4′ says min_ε T(ε) ≥ c·p.  Two ways to certify a lower bound for
+ALL ε: (a) a sum-of-squares certificate T(ε) − c·p = σ₀ + Σ_a λ_a(ε_a² − 1) with σ₀ SOS of degree ≤ 4 — computable per p by SDP; if the
+certificate has a p-independent SHAPE (e.g. built from the residue-group blocks and their Klein images), it becomes a proof; (b) Fourier:
+T(ε) = E[T] + Σ_{A≠∅} T̂(A) χ_A(ε); the coefficients T̂(A) for |A| ≤ 3 are exponential-sum-like objects (sums over class triples on the
+cubic-type varieties with the collinearity carries) — Weil-type bounds might give |T̂(A)| ≪ p^{1/2+ε} for each A, but there are ~p³ of
+them, so ℓ¹ control fails; what would suffice is a "sparse spectrum" statement (most T̂(A) exactly zero, which the arithmetic structure
+may enforce) — untested.  I do not know that either works; (a) is checkable in a day for p ≤ 31 and would at least reveal whether a
+structured certificate exists.
