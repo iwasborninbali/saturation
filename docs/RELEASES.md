@@ -95,3 +95,13 @@ via Lemma K + multiplicativity of Gaussian norms — checked by the third solver
 |---|---|
 | `paper/hjsw_window.pdf` | `bc28d68aba632e9e7439595f501fa51c9a424d0d6312ef2224c792b24b641543` |
 | `paper/hjsw_window.tex` | `57d660b2e33dc4717c944f503a951798f31e3de596d930aa4f79d3ef5111f577` |
+
+## hjsw-note-v1.2 (2026-08-19, 04:35 WITA)
+v1.1 + Proposition m8asym with the error term O(√p log⁴p) instead of O(p^{5/6} log³p): the four sets W_i are cut out by four linear forms
+(the L-condition is implied by the sign conditions), so Selberg's polynomials for the four forms + Bombieri's bound replace the
+box covering (Erdős–Turán–Koksma no longer needed).  Version strings fixed (v1.1 PDF still said "version 1.0").
+
+| file | SHA-256 |
+|---|---|
+| `paper/hjsw_window.pdf` | `72390623b6eac6c8b22d4d0a82dec479d28971107f8831a4597a3f565735ea43` |
+| `paper/hjsw_window.tex` | `e9cb004f94c62c79aae19e651c1ac5ce04e3073dc9e22015387e917c343a8ab2` |
