@@ -1,0 +1,19 @@
+p=5 k=2: generator 40 lines, determinant 40 lines, equal=True
+p=5 k=3: generator 58 lines, determinant 58 lines, equal=True
+p=5 k=4: generator 34 lines, determinant 34 lines, equal=True
+p=7 k=2: generator 90 lines, determinant 90 lines, equal=True
+p=7 k=3: generator 96 lines, determinant 96 lines, equal=True
+p=7 k=6: generator 96 lines, determinant 96 lines, equal=True
+p=11 k=2: generator 202 lines, determinant 202 lines, equal=True
+p=11 k=3: generator 191 lines, determinant 191 lines, equal=True
+p=11 k=10: generator 208 lines, determinant 208 lines, equal=True
+p=13 k=2: generator 302 lines, determinant 302 lines, equal=True
+p=13 k=3: generator 275 lines, determinant 275 lines, equal=True
+p=13 k=12: generator 230 lines, determinant 230 lines, equal=True
+p=17 k=2: generator 479 lines, determinant 479 lines, equal=True
+p=17 k=3: generator 400 lines, determinant 400 lines, equal=True
+p=17 k=16: generator 422 lines, determinant 422 lines, equal=True
+p=19 k=2: generator 474 lines, determinant 474 lines, equal=True
+p=19 k=3: generator 526 lines, determinant 526 lines, equal=True
+p=19 k=18: generator 496 lines, determinant 496 lines, equal=True
+OK: rich-line sets agree

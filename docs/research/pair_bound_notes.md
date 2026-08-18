@@ -917,7 +917,7 @@ Consequences: (β′) is expected to hold with c ≈ 0.7 for all p, but not with
 min_r T(r) ≥ (0.65 − o(1))·E(p); the arithmetic input it needs is exactly "the character sums over the family disc are at the random level
 (≤ K√(log p)·‖w‖₂ for every ψ)" — a large-sieve-type statement for one explicit sequence, which is what brief 7 should ask for.
 
-## 23. T2.16 (second solver, 19.08 04:20 WITA) — the model theorem is a sub-Burgess statement: circulant part measured to p = 4001, the scale accounting, and what a proof would need
+## 23. T2.16 (second solver, 19.08 03:40 WITA) — the model theorem is a sub-Burgess statement: circulant part measured to p = 4001, the scale accounting, and what a proof would need
 Tools: `slack/vp_lines.c` (O(n² log n) enumeration of all collinear triples of the doubled vertical-pair set; reproduces `vp_quadratic.py` exactly at
 p = 19, 23: E, λ_min, nnz), `slack/vp_circulant.py` (multiplier circulant C̄ via discrete logs + FFT, C̃ = C − C̄, spectra); log
 `slack/verification/vp_circulant_p199-4001.log`.
