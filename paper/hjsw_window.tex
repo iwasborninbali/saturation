@@ -590,6 +590,26 @@ with equality iff $n_1=n_0=0$.  For the HJSW box, Lemma~\ref{lem:partners} gives
 $B/C$-orbits, and the exceptional pairs are split; this recovers Theorem~\ref{thm:main}(ii),(iii).
 \end{proof}
 
+\begin{corollary}[all conics]\label{cor:conics}
+Let $C$ be a non-degenerate conic over $\Fp$ and $c\ge2$.  If the projective closure of $C$ contains both axial points at infinity
+$(1{:}0{:}0)$ and $(0{:}1{:}0)$, then $C$ is a shifted modular hyperbola $(x+e)(y+d)=c'$, and for $c=2$ every lawful subset of its
+lift into a $2p\times2p$ box has at most $3(p-1)$ points (Theorem~\ref{thm:window} after the shift).  Otherwise every lawful subset
+of the lift of $C$ into a box of side $cp$ has at most $c(p+3)$ points; for $c=2$ and $p\ge11$ this is less than $3(p-1)$.  Hence
+for $p\ge11$ the modular hyperbolae are exactly the conics whose lifts into a $2p\times2p$ box admit a lawful subset of $3(p-1)$
+points, and no conic admits more.
+\end{corollary}
+\begin{proof}
+A conic through $(1{:}0{:}0)$ and $(0{:}1{:}0)$ has no $x^2$ and no $y^2$ term, so its equation is $xy+dx+ey+f=0$, i.e.\
+$(x+e)(y+d)=de-f$, a shifted hyperbola (non-degenerate iff $de\ne f$).  If, say, $(1{:}0{:}0)\notin C$, then $C$ has an $x^2$ term,
+so every horizontal line $y=b$ meets $C$ in at most two points, and the number of residues $b$ with $C\cap\{y=b\}\ne\emptyset$ is
+at most $\lceil|C(\Fp)|/2\rceil+1\le(p+3)/2$ (only the $\le2$ points with vertical tangent are alone on their line).  In a box of
+side $cp$ the lift of $C$ therefore meets at most $c(p+3)/2$ rows, and a lawful set has at most two points per row.  The
+symmetric argument applies if $(0{:}1{:}0)\notin C$.
+\end{proof}
+(A degenerate conic is a union of at most two lines, and the lift of an $\Fp$-line into a box of side $cp$ lies on $O(c\sqrt p)$
+integer lines, so it contains $O(c\sqrt p)$ lawful points.  The observation that only the shifted hyperbolae contain both axial
+points at infinity was made independently by reasoning agents consulted by the author of record.)
+
 \begin{remark}[algorithmic consequence]
 Selecting a largest subset in general position from an arbitrary point set is NP-hard \cite{FKNN17}; for
 $\Hc\cap W$ Theorems~\ref{thm:main} and \ref{thm:window} reduce it to bookkeeping: after listing the $p-1$ classes and their
