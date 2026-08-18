@@ -1032,3 +1032,28 @@ Addendum to B.19 (21:20 UTC) — three exact facts behind the numbers (checked a
     both slopes is row/column-closed by the same R/R′ argument but NOT disjoint (a class of a +1 7-group can lie in a −1 7-group or in a −1 good group),
     and the double-covered points cost the difference between 2 per (+1)-group (solitary) and the collective 1.6–1.67 — the "clean fraction θ" of [102].
     A rigorous version: α ≤ 4(p−1) − 4m₈ − #(clean (7,5,3,1) groups, both slopes) + O(1), clean = not meeting a good group or another 7-group.
+
+## 25. C1 (second solver, 19.08 07:20 WITA): the class-graph cycle picture for a general second hyperbola H(k) — what the 8-group certificates really are
+Tools: `slack/chain_cert.py` (dual cover of ONE pair (G_d, G_{−d}) with rows/columns/points; prints weights along the ⟨k⟩-chains), `slack/chain_walk.py`
+(cycles, specials, walk range, LP with all 8-groups' lines forced at 1/2), scratch `free8.py` (LP with the lines free).
+1. Structure.  Row-mate of κ_a = (a,1/a) is μ_{ka} = (ka, k/(ka)); column-mate of κ_a is μ_a.  So the "class graph" (rows and columns as edges between the
+   two classes they carry) is a disjoint union of EVEN cycles κ_x — μ_{kx} — κ_{kx} — μ_{k²x} — …, one per coset x⟨k⟩ (length 2·ord(k)); the baseline
+   cover 1/2 on every row and column = weight 1/2 on every edge, cost 4(p−1).  A (4,8,4) group with weight w on its three lines gives its four classes
+   (two κ, two μ; the RR′-image G_{−d} contributes κ_{−a}, κ_{1/a}, μ_{−b}, μ_{k/b}) demand 1−w instead of 1 ("specials"); the whole cover problem
+   is then an edge-cover LP with vertex demands ON A CYCLE, cost 4·(edge weight) per edge, plus 2w per line.
+2. One pair in isolation: saving exactly 2 (all 8-groups at k=2,3, p=101,199) — the certificate is: lines at 1/2 (cost 6), and along the cycle a
+   "run" from each special κ (rows 0) → μ (columns 1) → κ (rows 0) → … → next special μ (columns 1/2, baseline resumes): each run saves 2, four
+   runs save 8; runs are short when the pair's specials are adjacent (rows/columns shared inside the pair, e.g. d=44 at p=101: only 2+2 residues
+   deviate) and long otherwise (78 of 100 residues at d=47) — the extent is the discrete-log distance, hence "global"; the VALUE is local.
+3. All 8-groups together: with ALL lines forced at 1/2 the cycle LP saves only half of the tight bound (p=101,k=2: 32 of 64; total net −1 per group);
+   the free LP (lines 0/½/1 per group, rows/columns 0/½/1) nets +0.75 (p=101,k=2), +0.81 (199,2), +0.88 (199,3) per group, using weight 1 (full block,
+   demand 0) on some groups, ½ on others, 0 on the rest.  Reason: with many specials the runs interfere — a run from κ ends at the NEXT special μ, so
+   the saving of the ½-scheme is 2·#(K→M transitions) in the cyclic K/M sequence of specials, ≈ #specials for a random-like arrangement, i.e. 2G₈ < 3G₈
+   (line cost): the naive scheme LOSES; only the mixed 0/½/1 scheme wins, and how much depends on the arrangement of the specials along the cycle
+   (positions: κ at log a, log(−1/a) = L/2 − log a; μ at log b, L/2 + log k − log b — reflection-symmetric, otherwise random-like).
+4. Consequence for a theorem C.  α(P_k) ≤ 4(p−1) − c·G₈(k,p) + O(1) with c > 0 for all k needs (i) G₈ ≍ p (equidistribution; C4), and (ii) an EXPLICIT
+   selection of groups and 0/½/1 pattern on the cycle whose saving beats the line cost — a combinatorial lemma about cyclic K/M sequences with the
+   above symmetry; numerically c ≈ 0.75–0.9 (net per group).  Expected constant ≈ 4 − c/6 ≈ 3.85–3.88 (p−1) — modest; the k=−1 case is special because
+   its cycles have length 4 (a → −a → a) so every group is its own closed run (saving 2 per group, no interference): that IS Theorem 17.
+   The cycle LP is a one-dimensional problem, so the exact optimum for a given arrangement is computable in linear time (DP); the theorem reduces to
+   bounding it from above for the actual arrangements — the honest difficulty is that the arrangement is only "random-like", not controlled.
