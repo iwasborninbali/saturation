@@ -307,3 +307,15 @@ every k tested once p is large (the third solver's LP(1) = 4(p−1) cases at p =
 strongest constants (its reflection symmetry doubles the coincidences).  For general k the optimal duals are fractional and messy;
 for k = −1 they are integral partitions at p = 29, 37 (§14).  A T3-type theorem for all k via covers is therefore not excluded, but
 k = −1 is the right first target.
+
+## 16. k = −1: the block scheme reproduces LP(1) and the rest is covered without waste (`slack/block_cover.py`)
+Greedy: take every residue group (either slope) containing an 8-point line as a block (its three lines, cost 6 for 16 points; skip a
+block if it meets an already covered point), then cover the remaining points by an LP over rows, columns, ±1 lines and single points.
+Data (p = 19…71): total = LP(1) exactly at p = 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 71 (greedy slightly worse at 61, 67), and the rest is
+ALWAYS covered at ≤ 1/2 per point (0.45–0.50), i.e. removing the blocks creates no waste (the "half on every row and column" fractional
+cover shows 1/2 per point is available whenever every row/column is either entirely inside blocks or entirely outside; the LP finds
+compensations through ±1 lines when a row is partially inside a block).  So the theorem to prove is:
+   (T3′-fractional)  α(P_{−1}) ≤ 4(p−1) − 2·B(p),  B(p) = number of pairwise disjoint 8-point-line groups (≥ m₈₊ − overlaps),
+via an explicit FRACTIONAL cover: weight 1 on the 3 lines of each block, and a weight assignment on rows/columns/±1 lines of cost
+≤ (#rest points)/2 covering the rest — the latter is the combinatorial lemma to establish (waste 0, or O(1)).  Note that fractional covers
+suffice for the bound (LP duality), so no integral partition is needed.  Together with m₈ ~ p/12 (§12) this gives ≈ (4 − 1/3)(p−1).
