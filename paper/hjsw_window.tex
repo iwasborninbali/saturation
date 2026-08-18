@@ -887,46 +887,59 @@ $k=2$, $29\le p\le199$), but we have no clean theorem there.
 
 \section{Computational observations beyond one hyperbola}\label{sec:beyond}
 
-Nothing in this section is a theorem: it records finite computations and the picture they suggest.
-Theorems~\ref{thm:main} and \ref{thm:window} concern a single hyperbola.  Unions of two hyperbolae in the same box do
-exceed $3(p-1)$, but --- as far as we can compute --- only by a few points.  For $\Pset_{k}=(H(1,p)\cup H(k,p))\cap\Gp$
-($8(p-1)$ candidate points) maximum lawful subsets were computed by SAT solving (kissat, CaDiCaL; two cardinality
-encodings), mixed-integer programming (HiGHS) or constraint programming (OR-tools CP-SAT), as indicated row by row; a
-value is called exact when a solver proved optimality (SAT: unsatisfiability at the next size; MIP/CP-SAT: zero gap); every
-witness was verified by an independent checker of all triples:
+Nothing in this section is a theorem: it records finite computations (all witnesses verified by an independent checker of all
+triples; ``exact'' means that a solver proved optimality --- SAT: unsatisfiability at the next size, MIP/CP-SAT: zero gap --- and
+``solver-proved'' upper bounds carry no independent certificate) and the picture they suggest.
+
+\paragraph{Two hyperbolae in the HJSW box.}  For $\Pset_k=(H(1,p)\cup H(k,p))\cap\Gp$ ($8(p-1)$ candidates; trivial bound $4(p-1)$,
+Section~\ref{sec:two}) the maximum lawful subsets are:
 \begin{center}\footnotesize
-\begin{tabular}{rrrrrrp{6.8cm}}
+\begin{tabular}{rrrrrrp{6.6cm}}
 \toprule
-$p$ & $3(p-1)$ & $k$ & max & gain & LP relax. & method\\
+$p$ & $3(p-1)$ & $k$ & max & gain & LP relax. & method / all $k$\\
 \midrule
-11 & 30 & 3 & 35 & $+5$ & 36.00 & MIP; all $k$: $32$--$35$ ($k=2$: 33, also SAT twice)\\
-13 & 36 & 2 & 41 & $+5$ & 47.54 & SAT (two encodings), MIP; all $k$: $38$--$41$\\
-17 & 48 & $-1$ & 54 & $+6$ & 60.15 & MIP; all $k$: $49$--$54$ ($k=2$: 53)\\
-19 & 54 & $-1$ & 59 & $+5$ & 63.64 & MIP (2 min); local search 59\\
-23 & 66 & $-1$ & $70$--$74$ & $\ge+4$ & --- & CP-SAT (8 workers, 4 h): 70, dual bound 78; MIP (HiGHS, running): 70, dual bound 74.5; $k=2$: 68--80, $k=3$: 69--78\\
+11 & 30 & 3 & 35 & $+5$ & 36.00 & MIP, exact; over all $k$: $32$--$35$ ($k=-1$: $32$)\\
+13 & 36 & 2 & 41 & $+5$ & 47.54 & SAT (two encodings), MIP, exact; all $k$: $38$--$41$ ($k=-1$: $40$)\\
+17 & 48 & $-1$ & 54 & $+6$ & 60.15 & MIP, exact; all $k$: $49$--$54$\\
+19 & 54 & $-1$ & 59 & $+5$ & 63.64 & MIP, exact; $k=2,3$: $57$\\
+23 & 66 & $-1$ & $70$--$74$ & $\ge+4$ & --- & CP-SAT 12 h: 70 (bound 78); MIP 8 h: 70 (bound 74); $k=2$: $68$--$80$, $k=3$: $69$--$78$\\
+29 & 84 & $-1$ & $\ge84$ & $\ge0$ & --- & CP-SAT 8 h: 84 (bound 92); Theorem~\ref{thm:two}: $\le96$\\
 \bottomrule
 \end{tabular}
 \end{center}
-Three observations.  (i) The double count of Section~\ref{sec:proof} does not extend: rich lines of general slope
-appear (a line meets each hyperbola in at most two classes, and copies of four different classes can be collinear), their
-number grows quickly with $p$, and the LP relaxation (``at most two per rich line'') is far from the truth (column ``LP''),
-whereas for one hyperbola it is exact (Theorem~\ref{thm:main}(ii)).  (ii) The gain over $3(p-1)$, maximised over $k$ ($+5,+5,+6,+5$ for $p=11,13,17,19$; all $k$ computed for $p\le17$,
-$k\in\{-1,3\}$ for $p=19$; at $p=23$ the exact value is not settled, $70\le\max\le74$ for $k=-1$), shows no growth.  A parabola $y=x^2+k$ together
-with $H(1)$ in the same box behaves alike: exact maxima $34,39,51,58$ for $p=11,13,17,19$ ($+4,+3,+3,+4$; MIP).
-Three hyperbolae $H(1)\cup H(2)\cup H(3)$ ($12(p-1)$ candidates) give $37$ at $p=11$ (exact, MIP; $+7$), between $43$
-and $48$ at $p=13$ and between $56$ and $63$ at $p=17$ (CP-SAT, 6 workers, 4 h, not closed; $+7$ and $+8$ so far) --- again a
-few points more than two hyperbolae, not a new order of growth.  (iii) A heuristic explanation: fix the HJSW set
-$S_2$ of $H(1,p)$ and call a point $q$ of $H(k,p)\cap\Gp$ \emph{blocked} if some line through $q$ carries two points of
-$S_2$.  The average number of blocking pairs per point grows like $\log p$ (about $3.1$ at $p=11$ and $7$ at $p=101$ for
-$k\in\{2,3,-1\}$), and the number of unblocked points is $0$--$2$ for every $p\le101$ tested; freeing a point of the second
-hyperbola costs deletions in the first.  This suggests that unions of hyperbolae in the $2p\times2p$ box gain $O(1)$ (or
-$o(p)$) over the HJSW value, i.e.\ that their asymptotic ratio is still $3/2$; we have no proof.  The same picture appears
-for hyperbolae with different moduli in one box: for $H(1,p)\cup H(1,q)$ in the $2p\times2p$ box (each hyperbola with its own
-HJSW shift) the exact maxima (MIP) exceed $3(p-1)$ by $1$, $2$ or $3$ in all eleven pairs computed, $7\le p<q\le29$ ---
-e.g.\ $32$ vs $30$ for $(11,13)$, $38$ vs $36$ for $(13,17)$, $50$ vs $48$ for $(17,19)$, $68$ vs $66$ for $(23,29)$ ---
-and the number of collinear triples with points on both hyperbolae grows, in the range computed ($N\le586$), like
-$N\log N$ --- the ratio (number of such triples)$/(N\ln N)$ stabilises near $11$ --- as for random sets of the same density.
-(Definitions and data: \texttt{slack/crosstriples.py}, \texttt{docs/research/slack\_experiments.md}.)
+Observations.  (i) The gain over $3(p-1)$ is between $+2$ and $+6$ for \emph{every} $k$ at $p=11,13,17$ and shows no growth up to
+$p=19$; the exact value at $p=23$ is not settled.  As an explicit falsifiable conjecture: $\alpha(\Pset_k)\le3(p-1)+6$ for all $p\ge11$
+and all $k\notin\{0,1\}$ (a certified witness with gain $\ge7$ would refute it).  (ii) The LP relaxation with all rich lines is far
+from the truth (column ``LP''; $\approx4(p-1)-\varepsilon$), because for two hyperbolae the fractional $2$-factor $x\equiv\tfrac12$ is
+almost feasible; certificates need lines with at least five candidates (Section~\ref{sec:two}).  Rank-$1$ certificates using only
+rows, columns and slope-$(\pm1)$ lines give $\approx3.45\,(p-1)$ for $k=-1$ ($19\le p\le199$) and $3.6$--$3.9\,(p-1)$ for $k=2,3$
+($p\le199$), and the integer optimum of that restricted system equals its LP value up to $2$ ($k=-1$, $p\le59$): so no local
+inequality of any rank on those lines can certify less; the remaining loss down to $3(p-1)+O(1)$ is carried by lines of unboundedly
+many slopes.  (iii) Structure of the exact maxima: they are balanced between the two hyperbolae ($23+18$ at $p=13$, $30+29$ at
+$p=19$), use one or two copies of almost every class, and the two copies of a class are usually in one column or one row (at $p=19$
+the optimum consists of $23$ such vertical pairs and $13$ single copies; at $p=17$ some classes use three copies).  For $k=-1$ the
+points fall into $(p-1)/2$ ``orbit blocks'' (the $16$ points of $\{\kappa,\nu\kappa,R\kappa,R'\kappa\}$ form a full $4\times4$ grid on
+its rows and columns), the trivial bound is $8$ per block, and the optima have $\approx6$ per block on average with the deficits
+spread over most blocks; pairs and triples of blocks essentially never conflict, so the loss is a global effect.  Restricted models
+(only vertical/horizontal copy pairs; or $y$-periodic sets) reach $3(p-1)+O(1)$ but not the optimum.
+
+\paragraph{Other unions.}  A parabola $y=x^2+k$ together with $H(1)$ in the same box: exact maxima $34,39,51,58$ for
+$p=11,13,17,19$ ($+4,+3,+3,+4$; MIP).  Three hyperbolae $H(1)\cup H(2)\cup H(3)$ ($12(p-1)$ candidates): $37$ at $p=11$ (exact, MIP;
+$+7$), between $43$ and $48$ at $p=13$ and between $56$ and $63$ at $p=17$ (CP-SAT 4 h, not closed).  Two hyperbolae with different
+moduli, $H(1,p)\cup H(1,q)$ in the $2p\times2p$ box (each with its own HJSW shift): the exact maxima (MIP) exceed $3(p-1)$ by $1$, $2$ or
+$3$ in all eleven pairs computed, $7\le p<q\le29$ (e.g.\ $32$ vs $30$ for $(11,13)$, $68$ vs $66$ for $(23,29)$), and the number of
+collinear triples with points on both hyperbolae grows like $N\log N$ in the range computed ($N\le586$; ratio to $N\ln N$ near $11$),
+as for random sets of the same density.  Larger boxes for one hyperbola: Remark~\ref{rem:larger}.
+
+\paragraph{A heuristic.}  Fix the HJSW set $S_2$ of $H(1,p)$ and call a point $q$ of $H(k,p)\cap\Gp$ blocked if some line through $q$
+carries two points of $S_2$.  The average number of blocking pairs per point grows like $\log p$ (about $3.1$ at $p=11$ and $7$ at
+$p=101$ for $k\in\{2,3,-1\}$), and the number of unblocked points is $0$--$2$ for every $p\le101$ tested (for $k=2$ at $p=5$ and a few
+other $(p,k)$ it is $4$); this depends on the chosen maximum set of $H(1)$ (over the $9^s$ maximum sets the number of unblocked points
+varies between $0$ and $2$ at $p=13$, $k=2$) and does not lower-bound the deletion cost, but it explains why the second hyperbola
+contributes little: freeing a point of $H(k)$ costs deletions in $H(1)$.  Whether the gain is $O(1)$, $O(\log p)$ or $O(\sqrt p)$
+cannot be decided from the data ($+5,+5,+6,+5$); Theorem~\ref{thm:two} shows that for $k=-1$ the gain over $3(p-1)$ is at most
+$(\tfrac23+o(1))(p-1)$, and no more is proved.  (Definitions and data: \texttt{slack/}, \texttt{docs/research/slack\_experiments.md},
+\texttt{docs/research/pair\_bound\_notes.md}.)
 
 \section{Independent computer verification}
 
