@@ -1,3 +1,5 @@
+> **Note (2026-08-18):** this is an *external LLM-assisted audit* (ChatGPT deep research, commissioned by the author of record on draft v0.1 of the note), not a report by a human referee.  A second such audit, on draft v0.5, is `hjsw_window_deep_research_audit_2026-08-18.md`.
+
 # Комплексный research / referee report по *The Hall–Jackson–Sudbery–Wild window is tight*
 
 ## Итог в двух абзацах

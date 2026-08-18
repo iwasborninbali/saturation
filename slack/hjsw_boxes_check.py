@@ -174,7 +174,7 @@ if __name__ == "__main__":
         for _ in range(40):
             p = random.choice(primes(31)[2:]); c = random.randrange(1, p); x0 = random.randrange(-p, p); y0 = random.randrange(-p, p)
             assert exact(pts(p, c, x0, y0)) == formula_max(p, c, x0, y0)[0], (p, c, x0, y0); m += 1
-        print(f"6. exact maximum (MIP) = 12a+10b+8c+6s on {m} random boxes, p<=31")
-    except ImportError:
-        print("6. (scipy not available: MIP cross-check skipped)")
+        print(f"6. exact maximum (MIP) = 12 n2 + 10 n1 + 8 n0 + 6 s on {m} random boxes, p<=31")
+    except ImportError as exc:
+        print(f"6. MIP cross-check SKIPPED — missing dependency: {exc.name or exc} (needs numpy, scipy>=1.9 and python-sat for maxlawful_pysat.lines)")
     print("all checks passed")

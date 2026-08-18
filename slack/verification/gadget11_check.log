@@ -1,0 +1,11 @@
+p=3: ok, (1,1)-orbits checked so far: 0
+p=5: ok, (1,1)-orbits checked so far: 4
+p=7: ok, (1,1)-orbits checked so far: 9
+p=11: ok, (1,1)-orbits checked so far: 31
+p=13: ok, (1,1)-orbits checked so far: 59
+p=17: ok, (1,1)-orbits checked so far: 117
+p=19: ok, (1,1)-orbits checked so far: 191
+p=23: ok, (1,1)-orbits checked so far: 311
+p=29: ok, (1,1)-orbits checked so far: 506
+p=31: ok, (1,1)-orbits checked so far: 728
+ALL OK: every (1,1) orbit has the stated line structure, maximum 10, and 9/54/81 maximum sets by t
