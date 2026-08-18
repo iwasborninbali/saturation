@@ -922,7 +922,13 @@ the optimum consists of $23$ such vertical pairs and $13$ single copies; at $p=1
 points fall into $(p-1)/2$ ``orbit blocks'' (the $16$ points of $\{\kappa,\nu\kappa,R\kappa,R'\kappa\}$ form a full $4\times4$ grid on
 its rows and columns), the trivial bound is $8$ per block, and the optima have $\approx6$ per block on average with the deficits
 spread over most blocks; pairs and triples of blocks essentially never conflict, so the loss is a global effect.  Restricted models
-(only vertical/horizontal copy pairs; or $y$-periodic sets) reach $3(p-1)+O(1)$ but not the optimum.
+(only vertical/horizontal copy pairs; or $y$-periodic sets) reach $3(p-1)+O(1)$ but not the optimum.  In the ``vertical-pair''
+model for $k=-1$ (every class contributes both lifts in one of its two columns; $2^{p-1}$ orientations, each a $2$-factor of the
+row/column structure) the number $T$ of collinear triples is a \emph{quadratic} form $E+\varepsilon^{\mathsf T}C\varepsilon$ in the
+orientation signs (odd degrees vanish by the reflection $R'$), so $\min T\ge E+(p-1)\lambda_{\min}(C)$; numerically this spectral bound
+is $\ge1.9\,(p-1)$ for $11\le p\le19$ (true minima $24,28,42,48$) and $\ge3.7\,(p-1)$ for $41\le p\le71$ --- every orientation
+carries linearly many collinear triples, with a certificate that is not a union bound; turning it into a theorem would need the growth of
+$E$ and a bound on $\lambda_{\min}(C)$, both arithmetic statements about $\Pset_{-1}$ (\texttt{slack/vp\_quadratic.py}).
 
 \paragraph{Other unions.}  A parabola $y=x^2+k$ together with $H(1)$ in the same box: exact maxima $34,39,51,58$ for
 $p=11,13,17,19$ ($+4,+3,+3,+4$; MIP).  Three hyperbolae $H(1)\cup H(2)\cup H(3)$ ($12(p-1)$ candidates): $37$ at $p=11$ (exact, MIP;
