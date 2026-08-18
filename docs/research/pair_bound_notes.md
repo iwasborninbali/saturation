@@ -643,3 +643,51 @@ p = 41/71/101/199: (1,±1): 4.4/7.7/7.6/7.4 each; (2,±1): 1.9/2.8/3.0/3.1; (1,�
 (1/8)Σ_{(u,v)} c(u,v) grows because ever more directions contribute; the model theorem needs E/(p−1) ≳ 10, i.e. Σ_F c ≥ 80 over a finite
 family F of directions — dozens of directions, each a Weil-type count in the style of Prop. m₈ (or one uniform argument in (u,v)).
 Together with B.14 (Wigner edge): the spectral programme is well-posed and heavy on both sides; parked here with all data and tools.
+
+## B.15 (third solver, 2026-08-18 20:00 UTC) The arithmetic structure of E(p): every collinear pattern of P₋₁ is a symmetric quadruple, present iff s₁²+s₂² is a square mod p
+Tools/logs: `slack/e_structure.py`, `slack/verification/e_structure_p191_p193.log`, `e_structure_small.log`.
+Setup.  A compatible collinear pattern (three points of P₋₁ from three distinct classes, all present for one orientation) lies on a
+primitive integer direction D = (u,v): the points are q, q+t₁D, q+t₂D (0 < t₁ < t₂).  Neither u nor v is ≡ 0 (mod p) (a vertical or
+horizontal residue direction would put three points on a column/row of a class pair — impossible), so along the line the residues obey
+f(t) := (x+tu)(y+tv) = e₁ + b t + w t²,   w = uv ≢ 0,  b = xv + uy,   with f(0), f(t₁), f(t₂) ∈ {±1} (which hyperbola each point is on).
+The sign pattern (e₁,e₂,e₃) is not constant (a non-degenerate quadratic takes a value at most twice), so up to global sign it is one of
+(e,e,−e), (e,−e,e), (e,−e,−e).  In every case f is symmetric about the midpoint of the two equal-sign points, hence takes the value −e at a
+FOURTH integer t: each pattern is a sub-triple of a symmetric quadruple  q + {0, s₁, s₂, s₁+s₂}·D  with signs (e,−e,−e,e)
+[(e,−e,−e) at (0,t₁,t₂): (s₁,s₂) = (t₁,t₂); (e,e,−e): (t₂−t₁, t₂); (e,−e,e): {t₁, t₂−t₁}] — the fourth point may fall outside the box.
+For the quadruple: w = 2e/(s₁s₂), b = −2e(s₁+s₂)/(s₁s₂), and with z = x/u the base point solves  z² + (s₁+s₂)z + s₁s₂/2 ≡ 0, discriminant
+(s₁+s₂)² − 2s₁s₂ = s₁² + s₂².  Hence:
+  THEOREM (structure of Π).  The residue-level collinear patterns of A = {xy ≡ ±1} are exactly the symmetric quadruples: for each pair
+  s₁ ≤ s₂ (positive integers), each e = ±1 and each u ∈ F_p^*: v ≡ 2e/(s₁s₂u), x ≡ zu, y ≡ e/x, where z is a root of z²+(s₁+s₂)z+s₁s₂/2;
+  the family (s₁,s₂) exists iff s₁²+s₂² is a square mod p (2 roots if a nonzero QR, 1 root if ≡ 0, none if a non-residue), and then it
+  consists of 4(p−1) (or 2(p−1)) residue quadruples on the direction hyperbola uv ≡ 2e/(s₁s₂).  Π = the box lifts of these (a quadruple
+  or truncated quadruple fits iff (s₁+s₂)·|D|_∞ ≲ 2p, resp. s₂|D|_∞ ≲ 2p, with 1–4 lifts of the base point).
+Verification: for p = 97, 191, 193 EVERY present family (t₁,t₂,e) has the predicted discriminant (closed forms 4(t₁²+2t₂(t₂−t₁)),
+4(t₂²−2t₁(t₂−t₁)), 4(t₁²+t₂²) over the obvious denominators) and s₁²+s₂² a square mod p — the only families with (s₁²+s₂²/p) ≠ 1 are those
+with s₁²+s₂² ≡ 0 (p ≡ 1 mod 4: 21²+74² = 61·97, 80²+111² = 97·193), present with one root; for t₂ ≤ 8 presence ⟺ square for all 224
+(t₁,t₂,e) at p ≥ 97 (at p ≤ 43 some predicted families miss for lack of a fitting direction).  Data (p=191/193): (0,1,2): 906/0 [(5/p)],
+426/472 [(2/p)]; (0,1,3): 416/0 [5], 382/0 [13], 366/0 [10]; (0,1,4): 218/240 [25 — always]; 4-point lines (0,1,2,3): 416/0, (0,1,3,4): 204/0,
+(0,3,4,7): —/56 [25], (0,1,7,8): —/68 [50].
+Consequences.
+(a) The prime-to-prime fluctuation of E is explained: E(p) is a sum over (s₁,s₂) of Kloosterman-type direction counts switched on and off
+    by the squares s₁²+s₂² mod p; at p = 193 the small values 5, 10, 13, 17, 26, 29, 34 are all non-residues (only 2, 25, 50 survive), at
+    p = 191 the values 5, 10, 13, 17 are residues — hence 17.6 vs 11.8 per (p−1).  Pythagorean pairs ((3,4),(5,12),(6,8),(8,15),…) are
+    present for EVERY p.
+(b) Formula:  E(p) = (1/8)·Σ_{e=±1} Σ_{s₁≤s₂} [s₁²+s₂² ≡ □ (mod p)] · N_box(s₁,s₂,e),  where N_box counts the box-lifted (sub)triples of the
+    4(p−1) residue quadruples of the family; for s₁+s₂ ≤ p^{1/2−ε} the directions D on uv ≡ 2e/(s₁s₂) with |D|_∞ ≤ 2p/(s₁+s₂) are Weil–
+    Kloosterman equidistributed (count ≈ (6/π²)·16p/(s₁+s₂)² primitive ones, error O(√p log²p)), so N_box ≍ p/(s₁+s₂)² and
+    E(p)/(p−1) ≍ Σ_{s₁+s₂ ≤ √p} [□]/(s₁+s₂)²  — the ~log p growth is Σ_σ (σ−1)/σ² over scales σ ≤ √p, times the density of squares
+    among the values s₁²+s₂² = N(s₁+is₂) (Gaussian norms) at each scale.  (Directions with |D|_∞ ≫ √p — the head (1,±1), (1,±2)… — collect
+    the families with s₁s₂ ≡ 2e/w (mod p) and s₁+s₂ ≤ 2p/|D|_∞: for a FIXED direction this is a character sum over the full range s₁ ≤ 2p/|D|,
+    so the per-direction constant c(u,v) of addendum 5 is a Weil-type quantity: c(u,v) = (1/2 + o(1))·(number of pairs)·(lift average)/(p−1);
+    e.g. (1,±1) collects ≈ 4p pairs (s₁, s₂ ≡ ±2/s₁), half present, ~7.4 per (p−1) as observed.)
+(c) Unconditional linear bound: the family (3,4) (25 = 5²) is present for every p ≠ 5, and among (1,1),(1,2),(1,3) at least one is present
+    ((2/p)(5/p)(10/p) = 1), so E(p) ≥ c·p for an explicit c > 0 by the Kloosterman count for two fixed hyperbolas in boxes — small c (≈ 1),
+    far below |λ_min| ≈ 2.4√m₂; not useful by itself.
+(d) Conjecture A (E/(p−1) → ∞) reduces to: a positive proportion of the values s₁²+s₂², s₁,s₂ ≤ S, are squares mod p for a positive
+    proportion of the dyadic scales S ≤ √p — a short character sum statement for χ∘N over boxes in Z[i] (for p ≡ 3 mod 4: boxes in F_{p²};
+    Davenport–Lewis-type Burgess bounds for boxes in F_{p²} are nontrivial from side p^{1/3+ε}, which would already cover the scales
+    p^{1/3+ε} ≤ S ≤ p^{1/2−ε} and give E ≥ c·p·log p — to be checked; for p ≡ 1 mod 4 the norm splits and one needs Burgess for χ(s₁²+s₂²)
+    in s₁ over short intervals).  Either way Conjecture A is now a standard (if not easy) analytic-number-theory question about ONE
+    explicit character sum, not a sum over "hundreds of directions" each needing its own count.
+Nothing here touches Conjecture B (the Wigner edge); the same parametrization gives the entries of C_p (each quadruple contributes ±1/16 to
+the C entries of its class pairs), which may help to organise the closed-walk sums.
