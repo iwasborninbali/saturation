@@ -637,3 +637,9 @@ point-triples of P₋₁ over all slopes, lines by pair hashing — O(p²) inste
    positive at every prime, growing slowly (like log p − √log p).
 Bottom line: the answer to T2.10 is "no bounded moments, but a clean Wigner picture": λ_min ~ −2.4√(tr C²/(p−1)) ~ −√(log p), o(E/(p−1)).
 The trace method is still the right tool, but the target is a Wigner-type bound (K√m₂), not a constant.
+Addendum 5 (per-direction constants for Conjecture A; `slack/dir_count.py`): distinct-class collinear triples of P₋₁ per (p−1) by direction,
+p = 41/71/101/199: (1,±1): 4.4/7.7/7.6/7.4 each; (2,±1): 1.9/2.8/3.0/3.1; (1,±2): 1.7/3.2/2.9/3.1; (3,±1): 1.35/1.49/1.58/1.39;
+(2,±3): 1.55/1.51/1.12/1.16.  So each direction has its own Θ(p) count with a limiting constant c(u,v) (fluctuating ±20 %), and E/(p−1) =
+(1/8)Σ_{(u,v)} c(u,v) grows because ever more directions contribute; the model theorem needs E/(p−1) ≳ 10, i.e. Σ_F c ≥ 80 over a finite
+family F of directions — dozens of directions, each a Weil-type count in the style of Prop. m₈ (or one uniform argument in (u,v)).
+Together with B.14 (Wigner edge): the spectral programme is well-posed and heavy on both sides; parked here with all data and tools.
