@@ -1,0 +1,3 @@
+n=30 subclass(3,7): all n=30 sym=2: solutions=0 nodes=516564 secs=6.78
+n=32 subclass(3,7): all n=32 sym=2: solutions=0 nodes=2140036 secs=30.43
+n=34 subclass(3,7): all n=34 sym=2: solutions=0 nodes=8296162 secs=122.75

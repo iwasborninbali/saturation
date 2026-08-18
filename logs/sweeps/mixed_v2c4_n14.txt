@@ -1,0 +1,23 @@
+# 2026-08-18T05:28:25Z mixed family v2c4 n=14 sym=10 subclasses=21 secs=3600
+0,1;1,13 all n=14 sym=10: solutions=0 nodes=24 secs=0.00
+0,2;2,13 all n=14 sym=10: solutions=0 nodes=31 secs=0.00
+0,3;3,13 all n=14 sym=10: solutions=0 nodes=45 secs=0.00
+0,4;4,13 all n=14 sym=10: solutions=0 nodes=26 secs=0.00
+0,5;5,13 all n=14 sym=10: solutions=0 nodes=47 secs=0.00
+0,6;6,13 all n=14 sym=10: solutions=0 nodes=45 secs=0.00
+1,2;2,12 all n=14 sym=10: solutions=0 nodes=24 secs=0.00
+1,3;3,12 all n=14 sym=10: solutions=0 nodes=12 secs=0.00
+1,4;4,12 all n=14 sym=10: solutions=0 nodes=20 secs=0.00
+1,5;5,12 all n=14 sym=10: solutions=0 nodes=10 secs=0.00
+1,6;6,12 all n=14 sym=10: solutions=0 nodes=16 secs=0.00
+2,3;3,11 all n=14 sym=10: solutions=0 nodes=24 secs=0.00
+2,4;4,11 all n=14 sym=10: solutions=0 nodes=12 secs=0.00
+2,5;5,11 all n=14 sym=10: solutions=0 nodes=4 secs=0.00
+2,6;6,11 all n=14 sym=10: solutions=0 nodes=11 secs=0.00
+3,4;4,10 all n=14 sym=10: solutions=0 nodes=11 secs=0.00
+3,5;5,10 all n=14 sym=10: solutions=0 nodes=8 secs=0.00
+3,6;6,10 all n=14 sym=10: solutions=0 nodes=7 secs=0.00
+4,5;5,9 all n=14 sym=10: solutions=0 nodes=6 secs=0.00
+4,6;6,9 all n=14 sym=10: solutions=0 nodes=5 secs=0.00
+5,6;6,8 all n=14 sym=10: solutions=0 nodes=7 secs=0.00
+# done 2026-08-18T05:28:26Z books=0 exhausted=21 dead=0 timeouts=0 skipped=0

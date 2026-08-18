@@ -1,0 +1,8 @@
+# 2026-08-18T05:26:14Z mixed family v2c4 n=9 sym=10 subclasses=6 secs=3600
+0,1;1,8 all n=9 sym=10: solutions=0 nodes=4 secs=0.00
+0,2;2,8 all n=9 sym=10: solutions=0 nodes=3 secs=0.00
+0,3;3,8 all n=9 sym=10: solutions=0 nodes=4 secs=0.00
+1,2;2,7 all n=9 sym=10: solutions=0 nodes=2 secs=0.00
+1,3;3,7 all n=9 sym=10: solutions=0 nodes=2 secs=0.00
+2,3;3,6 all n=9 sym=10: solutions=0 nodes=1 secs=0.00
+# done 2026-08-18T05:26:15Z books=0 exhausted=6 dead=0 timeouts=0 skipped=0
