@@ -125,3 +125,13 @@ concentration — the delicate step: the events "u = −3x/(i+j) has a small rep
 differences), so a second-moment argument must be done carefully, or the cover must be organised by families rather than by uniform weights (as the
 block cover was for the pair of hyperbolae); (iv) the fractional cover.  Honest estimate: several days; the payoff is the first "curves of degree three
 cannot beat HJSW" theorem, in the direction Green suggests.
+
+### 7a. First obstacle for a proof of G3 (07:55 WITA; `slack/cubic_anatomy.py`, scratch `cubic_deg.py`, `cubic_degpos.py`)
+LP values are stable: f = x³ (bijective, p ≡ 2 mod 3): 1.098 N (p=101), 1.100 N (p=401); f = x³+x: 0.98 (61), 1.06 (101), 0.95 (307).  Anatomy at p=401 (x³):
+mass on generic 3-lines 570 of 882, on ±1 lines (6,5,4,3 points) 300; degrees of points in the generic 3-line hypergraph: mean 14.6 (≈ 1.7·log₂p),
+std 5.9, coefficient of variation 0.37 (p=101), 0.40 (401), 0.40 (809) — NOT decreasing; 9–10 % of points have degree ≤ mean/2; position in the box
+(distance to the edges) explains only 29 % of the variance (mean degree 9.8 near the edge, 20–23 in the centre), residual CV 0.34.
+Consequence: the "uniform weight on 3-lines ⇒ (4/3)N" argument needs degree concentration, which the data refute at these p (and the correlations
+between families — arithmetic progressions with different differences through the same residue — suggest CV stays ≍ 1).  So a proof of G3 must be
+organised by families/positions with adaptive weights (as the LP does), or find another mechanism; the LP itself certifies ≈ 1.1 N for each p.
+Status: G3 = well-supported conjecture + explicit structure + per-p certificates; a general proof needs a new idea (estimated days–weeks, uncertain).
