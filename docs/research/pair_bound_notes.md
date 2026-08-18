@@ -153,3 +153,28 @@ lemma, plus a quadratic-residue condition), (ii) a lower bound ≥ c·p on their
 count (the fluctuations of LP(1)/(p−1) between 3.33 and 3.6 are the fluctuations of these counts).  This is the most concrete
 opening I see; it does not reach T1, but it would be the first rigorous bound below 4(p−1) for a union of two hyperbolae.
 Scripts: `slack/lp_bound.py` (LP by direction class: add a max-direction filter), the LP(1) run in `bench/` (third solver).
+## 7. DATA: α does not depend much on k
+All k (exact, MIP, `slack/verification/pairs_allk_*`): p=11: 32–35; p=13: 38–41; p=17: 49–54.  So for EVERY second hyperbola the
+gain over 3(p−1) is between +2 and +6, although the class graphs (cycles of length 2·ord(k)) differ wildly.  A universal answer
+suggests a universal (pseudo-random) mechanism, not arithmetic coincidences of particular k.
+
+## 8. Arithmetic description of the cross triples ("carry" M) — the most promising rigorous route
+Let three points of P_k have base copies (X_i, Y_i) (X ∈ [−h,h], Y ∈ [1,p−1]) and lifts x_i = X_i + r_i p, y_i = Y_i + s_i p,
+r_i, s_i ∈ {0,1}.  Collinear over Z ⇔ (x₂−x₁)(y₃−y₁) = (x₃−x₁)(y₂−y₁).  If the three classes are mod-p collinear, the base
+determinant is divisible by p: (X₂−X₁)(Y₃−Y₁) − (X₃−X₁)(Y₂−Y₁) = p·M with an integer M, |M| ≤ 8p (the "carry").  Expanding,
+   collinear over Z  ⇔  M + [(r₂−r₁)(Y₃−Y₁) + (s₃−s₁)(X₂−X₁) − (r₃−r₁)(Y₂−Y₁) − (s₂−s₁)(X₃−X₁)] + p·[(r₂−r₁)(s₃−s₁) − (r₃−r₁)(s₂−s₁)] = 0.
+So for each mod-p collinear class triple (κ, κ' ∈ H(1), λ ∈ H(k) — or the other composition), the lift patterns (r,s) ∈ {0,1}⁶
+that are collinear are exactly those solving M = −linear(r,s) − p·quad(r,s), where |linear| ≤ 8p and quad ∈ {−2,…,2}: at most 64
+patterns, and for "most" class triples none (M has to hit one of ≤ 64 prescribed values in a range of length ~16p).  Data: ~30p rich
+lines in P_k, i.e. ~p² mod-p collinear class triples produce Θ(p) collinear lift triples — consistent with M being roughly
+equidistributed on a range of length Θ(p) (Weil/Kloosterman-type equidistribution of the carry M is the arithmetic input one would
+have to prove).
+Route P (pseudo-randomness + counting): (i) prove equidistribution of M for the class triples (uniformly enough); (ii) show that
+every S ⊂ P_k that is a union of per-class lift-subsets with ≤ 2 points per row/column and |S| ≥ 3(p−1) + C contains a collinear
+lift triple — a counting statement against "product-structured" sets, which is what quasi-randomness of the triple system would
+give (the first-moment heuristic for a random-like triple system with ~30p triples on 8p points predicts loss Θ(p), in line with the
+data).  Both steps are research, not routine; but this is a well-posed programme, and it explains the universality in k.
+
+## 9. Symmetry for k = −1
+y ↦ 2p−y and x ↦ p−x map the box to itself and swap H(1) ↔ H(−1); their product is the half-turn of the box, preserving each
+hyperbola.  P_{−1} therefore has a Klein-four symmetry; the p=19 optimum (parity orientation) is not symmetric under it, though.
