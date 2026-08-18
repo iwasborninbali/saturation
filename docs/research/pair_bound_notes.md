@@ -1128,3 +1128,34 @@ Uniformity: every constant depends only on degrees.  Data (first solver, C4): G�
 Remark. For k = −1 this is 2m₈; the note's Prop. m8asym is the special case.  Consequently the class-graph model of §25–26 has ≈ (2/3)p specials
 (one third of all classes) for EVERY k, and theorem C reduces to the selection lemma of §26 plus fine-scale equidistribution of the special
 sequence (§26a: curve level, fibred products of C₀(k)).
+
+## 28. C1 — SOLVED IN PRINCIPLE (second solver, 19.08 07:20 WITA): the potential/buffer identity and the uniform rule t = 1/m
+THE IDENTITY.  Fix a class-cycle v_0, v_1, …, v_{L−1} (types alternate: even i = κ, odd i = μ), edge e_i between v_i and v_{i+1}, demands d_i = 1 − t_i
+(t_i = weight of the 8-group of v_i, 0 if none).  Write the edge weights as w_i = ½ + (−1)^i φ_i.  Then w_{i−1} + w_i = 1 + (−1)^i(φ_i − φ_{i−1}), so
+the cover constraint at v_i reads: at a κ (even i) the "potential" φ may DROP by at most t_i, at a μ (odd i) it may RISE by at most t_i (any move in
+the other direction is allowed but useless); w ∈ [0,1] ⟺ φ ∈ [−½, ½].  Cost of the edges: 4Σw_i = 2L + 4Σ_i(−1)^iφ_i = 2L − 4·(total rise at the μ's)
+(the alternating sum telescopes: a jump at an odd position contributes −1 times itself, at an even position 0; on the cycle Σ jumps = 0).
+Hence: ROW/COLUMN COST = 2L − 4·D,  where D = the total DEPOSIT of a buffer of width 1 (level φ ∈ [−½,½]) driven along the cycle: every κ-special
+withdraws up to t, every μ-special deposits up to t (D = total withdrawal as well).  The greedy buffer (deposit/withdraw as much as possible, best
+starting level) is optimal, and the identity is EXACT: `scratch buffer.py` reproduces lp(M, t_fixed) to the last digit for t ∈ {1, ½, ⅓, ¼, ⅙, ⅛} on
+real (p,k) = (199,2), (401,2), (601,3) and on synthetic instances (27 cases).  Special cases: t = 1 ⇒ D = #(type changes)/… ⇒ saving 2·changes (the
+formula of §26); k = −1 ⇒ cycles κ_a, μ_{−a}, κ_{−a}, μ_a fully special and alternating ⇒ D = 2 per cycle ⇒ Theorem 17.
+THE RULE.  Put the SAME weight t = 1/m on the three lines of EVERY 8-group (cost 6G₈/m).  Then the buffer absorbs runs of up to m equal types, and
+net saving = 4D − 6G₈/m.  Data (LP = buffer model): net per 8-group for m = 1, 2, 3, 4, 6, 8: p=199,k=2: −2, −.25, +.08, +.13, +.17, +.19;
+p=401,k=2: −.88, 0, +.13, +.19, +.25, +.19; p=601,k=3: −.72, +.06, +.16, +.20, +.19, +.14; synthetic (random groups): +.13…+.22 for m = 4, 6, 8.
+So a TRIVIALLY LOCAL rule (uniform t = 1/4 … 1/6) has POSITIVE net on every instance, real or random — the selection lemma of §26 is not needed.
+Heuristic (i.i.d. types): the level walk on m+1 states is uniform, a μ is blocked with probability 1/(m+1), so 4D ≈ 8G₈/(m+1) and net ≈ (8/(m+1) − 6/m)G₈,
+positive for m ≥ 4, maximal ≈ 0.14G₈ at m ≈ 6–8; the true type sequence is anti-persistent (P(change) = 1/(2−q) = 0.6 for q = 1/3), which helps (0.2–0.25).
+WHAT THEOREM C NOW NEEDS.
+(a) Weak (sub-linear) form — provable with our present tools: with m := max range of the imbalance walk (#κ − #μ specials along the cycle) the buffer
+    never blocks, so 4D = 8G₈/m and net = 2G₈/m.  The range is O(√p log^c p) uniformly over arcs (incomplete sums over geometric progressions a₀k^j
+    ⇒ multiplicative characters of ⟨k⟩ ⇒ mixed character sums along C₀(k) and its slope-(−1) twin, Bombieri; the special indicator is an OR of two
+    products of two sign conditions on algebraic functions of a — Selberg polynomials as in Prop m8asym).  Result: for EVERY k ∉ {0,1},
+        α(P_k) ≤ 4(p−1) − c·√p/log^c p   (c > 0 absolute) — the first bound below the trivial one for every second hyperbola.  Also G₈ = K = M exact.
+(b) Linear form — needs the LOCAL law: the frequencies of type patterns in windows of R consecutive classes converge (curve level: fibred products
+    of the partner quadratics over the a-line, absolutely irreducible for fixed R; Bombieri) to a fixed law π; then D ≥ (E_π[g_W] − o(1))·(#windows)
+    with g_W = worst-start deposit in a window of W specials, and E_π[g_W]/W → the stationary throughput; for m = 4…6 this exceeds 6/(4m·2) with room
+    (numerically net ≈ 0.2 per group).  This gives α(P_k) ≤ (4 − c₀ + o(1))(p−1), c₀ ≈ (0.2)(1/6) ≈ 0.03 (t = 1/6), for every k — the honest constant.
+    The finite computation of E_π[g_W] can be replaced by a rigorous bound from the pattern frequencies (a table for one W), and the LP value shows the
+    ceiling of this certificate type is ≈ 1 per group (c₀ ≈ 1/6).
+Both forms are UNIFORM in k (all constants come from degrees), and the k = −1 theorem is the extreme case where the cycles have length 4.
