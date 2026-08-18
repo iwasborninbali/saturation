@@ -840,3 +840,7 @@ triples as their coprime reductions (QR status is invariant under (s₁,s₂) �
 identity Σ_g P(T/g²) ≥ c T/log T ⇒ Σ_T P(T)/T ≥ (c/ζ(2)) log log p for the counts P(T) of present coprime families with norm in [T,2T).
 Consequence (with B.17): E(p) ≥ (1/8) Σ_{coprime present, s₁+s₂ ≤ p^{1/4−ε}} N_box ≥ c (p−1) log log p, unconditionally, for all large p.
 (To be checked by the third; then it becomes a Proposition of the note's §6 or of a future v1.1: "Conjecture A weak form".)
+Addendum 6 (second solver, 04:10 WITA): (a) B.16(a) sign law checked independently (`/tmp/signlaw.py`): holds for all 1518 / 3378 class pairs
+of patterns at p = 41 / 61.  (b) T-minimising orientations: p=19: r* = 0101… (parity), max lawful subset of S(r*) = 59 = α; p=23: r* =
+0001001100110011001000, max lawful subset 66 = 3(p−1) (22 deletions for T = 80; T/deletions ≈ 3.6 at both p) — as in B.12, "few triples" and
+"few deletions" are different objectives.
