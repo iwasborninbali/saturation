@@ -929,7 +929,9 @@ orientation signs (odd degrees vanish by the reflection $R'$), so $\min T\ge E+(
 is $\ge1.9\,(p-1)$ for $11\le p\le19$ (true minima $24,28,42,48$; $80$ at $p=23$ and $136$ at $p=29$ against spectral bounds
 $64$ and $129$) and $\ge3.6\,(p-1)$ for $41\le p\le71$ --- every orientation
 carries linearly many collinear triples, with a certificate that is not a union bound; turning it into a theorem would need the growth of
-$E$ and a bound on $\lambda_{\min}(C)$, both arithmetic statements about $\Pset_{-1}$ (\texttt{slack/vp\_quadratic.py}).
+$E$ ($E/(p-1)\approx3.6\log p-4.4$ up to $p=199$) and a Wigner-type edge estimate for the dense $\pm$-matrix $C$ (numerically
+$\lambda_{\min}\approx-2.4\sqrt{\operatorname{tr}C^2/(p-1)}\sim-\sqrt{\log p}$, with semicircle-like normalised moments), both
+arithmetic statements about $\Pset_{-1}$ (\texttt{slack/vp\_quadratic.py}, \texttt{slack/vp\_traces.py}).
 
 \paragraph{Other unions.}  A parabola $y=x^2+k$ together with $H(1)$ in the same box: exact maxima $34,39,51,58$ for
 $p=11,13,17,19$ ($+4,+3,+3,+4$; MIP).  Three hyperbolae $H(1)\cup H(2)\cup H(3)$ ($12(p-1)$ candidates): $37$ at $p=11$ (exact, MIP;
