@@ -80,3 +80,6 @@ hyperbola is 1–3 points in every window computed and does not grow — asympto
 k=−1: best 70 (dual bound 78); k=2: 68 (80); k=3: 69 (78).  Best known at 23: 70 = HJSW+4 (ratio 1.522); exact maximum in [70,78].
 Best-known gaps over HJSW by p: 11: +5 (35, k=3), 13: +5 (41), 17: +6 (54, k=−1), 19: +5 (59, k=−1), 23: ≥+4 (≤ +12 by the bound).
 No sign of growth; a 12-hour CP-SAT run for k=−1 at 23 continues.
+
+## p=29, k=−1 (2026-08-19): CP-SAT 8 workers, 8 h (Mac): best 84 = 3(p−1), dual bound 92 — not closed; theorem bound 96 = 4(p−1) − 4·4;
+LP(1) = 96.  (Partner: 6-thread CP-SAT 6 h at 29/31 running.)  12-h CP-SAT at p=23 (k=−1): still 70 (bound 78); 70 ≤ α ≤ 74 (MIP).
