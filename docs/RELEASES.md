@@ -38,3 +38,11 @@ explicit weighted line cover (verified numerically by `slack/km1_theorem_check.p
 |---|---|
 | `paper/hjsw_window.pdf` | `116e67ccc3496f7729439aa7874ce441013613fe4eb722a672ea893a7505e6bd` |
 | `paper/hjsw_window.tex` | `be5f8e1a9a1e0aa66c92a7295c85dc7be3f12d8046d48c0bf252e01dabb81347` |
+
+## hjsw-note-v0.7.1 (2026-08-19)
+Same as v0.7 with the integral cover proof (third solver's variant) and cross-references to both verifiers.
+
+| file | SHA-256 |
+|---|---|
+| `paper/hjsw_window.pdf` | `b93af4c50e93a09cf9f92dc4dab4586dd02e6c981069b8e6d61b1066dfe82c94` |
+| `paper/hjsw_window.tex` | `9f03d7d4c81583b75842189d3eb8d8cc424a2e7841a0b2b0ae6e52738df69ab2` |
