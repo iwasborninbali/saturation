@@ -1,0 +1,33 @@
+REAL p=10007 k=2 slots=20012 G8=1680 #κspec=3360 #μspec=3360 density=0.3358
+  m= 3 t=1/3: unblocked μ=2700 β=0.1964 net/group=+0.1429 | windows W=300: Σg=2625 (E[g_W]=39.773) remainder=75 certified net/group=+0.0833
+  m= 4 t=1/4: unblocked μ=2824 β=0.1595 net/group=+0.1810 | windows W=300: Σg=2725 (E[g_W]=41.288) remainder=99 certified net/group=+0.1220
+  m= 5 t=1/5: unblocked μ=2900 β=0.1369 net/group=+0.1810 | windows W=300: Σg=2779 (E[g_W]=42.106) remainder=121 certified net/group=+0.1233
+  m= 6 t=1/6: unblocked μ=2956 β=0.1202 net/group=+0.1730 | windows W=300: Σg=2818 (E[g_W]=42.697) remainder=138 certified net/group=+0.1183
+  m= 7 t=1/7: unblocked μ=3004 β=0.1060 net/group=+0.1646 | windows W=300: Σg=2848 (E[g_W]=43.152) remainder=156 certified net/group=+0.1116
+  m= 8 t=1/8: unblocked μ=3040 β=0.0952 net/group=+0.1548 | windows W=300: Σg=2864 (E[g_W]=43.394) remainder=176 certified net/group=+0.1024
+  m=10 t=1/10: unblocked μ=3092 β=0.0798 net/group=+0.1362 | windows W=300: Σg=2877 (E[g_W]=43.591) remainder=215 certified net/group=+0.0850
+  m=12 t=1/12: unblocked μ=3128 β=0.0690 net/group=+0.1206 | windows W=300: Σg=2879 (E[g_W]=43.621) remainder=249 certified net/group=+0.0712
+REAL p=100003 k=2 slots=200004 G8=16846 #κspec=33692 #μspec=33692 density=0.3369
+  m= 3 t=1/3: unblocked μ=27605 β=0.1807 net/group=+0.1849 | windows W=300: Σg=27104 (E[g_W]=40.697) remainder=501 certified net/group=+0.1452
+  m= 4 t=1/4: unblocked μ=28878 β=0.1429 net/group=+0.2142 | windows W=300: Σg=28171 (E[g_W]=42.299) remainder=707 certified net/group=+0.1723
+  m= 5 t=1/5: unblocked μ=29695 β=0.1186 net/group=+0.2102 | windows W=300: Σg=28751 (E[g_W]=43.170) remainder=944 certified net/group=+0.1654
+  m= 6 t=1/6: unblocked μ=30256 β=0.1020 net/group=+0.1974 | windows W=300: Σg=29086 (E[g_W]=43.673) remainder=1170 certified net/group=+0.1511
+  m= 7 t=1/7: unblocked μ=30709 β=0.0885 net/group=+0.1845 | windows W=300: Σg=29301 (E[g_W]=43.995) remainder=1408 certified net/group=+0.1368
+  m= 8 t=1/8: unblocked μ=31030 β=0.0790 net/group=+0.1710 | windows W=300: Σg=29428 (E[g_W]=44.186) remainder=1602 certified net/group=+0.1234
+  m=10 t=1/10: unblocked μ=31500 β=0.0651 net/group=+0.1480 | windows W=300: Σg=29531 (E[g_W]=44.341) remainder=1969 certified net/group=+0.1012
+  m=12 t=1/12: unblocked μ=31818 β=0.0556 net/group=+0.1296 | windows W=300: Σg=29561 (E[g_W]=44.386) remainder=2257 certified net/group=+0.0849
+REAL p=100003 k=3 slots=200004 G8=16550 #κspec=33100 #μspec=33100 density=0.3310
+  m= 4 t=1/4: unblocked μ=28260 β=0.1462 net/group=+0.2076
+  m= 5 t=1/5: unblocked μ=29154 β=0.1192 net/group=+0.2093
+  m= 6 t=1/6: unblocked μ=29728 β=0.1019 net/group=+0.1975
+  m= 8 t=1/8: unblocked μ=30504 β=0.0784 net/group=+0.1716
+REAL p=100003 k=5 slots=200004 G8=16632 #κspec=33264 #μspec=33264 density=0.3326
+  m= 4 t=1/4: unblocked μ=28608 β=0.1400 net/group=+0.2201
+  m= 5 t=1/5: unblocked μ=29418 β=0.1156 net/group=+0.2150
+  m= 6 t=1/6: unblocked μ=29940 β=0.0999 net/group=+0.2001
+  m= 8 t=1/8: unblocked μ=30656 β=0.0784 net/group=+0.1716
+REAL p=100019 k=2 slots=200036 G8=16784 #κspec=33568 #μspec=33568 density=0.3356
+  m= 4 t=1/4: unblocked μ=28972 β=0.1369 net/group=+0.2262
+  m= 5 t=1/5: unblocked μ=29840 β=0.1111 net/group=+0.2223
+  m= 6 t=1/6: unblocked μ=30396 β=0.0945 net/group=+0.2073
+  m= 8 t=1/8: unblocked μ=31106 β=0.0733 net/group=+0.1767

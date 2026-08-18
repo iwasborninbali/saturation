@@ -1,0 +1,373 @@
+rule_search.py -- TASK 3: local rules for u_g on (4,8,4) special groups
+generated 2026-08-19 07:10:17  (repo: saturation_peer)
+====================================================================================================
+CALIBRATION
+  p=101 k=2, all u_g=1/2: total=416.00 (task target 416.00) net=-1.0000 (task target -1.0)  PASS
+  p=101 k=2, free LP (u_g in [0,1] jointly optimised): net=0.7500 (notes' target 0.75)
+  p=199 k=2, free LP: net=0.8125 (notes' target 0.81)
+  p=199 k=3, free LP: net=0.8824 (notes' target 0.88)
+
+p= 101 k=  2 (primitive) ord(k)= 100  G8= 16  overlaps(class in >1 group)=0  mismatch-vs-cycle_stats.specials=0
+    R0_half_all              net=-1.0000  saving= -16.00  total=  416.00  (u=1:   0, u=1/2:  16, u=0:   0)
+    R1_isolated_r1           net=-2.7500  saving= -44.00  total=  444.00  (u=1:  10, u=1/2:   0, u=0:   6)
+    R2_kappa_next_other_mu   net=+0.5000  saving=  +8.00  total=  392.00  (u=1:   0, u=1/2:   8, u=0:   8)
+    R3_isolated_r2           net=-0.2500  saving=  -4.00  total=  404.00  (u=1:   2, u=1/2:   0, u=0:  14)
+    R3_graded_r1_r2          net=-1.2500  saving= -20.00  total=  420.00  (u=1:   2, u=1/2:   8, u=0:   6)
+    R3_parity_r1             net=-1.0000  saving= -16.00  total=  416.00  (u=1:   0, u=1/2:  16, u=0:   0)
+    R3_threshold_r2          net=-0.5000  saving=  -8.00  total=  408.00  (u=1:   2, u=1/2:   4, u=0:  10)
+    R4_greedy                net=+0.2500  saving=  +4.00  total=  396.00  (u=1:   0, u=1/2:   4, u=0:  12)
+    FREE_LP (upper bound)    net=+0.7500  saving= +12.00  total=  388.00
+
+p= 103 k=  5 (primitive) ord(k)= 102  G8= 20  overlaps(class in >1 group)=0  mismatch-vs-cycle_stats.specials=0
+    R0_half_all              net=+0.2000  saving=  +4.00  total=  404.00  (u=1:   0, u=1/2:  20, u=0:   0)
+    R1_isolated_r1           net=-0.2000  saving=  -4.00  total=  412.00  (u=1:   6, u=1/2:   0, u=0:  14)
+    R2_kappa_next_other_mu   net=+0.2000  saving=  +4.00  total=  404.00  (u=1:   0, u=1/2:  20, u=0:   0)
+    R3_isolated_r2           net=+0.0000  saving=  +0.00  total=  408.00  (u=1:   0, u=1/2:   0, u=0:  20)
+    R3_graded_r1_r2          net=+0.3000  saving=  +6.00  total=  402.00  (u=1:   0, u=1/2:   6, u=0:  14)
+    R3_parity_r1             net=+0.2000  saving=  +4.00  total=  404.00  (u=1:   0, u=1/2:  20, u=0:   0)
+    R3_threshold_r2          net=+0.2000  saving=  +4.00  total=  404.00  (u=1:   0, u=1/2:   4, u=0:  16)
+    R4_greedy                net=+0.4000  saving=  +8.00  total=  400.00  (u=1:   0, u=1/2:   8, u=0:  12)
+    FREE_LP (upper bound)    net=+1.1000  saving= +22.00  total=  386.00
+
+p= 107 k=  2 (primitive) ord(k)= 106  G8= 16  overlaps(class in >1 group)=0  mismatch-vs-cycle_stats.specials=0
+    R0_half_all              net=-0.5000  saving=  -8.00  total=  432.00  (u=1:   0, u=1/2:  16, u=0:   0)
+    R1_isolated_r1           net=-1.0000  saving= -16.00  total=  440.00  (u=1:   8, u=1/2:   0, u=0:   8)
+    R2_kappa_next_other_mu   net=+0.6250  saving= +10.00  total=  414.00  (u=1:   0, u=1/2:  10, u=0:   6)
+    R3_isolated_r2           net=+0.0000  saving=  +0.00  total=  424.00  (u=1:   0, u=1/2:   0, u=0:  16)
+    R3_graded_r1_r2          net=+0.5000  saving=  +8.00  total=  416.00  (u=1:   0, u=1/2:   8, u=0:   8)
+    R3_parity_r1             net=-0.5000  saving=  -8.00  total=  432.00  (u=1:   0, u=1/2:  16, u=0:   0)
+    R3_threshold_r2          net=+0.1250  saving=  +2.00  total=  422.00  (u=1:   0, u=1/2:   2, u=0:  14)
+    R4_greedy                net=+0.5000  saving=  +8.00  total=  416.00  (u=1:   0, u=1/2:   8, u=0:   8)
+    FREE_LP (upper bound)    net=+0.7500  saving= +12.00  total=  412.00
+
+p= 109 k=  6 (primitive) ord(k)= 108  G8= 16  overlaps(class in >1 group)=0  mismatch-vs-cycle_stats.specials=0
+    R0_half_all              net=-0.5000  saving=  -8.00  total=  440.00  (u=1:   0, u=1/2:  16, u=0:   0)
+    R1_isolated_r1           net=-1.2500  saving= -20.00  total=  452.00  (u=1:  10, u=1/2:   0, u=0:   6)
+    R2_kappa_next_other_mu   net=-0.2500  saving=  -4.00  total=  436.00  (u=1:   0, u=1/2:  12, u=0:   4)
+    R3_isolated_r2           net=+0.0000  saving=  +0.00  total=  432.00  (u=1:   0, u=1/2:   0, u=0:  16)
+    R3_graded_r1_r2          net=-0.3750  saving=  -6.00  total=  438.00  (u=1:   0, u=1/2:  10, u=0:   6)
+    R3_parity_r1             net=-0.5000  saving=  -8.00  total=  440.00  (u=1:   0, u=1/2:  16, u=0:   0)
+    R3_threshold_r2          net=+0.2500  saving=  +4.00  total=  428.00  (u=1:   0, u=1/2:   4, u=0:  12)
+    R4_greedy                net=+0.3750  saving=  +6.00  total=  426.00  (u=1:   0, u=1/2:   6, u=0:  10)
+    FREE_LP (upper bound)    net=+0.8750  saving= +14.00  total=  418.00
+
+p= 113 k=  3 (primitive) ord(k)= 112  G8= 12  overlaps(class in >1 group)=0  mismatch-vs-cycle_stats.specials=0
+    R0_half_all              net=+1.0000  saving= +12.00  total=  436.00  (u=1:   0, u=1/2:  12, u=0:   0)
+    R1_isolated_r1           net=-0.3333  saving=  -4.00  total=  452.00  (u=1:   6, u=1/2:   0, u=0:   6)
+    R2_kappa_next_other_mu   net=+1.0000  saving= +12.00  total=  436.00  (u=1:   0, u=1/2:  12, u=0:   0)
+    R3_isolated_r2           net=-0.3333  saving=  -4.00  total=  452.00  (u=1:   6, u=1/2:   0, u=0:   6)
+    R3_graded_r1_r2          net=-0.3333  saving=  -4.00  total=  452.00  (u=1:   6, u=1/2:   0, u=0:   6)
+    R3_parity_r1             net=+1.0000  saving= +12.00  total=  436.00  (u=1:   0, u=1/2:  12, u=0:   0)
+    R3_threshold_r2          net=-0.6667  saving=  -8.00  total=  456.00  (u=1:   6, u=1/2:   4, u=0:   2)
+    R4_greedy                net=+0.5000  saving=  +6.00  total=  442.00  (u=1:   0, u=1/2:   6, u=0:   6)
+    FREE_LP (upper bound)    net=+1.1667  saving= +14.00  total=  434.00
+
+p= 127 k=  3 (primitive) ord(k)= 126  G8= 26  overlaps(class in >1 group)=0  mismatch-vs-cycle_stats.specials=0
+    R0_half_all              net=+0.3846  saving= +10.00  total=  494.00  (u=1:   0, u=1/2:  26, u=0:   0)
+    R1_isolated_r1           net=+0.0000  saving=  +0.00  total=  504.00  (u=1:   4, u=1/2:   0, u=0:  22)
+    R2_kappa_next_other_mu   net=+0.6154  saving= +16.00  total=  488.00  (u=1:   0, u=1/2:  24, u=0:   2)
+    R3_isolated_r2           net=+0.0000  saving=  +0.00  total=  504.00  (u=1:   0, u=1/2:   0, u=0:  26)
+    R3_graded_r1_r2          net=+0.1538  saving=  +4.00  total=  500.00  (u=1:   0, u=1/2:   4, u=0:  22)
+    R3_parity_r1             net=+0.3846  saving= +10.00  total=  494.00  (u=1:   0, u=1/2:  26, u=0:   0)
+    R3_threshold_r2          net=+0.0769  saving=  +2.00  total=  502.00  (u=1:   0, u=1/2:   2, u=0:  24)
+    R4_greedy                net=+0.3846  saving= +10.00  total=  494.00  (u=1:   0, u=1/2:  10, u=0:  16)
+    FREE_LP (upper bound)    net=+0.9231  saving= +24.00  total=  480.00
+
+p= 131 k=  2 (primitive) ord(k)= 130  G8= 22  overlaps(class in >1 group)=0  mismatch-vs-cycle_stats.specials=0
+    R0_half_all              net=+0.6364  saving= +14.00  total=  506.00  (u=1:   0, u=1/2:  22, u=0:   0)
+    R1_isolated_r1           net=-0.1818  saving=  -4.00  total=  524.00  (u=1:   2, u=1/2:   0, u=0:  20)
+    R2_kappa_next_other_mu   net=+0.6364  saving= +14.00  total=  506.00  (u=1:   0, u=1/2:  22, u=0:   0)
+    R3_isolated_r2           net=-0.1818  saving=  -4.00  total=  524.00  (u=1:   2, u=1/2:   0, u=0:  20)
+    R3_graded_r1_r2          net=-0.1818  saving=  -4.00  total=  524.00  (u=1:   2, u=1/2:   0, u=0:  20)
+    R3_parity_r1             net=+0.6364  saving= +14.00  total=  506.00  (u=1:   0, u=1/2:  22, u=0:   0)
+    R3_threshold_r2          net=-0.4545  saving= -10.00  total=  530.00  (u=1:   2, u=1/2:   2, u=0:  18)
+    R4_greedy                net=+0.4545  saving= +10.00  total=  510.00  (u=1:   2, u=1/2:   6, u=0:  14)
+    FREE_LP (upper bound)    net=+1.3636  saving= +30.00  total=  490.00
+
+p= 137 k=  3 (primitive) ord(k)= 136  G8= 22  overlaps(class in >1 group)=0  mismatch-vs-cycle_stats.specials=0
+    R0_half_all              net=+0.2727  saving=  +6.00  total=  538.00  (u=1:   0, u=1/2:  22, u=0:   0)
+    R1_isolated_r1           net=-0.9091  saving= -20.00  total=  564.00  (u=1:   6, u=1/2:   0, u=0:  16)
+    R2_kappa_next_other_mu   net=+0.5455  saving= +12.00  total=  532.00  (u=1:   0, u=1/2:  20, u=0:   2)
+    R3_isolated_r2           net=-0.1818  saving=  -4.00  total=  548.00  (u=1:   2, u=1/2:   0, u=0:  20)
+    R3_graded_r1_r2          net=-0.3636  saving=  -8.00  total=  552.00  (u=1:   2, u=1/2:   4, u=0:  16)
+    R3_parity_r1             net=+0.2727  saving=  +6.00  total=  538.00  (u=1:   0, u=1/2:  22, u=0:   0)
+    R3_threshold_r2          net=+0.0909  saving=  +2.00  total=  542.00  (u=1:   2, u=1/2:   6, u=0:  14)
+    R4_greedy                net=+0.3636  saving=  +8.00  total=  536.00  (u=1:   1, u=1/2:   6, u=0:  15)
+    FREE_LP (upper bound)    net=+1.0909  saving= +24.00  total=  520.00
+
+p= 139 k=  2 (primitive) ord(k)= 138  G8= 24  overlaps(class in >1 group)=0  mismatch-vs-cycle_stats.specials=0
+    R0_half_all              net=+0.3333  saving=  +8.00  total=  544.00  (u=1:   0, u=1/2:  24, u=0:   0)
+    R1_isolated_r1           net=-0.1667  saving=  -4.00  total=  556.00  (u=1:   2, u=1/2:   0, u=0:  22)
+    R2_kappa_next_other_mu   net=+0.5000  saving= +12.00  total=  540.00  (u=1:   0, u=1/2:  20, u=0:   4)
+    R3_isolated_r2           net=+0.0000  saving=  +0.00  total=  552.00  (u=1:   0, u=1/2:   0, u=0:  24)
+    R3_graded_r1_r2          net=+0.0833  saving=  +2.00  total=  550.00  (u=1:   0, u=1/2:   2, u=0:  22)
+    R3_parity_r1             net=+0.3333  saving=  +8.00  total=  544.00  (u=1:   0, u=1/2:  24, u=0:   0)
+    R3_threshold_r2          net=+0.1667  saving=  +4.00  total=  548.00  (u=1:   0, u=1/2:   4, u=0:  20)
+    R4_greedy                net=+0.2917  saving=  +7.00  total=  545.00  (u=1:   0, u=1/2:   7, u=0:  17)
+    FREE_LP (upper bound)    net=+1.1667  saving= +28.00  total=  524.00
+
+p= 149 k=  2 (primitive) ord(k)= 148  G8= 20  overlaps(class in >1 group)=0  mismatch-vs-cycle_stats.specials=0
+    R0_half_all              net=+0.6000  saving= +12.00  total=  580.00  (u=1:   0, u=1/2:  20, u=0:   0)
+    R1_isolated_r1           net=-0.2000  saving=  -4.00  total=  596.00  (u=1:   2, u=1/2:   0, u=0:  18)
+    R2_kappa_next_other_mu   net=+0.5000  saving= +10.00  total=  582.00  (u=1:   0, u=1/2:  18, u=0:   2)
+    R3_isolated_r2           net=-0.2000  saving=  -4.00  total=  596.00  (u=1:   2, u=1/2:   0, u=0:  18)
+    R3_graded_r1_r2          net=-0.2000  saving=  -4.00  total=  596.00  (u=1:   2, u=1/2:   0, u=0:  18)
+    R3_parity_r1             net=+0.6000  saving= +12.00  total=  580.00  (u=1:   0, u=1/2:  20, u=0:   0)
+    R3_threshold_r2          net=-0.4000  saving=  -8.00  total=  600.00  (u=1:   2, u=1/2:   4, u=0:  14)
+    R4_greedy                net=+0.5000  saving= +10.00  total=  582.00  (u=1:   0, u=1/2:  10, u=0:  10)
+    FREE_LP (upper bound)    net=+1.1000  saving= +22.00  total=  570.00
+
+p= 151 k=  6 (primitive) ord(k)= 150  G8= 18  overlaps(class in >1 group)=0  mismatch-vs-cycle_stats.specials=0
+    R0_half_all              net=+0.1111  saving=  +2.00  total=  598.00  (u=1:   0, u=1/2:  18, u=0:   0)
+    R1_isolated_r1           net=-0.2222  saving=  -4.00  total=  604.00  (u=1:   2, u=1/2:   0, u=0:  16)
+    R2_kappa_next_other_mu   net=+0.0000  saving=  +0.00  total=  600.00  (u=1:   0, u=1/2:  16, u=0:   2)
+    R3_isolated_r2           net=-0.2222  saving=  -4.00  total=  604.00  (u=1:   2, u=1/2:   0, u=0:  16)
+    R3_graded_r1_r2          net=-0.2222  saving=  -4.00  total=  604.00  (u=1:   2, u=1/2:   0, u=0:  16)
+    R3_parity_r1             net=+0.1111  saving=  +2.00  total=  598.00  (u=1:   0, u=1/2:  18, u=0:   0)
+    R3_threshold_r2          net=-0.7778  saving= -14.00  total=  614.00  (u=1:   2, u=1/2:   6, u=0:  10)
+    R4_greedy                net=+0.3333  saving=  +6.00  total=  594.00  (u=1:   0, u=1/2:   6, u=0:  12)
+    FREE_LP (upper bound)    net=+0.8889  saving= +16.00  total=  584.00
+
+p= 157 k=  5 (primitive) ord(k)= 156  G8= 22  overlaps(class in >1 group)=0  mismatch-vs-cycle_stats.specials=0
+    R0_half_all              net=+0.6364  saving= +14.00  total=  610.00  (u=1:   0, u=1/2:  22, u=0:   0)
+    R1_isolated_r1           net=-0.3636  saving=  -8.00  total=  632.00  (u=1:   8, u=1/2:   0, u=0:  14)
+    R2_kappa_next_other_mu   net=+0.9091  saving= +20.00  total=  604.00  (u=1:   0, u=1/2:  20, u=0:   2)
+    R3_isolated_r2           net=-0.3636  saving=  -8.00  total=  632.00  (u=1:   8, u=1/2:   0, u=0:  14)
+    R3_graded_r1_r2          net=-0.3636  saving=  -8.00  total=  632.00  (u=1:   8, u=1/2:   0, u=0:  14)
+    R3_parity_r1             net=+0.6364  saving= +14.00  total=  610.00  (u=1:   0, u=1/2:  22, u=0:   0)
+    R3_threshold_r2          net=-0.8182  saving= -18.00  total=  642.00  (u=1:   8, u=1/2:   6, u=0:   8)
+    R4_greedy                net=+0.4091  saving=  +9.00  total=  615.00  (u=1:   3, u=1/2:   3, u=0:  16)
+    FREE_LP (upper bound)    net=+1.0909  saving= +24.00  total=  600.00
+
+p= 163 k=  2 (primitive) ord(k)= 162  G8= 26  overlaps(class in >1 group)=0  mismatch-vs-cycle_stats.specials=0
+    R0_half_all              net=+0.0769  saving=  +2.00  total=  646.00  (u=1:   0, u=1/2:  26, u=0:   0)
+    R1_isolated_r1           net=-0.6154  saving= -16.00  total=  664.00  (u=1:   4, u=1/2:   0, u=0:  22)
+    R2_kappa_next_other_mu   net=+0.4615  saving= +12.00  total=  636.00  (u=1:   0, u=1/2:  20, u=0:   6)
+    R3_isolated_r2           net=+0.0000  saving=  +0.00  total=  648.00  (u=1:   0, u=1/2:   0, u=0:  26)
+    R3_graded_r1_r2          net=-0.1538  saving=  -4.00  total=  652.00  (u=1:   0, u=1/2:   4, u=0:  22)
+    R3_parity_r1             net=+0.0769  saving=  +2.00  total=  646.00  (u=1:   0, u=1/2:  26, u=0:   0)
+    R3_threshold_r2          net=-0.3077  saving=  -8.00  total=  656.00  (u=1:   0, u=1/2:   8, u=0:  18)
+    R4_greedy                net=+0.5385  saving= +14.00  total=  634.00  (u=1:   4, u=1/2:   6, u=0:  16)
+    FREE_LP (upper bound)    net=+0.8462  saving= +22.00  total=  626.00
+
+p= 167 k=  5 (primitive) ord(k)= 166  G8= 28  overlaps(class in >1 group)=0  mismatch-vs-cycle_stats.specials=0
+    R0_half_all              net=+0.4286  saving= +12.00  total=  652.00  (u=1:   0, u=1/2:  28, u=0:   0)
+    R1_isolated_r1           net=-0.7143  saving= -20.00  total=  684.00  (u=1:   6, u=1/2:   0, u=0:  22)
+    R2_kappa_next_other_mu   net=+0.5714  saving= +16.00  total=  648.00  (u=1:   0, u=1/2:  24, u=0:   4)
+    R3_isolated_r2           net=-0.1429  saving=  -4.00  total=  668.00  (u=1:   2, u=1/2:   0, u=0:  26)
+    R3_graded_r1_r2          net=-0.2857  saving=  -8.00  total=  672.00  (u=1:   2, u=1/2:   4, u=0:  22)
+    R3_parity_r1             net=+0.4286  saving= +12.00  total=  652.00  (u=1:   0, u=1/2:  28, u=0:   0)
+    R3_threshold_r2          net=-0.3571  saving= -10.00  total=  674.00  (u=1:   2, u=1/2:   2, u=0:  24)
+    R4_greedy                net=+0.3571  saving= +10.00  total=  654.00  (u=1:   0, u=1/2:  10, u=0:  18)
+    FREE_LP (upper bound)    net=+1.0714  saving= +30.00  total=  634.00
+
+p= 173 k=  2 (primitive) ord(k)= 172  G8= 34  overlaps(class in >1 group)=0  mismatch-vs-cycle_stats.specials=0
+    R0_half_all              net=+0.0588  saving=  +2.00  total=  686.00  (u=1:   0, u=1/2:  34, u=0:   0)
+    R1_isolated_r1           net=-0.1176  saving=  -4.00  total=  692.00  (u=1:   2, u=1/2:   0, u=0:  32)
+    R2_kappa_next_other_mu   net=+0.4118  saving= +14.00  total=  674.00  (u=1:   0, u=1/2:  30, u=0:   4)
+    R3_isolated_r2           net=+0.0000  saving=  +0.00  total=  688.00  (u=1:   0, u=1/2:   0, u=0:  34)
+    R3_graded_r1_r2          net=+0.0588  saving=  +2.00  total=  686.00  (u=1:   0, u=1/2:   2, u=0:  32)
+    R3_parity_r1             net=+0.0588  saving=  +2.00  total=  686.00  (u=1:   0, u=1/2:  34, u=0:   0)
+    R3_threshold_r2          net=-0.1765  saving=  -6.00  total=  694.00  (u=1:   0, u=1/2:  10, u=0:  24)
+    R4_greedy                net=+0.3824  saving= +13.00  total=  675.00  (u=1:   0, u=1/2:  13, u=0:  21)
+    FREE_LP (upper bound)    net=+1.1176  saving= +38.00  total=  650.00
+
+p= 179 k=  2 (primitive) ord(k)= 178  G8= 32  overlaps(class in >1 group)=0  mismatch-vs-cycle_stats.specials=0
+    R0_half_all              net=+0.5000  saving= +16.00  total=  696.00  (u=1:   0, u=1/2:  32, u=0:   0)
+    R1_isolated_r1           net=-0.1250  saving=  -4.00  total=  716.00  (u=1:   2, u=1/2:   0, u=0:  30)
+    R2_kappa_next_other_mu   net=+0.5000  saving= +16.00  total=  696.00  (u=1:   0, u=1/2:  32, u=0:   0)
+    R3_isolated_r2           net=+0.0000  saving=  +0.00  total=  712.00  (u=1:   0, u=1/2:   0, u=0:  32)
+    R3_graded_r1_r2          net=+0.0625  saving=  +2.00  total=  710.00  (u=1:   0, u=1/2:   2, u=0:  30)
+    R3_parity_r1             net=+0.5000  saving= +16.00  total=  696.00  (u=1:   0, u=1/2:  32, u=0:   0)
+    R3_threshold_r2          net=-0.0625  saving=  -2.00  total=  714.00  (u=1:   0, u=1/2:   6, u=0:  26)
+    R4_greedy                net=+0.2500  saving=  +8.00  total=  704.00  (u=1:   2, u=1/2:   4, u=0:  26)
+    FREE_LP (upper bound)    net=+1.3125  saving= +42.00  total=  670.00
+
+p= 181 k=  2 (primitive) ord(k)= 180  G8= 36  overlaps(class in >1 group)=0  mismatch-vs-cycle_stats.specials=0
+    R0_half_all              net=+0.1111  saving=  +4.00  total=  716.00  (u=1:   0, u=1/2:  36, u=0:   0)
+    R1_isolated_r1           net=-0.1111  saving=  -4.00  total=  724.00  (u=1:   6, u=1/2:   0, u=0:  30)
+    R2_kappa_next_other_mu   net=+0.2778  saving= +10.00  total=  710.00  (u=1:   0, u=1/2:  34, u=0:   2)
+    R3_isolated_r2           net=+0.0000  saving=  +0.00  total=  720.00  (u=1:   0, u=1/2:   0, u=0:  36)
+    R3_graded_r1_r2          net=+0.1667  saving=  +6.00  total=  714.00  (u=1:   0, u=1/2:   6, u=0:  30)
+    R3_parity_r1             net=+0.1111  saving=  +4.00  total=  716.00  (u=1:   0, u=1/2:  36, u=0:   0)
+    R3_threshold_r2          net=+0.0556  saving=  +2.00  total=  718.00  (u=1:   0, u=1/2:   2, u=0:  34)
+    R4_greedy                net=+0.4444  saving= +16.00  total=  704.00  (u=1:   4, u=1/2:   8, u=0:  24)
+    FREE_LP (upper bound)    net=+1.1667  saving= +42.00  total=  678.00
+
+p= 191 k= 19 (primitive) ord(k)= 190  G8= 28  overlaps(class in >1 group)=0  mismatch-vs-cycle_stats.specials=0
+    R0_half_all              net=+0.4286  saving= +12.00  total=  748.00  (u=1:   0, u=1/2:  28, u=0:   0)
+    R1_isolated_r1           net=-1.4286  saving= -40.00  total=  800.00  (u=1:  12, u=1/2:   0, u=0:  16)
+    R2_kappa_next_other_mu   net=+0.5714  saving= +16.00  total=  744.00  (u=1:   0, u=1/2:  24, u=0:   4)
+    R3_isolated_r2           net=-0.7143  saving= -20.00  total=  780.00  (u=1:   6, u=1/2:   0, u=0:  22)
+    R3_graded_r1_r2          net=-1.0714  saving= -30.00  total=  790.00  (u=1:   6, u=1/2:   6, u=0:  16)
+    R3_parity_r1             net=+0.4286  saving= +12.00  total=  748.00  (u=1:   0, u=1/2:  28, u=0:   0)
+    R3_threshold_r2          net=-0.9286  saving= -26.00  total=  786.00  (u=1:   6, u=1/2:   2, u=0:  20)
+    R4_greedy                net=+0.2143  saving=  +6.00  total=  754.00  (u=1:   0, u=1/2:   6, u=0:  22)
+    FREE_LP (upper bound)    net=+0.7857  saving= +22.00  total=  738.00
+
+p= 193 k=  5 (primitive) ord(k)= 192  G8= 38  overlaps(class in >1 group)=0  mismatch-vs-cycle_stats.specials=0
+    R0_half_all              net=+0.5789  saving= +22.00  total=  746.00  (u=1:   0, u=1/2:  38, u=0:   0)
+    R1_isolated_r1           net=+0.0000  saving=  +0.00  total=  768.00  (u=1:   0, u=1/2:   0, u=0:  38)
+    R2_kappa_next_other_mu   net=+0.7368  saving= +28.00  total=  740.00  (u=1:   0, u=1/2:  36, u=0:   2)
+    R3_isolated_r2           net=+0.0000  saving=  +0.00  total=  768.00  (u=1:   0, u=1/2:   0, u=0:  38)
+    R3_graded_r1_r2          net=+0.0000  saving=  +0.00  total=  768.00  (u=1:   0, u=1/2:   0, u=0:  38)
+    R3_parity_r1             net=+0.5789  saving= +22.00  total=  746.00  (u=1:   0, u=1/2:  38, u=0:   0)
+    R3_threshold_r2          net=+0.0000  saving=  +0.00  total=  768.00  (u=1:   0, u=1/2:   0, u=0:  38)
+    R4_greedy                net=+0.4474  saving= +17.00  total=  751.00  (u=1:   8, u=1/2:   1, u=0:  29)
+    FREE_LP (upper bound)    net=+1.1053  saving= +42.00  total=  726.00
+
+p= 197 k=  2 (primitive) ord(k)= 196  G8= 30  overlaps(class in >1 group)=0  mismatch-vs-cycle_stats.specials=0
+    R0_half_all              net=+0.4667  saving= +14.00  total=  770.00  (u=1:   0, u=1/2:  30, u=0:   0)
+    R1_isolated_r1           net=-0.4000  saving= -12.00  total=  796.00  (u=1:   6, u=1/2:   0, u=0:  24)
+    R2_kappa_next_other_mu   net=+0.6000  saving= +18.00  total=  766.00  (u=1:   0, u=1/2:  26, u=0:   4)
+    R3_isolated_r2           net=-0.4000  saving= -12.00  total=  796.00  (u=1:   6, u=1/2:   0, u=0:  24)
+    R3_graded_r1_r2          net=-0.4000  saving= -12.00  total=  796.00  (u=1:   6, u=1/2:   0, u=0:  24)
+    R3_parity_r1             net=+0.4667  saving= +14.00  total=  770.00  (u=1:   0, u=1/2:  30, u=0:   0)
+    R3_threshold_r2          net=-0.2667  saving=  -8.00  total=  792.00  (u=1:   6, u=1/2:   4, u=0:  20)
+    R4_greedy                net=+0.4333  saving= +13.00  total=  771.00  (u=1:   1, u=1/2:  11, u=0:  18)
+    FREE_LP (upper bound)    net=+1.1333  saving= +34.00  total=  750.00
+
+p= 199 k=  3 (primitive) ord(k)= 198  G8= 34  overlaps(class in >1 group)=0  mismatch-vs-cycle_stats.specials=0
+    R0_half_all              net=+0.0588  saving=  +2.00  total=  790.00  (u=1:   0, u=1/2:  34, u=0:   0)
+    R1_isolated_r1           net=-0.3529  saving= -12.00  total=  804.00  (u=1:   6, u=1/2:   0, u=0:  28)
+    R2_kappa_next_other_mu   net=+0.3529  saving= +12.00  total=  780.00  (u=1:   0, u=1/2:  28, u=0:   6)
+    R3_isolated_r2           net=+0.0000  saving=  +0.00  total=  792.00  (u=1:   0, u=1/2:   0, u=0:  34)
+    R3_graded_r1_r2          net=-0.0588  saving=  -2.00  total=  794.00  (u=1:   0, u=1/2:   6, u=0:  28)
+    R3_parity_r1             net=+0.0588  saving=  +2.00  total=  790.00  (u=1:   0, u=1/2:  34, u=0:   0)
+    R3_threshold_r2          net=-0.1176  saving=  -4.00  total=  796.00  (u=1:   0, u=1/2:   4, u=0:  30)
+    R4_greedy                net=+0.2941  saving= +10.00  total=  782.00  (u=1:   0, u=1/2:  10, u=0:  24)
+    FREE_LP (upper bound)    net=+0.8824  saving= +30.00  total=  762.00
+
+p= 101 k=  2 (extra-k  ) ord(k)= 100  G8= 16  overlaps(class in >1 group)=0  mismatch-vs-cycle_stats.specials=0
+    R0_half_all              net=-1.0000  saving= -16.00  total=  416.00  (u=1:   0, u=1/2:  16, u=0:   0)
+    R1_isolated_r1           net=-2.7500  saving= -44.00  total=  444.00  (u=1:  10, u=1/2:   0, u=0:   6)
+    R2_kappa_next_other_mu   net=+0.5000  saving=  +8.00  total=  392.00  (u=1:   0, u=1/2:   8, u=0:   8)
+    R3_isolated_r2           net=-0.2500  saving=  -4.00  total=  404.00  (u=1:   2, u=1/2:   0, u=0:  14)
+    R3_graded_r1_r2          net=-1.2500  saving= -20.00  total=  420.00  (u=1:   2, u=1/2:   8, u=0:   6)
+    R3_parity_r1             net=-1.0000  saving= -16.00  total=  416.00  (u=1:   0, u=1/2:  16, u=0:   0)
+    R3_threshold_r2          net=-0.5000  saving=  -8.00  total=  408.00  (u=1:   2, u=1/2:   4, u=0:  10)
+    R4_greedy                net=+0.2500  saving=  +4.00  total=  396.00  (u=1:   0, u=1/2:   4, u=0:  12)
+    FREE_LP (upper bound)    net=+0.7500  saving= +12.00  total=  388.00
+
+p= 199 k=  2 (extra-k  ) ord(k)=  99  G8= 32  overlaps(class in >1 group)=0  mismatch-vs-cycle_stats.specials=0
+    R0_half_all              net=-0.2500  saving=  -8.00  total=  800.00  (u=1:   0, u=1/2:  32, u=0:   0)
+    R1_isolated_r1           net=-0.7500  saving= -24.00  total=  816.00  (u=1:   8, u=1/2:   0, u=0:  24)
+    R2_kappa_next_other_mu   net=+0.2500  saving=  +8.00  total=  784.00  (u=1:   0, u=1/2:  24, u=0:   8)
+    R3_isolated_r2           net=+0.0000  saving=  +0.00  total=  792.00  (u=1:   0, u=1/2:   0, u=0:  32)
+    R3_graded_r1_r2          net=+0.0000  saving=  +0.00  total=  792.00  (u=1:   0, u=1/2:   8, u=0:  24)
+    R3_parity_r1             net=-0.2500  saving=  -8.00  total=  800.00  (u=1:   0, u=1/2:  32, u=0:   0)
+    R3_threshold_r2          net=+0.0000  saving=  +0.00  total=  792.00  (u=1:   0, u=1/2:   8, u=0:  24)
+    R4_greedy                net=+0.3125  saving= +10.00  total=  782.00  (u=1:   0, u=1/2:  10, u=0:  22)
+    FREE_LP (upper bound)    net=+0.8125  saving= +26.00  total=  766.00
+
+====================================================================================================
+SUMMARY -- mean / min / max net-per-group, over the full 23-case sweep (21 primitive-root primes + 2 extra k=2 cases)
+rule                           mean      min      max   #p netgt0
+R0_half_all                  0.1580  -1.0000   1.0000      18/ 23
+R1_isolated_r1              -0.6496  -2.7500   0.0000       0/ 23
+R2_kappa_next_other_mu       0.4789  -0.2500   1.0000      21/ 23
+R3_isolated_r2              -0.1409  -0.7143   0.0000       0/ 23
+R3_graded_r1_r2             -0.2254  -1.2500   0.5000       7/ 23
+R3_parity_r1                 0.1580  -1.0000   1.0000      18/ 23
+R3_threshold_r2             -0.2334  -0.9286   0.2500       7/ 23
+R4_greedy                    0.3776   0.2143   0.5385      23/ 23
+FREE_LP (upper bound)        1.0108   0.7500   1.3636      23/ 23
+
+SUMMARY restricted to the 21 primitive-root primes only (task's main list, excludes the 2 extra k=2 cases)
+R0_half_all                  0.2325  -1.0000   1.0000      18/ 21
+R1_isolated_r1              -0.5448  -2.7500   0.0000       0/ 21
+R2_kappa_next_other_mu       0.4888  -0.2500   1.0000      19/ 21
+R3_isolated_r2              -0.1424  -0.7143   0.0000       0/ 21
+R3_graded_r1_r2             -0.1873  -1.2500   0.5000       7/ 21
+R3_parity_r1                 0.2325  -1.0000   1.0000      18/ 21
+R3_threshold_r2             -0.2318  -0.9286   0.2500       7/ 21
+R4_greedy                    0.3868   0.2143   0.5385      21/ 21
+FREE_LP (upper bound)        1.0327   0.7500   1.3636      21/ 21
+
+The 2 extra k=2 cases on their own (compare to notes' free-LP nets 0.75 @ p=101 and 0.81 @ p=199)
+  R0_half_all                p=101:-1.0000, p=199:-0.2500
+  R1_isolated_r1             p=101:-2.7500, p=199:-0.7500
+  R2_kappa_next_other_mu     p=101:+0.5000, p=199:+0.2500
+  R3_isolated_r2             p=101:-0.2500, p=199:+0.0000
+  R3_graded_r1_r2            p=101:-1.2500, p=199:+0.0000
+  R3_parity_r1               p=101:-1.0000, p=199:-0.2500
+  R3_threshold_r2            p=101:-0.5000, p=199:+0.0000
+  R4_greedy                  p=101:+0.2500, p=199:+0.3125
+
+BEST DISCRETE RULE BY MEAN NET (all 23 cases): R2_kappa_next_other_mu  mean=+0.4789
+Rule(s) with POSITIVE mean net per group: ['R0_half_all', 'R2_kappa_next_other_mu', 'R3_parity_r1', 'R4_greedy']
+
+GREEDY (R4) choice vs isolation features, pooled over all groups of all 23 cases
+ u_chosen  iso_r1  iso_r2   count   % of that iso-cell
+      1.0    True    True       3                 7.5%
+      1.0   False   False      22                 5.0%
+      0.5    True    True      25                62.5%
+      0.5    True   False      35                39.8%
+      0.5   False   False     103                23.4%
+      0.0    True    True      12                30.0%
+      0.0    True   False      53                60.2%
+      0.0   False   False     315                71.6%
+(total groups pooled: 568)
+
+greedy picked u=1 for 25 groups; of those, 3 (12.0%) are also R1-isolated (iso_r1)
+R1 marks 128 groups isolated (iso_r1); of those, 3 (2.3%) also got u=1 from greedy
+
+====================================================================================================
+BOUNDEDNESS STUDY: is R2 ('next special forward') effectively a bounded-window rule?
+gap (in cycle steps) from a group's kappa to the NEXT special class, pooled over all 1136 kappa's of all 23 cases:
+  mean=3.10  median=2  p90=6  p99=12  max=26
+
+  window w    mean net (all 23)  mean net (21 primitive)  #p netgt0 (all23)   frac groups triggered same as unbounded R2
+         2               0.3151                   0.3183          22/23         71.83%  (408/568 groups)
+         3               0.4434                   0.4499          22/23         91.55%  (520/568 groups)
+         5               0.4717                   0.4809          21/23         98.24%  (558/568 groups)
+         8               0.4788                   0.4887          21/23         98.94%  (562/568 groups)
+        13               0.4634                   0.4718          21/23         99.65%  (566/568 groups)
+        21               0.4789                   0.4888          21/23        100.00%  (568/568 groups)
+(w=unbounded / R2_kappa_next_other_mu row above: mean net (all 23) = +0.4789)
+
+Reading: once w reaches ~13-21 (small, O(1), independent of p), R2_windowed(w) already agrees with the
+unbounded R2 on almost every group and its mean net has converged -- so R2, restricted to a FIXED bounded
+window (a human-checkable, O(1) condition), already captures essentially all of the unbounded rule's saving.
+
+====================================================================================================
+CONCLUSION
+The winning rule is R2 ("kappa's next special is another group's mu"), used in its bounded-window form
+R2_windowed(w) for a fixed constant w (w=8 already captures 98.9% of groups' decisions and the full mean net;
+w=13 captures 99.65%):
+
+  For an 8-group g with H(1)-classes kappa_{a1}, kappa_{a2} (its two 'kappa' members):
+    for each a in {a1, a2}:
+        walk forward along the class-graph cycle from kappa_a (the alternating sequence
+        kappa_a -> mu_{k a} -> kappa_{k a} -> mu_{k^2 a} -> ...), for at most w steps,
+        and stop at the first SPECIAL class encountered (a class belonging to ANY 8-group).
+    if that nearest-forward special class is a mu-class AND it belongs to an 8-group h != g:
+        u_g = 1/2   (put weight 1/2 on all three of g's lines: the 8-line and its two 4-lines)
+    else:
+        u_g = 0     (no forcing: g's classes keep the ordinary row/column cover)
+
+This is a genuine bounded-window rule (radius w = O(1), independent of p): the gap from a kappa to the next
+special class is empirically geometric-tailed (mean 3.1, p99 = 12, max observed 26 over 1136 samples across
+all 23 (p,k) here), matching the density of specials (~1/3) reported in cycle_stats.py / pair_bound_notes.md
+section 26 -- so a human proof would (a) bound P(gap > w) via the same Kloosterman-sum machinery already used
+for the equidistribution of the special pattern itself (section 26), making the w-truncation error o(p) for
+any fixed w, and (b) separately account for the O(1)-window rule's expected net via the window-distribution
+argument of section 26 (a finite computation, exactly what this script performs).
+
+WHY it works (connection to section 26's exact accounting): for t=1/2 groups, net saving = 2*M(S) - 3|S|,
+where M(S) counts vertex-disjoint TYPE-CHANGING (kappa->mu) transitions between DIFFERENT groups' specials in
+the cyclic sequence (section 26, 'C1 continued'). R2 marks exactly the groups that locally witness such a
+kappa->mu transition leaving the group, which is a direct (if not maximum-matching-optimal) proxy for M(S);
+by contrast R1 ('isolated': both immediate neighbours non-special) says nothing about type-alternation at the
+group's NEXT special and, empirically, is a bad rule (mean net -0.65, never positive over this sweep) --
+isolation alone does not imply the alternation that the LP saving actually depends on. This is the key
+empirical/structural finding of this task: locality should be measured along the reduced SPECIAL-only
+subsequence (as in R2), not by raw isolation in the full cycle (as in R1/R3).
+
+Due-diligence variants tried and rejected (see BONUS EXPLORATION notes in the accompanying report; not
+re-run here to keep this script's output focused): a symmetric version of R2 that also scans backward from
+the mu-members (mean net 0.38, worse); an AND-both-kappas version and a 3-level graded (0/1/2 count -> 0,
+1/2, 1) version (means 0.10 and 0.17, both worse) -- the plain OR-over-kappas, fixed-1/2 rule R2 as literally
+specified in the task prompt is the best variant found.
+
+total runtime: 22.6s

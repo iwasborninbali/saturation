@@ -1,0 +1,13 @@
+MODEL k=2 N=100000: #κspec=33115 #μspec=33415 (K=M only in expectation here)
+MODEL N=100000 slots=200000 G8=16557.5 #κspec=33115 #μspec=33415 density=0.3311
+  m= 3 t=1/3: unblocked μ=27323 β=0.1823 net/group=+0.2003 | windows W=300: Σg=26771 (E[g_W]=40.197) remainder=552 certified net/group=+0.1558
+  m= 4 t=1/4: unblocked μ=28637 β=0.1430 net/group=+0.2295 | windows W=300: Σg=27860 (E[g_W]=41.832) remainder=777 certified net/group=+0.1826
+  m= 5 t=1/5: unblocked μ=29478 β=0.1178 net/group=+0.2243 | windows W=300: Σg=28489 (E[g_W]=42.776) remainder=989 certified net/group=+0.1765
+  m= 6 t=1/6: unblocked μ=30061 β=0.1004 net/group=+0.2104 | windows W=300: Σg=28857 (E[g_W]=43.329) remainder=1204 certified net/group=+0.1619
+  m= 7 t=1/7: unblocked μ=30486 β=0.0877 net/group=+0.1950 | windows W=300: Σg=29060 (E[g_W]=43.634) remainder=1426 certified net/group=+0.1458
+  m= 8 t=1/8: unblocked μ=30820 β=0.0777 net/group=+0.1807 | windows W=300: Σg=29175 (E[g_W]=43.806) remainder=1645 certified net/group=+0.1310
+  m=10 t=1/10: unblocked μ=31275 β=0.0640 net/group=+0.1555 | windows W=300: Σg=29263 (E[g_W]=43.938) remainder=2012 certified net/group=+0.1069
+  m=12 t=1/12: unblocked μ=31577 β=0.0550 net/group=+0.1357 | windows W=300: Σg=29289 (E[g_W]=43.977) remainder=2288 certified net/group=+0.0896
+MODEL k=2 N=100000: #κspec=33424 #μspec=33312 (K=M only in expectation here)
+  m= 4 t=1/4: unblocked μ=28647 β=0.1400 net/group=+0.2142 | windows W=300: Σg=27901 (E[g_W]=41.893) remainder=746 certified net/group=+0.1695
+  m= 6 t=1/6: unblocked μ=30087 β=0.0968 net/group=+0.2002 | windows W=300: Σg=28912 (E[g_W]=43.411) remainder=1175 certified net/group=+0.1533
