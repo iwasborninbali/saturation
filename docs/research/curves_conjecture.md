@@ -99,7 +99,7 @@ UNIFORM fractional-cover construction (the rich lines of a lifted cubic are the 
 integer-collinear; their arithmetic is the analogue of the ±1 residue-group structure of the hyperbola).  Suggested first target: graphs y ≡ f(x),
 deg f = 3 — a theorem α ≤ (3 − c)p for an explicit c would be the first "curves cannot beat HJSW" statement beyond conics.
 
-## 7. G3 — cubic graphs y = f(x): the structure of the collinear triples (second solver, 19.08 08:15 WITA; `scratch cubic_lines.py`, `cubic_fam.py`)
+## 7. G3 — cubic graphs y = f(x): the structure of the collinear triples (second solver, 19.08 07:40 WITA; `scratch cubic_lines.py`, `cubic_fam.py`)
 Take f(x) = x³ + ax + b (every cubic is a translate of a depressed one; translations move the box, which is allowed).  Three residue points
 (x_i, f(x_i)) are collinear mod p iff x₁+x₂+x₃ ≡ 0 (they are then the roots of f(x) − mx − c); this is the "sum0" signature of every rich line of the
 lift with three distinct residues (verified: 1415/1417 three-point lines at p = 101, all four-to-six-point lines).
