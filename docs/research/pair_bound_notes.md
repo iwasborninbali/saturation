@@ -1160,7 +1160,7 @@ WHAT THEOREM C NOW NEEDS.
     ceiling of this certificate type is ≈ 1 per group (c₀ ≈ 1/6).
 Both forms are UNIFORM in k (all constants come from degrees), and the k = −1 theorem is the extreme case where the cycles have length 4.
 
-## 29. THEOREM C, exact form (second solver, 19.08 07:35 WITA) — elementary, for every k; verified numerically (`slack/exact_c.py`)
+## 29. THEOREM C, exact form (second solver, 19.08 07:10 WITA) — elementary, for every k; verified numerically (`slack/exact_c.py`)
 Setting.  p odd prime, k ∈ F_p \ {0,1}, P_k = (H(1) ∪ H(k)) ∩ G(p).  Classes κ_a = (a,1/a) ∈ H(1), μ_b = (b,k/b) ∈ H(k) (a,b ∈ F_p^*), four points
 each.  Facts (checked for (p,k) = (101,2),(101,3),(199,5),(199,7),(401,2),(313,10), `scratch struct_check.py`; proofs are one-liners from the
 definitions): every non-empty row of the box carries exactly the four points of κ_{1/y} and μ_{k/y}; every non-empty column exactly those of κ_x
