@@ -106,7 +106,7 @@ box covering (Erdős–Turán–Koksma no longer needed).  Version strings fixed
 | `paper/hjsw_window.pdf` | `72390623b6eac6c8b22d4d0a82dec479d28971107f8831a4597a3f565735ea43` |
 | `paper/hjsw_window.tex` | `e9cb004f94c62c79aae19e651c1ac5ce04e3073dc9e22015387e917c343a8ab2` |
 
-## hjsw-note-v1.4 (2026-08-19, 07:55 WITA)
+## hjsw-note-v1.4 (2026-08-19, 07:25 WITA)
 v1.2 + Section "Every second hyperbola: the potential cover": Theorem (exact) α(P_k) ≤ 4(p−1) − (2G₈ − 2Σ_c|A_c−B_c|)/R for every k ∉ {0,1}
 (potential/buffer cover along the cycles of the row/column class graph; k = −1 recovers Theorem two); Proposition G₈(k,p) = p/6 + O(√p log⁴p)
 uniformly in k; Lemma (arc imbalance, first solver's proof: mixed character sums along the partner curve, Perel'muter/Castro–Moreno);
