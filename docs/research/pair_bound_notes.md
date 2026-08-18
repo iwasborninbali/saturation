@@ -609,3 +609,5 @@ all small directions (an N log N-type count), and any proof of E ≥ c(p−1) wi
 directions — the same equidistribution machinery as for m₈, direction by direction, plus a tail bound.  Bottom line of the spectral
 route: (model theorem) ⇐ [E(p) ≥ (|λ_min(C_p)| + δ)(p−1) for large p], both sides being explicit arithmetic quantities; feasible as a
 project, not tonight.
+Addendum 4: p=29 exact minimum over all 2^{28} orientations = 136 = 4.86(p−1) (spectral bound 129.1 — within 5 %).  Sequence of exact minima
+24, 28, 42, 48, 80, 136 (p = 11…29): superlinear, tracking E; the spectral certificate is nearly tight from p = 23 on.
