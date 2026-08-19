@@ -1,0 +1,156 @@
+reduced_lp.py -- p in [101, 197, 401, 599, 797]
+
+=== (a) reduced_lp vs full_lp (rows+cols+diag+antidiag, independent line variables, no z_P) ===
+p= 101: full_lp=   267.3333   reduced_lp=   267.3333   |diff|=5.68e-14   [0.01s + 0.01s]
+p= 197: full_lp=   541.6667   reduced_lp=   541.6667   |diff|=4.55e-13   [0.01s + 0.01s]
+p= 401: full_lp=  1091.0000   reduced_lp=  1091.0000   |diff|=1.36e-12   [0.02s + 0.03s]
+p= 599: full_lp=  1644.1667   reduced_lp=  1644.1667   |diff|=1.14e-12   [0.04s + 0.04s]
+p= 797: full_lp=  2209.0000   reduced_lp=  2209.0000   |diff|=3.18e-12   [0.04s + 0.06s]
+
+=== (b) reduced_lp optimum / N ===
+p= 101: N=  202  reduced_lp=  267.3333  =  1.3234 N  =  2.6469 p
+p= 197: N=  394  reduced_lp=  541.6667  =  1.3748 N  =  2.7496 p
+p= 401: N=  802  reduced_lp= 1091.0000  =  1.3603 N  =  2.7207 p
+p= 599: N= 1198  reduced_lp= 1644.1667  =  1.3724 N  =  2.7449 p
+p= 797: N= 1594  reduced_lp= 2209.0000  =  1.3858 N  =  2.7716 p
+
+=== (c) anatomy: reduced_lp's optimal weight by (slope, shape, own_size=position) ===
+-- p=101 --
+   diag(+1): groups by shape {'balanced': 17, 'single': 50}
+      shape=balanced own_size= 6: n=  17  weight mean=1.0000  [1.0000,1.0000]  std=0.0000
+      shape=balanced own_size= 3: n=  34  weight mean=0.5098  [-0.0000,1.0000]  std=0.4730
+      shape=single   own_size= 2: n=  50  weight mean=0.6067  [-0.0000,1.0000]  std=0.4699
+      shape=single   own_size= 1: n= 100  weight mean=0.0000  [0.0000,0.0000]  std=0.0000
+   anti(-1): groups by shape {'split': 11, 'single': 50, 'balanced': 6}
+      shape=balanced own_size= 6: n=   6  weight mean=1.0000  [1.0000,1.0000]  std=0.0000
+      shape=balanced own_size= 3: n=  12  weight mean=0.6667  [0.0000,1.0000]  std=0.4714
+      shape=single   own_size= 2: n=  50  weight mean=0.6333  [-0.0000,1.0000]  std=0.4631
+      shape=single   own_size= 1: n= 100  weight mean=0.0000  [0.0000,0.0000]  std=0.0000
+      shape=split    own_size= 5: n=  11  weight mean=0.9394  [0.6667,1.0000]  std=0.1286
+      shape=split    own_size= 4: n=  11  weight mean=0.3939  [-0.0000,1.0000]  std=0.3910
+      shape=split    own_size= 2: n=  11  weight mean=0.1818  [-0.0000,1.0000]  std=0.3857
+      shape=split    own_size= 1: n=  11  weight mean=0.0000  [0.0000,0.0000]  std=0.0000
+-- p=197 --
+   diag(+1): groups by shape {'balanced': 19, 'single': 98, 'split': 14}
+      shape=balanced own_size= 6: n=  19  weight mean=1.0000  [1.0000,1.0000]  std=0.0000
+      shape=balanced own_size= 3: n=  38  weight mean=0.3158  [-0.0000,1.0000]  std=0.4356
+      shape=single   own_size= 2: n=  98  weight mean=0.6224  [-0.0000,1.0000]  std=0.4651
+      shape=single   own_size= 1: n= 196  weight mean=0.0000  [0.0000,0.0000]  std=0.0000
+      shape=split    own_size= 5: n=  14  weight mean=0.7619  [-0.0000,1.0000]  std=0.3434
+      shape=split    own_size= 4: n=  14  weight mean=0.7619  [0.5000,1.0000]  std=0.2156
+      shape=split    own_size= 2: n=  14  weight mean=0.4286  [0.0000,1.0000]  std=0.4165
+      shape=split    own_size= 1: n=  14  weight mean=0.0000  [0.0000,0.0000]  std=0.0000
+   anti(-1): groups by shape {'split': 17, 'single': 98, 'balanced': 16}
+      shape=balanced own_size= 6: n=  16  weight mean=1.0000  [1.0000,1.0000]  std=0.0000
+      shape=balanced own_size= 3: n=  32  weight mean=0.5000  [-0.0000,1.0000]  std=0.4564
+      shape=single   own_size= 2: n=  98  weight mean=0.6599  [-0.0000,1.0000]  std=0.4312
+      shape=single   own_size= 1: n= 196  weight mean=0.0000  [0.0000,0.0000]  std=0.0000
+      shape=split    own_size= 5: n=  17  weight mean=0.8235  [0.5000,1.0000]  std=0.2389
+      shape=split    own_size= 4: n=  17  weight mean=0.6765  [-0.0000,1.0000]  std=0.4091
+      shape=split    own_size= 2: n=  17  weight mean=0.2353  [-0.0000,1.0000]  std=0.4242
+      shape=split    own_size= 1: n=  17  weight mean=0.0000  [0.0000,0.0000]  std=0.0000
+-- p=401 --
+   diag(+1): groups by shape {'balanced': 39, 'single': 200, 'split': 28}
+      shape=balanced own_size= 6: n=  39  weight mean=1.0000  [1.0000,1.0000]  std=0.0000
+      shape=balanced own_size= 3: n=  78  weight mean=0.3675  [-0.0000,1.0000]  std=0.4579
+      shape=single   own_size= 2: n= 200  weight mean=0.6275  [0.0000,1.0000]  std=0.4604
+      shape=single   own_size= 1: n= 400  weight mean=0.0000  [0.0000,0.0000]  std=0.0000
+      shape=split    own_size= 5: n=  28  weight mean=0.8750  [0.5000,1.0000]  std=0.1870
+      shape=split    own_size= 4: n=  28  weight mean=0.6786  [-0.0000,1.0000]  std=0.2770
+      shape=split    own_size= 2: n=  28  weight mean=0.3214  [-0.0000,1.0000]  std=0.4670
+      shape=split    own_size= 1: n=  28  weight mean=0.0714  [0.0000,1.0000]  std=0.2575
+   anti(-1): groups by shape {'split': 35, 'single': 200, 'balanced': 32}
+      shape=balanced own_size= 6: n=  32  weight mean=1.0000  [1.0000,1.0000]  std=0.0000
+      shape=balanced own_size= 3: n=  64  weight mean=0.4479  [-0.0000,1.0000]  std=0.4685
+      shape=single   own_size= 2: n= 200  weight mean=0.6375  [-0.0000,1.0000]  std=0.4602
+      shape=single   own_size= 1: n= 400  weight mean=0.0000  [0.0000,0.0000]  std=0.0000
+      shape=split    own_size= 5: n=  35  weight mean=0.9429  [0.6667,1.0000]  std=0.1256
+      shape=split    own_size= 4: n=  35  weight mean=0.6810  [-0.0000,1.0000]  std=0.2965
+      shape=split    own_size= 2: n=  35  weight mean=0.3000  [0.0000,1.0000]  std=0.4175
+      shape=split    own_size= 1: n=  35  weight mean=0.0000  [0.0000,0.0000]  std=0.0000
+-- p=599 --
+   diag(+1): groups by shape {'balanced': 47, 'single': 298, 'split': 52, 'other(1, 3, 3, 1)': 2}
+      shape=balanced own_size= 6: n=  47  weight mean=1.0000  [1.0000,1.0000]  std=0.0000
+      shape=balanced own_size= 3: n=  94  weight mean=0.3635  [0.0000,1.0000]  std=0.4604
+      shape=other(1, 3, 3, 1) own_size= 3: n=   4  weight mean=0.6667  [0.6667,0.6667]  std=0.0000
+      shape=other(1, 3, 3, 1) own_size= 1: n=   4  weight mean=0.0000  [0.0000,0.0000]  std=0.0000
+      shape=single   own_size= 2: n= 298  weight mean=0.6312  [-0.0000,1.0000]  std=0.4659
+      shape=single   own_size= 1: n= 596  weight mean=0.0000  [0.0000,0.0000]  std=0.0000
+      shape=split    own_size= 5: n=  52  weight mean=0.8894  [-0.0000,1.0000]  std=0.2215
+      shape=split    own_size= 4: n=  52  weight mean=0.6218  [-0.0000,1.0000]  std=0.3924
+      shape=split    own_size= 2: n=  52  weight mean=0.3269  [0.0000,1.0000]  std=0.4691
+      shape=split    own_size= 1: n=  52  weight mean=0.0769  [0.0000,1.0000]  std=0.2665
+   anti(-1): groups by shape {'single': 299, 'split': 50, 'balanced': 50}
+      shape=balanced own_size= 6: n=  50  weight mean=1.0000  [1.0000,1.0000]  std=0.0000
+      shape=balanced own_size= 3: n= 100  weight mean=0.4050  [-0.0000,1.0000]  std=0.4661
+      shape=single   own_size= 2: n= 299  weight mean=0.6714  [0.0000,1.0000]  std=0.4587
+      shape=single   own_size= 1: n= 598  weight mean=0.0000  [0.0000,0.0000]  std=0.0000
+      shape=split    own_size= 5: n=  50  weight mean=0.9467  [0.5000,1.0000]  std=0.1470
+      shape=split    own_size= 4: n=  50  weight mean=0.6700  [-0.0000,1.0000]  std=0.3609
+      shape=split    own_size= 2: n=  50  weight mean=0.5000  [0.0000,1.0000]  std=0.4444
+      shape=split    own_size= 1: n=  50  weight mean=0.0000  [0.0000,0.0000]  std=0.0000
+-- p=797 --
+   diag(+1): groups by shape {'balanced': 61, 'single': 398, 'split': 72}
+      shape=balanced own_size= 6: n=  61  weight mean=1.0000  [1.0000,1.0000]  std=0.0000
+      shape=balanced own_size= 3: n= 122  weight mean=0.5301  [-0.0000,1.0000]  std=0.4786
+      shape=single   own_size= 2: n= 398  weight mean=0.6474  [-0.0000,1.0000]  std=0.4581
+      shape=single   own_size= 1: n= 796  weight mean=0.0000  [0.0000,0.0000]  std=0.0000
+      shape=split    own_size= 5: n=  72  weight mean=0.9051  [0.5000,1.0000]  std=0.1880
+      shape=split    own_size= 4: n=  72  weight mean=0.5660  [-0.0000,1.0000]  std=0.3342
+      shape=split    own_size= 2: n=  72  weight mean=0.2917  [-0.0000,1.0000]  std=0.4061
+      shape=split    own_size= 1: n=  72  weight mean=0.0139  [0.0000,1.0000]  std=0.1170
+   anti(-1): groups by shape {'split': 71, 'single': 398, 'balanced': 62}
+      shape=balanced own_size= 6: n=  62  weight mean=1.0000  [1.0000,1.0000]  std=0.0000
+      shape=balanced own_size= 3: n= 124  weight mean=0.3978  [-0.0000,1.0000]  std=0.4563
+      shape=single   own_size= 2: n= 398  weight mean=0.6149  [-0.0000,1.0000]  std=0.4651
+      shape=single   own_size= 1: n= 796  weight mean=0.0000  [0.0000,0.0000]  std=0.0000
+      shape=split    own_size= 5: n=  71  weight mean=0.8920  [-0.0000,1.0000]  std=0.2851
+      shape=split    own_size= 4: n=  71  weight mean=0.6174  [-0.0000,1.0000]  std=0.3267
+      shape=split    own_size= 2: n=  71  weight mean=0.4155  [-0.0000,1.0000]  std=0.4439
+      shape=split    own_size= 1: n=  71  weight mean=0.0000  [0.0000,0.0000]  std=0.0000
+
+=== (d.1) flat type-based rule: weight depends only on (slope, shape, own_size) [no interaction] ===
+  fit time 0.53s
+    ('a', 'balanced_mid'): 1.0000
+    ('a', 'balanced_tip'): 0.6667
+    ('a', 'single_mid'): 0.3333
+    ('a', 'size1'): 0.0000
+    ('a', 'split_s2'): -0.0000
+    ('a', 'split_s4'): 0.6667
+    ('a', 'split_s5'): 0.6667
+    ('d', 'balanced_mid'): 1.0000
+    ('d', 'balanced_tip'): 0.6667
+    ('d', 'single_mid'): 0.3333
+    ('d', 'size1'): 0.0000
+    ('d', 'split_s2'): -0.0000
+    ('d', 'split_s4'): 0.6667
+    ('d', 'split_s5'): 0.6667
+  cost/N (evaluated independently, direct arithmetic, NOT re-using the fit's own bookkeeping):
+    p= 101: rule=  286.0000 = 1.4158 N   |   LP=  267.3333 = 1.3234 N   |   gap = +0.0924 N   |   1.5N - rule = +0.0842 N
+    p= 197: rule=  567.3333 = 1.4399 N   |   LP=  541.6667 = 1.3748 N   |   gap = +0.0651 N   |   1.5N - rule = +0.0601 N
+    p= 401: rule= 1164.6667 = 1.4522 N   |   LP= 1091.0000 = 1.3603 N   |   gap = +0.0919 N   |   1.5N - rule = +0.0478 N
+    p= 599: rule= 1757.3333 = 1.4669 N   |   LP= 1644.1667 = 1.3724 N   |   gap = +0.0945 N   |   1.5N - rule = +0.0331 N
+    p= 797: rule= 2334.0000 = 1.4642 N   |   LP= 2209.0000 = 1.3858 N   |   gap = +0.0784 N   |   1.5N - rule = +0.0358 N
+
+=== (d.2) interaction rule: weight depends on (slope, shape/position, nsmall) ===
+  nsmall(line) = #{member rectangles x of this line : x's OTHER-slope class has shape 'single'}
+  fit time 0.26s
+  -- slope d --
+    single_mid   (nmem=1): ns=0:0.3333  ns=1:1.0000
+    balanced_tip (nmem=3): ns=0:0.3333  ns=1:0.6667  ns=2:0.6667  ns=3:0.6667
+    split_s2     (nmem=2): ns=0:0.0000  ns=1:-0.0000  ns=2:0.6667
+    split_s4     (nmem=3): ns=0:0.3333  ns=1:0.6667  ns=2:0.6667  ns=3:0.6667
+    split_s5     (nmem=3): ns=0:0.6667  ns=1:0.6667  ns=2:1.0000  ns=3:1.0000
+  -- slope a --
+    single_mid   (nmem=1): ns=0:0.3333  ns=1:1.0000
+    balanced_tip (nmem=3): ns=0:0.3333  ns=1:0.6667  ns=2:0.6667  ns=3:0.6667
+    split_s2     (nmem=2): ns=0:0.0000  ns=1:-0.0000  ns=2:0.6667
+    split_s4     (nmem=3): ns=0:0.3333  ns=1:0.6667  ns=2:0.6667  ns=3:0.6667
+    split_s5     (nmem=3): ns=0:0.6667  ns=1:0.6667  ns=2:1.0000  ns=3:1.0000
+  cost/N (evaluated independently, direct arithmetic):
+    p= 101: rule=  281.3333 = 1.3927 N   |   LP=  267.3333 = 1.3234 N   |   gap = +0.0693 N   |   1.5N - rule = +0.1073 N
+    p= 197: rule=  566.6667 = 1.4382 N   |   LP=  541.6667 = 1.3748 N   |   gap = +0.0635 N   |   1.5N - rule = +0.0618 N
+    p= 401: rule= 1150.6667 = 1.4347 N   |   LP= 1091.0000 = 1.3603 N   |   gap = +0.0744 N   |   1.5N - rule = +0.0653 N
+    p= 599: rule= 1720.0000 = 1.4357 N   |   LP= 1644.1667 = 1.3724 N   |   gap = +0.0633 N   |   1.5N - rule = +0.0643 N
+    p= 797: rule= 2312.0000 = 1.4504 N   |   LP= 2209.0000 = 1.3858 N   |   gap = +0.0646 N   |   1.5N - rule = +0.0496 N
+  worst (max) rule/N over the tested p: 1.4504  => c >= 0.0496 on this range

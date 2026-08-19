@@ -1,0 +1,11 @@
+Exact rational 'idealized limiting cost/(2p)' constants under hypotheses (H1)-(H3), f(x)=x^k:
+  k    E[L4/class/slope]     E[U/residue]    limit cost/(2p)    decimal
+  3                  1/4              7/4               11/8   1.375000
+  5               31/120         1519/864         12059/8640   1.395718
+  7             877/3360    637871/362880      203347/145152   1.400925
+
+k=3 row MUST equal 11/8 exactly (Theorem G3.5 of permutation_cubic_note.md) -- this is a
+reproduction check of the whole machinery (rencontres law + uniform-n0|k + slope-independence
++ the per-root line-membership bookkeeping), not a new computation for k=3.
+k=5, k=7 rows are new (conjectural: (H1)-(H3) are only checked numerically for k=5,7, not
+proved as the note proves them for k=3).

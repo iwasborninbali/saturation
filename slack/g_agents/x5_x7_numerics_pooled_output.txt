@@ -1,0 +1,81 @@
+
+==============================================================================
+f(x) = x^5   primes: [197, 263, 293, 449, 599, 797, 887]   (pooled over 7 primes)
+
+-- symmetry check: does mu^4 = -1 have a solution mod p? (predicts exact plus<->minus
+   class-size rearrangement, hence identical P_k, via t -> mu*t) --
+  p=  197  mu^4=-1 solvable: False  observed P_k(plus)==P_k(minus): False  <-- MATCH
+  p=  263  mu^4=-1 solvable: False  observed P_k(plus)==P_k(minus): False  <-- MATCH
+  p=  293  mu^4=-1 solvable: False  observed P_k(plus)==P_k(minus): False  <-- MATCH
+  p=  449  mu^4=-1 solvable: True   observed P_k(plus)==P_k(minus): True  <-- MATCH
+  p=  599  mu^4=-1 solvable: False  observed P_k(plus)==P_k(minus): False  <-- MATCH
+  p=  797  mu^4=-1 solvable: False  observed P_k(plus)==P_k(minus): False  <-- MATCH
+  p=  887  mu^4=-1 solvable: False  observed P_k(plus)==P_k(minus): False  <-- MATCH
+  ==> prediction matches observation at all 7 primes: True
+
+-- pooled (a): k'-distribution over 3485 classes (plus) / 3485 (minus), vs rencontres law of S_5 --
+  k   renc P_k   #plus  pooled P+  #minus  pooled P-
+  0     0.3667    1286     0.3690    1318     0.3782
+  1     0.3750    1276     0.3661    1240     0.3558
+  2     0.1667     612     0.1756     602     0.1727
+  3     0.0833     285     0.0818     292     0.0838
+  4     0.0000       0     0.0000       0     0.0000
+  5     0.0083      26     0.0075      33     0.0095
+  chi^2 (dof=4): plus=2.87  minus=6.00  (rough guide: dof=4 95th-pctile chi^2 ~ 9.7)
+
+-- pooled (b): n0 | k' distribution vs Uniform{0,...,k'} --
+  plus  k=2  n_classes= 612  uniform-expected=204.00/cell  chi2(dof=2)=0.12
+        n0=0:206(0.337) n0=1:200(0.327) n0=2:206(0.337)
+  plus  k=3  n_classes= 285  uniform-expected=71.25/cell  chi2(dof=3)=0.09
+        n0=0:72(0.253) n0=1:72(0.253) n0=2:72(0.253) n0=3:69(0.242)
+  plus  k=5  n_classes=  26  uniform-expected=4.33/cell  chi2(dof=5)=6.77
+        n0=0:9(0.346) n0=1:3(0.115) n0=2:3(0.115) n0=3:3(0.115) n0=4:3(0.115) n0=5:5(0.192)
+  minus k=2  n_classes= 602  uniform-expected=200.67/cell  chi2(dof=2)=0.08
+        n0=0:199(0.331) n0=1:204(0.339) n0=2:199(0.331)
+  minus k=3  n_classes= 292  uniform-expected=73.00/cell  chi2(dof=3)=0.22
+        n0=0:71(0.243) n0=1:75(0.257) n0=2:75(0.257) n0=3:71(0.243)
+  minus k=5  n_classes=  33  uniform-expected=5.50/cell  chi2(dof=5)=0.64
+        n0=0:5(0.152) n0=1:7(0.212) n0=2:5(0.152) n0=3:5(0.152) n0=4:6(0.182) n0=5:5(0.152)
+
+==============================================================================
+f(x) = x^7   primes: [263, 293, 401, 599, 797, 887]   (pooled over 6 primes)
+
+-- symmetry check: does mu^6 = -1 have a solution mod p? (predicts exact plus<->minus
+   class-size rearrangement, hence identical P_k, via t -> mu*t) --
+  p=  263  mu^6=-1 solvable: False  observed P_k(plus)==P_k(minus): False  <-- MATCH
+  p=  293  mu^6=-1 solvable: True   observed P_k(plus)==P_k(minus): True  <-- MATCH
+  p=  401  mu^6=-1 solvable: True   observed P_k(plus)==P_k(minus): True  <-- MATCH
+  p=  599  mu^6=-1 solvable: False  observed P_k(plus)==P_k(minus): False  <-- MATCH
+  p=  797  mu^6=-1 solvable: True   observed P_k(plus)==P_k(minus): True  <-- MATCH
+  p=  887  mu^6=-1 solvable: False  observed P_k(plus)==P_k(minus): False  <-- MATCH
+  ==> prediction matches observation at all 6 primes: True
+
+-- pooled (a): k'-distribution over 3240 classes (plus) / 3240 (minus), vs rencontres law of S_7 --
+  k   renc P_k   #plus  pooled P+  #minus  pooled P-
+  0     0.3679    1178     0.3636    1170     0.3611
+  1     0.3681    1228     0.3790    1239     0.3824
+  2     0.1833     566     0.1747     576     0.1778
+  3     0.0625     208     0.0642     193     0.0596
+  4     0.0139      44     0.0136      44     0.0136
+  5     0.0042      16     0.0049      16     0.0049
+  6     0.0000       0     0.0000       0     0.0000
+  7     0.0002       0     0.0000       2     0.0006
+  chi^2 (dof=6): plus=3.82  minus=6.56  (rough guide: dof=6 95th-pctile chi^2 ~ 12.9)
+
+-- pooled (b): n0 | k' distribution vs Uniform{0,...,k'} --
+  plus  k=2  n_classes= 566  uniform-expected=188.67/cell  chi2(dof=2)=2.97
+        n0=0:179(0.316) n0=1:208(0.367) n0=2:179(0.316)
+  plus  k=3  n_classes= 208  uniform-expected=52.00/cell  chi2(dof=3)=6.58
+        n0=0:64(0.308) n0=1:43(0.207) n0=2:43(0.207) n0=3:58(0.279)
+  plus  k=4  n_classes=  44  uniform-expected=8.80/cell  chi2(dof=4)=0.09
+        n0=0:9(0.205) n0=1:9(0.205) n0=2:8(0.182) n0=3:9(0.205) n0=4:9(0.205)
+  plus  k=5  n_classes=  16  uniform-expected=2.67/cell  chi2(dof=5)=3.50
+        n0=0:1(0.062) n0=1:4(0.250) n0=2:3(0.188) n0=3:3(0.188) n0=4:4(0.250) n0=5:1(0.062)
+  minus k=2  n_classes= 576  uniform-expected=192.00/cell  chi2(dof=2)=4.50
+        n0=0:180(0.312) n0=1:216(0.375) n0=2:180(0.312)
+  minus k=3  n_classes= 193  uniform-expected=48.25/cell  chi2(dof=3)=0.14
+        n0=0:49(0.254) n0=1:49(0.254) n0=2:46(0.238) n0=3:49(0.254)
+  minus k=4  n_classes=  44  uniform-expected=8.80/cell  chi2(dof=4)=9.41
+        n0=0:4(0.091) n0=1:13(0.295) n0=2:10(0.227) n0=3:13(0.295) n0=4:4(0.091)
+  minus k=5  n_classes=  16  uniform-expected=2.67/cell  chi2(dof=5)=2.00
+        n0=0:4(0.250) n0=1:2(0.125) n0=2:2(0.125) n0=3:2(0.125) n0=4:2(0.125) n0=5:4(0.250)
