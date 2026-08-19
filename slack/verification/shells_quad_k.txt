@@ -1,0 +1,52 @@
+# quad_k_scan.py  PS=[11, 13]  screen=1x2s  refine=1x2s  cpsat<=5s
+
+== p=11  N=22  (p-1)=10  k-range [2, 3, 4, 5] ==
+  screen p=11 k=  2 [QNR]: lb= 35 = 3.500(p-1) = 1.591N  CERTIFIED-lawful
+  screen p=11 k=  3 [QR]: lb= 34 = 3.400(p-1) = 1.545N  CERTIFIED-lawful
+  screen p=11 k=  4 [QR]: lb= 34 = 3.400(p-1) = 1.545N  CERTIFIED-lawful
+  screen p=11 k=  5 [QR]: lb= 34 = 3.400(p-1) = 1.545N  CERTIFIED-lawful
+  -- refining top candidates [2, 3] for p=11 with 1x2s --
+  refine p=11 k=  2 [QNR]: lb= 35 = 3.500(p-1) = 1.591N  CERTIFIED-lawful
+  refine p=11 k=  3 [QR]: lb= 34 = 3.400(p-1) = 1.545N  CERTIFIED-lawful
+  CP-SAT p=11 k=2: NOT PROVEN OPTIMAL within 5s -- feasible lawful set of size 36 (LB, not exact)  [FEASIBLE, bound 40]  CERTIFIED-lawful
+  ==> p=11: best k=2  alpha (LB) = 36 = 3.600(p-1) = 1.636N
+
+== p=13  N=26  (p-1)=12  k-range [2, 3, 4, 5, 6] ==
+  screen p=13 k=  2 [QNR]: lb= 41 = 3.417(p-1) = 1.577N  CERTIFIED-lawful
+  screen p=13 k=  3 [QR]: lb= 40 = 3.333(p-1) = 1.538N  CERTIFIED-lawful
+  screen p=13 k=  4 [QR]: lb= 40 = 3.333(p-1) = 1.538N  CERTIFIED-lawful
+  screen p=13 k=  5 [QNR]: lb= 40 = 3.333(p-1) = 1.538N  CERTIFIED-lawful
+  screen p=13 k=  6 [QNR]: lb= 41 = 3.417(p-1) = 1.577N  CERTIFIED-lawful
+  -- refining top candidates [2, 6] for p=13 with 1x2s --
+  refine p=13 k=  2 [QNR]: lb= 41 = 3.417(p-1) = 1.577N  CERTIFIED-lawful
+  refine p=13 k=  6 [QNR]: lb= 41 = 3.417(p-1) = 1.577N  CERTIFIED-lawful
+  CP-SAT p=13 k=2: NOT PROVEN OPTIMAL within 5s -- feasible lawful set of size 43 (LB, not exact)  [FEASIBLE, bound 48]  CERTIFIED-lawful
+  ==> p=13: best k=2  alpha (LB) = 43 = 3.583(p-1) = 1.654N
+
+
+===== TABLE: p, k, QR-class(k), best alpha for {H(1),H(-1),H(k),H(-k)}, alpha/N, alpha/(p-1), exact/LB =====
+  p= 11 k=  2 [QNR] alpha= 36  alpha/N=1.6364  alpha/(p-1)=3.6000  LB
+  p= 11 k=  3 [QR] alpha= 34  alpha/N=1.5455  alpha/(p-1)=3.4000  LB
+  p= 11 k=  4 [QR] alpha= 34  alpha/N=1.5455  alpha/(p-1)=3.4000  LB
+  p= 11 k=  5 [QR] alpha= 34  alpha/N=1.5455  alpha/(p-1)=3.4000  LB
+  p= 13 k=  2 [QNR] alpha= 43  alpha/N=1.6538  alpha/(p-1)=3.5833  LB
+  p= 13 k=  3 [QR] alpha= 40  alpha/N=1.5385  alpha/(p-1)=3.3333  LB
+  p= 13 k=  4 [QR] alpha= 40  alpha/N=1.5385  alpha/(p-1)=3.3333  LB
+  p= 13 k=  5 [QNR] alpha= 40  alpha/N=1.5385  alpha/(p-1)=3.3333  LB
+  p= 13 k=  6 [QNR] alpha= 41  alpha/N=1.5769  alpha/(p-1)=3.4167  LB
+
+===== QR-class correlation (does alpha(k) depend only on QR/QNR of k, at fixed p?) =====
+  p=11: QR alphas=[34, 34, 34]  QNR alphas=[36]
+  p=13: QR alphas=[40, 40]  QNR alphas=[43, 40, 41]
+
+===== TREND: best-k alpha vs p =====
+  p= 11  best_k=  2  alpha= 36 (LB)  alpha/N=1.6364  alpha/(p-1)=3.6000
+  p= 13  best_k=  2  alpha= 43 (LB)  alpha/N=1.6538  alpha/(p-1)=3.5833
+
+Least-squares fit over best-k points: alpha ~ 3.5000 * (p-1) + 1.000
+  residuals: [0.0, 0.0]
+
+alpha/N sequence over p=[11, 13]: [1.6364, 1.6538]
+Trend from p=11 to p=13: alpha/N is INCREASING (from 1.6364 to 1.6538); 1.5 threshold not crossed
+
+total wall time: 38s

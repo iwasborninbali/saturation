@@ -1,0 +1,31 @@
+=== TASK E: other superpositions vs the hyperbola quadruple ===
+Reference (known/exact, from prior sessions): pair H(1)uH(-1) alpha = 32,40,54,59 at p=11,13,17,19 = 1.455N,1.538N,1.588N,1.553N.  Quadruple H(+-1)uH(+-2): alpha>=37 (1.68N) at p=11, >=44 (1.69N) at p=13 (exact CP-SAT).  1.5N is the single-shell asymptotic constant.
+p=11 N=22 (i) H(1) u {y=x^3+0}: |pts|=76 lines=224  alpha>=33 = 1.500N (certified indep.-brute-force: OK)  LP-upper=37.05 = 1.684N
+p=11 N=22 (i) H(1) u {y=x^3+1}: |pts|=80 lines=231  alpha>=33 = 1.500N (certified indep.-brute-force: OK)  LP-upper=36.04 = 1.638N
+p=11 N=22 (ii) {xy=1} u {x^2+y^2=1}: |pts|=88 lines=226  alpha>=33 = 1.500N (certified indep.-brute-force: OK)  LP-upper=36.04 = 1.638N
+p=11 N=22 (iii) {xy=1} u refl_x{xy=1} (= known pair xy=1,xy=-1): |pts|=80 lines=208  alpha>=32 = 1.455N (certified indep.-brute-force: OK)  LP-upper=32.00 = 1.455N
+p=11 N=22 (iv) {(x-1)(y-0)=1} u {xy=1}: |pts|=80 lines=200  alpha>=34 = 1.545N (certified indep.-brute-force: OK)  LP-upper=37.09 = 1.686N
+p=11 N=22 (iv) {(x-5)(y-5)=1} u {xy=1}: |pts|=80 lines=198  alpha>=31 = 1.409N (certified indep.-brute-force: OK)  LP-upper=32.75 = 1.489N
+
+p=13 N=26 (i) H(1) u {y=x^3+0}: |pts|=84 lines=226  alpha>=37 = 1.423N (certified indep.-brute-force: OK)  LP-upper=38.79 = 1.492N
+p=13 N=26 (i) H(1) u {y=x^3+1}: |pts|=96 lines=309  alpha>=39 = 1.500N (certified indep.-brute-force: OK)  LP-upper=41.67 = 1.603N
+p=13 N=26 (ii) {xy=1} u {x^2+y^2=1}: |pts|=80 lines=177  alpha>=39 = 1.500N (certified indep.-brute-force: OK)  LP-upper=41.95 = 1.613N
+p=13 N=26 (iii) {xy=1} u refl_x{xy=1} (= known pair xy=1,xy=-1): |pts|=96 lines=230  alpha>=40 = 1.538N (certified indep.-brute-force: OK)  LP-upper=44.80 = 1.723N
+p=13 N=26 (iv) {(x-1)(y-0)=1} u {xy=1}: |pts|=96 lines=263  alpha>=39 = 1.500N (certified indep.-brute-force: OK)  LP-upper=43.90 = 1.689N
+p=13 N=26 (iv) {(x-6)(y-6)=1} u {xy=1}: |pts|=96 lines=264  alpha>=37 = 1.423N (certified indep.-brute-force: OK)  LP-upper=38.94 = 1.498N
+
+p=17 N=34 (i) H(1) u {y=x^3+0}: |pts|=116 lines=418  alpha>=52 = 1.529N (certified indep.-brute-force: OK)  LP-upper=59.36 = 1.746N
+p=17 N=34 (i) H(1) u {y=x^3+1}: |pts|=124 lines=487  alpha>=51 = 1.500N (certified indep.-brute-force: OK)  LP-upper=57.27 = 1.685N
+p=17 N=34 (ii) {xy=1} u {x^2+y^2=1}: |pts|=128 lines=455  alpha>=52 = 1.529N (certified indep.-brute-force: OK)  LP-upper=55.88 = 1.644N
+p=17 N=34 (iii) {xy=1} u refl_x{xy=1} (= known pair xy=1,xy=-1): |pts|=128 lines=422  alpha>=54 = 1.588N (certified indep.-brute-force: OK)  LP-upper=60.15 = 1.769N
+p=17 N=34 (iv) {(x-1)(y-0)=1} u {xy=1}: |pts|=128 lines=472  alpha>=52 = 1.529N (certified indep.-brute-force: OK)  LP-upper=60.83 = 1.789N
+p=17 N=34 (iv) {(x-8)(y-8)=1} u {xy=1}: |pts|=120 lines=371  alpha>=50 = 1.471N (certified indep.-brute-force: OK)  LP-upper=53.84 = 1.584N
+
+p=19 N=38 (i) H(1) u {y=x^3+0}: |pts|=140 lines=597  alpha>=56 = 1.474N (certified indep.-brute-force: OK)  LP-upper=58.74 = 1.546N
+p=19 N=38 (i) H(1) u {y=x^3+1}: |pts|=148 lines=588  alpha>=56 = 1.474N (certified indep.-brute-force: OK)  LP-upper=60.28 = 1.586N
+p=19 N=38 (ii) {xy=1} u {x^2+y^2=1}: |pts|=152 lines=586  alpha>=55 = 1.447N (certified indep.-brute-force: OK)  LP-upper=58.86 = 1.549N
+p=19 N=38 (iii) {xy=1} u refl_x{xy=1} (= known pair xy=1,xy=-1): |pts|=144 lines=496  alpha>=59 = 1.553N (certified indep.-brute-force: OK)  LP-upper=63.64 = 1.675N
+p=19 N=38 (iv) {(x-1)(y-0)=1} u {xy=1}: |pts|=144 lines=538  alpha>=57 = 1.500N (certified indep.-brute-force: OK)  LP-upper=65.12 = 1.714N
+p=19 N=38 (iv) {(x-9)(y-9)=1} u {xy=1}: |pts|=136 lines=491  alpha>=54 = 1.421N (certified indep.-brute-force: OK)  LP-upper=57.33 = 1.509N
+
+[total wall time 1442s]

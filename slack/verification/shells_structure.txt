@@ -1,0 +1,89 @@
+quad_structure.py -- TASK D structure analysis, shells H(1),H(-1),H(2),H(-2), p in [11, 13, 17]
+generated 2026-08-19 13:25:42
+
+########## p=11: |points|=160  |lines(>=3 pts)|=1046 ##########
+CP-SAT: alpha=37  status=FEASIBLE  bound=40  time=60.0s
+null-SA (6 seeds x 15s): alpha=36  time=90.0s
+-> using the CP-SAT solution, size 37, for structure analysis
+INDEPENDENT CERTIFICATION (brute triple scan, 37 pts, C(37,3)=7770 triples checked by exact cross-product): PASS -- no 3 collinear
+
+=== p=11: |S| = 37  ( = 3.700(p-1) = 1.682N ; 3(p-1) = 30 ; extra over 3(p-1): 7 )
+(i) points per shell (order 1,-1,2,-2 mod p = [1, 10, 2, 9]):
+    c=  1 (+1): 14
+    c= 10 (-1): 10
+    c=  2 (+2): 4
+    c=  9 (-2): 9
+(ii) columns used: 19, occupancy histogram (#cols with k points -> count): {1: 1, 2: 18}
+     rows used: 20, occupancy histogram: {1: 3, 2: 17}
+     columns/rows exceeding cap 2: [] / []  (must be empty for a lawful set)
+(iii) null lines u=x-y used: 26, occupancy histogram: {1: 15, 2: 11}
+      null lines v=x+y used: 24, occupancy histogram: {1: 11, 2: 13}
+      u/v lines exceeding cap 2: [] / []
+    classes touched: 30 / 40 possible; copies-per-touched-class histogram (k copies -> #classes): {1: 23, 2: 7}
+    classes contributing 2 box-copies: 7; classes contributing 1: 23
+(iv) symmetry tests (class-level, i.e. mod p; box itself is asymmetric under these maps):
+    swap (a,b)->(b,a)           : class-set invariant = False   (|symmetric diff| = 10)
+    neg  (a,b)->(-a,-b)         : class-set invariant = False   (|symmetric diff| = 12)
+    sign-flip (a,b)->(a,-b) [c<->-c]: class-set invariant = False   (|symmetric diff| = 20)
+    sign-flip (a,b)->(-a,b) [c<->-c]: class-set invariant = False   (|symmetric diff| = 16)
+    boost l in F_p^*, (a,b)->(l a, l^-1 b): invariant for l in [1]  (trivial l=1 always works; 1/10 of F_p^* )
+
+########## p=13: |points|=192  |lines(>=3 pts)|=1288 ##########
+CP-SAT: alpha=44  status=FEASIBLE  bound=48  time=90.0s
+null-SA (6 seeds x 20s): alpha=42  time=120.0s
+-> using the CP-SAT solution, size 44, for structure analysis
+INDEPENDENT CERTIFICATION (brute triple scan, 44 pts, C(44,3)=13244 triples checked by exact cross-product): PASS -- no 3 collinear
+
+=== p=13: |S| = 44  ( = 3.667(p-1) = 1.692N ; 3(p-1) = 36 ; extra over 3(p-1): 8 )
+(i) points per shell (order 1,-1,2,-2 mod p = [1, 12, 2, 11]):
+    c=  1 (+1): 10
+    c= 12 (-1): 9
+    c=  2 (+2): 13
+    c= 11 (-2): 12
+(ii) columns used: 23, occupancy histogram (#cols with k points -> count): {1: 2, 2: 21}
+     rows used: 24, occupancy histogram: {1: 4, 2: 20}
+     columns/rows exceeding cap 2: [] / []  (must be empty for a lawful set)
+(iii) null lines u=x-y used: 31, occupancy histogram: {1: 18, 2: 13}
+      null lines v=x+y used: 28, occupancy histogram: {1: 12, 2: 16}
+      u/v lines exceeding cap 2: [] / []
+    classes touched: 42 / 48 possible; copies-per-touched-class histogram (k copies -> #classes): {1: 40, 2: 2}
+    classes contributing 2 box-copies: 2; classes contributing 1: 40
+(iv) symmetry tests (class-level, i.e. mod p; box itself is asymmetric under these maps):
+    swap (a,b)->(b,a)           : class-set invariant = False   (|symmetric diff| = 6)
+    neg  (a,b)->(-a,-b)         : class-set invariant = False   (|symmetric diff| = 8)
+    sign-flip (a,b)->(a,-b) [c<->-c]: class-set invariant = False   (|symmetric diff| = 8)
+    sign-flip (a,b)->(-a,b) [c<->-c]: class-set invariant = False   (|symmetric diff| = 8)
+    boost l in F_p^*, (a,b)->(l a, l^-1 b): invariant for l in [1]  (trivial l=1 always works; 1/12 of F_p^* )
+
+########## p=17: |points|=256  |lines(>=3 pts)|=2286 ##########
+CP-SAT: alpha=56  status=FEASIBLE  bound=64  time=150.0s
+null-SA (6 seeds x 25s): alpha=54  time=150.0s
+-> using the CP-SAT solution, size 56, for structure analysis
+INDEPENDENT CERTIFICATION (brute triple scan, 56 pts, C(56,3)=27720 triples checked by exact cross-product): PASS -- no 3 collinear
+
+=== p=17: |S| = 56  ( = 3.500(p-1) = 1.647N ; 3(p-1) = 48 ; extra over 3(p-1): 8 )
+(i) points per shell (order 1,-1,2,-2 mod p = [1, 16, 2, 15]):
+    c=  1 (+1): 15
+    c= 16 (-1): 13
+    c=  2 (+2): 15
+    c= 15 (-2): 13
+(ii) columns used: 29, occupancy histogram (#cols with k points -> count): {1: 2, 2: 27}
+     rows used: 32, occupancy histogram: {1: 8, 2: 24}
+     columns/rows exceeding cap 2: [] / []  (must be empty for a lawful set)
+(iii) null lines u=x-y used: 38, occupancy histogram: {1: 20, 2: 18}
+      null lines v=x+y used: 36, occupancy histogram: {1: 16, 2: 20}
+      u/v lines exceeding cap 2: [] / []
+    classes touched: 45 / 64 possible; copies-per-touched-class histogram (k copies -> #classes): {1: 34, 2: 11}
+    classes contributing 2 box-copies: 11; classes contributing 1: 34
+(iv) symmetry tests (class-level, i.e. mod p; box itself is asymmetric under these maps):
+    swap (a,b)->(b,a)           : class-set invariant = False   (|symmetric diff| = 22)
+    neg  (a,b)->(-a,-b)         : class-set invariant = False   (|symmetric diff| = 38)
+    sign-flip (a,b)->(a,-b) [c<->-c]: class-set invariant = False   (|symmetric diff| = 34)
+    sign-flip (a,b)->(-a,b) [c<->-c]: class-set invariant = False   (|symmetric diff| = 18)
+    boost l in F_p^*, (a,b)->(l a, l^-1 b): invariant for l in [1]  (trivial l=1 always works; 1/16 of F_p^* )
+
+
+===== SUMMARY =====
+p=11: alpha_quad = 37 = 3.700(p-1) = 1.682N   [FEASIBLE, CP-SAT bound 40, source=CP-SAT]   extra over 3(p-1) = 7
+p=13: alpha_quad = 44 = 3.667(p-1) = 1.692N   [FEASIBLE, CP-SAT bound 48, source=CP-SAT]   extra over 3(p-1) = 8
+p=17: alpha_quad = 56 = 3.500(p-1) = 1.647N   [FEASIBLE, CP-SAT bound 64, source=CP-SAT]   extra over 3(p-1) = 8
