@@ -23,3 +23,6 @@ The four solutions fall into 4 D4-classes: 3 are the known n=39 configurations, 
 no three collinear, two per row/column, rot180-invariant). Added to docs/configs.json (39: 4 entries), paper appendix (configuration 4), main paper table.
 Not yet in Flammenkamp's database. V2 base for 39: complete, none (earlier). n=41: V2 complete (none); C4 base in progress (41A sym10 2165/2375 on VM4,
 41B sym9 1231/2375 on VM2), no solutions so far.
+## 2026-08-19 09:50 WITA — n=41: half B complete on VM2 (V2 and C4 bases, no solutions; journals f41B_sym10/sym9 in logs/sweeps); half A: V2 base complete on VM4
+(f41A_sym10_n41.txt, no solutions), C4 base (sym9) moved from VM4 (68/2375 done, too slow at 8 vCPU) to VM2 (20 procs, resume from the partial journal);
+VM4 deleted (09:48 WITA). Expected finish of 41A sym9: ~4–5 h; then VM2 is deleted and the main paper goes to v1.0.
