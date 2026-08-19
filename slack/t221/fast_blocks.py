@@ -48,7 +48,7 @@ def ip_saving(U):
     r=milp(c=-np.ones(len(U)),constraints=LinearConstraint(A,-np.inf,2*np.ones(len(L))),bounds=Bounds(0,1),integrality=np.ones(len(U)))
     return len(U)/2-(-r.fun)
 
-def scan(p, TAB, CNT, kmax=8):
+def scan(p, TAB, CNT, kmax=9):
     sq=bytearray(p); sqrtt=[0]*p
     for x in range((p+1)//2):
         sq[(x*x)%p]=1; sqrtt[(x*x)%p]=x
@@ -86,4 +86,4 @@ for i,p in enumerate(ps):
 print(f"\nTOTAL signatures={len(TAB)}  bad={CNT['bad']}")
 for s in sorted(TAB,key=lambda s:(len(s),s)):
     print(f"  {s:10s} sav={TAB[s]:6.2f} count={CNT[s]}")
-json.dump({'saving':TAB,'count':{k:v for k,v in CNT.items() if isinstance(k,str)}},open('slack/t221/fast_sig_table.json','w'),indent=0)
+json.dump({'saving':TAB,'count':{k:v for k,v in CNT.items() if isinstance(k,str)}},open('slack/t221/fast_sig_table9.json','w'),indent=0)

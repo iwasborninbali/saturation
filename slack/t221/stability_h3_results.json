@@ -1,0 +1,331 @@
+{
+ "primes": [
+  11
+ ],
+ "main": {
+  "11": {
+   "p": 11,
+   "c": 1,
+   "slope_check": {
+    "p": 11,
+    "c": 1,
+    "n": 40,
+    "n_general_rich": 14,
+    "n_restricted_rich": 14,
+    "slopes_ok": true,
+    "same_family": true,
+    "slopes_seen": [
+     [
+      1,
+      -1
+     ],
+     [
+      1,
+      1
+     ]
+    ]
+   },
+   "s": 1,
+   "theory_9s": 9,
+   "max_value": {
+    "status": "OPTIMAL",
+    "value": 30,
+    "bound": 30.0,
+    "wall": 0.018159
+   },
+   "MAX_count": 9,
+   "MAX_exhausted": true,
+   "MAX_crosscheck": {
+    "count": 9,
+    "exhausted": true,
+    "identical_set": true
+   },
+   "orbits": [
+    [
+     "tau",
+     [
+      0,
+      1,
+      2,
+      3,
+      36,
+      37,
+      38,
+      39
+     ]
+    ]
+   ],
+   "generic_part_agrees_across_all_M": true,
+   "n_distinct_signatures": 9,
+   "D": {
+    "1": {
+     "milp": {
+      "status": "OPTIMAL",
+      "optimal": true,
+      "D": 1,
+      "bound": 1.0,
+      "witness": [
+       1,
+       2,
+       3,
+       5,
+       6,
+       8,
+       10,
+       11,
+       12,
+       14,
+       15,
+       16,
+       17,
+       18,
+       19,
+       20,
+       21,
+       22,
+       24,
+       25,
+       27,
+       28,
+       29,
+       31,
+       32,
+       34,
+       36,
+       37,
+       38
+      ],
+      "wall": 0.0060090000000000005
+     },
+     "local_search": null,
+     "structure": {
+      "target": 29,
+      "n_classes_by_count": {
+       "2": 2,
+       "3": 7,
+       "4": 1
+      },
+      "dist_to_all_M": [
+       3,
+       2,
+       2,
+       3,
+       1,
+       2,
+       2,
+       3,
+       3
+      ],
+      "dmin": 1,
+      "n_M_at_dmin": 1,
+      "n_M_embedding_S_exactly": 0,
+      "holes_vs_nearest": [
+       [
+        2,
+        1,
+        1
+       ],
+       [
+        9,
+        0,
+        1
+       ]
+      ],
+      "extra_vs_nearest": [
+       [
+        5,
+        0,
+        0
+       ]
+      ],
+      "holes_in_exceptional": 0,
+      "holes_in_generic": 2,
+      "extra_in_exceptional": 0,
+      "extra_in_generic": 1,
+      "sym_diff_to_nearest": 3
+     }
+    },
+    "2": {
+     "milp": {
+      "status": "OPTIMAL",
+      "optimal": true,
+      "D": 2,
+      "bound": 2.0,
+      "witness": [
+       1,
+       2,
+       3,
+       5,
+       6,
+       7,
+       8,
+       10,
+       11,
+       14,
+       15,
+       18,
+       19,
+       21,
+       22,
+       24,
+       27,
+       28,
+       29,
+       30,
+       31,
+       32,
+       33,
+       34,
+       35,
+       36,
+       37,
+       38
+      ],
+      "wall": 0.005657000000000001
+     },
+     "local_search": null,
+     "structure": {
+      "target": 28,
+      "n_classes_by_count": {
+       "2": 4,
+       "3": 4,
+       "4": 2
+      },
+      "dist_to_all_M": [
+       4,
+       3,
+       3,
+       4,
+       2,
+       3,
+       3,
+       4,
+       4
+      ],
+      "dmin": 2,
+      "n_M_at_dmin": 1,
+      "n_M_embedding_S_exactly": 0,
+      "holes_vs_nearest": [
+       [
+        4,
+        0,
+        0
+       ],
+       [
+        5,
+        0,
+        1
+       ],
+       [
+        6,
+        0,
+        0
+       ],
+       [
+        7,
+        0,
+        1
+       ]
+      ],
+      "extra_vs_nearest": [
+       [
+        8,
+        1,
+        0
+       ],
+       [
+        9,
+        1,
+        1
+       ]
+      ],
+      "holes_in_exceptional": 0,
+      "holes_in_generic": 4,
+      "extra_in_exceptional": 0,
+      "extra_in_generic": 2,
+      "sym_diff_to_nearest": 6
+     }
+    },
+    "3": {
+     "milp": {
+      "status": "OPTIMAL",
+      "optimal": true,
+      "D": 3,
+      "bound": 3.0,
+      "witness": [
+       1,
+       2,
+       3,
+       4,
+       6,
+       8,
+       10,
+       11,
+       12,
+       14,
+       15,
+       16,
+       17,
+       18,
+       22,
+       23,
+       24,
+       25,
+       27,
+       28,
+       29,
+       31,
+       32,
+       34,
+       37,
+       38,
+       39
+      ],
+      "wall": 0.006900000000000001
+     },
+     "local_search": null
+    },
+    "4": {
+     "milp": {
+      "status": "OPTIMAL",
+      "optimal": true,
+      "D": 4,
+      "bound": 4.0,
+      "witness": [
+       1,
+       2,
+       3,
+       4,
+       6,
+       8,
+       9,
+       11,
+       14,
+       15,
+       17,
+       18,
+       19,
+       22,
+       23,
+       27,
+       28,
+       29,
+       30,
+       31,
+       32,
+       33,
+       34,
+       37,
+       38,
+       39
+      ],
+      "wall": 0.006256
+     },
+     "local_search": null
+    }
+   },
+   "wall_seconds": 0.10547590255737305
+  }
+ },
+ "bonus": {}
+}
