@@ -150,3 +150,17 @@ v0.7 + the fourth n=39 configuration (C4-base sweep of the 3-cycle family comple
 | `paper/no3inline_defects.tex` | `1461bee84a53a48db2de56504a12196b19895efd1bbfa04f8e11dfed70782d1a` |
 | `paper/appendix_configs.tex` | `c0214c287ae0c37189189c8023ebe3ac2c0255e36adafefd0f81dedb9166f36e` |
 | `docs/configs.json` | `d119f21667fa54fcc0369333ec8ed045228ba82162d4de97f4a513c89bf6fd12` |
+
+## hjsw-note-v1.6 (2026-08-19, 08:55 WITA)
+v1.5.1 + Section 9 "Permutation monomials: the same cover, the same conclusion" (first solver; checked by the second): lift-accounting lemma; three
+local-law lemmas for x^k (root counts via S_k monodromy and Chebotarev; root positions via k-transitivity and Bombieri; the two slopes via linear
+disjointness — Res(D₊,D₋) ≠ 0 for every odd k by an ℓ-adic argument); Theorem: for every odd k ≥ 3, gcd(k,p−1) = 1, p ∤ k(k−1)Res: α(x^k,B) ≤ (C_k+ε_k+o(1))p
+with exact rational C_k (C₃ = 11/4, C₅ = 28183/10080, C₇ = 15265237/5443200, C₉ ≈ 2.80488, C_∞ = 2.80488…), 0 ≤ ε_k ≤ 2/(k−1)! + 8/k! ⇒ ≤ (1.474+o(1))·2p < 3/2·2p
+for every odd k. Refs Wan93, NR82. Abstract/intro/disclosure updated.
+
+| file | SHA-256 |
+|---|---|
+| `paper/hjsw_window.pdf` | `bc9afe87767c794af3b4139b421b7a90c5c9d9f7b2cc72bd546816fe64881d86` |
+| `paper/hjsw_window.tex` | `8c67f3f31720afc74da4f65a8b6ca6f89d4e3237acb74f5ca58eb7923d01c749` |
+| `paper/section_cubic.tex` | `6920baf299410b32b9ecea3f20d02f9c850fb41e9d04ca54e0e5a11d2b7806bc` |
+| `paper/section_perm.tex` | `bb5c243194d419381052cdc78666772a5e13d2227e85759a9e58455f0f53fa27` |
