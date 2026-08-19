@@ -119,7 +119,7 @@ solver (THREAD[119]).
 | `paper/hjsw_window.pdf` | `303b1caa3f9a68bef14c27db424b175663b631d500b3264fdbf6564ff8ccd213` |
 | `paper/hjsw_window.tex` | `49d8f3fc4acee4845ccd088495effaef5a30965dea2b9dc0156b68e6a3e3399f` |
 
-## hjsw-note-v1.5 (2026-08-19, 08:35 WITA)
+## hjsw-note-v1.5 (2026-08-19, 08:15 WITA)
 v1.4 + Section "Cubic graphs do not reach the HJSW value" (first solver; checked by the second): projection lemma α ≤ 4|f(F_p)|; Theorem
 (permutation cubics, p ≡ 2 mod 3): α ≤ 4p − (15/2)N₃ + O(√p log³p) = (11/4)p + O(√p log³p) in every 2p×2p box (±1-line cover; root conics;
 Kummer twist); Corollary: for every cubic f and every 2p×2p box α ≤ (11/8 + o(1))·2p < 3(p−1) — no cubic graph reaches HJSW. Abstract/intro/
