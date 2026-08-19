@@ -64,8 +64,9 @@ Everything is now a matter of counting: N₃^σ, S^σ, and the two cross sums Σ
 
 *Classes as box conditions.*  Let u_t = (r_t − x₀)/p ∈ [0,1) be the position of the residue t in the x-window and g = ((c − y₀ + x₀) mod p)/p the position of
 c.  For a root t of a t³ − t = c: s_t − r_t = (y₀ − x₀) + p·(v_t − u_t) with v_t = (s_t − y₀)/p, and v_t − u_t ≡ g (mod 1); so s_t − r_t = c′ iff v_t < u_t iff
-u_t + g ≥ 1.  Thus  **class₊(t) = [u_t ≥ 1 − g]** — all roots of the same c are compared with the same threshold θ = 1 − g.  For slope −1 the same computation gives
-class₋(t) = [u_t > g′] with g′ = ((c − x₀ − y₀) mod p)/p.  For a residue x the two thresholds are tied: g′(c₋(x)) − g(c₊(x)) ≡ (c₋ − c₊ − 2x₀)/p = 2u_x (mod 1).
+u_t + g ≥ 1.  Thus  **class₊(t) = 0 iff u_t ≥ 1 − g, i.e. class₊(t) = [u_t < 1 − g]** — all roots of the same c are compared with the same threshold
+θ = 1 − g (only "same threshold" matters below; the labelling of the two classes is immaterial).  For slope −1 the same computation gives class₋(t) = 0
+iff u_t ≤ g′, i.e. class₋(t) = [u_t > g′], with g′ = ((c − x₀ − y₀) mod p)/p.  For a residue x the two thresholds are tied: g′(c₋(x)) − g(c₊(x)) ≡ (c₋ − c₊ − 2x₀)/p = 2u_x (mod 1).
 
 *Equidistribution on the conic (Weil, genus 0).*  Over the six-fold cover "ordered root pairs" (t₁, t₂) ∈ Q₊(F_p), the vector (u_{t₁}, u_{t₂}, g) ∈ T³ is
 equidistributed with error O(√p) per Fourier coefficient: for (h₁, h₂, h₃) ≠ 0 the function h₁t₁ + h₂t₂ + h₃(a t₁³ − t₁) is non-constant on Q₊ (if h₃ ≠ 0 it has
