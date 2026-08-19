@@ -127,5 +127,5 @@ x^k + x = ζ(x^k − x) with ζ^{k−1} = −1, hence x ≠ 0 and x^{k−1} = �
 unit at every prime ℓ | k (ζ, −ζ ≠ 1 are roots of unity of order dividing 2(k−1), coprime to ℓ, so 1 ∓ ζ are ℓ-adic units), while D₊(x) = 0 forces
 (x^k − x)^{k−1} = (k−1)^{k−1}/k^k, of negative ℓ-adic valuation — contradiction. So Theorem G3.7 holds for every odd k ≥ 3 (p ∤ k(k−1)·Res_k).
 Constants (`pp_constant_exact.py`): C₉ = 94048104091/33530112000 = 2.804885, C₁₁ = 2.804895; Poisson-limit law e^{−1}/j! (grid): C_∞ = 2.8049 (1.4025 N);
-|C_k − C_∞| ≤ 12·‖renc_k − Poisson‖₁ ≤ 12·2^{k+1}/(k+1)! ⇒ C_k < 2.81 for all odd k ≥ 7; with ε_k ≤ 2/(k−1)! + 8/k!: C_k + ε_k < 2.81 for k ≥ 9, ≤ 2.809 (k=7),
+|C_k − C_∞| ≤ 16·‖renc_k − Poisson‖₁ + 8·‖j·(renc_k − Poisson)‖₁ ≤ 2^{k+3}(k+5)/(k+1)! (< 0.001 for k ≥ 11; k = 7, 9 exact) ⇒ C_k < 2.81 for all odd k ≥ 7; with ε_k ≤ 2/(k−1)! + 8/k!: C_k + ε_k < 2.81 for k ≥ 9, ≤ 2.809 (k=7),
 ≤ 2.946 (k=5), = 2.75 (k=3). Section 9 of the note (`paper/section_perm.tex`) states the theorem in this generality.

@@ -132,8 +132,10 @@ regions cut out by $g+2u=1$, $g+2u=2$, $u+g=1$), so $C_k$ is an explicit rationa
  C_9=\tfrac{94048104091}{33530112000}=2.80488\ldots,\qquad C_{11}=2.80489\ldots
 \]
 (\texttt{slack/pp\_constant\_exact.py}; for $k=3$ the two summands are $\tfrac12\cdot2$ and $\tfrac74$, as in Section~\ref{sec:cubic}).  As
-$k\to\infty$ the rencontres numbers converge to the Poisson law $e^{-1}/j!$ (in $\ell^1$, with error $\le2^{k+1}/(k+1)!$), and $C_k\to C_\infty=2.80488\ldots$;
-since the integrand of \eqref{eq:Ck} is bounded by $12$, $|C_k-C_\infty|\le12\cdot2^{k+1}/(k+1)!$, so $C_k<2.81$ for every odd $k\ge7$.
+$k\to\infty$ the rencontres numbers converge to the Poisson law $e^{-1}/j!$ ($|P_j-e^{-1}/j!|\le1/(j!\,(k-j+1)!)$), and $C_k\to C_\infty=2.80488\ldots$
+(the value of \eqref{eq:Ck} for the Poisson law); since the first summand of \eqref{eq:Ck} is $16$-Lipschitz in $\ell^1(P)$ and the second is
+$8$-Lipschitz in $\ell^1$ of the size-biased law $(jP_j)_j$, one gets $|C_k-C_\infty|\le2^{k+3}(k+5)/(k+1)!$, which is $<0.001$ for $k\ge11$; together
+with the exact values for $k=7,9$ this gives $C_k<2.81$ for every odd $k\ge7$.
 
 \begin{theorem}[permutation monomials]\label{thm:perm}
 Let $k\ge3$ be odd, and let $p$ be a prime with $\gcd(k,p-1)=1$ and $p\nmid k(k-1)\mathrm{Res}(D_+,D_-)$ (a non-zero integer, Lemma~\ref{lem:twoslopes}).
