@@ -1,11 +1,16 @@
 # n=5 anomaly: which layer profiles are feasible (first solver, CP-SAT, Wed Aug 19 09:51:36 PM UTC 2026)
 # formula 2n^2-2n+4 predicts profile 10,8,8,8,10 = 44 at n=5
-n=5 [10,8,8,8,10] total 44, z-axis only: INFEASIBLE (1s) -> PROVED IMPOSSIBLE
+n=5 [10,8,8,8,10] total 44, single axis: INFEASIBLE (1s) -> PROVED IMPOSSIBLE (re-verified on axis x as well: 1s)
 n=5 [10,8,8,8,10] total 44, all three axes: INFEASIBLE (0s)
 n=5 [10,9,8,9,10] total 46: INFEASIBLE; [10,8,9,8,10] 45: INFEASIBLE; [10,10,10,10,10] 50: INFEASIBLE; [9,9,9,9,9] 45: INFEASIBLE (6s)
 n=5 [10,8,8,8,8] total 42: INFEASIBLE (48s)
 n=5 [10,7,8,7,10] total 42: INFEASIBLE (1s)
-n=5 [10,6,8,6,10] total 40: INFEASIBLE (0s)   <-- two outer layers at the planar max are impossible at ANY total
+n=5 [10,6,8,6,10] total 40: INFEASIBLE (0-1s) in the STRONG single-axis form, re-verified for EACH axis separately (x: 0s, y: 0s, z: 1s)
+#   <-- two outer layers cannot both hold the planar maximum 2n at ANY total; single-axis UNSAT excludes ALL configurations with that
+#       distribution along that axis, not merely the symmetric ones
 n=5 [8,8,8,8,8]  total 40: FOUND, certified OK   <-- the actual optimum is the UNIFORM profile
 n=6 [12,10,10,10,10,12] total 64: FOUND in 8s, certified OK   <-- control: the formula's profile IS realisable at n=6
 # planar 2n-point configurations (why n=5 is rigid): 4x4: 11 solutions / 4 classes; 5x5: 32 / 5; 6x6: 50 / 11
+# NOTE on interpretation (raised by the second solver, agreed): a profile imposed on ONE axis is the strong statement — it rules out every
+# configuration with that layer distribution along that axis; imposing it on all three axes at once only rules out configurations that are
+# symmetric in this sense, and says nothing about that point count in general. All the infeasibility results above are the STRONG form.
