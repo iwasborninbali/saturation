@@ -1,0 +1,42 @@
+[
+ {
+  "p": 11,
+  "n": 80,
+  "n_lines_all": 208,
+  "n_lines_strong": 72,
+  "hist_all": {
+   "3": 112,
+   "4": 92,
+   "8": 4
+  },
+  "hist_strong": {
+   "3": 20,
+   "4": 48,
+   "8": 4
+  },
+  "lp_all": 32.00000000000001,
+  "lp_strong": 32.0,
+  "exact": 32,
+  "theta_all": {
+   "solver": "CLARABEL",
+   "status": "optimal",
+   "value": 31.9999999991158,
+   "wall": 24.265980005264282,
+   "extra": "solve_time=24.19s"
+  },
+  "local_strong": {
+   "solver": "CLARABEL",
+   "status": "optimal_inaccurate",
+   "value": 31.999999269751353,
+   "wall": 51.621479988098145,
+   "extra": "solve_time=51.16s"
+  },
+  "local_all": {
+   "solver": "CLARABEL",
+   "status": "optimal_inaccurate",
+   "value": 31.99999917904084,
+   "wall": 18.099915981292725,
+   "extra": "solve_time=16.69s"
+  }
+ }
+]
