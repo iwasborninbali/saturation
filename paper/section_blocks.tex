@@ -1,5 +1,5 @@
 % section_blocks.tex — the block decomposition along runs of consecutive quadratic residues (second solver, 19.08)
-\subsection*{The blocks: runs of consecutive quadratic residues}
+\subsection*{The blocks: runs of consecutive quadratic residues}\label{sec:blocks}
 
 The two constructions above (the eight-point groups, the seven-point groups) are special cases of a decomposition of $\Pset_{-1}$ that
 is exact and, as it turns out, carries the whole strength of the line cover by rows, columns and slope-$(\pm1)$ lines.
@@ -69,9 +69,13 @@ For every $K\ge2$,
 \[
  \alpha(\Pset_{-1})\ \le\ \Bigl(4-\sum_{k=2}^{K}2^{-(k+2)}\sum_{\varepsilon\in\{0,1\}^{k-1}}\frac{D_k(S_\varepsilon)}{k!}\,s(\varepsilon)+o(1)\Bigr)(p-1),
 \]
-and the sums are explicit finite computations.  With $K=8$ this gives $\alpha(\Pset_{-1})\le(3.47+o(1))(p-1)$; the terms omitted
-($k>K$) satisfy $s\le4(k-1)$, so the full sum lies within $\sum_{k>K}2^{-(k+2)}4(k-1)=0.035$ of the truncation at $K=8$, and numerically
-it equals $0.5587$, i.e.\ $\alpha(\Pset_{-1})\le(3.4413+o(1))(p-1)$.
+a finite computation for each $K$.  With $K=8$ (the table of $s(\varepsilon)$ is in \texttt{slack/t221/}, computed twice
+independently) the sum equals $694193/1290240$, so
+\[
+ \alpha(\Pset_{-1})\ \le\ \frac{4466767}{1290240}\,(p-1)+o(p)\ =\ (3.46199\ldots+o(1))\,(p-1).
+\]
+Since $s(\varepsilon)\le4(k-1)$, the terms with $k>8$ contribute at most $\sum_{k>8}2^{-(k+2)}4(k-1)=0.0352$, so the constant of this
+certificate lies in $[3.427,\,3.462]$; numerically it is $3.4413\ldots$
 \end{corollary}
 
 \begin{remark}\label{rem:blocks}
