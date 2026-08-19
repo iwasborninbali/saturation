@@ -94,7 +94,13 @@ $3.595$ for $L_0=5$, $3.480$ for $L_0=7$ and $3.452$ for $L_0=10$.  At a given p
 all these lines, and strictly below it when integrality bites inside a block ($3.4286$ vs $3.4286$ at $p=113$, $3.3824$ vs $3.3873$ at
 $p=137$, $3.4343$ vs $3.4545$ at $p=199$, $3.4100$ vs $3.4300$ at $p=401$); the \emph{proved} constant $3.4616$ of
 Corollary~\ref{cor:blockconst} is larger than the numerical value $3.4413$ of the same certificate only because of the truncation at $K=8$.
-(c) The decomposition explains the plateau of Section~\ref{sec:beyond}: no certificate built from rows, columns and slope-$(\pm1)$ lines can
+(c) The method is special to $k=\pm1$.  For $\Pset_k=H(1)\cup H(k)$ a point of $H(c)$ has $r_-^2-r_+^2=4c$, so with $t=\tfrac14r_+^2$ the points of
+$H(1)$ join $t$ to $t+1$ and those of $H(k)$ join $t$ to $t+k$: for $k=\pm1$ the two rules coincide and the neighbour graph on the squares has mean
+degree $1$ --- subcritical, with components of size $O(\log p)$ --- whereas for every other $k$ the mean degree is $2$, the critical value, and the
+components have size about $p^{2/3}$ (at $p=4001$: largest component $11$ for $k=-1$ against $22$, $32$, $95$, $177$ for $k=2,3,5,7$;
+\texttt{slack/blocks\_general\_k.py}).  So a finite table of block optima exists only for the pair $H(1)\cup H(-1)$; for a general second hyperbola
+the decomposition is still valid but useless, and Section~\ref{sec:general} (a saving of order $\sqrt p$) is what remains.
+(d) The decomposition explains the plateau of Section~\ref{sec:beyond}: no certificate built from rows, columns and slope-$(\pm1)$ lines can
 give less than $\sum_\varrho\beta(B_\varrho)$, and this is $\approx3.44(p-1)$, far above the computed maxima $3(p-1)+O(1)$.  The remaining
 gap is carried by the three-point lines of the other slopes, which are invisible to the block decomposition.
 \end{remark}
