@@ -105,8 +105,12 @@ $\mathrm{Res}(D_+,D_-)\not\equiv0$, these finite branch loci are disjoint, so $L
 (its degree divides $k!<p$), hence trivial: $L_+$ and $L_-$ are linearly disjoint and the fibre product $W$ of the two root varieties over the $x$-line is
 absolutely irreducible.  Chebotarev on the compositum gives the joint law of the two Frobenius classes (independence of the counts), and Bombieri on $W$
 gives the joint equidistribution of $x$, $g_+(x)$ and the partner positions of both slopes (no linear relation between them can hold, as in
-Lemma~\ref{lem:positions}, by linear disjointness); the tie \eqref{eq:tie} is an identity, not a hypothesis.  For $k=3,5,7$ the resultant is a non-zero
-integer with only finitely many prime factors (computed symbolically: for $k=5$ its prime factors below $5000$ are $2,5,7,97,127$).
+Lemma~\ref{lem:positions}, by linear disjointness); the tie \eqref{eq:tie} is an identity, not a hypothesis.  Finally $\mathrm{Res}(D_+,D_-)\ne0$ for \emph{every} odd $k$: a common root $x$ of $D_+$ and $D_-$ (over $\overline{\mathbb Q}$; the
+resultant is an integer) would satisfy $(x^k+x)^{k-1}=-(x^k-x)^{k-1}$, so $x^k+x=\zeta(x^k-x)$ with $\zeta^{k-1}=-1$, whence $x\ne0$ and
+$x^{k-1}=-(1+\zeta)/(1-\zeta)$; then $(x^k-x)^{k-1}=x^{k-1}(x^{k-1}-1)^{k-1}=\pm2^{k-1}(1+\zeta)/(1-\zeta)^{k}$ is a unit at every prime $\ell\mid k$
+(the roots of unity $\zeta,-\zeta\ne1$ have order dividing $2(k-1)$, coprime to $\ell$, so $1\mp\zeta$ are $\ell$-adic units), whereas $D_+(x)=0$
+demands $(x^k-x)^{k-1}=(k-1)^{k-1}/k^k$, of negative $\ell$-adic valuation — a contradiction.  (Symbolically, for $k=5$ the prime factors of the
+resultant below $5000$ are $2,5,7,97,127$; for $k=7$: $2,3,5,7,193,1327$.)
 \end{proof}
 
 \subsection*{The theorem}
@@ -122,18 +126,23 @@ where inside the expectation $k_\pm$ have the size-biased laws $jP_j$, $n_\pm=1+
 Lemma~\ref{lem:positions} and $\theta_-=1-\theta_++2u\bmod1$, and $U(x)$ is \eqref{eq:Ux}.  The integrand is a piecewise polynomial in $(u,g)$ (four
 regions cut out by $g+2u=1$, $g+2u=2$, $u+g=1$), so $C_k$ is an explicit rational number:
 \[
- C_3=\tfrac{11}4=2.75,\qquad C_5=\tfrac{28183}{10080}=2.79593\ldots,\qquad C_7=\tfrac{15265237}{5443200}=2.80446\ldots
+ C_3=\tfrac{11}4=2.75,\qquad C_5=\tfrac{28183}{10080}=2.79593\ldots,\qquad C_7=\tfrac{15265237}{5443200}=2.80446\ldots,
 \]
-(\texttt{slack/pp\_constant\_exact.py}; for $k=3$ the two summands are $\tfrac12\cdot2$ and $\tfrac74$, as in Section~\ref{sec:cubic}).
+\[
+ C_9=\tfrac{94048104091}{33530112000}=2.80488\ldots,\qquad C_{11}=2.80489\ldots
+\]
+(\texttt{slack/pp\_constant\_exact.py}; for $k=3$ the two summands are $\tfrac12\cdot2$ and $\tfrac74$, as in Section~\ref{sec:cubic}).  As
+$k\to\infty$ the rencontres numbers converge to the Poisson law $e^{-1}/j!$ (in $\ell^1$, with error $\le2^{k+1}/(k+1)!$), and $C_k\to C_\infty=2.80488\ldots$;
+since the integrand of \eqref{eq:Ck} is bounded by $12$, $|C_k-C_\infty|\le12\cdot2^{k+1}/(k+1)!$, so $C_k<2.81$ for every odd $k\ge7$.
 
 \begin{theorem}[permutation monomials]\label{thm:perm}
-Let $k\in\{3,5,7\}$, and let $p$ be a prime with $\gcd(k,p-1)=1$ and $p\nmid k(k-1)\mathrm{Res}(D_+,D_-)$.  Then for every $2p\times2p$ box $B$,
+Let $k\ge3$ be odd, and let $p$ be a prime with $\gcd(k,p-1)=1$ and $p\nmid k(k-1)\mathrm{Res}(D_+,D_-)$ (a non-zero integer, Lemma~\ref{lem:twoslopes}).
+Then for every $2p\times2p$ box $B$,
 \[
  \alpha(x^k,B)\ \le\ \bigl(C_k+\varepsilon_k+o(1)\bigr)\,p,\qquad 0\le\varepsilon_k\le\frac2{(k-1)!}+\frac8{k!},\quad \varepsilon_3=0,
 \]
-as $p\to\infty$; numerically $C_5+\varepsilon_5\le2.946$ and $C_7+\varepsilon_7\le2.809$.  In particular $\alpha(x^k,B)\le(1.474+o(1))\cdot2p<\tfrac32\cdot2p$:
-no permutation monomial graph of degree $3$, $5$ or $7$ reaches the HJSW value.  The same holds for every odd $k$ for which
-$\mathrm{Res}(D_+,D_-)\ne0$ (we have verified this for $k\le7$ only).
+as $p\to\infty$ ($k$ fixed); numerically $C_5+\varepsilon_5\le2.946$, $C_7+\varepsilon_7\le2.809$ and $C_k+\varepsilon_k<2.81$ for all odd $k\ge9$.  In particular
+$\alpha(x^k,B)\le(1.474+o(1))\cdot2p<\tfrac32\cdot2p$ for every odd $k$: no permutation monomial graph reaches the HJSW value.
 \end{theorem}
 \begin{proof}
 By Lemma~\ref{lem:lifts}, $\alpha\le2L+\sum_xU(x)$.  The count $L$ is a sum over residues of a function of $(j,n_0)$; by Lemmas~\ref{lem:rootcounts}
