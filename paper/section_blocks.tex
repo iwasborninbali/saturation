@@ -106,7 +106,13 @@ degree $1$ --- subcritical, with components of size $O(\log p)$ --- whereas for 
 components have size about $p^{2/3}$ (at $p=4001$: largest component $11$ for $k=-1$ against $22$, $32$, $95$, $177$ for $k=2,3,5,7$;
 \texttt{slack/blocks\_general\_k.py}).  So a finite table of block optima exists only for the pair $H(1)\cup H(-1)$; for a general second hyperbola
 the decomposition is still valid but useless, and Section~\ref{sec:general} (a saving of order $\sqrt p$) is what remains.
-(d) The decomposition explains the plateau of Section~\ref{sec:beyond}: no certificate built from rows, columns and slope-$(\pm1)$ lines can
+(d) There is no local competition between the two hyperbolae at all.  If $O$ is a $V$-orbit of $H(1)$ (Lemma~\ref{lem:orbdec}) and
+$R(O)$ its mirror in $H(-1)$, then the largest lawful subset of $O\cup R(O)$ --- with \emph{all} lines, of every slope --- is exactly
+$16$ for a generic orbit ($32$ points) and $8$ for an exceptional one ($16$ points), i.e.\ exactly the trivial bound ``two per row'',
+although each half alone admits $12$, resp.\ $6$ (\texttt{slack/orbit\_union.py}, all orbits of $p\le23$).  Summing over orbits returns
+$4(p-1)$: the whole gain from $4(p-1)$ down to the computed $3(p-1)+O(1)$ comes from the interaction of \emph{different} orbits through
+three-point lines of general slope.  No certificate that is local for the orbits or for the blocks can therefore reach $3(p-1)$.
+(e) The decomposition explains the plateau of Section~\ref{sec:beyond}: no certificate built from rows, columns and slope-$(\pm1)$ lines can
 give less than $\sum_\varrho\beta(B_\varrho)$, and this is $\approx3.44(p-1)$, far above the computed maxima $3(p-1)+O(1)$.  The remaining
 gap is carried by the three-point lines of the other slopes, which are invisible to the block decomposition.
 \end{remark}
