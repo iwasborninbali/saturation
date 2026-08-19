@@ -164,3 +164,13 @@ for every odd k. Refs Wan93, NR82. Abstract/intro/disclosure updated.
 | `paper/hjsw_window.tex` | `8c67f3f31720afc74da4f65a8b6ca6f89d4e3237acb74f5ca58eb7923d01c749` |
 | `paper/section_cubic.tex` | `6920baf299410b32b9ecea3f20d02f9c850fb41e9d04ca54e0e5a11d2b7806bc` |
 | `paper/section_perm.tex` | `bb5c243194d419381052cdc78666772a5e13d2227e85759a9e58455f0f53fa27` |
+
+## hjsw-note-v1.7 (2026-08-19, 08:50 WITA)
+v1.6 + Corollary (generic permutation polynomials: S_k monodromy on both slopes + coprime discriminants => the same C_k, eps_k) and the corrected
+Lipschitz bound |C_k - C_inf| <= 2^(k+3)(k+5)/(k+1)! (first solver); conclusion unchanged.
+
+| file | SHA-256 |
+|---|---|
+| `paper/hjsw_window.pdf` | `84fdb58a3843aa8f0b5773e7e2dd140a6aa45fec89fe9897424dc40af90921d4` |
+| `paper/hjsw_window.tex` | `ea579eeb440d3bd83cb3ff2d383ec881b1b75a59f487aeee2a2c6e71a3454bdb` |
+| `paper/section_perm.tex` | `9e6f37e09aae5798fb9cca83e2e717ea84b208338ab63aae38ad99fdbd53ab79` |
