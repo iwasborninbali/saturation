@@ -33,10 +33,10 @@ non-trivial because $u_1^2-1=t-1$ and $u_k^2+1=t+k$ have odd order at their zero
 Let a component of the neighbour graph be a maximal run $t,t+1,\dots,t+k-1$ of quadratic residues, and for $1\le i\le k-1$ let
 $\xi_i\in\{0,1\}$ record whether the $H(1)$-pair carried by the edge $(t+i-1,t+i)$ shares its centre.  Then, as $p\to\infty$,
 \[
- \Pr\bigl[(\xi_1,\dots,\xi_{k-1})=\varepsilon\bigr]=\frac{\beta_k(S_\varepsilon)}{k!}+O_k\bigl(p^{-1/2}\log^kp\bigr),\qquad
+ \Pr\bigl[(\xi_1,\dots,\xi_{k-1})=\varepsilon\bigr]=\frac{D_k(S_\varepsilon)}{k!}+O_k\bigl(p^{-1/2}\log^kp\bigr),\qquad
  S_\varepsilon=\{i:\varepsilon_i=1\},
 \]
-where $\beta_k(S)$ is the number of permutations of $\{1,\dots,k\}$ with descent set exactly $S$.  The types of the vertices are determined by
+where $D_k(S)$ is the number of permutations of $\{1,\dots,k\}$ with descent set exactly $S$.  The types of the vertices are determined by
 $\varepsilon$: the vertex between the edges $i-1$ and $i$ is a good group $(4,8,4)$ iff $(\xi_{i-1},\xi_i)=(0,1)$, a $(2,6,6,2)$-group iff
 $(1,0)$, and a seven-group otherwise; the end vertices are $(4,2,2)$ iff $\xi_1=1$ (left), resp.\ $\xi_{k-1}=0$ (right), and $(3,3,1,1)$ otherwise.
 \end{proposition}
@@ -51,6 +51,6 @@ $\sin2\pi(v+w)\,\sin2\pi(w-v)=\tfrac12\bigl(\cos4\pi v-\cos4\pi w\bigr)$, we get
 \]
 By Lemma~\ref{lem:run} the $v_i$ are asymptotically independent and uniform, hence the $g(v_i)$ are independent and uniform on $(0,\frac14)$
 (the map $g$ is four-to-one and piecewise linear), so $(\xi_i)$ is the descent pattern of $k$ i.i.d.\ uniform variables, whose law is
-$\beta_k(S)/k!$.  The type dictionary is Lemma~\ref{lem:partners} together with the fact that the pair on an edge is seen as an
+$D_k(S)/k!$.  The type dictionary is Lemma~\ref{lem:partners} together with the fact that the pair on an edge is seen as an
 $H(1)$-pair by its left vertex and as (the $R$-image of) a $\tau$-pair by its right vertex, which exchanges $A\cup D$ with $B\cup C$.
 \end{proof}
