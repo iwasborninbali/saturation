@@ -1,0 +1,165 @@
+  p=211: signatures 10 [1s]
+  p=401: signatures 48 [12s]
+  p=409: signatures 48 [12s]
+  p=419: signatures 49 [12s]
+  p=601: signatures 67 [21s]
+  p=607: signatures 68 [21s]
+  p=613: signatures 69 [21s]
+  p=617: signatures 69 [21s]
+  p=619: signatures 70 [21s]
+  p=809: signatures 84 [25s]
+  p=811: signatures 84 [25s]
+  p=1009: signatures 91 [26s]
+  p=1013: signatures 92 [26s]
+  p=1019: signatures 92 [26s]
+  p=1201: signatures 96 [28s]
+  p=1213: signatures 96 [28s]
+  p=1217: signatures 96 [28s]
+  p=1409: signatures 102 [32s]
+  p=1601: signatures 111 [37s]
+  p=1607: signatures 112 [37s]
+  p=1609: signatures 112 [37s]
+  p=1613: signatures 112 [37s]
+  p=1619: signatures 113 [38s]
+  p=1801: signatures 115 [38s]
+  p=1811: signatures 115 [38s]
+  p=2003: signatures 121 [40s]
+  p=2011: signatures 121 [41s]
+  p=2017: signatures 121 [41s]
+  p=2203: signatures 121 [41s]
+  p=2207: signatures 121 [41s]
+  p=2213: signatures 121 [41s]
+  p=2411: signatures 122 [42s]
+  p=2417: signatures 122 [42s]
+  p=2609: signatures 123 [42s]
+  p=2617: signatures 123 [42s]
+  p=2801: signatures 125 [44s]
+  p=2803: signatures 125 [44s]
+  p=2819: signatures 125 [44s]
+total signatures with a saving: 125; possible for k<=maxk: 134
+  0          k=2 saving=  0.00 count=36910
+  00         k=3 saving=  4.00 count=6165
+  01         k=3 saving=  8.00 count=6129
+  10         k=3 saving=  6.00 count=6206
+  000        k=4 saving=  7.00 count=764
+  001        k=4 saving=  8.00 count=2255
+  010        k=4 saving=  8.00 count=3857
+  100        k=4 saving=  9.00 count=2341
+  0000       k=5 saving= 10.00 count=68
+  0001       k=5 saving= 12.00 count=318
+  0010       k=5 saving= 11.00 count=678
+  0011       k=5 saving=  8.00 count=237
+  0100       k=5 saving= 12.00 count=734
+  0101       k=5 saving= 16.00 count=649
+  0110       k=5 saving= 14.00 count=838
+  1000       k=5 saving= 12.00 count=292
+  1010       k=5 saving= 14.00 count=606
+  1100       k=5 saving= 12.00 count=234
+  00000      k=6 saving= 14.00 count=7
+  00001      k=6 saving= 15.00 count=32
+  00010      k=6 saving= 15.00 count=91
+  00011      k=6 saving= 12.00 count=64
+  00100      k=6 saving= 14.00 count=112
+  00101      k=6 saving= 16.00 count=188
+  00110      k=6 saving= 14.00 count=188
+  01000      k=6 saving= 15.00 count=98
+  01001      k=6 saving= 16.00 count=230
+  01010      k=6 saving= 16.00 count=428
+  01100      k=6 saving= 17.00 count=195
+  01110      k=6 saving= 17.00 count=119
+  10000      k=6 saving= 16.00 count=27
+  10010      k=6 saving= 16.00 count=246
+  10100      k=6 saving= 17.00 count=231
+  11000      k=6 saving= 16.00 count=65
+  000001     k=7 saving= 18.00 count=2
+  000010     k=7 saving= 18.00 count=8
+  000011     k=7 saving= 16.00 count=7
+  000100     k=7 saving= 18.00 count=18
+  000101     k=7 saving= 20.00 count=26
+  000110     k=7 saving= 18.00 count=21
+  000111     k=7 saving= 16.00 count=3
+  001000     k=7 saving= 18.00 count=9
+  001001     k=7 saving= 19.00 count=44
+  001010     k=7 saving= 19.00 count=84
+  001011     k=7 saving= 16.00 count=18
+  001100     k=7 saving= 18.00 count=38
+  001101     k=7 saving= 16.00 count=56
+  001110     k=7 saving= 18.00 count=25
+  010000     k=7 saving= 18.00 count=10
+  010001     k=7 saving= 20.00 count=33
+  010010     k=7 saving= 19.00 count=82
+  010100     k=7 saving= 20.00 count=66
+  010101     k=7 saving= 24.00 count=63
+  010110     k=7 saving= 22.00 count=80
+  011000     k=7 saving= 20.00 count=26
+  011001     k=7 saving= 22.00 count=19
+  011010     k=7 saving= 22.00 count=92
+  011100     k=7 saving= 20.00 count=22
+  011110     k=7 saving= 20.00 count=10
+  100000     k=7 saving= 20.00 count=2
+  100010     k=7 saving= 20.00 count=35
+  100100     k=7 saving= 20.00 count=52
+  100110     k=7 saving= 20.00 count=21
+  101000     k=7 saving= 20.00 count=32
+  101010     k=7 saving= 22.00 count=54
+  101100     k=7 saving= 20.00 count=41
+  110000     k=7 saving= 20.00 count=6
+  110100     k=7 saving= 20.00 count=14
+  111000     k=7 saving= 20.00 count=4
+  0000001    k=8 saving= 22.00 count=1
+  0000010    k=8 saving= 22.00 count=1
+  0000011    k=8 saving= 20.00 count=1
+  0000101    k=8 saving= 23.00 count=2
+  0000110    k=8 saving= 22.00 count=3
+  0001001    k=8 saving= 23.00 count=9
+  0001010    k=8 saving= 23.00 count=6
+  0001011    k=8 saving= 20.00 count=5
+  0001100    k=8 saving= 22.00 count=1
+  0001101    k=8 saving= 20.00 count=4
+  0001110    k=8 saving= 22.00 count=8
+  0010000    k=8 saving= 22.00 count=3
+  0010001    k=8 saving= 22.00 count=7
+  0010010    k=8 saving= 22.00 count=12
+  0010011    k=8 saving= 20.00 count=7
+  0010100    k=8 saving= 22.00 count=13
+  0010101    k=8 saving= 24.00 count=23
+  0010110    k=8 saving= 22.00 count=14
+  0011000    k=8 saving= 22.00 count=4
+  0011001    k=8 saving= 22.00 count=14
+  0011010    k=8 saving= 22.00 count=15
+  0011100    k=8 saving= 22.00 count=4
+  0011101    k=8 saving= 20.00 count=6
+  0011110    k=8 saving= 22.00 count=4
+  0100000    k=8 saving= 22.00 count=1
+  0100001    k=8 saving= 23.00 count=3
+  0100010    k=8 saving= 23.00 count=15
+  0100100    k=8 saving= 22.00 count=12
+  0100101    k=8 saving= 24.00 count=27
+  0100110    k=8 saving= 22.00 count=16
+  0101000    k=8 saving= 23.00 count=10
+  0101001    k=8 saving= 24.00 count=25
+  0101010    k=8 saving= 24.00 count=45
+  0101100    k=8 saving= 25.00 count=17
+  0101110    k=8 saving= 25.00 count=13
+  0110001    k=8 saving= 25.00 count=3
+  0110010    k=8 saving= 24.00 count=21
+  0110100    k=8 saving= 25.00 count=15
+  0110110    k=8 saving= 24.00 count=13
+  0111000    k=8 saving= 24.00 count=4
+  0111010    k=8 saving= 25.00 count=10
+  0111100    k=8 saving= 24.00 count=4
+  1000010    k=8 saving= 24.00 count=5
+  1000100    k=8 saving= 24.00 count=3
+  1000110    k=8 saving= 24.00 count=14
+  1001000    k=8 saving= 24.00 count=3
+  1001010    k=8 saving= 24.00 count=21
+  1001100    k=8 saving= 24.00 count=16
+  1010000    k=8 saving= 24.00 count=3
+  1010010    k=8 saving= 24.00 count=16
+  1010100    k=8 saving= 25.00 count=23
+  1011000    k=8 saving= 24.00 count=9
+  1011100    k=8 saving= 24.00 count=6
+  1100000    k=8 saving= 24.00 count=1
+  1100100    k=8 saving= 24.00 count=15
+  1101000    k=8 saving= 24.00 count=6
+written slack/t221/sig_savings.json
