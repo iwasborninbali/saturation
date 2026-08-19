@@ -1,0 +1,1 @@
+n=7: points=343 lines(>=3)=4429 [build 0.2s] status=FEASIBLE alpha=72 bound=98 [solve 900.0s] certified=OK  alpha/n^2=1.469
