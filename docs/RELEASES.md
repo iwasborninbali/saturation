@@ -139,3 +139,14 @@ v1.5 + first solver's fixes in Section 8 (the t ↦ −t remark replaced by N₃
 | `paper/hjsw_window.pdf` | `90dddbe7db71e332cc47f959b28d188b949b66ad55e53f0d22fcd934cd17e48d` |
 | `paper/hjsw_window.tex` | `4cdb407a150e7653959b11d200e9690278a59078e039010e3d1c362808ceae0e` |
 | `paper/section_cubic.tex` | `6920baf299410b32b9ecea3f20d02f9c850fb41e9d04ca54e0e5a11d2b7806bc` |
+
+## defects-v0.8 (2026-08-19, 08:30 WITA)
+v0.7 + the fourth n=39 configuration (C4-base sweep of the 3-cycle family complete: 4 configurations, V2 base none), Table 3-cycle family row 39
+"complete (both bases)", 41 progress (3396/4750), appendix configuration 4, ten configurations pairwise inequivalent; sent to Flammenkamp (Letter 4).
+
+| file | SHA-256 |
+|---|---|
+| `paper/no3inline_defects.pdf` | `16e651f80a67b687331963bb3c0088db835b102530587fe5db5d6eb3b8b1a8a6` |
+| `paper/no3inline_defects.tex` | `1461bee84a53a48db2de56504a12196b19895efd1bbfa04f8e11dfed70782d1a` |
+| `paper/appendix_configs.tex` | `c0214c287ae0c37189189c8023ebe3ac2c0255e36adafefd0f81dedb9166f36e` |
+| `docs/configs.json` | `d119f21667fa54fcc0369333ec8ed045228ba82162d4de97f4a513c89bf6fd12` |
