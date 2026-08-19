@@ -1,0 +1,2 @@
+
+=== verify_quad.py independent re-derivation, Wed Aug 19 13:50:41 2026 ===

@@ -1,0 +1,12 @@
+p=17 pair (k=2): points 128 lines 422; null-SA best = 54 = 3.375(p-1) = 1.588N
+p=17 quad (k=2): points 256 lines 2286; null-SA best = 54 = 3.375(p-1) = 1.588N
+p=19 pair (k=2): points 144 lines 496; null-SA best = 59 = 3.278(p-1) = 1.553N
+p=19 quad (k=2): points 288 lines 2724; null-SA best = 60 = 3.333(p-1) = 1.579N
+p=23 pair (k=2): points 176 lines 668; null-SA best = 69 = 3.136(p-1) = 1.500N
+p=23 quad (k=2): points 352 lines 3762; null-SA best = 70 = 3.182(p-1) = 1.522N
+p=29 pair (k=2): points 224 lines 1028; null-SA best = 84 = 3.000(p-1) = 1.448N
+p=29 quad (k=2): points 448 lines 5696; null-SA best = 87 = 3.107(p-1) = 1.500N
+p=31 pair (k=2): points 240 lines 1248; null-SA best = 91 = 3.033(p-1) = 1.468N
+p=31 quad (k=2): points 480 lines 6496; null-SA best = 94 = 3.133(p-1) = 1.516N
+p=37 pair (k=2): points 288 lines 1118; null-SA best = 110 = 3.056(p-1) = 1.486N
+p=37 quad (k=2): points 576 lines 8014; null-SA best = 112 = 3.111(p-1) = 1.514N

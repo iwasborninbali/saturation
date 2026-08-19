@@ -1,0 +1,35 @@
+# quad_k_scan.py  PS=[11, 13, 17, 19, 23, 29, 31]  screen=2x12.0s  refine=3x40.0s  cpsat<=300.0s
+
+== p=11  N=22  (p-1)=10  k-range [2, 3, 4, 5] ==
+  screen p=11 k=  2 [QNR]: lb= 35 = 3.500(p-1) = 1.591N  CERTIFIED-lawful
+  screen p=11 k=  3 [QR]: lb= 35 = 3.500(p-1) = 1.591N  CERTIFIED-lawful
+  screen p=11 k=  4 [QR]: lb= 35 = 3.500(p-1) = 1.591N  CERTIFIED-lawful
+  screen p=11 k=  5 [QR]: lb= 36 = 3.600(p-1) = 1.636N  CERTIFIED-lawful
+  -- refining top candidates [5, 2] for p=11 with 3x40.0s --
+  refine p=11 k=  5 [QR]: lb= 36 = 3.600(p-1) = 1.636N  CERTIFIED-lawful
+  refine p=11 k=  2 [QNR]: lb= 37 = 3.700(p-1) = 1.682N  CERTIFIED-lawful
+  CP-SAT p=11 k=2: NOT PROVEN OPTIMAL within 300s -- feasible lawful set of size 38 (LB, not exact)  [FEASIBLE, bound 40]  CERTIFIED-lawful
+  ==> p=11: best k=2  alpha (LB) = 38 = 3.800(p-1) = 1.727N
+
+== p=13  N=26  (p-1)=12  k-range [2, 3, 4, 5, 6] ==
+  screen p=13 k=  2 [QNR]: lb= 42 = 3.500(p-1) = 1.615N  CERTIFIED-lawful
+  screen p=13 k=  3 [QR]: lb= 42 = 3.500(p-1) = 1.615N  CERTIFIED-lawful
+  screen p=13 k=  4 [QR]: lb= 41 = 3.417(p-1) = 1.577N  CERTIFIED-lawful
+  screen p=13 k=  5 [QNR]: lb= 41 = 3.417(p-1) = 1.577N  CERTIFIED-lawful
+  screen p=13 k=  6 [QNR]: lb= 42 = 3.500(p-1) = 1.615N  CERTIFIED-lawful
+  -- refining top candidates [2, 3] for p=13 with 3x40.0s --
+  refine p=13 k=  2 [QNR]: lb= 43 = 3.583(p-1) = 1.654N  CERTIFIED-lawful
+  refine p=13 k=  3 [QR]: lb= 43 = 3.583(p-1) = 1.654N  CERTIFIED-lawful
+  CP-SAT p=13 k=2: NOT PROVEN OPTIMAL within 300s -- feasible lawful set of size 44 (LB, not exact)  [FEASIBLE, bound 48]  CERTIFIED-lawful
+  ==> p=13: best k=2  alpha (LB) = 44 = 3.667(p-1) = 1.692N
+
+== p=17  N=34  (p-1)=16  k-range [2, 3, 4, 5, 6, 7, 8] ==
+  screen p=17 k=  2 [QR]: lb= 53 = 3.312(p-1) = 1.559N  CERTIFIED-lawful
+  screen p=17 k=  3 [QNR]: lb= 53 = 3.312(p-1) = 1.559N  CERTIFIED-lawful
+  screen p=17 k=  4 [QR]: lb= 53 = 3.312(p-1) = 1.559N  CERTIFIED-lawful
+  screen p=17 k=  5 [QNR]: lb= 56 = 3.500(p-1) = 1.647N  CERTIFIED-lawful
+  screen p=17 k=  6 [QNR]: lb= 54 = 3.375(p-1) = 1.588N  CERTIFIED-lawful
+  screen p=17 k=  7 [QNR]: lb= 54 = 3.375(p-1) = 1.588N  CERTIFIED-lawful
+  screen p=17 k=  8 [QR]: lb= 54 = 3.375(p-1) = 1.588N  CERTIFIED-lawful
+  -- refining top candidates [5, 6] for p=17 with 3x40.0s --
+  refine p=17 k=  5 [QNR]: lb= 57 = 3.562(p-1) = 1.676N  CERTIFIED-lawful

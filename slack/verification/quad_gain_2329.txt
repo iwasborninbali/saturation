@@ -1,0 +1,1 @@
+p=23 k=2 pair: |points|=176 lines>=3: 668  alpha = 70 = 3.182(p-1)  [FEASIBLE, bound 78]

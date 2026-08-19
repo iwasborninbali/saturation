@@ -1,0 +1,15 @@
+=== independent re-check of TASK 3 (own points/lines/groups/cycles/LP; cycle_stats.specials used only as oracle) ===
+[baseline sanity] p=101 k=2, u_g=1/2 on all G8=16 groups: total=416.00 (task target 416.00) net=-1.0000 (target -1.0)  PASS
+
+p= 101 k=2 (primitive): G8=16  classes cross-checked vs cycle_stats.specials: OK (assert passed)
+  R0 (u=1/2 all):  total=  416.00  net=-1.0000   [report: total=416.00 net=-1.0000]  MATCH
+  R2 (best rule):  total=  392.00  net=+0.5000   [report: total=392.00 net=+0.5000]  MATCH
+
+p= 199 k=2 (non-primitive ord=99): G8=32  classes cross-checked vs cycle_stats.specials: OK (assert passed)
+  R0 (u=1/2 all):  total=  800.00  net=-0.2500   [report: total=800.00 net=-0.2500]  MATCH
+  R2 (best rule):  total=  784.00  net=+0.2500   [report: total=784.00 net=+0.2500]  MATCH
+
+p= 199 k=3 (primitive): G8=34  classes cross-checked vs cycle_stats.specials: OK (assert passed)
+  R0 (u=1/2 all):  total=  790.00  net=+0.0588   [report: total=790.00 net=+0.0588]  MATCH
+  R2 (best rule):  total=  780.00  net=+0.3529   [report: total=780.00 net=+0.3529]  MATCH
+

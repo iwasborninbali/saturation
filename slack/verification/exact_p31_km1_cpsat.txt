@@ -1,0 +1,1 @@
+M p=31 ks=[1, 30] N=62: candidates=240 lines>=3=1248 workers=6 limit=21600.0s

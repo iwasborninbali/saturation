@@ -1,0 +1,42 @@
+=== cycle_cover.py validation ===
+
+[1] p=101 k=2, u_g=1/2 on all G8=16 groups (chain_walk.py ground truth: rows/cols LP 368, total 416, net -1.000/group):
+    rows/cols cost = 368.00  (DP 368.00 == LP 368.00)
+    line cost      = 48.00
+    total cover    = 416.00  = 4(p-1) - (-16.00)
+    saving = -16.00, net/group = -1.0000
+    [8.1 ms]
+    check: rows/cols==368 True, total==416 True, net==-1.000 True
+
+[2] p=101 k=2, u={} (baseline): total = 400.00 == 4(p-1) = 400: True
+
+[3] classes marked special: build_groups=64 vs cycle_stats.specials()=64: identical set = True
+
+[4] DP vs LP on random u_g patterns (method='both', asserts agreement internally):
+    p=  29 k=2: G8=  4  3 random trials matched: True
+    p=  29 k=3: G8=  4  3 random trials matched: True
+    p=  53 k=2: G8=  4  3 random trials matched: True
+    p= 101 k=2: G8= 16  3 random trials matched: True
+    p= 101 k=3: G8= 10  3 random trials matched: True
+    p= 199 k=2: G8= 32  3 random trials matched: True
+    p= 199 k=3: G8= 34  3 random trials matched: True
+    all DP==LP: True
+
+[5] class_to_groups overlap check (class special for >1 group):
+    p= 101 k=2: G8=  16  classes_marked=   64 (4*G8=   64)  overlapping_classes=0
+    p= 199 k=2: G8=  32  classes_marked=  128 (4*G8=  128)  overlapping_classes=0
+    p= 199 k=3: G8=  34  classes_marked=  136 (4*G8=  136)  overlapping_classes=0
+    p= 401 k=2: G8=  64  classes_marked=  256 (4*G8=  256)  overlapping_classes=0
+    p= 401 k=3: G8=  58  classes_marked=  232 (4*G8=  232)  overlapping_classes=0
+    p= 997 k=2: G8= 166  classes_marked=  664 (4*G8=  664)  overlapping_classes=0
+
+[6] cover_value_free (joint LP over u_g in [0,1] and w_e >= 0):
+    p= 101 k=2: G8= 16  total=388.000  saving=12.000  net=0.7500  (notes: +0.75)  match(<=0.01): True  [5.4 ms]
+    p= 199 k=2: G8= 32  total=766.000  saving=26.000  net=0.8125  (notes: +0.81)  match(<=0.01): True  [8.6 ms]
+    p= 199 k=3: G8= 34  total=762.000  saving=30.000  net=0.8824  (notes: +0.88)  match(<=0.01): True  [8.4 ms]
+
+=== overall: PASS ===
+
+[7] runtime at p=199 (fresh timings, method='both' for cover_value so both solvers run):
+    p=199 k=2: cover_value(u=1/2,both)    10.1 ms   cover_value_free     8.4 ms   (rf.runtime=8.3 ms)
+    p=199 k=3: cover_value(u=1/2,both)    10.3 ms   cover_value_free     8.4 ms   (rf.runtime=8.3 ms)

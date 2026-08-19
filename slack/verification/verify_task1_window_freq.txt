@@ -1,0 +1,4 @@
+p=691 k=3 ord=690: K=240 M=240 (K==M: True)  K->M transitions=160  walk range=18
+pattern freq (s,s)(s,n)(n,s)(n,n) per L=690: 0.136 0.212 0.212 0.441
+q=K/L=0.348, q^2=0.121 (independence prediction for (s,s) freq); notes sec 26a claim q~0.334, q^2~0.112, (s,s)~0.112
+cross-check target (slack/verification/cycle_stats_prim_p700.txt, row '691 3 690'): K=240 M=240 trans=160 range=18 pat=0.136 0.212 0.212 0.441
