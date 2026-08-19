@@ -22,7 +22,7 @@
 with new $2n$-point configurations for $n=36,\,37,\,39$}
 \author{Alex Komang\thanks{Independent researcher, Bali, Indonesia.  Correspondence: see the repository page.
 AI/tool-use disclosure: Section~\ref{sec:auth}.}}
-\date{August 2026 --- draft v0.8}
+\date{August 2026 --- version 1.0}
 
 \begin{document}
 \maketitle
@@ -207,7 +207,13 @@ images of a dia1 configuration have stabilizer $\langle\sigma\rangle$ (the other
 $N_H=2c_{\mathrm{dia1}}+2c_{\mathrm{dia2}}+c_{\mathrm{full}}$: $n=13$: $20=2\cdot9+2\cdot1$; $n=15$: $28=2\cdot13+2\cdot1$.
 For rct4 the program's mode places the diagonal pair on the main diagonal and therefore sees two of the four labelled images
 of each rct4 configuration: $n=9,17,19,21$: $2,2,4,2=2\cdot(1,1,2,1)$ --- all in agreement.  Two independent
-implementations (the two agents' programs) agree on every enumeration they both performed.  Every configuration reported here
+implementations (the two agents' programs) agree on every enumeration they both performed.  In addition, the family modes were checked
+against a from-scratch enumerator written independently of the solver (\texttt{slack/t221/verify\_family.py}: it builds the sub-class as
+``a union of base-group orbits plus the prescribed half-turn pairs'' and tests all triples in exact arithmetic): for $n=13$ all $20$
+sub-classes tried in the C4 base and all $13$ in the V2 base agree, including the $25$ that contain no configuration --- the direction in
+which an incomplete search would fail.  We note for the record that the solver's plain \emph{rot2} mode (\texttt{sym=2}) is a search mode,
+not an enumerator: at $n=8$ it returns $8$ of the $36$ labelled half-turn-invariant configurations, and it was not used for any statement
+in this paper.  Every configuration reported here
 was finally re-checked by an independent script that tests all $\binom{2n}{3}$ triples in exact integer arithmetic and
 computes the stabilizer explicitly.
 
@@ -243,7 +249,7 @@ $n$ & defects mod $\Dfour$ (central) & C4 base & V2 base & status of the sweep\\
 33 & 2360 (120) & 1 & 0 & complete (both bases)\\
 37 & 3417 (153) & 2 & 0 & complete (both bases)\\
 39 & 4047 (171) & 4 & 0 & complete (both bases): C4 base 4 configurations (2 through the central class), V2 base none\\
-41 & 4750 (190) & $\ge0$ & 0 & V2 base complete (none); C4 base: all 190 central sub-classes complete (none), 3396 of the 4750 sub-classes swept (none), rest in progress\\
+41 & 4750 (190) & 0 & 0 & complete (both bases): every one of the $4750$ sub-classes exhausted in each base, no configuration\\
 45 & 6391 (231) & --- & $\ge0$ & V2 base: 400 sub-classes swept (none); C4 base not started\\
 \bottomrule
 \end{tabular}
