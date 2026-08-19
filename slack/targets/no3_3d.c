@@ -31,6 +31,7 @@ static void dfs(int i, int chosen){
 }
 int main(int argc, char **argv){
     n = atoi(argv[1]); best = (argc > 2) ? atoi(argv[2]) : 0; N = n*n*n;
+    int m0 = (argc > 3) ? atoi(argv[3]) : -1, m1 = (argc > 4) ? atoi(argv[4]) : -1;   /* optional prefix: chosen cells of columns 0 and 1 */
     /* enumerate lines: canonical (base, dir) */
     int cap = 1<<20, nl = 0; int (*lines)[3] = malloc(sizeof(int)*3*cap);
     unsigned char *seen = calloc((size_t)N*N, 1);
@@ -55,8 +56,21 @@ int main(int argc, char **argv){
     lineof = malloc(sizeof(int)*mn); int *pos = malloc(sizeof(int)*N); memcpy(pos, lineoff, sizeof(int)*N);
     for (int l=0;l<nl;l++) for (int k=mstart[l];k<mstart[l+1];k++) lineof[pos[members[k]]++] = l;
     cnt = calloc(nl,1); colused = calloc(n*n, sizeof(int));
-    fprintf(stderr,"n=%d cells=%d lines>=3: %d (start best=%d)\n", n, N, nl, best);
-    dfs(0,0);
+    fprintf(stderr,"n=%d cells=%d lines>=3: %d (start best=%d) prefix=%d,%d\n", n, N, nl, best, m0, m1);
+    if (m0 < 0){ dfs(0,0); }
+    else {
+        int chosen = 0, ok = 1;
+        for (int i = 0; i < 2*n && ok; i++){
+            int bit = (i < n) ? ((m0 >> i) & 1) : ((m1 >> (i-n)) & 1);
+            if (!bit) continue;
+            int col = i / n;
+            for (int k = lineoff[i]; k < lineoff[i+1]; k++) if (cnt[lineof[k]] >= 2){ ok = 0; break; }
+            if (!ok || colused[col] >= 2) { ok = 0; break; }
+            for (int k = lineoff[i]; k < lineoff[i+1]; k++) cnt[lineof[k]]++;
+            colused[col]++; chosen++;
+        }
+        if (ok) dfs(2*n, chosen);
+    }
     printf("n=%d  MAX=%d  nodes=%lld  lines=%d\n", n, best, nodes, nl);
     return 0;
 }
