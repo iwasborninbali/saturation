@@ -46,7 +46,13 @@ set $M_O$ realising the minimum of Lemma~\ref{lem:orbopt}; the union $M=\bigcup_
 \end{proof}
 
 \begin{remark}
-(a) The bound is sharp: in a generic orbit a lawful set of size $11$ can have one point off the unique maximum.
+(a) The bound is sharp for every $t$ in the near-maximum range: an exact computation (CP-SAT,
+$p=11,13,17,19,23,29,31$ and $1\le t\le4$, every value proved optimal; \texttt{slack/t221/stability\_h3.py}) gives
+\[
+ \max\{\min_M|S\setminus M|\ :\ S\ \text{lawful},\ |S|=3(p-1)-t\}=\min(t,\,p-1-2s),
+\]
+the plateau value $p-1-2s$ being the number of generic classes: one unit of deficit buys exactly one deviating point until every
+generic class has been touched.
 (b) The proposition is the ``stability'' input that a proof of $\alpha(\Pset_k)\le3(p-1)+O(1)$ would want: it says that the part of a
 lawful set on one hyperbola is, up to its own deficit, a piece of a HJSW-type configuration, so that the interaction with the second
 hyperbola can be analysed against a fixed structure rather than against an arbitrary set.  What it does \emph{not} give is the exchange
