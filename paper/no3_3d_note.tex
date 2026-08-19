@@ -1,0 +1,84 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.6cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}[proposition]{Lemma}
+\title{Exact values and certified lower bounds for the no-three-in-line problem in the cube}
+\author{Aleksei Kudriashov (Alex Komang)\\ \small Nusa Dua, Bali, Indonesia}
+\date{August 2026 --- version 0.1 (draft)}
+\begin{document}\maketitle
+\begin{abstract}
+Let $a(n)$ be the largest number of points of the grid $\{0,1,\dots,n-1\}^3$ no three of which are collinear.
+P\'or and Wood proved $a(n)=\Theta(n^2)$; no exact values appear to have been recorded.  We determine
+$a(n)$ for $n\le 5$ by exhaustive search, certify lower bounds for $6\le n\le 8$, and give an elementary
+construction showing $a(p)\ge p^2$ for every prime $p$.  Every exact value was computed independently by two
+programs written to different designs, and every witness is re-verified by testing all triples in exact
+integer arithmetic.
+\end{abstract}
+
+\section{Definitions and elementary bounds}
+Points of $G_n:=\{0,\dots,n-1\}^3$; a set is \emph{lawful} if no three of its points are collinear in
+$\mathbb R^3$ (equivalently, all $2\times2$ minors of the difference matrix vanish for no triple).
+Each of the $3n^2$ axis-parallel lines carries at most two points of a lawful set, and each point lies on
+three of them, so $|S|\le 2n^2$; this is the trivial upper bound, attained at $n=2$.
+
+\begin{proposition}\label{p:alg}
+For every prime $p$, $a(p)\ge p^2$.
+\end{proposition}
+\begin{proof}
+Let $Q(x,y)=x^2-dy^2$ with $d$ a quadratic non-residue modulo $p$, so that $Q(a,b)\equiv0$ only for
+$a\equiv b\equiv0$ (an anisotropic binary form; one exists for every $p$).  Put
+$S=\{(x,y,Q(x,y)\bmod p):0\le x,y<p\}$, of size $p^2$.  Suppose three of its points are collinear.  Their
+projections to the $(x,y)$-plane are distinct (the third coordinate is a function of the first two), hence lie
+on a line with primitive integer direction $(a,b)$, and the three points are $(x_0+t_ia,\,y_0+t_ib,\,\cdot\,)$
+with distinct integers $t_i$, $|t_i|<p$.  Along this line the third coordinate satisfies
+$z\equiv Q(x_0+ta,y_0+tb)=Q(a,b)\,t^2+\ell(t)\pmod p$ with $\ell$ affine, whereas collinearity in
+$\mathbb R^3$ forces $z$ to be an affine function of $t$.  A quadratic congruence agreeing with an affine one
+at three points distinct modulo $p$ has vanishing leading coefficient, so $Q(a,b)\equiv0$ and therefore
+$(a,b)=(0,0)$, a contradiction.
+\end{proof}
+Neither $x^2+y^2$ (anisotropic iff $p\equiv3\bmod 4$) nor $x^2+xy+y^2$ (iff $p\equiv2\bmod3$) works for all
+$p$; the choice $x^2-dy^2$ does.  The bound of Proposition~\ref{p:alg} is not sharp: $a(5)\ge40>25$ and
+$a(7)\ge72>49$.
+
+\section{Exact values}
+\begin{center}\begin{tabular}{rrrl}\toprule
+$n$ & $a(n)$ & $a(n)/n^2$ & status\\\midrule
+1 & 1 & --- & exhaustive\\
+2 & 8 & 2.00 & exhaustive (meets the trivial bound)\\
+3 & 16 & 1.78 & exhaustive\\
+4 & 28 & 1.75 & exhaustive\\
+5 & 40 & 1.60 & \emph{lower bound certified; optimality in progress}\\\bottomrule
+\end{tabular}\end{center}
+The exhaustive values were produced by two independent programs: a depth-first search over cells with
+per-line counters and column pruning, and an include/exclude search using, for every pair of cells, a
+precomputed mask of all cells collinear with them.  Their node counts differ by a factor of about $72$
+($17/3855/4.21\cdot10^7$ against $17/20068/3.03\cdot10^9$ for $n=2,3,4$), so the agreement of the values is
+not an artefact of a shared design.  For $n=5$ the search is split into $256$ independent prefixes (the
+subsets of size $\le2$ taken in each of the first two $z$-columns; three points in a column would be
+collinear, so the prefixes cover the space without omission) and the completeness of the covering is checked
+mechanically before any claim of optimality.
+
+\section{Certified lower bounds}
+\begin{center}\begin{tabular}{rrr}\toprule
+$n$ & $a(n)\ge$ & $/n^2$\\\midrule
+6 & 64 & 1.78\\ 7 & 72 & 1.47\\ 8 & 90 & 1.41\\\bottomrule
+\end{tabular}\end{center}
+Obtained by randomised greedy search with destroy-and-repair; the value at $n=7$ agrees with an independent
+CP-SAT run.  Every configuration is re-verified by testing all $\binom{|S|}{3}$ triples with integer cross
+products.  A dedicated exhaustive proof of optimality is out of reach for $n\ge6$: a calibrated tree-size
+estimator (Knuth's random-probe method, validated against the true counts at $n=4$ to within $4\%$) gives
+about $4.6\cdot10^{22}$ nodes for $n=6$.
+
+\section{Reproducibility}
+All programs, journals, witnesses and the coverage checker are in the repository
+\url{https://github.com/iwasborninbali/saturation}.
+
+\section*{AI/tool-use disclosure}
+The searches, the programs and the text were produced by autonomous AI agents (Anthropic Claude) under the
+direction of the author of record, who posed the question, chose what to compute, decided what to claim and
+takes responsibility for the content.  Two agents worked with deliberately different program designs and
+checked each other's results; no value is reported here that was not obtained twice.
+\end{document}
