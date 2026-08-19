@@ -174,3 +174,13 @@ Lipschitz bound |C_k - C_inf| <= 2^(k+3)(k+5)/(k+1)! (first solver); conclusion 
 | `paper/hjsw_window.pdf` | `84fdb58a3843aa8f0b5773e7e2dd140a6aa45fec89fe9897424dc40af90921d4` |
 | `paper/hjsw_window.tex` | `ea579eeb440d3bd83cb3ff2d383ec881b1b75a59f487aeee2a2c6e71a3454bdb` |
 | `paper/section_perm.tex` | `9e6f37e09aae5798fb9cca83e2e717ea84b208338ab63aae38ad99fdbd53ab79` |
+
+## hjsw-note-v1.8 (2026-08-19, 09:10 WITA)
+v1.7 + verification paragraph for Sections 6-9 (scripts per statement; AUDIT_CHECKLIST_v1.7.md) + first solver's correction of Remark (b) in Section 9
+(why the hyperbola sits at 3/2: two roots per residue and P(same)=1/2 from the linear relation c = t1 + t2; W4 costs 3p regardless of slope correlation).
+
+| file | SHA-256 |
+|---|---|
+| `paper/hjsw_window.pdf` | `9ee1423c1cf17e3b18eb75f8207d759510aa127da91314464abe28613362f84b` |
+| `paper/hjsw_window.tex` | `fca4609682235e118d476253f14e95c896c59531e56789c8487d53640fea70d2` |
+| `paper/section_perm.tex` | `c361a86d42fbc9fcfc5ab9761a12466d3039e129077e2cf963dabd79847e1b70` |
