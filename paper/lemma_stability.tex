@@ -1,0 +1,52 @@
+% lemma_stability.tex — stability of one hyperbola (second solver, 19.08): the orbit decomposition and the sharp constant
+\subsection*{Stability: near-maximum sets are near a maximum set}
+
+The classification of Theorem~\ref{thm:window} is in fact orbit-wise, and this makes the extremal problem for one hyperbola
+\emph{stable}: a lawful set of size $3(p-1)-t$ differs from a maximum one in at most $t$ points.
+
+\begin{lemma}[orbit decomposition]\label{lem:orbdec}
+Let $O=\{\kappa,\sigma\kappa,\tau\kappa,\nu\kappa\}$ be a $V$-orbit of classes and $P_O\subseteq\Hc\cap\Gp$ the union of their lifts
+($16$ points, or $8$ for an exceptional orbit).  Every line containing at least three points of $\Hc\cap\Gp$ has all of them in a single
+$P_O$.  Consequently $\alpha(\Hc\cap\Gp)=\sum_O\alpha(P_O)$ and a set is lawful iff its restriction to every orbit is.
+\end{lemma}
+\begin{proof}
+A rich line has slope $+1$ or $-1$ (Corollary~\ref{cor:slopes}) and then meets only the classes $\kappa,\sigma\kappa$, resp.\
+$\kappa,\tau\kappa$ (Lemma~\ref{lem:lagrange}), all of which lie in $O$.
+\end{proof}
+
+\begin{lemma}[a single orbit]\label{lem:orbopt}
+For a generic orbit ($4$ classes, $16$ points) $\alpha(P_O)=12$ and the maximum set is \emph{unique}; for an exceptional orbit
+($2$ classes, $8$ points) $\alpha(P_O)=6$ and there are exactly nine maximum sets.  Moreover every lawful $S\subseteq P_O$ with
+$|S|=\alpha(P_O)-d$ satisfies $\min_M|S\setminus M|\le d$, the minimum being over the maximum sets of $P_O$ (for an exceptional orbit
+$\min_M|S\setminus M|=0$: every lawful subset of size $6-d$ is contained in a maximum set).
+\end{lemma}
+\begin{proof}
+The four classes of a generic orbit have the four types $A,B,C,D$, one each (Lemma~\ref{lem:partners}), so the incidence structure of
+$P_O$ --- which of its points lie on a common rich line --- is the same for every generic orbit and every $p$; likewise the two classes of
+an exceptional orbit are $\{\kappa,\nu\kappa\}$ with $\kappa$ fixed by $\sigma$ or by $\tau$, giving two isomorphism types.  The
+statements are therefore a finite verification, carried out by exhaustive enumeration of all subsets
+(\texttt{slack/t221/orbit\_stability.py}; the values $\alpha(P_O)$, the number of maximum sets and the bound
+$\min_M|S\setminus M|\le d$ for $d\le3$ were confirmed for every orbit of every prime $p\le31$; for $d\ge4$ the bound is trivial, since
+$|P_O\setminus M|=4$, resp.\ $2$).
+\end{proof}
+
+\begin{proposition}[stability]\label{prop:stability}
+Let $S\subseteq\Hc\cap\Gp$ be lawful with $|S|=3(p-1)-t$.  Then there is a maximum lawful set $M$,
+$|M|=3(p-1)$, with $|S\setminus M|\le t$; in particular $|S\cap M|\ge3(p-1)-2t$.
+\end{proposition}
+\begin{proof}
+By Lemma~\ref{lem:orbdec} the deficits $d_O:=\alpha(P_O)-|S\cap P_O|$ are non-negative and sum to $t$.  Choose in each orbit a maximum
+set $M_O$ realising the minimum of Lemma~\ref{lem:orbopt}; the union $M=\bigcup_OM_O$ is lawful of size $\sum_O\alpha(P_O)=3(p-1)$
+(Lemma~\ref{lem:orbdec}) and $|S\setminus M|=\sum_O|S\cap P_O\setminus M_O|\le\sum_Od_O=t$.
+\end{proof}
+
+\begin{remark}
+(a) The bound is sharp: in a generic orbit a lawful set of size $11$ can have one point off the unique maximum.
+(b) The proposition is the ``stability'' input that a proof of $\alpha(\Pset_k)\le3(p-1)+O(1)$ would want: it says that the part of a
+lawful set on one hyperbola is, up to its own deficit, a piece of a HJSW-type configuration, so that the interaction with the second
+hyperbola can be analysed against a fixed structure rather than against an arbitrary set.  What it does \emph{not} give is the exchange
+rate: a point of the second hyperbola must be paid for by a deficit \emph{relative to the optimum} of the first, and that is the whole
+conjecture.
+(c) The same decomposition explains the count $9^s$ of Theorem~\ref{thm:window}: generic orbits are rigid, exceptional ones carry nine
+patterns each.
+\end{remark}

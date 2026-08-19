@@ -41,9 +41,9 @@ $0$, when each of its at most two degenerate edges contributes $16$ instead of $
 The sets $B_\varrho$, $\varrho$ a run of consecutive squares, partition $\Pset_{-1}$; each $B_\varrho$ is a union of rows and of columns;
 and every row, every column and every slope-$(\pm1)$ line of the box lies inside a single $B_\varrho$.  Consequently
 \begin{equation}\label{eq:blocks}
- \alpha(\Pset_{-1})\ \le\ \sum_{\varrho}\beta(B_\varrho),\qquad
- \beta(B):=\max\{|S|:\ S\subseteq B,\ |S\cap\ell|\le2\ \text{for every row, column and slope-}(\pm1)\text{ line }\ell\},
+ \alpha(\Pset_{-1})\ \le\ \sum_{\varrho}\beta(B_\varrho),
 \end{equation}
+where $\beta(B)$ is the largest size of an $S\subseteq B$ with at most two points on every row, column and slope-$(\pm1)$ line,
 and the same sum with $\beta$ replaced by the value of the linear relaxation equals the value of the linear relaxation for
 $\Pset_{-1}$ with rows, columns and slope-$(\pm1)$ lines.  (Lines of other slopes may carry three points of $\Pset_{-1}$ --- two from one
 hyperbola and one from the other --- and such a line need not stay inside a block; dropping those constraints is what makes the bound

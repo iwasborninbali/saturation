@@ -1,0 +1,10 @@
+p=17 orbit type (classes=2, points=8): count=2 opt={6} #optimal patterns={9} stability c(d)={((1, 0), (2, 0), (3, 0))}
+p=17 orbit type (classes=4, points=16): count=3 opt={12} #optimal patterns={1} stability c(d)={((1, 1), (2, 2), (3, 3))}
+p=19 orbit type (classes=2, points=8): count=1 opt={6} #optimal patterns={9} stability c(d)={((1, 0), (2, 0), (3, 0))}
+p=19 orbit type (classes=4, points=16): count=4 opt={12} #optimal patterns={1} stability c(d)={((1, 1), (2, 2), (3, 3))}
+p=23 orbit type (classes=2, points=8): count=1 opt={6} #optimal patterns={9} stability c(d)={((1, 0), (2, 0), (3, 0))}
+p=23 orbit type (classes=4, points=16): count=5 opt={12} #optimal patterns={1} stability c(d)={((1, 1), (2, 2), (3, 3))}
+p=29 orbit type (classes=2, points=8): count=2 opt={6} #optimal patterns={9} stability c(d)={((1, 0), (2, 0), (3, 0))}
+p=29 orbit type (classes=4, points=16): count=6 opt={12} #optimal patterns={1} stability c(d)={((1, 1), (2, 2), (3, 3))}
+p=31 orbit type (classes=2, points=8): count=1 opt={6} #optimal patterns={9} stability c(d)={((1, 0), (2, 0), (3, 0))}
+p=31 orbit type (classes=4, points=16): count=7 opt={12} #optimal patterns={1} stability c(d)={((1, 1), (2, 2), (3, 3))}
