@@ -40,10 +40,13 @@ Five parts, mirroring the task:
      since no closed classification is available for the union; Theorem thm:two only gives an upper bound).
 
 Usage:
-  /Users/iwasborninbali/venvs/sat/bin/python3 slack/t221/stability_h3.py             # full run, default primes
-  /Users/iwasborninbali/venvs/sat/bin/python3 slack/t221/stability_h3.py 11 13 17    # custom prime list
-  /Users/iwasborninbali/venvs/sat/bin/python3 slack/t221/stability_h3.py --no-bonus  # skip part 5
-Results are written to slack/t221/stability_h3_results.json.
+  /Users/iwasborninbali/venvs/sat/bin/python3 slack/t221/stability_h3.py               # full run, default primes
+  /Users/iwasborninbali/venvs/sat/bin/python3 slack/t221/stability_h3.py 11 13 17      # custom prime list
+  /Users/iwasborninbali/venvs/sat/bin/python3 slack/t221/stability_h3.py --no-bonus    # skip part 5 (union)
+  /Users/iwasborninbali/venvs/sat/bin/python3 slack/t221/stability_h3.py <primes> --extended
+      # full t-sweep (t=1..3(p-1)-4, not just 1..4) to map out the whole shape of D(t); see extended_sweep().
+      # Skips parts 1-4's other bookkeeping and the bonus; merges into (does not clobber) the same results file.
+Results are written to/merged into slack/t221/stability_h3_results.json (keys: "main", "extended", "bonus").
 """
 from __future__ import annotations
 
@@ -210,6 +213,7 @@ def solve_max_value(n: int, line_groups, time_limit: float = 20.0) -> dict:
     model.Maximize(sum(x))
     solver = cp_model.CpSolver()
     solver.parameters.num_search_workers = 8
+    solver.parameters.random_seed = 2026  # fixed seed: makes the specific optimal witness reproducible
     solver.parameters.max_time_in_seconds = time_limit
     status = solver.Solve(model)
     return dict(status=solver.StatusName(status), value=int(round(solver.ObjectiveValue())),
@@ -229,6 +233,7 @@ def enumerate_all_max_nogood(n: int, line_groups, target: int, cap: int = 300,
     model, x = make_model(n, line_groups, size_eq=target)
     solver = cp_model.CpSolver()
     solver.parameters.num_search_workers = 8
+    solver.parameters.random_seed = 2026
     solver.parameters.max_time_in_seconds = time_limit_each
     solutions: list[frozenset] = []
     exhausted = False
@@ -265,7 +270,8 @@ def enumerate_all_max_builtin(n: int, line_groups, target: int, cap: int = 300,
     model, x = make_model(n, line_groups, size_eq=target)
     solver = cp_model.CpSolver()
     solver.parameters.enumerate_all_solutions = True
-    solver.parameters.num_search_workers = 1
+    solver.parameters.num_search_workers = 1  # required by CP-SAT for enumerate_all_solutions to be valid
+    solver.parameters.random_seed = 2026
     solver.parameters.max_time_in_seconds = time_limit
     cb = _Collector(x, cap)
     status = solver.Solve(model, cb)
@@ -283,6 +289,7 @@ def solve_D(n: int, line_groups, Ms: list[frozenset], target: int, time_limit: f
     model.Maximize(z)
     solver = cp_model.CpSolver()
     solver.parameters.num_search_workers = 8
+    solver.parameters.random_seed = 2026
     solver.parameters.max_time_in_seconds = time_limit
     status = solver.Solve(model)
     ok = status in (cp_model.OPTIMAL, cp_model.FEASIBLE)
@@ -515,6 +522,43 @@ def analyze_prime(p: int, c: int = 1, log=print) -> dict:
 
 
 # ---------------------------------------------------------------------------
+# Extended check (beyond the task's t=1..4): where does D(t)=t stop holding?
+# ---------------------------------------------------------------------------
+
+
+def extended_sweep(p: int, c: int = 1, log=print) -> dict:
+    """D(t) is cheap enough (see the main sweep: milliseconds per t) that we can afford to sweep t all the
+    way from 1 to 3(p-1)-4, not just the required 1..4, and see the FULL shape of D(t).  This is what
+    uncovered D(t) = min(t, p-1-2s): equality D(t)=t up to t=p-1-2s (the number of 'middle copy' points --
+    one per generic class, universally excluded from every maximum set), a plateau at p-1-2s, then decay for
+    very large t (deep outside the near-maximum regime).  Every t is solved to CP-SAT-proven optimality."""
+    pts = h_points(p, c)
+    coords = [(x, y) for x, y, a, r, s in pts]
+    n = len(pts)
+    line_groups = list(build_lines_general(coords).values())
+    target0 = 3 * (p - 1)
+    s = s_value(p, c)
+    Ms, exhausted = enumerate_all_max_nogood(n, line_groups, target0, cap=300, time_limit_each=30.0)
+    predicted_cap = p - 1 - 2 * s
+    log(f"p={p}: |MAX|={len(Ms)} exhausted={exhausted}  predicted plateau p-1-2s={predicted_cap}", flush=True)
+    rows = []
+    tmax = target0 - 4
+    first_dev = None
+    for t in range(1, tmax + 1):
+        r = solve_D(n, line_groups, Ms, target0 - t, time_limit=20.0)
+        rows.append(dict(t=t, D=r["D"], optimal=r["optimal"], status=r["status"]))
+        if r["D"] != t and first_dev is None:
+            first_dev = t
+        if t <= 6 or t % 10 == 0 or r["D"] != t or t > tmax - 3:
+            log(f"  p={p} t={t:3d}: D={r['D']!s:>4} optimal={r['optimal']} (t if unbroken: {t})", flush=True)
+    log(f"p={p}: first t with D(t)!=t is {first_dev} (predicted p-1-2s+1={predicted_cap+1})  "
+        f"all {len(rows)} values proven optimal? {all(row['optimal'] for row in rows)}", flush=True)
+    return dict(p=p, s=s, MAX_count=len(Ms), MAX_exhausted=exhausted, predicted_cap=predicted_cap,
+                first_deviation=first_dev, rows=rows,
+                all_optimal=all(row["optimal"] for row in rows))
+
+
+# ---------------------------------------------------------------------------
 # Bonus (Part 5): H(1) u H(-1)
 # ---------------------------------------------------------------------------
 
@@ -556,9 +600,28 @@ def analyze_union(p: int, log=print) -> dict:
 def main(argv: list[str]) -> None:
     args = [a for a in argv if not a.startswith("--")]
     no_bonus = "--no-bonus" in argv
+    do_extended = "--extended" in argv
     primes = [int(a) for a in args] if args else DEFAULT_PRIMES
 
-    results: dict = dict(primes=primes, main={}, bonus={})
+    if os.path.exists(RESULTS_PATH):  # merge into any existing results rather than clobbering them
+        with open(RESULTS_PATH) as fh:
+            results = json.load(fh)
+        results.setdefault("main", {})
+        results.setdefault("bonus", {})
+        results.setdefault("extended", {})
+        results["primes"] = primes
+    else:
+        results = dict(primes=primes, main={}, bonus={}, extended={})
+
+    if do_extended:  # full t-sweep (1..3(p-1)-4) to map out the whole shape of D(t); skips parts 1-4/bonus
+        for p in primes:
+            print(f"\n=== EXTENDED p={p} ===", flush=True)
+            results["extended"][str(p)] = extended_sweep(p, c=1, log=print)
+            with open(RESULTS_PATH, "w") as fh:
+                json.dump(results, fh, indent=1, default=str)
+        print(f"\nAll done. Results written to {RESULTS_PATH}")
+        return
+
     for p in primes:
         print(f"\n=== p={p} ===", flush=True)
         results["main"][str(p)] = analyze_prime(p, c=1, log=print)
