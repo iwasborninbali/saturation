@@ -54,3 +54,24 @@ By Lemma~\ref{lem:run} the $v_i$ are asymptotically independent and uniform, hen
 $D_k(S)/k!$.  The type dictionary is Lemma~\ref{lem:partners} together with the fact that the pair on an edge is seen as an
 $H(1)$-pair by its left vertex and as (the $R$-image of) a $\tau$-pair by its right vertex, which exchanges $A\cup D$ with $B\cup C$.
 \end{proof}
+
+\begin{corollary}[density of runs by signature]\label{cor:rundensity}
+For every fixed $k\ge2$ and $S\subseteq\{1,\dots,k-1\}$, the number of maximal runs $t,t+1,\dots,t+k-1$ of quadratic residues whose
+signature has descent set $S$ is
+\[
+ \frac{D_k(S)}{k!}\cdot\frac p{2^{k+2}}+O_k\bigl(\sqrt p\log^kp\bigr).
+\]
+Consequently, if $\mathrm{sav}(\varepsilon)$ denotes the exact saving of a component with signature $\varepsilon$ (a bounded integer computable
+by a finite optimisation, Section~\ref{sec:blocks}), then for every $K$
+\[
+ \alpha(\Pset_{-1})\ \le\ \Bigl(4-\sum_{k=2}^{K}\frac1{2^{k+2}}\sum_{S\subseteq\{1,\dots,k-1\}}\frac{D_k(S)}{k!}\,\mathrm{sav}(S)+o(1)\Bigr)(p-1),
+\]
+and the truncation loses at most $\sum_{k>K}4(k-1)2^{-(k+2)}$ (the saving of a component of length $k$ never exceeds $4(k-1)$ in the computed range).
+\end{corollary}
+\begin{proof}
+The run conditions are the $k+2$ Legendre conditions $\chi(t-1)=-1$, $\chi(t)=\dots=\chi(t+k-1)=+1$, $\chi(t+k)=-1$; by Lemma~\ref{lem:run}
+(applied to the $k$ inner ones, which define $C_k$, with the two outer ones as the characters $\varepsilon_0,\varepsilon_k$) each of the $2^k$
+sign choices of the $u_i$ contributes equally, and the signature is the descent set of $(g(v_1),\dots,g(v_k))$ by
+Proposition~\ref{prop:descent}, whose law is uniform.  The last statement is the block decomposition (Theorem~\ref{thm:blocks}) restricted
+to the components of length at most $K$; dropping the others only decreases the saving.
+\end{proof}
