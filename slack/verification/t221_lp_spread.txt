@@ -1,0 +1,23 @@
+p=  11 LP(1)/(p-1)=3.2000 LP(all)/(p-1)=3.2000 D=-0.0000 s=1 p%8=3 m8/p=0.1818 runs=2 maxrun=3
+p=  13 LP(1)/(p-1)=4.0000 LP(all)/(p-1)=3.7333 D=0.2667 s=2 p%8=5 m8/p=0.0000 runs=3 maxrun=3
+p=  17 LP(1)/(p-1)=3.8750 LP(all)/(p-1)=3.7596 D=0.1154 s=2 p%8=1 m8/p=0.0000 runs=2 maxrun=5
+p=  19 LP(1)/(p-1)=3.5556 LP(all)/(p-1)=3.5354 D=0.0202 s=1 p%8=3 m8/p=0.1053 runs=3 maxrun=4
+p=  23 LP(1)/(p-1)=3.6364 LP(all)/(p-1)=3.5511 D=0.0852 s=1 p%8=7 m8/p=0.0870 runs=3 maxrun=5
+p=  29 LP(1)/(p-1)=3.4286 LP(all)/(p-1)=3.2897 D=0.1388 s=2 p%8=5 m8/p=0.1379 runs=3 maxrun=4
+p=  31 LP(1)/(p-1)=3.6000 LP(all)/(p-1)=3.4921 D=0.1079 s=1 p%8=7 m8/p=0.0645 runs=4 maxrun=4
+p=  37 LP(1)/(p-1)=3.5556 LP(all)/(p-1)=3.3975 D=0.1580 s=2 p%8=5 m8/p=0.1081 runs=5 maxrun=4
+p=  41 LP(1)/(p-1)=3.5667 LP(all)/(p-1)=3.5574 D=0.0092 s=2 p%8=1 m8/p=0.0488 runs=6 maxrun=5
+p=  43 LP(1)/(p-1)=3.3333 LP(all)/(p-1)=3.3214 D=0.0120 s=1 p%8=3 m8/p=0.1395 runs=6 maxrun=5
+p=  47 LP(1)/(p-1)=3.4783 LP(all)/(p-1)=3.4297 D=0.0486 s=1 p%8=7 m8/p=0.1277 runs=6 maxrun=5
+p=  53 LP(1)/(p-1)=3.5128 LP(all)/(p-1)=3.4418 D=0.0711 s=2 p%8=5 m8/p=0.0755 runs=9 maxrun=3
+p=  59 LP(1)/(p-1)=3.4253 LP(all)/(p-1)=3.3665 D=0.0588 s=1 p%8=3 m8/p=0.0678 runs=8 maxrun=5
+p=  61 LP(1)/(p-1)=3.4556 LP(all)/(p-1)=3.3562 D=0.0994 s=2 p%8=5 m8/p=0.0328 runs=7 maxrun=5
+p=  67 LP(1)/(p-1)=3.4545 LP(all)/(p-1)=3.4010 D=0.0536 s=1 p%8=3 m8/p=0.0896 runs=9 maxrun=6
+p=  71 LP(1)/(p-1)=3.4095 LP(all)/(p-1)=3.3478 D=0.0617 s=1 p%8=7 m8/p=0.1127 runs=9 maxrun=7
+p=  73 LP(1)/(p-1)=3.4815 LP(all)/(p-1)=3.4385 D=0.0429 s=2 p%8=1 m8/p=0.0548 runs=8 maxrun=9
+p=  79 LP(1)/(p-1)=3.4872 LP(all)/(p-1)=3.4194 D=0.0678 s=1 p%8=7 m8/p=0.1013 runs=10 maxrun=6
+Traceback (most recent call last):
+  File "/Users/iwasborninbali/saturation/slack/t221/lp_spread.py", line 68, in <module>
+    print(f"\nspread LP(1)/(p-1): {a[:,0].min():.4f}..{a[:,0].max():.4f}  (range {a[:,0].ptp():.4f}, sd {a[:,0].std():.4f})")
+                                                                                  ^^^^^^^^^^
+AttributeError: 'numpy.ndarray' object has no attribute 'ptp'
