@@ -338,10 +338,14 @@ def local_search_D(n: int, line_groups, Ms: list[frozenset], target: int, restar
         for step in range(moves):
             T = T0 * (1 - step / moves)
             i = rng.choice(sorted(S))
+            S.discard(i)  # tentatively remove i -- MUST stay in sync with cur, or candidate checks / the
+            # objective become inconsistent (this was a real bug: i used to stay in S while cur pretended
+            # it was gone, letting "swaps" silently grow |S| past target and violate lawfulness)
             for li in at[i]:
                 cur[li] -= 1
             candidates = [j for j in rng.sample(range(n), min(n, 40)) if j not in S and j != i and can_add(S, cur, j)]
             if not candidates:
+                S.add(i)
                 for li in at[i]:
                     cur[li] += 1
                 continue

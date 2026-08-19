@@ -2,4 +2,3 @@
   k=3 done (6 patterns)
   k=4 done (14 patterns)
   k=5 done (30 patterns)
-  k=6 done (62 patterns)

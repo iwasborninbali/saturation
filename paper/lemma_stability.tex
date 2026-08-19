@@ -6,31 +6,33 @@ The classification of Theorem~\ref{thm:window} is in fact orbit-wise, and this m
 
 \begin{lemma}[orbit decomposition]\label{lem:orbdec}
 Let $O=\{\kappa,\sigma\kappa,\tau\kappa,\nu\kappa\}$ be a $V$-orbit of classes and $P_O\subseteq\Hc\cap\Gp$ the union of their lifts
-($16$ points, or $8$ for an exceptional orbit).  Every line containing at least three points of $\Hc\cap\Gp$ has all of them in a single
-$P_O$.  Consequently $\alpha(\Hc\cap\Gp)=\sum_O\alpha(P_O)$ and a set is lawful iff its restriction to every orbit is.
+($16$ points for a generic orbit, $8$ for an exceptional one).  Every line containing at least three points of $\Hc\cap\Gp$ has all of
+them in a single $P_O$; consequently $\alpha(\Hc\cap\Gp)=\sum_O\alpha(P_O)$, and a set is lawful iff its restriction to every orbit is.
+Moreover the incidence structure of $P_O$ --- which points lie on a common rich line --- is the same for all generic orbits and all $p$,
+with rich-line profile $(4,4,3,3,3,3)$, and likewise for all exceptional orbits, with profile $(3,3)$.
 \end{lemma}
 \begin{proof}
-A rich line has slope $+1$ or $-1$ (Corollary~\ref{cor:slopes}) and then meets only the classes $\kappa,\sigma\kappa$, resp.\
-$\kappa,\tau\kappa$ (Lemma~\ref{lem:lagrange}), all of which lie in $O$.
+The first assertion is part of Proposition~\ref{prop:lines}.  For the last one, a generic orbit consists of two classes of type $A$ and two
+of type $D$, or of two of type $B$ and two of type $C$ (Lemma~\ref{lem:partners}: $\sigma$ preserves $A,D$ and exchanges $B,C$, $\tau$ the
+opposite), and Proposition~\ref{prop:lines} then lists its rich lines: in the first case one four-point diagonal for the two $A$'s and one
+for the two $D$'s (item (a)) and one three-point antidiagonal for each of the four classes (item (d)); in the second case the same with
+diagonals and antidiagonals, and (b),(c) in place of (a),(d).  In both cases the incidence structure is the stated one, and the two cases
+are exchanged by $(x,y)\mapsto(y,x)$.  An exceptional orbit is $\{\kappa,\nu\kappa\}$ with $\kappa$ fixed by $\sigma$ or by $\tau$, and
+Proposition~\ref{prop:lines} gives two three-point lines.
 \end{proof}
 
 \begin{lemma}[a single orbit]\label{lem:orbopt}
-For a generic orbit ($4$ classes, $16$ points) $\alpha(P_O)=12$ and the maximum set is \emph{unique}; for an exceptional orbit
-($2$ classes, $8$ points) $\alpha(P_O)=6$ and there are exactly nine maximum sets.  Moreover every lawful $S\subseteq P_O$ with
-$|S|=\alpha(P_O)-d$ satisfies $\min_M|S\setminus M|\le d$, the minimum being over the maximum sets of $P_O$ (for an exceptional orbit
-$\min_M|S\setminus M|=0$: every lawful subset of size $6-d$ is contained in a maximum set).
+For a generic orbit $\alpha(P_O)=12$ and the maximum set is \emph{unique}; for an exceptional orbit $\alpha(P_O)=6$ and there are exactly
+nine maximum sets.  Moreover every lawful $S\subseteq P_O$ with $|S|=\alpha(P_O)-d$ satisfies $\min_M|S\setminus M|\le d$, the minimum
+being over the maximum sets of $P_O$ (for an exceptional orbit $\min_M|S\setminus M|=0$: every lawful subset of size $6-d$ is contained in
+a maximum set).
 \end{lemma}
 \begin{proof}
-A generic orbit consists either of two classes of type $A$ and two of type $D$, or of two of type $B$ and two of
-type $C$ (Lemma~\ref{lem:partners}: $\sigma$ preserves $A$ and $D$ and exchanges $B,C$, while $\tau$ does the opposite), and in the first
-case the two $\sigma$-pairs share their centres while the two $\tau$-pairs do not, in the second case the roles are exchanged; the
-reflection $(x,y)\mapsto(y,x)$ carries one case to the other, so all generic orbits have the same incidence structure, with rich-line
-profile $(4,4,3,3,3,3)$ (verified for every orbit of every $p\le19$: exactly two incidence types occur, one per orbit size).  Likewise the
-two classes of an exceptional orbit are $\{\kappa,\nu\kappa\}$ with $\kappa$ fixed by $\sigma$ or by $\tau$, giving profile $(3,3)$.  The
-statements are therefore a finite verification, carried out by exhaustive enumeration of all subsets
-(\texttt{slack/t221/orbit\_stability.py}; the values $\alpha(P_O)$, the number of maximum sets and the bound
-$\min_M|S\setminus M|\le d$ for $d\le3$ were confirmed for every orbit of every prime $p\le31$; for $d\ge4$ the bound is trivial, since
-$|P_O\setminus M|=4$, resp.\ $2$).
+By Lemma~\ref{lem:orbdec} there are only two incidence structures, so this is a finite verification, carried out by exhaustive enumeration
+of all subsets of the $16$, resp.\ $8$ points (\texttt{slack/\allowbreak t221/\allowbreak orbit\_\allowbreak stability.py}, \texttt{slack/\allowbreak t221/\allowbreak orbit\_\allowbreak types.py}; the values of
+$\alpha(P_O)$, the number of maximum sets and the bound $\min_M|S\setminus M|\le d$ for $d\le3$ were confirmed for every orbit of every
+prime $p\le31$, and exactly two incidence types occur; for $d\ge4$ the bound is trivial, since $|P_O\setminus M|=4$, resp.\ $2$).
+The value $12$ and the count of maximum sets also follow from the gadget analysis of Theorem~\ref{thm:window}.
 \end{proof}
 
 \begin{proposition}[stability]\label{prop:stability}
