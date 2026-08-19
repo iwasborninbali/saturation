@@ -155,3 +155,5 @@ x=15 y=16 :: all n=36 sym=2: solutions=0 nodes=8512565 secs=125.02
 x=14 y=17 :: all n=36 sym=2: solutions=0 nodes=10318980 secs=146.67
 x=15 y=17 :: all n=36 sym=2: solutions=0 nodes=9614861 secs=133.99
 # done 2026-08-18T05:31:53Z
+x=1 y=4 :: all n=36 sym=2: solutions=0 nodes=48365262 secs=380.10
+# rerun of the timed-out sub-class {1,4} without a time limit, 2026-08-19T18:14:57Z (saturation-solver-2); supersedes the "timeout-all" line above

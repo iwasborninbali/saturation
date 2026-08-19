@@ -268,7 +268,7 @@ $n$ & sub-classes $\{x,y\}$ mod $\Dfour$ & inequivalent configurations\\
 26 & 78 & 1 (complete)\\
 28 & 91 & 1 (complete)\\
 36 & 153 & 3 (complete: three sub-classes contain a configuration, two labelled solutions each, i.e.\ one configuration
-up to the diagonal reflections; the sub-class $\{1,4\}$ needed a rerun without time limit, $4.9\cdot10^7$ nodes)\\
+up to the diagonal reflections; the sub-class $\{1,4\}$ needed a rerun without time limit, which exhausted it in $4.84\cdot10^7$ nodes with no configuration; the rerun is recorded in \texttt{logs/sweeps/twoloop\_n36\_exh.txt}\\
 \bottomrule
 \end{tabular}
 \caption{The two-loop family (even $n$): C4-orbits plus one half-turn loop on each long diagonal.  A sub-class is an
@@ -353,7 +353,7 @@ subset has at most $(11/3+o(1))(p-1)$ points (an explicit line cover); see the c
 
 \section{Reproducibility}
 The programs, the sub-class lists, the sweep journals and the certified configurations are in the public repository
-\url{https://github.com/iwasborninbali/saturation} (immutable tag \texttt{defects-v0.8}; checksums in
+\url{https://github.com/iwasborninbali/saturation} (immutable tag \texttt{defects-v1.1}; checksums in
 \texttt{docs/RELEASES.md}):\\
 \texttt{there.c}; \texttt{kit71/there\_twisted\_experiment.c} and its even-$n$ variant \texttt{bench/there\_tw\_even.c}
 (the two bases and the \texttt{PAIRS} defect built in; validated against full enumerations of the rot4 and dia2 classes);

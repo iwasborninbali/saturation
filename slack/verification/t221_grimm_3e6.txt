@@ -1,0 +1,7 @@
+N=3000000: runs checked=216814, Grimm failures=0, longest run=147
+  worst global surplus |union primes| - k = 0 at run (4, 4, 1)
+  worst local  min|N(u)| - 1            = 0 at run (4, 4, 1)
+  окно [2,375000): серий=31902 медиана запаса=9.0 мин=0 макс.длина=111
+  окно [375000,1500000): серий=82251 медиана запаса=12 мин=1 макс.длина=131
+  окно [1500000,3000000): серий=102661 медиана запаса=13 мин=2 макс.длина=147
+timeout 600 /usr/bin/python3 slack/t221/grimm.py 3000000  9.78s user 0.19s system 82% cpu 12.137 total
