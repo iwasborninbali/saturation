@@ -1,0 +1,1 @@
+n=6 M=65: UNKNOWN in 3600s (no configuration found; NOT a proof of impossibility)
