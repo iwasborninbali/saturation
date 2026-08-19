@@ -33,7 +33,9 @@ def decide(p, m, tl):
 
 if __name__=='__main__':
     p=int(sys.argv[1]); tl=float(sys.argv[2]) if len(sys.argv)>2 else 1800
-    for m in (73,72,71):
+    import sys as _s
+    ms=[int(x) for x in _s.argv[3:]] or [73,72,71]
+    for m in ms:
         r=decide(p,m,tl)
-        if r=='INFEASIBLE': continue
-        break
+        if r=='OPTIMAL' or r=='FEASIBLE':
+            print(f"   >>> alpha({p}) >= {m}", flush=True); break
