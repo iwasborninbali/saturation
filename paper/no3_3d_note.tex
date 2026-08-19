@@ -43,6 +43,47 @@ Neither $x^2+y^2$ (anisotropic iff $p\equiv3\bmod 4$) nor $x^2+xy+y^2$ (iff $p\e
 $p$; the choice $x^2-dy^2$ does.  The bound of Proposition~\ref{p:alg} is not sharp: $a(5)\ge40>25$ and
 $a(7)\ge72>49$.
 
+\section{Method: a certified decision procedure}
+A line carrying at most two lattice points of $[n]^3$ forbids nothing, so
+\begin{equation}\label{eq:reform}
+S\subseteq[n]^3 \text{ is admissible}\iff |S\cap L|\le 2 \text{ for every line } L \text{ with } \ge3 \text{ lattice points.}
+\end{equation}
+This turns the question ``is there an admissible set of size $M$?'' into a Boolean satisfiability problem with
+$n^3$ variables --- $125$ for $n=5$, $216$ for $n=6$ --- one at-most-two cardinality constraint per rich line,
+and one global at-least-$M$ constraint.  The global counter is a totalizer truncated at $2n^2$; the truncation
+is legitimate because each of the $n^2$ axis-parallel lines carries at most two points, so $a(n)\le 2n^2$.
+We add the $47$ lexicographic leader constraints of the cube group, which preserve satisfiability because the
+property in \eqref{eq:reform} is invariant under that group.
+
+We adopted this route after measuring the alternative.  A prefix-split exhaustive search on $42$ cores closed
+$5$ of $204$ prefixes in two hours at $n=5$, extrapolating to roughly $88$ core-days; the same question is
+decided by a SAT solver in minutes.  Speed, however, is not the reason.  An exhaustive search establishes
+completeness by \emph{its own} covering argument, which only its authors' code can check; an unsatisfiability
+answer comes with a DRAT certificate that an independent, widely used checker verifies without trusting our
+solver or our code at all.
+
+\medskip\noindent\textbf{Three separate links.}  It is worth being explicit about what is and is not certified,
+because the three claims below rest on different foundations.
+\begin{enumerate}\itemsep2pt
+\item \emph{The formula expresses the problem.}  Verified two independent ways: by comparing the set of
+triples forbidden by the rich-line constraints against the set with vanishing cross product, and by forcing each
+collinear triple as an assumption and requiring unsatisfiability.  At $n=4$ and $n=5$ there are $376$ and $1858$
+collinear triples; none was left unforbidden and none was forbidden spuriously.  A DRAT checker cannot verify
+this link --- it knows nothing of cubes and lines --- and this is exactly where an encoding bug would hide.
+\item \emph{The formula is unsatisfiable.}  Verified by \texttt{drat-trim} on the certificate emitted by
+\texttt{kissat}.
+\item \emph{A witness is admissible.}  Verified by exhaustive integer arithmetic over all $\binom{|S|}{3}$
+triples, by a program sharing no code with the search.
+\end{enumerate}
+Links 1 and 2 give the upper bound; links 1 and 3 give the lower bound.
+
+\medskip\noindent\textbf{Calibration.}  Before computing anything new we reproduced every published value:
+$a(3)=16$ and $a(4)=28$, each with unsatisfiability at $M+1$ in under a second, independently on two machines.
+For instances that resist a single solver call we split into independent pieces by fixing the contents of the
+first columns; the split is complete because three points of a column are collinear, so subsets of size at most
+two exhaust it.  The aggregator refuses a verdict unless every piece of the manifest is present and
+unsatisfiable --- a missing piece and an unsatisfiable one must never look alike.
+
 \section{Exact values}
 \begin{center}\begin{tabular}{rrrl}\toprule
 $n$ & $a(n)$ & $a(n)/n^2$ & status\\\midrule
