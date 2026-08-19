@@ -86,21 +86,52 @@ unsatisfiable --- a missing piece and an unsatisfiable one must never look alike
 
 \section{Exact values}
 \begin{center}\begin{tabular}{rrrl}\toprule
-$n$ & $a(n)$ & $a(n)/n^2$ & status\\\midrule
-1 & 1 & --- & exhaustive\\
-2 & 8 & 2.00 & exhaustive (meets the trivial bound)\\
-3 & 16 & 1.78 & exhaustive\\
-4 & 28 & 1.75 & exhaustive\\
-5 & 40 & 1.60 & \emph{lower bound certified; optimality in progress}\\\bottomrule
+$n$ & $a(n)$ & $a(n)/n^2$ & how established\\\midrule
+1 & 1 & --- & trivial\\
+2 & 8 & 2.00 & exhaustive; meets the trivial bound $2n^2$\\
+3 & 16 & 1.78 & exhaustive, and certified\\
+4 & 28 & 1.75 & exhaustive, and certified\\
+5 & 40 & 1.60 & certified\\
+6 & 64 & 1.78 & certified\\\bottomrule
 \end{tabular}\end{center}
-The exhaustive values were produced by two independent programs: a depth-first search over cells with
-per-line counters and column pruning, and an include/exclude search using, for every pair of cells, a
-precomputed mask of all cells collinear with them.  Their node counts differ by a factor of about $72$
-($17/3855/4.21\cdot10^7$ against $17/20068/3.03\cdot10^9$ for $n=2,3,4$), so the agreement of the values is
-not an artefact of a shared design.  For $n=5$ the search is split into $256$ independent prefixes (the
-subsets of size $\le2$ taken in each of the first two $z$-columns; three points in a column would be
-collinear, so the prefixes cover the space without omission) and the completeness of the covering is checked
-mechanically before any claim of optimality.
+\noindent The value $a(6)=64$ appears to be new; a search of the OEIS for $1,8,16,28,40$ and for
+$8,16,28,40,64$ returns nothing, and the sequence itself is not in the database.
+
+For $n\le4$ the values were also produced by two independent exhaustive programs whose node counts differ by
+a factor of about $72$ ($17/3855/4.21\cdot10^7$ against $17/20068/3.03\cdot10^9$ for $n=2,3,4$), so their
+agreement is not an artefact of a shared design.
+
+For $n=5$ and $n=6$ the decisive question --- does a set of $41$, respectively $65$, points exist? --- was
+split into independent pieces by fixing the contents of the first two $z$-columns, and the heaviest pieces
+were split once more on the third column.  Both splits are complete because three points of a column are
+collinear, so subsets of size at most two exhaust it.  The final tally, reproduced in
+\texttt{logs/no3\_3d/FINAL\_VERDICT.txt}:
+\begin{center}\begin{tabular}{lrrr}\toprule
+ & $n=5$, $M=41$ & $n=6$, $M=65$\\\midrule
+top-level pieces & $256$ & $484$\\
+closed directly & $221$ & $450$\\
+closed through all their continuations & $35$ & $34$\\
+continuations required per piece & $16$ & $22$\\
+satisfiable pieces found & $0$ & $0$\\
+pieces left undecided & $0$ & $0$\\\bottomrule
+\end{tabular}\end{center}
+The aggregator builds the expected set of pieces from the manifest rather than from the results, treats a
+missing piece and an undecided one as failures, and distinguishes three outcomes rather than two: only an
+explicit unsatisfiable answer closes a piece, a satisfiable one anywhere would destroy the claim, and a
+killed or timed-out run counts as \emph{no information} --- it neither closes nor refutes.  Eleven such
+uninformative lines occur in the $n=6$ record, from runs interrupted when work was moved between machines;
+each of the pieces concerned is closed by an explicit unsatisfiable answer from another run.
+
+The lower bounds are witnesses, checked by exhaustive integer arithmetic over all $\binom{|S|}{3}$ triples by
+a program sharing no code with the search: $40$ points at $n=5$ ($9880$ triples) and $64$ points at $n=6$
+($41664$ triples).  For $n=6$ two witnesses were obtained independently, by a SAT solver and by a constraint
+solver in decision form; they turned out to be the same set, which the stabiliser explains --- it has order
+$24$, so the configuration has only two distinct images under the $48$ symmetries of the cube.
+
+As a further check that is not part of the proof, a constraint solver was given the $n=6$, $M=65$ question in
+one piece for an hour and returned no answer.  That is not evidence of impossibility --- it is the solver
+saying it does not know --- but it found no counterexample either, while at $M=64$ it produces a solution in
+seconds.
 
 \section{Structure of the optima, and an anomaly at $n=5$}
 Writing the layer profile of a set as the number of its points in each of the $n$ layers perpendicular to an
@@ -111,7 +142,7 @@ $n$ & $a(n)$ & layer profile (identical for all three axes)\\\midrule
 3 & 16 & $6,4,6$\\
 4 & 28 & $8,6,6,8$\\
 5 & 40 & $8,8,8,8,8$\\
-6 & $\ge64$ & $12,10,10,10,10,12$\\\bottomrule
+6 & 64 & $12,10,10,10,10,12$\\\bottomrule
 \end{tabular}\end{center}
 A layer is an $n\times n$ grid with no three collinear, so it holds at most $2n$ points.  For $n=2,3,4,6$ the two
 outer layers attain that planar maximum and the inner ones hold $2n-2$, giving $2\cdot 2n+(n-2)(2n-2)=2n^2-2n+4$
