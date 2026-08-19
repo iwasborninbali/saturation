@@ -240,6 +240,28 @@ def small_p_crosscheck():
               f"3==2*6? {three}=={2*six}: {three == 2*six}   4==5? {four}=={five}: {four==five}")
 
 
+def double_root_diagnostic():
+    """Explains the small residual mismatches in the small-p cross-check: classes with a DOUBLE root
+    (2 distinct residue points, one with multiplicity 2) are excluded from the len==3 classification but
+    still contribute a rich line when their own 2-root k in {0,1,2} lands on k=1 (an extra 3+3 split, no
+    6-line) or k in {0,2} (an extra lone 4-line, no matching 5-line) -- an O(1) correction (<=2 classes
+    total per prime, from g'(x)=0 / h'(x)=0), negligible next to n3 ~ p/6."""
+    print("=== double-root (ramification) classes: source of the O(1) residual in the small-p check ===")
+    for p in (11, 131, 167):
+        for eps, name in ((1, 'antidiag'), (-1, 'diag')):
+            roots = roots_by_class(p, eps)
+            doubles = [(c, xs) for c, xs in roots.items() if len(xs) == 2]
+            for c, xs in doubles:
+                if eps == 1:
+                    k2 = sum(1 for x in xs if x <= c)
+                else:
+                    thr = (-c) % p
+                    k2 = sum(1 for x in xs if x >= thr)
+                extra = '(1,3,3,1): +2 to the 3-count, +0 to 6' if k2 == 1 else \
+                        '(0,2,4,2) or (2,4,2,0): +1 to the 4-count, +0 to 5'
+                print(f"    p={p} {name}: double-root class c={c} roots={xs} k2={k2}  -> {extra}")
+
+
 def conic_check():
     print("=== conic C_eps: x1^2+x1x2+x2^2 = -eps  (point count vs p, discriminant nonzero check) ===")
     for eps in (1, -1):
@@ -268,12 +290,15 @@ if __name__ == '__main__':
         density_check()
     elif args and args[0] == 'small':
         small_p_crosscheck()
+        double_root_diagnostic()
         conic_check()
     else:
         ps = [int(a) for a in args] if args and args[0].isdigit() else [401, 797]
         density_check()
         print()
         small_p_crosscheck()
+        print()
+        double_root_diagnostic()
         print()
         conic_check()
         for p in ps:
