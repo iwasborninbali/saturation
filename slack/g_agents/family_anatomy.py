@@ -231,7 +231,8 @@ def analyze(p):
         deg_report[J0] = st
         print(f"    J0={str(J0):>4s}: n_lines={st['n_lines']:6d}  mean={st['mean']:6.2f}  std={st['std']:6.2f}  min={st['min']:3d} max={st['max']:5d}"
               f"  frac<=mean/2={st['frac_le_half_mean']:.3f}  CV={st['cv']:.3f}  frac_deg0={st['frac_deg0']:.3f}  argmax_is_hub={hub_ok}", flush=True)
-        print(f"              excl. top point: mean={st_ex['mean']:6.2f}  std={st_ex['std']:6.2f}  CV={st_ex['cv']:.3f}  frac_deg0={st_ex['frac_deg0']:.3f}", flush=True)
+        print(f"              excl. top point: mean={st_ex['mean']:6.2f}  std={st_ex['std']:6.2f}  min={st_ex['min']:3d} max={st_ex['max']:5d}"
+              f"  frac<=mean/2={st_ex['frac_le_half_mean']:.3f}  CV={st_ex['cv']:.3f}  frac_deg0={st_ex['frac_deg0']:.3f}", flush=True)
         deg_report[J0]['cv_excl_hub'] = st_ex['cv']
         deg_report[J0]['mean_excl_hub'] = st_ex['mean']
 
