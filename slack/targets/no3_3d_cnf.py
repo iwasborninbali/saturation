@@ -48,7 +48,7 @@ def lines(n):
         if len(m) >= 3: out.append(m)
     return len(cells), out
 
-def build(n, M, path, sym=False, profile=None, axes=(0,1,2)):
+def build(n, M, path, sym=False, profile=None, axes=(0,1,2), invariant=None):
     """profile: список из n чисел — сколько точек в каждом слое, перпендикулярном ВСЕМ трём осям.
        Структурная форма задачи: она несравненно легче общей, потому что кардинальность
        распадается на n маленьких ограничений вместо одного большого. Именно так первый солвер
@@ -73,6 +73,16 @@ def build(n, M, path, sym=False, profile=None, axes=(0,1,2)):
                 F.atmost(cells, profile[t])                       # не больше
                 F.atmost([-c for c in cells], len(cells)-profile[t])  # и не меньше
     F.atleast([x(i) for i in range(nc)], M, 2*n*n + 1)   # обрезка законна: a(n) <= 2n^2
+    if invariant:
+        # ПОИСК СРЕДИ ИНВАРИАНТНЫХ конфигураций (приём первого солвера).
+        # Клетки склеиваются в орбиты выбранной подгруппы, переменных в |G| раз меньше,
+        # и поиск резко ускоряется. ЗАКОННО ТОЛЬКО ДЛЯ НИЖНИХ ГРАНИЦ: что найдено — существует;
+        # ненайденное здесь НЕ означает несуществующего, потому что несимметричные конфигурации
+        # из рассмотрения исключены.
+        for sigma in invariant:
+            for i in range(nc):
+                if i != sigma[i]:
+                    F.add(-x(i), x(sigma[i])); F.add(x(i), -x(sigma[i]))
     ns = 0
     if sym:
         for sigma in cube_group(n): lex_leader(F, x, sigma, nc); ns += 1
@@ -85,4 +95,8 @@ if __name__ == "__main__":
         prof = [int(t) for t in sys.argv[sys.argv.index("--profile")+1].split(",")]
     ax = (0,1,2)
     if "--axes" in sys.argv: ax = tuple(int(t) for t in sys.argv[sys.argv.index("--axes")+1].split(","))
-    build(int(sys.argv[1]), int(sys.argv[2]), sys.argv[3], sym=("--sym" in sys.argv), profile=prof, axes=ax)
+    inv = None
+    if "--cyc3" in sys.argv:            # (x,y,z) -> (y,z,x): циклическая перестановка осей, порядок 3
+        n0 = int(sys.argv[1])
+        inv = [[ ((i//n0)%n0)*n0*n0 + (i%n0)*n0 + (i//(n0*n0)) for i in range(n0**3) ]]
+    build(int(sys.argv[1]), int(sys.argv[2]), sys.argv[3], sym=("--sym" in sys.argv), profile=prof, axes=ax, invariant=inv)
