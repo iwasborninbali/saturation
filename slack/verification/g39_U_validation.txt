@@ -1,0 +1,73 @@
+====================================================================================================
+dump /home/pmbot/projects/saturation_peer/slack/verification/cube_dump_p12809_box0_0.npz
+p=12809 x0=0 y0=0 x0p=0.000000
+  P(kp=3) empirical = 0.50004  (model: 1/2);  P(kp=1)=0.49996  P(kp=2,other)=0.00000 [count=0]
+  P(km=3) empirical = 0.50004  (model: 1/2);  P(km=1)=0.49996  P(km=2,other)=0.00000 [count=0]
+  kp=3: npl distribution {1: 0.1552, 2: 0.3104, 3: 0.5344}  (model expects mass on 1,2,3 depending on pi,thp -- not a fixed law, see cell test below)
+  lift (0,0): populated cells= 192  max|emp-pred| over cells=0.1852  pop-weighted mean|emp-pred|=0.04984  Sigma(1-cov)=5608  Sigma(U)=5603.36
+  lift (0,1): populated cells= 192  max|emp-pred| over cells=0.2174  pop-weighted mean|emp-pred|=0.04746  Sigma(1-cov)=5673  Sigma(U)=5612.23
+  lift (1,0): populated cells= 192  max|emp-pred| over cells=0.2174  pop-weighted mean|emp-pred|=0.04746  Sigma(1-cov)=5673  Sigma(U)=5612.23
+  lift (1,1): populated cells= 192  max|emp-pred| over cells=0.1852  pop-weighted mean|emp-pred|=0.04994  Sigma(1-cov)=5610  Sigma(U)=5603.11
+  OVERALL: Sigma_{x,d,e}(1-cov) = 22564   (|S0|, target ~1.75p = 22415.8, ratio to p = 1.7616)
+  OVERALL: Sigma_{x,d,e}(U)     = 22430.92  (ratio to p = 1.7512)
+  OVERALL relative diff (Sigma U - Sigma(1-cov)) / p = -0.01039
+====================================================================================================
+dump /home/pmbot/projects/saturation_peer/slack/verification/cube_dump_p12809_box-6404_0.npz
+p=12809 x0=-6404 y0=0 x0p=0.500039
+  P(kp=3) empirical = 0.50004  (model: 1/2);  P(kp=1)=0.49996  P(kp=2,other)=0.00000 [count=0]
+  P(km=3) empirical = 0.50004  (model: 1/2);  P(km=1)=0.49996  P(km=2,other)=0.00000 [count=0]
+  kp=3: npl distribution {1: 0.1697, 2: 0.3394, 3: 0.4909}  (model expects mass on 1,2,3 depending on pi,thp -- not a fixed law, see cell test below)
+  lift (0,0): populated cells= 192  max|emp-pred| over cells=0.1955  pop-weighted mean|emp-pred|=0.04874  Sigma(1-cov)=5608  Sigma(U)=5606.76
+  lift (0,1): populated cells= 192  max|emp-pred| over cells=0.2174  pop-weighted mean|emp-pred|=0.04751  Sigma(1-cov)=5582  Sigma(U)=5598.63
+  lift (1,0): populated cells= 192  max|emp-pred| over cells=0.2174  pop-weighted mean|emp-pred|=0.04784  Sigma(1-cov)=5582  Sigma(U)=5598.69
+  lift (1,1): populated cells= 192  max|emp-pred| over cells=0.1955  pop-weighted mean|emp-pred|=0.04836  Sigma(1-cov)=5608  Sigma(U)=5606.32
+  OVERALL: Sigma_{x,d,e}(1-cov) = 22380   (|S0|, target ~1.75p = 22415.8, ratio to p = 1.7472)
+  OVERALL: Sigma_{x,d,e}(U)     = 22410.40  (ratio to p = 1.7496)
+  OVERALL relative diff (Sigma U - Sigma(1-cov)) / p = 0.00237
+====================================================================================================
+dump /home/pmbot/projects/saturation_peer/slack/verification/cube_dump_p3203_box700_-2100.npz
+p=3203 x0=700 y0=-2100 x0p=0.218545
+  P(kp=3) empirical = 0.49922  (model: 1/2);  P(kp=1)=0.49953  P(kp=2,other)=0.00125 [count=4]
+  P(km=3) empirical = 0.50016  (model: 1/2);  P(km=1)=0.49984  P(km=2,other)=0.00000 [count=0]
+  kp=3: npl distribution {1: 0.1714, 2: 0.3427, 3: 0.4859}  (model expects mass on 1,2,3 depending on pi,thp -- not a fixed law, see cell test below)
+  lift (0,0): populated cells= 192  max|emp-pred| over cells=0.5000  pop-weighted mean|emp-pred|=0.10084  Sigma(1-cov)=1396  Sigma(U)=1403.43
+  lift (0,1): populated cells= 192  max|emp-pred| over cells=0.3571  pop-weighted mean|emp-pred|=0.09337  Sigma(1-cov)=1386  Sigma(U)=1406.84
+  lift (1,0): populated cells= 192  max|emp-pred| over cells=0.3667  pop-weighted mean|emp-pred|=0.10310  Sigma(1-cov)=1398  Sigma(U)=1395.19
+  lift (1,1): populated cells= 192  max|emp-pred| over cells=0.4128  pop-weighted mean|emp-pred|=0.10571  Sigma(1-cov)=1382  Sigma(U)=1395.46
+  OVERALL: Sigma_{x,d,e}(1-cov) = 5562   (|S0|, target ~1.75p = 5605.2, ratio to p = 1.7365)
+  OVERALL: Sigma_{x,d,e}(U)     = 5600.92  (ratio to p = 1.7486)
+  OVERALL relative diff (Sigma U - Sigma(1-cov)) / p = 0.01215
+
+####################################################################################################
+# supplementary: z-score check (8x8x8 grid) + U-decile calibration (pooled, low-noise)
+####################################################################################################
+
+--- /home/pmbot/projects/saturation_peer/slack/verification/cube_dump_p12809_box0_0.npz (p=12809) ---
+  lift (0,0): cells(n>=5)=192  mean z=+0.000  std z=1.069  frac|z|>2=0.068  frac|z|>3=0.000  (pure noise expects mean~0,std~1,frac>2~0.05,frac>3~0.003)
+    U-decile calib (20 bins, ~640 residues/bin): max|pred-emp|=0.0415  table(pred,emp,n)=(0.250,0.220,640),(0.253,0.253,640),(0.306,0.307,641),(0.354,0.348,640),(0.378,0.373,641),(0.397,0.409,640),(0.418,0.424,641),(0.440,0.455,640),(0.464,0.505,641),(0.488,0.463,640),(0.500,0.494,640),(0.500,0.466,641),(0.500,0.536,640),(0.500,0.513,641),(0.500,0.492,640),(0.500,0.493,641),(0.500,0.514,640),(0.500,0.482,641),(0.500,0.484,640),(0.500,0.523,641)
+  lift (0,1): cells(n>=5)=192  mean z=+0.055  std z=1.012  frac|z|>2=0.036  frac|z|>3=0.000  (pure noise expects mean~0,std~1,frac>2~0.05,frac>3~0.003)
+    U-decile calib (20 bins, ~640 residues/bin): max|pred-emp|=0.0460  table(pred,emp,n)=(0.250,0.269,640),(0.255,0.256,640),(0.308,0.343,641),(0.354,0.319,640),(0.379,0.384,641),(0.399,0.441,640),(0.421,0.410,641),(0.443,0.453,640),(0.465,0.499,641),(0.488,0.484,640),(0.500,0.469,640),(0.500,0.524,641),(0.500,0.495,640),(0.500,0.491,641),(0.500,0.497,640),(0.500,0.546,641),(0.500,0.506,640),(0.500,0.480,641),(0.500,0.497,640),(0.500,0.493,641)
+  lift (1,0): cells(n>=5)=192  mean z=+0.055  std z=1.013  frac|z|>2=0.042  frac|z|>3=0.000  (pure noise expects mean~0,std~1,frac>2~0.05,frac>3~0.003)
+    U-decile calib (20 bins, ~640 residues/bin): max|pred-emp|=0.0413  table(pred,emp,n)=(0.250,0.245,640),(0.255,0.280,640),(0.308,0.343,641),(0.354,0.319,640),(0.379,0.384,641),(0.399,0.441,640),(0.421,0.410,641),(0.443,0.453,640),(0.465,0.499,641),(0.488,0.484,640),(0.500,0.472,640),(0.500,0.526,641),(0.500,0.502,640),(0.500,0.491,641),(0.500,0.492,640),(0.500,0.541,641),(0.500,0.514,640),(0.500,0.477,641),(0.500,0.492,640),(0.500,0.491,641)
+  lift (1,1): cells(n>=5)=192  mean z=+0.003  std z=1.070  frac|z|>2=0.068  frac|z|>3=0.000  (pure noise expects mean~0,std~1,frac>2~0.05,frac>3~0.003)
+    U-decile calib (20 bins, ~640 residues/bin): max|pred-emp|=0.0516  table(pred,emp,n)=(0.250,0.198,640),(0.253,0.275,640),(0.306,0.306,641),(0.354,0.348,640),(0.378,0.374,641),(0.397,0.408,640),(0.418,0.426,641),(0.440,0.455,640),(0.464,0.504,641),(0.488,0.464,640),(0.500,0.491,640),(0.500,0.468,641),(0.500,0.536,640),(0.500,0.512,641),(0.500,0.492,640),(0.500,0.495,641),(0.500,0.517,640),(0.500,0.480,641),(0.500,0.487,640),(0.500,0.523,641)
+
+--- /home/pmbot/projects/saturation_peer/slack/verification/cube_dump_p12809_box-6404_0.npz (p=12809) ---
+  lift (0,0): cells(n>=5)=192  mean z=-0.004  std z=1.039  frac|z|>2=0.062  frac|z|>3=0.000  (pure noise expects mean~0,std~1,frac>2~0.05,frac>3~0.003)
+    U-decile calib (20 bins, ~640 residues/bin): max|pred-emp|=0.0413  table(pred,emp,n)=(0.262,0.266,640),(0.296,0.323,640),(0.317,0.343,641),(0.337,0.339,640),(0.357,0.373,641),(0.381,0.350,640),(0.414,0.396,641),(0.440,0.450,640),(0.464,0.426,641),(0.488,0.491,640),(0.500,0.497,640),(0.500,0.465,641),(0.500,0.523,640),(0.500,0.491,641),(0.500,0.477,640),(0.500,0.520,641),(0.500,0.516,640),(0.500,0.490,641),(0.500,0.480,640),(0.500,0.541,641)
+  lift (0,1): cells(n>=5)=192  mean z=-0.040  std z=0.996  frac|z|>2=0.021  frac|z|>3=0.000  (pure noise expects mean~0,std~1,frac>2~0.05,frac>3~0.003)
+    U-decile calib (20 bins, ~640 residues/bin): max|pred-emp|=0.0476  table(pred,emp,n)=(0.261,0.269,640),(0.294,0.258,640),(0.316,0.340,641),(0.335,0.328,640),(0.354,0.368,641),(0.377,0.388,640),(0.412,0.443,641),(0.440,0.425,640),(0.464,0.429,641),(0.488,0.467,640),(0.500,0.473,640),(0.500,0.524,641),(0.500,0.494,640),(0.500,0.491,641),(0.500,0.495,640),(0.500,0.548,641),(0.500,0.506,640),(0.500,0.480,641),(0.500,0.495,640),(0.500,0.493,641)
+  lift (1,0): cells(n>=5)=192  mean z=-0.041  std z=0.999  frac|z|>2=0.026  frac|z|>3=0.000  (pure noise expects mean~0,std~1,frac>2~0.05,frac>3~0.003)
+    U-decile calib (20 bins, ~640 residues/bin): max|pred-emp|=0.0445  table(pred,emp,n)=(0.261,0.269,640),(0.294,0.258,640),(0.316,0.342,641),(0.335,0.327,640),(0.354,0.370,641),(0.377,0.388,640),(0.412,0.441,641),(0.440,0.425,640),(0.464,0.429,641),(0.488,0.469,640),(0.500,0.472,640),(0.500,0.523,641),(0.500,0.500,640),(0.500,0.490,641),(0.500,0.495,640),(0.500,0.544,641),(0.500,0.508,640),(0.500,0.477,641),(0.500,0.500,640),(0.500,0.490,641)
+  lift (1,1): cells(n>=5)=192  mean z=-0.003  std z=1.041  frac|z|>2=0.062  frac|z|>3=0.000  (pure noise expects mean~0,std~1,frac>2~0.05,frac>3~0.003)
+    U-decile calib (20 bins, ~640 residues/bin): max|pred-emp|=0.0377  table(pred,emp,n)=(0.262,0.266,640),(0.296,0.323,640),(0.317,0.343,641),(0.337,0.338,640),(0.357,0.374,641),(0.381,0.348,640),(0.414,0.398,641),(0.440,0.450,640),(0.464,0.426,641),(0.488,0.491,640),(0.500,0.489,640),(0.500,0.466,641),(0.500,0.537,640),(0.500,0.513,641),(0.500,0.487,640),(0.500,0.496,641),(0.500,0.514,640),(0.500,0.482,641),(0.500,0.486,640),(0.500,0.527,641)
+
+--- /home/pmbot/projects/saturation_peer/slack/verification/cube_dump_p3203_box700_-2100.npz (p=3203) ---
+  lift (0,0): cells(n>=5)=191  mean z=-0.021  std z=1.035  frac|z|>2=0.031  frac|z|>3=0.000  (pure noise expects mean~0,std~1,frac>2~0.05,frac>3~0.003)
+    U-decile calib (10 bins, ~320 residues/bin): max|pred-emp|=0.0656  table(pred,emp,n)=(0.281,0.284,320),(0.336,0.331,320),(0.372,0.344,320),(0.417,0.358,321),(0.476,0.503,320),(0.500,0.484,320),(0.500,0.542,321),(0.500,0.566,320),(0.500,0.456,320),(0.500,0.489,321)
+  lift (0,1): cells(n>=5)=191  mean z=-0.041  std z=1.002  frac|z|>2=0.052  frac|z|>3=0.000  (pure noise expects mean~0,std~1,frac>2~0.05,frac>3~0.003)
+    U-decile calib (10 bins, ~320 residues/bin): max|pred-emp|=0.0717  table(pred,emp,n)=(0.280,0.275,320),(0.337,0.350,320),(0.375,0.303,320),(0.421,0.449,321),(0.479,0.487,320),(0.500,0.541,320),(0.500,0.508,321),(0.500,0.475,320),(0.500,0.453,320),(0.500,0.486,321)
+  lift (1,0): cells(n>=5)=191  mean z=+0.010  std z=1.087  frac|z|>2=0.047  frac|z|>3=0.000  (pure noise expects mean~0,std~1,frac>2~0.05,frac>3~0.003)
+    U-decile calib (10 bins, ~320 residues/bin): max|pred-emp|=0.0314  table(pred,emp,n)=(0.270,0.284,320),(0.313,0.328,320),(0.370,0.359,320),(0.428,0.405,321),(0.474,0.447,320),(0.500,0.531,320),(0.500,0.492,321),(0.500,0.506,320),(0.500,0.509,320),(0.500,0.502,321)
+  lift (1,1): cells(n>=5)=191  mean z=-0.028  std z=1.072  frac|z|>2=0.042  frac|z|>3=0.000  (pure noise expects mean~0,std~1,frac>2~0.05,frac>3~0.003)
+    U-decile calib (10 bins, ~320 residues/bin): max|pred-emp|=0.0296  table(pred,emp,n)=(0.267,0.281,320),(0.310,0.316,320),(0.371,0.366,320),(0.432,0.433,321),(0.476,0.459,320),(0.500,0.484,320),(0.500,0.470,321),(0.500,0.494,320),(0.500,0.481,320),(0.500,0.530,321)

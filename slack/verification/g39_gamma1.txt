@@ -1,0 +1,87 @@
+=== gamma1.py log ===
+
+--- spec bug found (confirmed numerically against dumps) ---
+theta+_m formula: correct is  1 - frac(F_m - pos_m - y0/p)   (spec text has extra '+x0/p' via '-(y0-x0)/p')
+theta-_m formula: correct is  frac(F_m + pos_m - y0/p)        (spec text has extra '+x0/p' via '-(x0+y0)/p')
+Verified on dump p=3203 box(700,-2100): max|correct-dump.thp|=2.2e-16 (Y0/p form) vs 0.78 (spec-literal form).
+
+--- STEP 1: validate line COUNT (use_U=False) ---
+p12809_box0_0: p=12809 x0=0 y0=0 xi0=0.0000 eta0=0.0000  model #lines/p=1.7333  empirical len(rec13)/p=1.7313  (target box(0,0)~1.731, box(-6404,0)~1.800)
+p12809_box-6404_0: p=12809 x0=-6404 y0=0 xi0=0.5000 eta0=0.0000  model #lines/p=1.7995  empirical len(rec13)/p=1.8005  (target box(0,0)~1.731, box(-6404,0)~1.800)
+p3203_box700_-2100: p=3203 x0=700 y0=-2100 xi0=0.2185 eta0=0.3444  model #lines/p=1.8027  empirical len(rec13)/p=1.8017  (target box(0,0)~1.731, box(-6404,0)~1.800)
+
+--- STEP 2: validate local law against rec13 (per-box) ---
+p12809_box0_0: (delta1,eps1) distribution among rec13 lines:
+    (d1,e1)=(0,0): frac=0.2515  good-frac-within=0.0741
+    (d1,e1)=(0,1): frac=0.2485  good-frac-within=0.0777
+    (d1,e1)=(1,0): frac=0.2485  good-frac-within=0.0777
+    (d1,e1)=(1,1): frac=0.2515  good-frac-within=0.0741
+    empirical good-fraction by s-decile (s in [-2/3,2/3)):
+      bin 0 s in [-0.667,-0.533): n=  378 good_frac=0.0979
+      bin 1 s in [-0.533,-0.400): n= 1319 good_frac=0.0660
+      bin 2 s in [-0.400,-0.267): n= 2282 good_frac=0.0692
+      bin 3 s in [-0.267,-0.133): n= 3328 good_frac=0.0769
+      bin 4 s in [-0.133,0.000): n= 3781 good_frac=0.0801
+      bin 5 s in [0.000,0.133): n= 3781 good_frac=0.0801
+      bin 6 s in [0.133,0.267): n= 3328 good_frac=0.0769
+      bin 7 s in [0.267,0.400): n= 2282 good_frac=0.0692
+      bin 8 s in [0.400,0.533): n= 1319 good_frac=0.0660
+      bin 9 s in [0.533,0.667): n=  378 good_frac=0.0979
+p12809_box-6404_0: (delta1,eps1) distribution among rec13 lines:
+    (d1,e1)=(0,0): frac=0.2517  good-frac-within=0.0782
+    (d1,e1)=(0,1): frac=0.2483  good-frac-within=0.0733
+    (d1,e1)=(1,0): frac=0.2483  good-frac-within=0.0733
+    (d1,e1)=(1,1): frac=0.2517  good-frac-within=0.0782
+    empirical good-fraction by s-decile (s in [-2/3,2/3)):
+      bin 0 s in [-0.667,-0.533): n=  525 good_frac=0.0667
+      bin 1 s in [-0.533,-0.400): n= 1319 good_frac=0.0667
+      bin 2 s in [-0.400,-0.267): n= 2328 good_frac=0.0735
+      bin 3 s in [-0.267,-0.133): n= 3063 good_frac=0.0725
+      bin 4 s in [-0.133,0.000): n= 4296 good_frac=0.0833
+      bin 5 s in [0.000,0.133): n= 4296 good_frac=0.0833
+      bin 6 s in [0.133,0.267): n= 3063 good_frac=0.0725
+      bin 7 s in [0.267,0.400): n= 2328 good_frac=0.0735
+      bin 8 s in [0.400,0.533): n= 1319 good_frac=0.0667
+      bin 9 s in [0.533,0.667): n=  525 good_frac=0.0667
+p3203_box700_-2100: (delta1,eps1) distribution among rec13 lines:
+    (d1,e1)=(0,0): frac=0.2407  good-frac-within=0.0821
+    (d1,e1)=(0,1): frac=0.2424  good-frac-within=0.0772
+    (d1,e1)=(1,0): frac=0.2597  good-frac-within=0.0694
+    (d1,e1)=(1,1): frac=0.2571  good-frac-within=0.0694
+    empirical good-fraction by s-decile (s in [-2/3,2/3)):
+      bin 0 s in [-0.667,-0.533): n=  184 good_frac=0.1033
+      bin 1 s in [-0.533,-0.400): n=  311 good_frac=0.0514
+      bin 2 s in [-0.400,-0.267): n=  556 good_frac=0.0755
+      bin 3 s in [-0.267,-0.133): n=  818 good_frac=0.0623
+      bin 4 s in [-0.133,0.000): n= 1058 good_frac=0.0747
+      bin 5 s in [0.000,0.133): n= 1048 good_frac=0.0802
+      bin 6 s in [0.133,0.267): n=  769 good_frac=0.0702
+      bin 7 s in [0.267,0.400): n=  583 good_frac=0.0840
+      bin 8 s in [0.400,0.533): n=  367 good_frac=0.0736
+      bin 9 s in [0.533,0.667): n=   77 good_frac=0.1039
+
+--- STEP 3: gamma1 with U (good-line density) for the 3 dump boxes ---
+p12809_box0_0: xi0=0.0000 eta0=0.0000  gamma1(model)=0.1287  empirical good/p=0.1313  rel.diff=-2.0%
+p12809_box-6404_0: xi0=0.5000 eta0=0.0000  gamma1(model)=0.1361  empirical good/p=0.1365  rel.diff=-0.3%
+p3203_box700_-2100: xi0=0.2185 eta0=0.3444  gamma1(model)=0.1363  empirical good/p=0.1339  rel.diff=1.8%
+
+--- STEP 4: gamma1 on a grid of box positions (xi0,eta0 in {0,0.25,0.5,0.75}) ---
+  xi0=0.00 eta0=0.00: gamma1=0.1287
+  xi0=0.00 eta0=0.25: gamma1=0.1287
+  xi0=0.00 eta0=0.50: gamma1=0.1287
+  xi0=0.00 eta0=0.75: gamma1=0.1287
+  xi0=0.25 eta0=0.00: gamma1=0.1343
+  xi0=0.25 eta0=0.25: gamma1=0.1344
+  xi0=0.25 eta0=0.50: gamma1=0.1344
+  xi0=0.25 eta0=0.75: gamma1=0.1344
+  xi0=0.50 eta0=0.00: gamma1=0.1361
+  xi0=0.50 eta0=0.25: gamma1=0.1361
+  xi0=0.50 eta0=0.50: gamma1=0.1361
+  xi0=0.50 eta0=0.75: gamma1=0.1361
+  xi0=0.75 eta0=0.00: gamma1=0.1342
+  xi0=0.75 eta0=0.25: gamma1=0.1343
+  xi0=0.75 eta0=0.50: gamma1=0.1343
+  xi0=0.75 eta0=0.75: gamma1=0.1343
+  grid min/max/mean gamma1 = 0.1287 / 0.1361 / 0.1334
+
+=== done ===

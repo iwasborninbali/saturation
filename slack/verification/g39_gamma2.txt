@@ -1,0 +1,68 @@
+====================================================================================================
+dump p12809_box0_0: p=12809 x0=0 y0=0  #family-(1,3) lines in box = 22176 (1.7313 p)
+  #distinct point-sharing line pairs checked = 29474 (2.3010 p);  m=m' occurrences = 0 (should be 0)
+  --- part (1) ground truth: GOOD-GOOD pairs by unordered role-set {m,m'} ---
+    {1,2}:   116  (0.0091 p)
+    {1,3}:   104  (0.0081 p)
+    {2,3}:   132  (0.0103 p)
+    TOTAL good-good pairs: 352 (0.0275 p)
+  --- part (2) model prediction: sum of P(both good)=prod(5 U's) over ALL real intersecting pairs, by role-set ---
+    {1,2}: predicted=116.583 (0.0091 p)   empirical(good-good)=116 (0.0091 p)   diff/p=+0.0000
+    {1,3}: predicted=118.813 (0.0093 p)   empirical(good-good)=104 (0.0081 p)   diff/p=+0.0012
+    {2,3}: predicted=126.657 (0.0099 p)   empirical(good-good)=132 (0.0103 p)   diff/p=-0.0004
+    TOTAL predicted gamma2*p = 362.053 (0.0283 p)   empirical total = 352 (0.0275 p)   diff/p=+0.0008
+  --- spec's 6 configurations (m,m') [config(m,m')=config(m',m)=predicted_single{m,m'} by U-product symmetry] ---
+    config (1,2)  [a_1/a_2=4]:  predicted = 116.583 (0.0091 p)
+    config (1,3)  [a_1/a_3=-4/5]:  predicted = 118.813 (0.0093 p)
+    config (2,1)  [a_2/a_1=1/4]:  predicted = 116.583 (0.0091 p)
+    config (2,3)  [a_2/a_3=-1/5]:  predicted = 126.657 (0.0099 p)
+    config (3,1)  [a_3/a_1=-5/4]:  predicted = 118.813 (0.0093 p)
+    config (3,2)  [a_3/a_2=-5]:  predicted = 126.657 (0.0099 p)
+    Sum over the 6 listed configurations (spec's literal gamma2 sum, double-counts each pair from both lines' perspective) = 724.106 (0.0565 p) = 2 x total_predicted
+====================================================================================================
+dump p12809_box-6404_0: p=12809 x0=-6404 y0=0  #family-(1,3) lines in box = 23062 (1.8005 p)
+  #distinct point-sharing line pairs checked = 30746 (2.4003 p);  m=m' occurrences = 0 (should be 0)
+  --- part (1) ground truth: GOOD-GOOD pairs by unordered role-set {m,m'} ---
+    {1,2}:   126  (0.0098 p)
+    {1,3}:   130  (0.0101 p)
+    {2,3}:   148  (0.0116 p)
+    TOTAL good-good pairs: 404 (0.0315 p)
+  --- part (2) model prediction: sum of P(both good)=prod(5 U's) over ALL real intersecting pairs, by role-set ---
+    {1,2}: predicted=122.685 (0.0096 p)   empirical(good-good)=126 (0.0098 p)   diff/p=-0.0003
+    {1,3}: predicted=135.877 (0.0106 p)   empirical(good-good)=130 (0.0101 p)   diff/p=+0.0005
+    {2,3}: predicted=130.304 (0.0102 p)   empirical(good-good)=148 (0.0116 p)   diff/p=-0.0014
+    TOTAL predicted gamma2*p = 388.865 (0.0304 p)   empirical total = 404 (0.0315 p)   diff/p=-0.0012
+  --- spec's 6 configurations (m,m') [config(m,m')=config(m',m)=predicted_single{m,m'} by U-product symmetry] ---
+    config (1,2)  [a_1/a_2=4]:  predicted = 122.685 (0.0096 p)
+    config (1,3)  [a_1/a_3=-4/5]:  predicted = 135.877 (0.0106 p)
+    config (2,1)  [a_2/a_1=1/4]:  predicted = 122.685 (0.0096 p)
+    config (2,3)  [a_2/a_3=-1/5]:  predicted = 130.304 (0.0102 p)
+    config (3,1)  [a_3/a_1=-5/4]:  predicted = 135.877 (0.0106 p)
+    config (3,2)  [a_3/a_2=-5]:  predicted = 130.304 (0.0102 p)
+    Sum over the 6 listed configurations (spec's literal gamma2 sum, double-counts each pair from both lines' perspective) = 777.731 (0.0607 p) = 2 x total_predicted
+====================================================================================================
+dump p3203_box700_-2100: p=3203 x0=700 y0=-2100  #family-(1,3) lines in box = 5771 (1.8017 p)
+  #distinct point-sharing line pairs checked = 7689 (2.4006 p);  m=m' occurrences = 0 (should be 0)
+  --- part (1) ground truth: GOOD-GOOD pairs by unordered role-set {m,m'} ---
+    {1,2}:    22  (0.0069 p)
+    {1,3}:    34  (0.0106 p)
+    {2,3}:    25  (0.0078 p)
+    TOTAL good-good pairs: 81 (0.0253 p)
+  --- part (2) model prediction: sum of P(both good)=prod(5 U's) over ALL real intersecting pairs, by role-set ---
+    {1,2}: predicted=30.278 (0.0095 p)   empirical(good-good)=22 (0.0069 p)   diff/p=+0.0026
+    {1,3}: predicted=33.452 (0.0104 p)   empirical(good-good)=34 (0.0106 p)   diff/p=-0.0002
+    {2,3}: predicted=32.403 (0.0101 p)   empirical(good-good)=25 (0.0078 p)   diff/p=+0.0023
+    TOTAL predicted gamma2*p = 96.133 (0.0300 p)   empirical total = 81 (0.0253 p)   diff/p=+0.0047
+  --- spec's 6 configurations (m,m') [config(m,m')=config(m',m)=predicted_single{m,m'} by U-product symmetry] ---
+    config (1,2)  [a_1/a_2=4]:  predicted = 30.278 (0.0095 p)
+    config (1,3)  [a_1/a_3=-4/5]:  predicted = 33.452 (0.0104 p)
+    config (2,1)  [a_2/a_1=1/4]:  predicted = 30.278 (0.0095 p)
+    config (2,3)  [a_2/a_3=-1/5]:  predicted = 32.403 (0.0101 p)
+    config (3,1)  [a_3/a_1=-5/4]:  predicted = 33.452 (0.0104 p)
+    config (3,2)  [a_3/a_2=-5]:  predicted = 32.403 (0.0101 p)
+    Sum over the 6 listed configurations (spec's literal gamma2 sum, double-counts each pair from both lines' perspective) = 192.267 (0.0600 p) = 2 x total_predicted
+====================================================================================================
+SUMMARY (total gamma2*p, i.e. the count comparable to |M| >= #good - #pairs):
+  p12809_box0_0: p=12809  empirical pairs/p = 0.0275   model gamma2 = 0.0283   diff/p = +0.0008
+  p12809_box-6404_0: p=12809  empirical pairs/p = 0.0315   model gamma2 = 0.0304   diff/p = -0.0012
+  p3203_box700_-2100: p=3203  empirical pairs/p = 0.0253   model gamma2 = 0.0300   diff/p = +0.0047
