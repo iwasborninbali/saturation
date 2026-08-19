@@ -160,6 +160,23 @@ For $k=3$, $k$-root residues are exactly the three-root residues, and Section~\r
 and $C_3=11/4$.  The numerical values of $C_k$ follow from the exact integration of the piecewise polynomial integrand.
 \end{proof}
 
+\begin{corollary}[generic permutation polynomials]\label{cor:permgen}
+Let $k\ge3$ and let $f\in\Fp[x]$ be a permutation polynomial of degree $k$ such that for both $g_\pm(t)=f(t)\mp t$: (i) the map $t\mapsto g_\pm(t)$ has
+monodromy group $S_k$ (for instance, $g_\pm'$ has $k-1$ distinct simple zeros with pairwise distinct critical values, and $p\nmid k$), and (ii) the
+discriminants $\mathrm{disc}_t\bigl(g_+(t)-g_+(x)\bigr)$ and $\mathrm{disc}_t\bigl(g_-(t)-g_-(x)\bigr)$ are coprime polynomials in $x$.  Then for every
+$2p\times2p$ box, $\alpha(f,B)\le(C_k+\varepsilon_k+o(1))\,p$ with the same $C_k$ and $\varepsilon_k$ as in Theorem~\ref{thm:perm} (the implied constants
+depending on $k$ and on the family, uniformly in the box).
+\end{corollary}
+\begin{proof}
+Nothing in Lemmas~\ref{lem:lifts}--\ref{lem:twoslopes} or in the proof of Theorem~\ref{thm:perm} used the shape of $f$ beyond (i) and (ii): the classes,
+thresholds and the tie \eqref{eq:tie} are defined for any $f$ (as $g_-(x)-g_+(x)=2x$), the root-count laws are the rencontres numbers as soon as the
+monodromy is $S_k$, the $j$-tuple curves are irreducible by $j$-transitivity, the only linear relation is $\sum_it_i=$ const for $j=k$ (covered by
+$\varepsilon_k$), and (ii) gives the linear disjointness of the two slopes.  Hence the constant depends on $k$ only.
+\end{proof}
+For an arbitrary permutation polynomial (no assumption on the monodromy) the same proof gives $\alpha(f,B)\le(C(P^+,P^-)+\varepsilon+o(1))p$ with the
+root-count laws $P^\pm$ of $f\mp x$ in place of the rencontres numbers, provided the corresponding root varieties are irreducible and the two slopes are
+linearly disjoint; whether every permutation polynomial of degree $\ge3$ satisfies $\alpha\le(\tfrac32-c_k)N$ is open (see (c) below).
+
 \begin{remark}[numerics; the true constant; other bijections]
 (a) The bookkeeping of Lemma~\ref{lem:lifts} evaluates $\mathrm{cost}(W_4)$ in time $O(p)$ without enumerating lines
 (\texttt{slack/pp\_exact\_UL\_np.py}).  At $p\approx10^7$ (three primes, box $(0,0)$) it gives $\sum_xU(x)/p=1.7500\pm0.0002$ for $k=3$ (the exact $7/4$) and
