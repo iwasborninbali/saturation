@@ -153,3 +153,14 @@ box: 3(p−1) exactly (calibration).  So for permutation cubics the ±1 lines AL
 (residue groups of ax³ + b ∓ x ≡ c with three roots; Bombieri for the counts) should give α ≤ (3/2 − c)N (weak form G3′) — assigned to the first solver
 (G3.5); the strong form (4/3 or ≈ 1.1) needs the 3-line families (§7) and adaptive covers (§7a).  Together with the projection bound this would give:
 "NO CUBIC GRAPH BEATS HJSW in the natural box" — a clean statement in the direction of Green's remark.
+
+## 9. THEOREM (first solver, G3.5; checked by the second): no cubic graph reaches HJSW — and data for higher-degree permutation polynomials (08:15 WITA)
+`docs/research/permutation_cubic_note.md`: for a permutation cubic (p ≡ 2 mod 3) in every 2p×2p box α ≤ (11/4 + o(1))p = (11/8)N, by the cover "weight 1 on
+every ±1-line with ≥ 4 points + singletons" whose cost is computed exactly (root conics t₁²+t₁t₂+t₂² = ±1/a, common class threshold for the three roots,
+the "same" indicator has no triple term ⇒ #same = N₃/2 for every box, cross sums via a Kummer twist); with the projection bound for non-permutation cubics
+(§8): for EVERY cubic f and every 2p×2p box, α ≤ (11/8 + o(1))·N < (3/2)N.  Subagent data (`slack/g_agents/group_types_output.txt`, p up to 5003): 3-root
+classes 1/6, same:split = 1/2:1/2, the class bits are monotone in the x-order (common threshold), the two slopes' memberships independent (ratio 0.997–0.999).
+Higher degree (data, `slack/lp_curve.py`, box (0,0)): x⁵ (p = 197, 263): ±1-LP 1.355, 1.346 N, full LP 1.072, 1.103 N; x⁷ (p = 263): 1.316 / 1.084 N —
+the same picture as for cubics.  CONJECTURE G″: for every fixed permutation polynomial f of degree ≥ 3 (over F_p, p → ∞): α ≤ (3/2 − c_f)·N in every 2p×2p
+box, with c_f > 0 explicit from the root-count distribution of f(t) ∓ t = c (Chebotarev); the ±1-line cover of the theorem generalises (higher-order joint
+distributions of the roots enter for k ≥ 4 roots).  The hyperbola x ↦ 1/x is the extreme case: f(t) ∓ t = c has ≤ 2 roots for every c, giving exactly 3(p−1).
