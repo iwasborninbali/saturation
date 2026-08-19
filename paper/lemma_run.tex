@@ -67,6 +67,9 @@ by a finite optimisation, Section~\ref{sec:blocks}), then for every $K$
  \alpha(\Pset_{-1})\ \le\ \Bigl(4-\sum_{k=2}^{K}\frac1{2^{k+2}}\sum_{S\subseteq\{1,\dots,k-1\}}\frac{D_k(S)}{k!}\,\mathrm{sav}(S)+o(1)\Bigr)(p-1),
 \]
 and the truncation loses at most $\sum_{k>K}4(k-1)2^{-(k+2)}$ (the saving of a component of length $k$ never exceeds $4(k-1)$ in the computed range).
+Both statements are asymptotic in $p$ \emph{for each fixed} $K$: the implied constant of Lemma~\ref{lem:run} grows like $2^kk$ against a main term
+$p/2^{k+2}$, so the error is negligible only once $4^kk\log^kp\ll\sqrt p$ --- already at $k=2$ this needs $p$ of order $10^{12}$.  In particular the
+limit of the displayed bound as $K\to\infty$ requires $K$ to be sent to infinity \emph{after} $p$, not with it.
 \end{corollary}
 \begin{proof}
 The run conditions are the $k+2$ Legendre conditions $\chi(t-1)=-1$, $\chi(t)=\dots=\chi(t+k-1)=+1$, $\chi(t+k)=-1$; by Lemma~\ref{lem:run}
