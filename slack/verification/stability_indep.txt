@@ -1,0 +1,6 @@
+# verify_stability_indep.py — independent check of Lemma orbdec / orbopt / Prop stability (first solver, Wed Aug 19 04:35:57 AM UTC 2026)
+p=11: rich lines crossing orbits: 0; per kind (alpha, #maxima, line profile, stability_ok): {'exceptional': [(6, 9, (3, 3), True)], 'generic': [(12, 1, (4, 4, 3, 3, 3, 3), True)]}
+p=13: rich lines crossing orbits: 0; per kind (alpha, #maxima, line profile, stability_ok): {'exceptional': [(6, 9, (3, 3), True)], 'generic': [(12, 1, (4, 4, 3, 3, 3, 3), True)]}
+p=17: rich lines crossing orbits: 0; per kind (alpha, #maxima, line profile, stability_ok): {'exceptional': [(6, 9, (3, 3), True)], 'generic': [(12, 1, (4, 4, 3, 3, 3, 3), True)]}
+p=19: rich lines crossing orbits: 0; per kind (alpha, #maxima, line profile, stability_ok): {'exceptional': [(6, 9, (3, 3), True)], 'generic': [(12, 1, (4, 4, 3, 3, 3, 3), True)]}
+p=23: rich lines crossing orbits: 0; per kind (alpha, #maxima, line profile, stability_ok): {'exceptional': [(6, 9, (3, 3), True)], 'generic': [(12, 1, (4, 4, 3, 3, 3, 3), True)]}
