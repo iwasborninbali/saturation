@@ -80,3 +80,11 @@ for d = 5 this is 0.083 + 0.033 ≈ 0.12, i.e. C₅ ≤ 2.80 + 0.12 = 2.92 < 3 e
 Note d = 4 is vacuous: by Dickson's classification there are no permutation polynomials of degree 4 over F_p for p > 7. ∎ (outline)
 Open for the theorem text: the k = d bookkeeping (5) done cleanly; the discriminant coprimality (ii) for x^k; the constant's tabulation with rigorous
 quadrature error (the integrand is piecewise polynomial in (u_x, g): exact rational values are computable).
+
+## 6. Numerics for (H1) and (H3) on x^k (`slack/pp_joint_counts.py`)
+Root-count laws for t^k ∓ t = c at p = 10007 (k = 5): N₀,…,N₅ / p = 0.367, 0.377, 0.167, 0.080, 0, 0.010 vs rencontres 11/30, 3/8, 1/6, 1/12, 0, 1/120 ✓ (S₅).
+Independence of (k₊(x), k₋(x)) over residues x: the counts are constant on orbits of the group {μ : μ^{k−1} = 1} (since t^k − t is homogeneous of degree
+1 under t ↦ μt) — e.g. x ↦ −x always, and x ↦ ωx (ω³ = 1) when 3 | p−1 — so a χ² test must count one representative per orbit; doing so:
+k = 7: p = 10007 (orbits of size 2): χ² = 7.2 on ≈25 df; p = 30011 (size 2): 23.6; p = 10009, 20011 (3 | p−1, size 6): 109/3 ≈ 36, 40.5/3 ≈ 13.5 — all
+consistent with independence; k = 5, p = 10007: χ² = 8.0. Also for k odd and ζ^{k−1} = −1 in F_p (2(k−1) | p−1) the two slopes are conjugate: t^k − t at ζt equals
+−ζ(t^k + t), so k₊(ζx) = k₋(x); this does not affect independence at the same x (checked at p = 10009 where 12 | p−1).
