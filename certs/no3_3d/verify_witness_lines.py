@@ -26,7 +26,16 @@ if __name__=="__main__":
         txt=open(sys.argv[2]).read(); n=int(sys.argv[3]) if len(sys.argv)>3 else None
     else:
         n=int(sys.argv[1]); txt=sys.argv[2]
-    pts=[tuple(map(int,m)) for m in re.findall(r'\((\d+),(\d+),(\d+)\)',txt)]
+    # Два формата, оба явные; строки-комментарии (#) отбрасываются.
+    #   A: "(x,y,z) (x,y,z) ..."           — наш вывод из SAT
+    #   B: по одной точке на строку "x y z" — формат первого солвера
+    # Расширять разбор дальше НЕ следует: свободный парсер тем и опасен, что находит
+    # числа там, где их не имели в виду.
+    clean = "\n".join(l for l in txt.splitlines() if not l.strip().startswith("#"))
+    pts=[tuple(map(int,m)) for m in re.findall(r'\((\d+),(\d+),(\d+)\)',clean)]
+    if not pts:
+        pts=[tuple(int(t) for t in l.split()) for l in clean.splitlines()
+             if len(l.split())==3 and all(t.lstrip("-").isdigit() for t in l.split())]
     if n is None: n=max(c for p in pts for c in p)+1
     exp=int(sys.argv[3]) if len(sys.argv)>3 and sys.argv[3].isdigit() else None
     sys.exit(0 if check(n,pts,exp) else 1)
