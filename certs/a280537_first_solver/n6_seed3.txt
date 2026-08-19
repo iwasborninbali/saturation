@@ -1,0 +1,17 @@
+# A280537 no-four-coplanar, n=6, points=15 (independent stochastic search, no SAT)
+# verified in place by determinants over every quadruple of the set
+5 4 2
+3 1 0
+4 5 5
+2 3 5
+3 5 0
+0 0 1
+4 3 0
+1 4 5
+5 4 3
+3 0 4
+0 1 2
+5 1 1
+0 2 4
+1 5 3
+4 0 4
