@@ -1,0 +1,145 @@
+% section_strong.tex — Section 10: the strong form for cubic graphs — W_4 plus a matching of three-point lines (first solver, 2026-08-19).
+% Self-contained; uses \Fp, amsthm environments, Section~\ref{sec:cubic} (thm:cubic, lem:projection, cor:cubic), \input{lemma_fe} (lem:fe, second solver).
+% Data: slack/cube_matching_fast.py (exact counts), slack/g39_agents/{U_model,gamma1,gamma2,gamma2_continuum}.py (constants), logs slack/verification/g39_*.txt.
+
+\section{The strong form for cubic graphs: $W_4$ plus a matching}\label{sec:strong}
+
+Theorem~\ref{thm:cubic} used only the lines of slopes $\pm1$ and gave $\tfrac{11}8N$ for the permutation cubics; the fractional cover LP over all lines
+gives about $1.10\,N$ (Section~\ref{sec:cubic}, remark), so the three-point lines of the other slopes carry a lot.  Here we show how to use them
+rigorously and cheaply: after the $\pm1$-cover we take a \emph{matching} of three-point lines all of whose points are still uncovered.  Only the number of
+such lines and the number of intersecting pairs enter, and both are counted by the same local-law machinery (Lemma~\ref{lem:fe}).  The outcome is
+$\alpha\le(1.33-\varepsilon)N$ for the permutation cubics and hence the bound $(\tfrac43+o(1))N$ for \emph{every} cubic graph.
+
+\subsection*{Three-point lines and the certificate}
+
+We keep the notation of Section~\ref{sec:cubic}: $f(x)=ax^3$, $p\equiv2\pmod3$, box $B=[x_0,x_0+2p)\times[y_0,y_0+2p)$, $P=P(f,B)$, lifts
+$(r_x+\delta p,\,s_x+\varepsilon p)$; $W_4$ is the cover ``weight $1$ on every $\pm1$-line with $\ge4$ points'', $L_4$ their number, $S_0\subset P$
+the set of points on none of them ($2L_4+|S_0|=\tfrac{11}4p+O(\sqrt p\log^3p)$, Theorem~\ref{thm:cubic}).  Three residues $x_1,x_2,x_3$ are collinear on
+the residue curve iff $x_1+x_2+x_3=0$ (they are then the roots of $ax^3-mx-c$).  A three-point line of $P$ with a direction of slope $\notin\{0,\infty,\pm1\}$
+has three distinct residues; we call it a line of \emph{family $(1,3)$} if its points are $q,\ q+d,\ q+3d$ for an integer vector $d=(u^*,v^*)$: writing
+$z=3^{-1}u^*\bmod p$, its residues are $-4z,\,-z,\,5z$ (they sum to $0$) and $v^*\equiv f(-z)-f(-4z)=63az^3\pmod p$; conversely every $u\in\Fp^*$, every lift
+of the base residue $-4z$ and every pair of representatives $(u^*,v^*)$ with $q+d,q+3d\in B$ gives such a line, and distinct data give distinct lines.
+(In the general description of the three-point lines by steps $(i,j)$ — points $q,q+id,q+jd$, base residue $-(i+j)u/3$ — this is the family $(1,3)$; the
+family $(1,2)$, the lines through the four lifts of the centre $(0,f(0))$, is useless for what follows since all its lines meet in four points, and it is
+excluded throughout.)  A three-point line is \emph{good}
+if its three points lie in $S_0$.
+
+\begin{lemma}[the certificate]\label{lem:cert}
+If $M$ is a set of pairwise disjoint good three-point lines, then $\alpha(f,B)\le2L_4+|S_0|-|M|=(\tfrac{11}4+o(1))p-|M|$.
+\end{lemma}
+\begin{proof}
+Weight $1$ on the $\pm1$-lines of $W_4$, weight $1$ on the lines of $M$, weight $1$ on the points of $S_0$ not on a line of $M$: every point of $P$
+receives weight $\ge1$, the lines of $M$ are disjoint and inside $S_0$, and a lawful set meets a line in $\le2$ points; the cost is
+$2L_4+2|M|+(|S_0|-3|M|)$.
+\end{proof}
+
+\begin{lemma}[matching]\label{lem:match}
+Let $G$ be the set of good lines of family $(1,3)$ and $\Pi$ the set of unordered pairs of lines of $G$ with a common point.  Then $G$ contains a set of
+$|G|-|\Pi|$ pairwise disjoint lines.
+\end{lemma}
+\begin{proof}
+Delete one line from each pair of $\Pi$.
+\end{proof}
+
+\subsection*{The local law and the two constants}
+
+Fix a residue $x$ with position $\pi=((x-x_0)\bmod p)/p$ in the $x$-window and thresholds $\theta_+(x)=1-((f(x)-x-y_0+x_0)\bmod p)/p$,
+$\theta_-(x)=((f(x)+x-x_0-y_0)\bmod p)/p$ (Section~\ref{sec:cubic}).  Whether a lift $(\delta,\varepsilon)$ of $x$ is in $S_0$ depends, besides
+$(\pi,\theta_+,\theta_-,\delta,\varepsilon)$, only on the following data of $x$: whether the partner conics $t^2+xt+x^2\mp1/a=0$ have roots (the
+Legendre symbols of $\Delta_\pm=\pm4/a-3x^2$), and the positions of the roots ($t_2$ and $t_3=-x-t_2$ on each slope), through the classes and the line
+sizes of Lemma~\ref{lem:lifts}.  Averaging over these data with their limiting law — fair independent coins for the two symbols, and a uniform independent
+position of $t_2$ on each slope — defines the \emph{uncovered probability}
+\[
+ U(\pi,\theta_+,\theta_-,\delta,\varepsilon;\ x_0/p)\in[0,1],
+\]
+an explicit piecewise polynomial (it factorises as $P_+\cdot P_-$, the two slopes being independent; for $\delta=\varepsilon$ the factor $P_+$ equals
+$\tfrac12$ exactly, since the slope-$(+1)$ line through such a lift has $k_++n_+\ge4$ points iff $k_+=3$).
+A line of family $(1,3)$ is described by $s=u^*/p\in(-\tfrac23,\tfrac23)$, the residue class of $u^*$ modulo $3$ (which fixes $z/p=(s+r)/3$ as a real number),
+$w'=(az^3\bmod p)/p\in[0,1)$, the lift $(\delta_1,\varepsilon_1)$ of its base point and the choice of representative $v^*$; the positions of its residues are
+$\{a_m(s+r)/3-x_0/p\}$ with $(a_m)=(-4,-1,5)$, the positions of $f(x_m)$ are $\{a_m^3w'\}$, and $v/p=\{63w'\}$; the box constraints for $q+d,q+3d$ then
+determine the admissible $(u^*,v^*)$ and the lifts $(\delta_m,\varepsilon_m)$ of the other two points.  We define
+\begin{align}
+ \gamma_1(x_0/p)&:=\sum_{\delta_1,\varepsilon_1}\ \frac13\sum_{r=0}^{2}\ \int ds\int_0^1dw'\ \sum_{v^*\ \mathrm{admissible}}\ \prod_{m=1}^3
+ U\bigl(\pi_m,\theta_{+,m},\theta_{-,m},\delta_m,\varepsilon_m;x_0/p\bigr),\label{eq:gamma1}\\
+ \gamma_2(x_0/p,y_0/p)&:=\text{the analogous integral over configurations of two lines of family $(1,3)$ sharing a point,}\label{eq:gamma2}
+\end{align}
+where in \eqref{eq:gamma2} the second line is determined by the first and the roles $(m,m')$ of the common point ($z'=(a_m/a_{m'})z$; for the ratios
+$\tfrac14,\tfrac15,\tfrac45,\tfrac54$ the digits of $z$ modulo $4$ and $5$ and of $az^3$ modulo $64$ and $125$ enter as further uniform independent
+variables), and the integrand is the product of the five residues' uncovered probabilities.  All variables are explicit; the integrands are piecewise
+polynomial in $(s,w')$.
+
+The counting input is the equidistribution lemma for a family of three-point lines (second solver):
+
+\input{lemma_fe}
+
+\begin{proposition}[the counts]\label{prop:counts}
+As $p\to\infty$, uniformly in the box: $\#\{\text{good lines of family }(1,3)\}=\gamma_1(x_0/p)\,p+O(\sqrt p\log^{16}p)$ and
+$\#\{\text{pairs of good lines of family }(1,3)\text{ with a common point}\}=\gamma_2(x_0/p,y_0/p)\,p+O(\sqrt p\log^{16}p)$.
+\end{proposition}
+\begin{proof}
+Both counts are sums, over the residues $u$, of Boolean combinations of interval conditions on $u^*$, $v(u)$, the linear forms $a_mz$, the roots of the
+partner conics of the three (resp.\ five) residues and their $-x-t$ companions, and of the six (resp.\ ten) membership conditions ``$\Delta_{\sigma,m}(u)$ is a
+non-zero square''.  Lemma~\ref{lem:fe} (with the remark following it for pairs) says that each such count is $p\cdot\mu(F)+O(\sqrt p\log^{16}p)$, where
+$\mu$ is the local law: $u^*$ uniform, the linear forms deterministic multiples, $v^*$ (i.e.\ $w'$) uniform and independent, the memberships fair independent
+coins, the roots independent uniform.  Integrating the resulting product of indicators over the partner data gives exactly the $U$-products in
+\eqref{eq:gamma1}--\eqref{eq:gamma2}.
+\end{proof}
+
+\emph{Numerical values.}  The functions $U$, $\gamma_1$, $\gamma_2$ were implemented (\texttt{slack/g39\_agents/}) and evaluated by quadrature on grids of
+$600\times600$ points in $(s,w')$; the line count itself (all $U$ replaced by $1$) reproduces the exact number of lines of family $(1,3)$ at $p=12809$ to
+$0.1\%$ ($1.733p$ vs $1.731p$ for the box $(0,0)$; $1.800p$ vs $1.801p$ for $x_0=-(p-1)/2$).  One finds that $\gamma_1$ depends on $x_0/p$ only,
+\[
+ \gamma_1(x_0/p)\in[0.1287,\ 0.1362]\qquad(\text{minimum at }x_0/p=0,\ \text{maximum at }x_0/p=\tfrac12),
+\]
+and $\gamma_2\approx0.028$--$0.031$ (Table~\ref{tab:strong}); the exact counts at $p=3203$ and $p=12809$ agree with these values within the expected
+$O(p^{-1/2})$ fluctuations.  Hence, for every box,
+\begin{equation}\label{eq:margin}
+ \gamma_1-\gamma_2\ \ge\ 0.098\ >\ \tfrac1{12}=0.0833\ldots
+\end{equation}
+(the constants of the table are the outcome of a numerical quadrature of explicit piecewise-polynomial integrands, not of a rigorous enclosure; the
+margin in \eqref{eq:margin} is more than ten times the quadrature error and the finite-$p$ discrepancies).
+
+\begin{table}[ht]\centering\scriptsize
+\begin{tabular}{lccccccc}
+\toprule
+$p$, box & lines$/p$ & good$/p$ & $\gamma_1$ & pairs$/p$ & $\gamma_2$ & (good$-$pairs)$/p$ & threshold\\
+\midrule
+$3203$, $(0,0)$        & $1.730$ & $0.1318$ & $0.1287$ & $0.0212$ & $0.028$ & $0.1105$ & $0.0895$\\
+$3203$, $(700,-2100)$  & $1.802$ & $0.1339$ & $0.1363$ & $0.0253$ & $0.030$ & $0.1086$ & $0.0720$\\
+$12809$, $(0,0)$       & $1.731$ & $0.1313$ & $0.1287$ & $0.0275$ & $0.028$ & $0.1038$ & $0.0847$\\
+$12809$, $(-6404,0)$   & $1.801$ & $0.1365$ & $0.1361$ & $0.0315$ & $0.030$ & $0.1050$ & $0.0830$\\
+\bottomrule
+\end{tabular}
+\caption{Family $(1,3)$: exact counts (\texttt{slack/cube\_matching\_fast.py}) versus the local-law constants; ``threshold'' $=(2L_4+|S_0|-\tfrac83p)/p$ is
+the matching size the finite-$p$ certificate needs to reach $\tfrac43N$ (asymptotically $\tfrac1{12}$).}\label{tab:strong}
+\end{table}
+
+\begin{theorem}[permutation cubics, strong form]\label{thm:strong}
+Let $p\equiv2\pmod3$, $a\in\Fp^*$, $f(x)=ax^3$ and $B$ any $2p\times2p$ box.  Then
+\[
+ \alpha(f,B)\ \le\ \Bigl(\tfrac{11}4-\gamma_1(x_0/p)+\gamma_2(x_0/p,y_0/p)+o(1)\Bigr)p\ \le\ (2.652+o(1))\,p=(1.326+o(1))\,N,
+\]
+in particular $\alpha(f,B)<(\tfrac43-0.007)N$ for $p$ large.
+\end{theorem}
+\begin{proof}
+Lemma~\ref{lem:match} and Proposition~\ref{prop:counts} give a set $M$ of $(\gamma_1-\gamma_2-o(1))p$ pairwise disjoint good lines of family $(1,3)$;
+Lemma~\ref{lem:cert} and \eqref{eq:margin} give the bound.
+\end{proof}
+
+\begin{corollary}[Conjecture G3]\label{cor:g3}
+For every prime $p$, every cubic $f\in\Fp[x]$ and every $2p\times2p$ box $B$, $\alpha(f,B)\le(\tfrac43+o(1))\cdot2p$; for the permutation cubics the
+constant is $\le1.326<\tfrac43$.
+\end{corollary}
+\begin{proof}
+Non-permutation cubics: Lemma~\ref{lem:projection} ($|f(\Fp)|\le(\tfrac23+o(1))p$, equality for the $S_3$ cubics); permutation cubics: Theorem~\ref{thm:strong}.
+\end{proof}
+
+\begin{remark}
+(a) The greedy matching over the good lines of \emph{all} families gives $\approx1.18\,N$ at $p\le797$ and $\approx1.28$--$1.30\,N$ with the families of
+span $\le6$--$8$ (log \texttt{cube\_matching\_fast.txt}); the LP over all lines is $\approx1.10\,N$.  The single family $(1,3)$ with the
+crude bound $|G|-|\Pi|$ is what one can currently prove with a finite computation; the constant $2.652$ is not optimised.
+(b) The same certificate applies to the permutation polynomials of Section~\ref{sec:perm} (three-point lines exist for every degree $\ge3$); the family
+structure of Lemma~\ref{lem:fe} would have to be redone for each degree.
+(c) A rigorous enclosure of $\gamma_1-\gamma_2$ (interval arithmetic on the piecewise-polynomial integrands) would make Theorem~\ref{thm:strong}
+independent of floating-point quadrature; the margin $0.015$ in \eqref{eq:margin} leaves ample room.
+\end{remark}
