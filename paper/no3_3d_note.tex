@@ -7,15 +7,29 @@
 \newtheorem{lemma}[proposition]{Lemma}
 \title{Exact values and certified lower bounds for the no-three-in-line problem in the cube}
 \author{Aleksei Kudriashov (Alex Komang)\\ \small Nusa Dua Studio, Nusa Dua, Bali, Indonesia\\ \small ORCID: 0009-0006-8885-5338}
-\date{August 2026 --- version 0.1 (draft)}
+\date{20 August 2026 --- version 1.0}
 \begin{document}\maketitle
 \begin{abstract}
 Let $a(n)$ be the largest number of points of the grid $\{0,1,\dots,n-1\}^3$ no three of which are collinear.
-P\'or and Wood proved $a(n)=\Theta(n^2)$; no exact values appear to have been recorded.  We determine
-$a(n)$ for $n\le 5$ by exhaustive search, certify lower bounds for $6\le n\le 8$, and give an elementary
-construction showing $a(p)\ge p^2$ for every prime $p$.  Every exact value was computed independently by two
-programs written to different designs, and every witness is re-verified by testing all triples in exact
-integer arithmetic.
+P\'or and Wood proved $a(n)=\Theta(n^2)$; no exact values appear to have been recorded, and the sequence does
+not appear to be in the OEIS.  We determine
+\[a(1),\dots,a(6)=1,\,8,\,16,\,28,\,40,\,64,\]
+give certified lower bounds $a(7)\ge71$ and $a(8)\ge89$, and prove $a(p)\ge p^2$ for every prime $p$ by an
+elementary construction from an anisotropic binary quadratic form.
+
+The method is a certified decision procedure rather than a search: a line carrying at most two lattice points
+forbids nothing, so admissibility is exactly ``at most two chosen points on every line with three or more
+lattice points'', which is a propositional formula on $n^3$ variables.  Unsatisfiability is answered with a
+DRAT certificate that an independent checker verifies, and the lower bounds are witnesses re-verified by
+exhaustive integer arithmetic over every triple.  We are explicit about the three separate links this
+requires --- that the formula expresses the problem, that it is unsatisfiable, and that the symmetry pruning
+discards nothing --- because a certificate attests only to the formula it was given, and an error in the other
+two links would pass through it unseen.
+
+Along the way the optima turn out to share a layer structure that fails at exactly one of the values computed:
+for $n=2,3,4,6$ the two outer layers carry the planar maximum $2n$ and the inner ones $2n-2$, giving
+$2n^2-2n+4$; at $n=5$ two outer layers provably cannot both carry $2n$ at any total, and at $n=7$ the
+corresponding profile is impossible as well.  We have no explanation for this.
 \end{abstract}
 
 \section{Definitions and elementary bounds}
@@ -41,7 +55,7 @@ $(a,b)=(0,0)$, a contradiction.
 \end{proof}
 Neither $x^2+y^2$ (anisotropic iff $p\equiv3\bmod 4$) nor $x^2+xy+y^2$ (iff $p\equiv2\bmod3$) works for all
 $p$; the choice $x^2-dy^2$ does.  The bound of Proposition~\ref{p:alg} is not sharp: $a(5)\ge40>25$ and
-$a(7)\ge72>49$.
+$a(7)\ge71>49$.
 
 \section{Method: a certified decision procedure}
 A line carrying at most two lattice points of $[n]^3$ forbids nothing, so
@@ -179,24 +193,66 @@ of a segment joining the two outer layers is a lattice point when $n$ is odd, an
 count shows the middle layer still retains up to $16$ free cells --- above its own planar ceiling of $10$ --- so
 that constraint does not bind.
 
-\section{Certified lower bounds}
-\begin{center}\begin{tabular}{rrr}\toprule
-$n$ & $a(n)\ge$ & $/n^2$\\\midrule
-6 & 64 & 1.78\\ 7 & 72 & 1.47\\ 8 & 90 & 1.41\\\bottomrule
+\section{Certified lower bounds for $n=7,8$}
+\begin{center}\begin{tabular}{rrrl}\toprule
+$n$ & $a(n)\ge$ & $/n^2$ & source of the witness\\\midrule
+7 & 71 & 1.45 & randomised destroy-and-repair\\
+8 & 89 & 1.39 & randomised destroy-and-repair\\\bottomrule
 \end{tabular}\end{center}
-Obtained by randomised greedy search with destroy-and-repair; the value at $n=7$ agrees with an independent
-CP-SAT run.  Every configuration is re-verified by testing all $\binom{|S|}{3}$ triples with integer cross
-products.  A dedicated exhaustive proof of optimality is out of reach for $n\ge6$: a calibrated tree-size
-estimator (Knuth's random-probe method, validated against the true counts at $n=4$ to within $4\%$) gives
-about $4.6\cdot10^{22}$ nodes for $n=6$.
+Each configuration is re-verified by testing all $\binom{|S|}{3}$ triples with integer cross products.  These
+are lower bounds only; we make no claim about how far they are from the truth, and we expect them to be weak,
+since a randomised search is a poor instrument at this size.  (An earlier draft of this note quoted
+$72$ and $90$ here.  Those numbers came from a run whose witness was never saved, and when we came to attach
+witnesses to them the journals we could reproduce gave $71$ and $89$.  We report the values we can exhibit.)
+Two indications.  First, the layer structure of
+the smaller optima suggests $2n^2-2n+4=88$ at $n=7$ --- and although we have shown that the corresponding
+\emph{profile} is impossible, that leaves the value itself untouched.  Second, at $n=6$ the same randomised
+search reached $64$, which the certified computation then confirmed to be optimal, so the instrument is not
+hopeless either; we simply do not know which case $n=7$ resembles.
 
-\section{Reproducibility}
-All programs, journals, witnesses and the coverage checker are in the repository
-\url{https://github.com/iwasborninbali/saturation}.
+For the record we also measured what the abandoned route would have cost.  A calibrated tree-size estimator
+--- Knuth's random-probe method, stratified after the plain version proved unusable (at $n=6$ the mean of
+twenty thousand probes was $89\%$ one probe), and validated against the exact tree at $n=4$ to within $0.1\%$
+--- puts an unaided exhaustive proof at $n=6$ at some $4.6\cdot10^{22}$ nodes.  That is the estimate that sent
+us to a decision procedure; it says nothing about the difficulty of the problem, only about the difficulty of
+one way of attacking it.
+
+\section{Reproducibility, and what is \emph{not} claimed}
+All programs, journals, witnesses, manifests and the verification protocol are public:
+\url{https://github.com/iwasborninbali/saturation}.  The protocol \texttt{docs/VERIFICATION.md} is written for
+a reader who trusts none of our code and gives the commands in order.
+
+The following are the limits of what is established here, stated so that a reader need not infer them.
+\begin{itemize}\itemsep2pt
+\item The upper bounds for $n=5,6$ rest on one SAT solver.  The instances that a single call decides carry
+DRAT certificates verified by \texttt{drat-trim}, which removes the dependence on the solver; the instances
+that had to be split do not carry stored certificates, because the certificates run to tens of gigabytes.
+They are regenerated deterministically on demand, and the case split, its completeness and its aggregation are
+each verified separately.
+\item We have no proof of the upper bounds independent of the propositional encoding.  Our own exhaustive
+enumerator does not reach $n=5$: it closed $24$ of $4096$ prefixes at $15$--$33$ billion nodes each, with the
+full traversal on the order of $10^{14}$ nodes.  It corroborates the lower bound only.
+\item The verification of the symmetry pruning shows that our \emph{implementation} discards nothing; it is
+not a proof of the underlying lex-leader argument, which is standard but which we did not reprove.
+\item The layer-structure anomaly at $n=5$ and $n=7$ is a computation, not an explanation.  A count of the
+planar configurations attaining $2n$ points suggests rigidity ($11$ configurations in $4$ classes for
+$4\times4$; $32$ in only $5$ classes for $5\times5$; $50$ in $11$ classes for $6\times6$), and one natural
+mechanism --- the lattice midpoint between two outer layers --- is ruled out by an exact count.  Beyond that we
+do not know.
+\end{itemize}
 
 \section*{AI/tool-use disclosure}
-The searches, the programs and the text were produced by autonomous AI agents (Anthropic Claude) under the
-direction of the author of record, who posed the question, chose what to compute, decided what to claim and
-takes responsibility for the content.  Two agents worked with deliberately different program designs and
-checked each other's results; no value is reported here that was not obtained twice.
+The searches, the programs and the text were produced by autonomous AI agents (Anthropic Claude) working under
+the direction of the author of record, who posed the question, chose what to compute, decided what to claim and
+takes responsibility for the content.  Two agents worked with deliberately different program designs and audited
+each other; several errors reported in the repository were caught that way and not by their author, including
+one --- an unverified symmetry pruning --- that no certificate, witness check or coverage check would have
+detected.
+
+The work is arranged so that this should not matter.  Every claim above is meant to be checkable by a third
+party without trusting the agents or the author: certificates by \texttt{drat-trim}, witnesses by brute-force
+integer arithmetic, coverage by a mechanical aggregator that refuses a verdict on a missing or undecided piece,
+and the encoding by comparison against the direct collinearity criterion.  Where a claim is not checkable in
+that way, it is listed in the preceding section.
+
 \end{document}
