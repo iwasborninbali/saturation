@@ -73,7 +73,10 @@ n₀ | k ∼ Bin(k, U) is uniform on {0..k} and a random member sees n = 1 + Bin
 absolutely irreducible by (ii) (linear disjointness); the joint law of (u_x, g(c₊(x)), partner positions of both slopes) is uniform (Bombieri on W; the tie
 θ₋ = 1 − θ₊ + 2u_x is an identity, not a hypothesis) and the root counts (k₊,k₋) are jointly Chebotarev-distributed on the disjoint product, i.e. independent,
 and independent of the positions (Kummer/Artin–Schreier twists as in the cubic case). (5) The k = d terms: positions constrained by one linear relation — treat
-them separately or bound crudely (they weigh 1/d! ≤ 1/6, and even the trivial estimate U ≤ 4 on them moves C_d by at most 4/d!·(fraction) — for d ≥ 4 this is
-≤ 0.17, still leaving C_d < 3 for the values above; for d = 3 the pairwise identity makes it exact). ∎ (outline)
+them separately (a (d−1)-dimensional integral depending on κ = (d·x₀ mod p)/p, hence weakly on the box) or bound crudely: the residues x lying in a d-root
+residue of a given slope have density d·P_d = 1/(d−1)!, so the trivial estimate U(x) ≤ 4 on them (both slopes) moves C_d by at most 8/(d−1)!: for d = 5 this
+is 0.33 (C₅ ≤ 2.80 + 0.33 = 3.13 — NOT enough crudely; the honest k = d computation is needed, or a better bound: only the second-slope term of U(x) can be
+affected, giving ≤ 4/(d−1)! = 0.17 and C₅ ≤ 2.97 < 3, tight); for d ≥ 7 the correction is < 0.01. For d = 3 the pairwise identity makes everything exact.
+Note d = 4 is vacuous: by Dickson's classification there are no permutation polynomials of degree 4 over F_p for p > 7. ∎ (outline)
 Open for the theorem text: the k = d bookkeeping (5) done cleanly; the discriminant coprimality (ii) for x^k; the constant's tabulation with rigorous
 quadrature error (the integrand is piecewise polynomial in (u_x, g): exact rational values are computable).
