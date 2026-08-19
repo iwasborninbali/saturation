@@ -62,6 +62,7 @@ def classify_class(p, eps, c, xs):
 def algebraic_report(p, eps):
     roots = roots_by_class(p, eps)
     n_by_len = Counter(len(v) for v in roots.values())
+    n_by_len[0] = p - sum(n_by_len.values())  # classes with 0 roots never appear as dict keys
     k_hist = Counter()
     shape_hist = Counter()
     for c, xs in roots.items():
