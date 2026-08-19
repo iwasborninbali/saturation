@@ -98,10 +98,11 @@ never binds there. p≥13's "local" runs all hit the 180s wall before SCS's own 
 passed, i.e. every `optimal_inaccurate` cell is a **budget-limited, not solver-limited** result —
 see the convergence-vs-p caveat below.)
 
-The θ and strong-only columns give two clean, *fully converged* (`optimal`, tight residuals)
-qualitative findings at every p tried:
+Three findings, in order of how solidly they're established:
 
-* **SDP θ(all) = LP(all) exactly**, and **SDP local(strong) = LP(strong) exactly** — confirming §2.4's
+* **SDP θ(all) = LP(all) exactly**, and **SDP local(strong) = LP(strong) exactly**, at every p tried
+  — both *fully converged* (`optimal`, tight residuals), so this is a clean, solver-independent fact,
+  confirming §2.4's
   proof (θ adds nothing) and, more interestingly, showing that localizing the SDP at *only the 4
   strong line-families* also adds **nothing** over the plain LP restricted to those lines. Every bit
   of the SDP's power over the LP has to come from localizing the weak 3-point lines specifically.

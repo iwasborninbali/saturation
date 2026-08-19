@@ -1,0 +1,79 @@
+% section_blocks.tex — the block decomposition along runs of consecutive quadratic residues (second solver, 19.08)
+\subsection*{The blocks: runs of consecutive quadratic residues}
+
+The two constructions above (the eight-point groups, the seven-point groups) are special cases of a decomposition of $\Pset_{-1}$ that
+is exact and, as it turns out, carries the whole strength of the line cover by rows, columns and slope-$(\pm1)$ lines.
+
+For a point $q=(x,y)\in\Pset_{-1}$ put $r_+(q)=x-y$ and $r_-(q)=x+y$ modulo $p$.  Since $r_-^2-r_+^2=4xy\equiv\pm4$ according as
+$q\in H(1)$ or $q\in H(-1)$, the two residues of a point are linked; we index everything by
+\[
+ t(q):=\tfrac14\,r_+(q)^2\in\Fp\qquad\text{for }q\in H(1),\qquad t(q):=\tfrac14\,r_-(q)^2\ \ \text{for }q\in H(-1),
+\]
+so that $q\in H(1)$ has $\{\tfrac14r_+^2,\tfrac14r_-^2\}=\{t,t+1\}$ and $q\in H(-1)$ has $\{\tfrac14r_-^2,\tfrac14r_+^2\}=\{t,t+1\}$:
+every point determines an unordered pair of \emph{consecutive} values $t,t+1$, both of which are squares (as $4t=r^2$).  Call
+$\{t,t+1\}$ the \emph{edge} of $q$.
+
+\begin{lemma}[edges]\label{lem:edges}
+Let $t\in\Fp$ be such that $t$ and $t+1$ are both squares (with $0$ counted as a square).  The points of $\Pset_{-1}$ with edge
+$\{t,t+1\}$ are the four lifts of each of the $H(1)$-classes $\kappa$ with $d_\kappa^2\equiv4t$ together with the four lifts of each of
+their images under $R$, which are $H(-1)$-classes.  For $t\ne0,-1$ there are four such $H(1)$-classes (two $\sigma$-pairs, for
+$d_\kappa\equiv\pm2\sqrt t$), hence $32$ points; for $t=0$ there are two (the $\tau$-fixed classes $(1,1)$, $(-1,-1)$) and for $t=-1$ two
+(the $\sigma$-fixed classes, present iff $-1$ is a square), hence $16$ points.  If one of $t,t+1$ is a non-square there are no such points.
+The reflections $R$ and $R'$ preserve the edge, so every row and every column of the box consists of four points with the same edge.
+\end{lemma}
+\begin{proof}
+An $H(1)$-class $\kappa=(a,1/a)$ has $r_+\equiv a-1/a=:d_\kappa$ and $r_-\equiv a+1/a=:e_\kappa$ with $e_\kappa^2-d_\kappa^2=4$, so its edge is
+$\{\tfrac14d_\kappa^2,\tfrac14d_\kappa^2+1\}$; conversely $d_\kappa\equiv\pm2\sqrt t$ determines $a$ up to the two roots of $a^2-d_\kappa a-1$
+(which exist because $d_\kappa^2+4=4(t+1)$ is a square), and those two roots form a $\sigma$-pair, so that the two signs of $d_\kappa$ give
+four classes unless $d_\kappa\equiv-d_\kappa$, i.e.\ $t=0$, when $a^2\equiv1$ gives the single pair $\{(1,1),(-1,-1)\}$; the case $t=-1$ is
+$e_\kappa\equiv0$, i.e.\ $a^2\equiv-1$.  By $R(x,y)=(p-x,y)$ we have $(r_+,r_-)\mapsto(-r_-,-r_+)$ and by $R'(x,y)=(x,2p-y)$ we have
+$(r_+,r_-)\mapsto(r_-,r_+)$: both preserve the pair $\{\tfrac14r_+^2,\tfrac14r_-^2\}$ and exchange $H(1)$ with $H(-1)$, so the classes are as
+stated and rows ($\kappa\cup R\kappa$) and columns ($\kappa\cup R'\kappa$) stay inside the edge (Lemma~\ref{lem:rowsRR}).
+\end{proof}
+
+Let $Q:=\{t\in\Fp:\ t\ \text{is a square}\}$ (including $t=0$) and consider the graph on $Q$ whose edges are the pairs $\{t,t+1\}$ of
+consecutive squares (Lemma~\ref{lem:edges}).  Its connected components are the maximal \emph{runs} of consecutive
+squares $t_0,t_0+1,\dots,t_0+k-1$ (with $0$ joining the runs that end at $-1$ and start at $1$, if $-1$ is a square).  For a run $\varrho$
+let $B_\varrho\subseteq\Pset_{-1}$ be the union of the points of its $k-1$ edges, so that $|B_\varrho|=32(k-1)$ unless the run contains
+$0$, when each of its at most two degenerate edges contributes $16$ instead of $32$.
+
+\begin{theorem}[block decomposition]\label{thm:blocks}
+The sets $B_\varrho$, $\varrho$ a run of consecutive squares, partition $\Pset_{-1}$; each $B_\varrho$ is a union of rows and of columns;
+and every line carrying at least three points of $\Pset_{-1}$ lies inside a single $B_\varrho$.  Consequently
+\begin{equation}\label{eq:blocks}
+ \alpha(\Pset_{-1})\ \le\ \sum_{\varrho}\beta(B_\varrho),\qquad
+ \beta(B):=\max\{|S|:\ S\subseteq B,\ |S\cap\ell|\le2\ \text{for every line }\ell\},
+\end{equation}
+and the same sum with $\beta$ replaced by the value of the linear relaxation equals the value of the linear relaxation for
+$\Pset_{-1}$ with rows, columns and slope-$(\pm1)$ lines.
+\end{theorem}
+\begin{proof}
+Every point lies on exactly one edge (Lemma~\ref{lem:edges}), and the edges of one run are pairwise disjoint sets of classes, so the
+$B_\varrho$ partition $\Pset_{-1}$; rows and columns stay inside an edge, hence inside a block.  A line of slope $+1$ with residue $d$
+carries the $H(1)$-classes with $d_\kappa\equiv\pm d$ --- edge $\{t,t+1\}$, $t=\tfrac14d^2$ --- and the $H(-1)$-classes with $r_+\equiv\pm d$,
+whose edge is $\{t-1,t\}$ (their $r_-^2=d^2-4$); both edges contain the vertex $t$, so they lie in the same run and the line lies in one
+block.  Slope $-1$ is symmetric under $R$.  Since the blocks partition $\Pset_{-1}$ and no line meets two of them, a lawful $S$ satisfies
+$|S|=\sum_\varrho|S\cap B_\varrho|\le\sum_\varrho\beta(B_\varrho)$, and the constraint matrix of the linear relaxation is block diagonal.
+\end{proof}
+
+\begin{remark}\label{rem:blocks}
+(a) The blocks are small: the run through $t$ has length $k$ with probability $\asymp2^{-k}$, so $\beta(B_\varrho)$ is a bounded computation,
+and by Weil's bound the number of runs of a given length and given \emph{type} (the sequence of line-size profiles of the groups at the
+interior vertices, which are the $(4,8,4)$, $(3,7,5,1)$, $(2,6,6,2)$ groups of Section~\ref{sec:two}, the end vertices carrying two-class
+groups) is $c\,p+O(\sqrt p\log^Cp)$ with an explicitly computable $c$ --- the local law of Propositions~\ref{prop:m8asym},
+\ref{prop:m7asym} applied along the run.  Theorem~\ref{thm:two} is the case of a single $(4,8,4)$ interior vertex ($\beta=|B|/2-8$ for the
+two edges at it), Theorem~\ref{thm:seven} the case of a $(3,7,5,1)$ vertex ($\beta=|B|/2-4$).
+(b) Numerically (\texttt{slack/t221/}, all primes $200\le p\le1400$): the saving $|B_\varrho|/2-\beta(B_\varrho)$ depends only on the type of the run
+(no exception among the several hundred blocks tested), and $\sum_\varrho(|B_\varrho|/2-\beta(B_\varrho))=0.5587\,p$ on average over
+$401\le p\le1103$, i.e.
+\[
+ \alpha(\Pset_{-1})\ \le\ (3.4413\ldots+o(1))\,(p-1)\qquad\text{(numerically; the constant is a finite computation plus the local law)} .
+\]
+Truncating to runs of length $\le L_0$ gives proved constants once the corresponding densities are computed: $3.595$ for $L_0=5$,
+$3.480$ for $L_0=7$, $3.452$ for $L_0=10$.  The bound~\eqref{eq:blocks} is \emph{below} the value of the linear relaxation with all these
+lines ($3.4286$ vs $3.4286$ at $p=113$, $3.3824$ vs $3.3873$ at $p=137$, $3.4343$ vs $3.4545$ at $p=199$, $3.4100$ vs $3.4300$ at $p=401$),
+because $\beta$ is an integer maximum inside each block.
+(c) The decomposition explains the plateau of Section~\ref{sec:beyond}: no certificate built from rows, columns and slope-$(\pm1)$ lines can
+give less than $\sum_\varrho\beta(B_\varrho)$, and this is $\approx3.44(p-1)$, far above the computed maxima $3(p-1)+O(1)$.  The remaining
+gap is carried by the three-point lines of the other slopes, which are invisible to the block decomposition.
+\end{remark}
