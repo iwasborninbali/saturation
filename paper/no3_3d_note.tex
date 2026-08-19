@@ -102,25 +102,43 @@ subsets of size $\le2$ taken in each of the first two $z$-columns; three points 
 collinear, so the prefixes cover the space without omission) and the completeness of the covering is checked
 mechanically before any claim of optimality.
 
-\section{Structure of the optima found}
-The witnesses produced for $n\le4$ are highly symmetric and share a pattern.  Writing $\mathrm{Stab}$ for the
-stabiliser inside the group of the cube (order $48$) and listing, for each axis, the number of points in the
-$n$ layers perpendicular to it:
-\begin{center}\begin{tabular}{rrll}\toprule
-$n$ & $|\mathrm{Stab}|$ & layer profile (identical for all three axes) & saturated axis lines\\\midrule
-2 & 48 & $4,4$ & $12/12$\\
-3 & 24 & $6,4,6$ & $24/27$\\
-4 & 8 & $8,6,6,8$ & $36/48$\\\bottomrule
+\section{Structure of the optima, and an anomaly at $n=5$}
+Writing the layer profile of a set as the number of its points in each of the $n$ layers perpendicular to an
+axis, every optimum we have found has the \emph{same} profile along all three axes:
+\begin{center}\begin{tabular}{rrl}\toprule
+$n$ & $a(n)$ & layer profile (identical for all three axes)\\\midrule
+2 & 8  & $4,4$\\
+3 & 16 & $6,4,6$\\
+4 & 28 & $8,6,6,8$\\
+5 & 40 & $8,8,8,8,8$\\
+6 & $\ge64$ & $12,10,10,10,10,12$\\\bottomrule
 \end{tabular}\end{center}
-Each layer is a planar set with no three collinear, so it has at most $2n$ points; in every case the two outer
-layers attain that planar maximum and the inner ones have $2n-2$.  The profile is the same along all three
-axes, and an axis line is called saturated when it carries two points.
+A layer is an $n\times n$ grid with no three collinear, so it holds at most $2n$ points.  For $n=2,3,4,6$ the two
+outer layers attain that planar maximum and the inner ones hold $2n-2$, giving $2\cdot 2n+(n-2)(2n-2)=2n^2-2n+4$
+--- which reproduces $8,16,28$ and $64$ exactly.
 
-We record this as an observation, not a law: fitting it gives $2n^2-2n+4$, which matches $n\le4$ exactly and
-predicts $a(5)\ge44$, whereas two independent searches (randomised destroy-and-repair, and CP-SAT) both
-plateau at $40$, and a direct attempt to assemble a $44$-point set from planar layers of profile
-$10,8,8,8,10$ failed in $4000$ random trials.  Either the pattern breaks at $n=5$ or both searches are stuck;
-the exhaustive run in progress, which looks for any set of size $\ge41$, decides the question.
+At $n=5$ the pattern fails, and it fails for a structural reason rather than by accident.  Prescribing the
+profile as a hard constraint and deciding feasibility shows that
+\begin{center}\begin{tabular}{ll}\toprule
+profile at $n=5$ & verdict\\\midrule
+$10,8,8,8,10$ (total $44$, the value the pattern predicts) & infeasible\\
+$10,9,8,9,10$; $10,8,9,8,10$; $10,10,10,10,10$; $9,9,9,9,9$ & infeasible\\
+$10,8,8,8,8$ (total $42$) and $10,7,8,7,10$ (total $42$) & infeasible\\
+$\mathbf{10,6,8,6,10}$ \textbf{(total }$\mathbf{40}$\textbf{)} & \textbf{infeasible}\\
+$8,8,8,8,8$ (total $40$) & feasible\\\midrule
+$n=6$: $12,10,10,10,10,12$ (total $64$) & feasible\\\bottomrule
+\end{tabular}\end{center}
+The fourth line is the sharpest: at $n=5$ two outer layers cannot both attain the planar maximum $2n$ at
+\emph{any} total, so the optimum is forced onto a uniform profile.  The same computation at $n=6$ finds the
+analogous profile realisable, so the obstruction is specific to $n=5$ and not to the idea of maximal outer layers.
+
+We do not have a proof of why.  A count of the planar configurations attaining $2n$ points suggests rigidity:
+the $4\times4$ grid admits $11$ such configurations in $4$ classes under the square's symmetries, the $5\times5$
+grid admits $32$ in only $5$ classes, and the $6\times6$ grid admits $50$ in $11$ classes.  We offer this as an
+observation accompanied by its data, not as an argument.  One natural mechanism can be ruled out: the midpoint
+of a segment joining the two outer layers is a lattice point when $n$ is odd, and must stay empty, but an exact
+count shows the middle layer still retains up to $16$ free cells --- above its own planar ceiling of $10$ --- so
+that constraint does not bind.
 
 \section{Certified lower bounds}
 \begin{center}\begin{tabular}{rrr}\toprule
