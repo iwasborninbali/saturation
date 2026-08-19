@@ -74,9 +74,9 @@ absolutely irreducible by (ii) (linear disjointness); the joint law of (u_x, g(c
 θ₋ = 1 − θ₊ + 2u_x is an identity, not a hypothesis) and the root counts (k₊,k₋) are jointly Chebotarev-distributed on the disjoint product, i.e. independent,
 and independent of the positions (Kummer/Artin–Schreier twists as in the cubic case). (5) The k = d terms: positions constrained by one linear relation — treat
 them separately (a (d−1)-dimensional integral depending on κ = (d·x₀ mod p)/p, hence weakly on the box) or bound crudely: the residues x lying in a d-root
-residue of a given slope have density d·P_d = 1/(d−1)!, so the trivial estimate U(x) ≤ 4 on them (both slopes) moves C_d by at most 8/(d−1)!: for d = 5 this
-is 0.33 (C₅ ≤ 2.80 + 0.33 = 3.13 — NOT enough crudely; the honest k = d computation is needed, or a better bound: only the second-slope term of U(x) can be
-affected, giving ≤ 4/(d−1)! = 0.17 and C₅ ≤ 2.97 < 3, tight); for d ≥ 7 the correction is < 0.01. For d = 3 the pairwise identity makes everything exact.
+residue of a given slope have density d·P_d = 1/(d−1)!; for such x only the factor [n_σ ≤ 3] in the cross term of U(x) (at most 1 lift-pair) and the two
+outer-line indicators [n₀ ≥ 4] + [n₁ ≥ 4] of L can deviate from the i.i.d. computation, so C_d changes by at most 2/(d−1)! + 4·P_d = 2/(d−1)! + 4/d!:
+for d = 5 this is 0.083 + 0.033 ≈ 0.12, i.e. C₅ ≤ 2.80 + 0.12 = 2.92 < 3 even with the crude bound; for d ≥ 7 the correction is < 0.01. For d = 3 the pairwise identity makes everything exact.
 Note d = 4 is vacuous: by Dickson's classification there are no permutation polynomials of degree 4 over F_p for p > 7. ∎ (outline)
 Open for the theorem text: the k = d bookkeeping (5) done cleanly; the discriminant coprimality (ii) for x^k; the constant's tabulation with rigorous
 quadrature error (the integrand is piecewise polynomial in (u_x, g): exact rational values are computable).
