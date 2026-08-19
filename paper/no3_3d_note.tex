@@ -210,12 +210,15 @@ the smaller optima suggests $2n^2-2n+4=88$ at $n=7$ --- and although we have sho
 search reached $64$, which the certified computation then confirmed to be optimal, so the instrument is not
 hopeless either; we simply do not know which case $n=7$ resembles.
 
-For the record we also measured what the abandoned route would have cost.  A calibrated tree-size estimator
---- Knuth's random-probe method, stratified after the plain version proved unusable (at $n=6$ the mean of
-twenty thousand probes was $89\%$ one probe), and validated against the exact tree at $n=4$ to within $0.1\%$
---- puts an unaided exhaustive proof at $n=6$ at some $4.6\cdot10^{22}$ nodes.  That is the estimate that sent
-us to a decision procedure; it says nothing about the difficulty of the problem, only about the difficulty of
-one way of attacking it.
+For the record we also measured what the abandoned route would have cost, though the measurement deserves a
+caveat.  Knuth's random-probe estimator, calibrated against the exact tree at $n=4$, put an unaided exhaustive
+proof at $n=6$ at some $4.6\cdot10^{22}$ nodes, and that figure is what sent us to a decision procedure.  We
+later found the plain estimator unreliable on trees of this family --- on a sibling problem the mean of twenty
+thousand probes was $89\%$ a single probe, with the median five orders of magnitude below the mean --- and
+replaced it by a stratified version that agrees with the exact tree at $n=4$ to within $0.1\%$.  The
+$4.6\cdot10^{22}$ was produced by the plain estimator and has not been recomputed with the stratified one, so
+it should be read as an order of magnitude and nothing finer.  It says nothing about the difficulty of the
+problem in any case, only about the difficulty of one way of attacking it.
 
 \section{Reproducibility, and what is \emph{not} claimed}
 All programs, journals, witnesses, manifests and the verification protocol are public:
