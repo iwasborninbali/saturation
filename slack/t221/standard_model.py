@@ -43,20 +43,29 @@ def saving(U):
     r=milp(c=-np.ones(len(U)),constraints=LinearConstraint(A,-np.inf,2*np.ones(len(L))),bounds=Bounds(0,1),integrality=np.ones(len(U)))
     return len(U)/2-(-r.fun), len(U)
 
-def positions(xi, rnd, D=10007):
-    """choose g_1..g_k in (0,1/4) with descent pattern xi (xi_i = 1 iff g_i > g_{i+1}), then v_i = g_i or 1/2-g_i."""
-    k=len(xi)+1
-    for _ in range(200):
-        g=sorted(rnd.sample(range(1,D//4),k))
-        perm=list(range(k)); rnd.shuffle(perm)
-        gg=[None]*k
-        vals=sorted(rnd.sample(range(1,D//4),k))
-        # build a sequence with the prescribed descent pattern by rejection
-        seq=[rnd.randrange(1,D//4) for _ in range(k)]
-        ok=all(((seq[i]>seq[i+1]) == (xi[i]==1)) for i in range(k-1))
-        if not ok: continue
-        return [F(s,D) if rnd.random()<0.5 else F(1,2)-F(s,D) for s in seq]
-    return None
+def perm_with_descents(k, S, rnd):
+    """a permutation of [k] whose descent set is exactly S (standard construction: increasing runs between descents)."""
+    blocks=[]; prev=0
+    for d in sorted(S)+[k]:
+        blocks.append(list(range(prev+1,d+1))); prev=d
+    # assign the largest values to the earliest blocks so that each block ends with a descent
+    vals=list(range(1,k+1)); out=[]
+    for b in reversed(blocks):
+        take=sorted(vals[:len(b)]); vals=vals[len(b):]
+        out=take+out
+    return out
+
+def positions(xi, rnd, D=None):
+    """positions v_i realising the descent pattern xi of g(v_i), generically."""
+    k=len(xi)+1; S={i+1 for i,b in enumerate(xi) if b==1}
+    pi=perm_with_descents(k,S,rnd)
+    if any(((pi[i]>pi[i+1]) != (xi[i]==1)) for i in range(k-1)): return None
+    M=1000; Dd=(k+2)*M*97
+    vs=[]
+    for i,r in enumerate(pi):
+        g=F(r*M+rnd.randrange(1,M//2), Dd)          # g in (0,1/4), order = pi, generic
+        vs.append(g if rnd.random()<0.5 else F(1,2)-g)
+    return vs
 
 def run(kmax=8, tries=3, seed=0, kmin=2):
     rnd=random.Random(seed); TAB={}
@@ -65,7 +74,7 @@ def run(kmax=8, tries=3, seed=0, kmin=2):
             pass
         for xi in product((0,1),repeat=k-1):
             vals=set()
-            for _ in range(tries if k<=6 else 1):
+            for _ in range(tries):
                 vs=positions(xi,rnd)
                 if vs is None: continue
                 U=block(vs)

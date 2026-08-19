@@ -69,13 +69,15 @@ For every $K\ge2$,
 \[
  \alpha(\Pset_{-1})\ \le\ \Bigl(4-\sum_{k=2}^{K}2^{-(k+2)}\sum_{\varepsilon\in\{0,1\}^{k-1}}\frac{D_k(S_\varepsilon)}{k!}\,s(\varepsilon)+o(1)\Bigr)(p-1),
 \]
-a finite computation for each $K$.  With $K=8$ (the table of $s(\varepsilon)$ is in \texttt{slack/t221/}, computed twice
-independently) the sum equals $694193/1290240$, so
+a finite computation for each $K$.  With $K=8$ (the table of $s(\varepsilon)$ was computed twice independently, \texttt{slack/t221/fast\_blocks.py} and
+\texttt{slack/sig\_savings.py}, with no discrepancy on the $28$ signatures common to the first tables and none later; two signatures of
+length~$8$, of total density $10^{-6}$, are still counted as $0$, which only weakens the bound) the sum is at least
+$2778667/5160960$, so
 \[
- \alpha(\Pset_{-1})\ \le\ \frac{4466767}{1290240}\,(p-1)+o(p)\ =\ (3.46199\ldots+o(1))\,(p-1).
+ \alpha(\Pset_{-1})\ \le\ \frac{17865173}{5160960}\,(p-1)+o(p)\ =\ (3.46160\ldots+o(1))\,(p-1).
 \]
 Since $s(\varepsilon)\le4(k-1)$, the terms with $k>8$ contribute at most $\sum_{k>8}2^{-(k+2)}4(k-1)=0.0352$, so the constant of this
-certificate lies in $[3.427,\,3.462]$; numerically it is $3.4413\ldots$
+certificate lies in $[3.427,\,3.4616]$; numerically it is $3.4413\ldots$
 \end{corollary}
 
 \begin{remark}\label{rem:blocks}
@@ -90,7 +92,7 @@ two edges at it), Theorem~\ref{thm:seven} the case of a $(3,7,5,1)$ vertex ($\be
 $401\le p\le1103$, in agreement with Corollary~\ref{cor:blockconst}; truncating to runs of length $\le L_0$ gives
 $3.595$ for $L_0=5$, $3.480$ for $L_0=7$ and $3.452$ for $L_0=10$.  At a given prime the bound~\eqref{eq:blocks} is at most the value of the linear relaxation with
 all these lines, and strictly below it when integrality bites inside a block ($3.4286$ vs $3.4286$ at $p=113$, $3.3824$ vs $3.3873$ at
-$p=137$, $3.4343$ vs $3.4545$ at $p=199$, $3.4100$ vs $3.4300$ at $p=401$); the \emph{proved} constant $3.462$ of
+$p=137$, $3.4343$ vs $3.4545$ at $p=199$, $3.4100$ vs $3.4300$ at $p=401$); the \emph{proved} constant $3.4616$ of
 Corollary~\ref{cor:blockconst} is larger than the numerical value $3.4413$ of the same certificate only because of the truncation at $K=8$.
 (c) The decomposition explains the plateau of Section~\ref{sec:beyond}: no certificate built from rows, columns and slope-$(\pm1)$ lines can
 give less than $\sum_\varrho\beta(B_\varrho)$, and this is $\approx3.44(p-1)$, far above the computed maxima $3(p-1)+O(1)$.  The remaining
