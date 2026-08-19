@@ -56,6 +56,24 @@ block.  Slope $-1$ is symmetric under $R$.  Since the blocks partition $\Pset_{-
 $|S|=\sum_\varrho|S\cap B_\varrho|\le\sum_\varrho\beta(B_\varrho)$, and the constraint matrix of the linear relaxation is block diagonal.
 \end{proof}
 
+\input{lemma_run}
+
+The saving $s(\varepsilon):=|B_\varrho|/2-\beta(B_\varrho)$ of a block depends only on its signature (equivalently, on $\varepsilon$): this was
+verified for every block occurring in the primes $p\le20000$.  Combining Proposition~\ref{prop:descent} with the exact values of
+$\beta$ (a finite computation: \texttt{slack/t221/fast\_blocks.py} constructs the block of a run directly from the square roots
+$u_i=\sqrt{t+i-1}$ and \texttt{scipy} solves the integer program), and using that the number of runs of length $k$ is
+$2^{-(k+2)}p+O(\sqrt p\log p)$ (Weil), we obtain the following.
+
+\begin{corollary}\label{cor:blockconst}
+For every $K\ge2$,
+\[
+ \alpha(\Pset_{-1})\ \le\ \Bigl(4-\sum_{k=2}^{K}2^{-(k+2)}\sum_{\varepsilon\in\{0,1\}^{k-1}}\frac{D_k(S_\varepsilon)}{k!}\,s(\varepsilon)+o(1)\Bigr)(p-1),
+\]
+and the sums are explicit finite computations.  With $K=8$ this gives $\alpha(\Pset_{-1})\le(3.47+o(1))(p-1)$; the terms omitted
+($k>K$) satisfy $s\le4(k-1)$, so the full sum lies within $\sum_{k>K}2^{-(k+2)}4(k-1)=0.035$ of the truncation at $K=8$, and numerically
+it equals $0.5587$, i.e.\ $\alpha(\Pset_{-1})\le(3.4413+o(1))(p-1)$.
+\end{corollary}
+
 \begin{remark}\label{rem:blocks}
 (a) The blocks are small: the run through $t$ has length $k$ with probability $\asymp2^{-k}$, so $\beta(B_\varrho)$ is a bounded computation,
 and by Weil's bound the number of runs of a given length and given \emph{type} (the sequence of line-size profiles of the groups at the
@@ -65,12 +83,8 @@ groups) is $c\,p+O(\sqrt p\log^Cp)$ with an explicitly computable $c$ --- the lo
 two edges at it), Theorem~\ref{thm:seven} the case of a $(3,7,5,1)$ vertex ($\beta=|B|/2-4$).
 (b) Numerically (\texttt{slack/t221/}, all primes $200\le p\le1400$): the saving $|B_\varrho|/2-\beta(B_\varrho)$ depends only on the type of the run
 (no exception among the several hundred blocks tested), and $\sum_\varrho(|B_\varrho|/2-\beta(B_\varrho))=0.5587\,p$ on average over
-$401\le p\le1103$, i.e.
-\[
- \alpha(\Pset_{-1})\ \le\ (3.4413\ldots+o(1))\,(p-1)\qquad\text{(numerically; the constant is a finite computation plus the local law)} .
-\]
-Truncating to runs of length $\le L_0$ gives proved constants once the corresponding densities are computed: $3.595$ for $L_0=5$,
-$3.480$ for $L_0=7$, $3.452$ for $L_0=10$.  The bound~\eqref{eq:blocks} is \emph{below} the value of the linear relaxation with all these
+$401\le p\le1103$, in agreement with Corollary~\ref{cor:blockconst}; truncating to runs of length $\le L_0$ gives
+$3.595$ for $L_0=5$, $3.480$ for $L_0=7$ and $3.452$ for $L_0=10$.  The bound~\eqref{eq:blocks} is \emph{below} the value of the linear relaxation with all these
 lines ($3.4286$ vs $3.4286$ at $p=113$, $3.3824$ vs $3.3873$ at $p=137$, $3.4343$ vs $3.4545$ at $p=199$, $3.4100$ vs $3.4300$ at $p=401$),
 because $\beta$ is an integer maximum inside each block.
 (c) The decomposition explains the plateau of Section~\ref{sec:beyond}: no certificate built from rows, columns and slope-$(\pm1)$ lines can

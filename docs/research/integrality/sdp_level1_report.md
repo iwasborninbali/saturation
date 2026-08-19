@@ -102,39 +102,92 @@ Three findings, in order of how solidly they're established:
 
 * **SDP θ(all) = LP(all) exactly**, and **SDP local(strong) = LP(strong) exactly**, at every p tried
   — both *fully converged* (`optimal`, tight residuals), so this is a clean, solver-independent fact,
-  confirming §2.4's
-  proof (θ adds nothing) and, more interestingly, showing that localizing the SDP at *only the 4
+  confirming §2's item 4 proof (θ adds nothing) and, more interestingly, showing that localizing the SDP at *only the 4
   strong line-families* also adds **nothing** over the plain LP restricted to those lines. Every bit
   of the SDP's power over the LP has to come from localizing the weak 3-point lines specifically.
-* **SDP local(all) < LP(all)**, by a margin far above solver noise, at both p tried: 13 (44.8000 →
-  43.9974, Δ ≈ 0.80) and 17 (60.1538 → 59.7414, Δ ≈ 0.41). At p = 13, a shorter 90s/1925-iteration
-  trial run independently landed at 43.9996 — the *objective* stabilizes well before the constraint
-  residual (`res_pri`) does (normal ADMM behaviour); both estimates agree to 3 significant figures.
-  **Independently verified** (not trusting SCS's own residual report): re-extracting (y, Y) from a
-  p = 13 run and checking every constraint directly in numpy against the raw values gives max
-  violations of box/diag/RLT/plain-line/localizing(a)/localizing(b) all ≤ 3×10⁻⁴, and a smallest
-  moment-matrix eigenvalue of −0.0013 — three orders of magnitude below the 0.80 gap to LP, and no
-  y_i is even close to the [0,1] boundary (all sit in [0.27, 0.73]). So: **yes, the level-1 SDP with
-  localizing constraints sees the 3-point lines and beats the LP, and this is a real effect, not a
-  solver artifact.**
+* **SDP local(all) < LP(all)**, by a margin far above solver noise, at all three p tried: 13 (44.8000
+  → 43.9974, Δ ≈ 0.80), 17 (60.1538 → 59.7414, Δ ≈ 0.41), 19 (63.6364 → 62.9187, Δ ≈ 0.72). At p = 13,
+  a shorter 90s/1925-iteration trial run independently landed at 43.9996 — the *objective* stabilizes
+  well before the constraint residual (`res_pri`) does (normal ADMM behaviour); both estimates agree
+  to 3 significant figures. **Independently verified** (not trusting SCS's own residual report):
+  re-extracting (y, Y) from a p = 13 run and checking every constraint directly in numpy against the
+  raw values gives max violations of box/diag/RLT/plain-line/localizing(a)/localizing(b) all ≤ 3×10⁻⁴,
+  and a smallest moment-matrix eigenvalue of −0.0013 — three orders of magnitude below the 0.80 gap to
+  LP, and no y_i is even close to the [0,1] boundary (all sit in [0.27, 0.73]). So: **yes, the level-1
+  SDP with localizing constraints sees the 3-point lines and beats the LP, and this is a real effect,
+  not a solver artifact.**
 
-**But** the *fraction of the LP−exact gap closed drops sharply, 16.7% (p=13) → 6.7% (p=17)**. We
-cannot fully separate two explanations with only two full-size points: (a) a genuine shrinking of the
-level-1 SDP's relative power as p grows — plausible, and the expected shape of the phenomenon: a
-fixed-level SDP/Lasserre lift is a *local* certificate (it only ties together moments of points that
-already co-occur in a common localizing line), while the 3-point lines' effect is a genuinely global,
-expander-like combinatorial fact about the whole ~p·log p-line hypergraph (`phenomenon.py` P5); the
-general SoS/Lasserre-hierarchy literature on sparse/pseudorandom CSPs (flagged as an open question for
-this very project in `deep_research_brief_8_integrality.md`, Q1) is exactly about how many rounds such
-problems need, and "shrinking fraction at fixed level as the instance grows" is the textbook signature
-of "this level isn't enough, you need level ~f(p)"; **or** (b) a convergence-budget artifact: p=17's
-run got only 1175 ADMM iterations in its 180s vs. p=13's 3300 (bigger problem ⇒ more expensive
-iterations, same wall-clock budget), so its value may still be some distance from the true level-1
-optimum. Against (b): p=17's own residual (`res_pri` 3×10⁻⁴) is *tighter* than p=13's (1.9×10⁻¹)
-despite the fewer iterations, which argues p=17 is not obviously the less-trustworthy of the two — but
-this is not conclusive either way with the data at hand.
+**But** the *fraction of the LP−exact gap closed is small and does NOT move monotonically with p*:
+16.7% (p=13) → 6.7% (p=17) → 15.5% (p=19). The p=19 point rules out the cleanest story we had after
+two points (a steadily *shrinking* relative power as p grows) — p=17 now reads as an outlier relative
+to p=13 and p=19, which bracket it closely (16.7%, 15.5%). We do not have a confident explanation for
+why p=17 is low: its own residual (`res_pri` 3×10⁻⁴) is *tighter* than both p=13's (1.9×10⁻¹) and
+comparable to p=19's (2.7×10⁻⁴), so it isn't obviously the least-converged of the three by that
+metric, yet it also got the fewest ADMM iterations relative to problem size of the three cases in
+between (3300 at p=13, 1175 at p=17, 450 at p=19 — iteration count falls monotonically as the problem
+grows, which does NOT track the 16.7/6.7/15.5 pattern either). With three noisy, budget-limited points
+we can only say: the closed fraction sits somewhere in **roughly 7–17%** for p = 13…19, without a
+resolved trend in either direction — precisely a case where trusting a two-point "trend" (as the
+p=13→17 data alone suggested) would have been a mistake, which is itself a small methodological lesson
+of this experiment.
 
 ## 6. Honest conclusion
 
-*being finalized — a p=19 run is in flight to get a third full-size data point on the 16.7%→6.7%
-trend before committing to an interpretation; see below once it lands.*
+**Does the level-1 SDP with localizing constraints beat the LP? Yes, cleanly and in a way we checked
+is not a solver artifact** — `SDP local(all) < LP(all)` at every p where we could run it (13, 17, 19),
+with a depression of 0.41–0.80 in absolute terms. At p = 17 and 19, that depression is 1,000–2,700×
+larger than SCS's own reported residual (3×10⁻⁴ and 2.7×10⁻⁴). At p = 13, SCS's own *reported*
+residual is looser (0.19, same order as the 0.80 depression) — but the independent numpy-level
+feasibility check (below) puts the *actual* constraint violation there at ≤ 3×10⁻⁴ too, i.e. SCS's own
+residual report was itself the loose/conservative number, not the true one. The task's own diagnostic
+question is answered directly: for a 3-point line {a,b,c}, the level-1 constraint Y_ab + Y_ac ≤ y_a
+(constraint (a) at j = a) *does* bind at the optimum and *does* pull the relaxation value down — the
+level-1 lift is not blind to the ~p·log p weak lines the way the plain LP provably is (P2 in
+`phenomenon.py`).
+
+**By how much, relative to the LP−exact gap? Only a minority of it — roughly 7–17%, no more.** LP(all)
+overshoots the true α(P₋₁) by 4.6–6.2 in this range (7.9–12.0% of the exact value); the level-1 SDP
+recovers only a small slice of that overshoot, leaving 83–93% of the LP−exact gap uncertified. Two
+things are worth stressing about *why* this isn't a disappointing or contradictory result:
+
+* **It is exactly the shape hole H1 predicted.** `phenomenon.py` P2 ("fractional blindness") already
+  established that no *linear* weighting of lines closes the gap; P5 says the certificates that DO
+  work for this phenomenon in analogous systems (flag algebras, Fourier/density-increment, the
+  polynomial method, spectral bounds, or structural stability+exchange arguments) are all genuinely
+  *global* — they reason about the joint distribution of many constraints at once, not about
+  pairs. Level-1 Lasserre only ties together the moments of points that already share a *localizing*
+  line together with a THIRD point; it is a strictly *local* upgrade of the LP, one level short of
+  seeing the global combinatorics of a ~p·log p-line, expander-like 3-uniform hypergraph. That it moved
+  the needle *at all* (rather than exactly reproducing LP, which was a live risk — see the θ/local(strong)
+  results, where localizing genuinely bought nothing) is itself informative: the effect exists at level
+  1, it's just small.
+* **This lines up with what's known generally about low-level Lasserre/SoS on sparse, pseudorandom-like
+  3-uniform constraint systems** (flagged as an open research question for this project specifically in
+  `docs/research/integrality/deep_research_brief_8_integrality.md`, Q1: "how many levels are needed to
+  see '3-term' constraints" — citing the SoS-lower-bound literature on random/structured 3-XOR-like
+  CSPs). The generic expectation there is that a *fixed* level sees a shrinking fraction of the true
+  gap as the instance grows and the level needs to grow with it; our 3-point p=13/17/19 data is too
+  small and too noisy (budget-limited SCS runs) to confirm or refute that shape quantitatively, but the
+  magnitude (small, non-vanishing, not obviously trending to 0 *or* to 100% in this range) is
+  consistent with "you need more than level 1, and how much more is still open."
+
+**Practical verdict for hole H1**: level-1 alone is not the certificate that proves α(P₋₁) ≤
+3(p−1)+O(1); it recovers on the order of a tenth of the LP−exact gap, not the whole thing, and the
+"pure Lovász-theta" version (no localizing) recovers *none* of it (proven and numerically confirmed
+identical to LP at every p). The natural next step is exactly what `holes.py`'s H1 payoff already
+names: **level 2** (a moment matrix over pairs *and* triples, size ~(8(p−1)+1)² rather than
+~(8(p−1)+1)) is the next thing to try, since level 2 is the first level that can directly encode a
+3-point line's "no three" condition as a single moment-matrix entry (Y_{ab,ac} for the pair-index
+(ab, ac)) rather than as a constraint relating three separate pair-moments the way level 1 does — this
+experiment gives no reason to expect it will close the whole gap either, but it is the natural place to
+look next, and this report's machinery (line enumeration, LP baseline, policy-(i)-style constraint
+trimming, SCS with an explicit time budget and independent feasibility verification) transfers to it
+directly.
+
+**On scale**: p = 23 (n = 176) was not run — after p=13/17/19 (each requiring 3–9 minutes of SCS time
+*per line-set*, worse than nominal here because of heavy contention from other jobs on this shared
+machine, load average 30–70 on an 8-core box throughout this session) — running p = 23's "local, all
+lines" problem (176×177 PSD cone, 84,280 policy-(i) constraint rows, §3) would plausibly need another
+10–20+ minutes with no guarantee of a materially more converged answer than p=19's, so it was left for
+a follow-up run on a quieter machine or with a longer time budget rather than spending further session
+time chasing a fifth noisy data point that likely would not change the qualitative picture above.
