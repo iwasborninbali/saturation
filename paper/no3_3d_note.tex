@@ -61,6 +61,26 @@ subsets of size $\le2$ taken in each of the first two $z$-columns; three points 
 collinear, so the prefixes cover the space without omission) and the completeness of the covering is checked
 mechanically before any claim of optimality.
 
+\section{Structure of the optima found}
+The witnesses produced for $n\le4$ are highly symmetric and share a pattern.  Writing $\mathrm{Stab}$ for the
+stabiliser inside the group of the cube (order $48$) and listing, for each axis, the number of points in the
+$n$ layers perpendicular to it:
+\begin{center}\begin{tabular}{rrll}\toprule
+$n$ & $|\mathrm{Stab}|$ & layer profile (identical for all three axes) & saturated axis lines\\\midrule
+2 & 48 & $4,4$ & $12/12$\\
+3 & 24 & $6,4,6$ & $24/27$\\
+4 & 8 & $8,6,6,8$ & $36/48$\\\bottomrule
+\end{tabular}\end{center}
+Each layer is a planar set with no three collinear, so it has at most $2n$ points; in every case the two outer
+layers attain that planar maximum and the inner ones have $2n-2$.  The profile is the same along all three
+axes, and an axis line is called saturated when it carries two points.
+
+We record this as an observation, not a law: fitting it gives $2n^2-2n+4$, which matches $n\le4$ exactly and
+predicts $a(5)\ge44$, whereas two independent searches (randomised destroy-and-repair, and CP-SAT) both
+plateau at $40$, and a direct attempt to assemble a $44$-point set from planar layers of profile
+$10,8,8,8,10$ failed in $4000$ random trials.  Either the pattern breaks at $n=5$ or both searches are stuck;
+the exhaustive run in progress, which looks for any set of size $\ge41$, decides the question.
+
 \section{Certified lower bounds}
 \begin{center}\begin{tabular}{rrr}\toprule
 $n$ & $a(n)\ge$ & $/n^2$\\\midrule
