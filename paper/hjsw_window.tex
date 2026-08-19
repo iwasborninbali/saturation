@@ -23,7 +23,7 @@
 
 \title{Extremal no-three-in-line subsets of a modular hyperbola\\ in the Hall--Jackson--Sudbery--Wild window}
 \author{Alex Komang\thanks{Independent researcher, Bali, Indonesia.  See the AI/tool-use disclosure at the end.}}
-\date{August 2026 --- version 1.5.1}
+\date{August 2026 --- version 1.6 (draft)}
 
 \begin{document}
 \maketitle
@@ -59,7 +59,8 @@ and a character-sum estimate along the partner curve turns it into $\alpha\le4(p
 at least $C\sqrt p\log^5p$, in particular for every primitive root.  Finally, no cubic graph reaches the hyperbola: for every cubic
 $f\in\Fp[x]$ and every $2p\times2p$ box the lifted graph $Y\equiv f(X)$ has no-three-in-line subsets of size at most $(11/8+o(1))\cdot2p<3(p-1)$;
 for the permutation cubics ($p\equiv2\bmod3$) this is an explicit cover by the lines of slope $\pm1$ whose cost is computed exactly on the conic of
-root pairs, for the other cubics a row count.
+root pairs, for the other cubics a row count; the same cover handles the permutation monomials $x^k$, $k\in\{3,5,7\}$, with explicit rational constants
+($\approx1.40\cdot2p$).
 The proofs are elementary and self-contained; independent programs check the statements about the HJSW box for all
 $p\le101$ (all $c$ for $p\le31$), the bound $3(p-1)$ for all boxes with $p\le61$, and the box formula and orbit lemma
 for all boxes with $p\le13$ and $p\le31$ respectively.
@@ -157,7 +158,8 @@ hyperbolae can reach $3(p-1)$ in a $2p\times2p$ box.  Section~\ref{sec:general} 
 ``potential'' cover along the cycles of the row/column incidence graph gives $\alpha(\Pset_k)\le4(p-1)-(2G_8-2\sum_c|A_c-B_c|)/R$
 (Theorem~\ref{thm:general}), which is below the trivial bound whenever the eight-point lines are not too unevenly distributed along the cycles.
 Section~\ref{sec:cubic} shows that cubic graphs $Y\equiv f(X)$ never reach the hyperbola's $3(p-1)$ in a $2p\times2p$ box
-(Corollary~\ref{cor:cubic}: at most $(11/8+o(1))\cdot2p$ points), in the direction of Green's remark on Problem~72 of \cite{Green} that
+(Corollary~\ref{cor:cubic}: at most $(11/8+o(1))\cdot2p$ points), and Section~\ref{sec:perm} extends the same $\pm1$-line cover to the
+permutation monomials $x^k$, $k\in\{3,5,7\}$ (Theorem~\ref{thm:perm}), in the direction of Green's remark on Problem~72 of \cite{Green} that
 algebraic constructions modulo $p$ should not beat $\tfrac32N$.  Section~\ref{sec:beyond} collects the computations that motivate the (unproved)
 expectation that unions of hyperbolae gain only $O(1)$ over $3(p-1)$.
 
@@ -1074,6 +1076,8 @@ LP with rows, columns and the eight-groups' lines saves about one per eight-grou
 
 \input{section_cubic}
 
+\input{section_perm}
+
 \section{Computational observations beyond one hyperbola}\label{sec:beyond}
 
 Nothing in this section is a theorem: it records finite computations (all witnesses verified by an independent checker of all
@@ -1221,7 +1225,7 @@ the text of this note were produced by autonomous large-language-model agents (A
 Fable 5}, August 2026) working in a shared repository: one agent found and proved Theorems~\ref{thm:main} and
 \ref{thm:window} and wrote the first version of the note; Theorem~\ref{thm:two} was found independently, on the same day, by two of
 the agents; Theorem~\ref{thm:general} (the potential cover) is due to the second agent and Lemma~\ref{lem:arc} to the first;
-Section~\ref{sec:cubic} was found and proved by the first agent and checked by the second; the computational setup and the observations of
+Sections~\ref{sec:cubic} and~\ref{sec:perm} were found and proved by the first agent and checked by the second; the computational setup and the observations of
 Section~\ref{sec:beyond} come from all three; the note was revised by
 the agents after two external LLM-assisted audits and one literature report commissioned by the author of record (the report
 suggested the simplification of Step~4 in the proof of Proposition~\ref{prop:m8asym}).  The author of record posed the question, directed and organised the work, commissioned the external
@@ -1250,6 +1254,9 @@ public in the repository.
  the linear group, Ann.\ of Math.\ 11 (1897) 65--120.
 \bibitem{LidlNiederreiter} R.~Lidl and H.~Niederreiter, Finite Fields, 2nd ed., Encyclopedia of Mathematics and Its Applications 20,
  Cambridge Univ.\ Press, 1997 (Chapter 7).
+\bibitem{Wan93} D.~Wan, A $p$-adic lifting lemma and its applications to permutation polynomials, in: Finite Fields, Coding Theory, and Advances in
+ Communications and Computing (Las Vegas 1991), Lecture Notes in Pure and Appl.\ Math.\ 141, Dekker, 1993, 209--216.
+\bibitem{NR82} H.~Niederreiter and K.~H. Robinson, Complete mappings of finite fields, J.\ Austral.\ Math.\ Soc.\ Ser.\ A 33 (1982) 197--212.
 \bibitem{Shp12} I.~E. Shparlinski, Modular hyperbolas, Jpn.\ J. Math.\ 7 (2012) 235--294; arXiv:1103.2879.
 \bibitem{KMSW} M.~R. Khan, R.~Magner, S.~Senger, A.~Winterhof, Two combinatorial geometric problems involving modular
  hyperbolas, arXiv:1304.6943.

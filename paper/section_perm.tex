@@ -42,7 +42,7 @@ Consequently, for the cover $W_4$ (weight $1$ on every $\pm1$-line with $\ge4$ p
 \begin{align}
  U(x)&=[k_++n_+\le3]\bigl([n_-\le3]+[2k_--n_-\le3]\bigr)\notag\\
  &\qquad+[k_-+n_-\le3]\bigl([n_+\le3]+[2k_+-n_+\le3]\bigr),\label{eq:Ux}\\
- L&=\sum_\sigma\sum_c\Bigl([n_0\ge4]+[k'+n_0\ge4]+[k'+n_1\ge4]+[n_1\ge4]\Bigr),\label{eq:L}\\
+ L&=\sum_\sigma\sum_c\Bigl([n_0\ge4]+[k'+n_0\ge4]+[k'+n_1\ge4]+[n_1\ge4]\Bigr),\label{eq:Lperm}\\
  \alpha(x^k,B)&\ \le\ \mathrm{cost}(W_4)=2L+\sum_{x\in\Fp}U(x).\label{eq:costW4}
 \end{align}
 \end{lemma}
@@ -129,16 +129,17 @@ regions cut out by $g+2u=1$, $g+2u=2$, $u+g=1$), so $C_k$ is an explicit rationa
 \begin{theorem}[permutation monomials]\label{thm:perm}
 Let $k\in\{3,5,7\}$, and let $p$ be a prime with $\gcd(k,p-1)=1$ and $p\nmid k(k-1)\mathrm{Res}(D_+,D_-)$.  Then for every $2p\times2p$ box $B$,
 \[
- \alpha(x^k,B)\ \le\ \bigl(C_k+\varepsilon_k+o(1)\bigr)\,p,\qquad 0\le\varepsilon_k\le\frac2{(k-1)!}+\frac4{k!},\quad \varepsilon_3=0,
+ \alpha(x^k,B)\ \le\ \bigl(C_k+\varepsilon_k+o(1)\bigr)\,p,\qquad 0\le\varepsilon_k\le\frac2{(k-1)!}+\frac8{k!},\quad \varepsilon_3=0,
 \]
-as $p\to\infty$; numerically $C_5+\varepsilon_5\le2.913$ and $C_7+\varepsilon_7\le2.808$.  In particular $\alpha(x^k,B)\le(1.46+o(1))\cdot2p<\tfrac32\cdot2p$:
+as $p\to\infty$; numerically $C_5+\varepsilon_5\le2.946$ and $C_7+\varepsilon_7\le2.809$.  In particular $\alpha(x^k,B)\le(1.474+o(1))\cdot2p<\tfrac32\cdot2p$:
 no permutation monomial graph of degree $3$, $5$ or $7$ reaches the HJSW value.  The same holds for every odd $k$ for which
 $\mathrm{Res}(D_+,D_-)\ne0$ (we have verified this for $k\le7$ only).
 \end{theorem}
 \begin{proof}
 By Lemma~\ref{lem:lifts}, $\alpha\le2L+\sum_xU(x)$.  The count $L$ is a sum over residues of a function of $(j,n_0)$; by Lemmas~\ref{lem:rootcounts}
 and~\ref{lem:positions} the residues with $j<k$ roots contribute the first term of \eqref{eq:Ck} times $p$, up to $O_k(\sqrt p\log^{k+1}p)$; the residues
-with $j=k$ roots have density $P_k=1/k!$ per slope and contribute at most $4/k!\cdot p$ in total (four lines each) — this is the second part of
+with $j=k$ roots have density $P_k=1/k!$ per slope, and for them only the two outer indicators $[n_0\ge4]+[n_1\ge4]$ can deviate from the model
+(the central lines are rich for $k\ge4$), so $L$ deviates by at most $2\cdot2P_kp=4p/k!$ and $2L$ by at most $8p/k!$ — this is the second part of
 $\varepsilon_k$.  For $\sum_xU(x)$: by Lemma~\ref{lem:twoslopes} the joint law of $(k_+,n_+,k_-,n_-)$ for a random residue $x$ is, up to the error terms, the
 one described after \eqref{eq:Ck}, except for the residues $x$ lying in a $k$-root residue of some slope (density $kP_k=1/(k-1)!$ per slope), where the
 partner positions obey the linear relation of Lemma~\ref{lem:positions}; for such $x$ the only factor of \eqref{eq:Ux} that can be affected is a single
