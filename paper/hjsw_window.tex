@@ -23,7 +23,7 @@
 
 \title{Extremal no-three-in-line subsets of a modular hyperbola\\ in the Hall--Jackson--Sudbery--Wild window}
 \author{Alex Komang\thanks{Independent researcher, Bali, Indonesia.  See the AI/tool-use disclosure at the end.}}
-\date{August 2026 --- version 1.11.1}
+\date{August 2026 --- version 1.11.2}
 
 \begin{document}
 \maketitle
@@ -57,7 +57,7 @@ A second block, the residue groups with a seven-point line, is exactly bookkept 
 $e^2\equiv d^2\pm4$) and improves this to $\alpha\le(115/32+o(1))(p-1)$.  In fact the whole point set decomposes into blocks indexed by the
 maximal runs of consecutive quadratic residues, every rich line lying inside one block; the type of a run is the descent pattern of $k$
 i.i.d.\ uniform variables, and summing the exact optimum of each block against the descent densities gives
-$\alpha\le\tfrac{4466767}{1290240}(p-1)+o(p)=(3.462+o(1))(p-1)$, essentially the ceiling of what rows, columns and slope-$(\pm1)$ lines
+$\alpha\le\tfrac{17865173}{5160960}(p-1)+o(p)=(3.4616+o(1))(p-1)$, essentially the ceiling of what rows, columns and slope-$(\pm1)$ lines
 can certify (the linear relaxation with all of them is itself a direct sum over the blocks and is $\approx3.44\,(p-1)$).
 For an arbitrary second hyperbola $H(k)$ a ``potential'' cover along the cycles of the row/column incidence graph gives an exact
 bound $\alpha\le4(p-1)-(2G_8-2\sum_c|A_c-B_c|)/R$ in terms of the number $G_8$ of eight-point lines and their distribution along the cycles,
@@ -164,7 +164,7 @@ $\alpha\le4(p-1)-4m_8(p)$ by an explicit line cover built from the eight-point d
 Proposition~\ref{prop:m8asym} evaluates $m_8(p)=(1/12+o(1))p$; the seven-point groups add a second block
 (Theorem~\ref{thm:seven}, Proposition~\ref{prop:clean}: $\alpha\le(115/32+o(1))(p-1)$), and Theorem~\ref{thm:blocks} decomposes
 $\Pset_{-1}$ into blocks along the runs of consecutive quadratic residues, whose types obey a descent law
-(Proposition~\ref{prop:descent}) and which give $\alpha\le(3.462+o(1))(p-1)$ (Corollary~\ref{cor:blockconst});
+(Proposition~\ref{prop:descent}) and which give $\alpha\le(3.4616+o(1))(p-1)$ (Corollary~\ref{cor:blockconst});
 Corollary~\ref{cor:conics} shows that among all conics only the shifted
 hyperbolae can reach $3(p-1)$ in a $2p\times2p$ box.  Section~\ref{sec:general} treats an arbitrary second hyperbola $H(k)$: an explicit
 ``potential'' cover along the cycles of the row/column incidence graph gives $\alpha(\Pset_k)\le4(p-1)-(2G_8-2\sum_c|A_c-B_c|)/R$
@@ -1238,7 +1238,7 @@ $p=12809$, and an independent point-level check of the certificate $W_4$ plus ma
 script is \texttt{docs/\allowbreak AUDIT\_\allowbreak CHECKLIST\_\allowbreak v1.7.md}.
 
 {\sloppy Repository (public): \url{https://github.com/iwasborninbali/saturation}.\\
-This version of the note is the immutable tag \texttt{hjsw-note-v1.11.1} (v1.0: the theorems as first verified; v1.1: Section~\ref{sec:beyond} on the vertical-pair model; v1.2: the error term of Proposition~\ref{prop:m8asym}; v1.4: Section~\ref{sec:general}, every second hyperbola; v1.5: Section~\ref{sec:cubic}, cubic graphs; v1.6: Section~\ref{sec:perm}, permutation monomials; v1.7: Corollary~\ref{cor:permgen}; v1.8: verification paragraph, remark corrections; v1.9: Section~\ref{sec:strong}, the strong form for cubic graphs; v1.10: the seven-point blocks, Theorem~\ref{thm:seven}; v1.11: the block decomposition along runs of quadratic residues, Theorem~\ref{thm:blocks}; v1.11.1: correction of one comparison in the abstract): file \texttt{paper/hjsw\_window.tex}; scripts in
+This version of the note is the immutable tag \texttt{hjsw-note-v1.11.2} (v1.0: the theorems as first verified; v1.1: Section~\ref{sec:beyond} on the vertical-pair model; v1.2: the error term of Proposition~\ref{prop:m8asym}; v1.4: Section~\ref{sec:general}, every second hyperbola; v1.5: Section~\ref{sec:cubic}, cubic graphs; v1.6: Section~\ref{sec:perm}, permutation monomials; v1.7: Corollary~\ref{cor:permgen}; v1.8: verification paragraph, remark corrections; v1.9: Section~\ref{sec:strong}, the strong form for cubic graphs; v1.10: the seven-point blocks, Theorem~\ref{thm:seven}; v1.11: the block decomposition along runs of quadratic residues, Theorem~\ref{thm:blocks}; v1.11.1: correction of one comparison in the abstract; v1.11.2: the exact constant $17865173/5160960$ with the rare signatures tabulated): file \texttt{paper/hjsw\_window.tex}; scripts in
 \texttt{slack/}: \texttt{hjsw\_window\_check.py}, \texttt{hjsw\_boxes\_check.py}, \texttt{gadget11\_\allowbreak check.py},
 \texttt{km1\_\allowbreak theorem\_\allowbreak check.py}, \texttt{block\_cover\_km1.py}, \texttt{km1\_lines.py}, \texttt{cyc\_model.py},
 \texttt{exact\_c.py}, \texttt{arc\_imbalance.py}, \texttt{t221/}, \texttt{t221\_agents/}; logs in \texttt{slack/verification/};
