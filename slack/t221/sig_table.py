@@ -46,7 +46,7 @@ def ip_saving(U):
 
 TAB={}; CNT=defaultdict(int)
 def primes(a,b): return [q for q in range(a,b) if all(q%d for d in range(2,int(q**.5)+1))]
-for p in primes(200,1000):
+for p in primes(200,2600):
     for sig,U in blocks(p):
         CNT[sig]+=1
         if sig in TAB or len(sig)>6 or len(U)>800: continue

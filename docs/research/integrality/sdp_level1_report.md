@@ -90,8 +90,8 @@ is SCS's own report; "optimal" means SCS's own convergence test passed (residual
 | 11 | 80  | 208 / 72  | 32.0000 | 32.0000 | 32.0000 (optimal) | 32.0000 (optimal) | 32.0000 (optimal) | 32 | 0.000 | 0.000 | n/a — LP already tight |
 | 13 | 96  | 230 / 76  | 44.8000 | 48.0000 | 44.8000 (optimal) | 48.0000 (optimal) | 43.9974 (optimal_inaccurate, res_pri 1.9e-1, 3300 iters) | 40 | 4.800 | 3.997 | 16.7% |
 | 17 | 128 | 422 / 112 | 60.1538 | 62.0000 | 60.1538 (optimal) | 62.0000 (optimal) | 59.7414 (optimal_inaccurate, res_pri 3.0e-4, 1175 iters) | 54 | 6.154 | 5.741 | 6.7% |
-| 19 | 144 | 496 / 204 | 63.6364 | 64.0000 | *pending* | *pending* | *pending* | 59 | 4.636 | *pending* | *pending* |
-| 23 | 176 | 668 / 232 | 78.1250 | 80.0000 | *pending* | *pending* | *pending* | 70–74 (not exact; `docs/MANIFEST_hjsw.md`) | *pending* | *pending* | *pending* |
+| 19 | 144 | 496 / 204 | 63.6364 | 64.0000 | 63.6361 (optimal_inaccurate, res_pri 9.7e-5) | 64.0000 (optimal) | 62.9187 (optimal_inaccurate, res_pri 2.7e-4, 450 iters) | 59 | 4.636 | 3.919 | 15.5% |
+| 23 | 176 | 668 / 232 | 78.1250 | 80.0000 | not run | not run | not run | 70–74 (not exact; `docs/MANIFEST_hjsw.md`) | 8.125 | not run | not run |
 
 (All runs at the 180s budget: p=11's local(all) reached `optimal` in 22s/200 iters — the budget
 never binds there. p≥13's "local" runs all hit the 180s wall before SCS's own convergence test

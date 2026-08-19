@@ -1,124 +1,44 @@
 [
  {
-  "p": 11,
-  "n": 80,
-  "n_lines_all": 208,
-  "n_lines_strong": 72,
+  "p": 19,
+  "n": 144,
+  "n_lines_all": 496,
+  "n_lines_strong": 120,
   "hist_all": {
-   "3": 112,
-   "4": 92,
+   "3": 292,
+   "4": 192,
+   "6": 8,
    "8": 4
   },
   "hist_strong": {
    "3": 20,
-   "4": 48,
+   "4": 88,
+   "6": 8,
    "8": 4
   },
-  "lp_all": 32.00000000000001,
-  "lp_strong": 32.0,
-  "exact": 32,
+  "lp_all": 63.63636363636354,
+  "lp_strong": 63.999999999999986,
+  "exact": 59,
   "theta_all": {
    "solver": "SCS",
-   "status": "optimal",
-   "value": 31.999977382857463,
-   "wall": 1.5553169250488281,
-   "extra": "solve_time=1.41s iters=250 res_pri=1.07e-05 res_dual=5.31e-06 gap=1.73e-05"
+   "status": "optimal_inaccurate",
+   "value": 63.63611147888668,
+   "wall": 180.16375613212585,
+   "extra": "solve_time=180.02s iters=6075 res_pri=9.67e-05 res_dual=1.34e-04 gap=2.02e-04"
   },
   "local_strong": {
    "solver": "SCS",
    "status": "optimal",
-   "value": 31.999992586356317,
-   "wall": 4.294997930526733,
-   "extra": "solve_time=1.73s iters=125 res_pri=3.07e-06 res_dual=3.47e-06 gap=8.01e-05"
-  },
-  "local_all": {
-   "solver": "SCS",
-   "status": "optimal",
-   "value": 32.00002328668469,
-   "wall": 22.420695066452026,
-   "extra": "solve_time=5.66s iters=200 res_pri=2.70e-06 res_dual=2.94e-06 gap=5.10e-06"
-  }
- },
- {
-  "p": 13,
-  "n": 96,
-  "n_lines_all": 230,
-  "n_lines_strong": 76,
-  "hist_all": {
-   "3": 100,
-   "4": 126,
-   "6": 4
-  },
-  "hist_strong": {
-   "3": 16,
-   "4": 56,
-   "6": 4
-  },
-  "lp_all": 44.80000000000003,
-  "lp_strong": 48.0,
-  "exact": 40,
-  "theta_all": {
-   "solver": "SCS",
-   "status": "optimal",
-   "value": 44.80001938725006,
-   "wall": 5.3247082233428955,
-   "extra": "solve_time=5.17s iters=625 res_pri=8.38e-06 res_dual=7.29e-06 gap=1.21e-05"
-  },
-  "local_strong": {
-   "solver": "SCS",
-   "status": "optimal",
-   "value": 47.999999764265866,
-   "wall": 4.975549936294556,
-   "extra": "solve_time=3.33s iters=150 res_pri=3.59e-07 res_dual=1.63e-07 gap=1.39e-06"
+   "value": 64.00000589551296,
+   "wall": 58.69020104408264,
+   "extra": "solve_time=40.10s iters=275 res_pri=1.98e-05 res_dual=1.11e-06 gap=1.64e-05"
   },
   "local_all": {
    "solver": "SCS",
    "status": "optimal_inaccurate",
-   "value": 43.99743940297813,
-   "wall": 211.96565985679626,
-   "extra": "solve_time=181.29s iters=3300 res_pri=1.88e-01 res_dual=2.47e-02 gap=2.62e-01"
-  }
- },
- {
-  "p": 17,
-  "n": 128,
-  "n_lines_all": 422,
-  "n_lines_strong": 112,
-  "hist_all": {
-   "3": 284,
-   "4": 126,
-   "5": 4,
-   "6": 8
-  },
-  "hist_strong": {
-   "3": 24,
-   "4": 76,
-   "5": 4,
-   "6": 8
-  },
-  "lp_all": 60.15384615384623,
-  "lp_strong": 62.000000000000036,
-  "exact": 54,
-  "theta_all": {
-   "solver": "SCS",
-   "status": "optimal",
-   "value": 60.15384315367679,
-   "wall": 18.30770993232727,
-   "extra": "solve_time=18.05s iters=1550 res_pri=1.99e-05 res_dual=1.28e-05 gap=1.95e-04"
-  },
-  "local_strong": {
-   "solver": "SCS",
-   "status": "optimal",
-   "value": 62.00000580262517,
-   "wall": 39.41962695121765,
-   "extra": "solve_time=25.73s iters=275 res_pri=7.30e-06 res_dual=1.43e-05 gap=7.45e-06"
-  },
-  "local_all": {
-   "solver": "SCS",
-   "status": "optimal_inaccurate",
-   "value": 59.74141379253331,
-   "wall": 366.53449392318726,
-   "extra": "solve_time=180.97s iters=1175 res_pri=3.00e-04 res_dual=9.06e-05 gap=1.46e-03"
+   "value": 62.918696215415025,
+   "wall": 547.6637320518494,
+   "extra": "solve_time=185.42s iters=450 res_pri=2.70e-04 res_dual=2.68e-04 gap=2.92e-05"
   }
  }
 ]
