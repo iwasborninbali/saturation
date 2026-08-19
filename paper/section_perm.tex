@@ -185,10 +185,13 @@ correction $\varepsilon_5$, so the true asymptotic constant for $x^5$ is $2.797p
 $1519/864=1.7581$, which the data exclude.  At $p\le887$ the cost of $W_4$ fluctuates by a few percent (for $x^5$: mean $1.388\,N$, range $1.36$--$1.41$
 over seven primes; for $x^7$: mean $1.415\,N$; \texttt{docs/research/g\_agents/x5\_x7\_numerics.md}); the LP over all $\pm1$-lines is $\approx1.32$--$1.34\,N$
 and the LP over all lines with $\ge3$ points $\approx1.07$--$1.10\,N$, as for cubics.
-(b) Why the hyperbola $x\mapsto1/x$ is exactly $3/2$: its two slopes are maximally dependent — the partner of $x$ is $\mp1/x$ on the two slopes, the two
-root pairs are the same conic up to sign, and the pair of slope $+1$ shares its centre iff the pair of slope $-1$ does not — so the independence of
-Lemma~\ref{lem:twoslopes} fails completely, and no cover of this type can go below $3(p-1)$ (Theorem~\ref{thm:main}).  For $x^k$ the partners of the two
-slopes are roots of two different curves with disjoint branch loci, which is exactly Lemma~\ref{lem:twoslopes}.
+(b) Why the hyperbola $x\mapsto1/x$ sits exactly at $3/2$ in this framework: every residue has exactly two roots on each slope (no lines with $5$ or $6$
+points), and since $c=t_1+t_2$ is a \emph{linear} function of the root pair, the same-class probability of a pair is $1/2$ rather than the $2/3$ of
+Lemma~\ref{lem:positions}; the cover $W_4$ then costs $2\cdot\frac p2+2p=3p$ whatever the correlation between the two slopes (a residue contributes two
+covered lifts for each slope on which its pair is same), in accordance with Theorem~\ref{thm:main}.  (Its two slopes are in fact maximally dependent —
+the partners of $x$ are $\mp1/x$ and the pair of slope $+1$ shares its centre iff that of slope $-1$ does not — so Lemma~\ref{lem:twoslopes} would fail
+for it; this affects only the double-coverage bookkeeping, not the value $3p$.)  For $x^k$ the residues with three or more roots and the same-probability
+$2/3$ of the pairs are what push the constant below $3/2$.
 (c) For a general permutation polynomial $f$ of degree $k$ the same proof gives $\alpha\le(C(P^+,P^-)+\varepsilon+o(1))p$ with the root-count laws
 $P^\pm$ of $f\mp x$ in place of the rencontres numbers, as soon as the two covers $t\mapsto f(t)\mp t$ have monodromy $S_k$ and disjoint finite branch
 loci; and if $f-x$ is not a permutation polynomial, at least a positive proportion of its residues carry $\ge2$ roots (Wan's bound $|V(f-x)|\le p-(p-1)/k$
