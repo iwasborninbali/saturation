@@ -164,3 +164,17 @@ Higher degree (data, `slack/lp_curve.py`, box (0,0)): x⁵ (p = 197, 263): ±1-L
 the same picture as for cubics.  CONJECTURE G″: for every fixed permutation polynomial f of degree ≥ 3 (over F_p, p → ∞): α ≤ (3/2 − c_f)·N in every 2p×2p
 box, with c_f > 0 explicit from the root-count distribution of f(t) ∓ t = c (Chebotarev); the ±1-line cover of the theorem generalises (higher-order joint
 distributions of the roots enter for k ≥ 4 roots).  The hyperbola x ↦ 1/x is the extreme case: f(t) ∓ t = c has ≤ 2 roots for every c, giving exactly 3(p−1).
+
+## 10. G3.3 — Weil in boxes for the direction curve (lemma for the strong form; second solver, 19.08 09:20 WITA)
+LEMMA (small solutions of a polynomial congruence).  Let g ∈ F_p[u] have degree d ≥ 2 (here g(u) = c₁u³ + au, the direction curve of the family (i,j)),
+and let I, J ⊂ Z be intervals of lengths |I|, |J| ≤ p.  Then
+    #{u ∈ I : g(u) mod p ∈ J (least residues in J)}  =  |I|·|J|/p + O(d·√p·log²p),
+with an absolute implied constant.  Proof: write the indicator of J as a Fourier series on Z/p with ℓ¹-norm O(log p) (or Selberg polynomials), and likewise
+for I in u; the count becomes Σ_{h₁,h₂} ĉ_I(h₁)ĉ_J(h₂) Σ_{u∈F_p} e((h₁u + h₂g(u))/p); the term h₁ = h₂ = 0 gives |I||J|/p; for h₂ ≢ 0 the Weil bound gives
+|Σ_u e((h₁u+h₂g(u))/p)| ≤ (d−1)√p; for h₂ ≡ 0, h₁ ≢ 0 the sum vanishes.  ∎
+Consequences for the families of §7: the number of three-point lines of family (i,j) in the box (|u| ≤ 2p/J, |v| ≤ 2p/J up to the exact box constraints, which
+are again interval conditions on the integer representatives) is 4·(2p/J)²/p·(1+O(1/J)) + O(√p log²p) = 16p/J² + O(√p log²p) [times the lift multiplicities,
+which are box conditions on the three residues' lifts — more interval conditions on u, and on the partner data when the "good" (W₄-uncovered) condition of
+THREAD[149] is imposed: then the sum runs over the fibred product of the partner conics of the three residues x, x+iu, x+ju over the (x,u)-plane, and
+Bombieri replaces Weil; the positions of the three residues are u-multiples apart, so their box conditions are correlated but explicit].
+For J ≤ J₀ fixed and p → ∞ every such count is (explicit density)·p + O_{J₀}(√p log^c p), which is what the first/second-moment argument of THREAD[149] needs.
