@@ -78,8 +78,8 @@ absolutely irreducible by (ii) (linear disjointness); the joint law of (u_x, g(c
 and independent of the positions (Kummer/Artin–Schreier twists as in the cubic case). (5) The k = d terms: positions constrained by one linear relation — treat
 them separately (a (d−1)-dimensional integral depending on κ = (d·x₀ mod p)/p, hence weakly on the box) or bound crudely: the residues x lying in a d-root
 residue of a given slope have density d·P_d = 1/(d−1)!; for such x only the factor [n_σ ≤ 3] in the cross term of U(x) (at most 1 lift-pair) and the two
-outer-line indicators [n₀ ≥ 4] + [n₁ ≥ 4] of L can deviate from the i.i.d. computation, so C_d changes by at most 2/(d−1)! + 4·P_d = 2/(d−1)! + 4/d!:
-for d = 5 this is 0.083 + 0.033 ≈ 0.12, i.e. C₅ ≤ 2.80 + 0.12 = 2.92 < 3 even with the crude bound; for d ≥ 7 the correction is < 0.01.
+outer-line indicators [n₀ ≥ 4] + [n₁ ≥ 4] of L can deviate from the i.i.d. computation, so C_d changes by at most 2/(d−1)! (in U) + 2·(2·2P_d) = 8/d! (in 2L; two outer indicators, two slopes) [correction by the second solver, [143]]:
+for d = 5 this is 0.083 + 0.067 = 0.15, i.e. C₅ ≤ 2.80 + 0.15 = 2.95 < 3 even with the crude bound; for d ≥ 7 the correction is < 0.01.
 Monte-Carlo with the relation built in (`slack/pp_constant_mc.py`, 6·10⁵ samples, κ ∈ {0, 0.3, 0.5, 0.8}): C₅ = 2.7952 ± 0.0005 for every κ, versus 2.7950
 without the relation — the k = d effect is invisible at this precision, so C₅ = 2.795 (1.398 N) can be taken as the constant (rigorous version: 2.92). For d = 3 the pairwise identity makes everything exact.
 Note d = 4 is vacuous: by Dickson's classification there are no permutation polynomials of degree 4 over F_p for p > 7. ∎ (outline)
@@ -118,5 +118,14 @@ are NOT independent — the thresholds are tied by the identity θ₋ = 1 − θ
 sequence (`slack/pp_exact_UL_np.py`, O(p) vectorised, box (0,0)): p = 10000019, 10000079, 10000103: k = 3: U/p = 1.75015, 1.74997, 1.75033 (→ 7/4 ✓,
 L/p → 1/2 ✓); k = 5: U/p = 1.76306, 1.76309, 1.76327 (tied law 1.76260; independent law 1.75810 — excluded by ≈ 25σ), L/p = 0.51658, 0.51654, 0.51640
 (31/60 = 0.51667 ✓). The residual +0.0005 in U/p for k = 5 is the k = d relation (Σ of the five roots ≡ 0), consistent with the MC estimate of §5(5);
-so the true asymptotic constant is C₅ = 2.7959 + ε₅ with ε₅ ≈ 0.001 (rigorous crude bound ε₅ ≤ 2/4! + 4/5! = 0.117), i.e. α(x⁵, B) ≤ (2.797 + o(1))p ≈ 1.3985 N in truth,
-≤ (2.913 + o(1))p rigorously with the crude k = d bound; for k = 7 the correction is < 0.01 (< 0.0001 numerically).
+so the true asymptotic constant is C₅ = 2.7959 + ε₅ with ε₅ ≈ 0.001 (rigorous crude bound ε₅ ≤ 2/4! + 8/5! = 0.15), i.e. α(x⁵, B) ≤ (2.797 + o(1))p ≈ 1.3985 N in truth,
+≤ (2.946 + o(1))p rigorously with the crude k = d bound; for k = 7 the correction is < 0.01 (< 0.0001 numerically).
+
+## 9. All odd k: Res(D₊, D₋) ≠ 0 (ℓ-adic argument), constants for k = 9, 11 and the Poisson limit
+A common root x of D₊ = k^k(x^k − x)^{k−1} − (k−1)^{k−1} and D₋ = k^k(x^k + x)^{k−1} + (k−1)^{k−1} over Q̄ would give (x^k+x)^{k−1} = −(x^k−x)^{k−1}, so
+x^k + x = ζ(x^k − x) with ζ^{k−1} = −1, hence x ≠ 0 and x^{k−1} = −(1+ζ)/(1−ζ); then (x^k − x)^{k−1} = x^{k−1}(x^{k−1} − 1)^{k−1} = ±2^{k−1}(1+ζ)/(1−ζ)^k is a
+unit at every prime ℓ | k (ζ, −ζ ≠ 1 are roots of unity of order dividing 2(k−1), coprime to ℓ, so 1 ∓ ζ are ℓ-adic units), while D₊(x) = 0 forces
+(x^k − x)^{k−1} = (k−1)^{k−1}/k^k, of negative ℓ-adic valuation — contradiction. So Theorem G3.7 holds for every odd k ≥ 3 (p ∤ k(k−1)·Res_k).
+Constants (`pp_constant_exact.py`): C₉ = 94048104091/33530112000 = 2.804885, C₁₁ = 2.804895; Poisson-limit law e^{−1}/j! (grid): C_∞ = 2.8049 (1.4025 N);
+|C_k − C_∞| ≤ 12·‖renc_k − Poisson‖₁ ≤ 12·2^{k+1}/(k+1)! ⇒ C_k < 2.81 for all odd k ≥ 7; with ε_k ≤ 2/(k−1)! + 8/k!: C_k + ε_k < 2.81 for k ≥ 9, ≤ 2.809 (k=7),
+≤ 2.946 (k=5), = 2.75 (k=3). Section 9 of the note (`paper/section_perm.tex`) states the theorem in this generality.
