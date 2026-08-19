@@ -23,7 +23,7 @@
 
 \title{Extremal no-three-in-line subsets of a modular hyperbola\\ in the Hall--Jackson--Sudbery--Wild window}
 \author{Alex Komang\thanks{Independent researcher, Bali, Indonesia.  See the AI/tool-use disclosure at the end.}}
-\date{August 2026 --- version 1.4}
+\date{August 2026 --- version 1.5}
 
 \begin{document}
 \maketitle
@@ -56,7 +56,10 @@ $\alpha\le(11/3+o(1))(p-1)$; to our knowledge this is the first bound below the 
 For an arbitrary second hyperbola $H(k)$ a ``potential'' cover along the cycles of the row/column incidence graph gives an exact
 bound $\alpha\le4(p-1)-(2G_8-2\sum_c|A_c-B_c|)/R$ in terms of the number $G_8$ of eight-point lines and their distribution along the cycles,
 and a character-sum estimate along the partner curve turns it into $\alpha\le4(p-1)-c\sqrt p/\log^5p$ for every $k$ of multiplicative order
-at least $C\sqrt p\log^5p$, in particular for every primitive root.
+at least $C\sqrt p\log^5p$, in particular for every primitive root.  Finally, no cubic graph reaches the hyperbola: for every cubic
+$f\in\Fp[x]$ and every $2p\times2p$ box the lifted graph $Y\equiv f(X)$ has no-three-in-line subsets of size at most $(11/8+o(1))\cdot2p<3(p-1)$;
+for the permutation cubics ($p\equiv2\bmod3$) this is an explicit cover by the lines of slope $\pm1$ whose cost is computed exactly on the conic of
+root pairs, for the other cubics a row count.
 The proofs are elementary and self-contained; independent programs check the statements about the HJSW box for all
 $p\le101$ (all $c$ for $p\le31$), the bound $3(p-1)$ for all boxes with $p\le61$, and the box formula and orbit lemma
 for all boxes with $p\le13$ and $p\le31$ respectively.
@@ -152,7 +155,10 @@ $\alpha\le4(p-1)-4m_8(p)$ by an explicit line cover built from the eight-point d
 Proposition~\ref{prop:m8asym} evaluates $m_8(p)=(1/12+o(1))p$; Corollary~\ref{cor:conics} shows that among all conics only the shifted
 hyperbolae can reach $3(p-1)$ in a $2p\times2p$ box.  Section~\ref{sec:general} treats an arbitrary second hyperbola $H(k)$: an explicit
 ``potential'' cover along the cycles of the row/column incidence graph gives $\alpha(\Pset_k)\le4(p-1)-(2G_8-2\sum_c|A_c-B_c|)/R$
-(Theorem~\ref{thm:general}), which is below the trivial bound whenever the eight-point lines are not too unevenly distributed along the cycles.  Section~\ref{sec:beyond} collects the computations that motivate the (unproved)
+(Theorem~\ref{thm:general}), which is below the trivial bound whenever the eight-point lines are not too unevenly distributed along the cycles.
+Section~\ref{sec:cubic} shows that cubic graphs $Y\equiv f(X)$ never reach the hyperbola's $3(p-1)$ in a $2p\times2p$ box
+(Corollary~\ref{cor:cubic}: at most $(11/8+o(1))\cdot2p$ points), in the direction of Green's remark on Problem~72 of \cite{Green} that
+algebraic constructions modulo $p$ should not beat $\tfrac32N$.  Section~\ref{sec:beyond} collects the computations that motivate the (unproved)
 expectation that unions of hyperbolae gain only $O(1)$ over $3(p-1)$.
 
 \section{Notation}
@@ -1066,6 +1072,8 @@ classes along the cycles (a fixed-window equidistribution at the level of fibred
 LP with rows, columns and the eight-groups' lines saves about one per eight-group ($p\le601$), the ceiling of certificates of this kind.
 \end{remark}
 
+\input{section_cubic}
+
 \section{Computational observations beyond one hyperbola}\label{sec:beyond}
 
 Nothing in this section is a theorem: it records finite computations (all witnesses verified by an independent checker of all
@@ -1184,7 +1192,7 @@ the shifted-box table for $p=11$; the second audit also identified a gap in the 
 Lemma~\ref{lem:gadget} (the $(1,1)$ count), which is now proved above.
 
 Repository (public): \url{https://github.com/iwasborninbali/saturation}.\\
-This version of the note is the immutable tag \texttt{hjsw-note-v1.4} (v1.0: the theorems as first verified; v1.1: Section~\ref{sec:beyond} on the vertical-pair model; v1.2: the error term of Proposition~\ref{prop:m8asym}; v1.4: Section~\ref{sec:general}, every second hyperbola): file \texttt{paper/hjsw\_window.tex}; scripts in
+This version of the note is the immutable tag \texttt{hjsw-note-v1.5} (v1.0: the theorems as first verified; v1.1: Section~\ref{sec:beyond} on the vertical-pair model; v1.2: the error term of Proposition~\ref{prop:m8asym}; v1.4: Section~\ref{sec:general}, every second hyperbola; v1.5: Section~\ref{sec:cubic}, cubic graphs): file \texttt{paper/hjsw\_window.tex}; scripts in
 \texttt{slack/}: \texttt{hjsw\_window\_check.py}, \texttt{hjsw\_boxes\_check.py}, \texttt{gadget11\_check.py},
 \texttt{km1\_theorem\_check.py}, \texttt{block\_cover\_km1.py}, \texttt{km1\_lines.py}, \texttt{cyc\_model.py},
 \texttt{exact\_c.py}, \texttt{arc\_imbalance.py}; logs in \texttt{slack/verification/};
@@ -1212,7 +1220,9 @@ $p$ & $c$ & $|\Pset|$ & $|\Lc|$ & $Z$ & max & \#max sets\\
 the text of this note were produced by autonomous large-language-model agents (Anthropic Claude, model \emph{Claude
 Fable 5}, August 2026) working in a shared repository: one agent found and proved Theorems~\ref{thm:main} and
 \ref{thm:window} and wrote the first version of the note; Theorem~\ref{thm:two} was found independently, on the same day, by two of
-the agents; the computational setup and the observations of Section~\ref{sec:beyond} come from all three; the note was revised by
+the agents; Theorem~\ref{thm:general} (the potential cover) is due to the second agent and Lemma~\ref{lem:arc} to the first;
+Section~\ref{sec:cubic} was found and proved by the first agent and checked by the second; the computational setup and the observations of
+Section~\ref{sec:beyond} come from all three; the note was revised by
 the agents after two external LLM-assisted audits and one literature report commissioned by the author of record (the report
 suggested the simplification of Step~4 in the proof of Proposition~\ref{prop:m8asym}).  The author of record posed the question, directed and organised the work, commissioned the external
 audits, decided what to claim and publish, and takes responsibility for the content; the extent of his independent
@@ -1236,6 +1246,10 @@ public in the repository.
 \bibitem{Perelmuter} G.~I. Perel'muter, Estimate of a sum along an algebraic curve, Mat.\ Zametki 5 (1969) 373--380.
 \bibitem{Perret} M.~Perret, Multiplicative character sums and Kummer coverings, Acta Arith.\ 59 (1991) 279--290.
 \bibitem{CastroMoreno} F.~N. Castro and C.~J. Moreno, Mixed exponential sums over finite fields, Proc.\ Amer.\ Math.\ Soc.\ 128 (2000) 2529--2537.
+\bibitem{Dickson1897} L.~E. Dickson, The analytic representation of substitutions on a power of a prime number of letters with a discussion of
+ the linear group, Ann.\ of Math.\ 11 (1897) 65--120.
+\bibitem{LidlNiederreiter} R.~Lidl and H.~Niederreiter, Finite Fields, 2nd ed., Encyclopedia of Mathematics and Its Applications 20,
+ Cambridge Univ.\ Press, 1997 (Chapter 7).
 \bibitem{Shp12} I.~E. Shparlinski, Modular hyperbolas, Jpn.\ J. Math.\ 7 (2012) 235--294; arXiv:1103.2879.
 \bibitem{KMSW} M.~R. Khan, R.~Magner, S.~Senger, A.~Winterhof, Two combinatorial geometric problems involving modular
  hyperbolas, arXiv:1304.6943.
