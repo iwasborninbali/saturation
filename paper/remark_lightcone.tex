@@ -1,0 +1,22 @@
+% remark_lightcone.tex — light-cone coordinates as the natural language of the problem (first solver, 2026-08-19).
+% Optional remark for the section on the pair of hyperbolae (uses \Fp; no new labels except rem:lightcone).
+\begin{remark}[light-cone coordinates]\label{rem:lightcone}
+Several features of the problem become automatic in the coordinates $u=x-y$, $v=x+y$.  A point of the box lies on $H(c)$ iff
+\[
+ v^2-u^2=4c ,
+\]
+so the hyperbolae of Section~\ref{sec:two} are the level sets of the quadratic form $v^2-u^2$ --- ``mass shells'' --- and the lines of
+slope $\pm1$, which carry all the rich lines of Proposition~\ref{prop:lines}, are exactly the null lines $u=\mathrm{const}$,
+$v=\mathrm{const}$ of that form; rows and columns are the null lines of the rotated form $uv$.  Three consequences, all used above.
+(i) A line that is not null meets a shell in at most two residue points, which is why only rows, columns and the $\pm1$ lines can be rich.
+(ii) Two shells $4c$ and $4c'$ share a residue point of the box iff $|c-c'|=1$ after the normalisation $t=u^2/4$; this is the neighbour
+relation of the block decomposition, so the blocks are runs of \emph{adjacent shells}, and the pair $H(1)\cup H(-1)$ is precisely the case
+where the two step sizes coincide (whence the subcritical, $O(\log p)$-sized blocks; for any other $k$ the neighbour graph has two step
+sizes, is critical, and its components have size $\asymp p^{2/3}$).
+(iii) The maps $(x,y)\mapsto(\lambda x,\lambda^{-1}y)$, $\lambda\in\Fp^*$, are the ``boosts'' preserving each shell, and
+$(x,y)\mapsto(y,x)$ is $u\mapsto-u$; the group they generate is the one whose orbits appear in the stability analysis.  The boosts do
+\emph{not} preserve the box --- they permute the representatives --- which is why they are symmetries of the residue picture only.
+Algorithmically the picture suggests moves that slide a point along a null line, possibly onto another shell (a null shift takes
+$xy=c$ to $(x+t)(y+t)=c+t(x+y+t)$); an annealer with these moves reaches the exact maxima of $\Pset_{-1}$ for $p\le19$ in seconds
+(\texttt{slack/null\_search.py}).
+\end{remark}
