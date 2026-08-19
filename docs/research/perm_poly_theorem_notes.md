@@ -106,3 +106,17 @@ no common tame subextension). The proof is the outline of §5 with the general l
 with Fourier expansions of the box conditions and Chebotarev with box conditions for the counts).
 Same statement, same constants, for every permutation polynomial of degree k whose two covers f ∓ x have S_k monodromy and disjoint finite branch loci
 (Dickson D₅(x,a) etc. — to be checked family by family).
+
+## 8. Exact constants of the tied-threshold law, and the decisive numerics (p ≈ 10⁷)
+`slack/pp_constant_exact.py` integrates E[U | u_x, g] exactly (piecewise polynomial in q₊, q₋ on the four regions (a) g+2u<1, (b) 1≤g+2u<2 & u+g<1,
+(c) 1≤g+2u<2 & u+g≥1, (d) g+2u≥2 of the unit square) for the rencontres laws:
+   k = 3: L/p = 1/2, U/p = 7/4, C₃ = 11/4 (= Theorem G3.5 ✓);
+   k = 5: L/p = 31/60, U/p = 17767/10080 = 1.762599, C₅ = 28183/10080 = 2.795933 (1.397966 N);
+   k = 7: L/p = 877/1680, U/p = 9582277/5443200 = 1.760412, C₇ = 15265237/5443200 = 2.804460 (1.402230 N).
+These differ from the "independent slopes" idealisation (second solver's agent: 12059/8640 = 1.3957 N for k = 5, i.e. U/p = 1519/864 = 1.7581): the two slopes
+are NOT independent — the thresholds are tied by the identity θ₋ = 1 − θ₊ + 2u_x. Decisive check by the exact lift-accounting formula on the arithmetic
+sequence (`slack/pp_exact_UL_np.py`, O(p) vectorised, box (0,0)): p = 10000019, 10000079, 10000103: k = 3: U/p = 1.75015, 1.74997, 1.75033 (→ 7/4 ✓,
+L/p → 1/2 ✓); k = 5: U/p = 1.76306, 1.76309, 1.76327 (tied law 1.76260; independent law 1.75810 — excluded by ≈ 25σ), L/p = 0.51658, 0.51654, 0.51640
+(31/60 = 0.51667 ✓). The residual +0.0005 in U/p for k = 5 is the k = d relation (Σ of the five roots ≡ 0), consistent with the MC estimate of §5(5);
+so the true asymptotic constant is C₅ = 2.7959 + ε₅ with ε₅ ≈ 0.001 (rigorous crude bound ε₅ ≤ 2/4! + 4/5! = 0.117), i.e. α(x⁵, B) ≤ (2.797 + o(1))p ≈ 1.3985 N in truth,
+≤ (2.913 + o(1))p rigorously with the crude k = d bound; for k = 7 the correction is < 0.01 (< 0.0001 numerically).
