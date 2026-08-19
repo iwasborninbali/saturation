@@ -1,0 +1,134 @@
+=== (0) sanity: rencontres numbers of S_3 vs background note's stated cubic law ===
+  computed: [Fraction(1, 3), Fraction(1, 2), Fraction(0, 1), Fraction(1, 6)]  (note states 1/3, 1/2, 0, 1/6 for k=0,1,2,3)
+  MATCH.
+
+Rencontres numbers of S_5 (exact): P_0=11/30, P_1=3/8, P_2=1/6, P_3=1/12, P_4=0, P_5=1/120
+
+Rencontres numbers of S_7 (exact): P_0=103/280, P_1=53/144, P_2=11/60, P_3=1/16, P_4=1/72, P_5=1/240, P_6=0, P_7=1/5040
+
+#primes in [500,2000] usable for k=5 (gcd(5,p-1)=1): 157; sample used: [503, 1229, 1999]
+#primes in [500,2000] usable for k=7 (gcd(7,p-1)=1): 178; sample used: [503, 1231, 1999]
+
+=== (1) Trinomial-discriminant / simple-branching check, k=5 ===
+Claim: disc_x(x^5-x-T) = eps_k*(k^k T^(k-1) - (k-1)^(k-1)) for a SIGN eps_k in {+1,-1}
+depending only on k (sign convention of disc/Res, irrelevant to what it is used for below).
+Since this identity is between two polynomials in T of degree <= k-1, agreement at any
+k values of c already forces equality as polynomials mod p; checked at min(p,3k) values.
+Consequence used in the report: the k-1 roots of the RHS in T are the (k-1)-th roots of
+(k-1)^(k-1)/k^k -- PAIRWISE DISTINCT (T^(k-1)=const is separable) whenever p does not
+divide k*(k-1) = 20, i.e. for every prime tested here (all are >> k).
+  p=  503: tested 15 values of c, mismatches=0, consistent sign eps_k=1; (k-1)^(k-1)/k^k != 0: True; p not-div (k-1): True   -> OK
+  p= 1229: tested 15 values of c, mismatches=0, consistent sign eps_k=1; (k-1)^(k-1)/k^k != 0: True; p not-div (k-1): True   -> OK
+  p= 1999: tested 15 values of c, mismatches=0, consistent sign eps_k=1; (k-1)^(k-1)/k^k != 0: True; p not-div (k-1): True   -> OK
+  ALL PASS for k=5 at primes [503, 1229, 1999]
+
+=== (1) Trinomial-discriminant / simple-branching check, k=7 ===
+Claim: disc_x(x^7-x-T) = eps_k*(k^k T^(k-1) - (k-1)^(k-1)) for a SIGN eps_k in {+1,-1}
+depending only on k (sign convention of disc/Res, irrelevant to what it is used for below).
+Since this identity is between two polynomials in T of degree <= k-1, agreement at any
+k values of c already forces equality as polynomials mod p; checked at min(p,3k) values.
+Consequence used in the report: the k-1 roots of the RHS in T are the (k-1)-th roots of
+(k-1)^(k-1)/k^k -- PAIRWISE DISTINCT (T^(k-1)=const is separable) whenever p does not
+divide k*(k-1) = 42, i.e. for every prime tested here (all are >> k).
+  p=  503: tested 21 values of c, mismatches=0, consistent sign eps_k=-1; (k-1)^(k-1)/k^k != 0: True; p not-div (k-1): True   -> OK
+  p= 1231: tested 21 values of c, mismatches=0, consistent sign eps_k=-1; (k-1)^(k-1)/k^k != 0: True; p not-div (k-1): True   -> OK
+  p= 1999: tested 21 values of c, mismatches=0, consistent sign eps_k=-1; (k-1)^(k-1)/k^k != 0: True; p not-div (k-1): True   -> OK
+  ALL PASS for k=7 at primes [503, 1231, 1999]
+
+=== (2) Chebotarev cycle-type check (Galois group = S_k, strong form) ===
+
+-- k=5 --
+  p=503: sampled 400 c-values, 400 squarefree (skipped 0 with a repeated root)
+  cycle type            theory P  theory %   empirical     emp %
+  (1, 1, 1, 1, 1)          1/120     0.83%           1     0.25%
+  (2, 1, 1, 1)              1/12     8.33%          29     7.25%
+  (2, 2, 1)                  1/8    12.50%          49    12.25%
+  (3, 1, 1)                  1/6    16.67%          63    15.75%
+  (3, 2)                     1/6    16.67%          73    18.25%
+  (4, 1)                     1/4    25.00%         110    27.50%
+  (5,)                       1/5    20.00%          75    18.75%
+  sum |theory - empirical| over all 7 cycle types = 0.0817  (statistical noise scale ~ 1/sqrt(400) = 0.050)
+  p=1229: sampled 400 c-values, 400 squarefree (skipped 0 with a repeated root)
+  cycle type            theory P  theory %   empirical     emp %
+  (1, 1, 1, 1, 1)          1/120     0.83%           6     1.50%
+  (2, 1, 1, 1)              1/12     8.33%          24     6.00%
+  (2, 2, 1)                  1/8    12.50%          53    13.25%
+  (3, 1, 1)                  1/6    16.67%          73    18.25%
+  (3, 2)                     1/6    16.67%          75    18.75%
+  (4, 1)                     1/4    25.00%          91    22.75%
+  (5,)                       1/5    20.00%          78    19.50%
+  sum |theory - empirical| over all 7 cycle types = 0.1017  (statistical noise scale ~ 1/sqrt(400) = 0.050)
+
+-- k=7 --
+  p=503: sampled 400 c-values, 398 squarefree (skipped 2 with a repeated root)
+  cycle type            theory P  theory %   empirical     emp %
+  (1, 1, 1, 1, 1, 1, 1)      1/5040     0.02%           0     0.00%
+  (2, 1, 1, 1, 1, 1)       1/240     0.42%           2     0.50%
+  (2, 2, 1, 1, 1)           1/48     2.08%          13     3.27%
+  (3, 1, 1, 1, 1)           1/72     1.39%           6     1.51%
+  (2, 2, 2, 1)              1/48     2.08%           4     1.01%
+  (3, 2, 1, 1)              1/12     8.33%          30     7.54%
+  (4, 1, 1, 1)              1/24     4.17%          21     5.28%
+  (3, 2, 2)                 1/24     4.17%          19     4.77%
+  (3, 3, 1)                 1/18     5.56%          24     6.03%
+  (4, 2, 1)                  1/8    12.50%          43    10.80%
+  (5, 1, 1)                 1/10    10.00%          34     8.54%
+  (4, 3)                    1/12     8.33%          43    10.80%
+  (5, 2)                    1/10    10.00%          30     7.54%
+  (6, 1)                     1/6    16.67%          66    16.58%
+  (7,)                       1/7    14.29%          63    15.83%
+  sum |theory - empirical| over all 15 cycle types = 0.1519  (statistical noise scale ~ 1/sqrt(398) = 0.050)
+  p=1231: sampled 400 c-values, 400 squarefree (skipped 0 with a repeated root)
+  cycle type            theory P  theory %   empirical     emp %
+  (1, 1, 1, 1, 1, 1, 1)      1/5040     0.02%           1     0.25%
+  (2, 1, 1, 1, 1, 1)       1/240     0.42%           3     0.75%
+  (2, 2, 1, 1, 1)           1/48     2.08%          10     2.50%
+  (3, 1, 1, 1, 1)           1/72     1.39%           2     0.50%
+  (2, 2, 2, 1)              1/48     2.08%           0     0.00%
+  (3, 2, 1, 1)              1/12     8.33%          50    12.50%
+  (4, 1, 1, 1)              1/24     4.17%          10     2.50%
+  (3, 2, 2)                 1/24     4.17%          16     4.00%
+  (3, 3, 1)                 1/18     5.56%           8     2.00%
+  (4, 2, 1)                  1/8    12.50%          60    15.00%
+  (5, 1, 1)                 1/10    10.00%          40    10.00%
+  (4, 3)                    1/12     8.33%          30     7.50%
+  (5, 2)                    1/10    10.00%          51    12.75%
+  (6, 1)                     1/6    16.67%          62    15.50%
+  (7,)                       1/7    14.29%          57    14.25%
+  sum |theory - empirical| over all 15 cycle types = 0.2079  (statistical noise scale ~ 1/sqrt(400) = 0.050)
+
+=== (3) Root-count distribution vs rencontres law, k=5 ===
+  rencontres P_j (S_5, exact): 0:11/30(0.3667), 1:3/8(0.3750), 2:1/6(0.1667), 3:1/12(0.0833), 4:0(0.0000), 5:1/120(0.0083)
+  p=503: 0:180(0.3579), 1:192(0.3817), 2:86(0.1710), 3:43(0.0855), 4:0(0.0000), 5:2(0.0040)   [check sum j*n_j == p: 503 == 503]
+  p=1229: 0:444(0.3613), 1:464(0.3775), 2:224(0.1823), 3:84(0.0683), 4:0(0.0000), 5:13(0.0106)   [check sum j*n_j == p: 1229 == 1229]
+  p=1999: 0:744(0.3722), 1:732(0.3662), 2:330(0.1651), 3:179(0.0895), 4:0(0.0000), 5:14(0.0070)   [check sum j*n_j == p: 1999 == 1999]
+
+=== (3) Root-count distribution vs rencontres law, k=7 ===
+  rencontres P_j (S_7, exact): 0:103/280(0.3679), 1:53/144(0.3681), 2:11/60(0.1833), 3:1/16(0.0625), 4:1/72(0.0139), 5:1/240(0.0042), 6:0(0.0000), 7:1/5040(0.0002)
+  p=503: 0:200(0.3976), 1:166(0.3300), 2:84(0.1670), 3:45(0.0895), 4:6(0.0119), 5:2(0.0040), 6:0(0.0000), 7:0(0.0000)   [check sum j*n_j == p: 503 == 503]
+  p=1231: 0:474(0.3851), 1:408(0.3314), 2:258(0.2096), 3:72(0.0585), 4:6(0.0049), 5:12(0.0097), 6:0(0.0000), 7:1(0.0008)   [check sum j*n_j == p: 1231 == 1231]
+  p=1999: 0:768(0.3842), 1:678(0.3392), 2:402(0.2011), 3:96(0.0480), 4:48(0.0240), 5:6(0.0030), 6:0(0.0000), 7:1(0.0005)   [check sum j*n_j == p: 1999 == 1999]
+
+=== (4) Exact cost constant C(P) = lim cost/(2p), own independent derivation ===
+  cost = 2*L4 + U ; L4 = 2p*E[lines/class] (both slopes) ; U = p*E[singleton lifts/residue]
+  C(P) = 2*E[lines/class] + E[singleton lifts/residue]/2
+  k=3: E[lines/class]=1/4  E[singletons/residue]=7/4  C(P)=11/8 = 1.375000  <- must equal 11/8 exactly (Theorem G3.5)
+  k=5: E[lines/class]=31/120  E[singletons/residue]=1519/864  C(P)=12059/8640 = 1.395718
+  k=7: E[lines/class]=877/3360  E[singletons/residue]=637871/362880  C(P)=203347/145152 = 1.400925
+
+=== (5) Genus of pairwise fibre product X_2, k=5: g_2=(k-2)(k-3)/2 = 3 ===
+  p=503: N2=470  E[j(j-1)]*p (leading term)=503.0  |N2-pred|=33.0  generous O(sqrt p) budget~807.4  OK
+  p=1229: N2=1212  E[j(j-1)]*p (leading term)=1229.0  |N2-pred|=17.0  generous O(sqrt p) budget~1262.1  OK
+  p=1999: N2=2014  E[j(j-1)]*p (leading term)=1999.0  |N2-pred|=15.0  generous O(sqrt p) budget~1609.6  OK
+
+=== (5) Genus of pairwise fibre product X_2, k=7: g_2=(k-2)(k-3)/2 = 10 ===
+  p=503: N2=550  E[j(j-1)]*p (leading term)=503.0  |N2-pred|=47.0  generous O(sqrt p) budget~1390.5  OK
+  p=1231: N2=1302  E[j(j-1)]*p (leading term)=1231.0  |N2-pred|=71.0  generous O(sqrt p) budget~2175.3  OK
+  p=1999: N2=2118  E[j(j-1)]*p (leading term)=1999.0  |N2-pred|=119.0  generous O(sqrt p) budget~2772.0  OK
+
+=== SUMMARY ===
+  discriminant/simple-branching check: k=5 PASS, k=7 PASS
+  k=5: C(P) = 12059/8640  ~= 1.395718
+  k=7: C(P) = 203347/145152  ~= 1.400925
+  (cross-check target, from slack/g_agents/x5_x7_numerics_exact_constant.py, computed
+   independently by a different agent: k=5 -> 12059/8640 ~= 1.395718; k=7 -> 203347/145152 ~= 1.400925)

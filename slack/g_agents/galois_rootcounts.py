@@ -140,35 +140,90 @@ def modinv(a, p):
     return pow(a, p - 2, p)
 
 
-def kth_power_roots_of_unity_like(k, invk, p):
-    """Brute-force roots of x^(k-1) == invk (mod p), i.e. the critical points of x -> x^k-x
-    (roots of k*x^(k-1) = 1).  O(p); k,p small enough here that this is instant and has zero
-    room for a factoring bug (unlike a Tonelli-Shanks-type root extractor)."""
-    target = invk
-    e = k - 1
-    return [x for x in range(1, p) if pow(x, e, p) == target]
+def sylvester_resultant(f_lo2hi, g_lo2hi, p):
+    """Res(f,g) mod p via the Sylvester matrix determinant (modular Gaussian elimination).
+    Robust for any f,g (does NOT need their roots to lie in F_p -- unlike evaluating at
+    explicit critical points, which is exactly the bug this replaces: the k-1 critical points
+    of x^k-x need not be F_p-rational, only F_pbar-rational, so a brute-force
+    range(p) search for them is the wrong tool and silently undercounts)."""
+    df, dg = pdeg(f_lo2hi), pdeg(g_lo2hi)
+    if df < 0 or dg < 0:
+        return 0
+    f = list(reversed(ptrim(f_lo2hi, p)[:df + 1]))  # high-to-low
+    g = list(reversed(ptrim(g_lo2hi, p)[:dg + 1]))
+    n = df + dg
+    if n == 0:
+        return 1
+    M = [[0] * n for _ in range(n)]
+    for i in range(dg):
+        for t, c in enumerate(f):
+            M[i][i + t] = c % p
+    for j in range(df):
+        for t, c in enumerate(g):
+            M[dg + j][j + t] = c % p
+    det = 1
+    for col in range(n):
+        piv = next((r for r in range(col, n) if M[r][col] % p != 0), None)
+        if piv is None:
+            return 0
+        if piv != col:
+            M[col], M[piv] = M[piv], M[col]
+            det = (-det) % p
+        inv = modinv(M[col][col], p)
+        det = (det * M[col][col]) % p
+        for r in range(col + 1, n):
+            if M[r][col] % p != 0:
+                factor = (M[r][col] * inv) % p
+                for c2 in range(col, n):
+                    M[r][c2] = (M[r][c2] - factor * M[col][c2]) % p
+    return det % p
+
+
+def poly_derivative(f, p):
+    return ptrim([(i * f[i]) % p for i in range(1, len(f))], p)
 
 
 def check_discriminant(k, primes):
     P(f"\n=== (1) Trinomial-discriminant / simple-branching check, k={k} ===")
-    P(f"Claim: disc_x(x^{k}-x-T) = +-(k^k T^(k-1) - (k-1)^(k-1)), so the k-1 critical values")
-    P(f"of x -> x^{k}-x are exactly the (k-1)=th roots of (k-1)^(k-1)/k^k, pairwise distinct")
-    P(f"whenever p does not divide k*(k-1) = {k*(k-1)}.")
+    P(f"Claim: disc_x(x^{k}-x-T) = eps_k*(k^k T^(k-1) - (k-1)^(k-1)) for a SIGN eps_k in {{+1,-1}}")
+    P(f"depending only on k (sign convention of disc/Res, irrelevant to what it is used for below).")
+    P(f"Since this identity is between two polynomials in T of degree <= k-1, agreement at any")
+    P(f"k values of c already forces equality as polynomials mod p; checked at min(p,3k) values.")
+    P(f"Consequence used in the report: the k-1 roots of the RHS in T are the (k-1)-th roots of")
+    P(f"(k-1)^(k-1)/k^k -- PAIRWISE DISTINCT (T^(k-1)=const is separable) whenever p does not")
+    P(f"divide k*(k-1) = {k*(k-1)}, i.e. for every prime tested here (all are >> k).")
     all_ok = True
     for p in primes:
-        invk = modinv(k, p)
-        const = (pow(k - 1, k - 1, p) * pow(invk, k, p)) % p  # (k-1)^(k-1) / k^k mod p
-        crit_pts = kth_power_roots_of_unity_like(k, invk, p)
-        n_expected = k - 1
-        distinct_pts_ok = (len(crit_pts) == n_expected) and (len(set(crit_pts)) == n_expected)
-        crit_vals = [(pow(x, k, p) - x) % p for x in crit_pts]
-        vals_distinct = (len(set(crit_vals)) == n_expected)
-        formula_ok = all(pow(v, k - 1, p) == const for v in crit_vals)
-        ok = distinct_pts_ok and vals_distinct and formula_ok
+        n_test = min(p, 3 * k)
+        cs = list(range(n_test))
+        sign = None
+        mismatches = 0
+        for c in cs:
+            f = [(-c) % p, (p - 1) % p] + [0] * (k - 2) + [1]
+            f = ptrim(f, p)
+            fp = poly_derivative(f, p)
+            res = sylvester_resultant(f, fp, p)
+            sign_exp = (-1) ** (k * (k - 1) // 2)
+            disc = (sign_exp * res) % p
+            claim = (pow(k, k, p) * pow(c, k - 1, p) - pow(k - 1, k - 1, p)) % p
+            if disc == claim % p:
+                this_sign = 1
+            elif disc == (-claim) % p:
+                this_sign = -1
+            else:
+                this_sign = None
+                mismatches += 1
+            if sign is None:
+                sign = this_sign
+            elif this_sign != sign and this_sign is not None:
+                mismatches += 1  # sign flip mid-run: also a failure of the "pure power" shape
+        # separability of T^(k-1) = const, and const != 0:
+        const_nonzero = (pow(k - 1, k - 1, p) % p != 0) and (p % k != 0)
+        separable = (p % (k - 1) != 0)
+        ok = (mismatches == 0) and (sign is not None) and const_nonzero and separable
         all_ok &= ok
-        P(f"  p={p:5d}: #critical points={len(crit_pts)} (want {n_expected}, distinct={distinct_pts_ok});"
-          f" #distinct critical VALUES={len(set(crit_vals))} (distinct={vals_distinct});"
-          f" formula v^(k-1)==(k-1)^(k-1)/k^k for all v: {formula_ok}   -> {'OK' if ok else 'FAIL'}")
+        P(f"  p={p:5d}: tested {n_test} values of c, mismatches={mismatches}, consistent sign eps_k={sign};"
+          f" (k-1)^(k-1)/k^k != 0: {const_nonzero}; p not-div (k-1): {separable}   -> {'OK' if ok else 'FAIL'}")
     P(f"  ALL {'PASS' if all_ok else 'FAIL'} for k={k} at primes {primes}")
     return all_ok
 
@@ -305,7 +360,7 @@ def ddf_cycle_type(f, p):
         d += 1
     if pdeg(f_cur) >= 1:
         degs.append(pdeg(f_cur))  # leftover factor of its own (necessarily prime, unreached) degree
-    return tuple(sorted(degs))
+    return tuple(sorted(degs, reverse=True))  # descending, to match partitions()'s convention
 
 
 def is_squarefree(f, p):
