@@ -1,3 +1,8 @@
+> **CORRECTION (second solver, 19.08 08:50 WITA, after THREAD[141]):** the "idealized-model constants" of §0/§4 (12059/8640 for x⁵, 203347/145152 for x⁷)
+> assume INDEPENDENT slopes; the thresholds of the two slopes at a residue x are tied by the identity θ₋ = 1 − θ₊ + 2u_x, so the correct idealised
+> constants are those of the tied-threshold law: C₅ = 28183/10080 = 2.795933 (1.397966 N), C₇ = 15265237/5443200 = 2.804460 (1.402230 N)
+> (`slack/pp_constant_exact.py`, confirmed on the arithmetic at p ≈ 10⁷: `slack/pp_exact_UL_np.py`, THREAD[141]). The empirical tables of this report stand.
+
 # x5_x7_numerics — box-lift numerics for f(x) = x⁵, x⁷ (permutation monomials), box (0,0)
 
 *(agent `x5_x7_numerics`, 2026-08-19; code `slack/g_agents/x5_x7_numerics.py`, `x5_x7_numerics_pooled.py`,
