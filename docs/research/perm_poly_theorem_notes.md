@@ -53,3 +53,27 @@ holds as soon as (H1)–(H3) are established for f — for the S_d case this is 
 (a) Galois groups / root laws for the target families (x^k: Gal(t^k − t − c / F_p(c)); Dickson) — second solver's workflow; (b) numerics of C for x⁵,x⁷ at
 p ≤ 1000 vs W₄ — second solver's workflow; (c) statement + proof text for the S_d case (positions equidistribution on the k-tuple varieties and the two-slope
 fibre product; Kummer twists for the counts) — first solver, after (a),(b).
+
+## 5. Statement and proof outline for the generic (S_d) case — what exactly has to be checked
+**Theorem G3.7 (conditional form).** Let d ≥ 3 be fixed and f ∈ F_p[x] a permutation polynomial of degree d such that, for both g = f − x and g = f + x,
+(i) the geometric and arithmetic monodromy groups of the cover t ↦ g(t) (i.e. of g(t) − c over F_p(c)) are both S_d, and (ii) the splitting fields of
+g₊(t) − g₊(x) and g₋(t) − g₋(x) over F_p(x) are linearly disjoint (equivalently their Galois closures over the x-line have no common subcover; a
+sufficient check: the discriminants disc_t(g₊(t) − g₊(x)) and disc_t(g₋(t) − g₋(x)) are coprime polynomials in x, so already the quadratic subfields differ,
+and no non-trivial normal subgroup of S_d other than A_d could give a common quotient). Then for every 2p × 2p box, as p → ∞ (p ∤ 6·d·disc),
+   α(f, B) ≤ (C_d + o(1))·p,   C_d = C(rencontres_d, rencontres_d) = 2.750 (d=3), 2.828 (d=4), 2.796 (d=5), 2.805 (d=7), … (all ≤ 2.83 < 3),
+with the error term O_d(√p log^{d+1} p). In particular α(f,B) ≤ (1.42 + o(1))·N < (3/2)N.
+Examples: f = x^k, gcd(k, p−1) = 1, p ∤ k(k−1): (i) holds since t^k ∓ t has k−1 simple critical points with distinct critical values (monodromy S_k, tame);
+(ii) holds since disc(t^k − t − c) ∝ k^k c^{k−1} ± (k−1)^{k−1} evaluated at c = x^k ∓ x gives two coprime polynomials in x [to be double-checked for small k].
+**Proof outline.** (1) Lift accounting: §1 (exact, all p). (2) (H1) with error O_d(√p): Chebotarev for the S_d-cover, P_k = proportion of permutations
+with k fixed points. (3) (H2): the variety V_k of ordered k-tuples of distinct roots of g(t) = c is a curve; by k-transitivity of S_d = geometric monodromy it is
+absolutely irreducible for every k ≤ d; the functions t₁,…,t_k, c on V_k admit no linear relation for k < d (the fibre of V_k → V_{k−1} has d−k+1 ≥ 2 points, so
+t_k is not a rational function of the others; then induct) and exactly the relation Σt_i = −(coefficient of x^{d−1}) for k = d; Bombieri on V_k plus Fourier
+expansion of the k+1 interval conditions gives the counts with error O_d(√p log^{k+1}p) — for k < d the positions and θ = 1 − g(c) are jointly uniform, so
+n₀ | k ∼ Bin(k, U) is uniform on {0..k} and a random member sees n = 1 + Bin(k−1, q). (4) (H3): the fibre product W of the +/− root varieties over the x-line is
+absolutely irreducible by (ii) (linear disjointness); the joint law of (u_x, g(c₊(x)), partner positions of both slopes) is uniform (Bombieri on W; the tie
+θ₋ = 1 − θ₊ + 2u_x is an identity, not a hypothesis) and the root counts (k₊,k₋) are jointly Chebotarev-distributed on the disjoint product, i.e. independent,
+and independent of the positions (Kummer/Artin–Schreier twists as in the cubic case). (5) The k = d terms: positions constrained by one linear relation — treat
+them separately or bound crudely (they weigh 1/d! ≤ 1/6, and even the trivial estimate U ≤ 4 on them moves C_d by at most 4/d!·(fraction) — for d ≥ 4 this is
+≤ 0.17, still leaving C_d < 3 for the values above; for d = 3 the pairwise identity makes it exact). ∎ (outline)
+Open for the theorem text: the k = d bookkeeping (5) done cleanly; the discriminant coprimality (ii) for x^k; the constant's tabulation with rigorous
+quadrature error (the integrand is piecewise polynomial in (u_x, g): exact rational values are computable).
