@@ -1,0 +1,4 @@
+# verify_cnf_lines.py (first solver): end-to-end semantic check of no3_3d_cnf.py — every collinear triple must be UNSAT under assumptions, non-collinear ones SAT; cardinality stripped (trap 5b)
+n=4: cells=64, collinear triples=376, NOT forbidden: 0; over-constrained (sample 3000): 0
+n=5: cells=125, collinear triples=1858, NOT forbidden: 0; over-constrained (sample 3000): 0
+n=6: cells=216, collinear triples=5696, NOT forbidden: 0; over-constrained (sample 3000): 0   <- checked at the n we claim
