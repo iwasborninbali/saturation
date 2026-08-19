@@ -39,21 +39,24 @@ $0$, when each of its at most two degenerate edges contributes $16$ instead of $
 
 \begin{theorem}[block decomposition]\label{thm:blocks}
 The sets $B_\varrho$, $\varrho$ a run of consecutive squares, partition $\Pset_{-1}$; each $B_\varrho$ is a union of rows and of columns;
-and every line carrying at least three points of $\Pset_{-1}$ lies inside a single $B_\varrho$.  Consequently
+and every row, every column and every slope-$(\pm1)$ line of the box lies inside a single $B_\varrho$.  Consequently
 \begin{equation}\label{eq:blocks}
  \alpha(\Pset_{-1})\ \le\ \sum_{\varrho}\beta(B_\varrho),\qquad
- \beta(B):=\max\{|S|:\ S\subseteq B,\ |S\cap\ell|\le2\ \text{for every line }\ell\},
+ \beta(B):=\max\{|S|:\ S\subseteq B,\ |S\cap\ell|\le2\ \text{for every row, column and slope-}(\pm1)\text{ line }\ell\},
 \end{equation}
 and the same sum with $\beta$ replaced by the value of the linear relaxation equals the value of the linear relaxation for
-$\Pset_{-1}$ with rows, columns and slope-$(\pm1)$ lines.
+$\Pset_{-1}$ with rows, columns and slope-$(\pm1)$ lines.  (Lines of other slopes may carry three points of $\Pset_{-1}$ --- two from one
+hyperbola and one from the other --- and such a line need not stay inside a block; dropping those constraints is what makes the bound
+block-wise, and it only weakens it.)
 \end{theorem}
 \begin{proof}
 Every point lies on exactly one edge (Lemma~\ref{lem:edges}), and the edges of one run are pairwise disjoint sets of classes, so the
 $B_\varrho$ partition $\Pset_{-1}$; rows and columns stay inside an edge, hence inside a block.  A line of slope $+1$ with residue $d$
 carries the $H(1)$-classes with $d_\kappa\equiv\pm d$ --- edge $\{t,t+1\}$, $t=\tfrac14d^2$ --- and the $H(-1)$-classes with $r_+\equiv\pm d$,
 whose edge is $\{t-1,t\}$ (their $r_-^2=d^2-4$); both edges contain the vertex $t$, so they lie in the same run and the line lies in one
-block.  Slope $-1$ is symmetric under $R$.  Since the blocks partition $\Pset_{-1}$ and no line meets two of them, a lawful $S$ satisfies
-$|S|=\sum_\varrho|S\cap B_\varrho|\le\sum_\varrho\beta(B_\varrho)$, and the constraint matrix of the linear relaxation is block diagonal.
+block.  Slope $-1$ is symmetric under $R$.  Since the blocks partition $\Pset_{-1}$, a lawful $S$ satisfies
+$|S|=\sum_\varrho|S\cap B_\varrho|$, and each $S\cap B_\varrho$ has at most two points on every row, column and slope-$(\pm1)$ line, so
+$|S\cap B_\varrho|\le\beta(B_\varrho)$; the constraint matrix of the linear relaxation over those three families is block diagonal.
 \end{proof}
 
 \input{lemma_run}
