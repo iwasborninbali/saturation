@@ -4,7 +4,7 @@ The point at issue: is max = 3(p-1) + O(1) (so ratio -> 1.5 N) or does the gain 
 import sys
 from collections import defaultdict
 from ortools.sat.python import cp_model
-def solve(p, cs, tl=900):
+def solve(p, cs, tl=240):
     h=(p-1)//2
     pts=[(x,y) for x in range(-h,3*h+2) for y in range(0,2*p) if (x*y)%p in {c%p for c in cs}]
     idx={q:i for i,q in enumerate(pts)}
@@ -27,7 +27,7 @@ def solve(p, cs, tl=900):
     st=s.Solve(mdl)
     val=int(s.ObjectiveValue()); bound=int(s.BestObjectiveBound())
     return len(pts), nl, val, bound, s.StatusName(st)
-CS={'pair':[1,-1],'quad':[1,-1,2,-2]}
+CS={'quad':[1,-1,2,-2]}
 for p in map(int,sys.argv[1:]):
     for name,cs in CS.items():
         n,nl,val,bnd,st=solve(p,cs)

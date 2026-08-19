@@ -1,0 +1,4 @@
+p= 13 quad : |P|= 192 lines= 1288 max=43 bound=48 [FEASIBLE]  ratio=1.654N  gain over 3(p-1)=+7
+p= 17 quad : |P|= 256 lines= 2286 max=55 bound=64 [FEASIBLE]  ratio=1.618N  gain over 3(p-1)=+7
+p= 19 quad : |P|= 288 lines= 2724 max=61 bound=72 [FEASIBLE]  ratio=1.605N  gain over 3(p-1)=+7
+p= 23 quad : |P|= 352 lines= 3762 max=72 bound=87 [FEASIBLE]  ratio=1.565N  gain over 3(p-1)=+6
