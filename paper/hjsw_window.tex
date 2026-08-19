@@ -1125,7 +1125,13 @@ $p$ & $3(p-1)$ & $k$ & max & gain & LP relax. & method / all $k$\\
 Observations.  (i) The gain over $3(p-1)$ is between $+1$ and $+6$ for \emph{every} $k$ at $p=11,13,17$ and shows no growth up to
 $p=19$; the exact value at $p=23$ is not settled.  As an explicit falsifiable conjecture: $\alpha(\Pset_k)\le3(p-1)+6$ for all $p\ge11$
 and all $k\notin\{0,1\}$ (consistent with all exact values; at $p=23$ the range $70$--$74$ still allows $+8$; a certified witness with
-gain $\ge7$ would refute it).  (ii) The LP relaxation with all rich lines is far
+gain $\ge7$ would refute it).  What the data exclude quantitatively: fitting $\text{gain}=a+c\,(p-1)$ to the exact values gives
+$c\approx0.06$ for the pair and $c\approx0.05$ for a union of four hyperbolae, whereas a union reaching $3(p-1)$'s trivial
+counterpart --- or beating the HJSW construction --- would need $c\approx0.44$; so the measurements exclude the effect size in question by
+almost an order of magnitude, but they do \emph{not} separate a bounded gain from a linear one of slope $\le0.1$, and every prime for which
+the exact value is known is small.  A cautionary companion inside our own data: the deficit between the block bound of
+Section~\ref{sec:blocks} and the truth is $0,8,5,5$ at $p=11,13,17,19$ --- visually constant --- although it provably grows like
+$0.44\,(p-1)$, since the two ends are $3.4413\,(p-1)$ and $3(p-1)+O(1)$.  (ii) The LP relaxation with all rich lines is far
 from the truth (column ``LP''; $\approx4(p-1)-\varepsilon$), because for two hyperbolae the fractional $2$-factor $x\equiv\tfrac12$ is
 almost feasible; certificates need lines with at least five candidates (Section~\ref{sec:two}).  In terms of the saving below the trivial $4(p-1)$, the natural certificates line up as follows (all for $k=-1$):
 a certificate local to one $V$-orbit saves nothing at all (Remark~\ref{rem:blocks}(d)); one local to a \emph{pair} of orbits saves at most
