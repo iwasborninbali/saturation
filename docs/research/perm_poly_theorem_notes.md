@@ -63,7 +63,10 @@ and no non-trivial normal subgroup of S_d other than A_d could give a common quo
    α(f, B) ≤ (C_d + o(1))·p,   C_d = C(rencontres_d, rencontres_d) = 2.750 (d=3), 2.828 (d=4), 2.796 (d=5), 2.805 (d=7), … (all ≤ 2.83 < 3),
 with the error term O_d(√p log^{d+1} p). In particular α(f,B) ≤ (1.42 + o(1))·N < (3/2)N.
 Examples: f = x^k, gcd(k, p−1) = 1, p ∤ k(k−1): (i) holds since t^k ∓ t has k−1 simple critical points with distinct critical values (monodromy S_k, tame);
-(ii) holds since disc(t^k − t − c) ∝ k^k c^{k−1} ± (k−1)^{k−1} evaluated at c = x^k ∓ x gives two coprime polynomials in x [to be double-checked for small k].
+(ii) holds since disc(t^k − t − c) ∝ k^k c^{k−1} ± (k−1)^{k−1} evaluated at c = x^k ∓ x gives the polynomials D₊(x) = k^k(x^k − x)^{k−1} − (k−1)^{k−1},
+D₋(x) = k^k(x^k + x)^{k−1} + (k−1)^{k−1}, whose resultant is a non-zero integer (sympy: k = 3, 5, 7 — with prime factors < 5000 only {2,3,5}, {2,5,7,97,127},
+{2,3,5,7,193,1327}), so for p ∤ Res the two extensions have disjoint finite branch loci; a common subextension would then be unramified over the affine line
+and tame at ∞ (degree ≤ d! < p), hence trivial — this is the linear disjointness (ii), for all p ∤ k(k−1)·Res(D₊,D₋).
 **Proof outline.** (1) Lift accounting: §1 (exact, all p). (2) (H1) with error O_d(√p): Chebotarev for the S_d-cover, P_k = proportion of permutations
 with k fixed points. (3) (H2): the variety V_k of ordered k-tuples of distinct roots of g(t) = c is a curve; by k-transitivity of S_d = geometric monodromy it is
 absolutely irreducible for every k ≤ d; the functions t₁,…,t_k, c on V_k admit no linear relation for k < d (the fibre of V_k → V_{k−1} has d−k+1 ≥ 2 points, so
