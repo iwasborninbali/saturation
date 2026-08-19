@@ -53,6 +53,10 @@ def main():
     with open(os.path.join(outdir, "MANIFEST.txt"), "w") as f:
         f.write(f"kind={kind} n={n} M={M} cols={cols} sym={sym} cases={len(cases)}\n")
         for i in range(len(cases)): f.write(f"case_{i:05d}.cnf\n")
-    print(f"{kind} n={n} M={M}: {len(cases)} кусков в {outdir} (по {len(subsets)} подмножеств на столбец, ёмкость {cap})")
+    written = len([f for f in os.listdir(outdir) if f.startswith("case_") and f.endswith(".cnf")])
+    if written != len(cases):
+        raise SystemExit(f"ОТКАЗ: просили {len(cases)} кусков, записалось {written} (проверь место на диске). "
+                         f"Разбиение НЕПОЛНО, пользоваться им нельзя.")
+    print(f"{kind} n={n} M={M}: {len(cases)} кусков в {outdir} (по {len(subsets)} подмножеств на столбец, ёмкость {cap}); проверено на диске: {written}")
 
 if __name__ == "__main__": main()

@@ -23,4 +23,11 @@ for j, s in enumerate(subs):
         f.write(f"c subsplit of {stem} on column {col}, subset {j}\n")
         f.write(f"p cnf {nv} {int(ncl)+len(units)}\n{body}\n")
         f.write("".join(f"{u} 0\n" for u in units))
-print(f"{stem}: {len(subs)} подкусков")
+# ПРОВЕРКА, ЧТО НАПИСАНО РОВНО СТОЛЬКО, СКОЛЬКО ПРОСИЛИ.
+# Существует потому, что при переполнении диска записалось меньше файлов, и программа
+# промолчала: разбиение стало неполным, а сказать об этом было некому.
+written = len([f for f in os.listdir(outdir) if f.startswith(stem + "_s") and f.endswith(".cnf")])
+if written != len(subs):
+    raise SystemExit(f"ОТКАЗ: {stem}: просили {len(subs)} подкусков, записалось {written} "
+                     f"(проверь место на диске). Разбиение НЕПОЛНО, пользоваться им нельзя.")
+print(f"{stem}: {len(subs)} подкусков, проверено на диске: {written}")
