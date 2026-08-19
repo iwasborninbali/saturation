@@ -48,6 +48,7 @@ def lift_index(X, Y):
     return (x, d, e)
 def is_pm1(u, v): return u == 0 or v == 0 or abs(u) == abs(v)
 lines_by_span = {}
+fam = {}
 seen = set()
 steps = [(i, j) for j in range(2, J0 + 1) for i in range(1, j) if gcd(i, j) == 1]
 for (i, j) in steps:
@@ -79,7 +80,7 @@ for (i, j) in steps:
                         g = gcd(abs(P3[0] - key[0][0]) if False else abs(key[2][0] - key[0][0]), abs(key[2][1] - key[0][1]))
                         span = g
                         good = (not cov[x1, d0, e0]) and (not cov[l2[0], l2[1], l2[2]]) and (not cov[l3[0], l3[1], l3[2]])
-                        lines_by_span.setdefault(span, []).append((key, good))
+                        lines_by_span.setdefault(span, []).append((key, good, j)); fam.setdefault((i, j), [0, 0]); fam[(i, j)][0] += 1; fam[(i, j)][1] += good
 costW4 = None
 # rich lines count L for cost: recompute L from residue profiles
 def rich_count(sig):
@@ -90,12 +91,14 @@ def rich_count(sig):
     return int(((n0 >= 4).astype(np.int64) + (kc + n0 >= 4) + (kc + n1 >= 4) + (n1 >= 4))[kc > 0].sum())
 L = rich_count(+1) + rich_count(-1); costW4 = 2 * L + nunc
 print(f"p={p} box=({x0},{y0}) J0={J0}: uncovered={nunc} ({nunc/(4*p):.3f}), W4 cost={costW4} = {costW4/(2*p):.4f} N; 4/3 needs matching >= {(costW4-8*p/3)/p:.4f} p")
+print("  per family (i,j): lines/p, good/p, good fraction")
+for (i, j) in sorted(fam): print(f"    ({i},{j}): {fam[(i,j)][0]/p:.4f}p {fam[(i,j)][1]/p:.4f}p {fam[(i,j)][1]/max(1,fam[(i,j)][0]):.4f}")
 tot = 0; totg = 0
 for J in sorted(lines_by_span):
-    L_ = lines_by_span[J]; g_ = sum(1 for _, gd in L_ if gd); tot += len(L_); totg += g_
+    L_ = lines_by_span[J]; g_ = sum(1 for _, gd, _j in L_ if gd); tot += len(L_); totg += g_
     print(f"  span {J:2d}: lines={len(L_):6d} ({len(L_)/p:.3f}p) good={g_:5d} ({g_/max(1,len(L_)):.3f})")
 for Jc in sorted(set([3, 4, 5, 6, 8, J0])):
-    good = [k for J, L_ in lines_by_span.items() if J <= Jc for k, gd in L_ if gd]
+    good = [k for J, L_ in lines_by_span.items() for k, gd, jj in L_ if gd and 3 <= jj <= Jc]   # by FAMILY 3 <= j <= Jc (centre family (1,2) excluded)
     inc = {}
     for e, k in enumerate(good):
         for P in k: inc.setdefault(P, []).append(e)
@@ -109,4 +112,4 @@ for Jc in sorted(set([3, 4, 5, 6, 8, J0])):
     used = set(); m = 0
     for e in sorted(range(len(good)), key=lambda e: len(nbr[e])):
         if all(P not in used for P in good[e]): used.update(good[e]); m += 1
-    print(f"  span<={Jc}: good={len(good)} ({len(good)/p:.4f}p) pairs={pairs} ({pairs/p:.4f}p) |good|-pairs={(len(good)-pairs)/p:.4f}p  Caro-Wei={cw/p:.4f}p  greedy={m/p:.4f}p -> cost(greedy)={(costW4-m)/(2*p):.4f} N")
+    print(f"  family j<={Jc}: good={len(good)} ({len(good)/p:.4f}p) pairs={pairs} ({pairs/p:.4f}p) |good|-pairs={(len(good)-pairs)/p:.4f}p  Caro-Wei={cw/p:.4f}p  greedy={m/p:.4f}p -> cost(greedy)={(costW4-m)/(2*p):.4f} N")
