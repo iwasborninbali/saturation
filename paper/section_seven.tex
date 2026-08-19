@@ -1,0 +1,154 @@
+% section_seven.tex — the seven-point groups: a second block for k=-1 (second solver, 19.08; Prop m7asym by the first solver)
+\subsection*{The seven-point groups: a second block}
+
+Theorem~\ref{thm:two} uses only the eight-point lines.  The residue groups with a seven-point line give a second, smaller block, and the
+bookkeeping of \emph{which} groups can be used together is exact.  For a residue $d\not\equiv0$ let $G_d$ be the set of points of $\Pset_{-1}$
+on the slope-$(+1)$ lines $x-y\equiv d\pmod p$ and $G'_d$ the set of points on the slope-$(-1)$ lines $x+y\equiv d$; thus
+$R\,G_d=G'_{-d}$, $R'G_d=G'_d$, $RR'G_d=G_{-d}$.  Call $d$ \emph{full} if $G_d$ contains four classes: an $H(1)$-pair $\{\kappa,\sigma\kappa\}$
+with $d_\kappa\equiv d$ and the $R$-images of an $H(1)$-pair $\{\lambda,\tau\lambda\}$ with $e_\lambda\equiv-d$ (Lemma~\ref{lem:groups}; the
+first pair exists iff $d^2+4$ is a nonzero square, the second iff $d^2-4$ is).  Then $|G_d|=16$, the four centres take at most the two
+values $c,c+p$ (Lemma~\ref{lem:groups}), and the profile of line sizes of $G_d$ is
+\[
+ (4,8,4)\ \text{if both pairs are shared},\quad (3,7,5,1)\text{ or }(1,5,7,3)\ \text{if exactly one is},\quad (2,6,6,2)\ \text{if none is},
+\]
+where the $H(1)$-pair is shared iff $\kappa\in A\cup D$ and the $R$-image of the $\tau$-pair is shared iff $\lambda\in B\cup C$
+(Lemma~\ref{lem:partners}); the first case is the good group of Lemma~\ref{lem:groups}.  We call $d$ a \emph{seven-group} in the second
+case and write $m_7(p)$ for the number of seven-groups of slope $+1$ (equivalently, of seven-point lines of slope $+1$).
+
+\begin{lemma}[Klein orbits]\label{lem:klein}
+Let $d\not\equiv0$ and $\Omega_d:=G_d\cup G_{-d}\cup G'_d\cup G'_{-d}$ $(=\Omega_{-d})$.
+(i) The slope-$(\pm1)$ lines carrying the points of the four groups are pairwise disjoint as subsets of $\Pset_{-1}$; hence
+$\Omega_d$ is their disjoint union and $|\Omega_d|=4|G_d|$.
+(ii) Every row and every column of the box is contained in $\Omega_d$ or disjoint from it.
+(iii) If $d$ is full and $S\subseteq\Pset_{-1}$ is lawful, then $|S\cap\Omega_d|\le4\sum_i\min(n_i,2)$, where $(n_i)$ is the profile of
+$G_d$: at most $24$ for a good group and at most $28$ for a seven-group.
+\end{lemma}
+\begin{proof}
+(i) Two lines of the same slope among the four groups are distinct (the residues $d$ and $-d$ differ, as $d\not\equiv0$), hence disjoint.
+Let $x-y=c_1$ be a line of $G_d$ and $x+y=c_2$ a line of $G'_{-d}=R\,G_d$, so $c_2=p-c_3$ with $c_3\equiv d$; a common lattice point
+has $2x=c_1+c_2=p-(c_3-c_1)$ with $c_3-c_1\in p\Z$, so either $c_1+c_2$ is odd and there is none, or $x\equiv0\pmod p$ and the point is
+not a candidate.  For a line $x+y=c_2$ of $G'_d=R'G_d$ we have $c_2=2p+c_3$, $c_3\equiv d$, and a common point has $2x=c_1+c_3+2p$,
+so $x\equiv c_1$ and $y=x-c_1\equiv0$: again not a candidate.  The remaining pairs (lines of $G_{-d}=RR'G_d$ against those of
+$G'_{\pm d}$) are the images of the two cases under $R$ or $R'$.
+(ii) The four points of a class have the same residues $x-y$ and $x+y$ modulo $p$, so $\Omega_d$ is a union of whole classes, and $R,R'$
+permute the four groups, so $\kappa\subseteq\Omega_d$ iff $R\kappa\subseteq\Omega_d$ iff $R'\kappa\subseteq\Omega_d$.  A row is
+$\kappa\cup R\kappa$ and a column $\kappa\cup R'\kappa$ (Lemma~\ref{lem:rowsRR}).
+(iii) The four groups have the same profile ($R,R'$ preserve line sizes), $S$ has at most $\min(n_i,2)$ points on a line with $n_i$
+candidates, and by (i) every point of $\Omega_d$ lies on exactly one of the sixteen lines.
+\end{proof}
+
+\begin{lemma}[neighbours]\label{lem:neighbours}
+Let $d,e\not\equiv0$ with $e\not\equiv\pm d$.  Then $\Omega_d\cap\Omega_e\ne\emptyset$ iff $e^2\equiv d^2\pm4\pmod p$.  If
+$e^2\equiv d^2+4$, the intersection consists of the $H(1)$-classes of $G_d\cup G_{-d}$ and of the $H(-1)$-classes of $G'_d\cup G'_{-d}$
+(eight classes, $32$ points, when $d$ is full); if $e^2\equiv d^2-4$, of the $H(-1)$-classes of $G_{\pm d}$ and the $H(1)$-classes of $G'_{\pm d}$.
+Two good groups $d,e$ never have $\Omega_d\cap\Omega_e\neq\emptyset$.
+\end{lemma}
+\begin{proof}
+For a candidate $q=(x,y)$ put $r_+(q)=x-y$, $r_-(q)=x+y\pmod p$; then $q\in\Omega_d$ iff $\pm d\in\{r_+(q),r_-(q)\}$.  For $q\in H(1)$,
+$r_-^2-r_+^2=4xy\equiv4$; for $q\in H(-1)$, $r_-^2-r_+^2\equiv-4$.  If $q\in\Omega_d\cap\Omega_e$ with $e\not\equiv\pm d$, then
+$\{r_+(q)^2,r_-(q)^2\}=\{d^2,e^2\}$, whence $e^2\equiv d^2\pm4$.  Conversely, if $e^2\equiv d^2+4$, an $H(1)$-point with $r_+\equiv\pm d$
+has $r_-\equiv\pm e$ automatically, and an $H(-1)$-point with $r_-\equiv\pm d$ has $r_+\equiv\pm e$; these are exactly the points listed,
+and there are no others (an $H(1)$-point with $r_-\equiv\pm d$ would need $r_+^2\equiv d^2-4\equiv e^2-8\not\equiv e^2$).  The case
+$e^2\equiv d^2-4$ is symmetric.  The last claim is Lemma~\ref{lem:closure}(i): the four groups of $\Omega_d$ are good when $d$ is
+(they are images of $G_d$ under $R,R'$), and distinct good groups are disjoint.
+\end{proof}
+
+A seven-group $d$ is \emph{clean} if $\Omega_d$ is disjoint from every good group and from $\Omega_e$ for every seven-group
+$e\not\equiv\pm d$; by Lemma~\ref{lem:neighbours} this concerns only the residues $e$ with $e^2\equiv d^2\pm4$.  Since $RR'$ maps
+seven-groups to seven-groups, they come in pairs $\pm d$ with the same orbit; let $c_7(p)$ be the number of orbits $\Omega_d$ of clean
+seven-groups.
+
+\begin{theorem}[seven-point blocks]\label{thm:seven}
+For every odd prime $p$, every lawful subset of $\Pset_{-1}$ has at most $4(p-1)-4\,m_8(p)-4\,c_7(p)$ points.
+\end{theorem}
+\begin{proof}
+Let $U$ be the union of the good groups $B$ (Lemma~\ref{lem:closure}) and of the orbits of the clean seven-groups; the good orbits are
+pairwise disjoint (Lemma~\ref{lem:closure}(i)), the clean orbits are disjoint from $B$ and from each other by definition, so
+$|U|=32m_8+64c_7$, and $U$ is a union of whole rows and columns (Lemma~\ref{lem:closure}(iii), Lemma~\ref{lem:klein}(ii)).  A lawful $S$
+has at most $12m_8+28c_7$ points in $U$ ($24$ per good orbit, Lemma~\ref{lem:klein}(iii), i.e.\ $6$ lines per pair of good groups as in the
+proof of Theorem~\ref{thm:two}; $28$ per clean orbit), and at most two points on each of the $2(p-1)-|U|/4$ rows outside $U$.  Hence
+$|S|\le12m_8+28c_7+4(p-1)-16m_8-32c_7=4(p-1)-4m_8-4c_7$.
+\end{proof}
+
+The number of seven-groups has the same asymptotics as the number of good groups, and a fixed proportion of them is clean.
+
+\begin{proposition}\label{prop:m7asym}
+$m_7(p)=m_8(p)+O(\sqrt p\log^4p)=\tfrac1{12}p+O(\sqrt p\,\log^4p)$; likewise the number of $(2,6,6,2)$-groups of slope $+1$ is
+$\tfrac1{12}p+O(\sqrt p\log^4p)$.
+\end{proposition}
+\begin{proof}
+In the proof of Proposition~\ref{prop:m8asym} the pairs $(a,b)$ (there $\kappa=(a,1/a)$, $\lambda$ with $b+1/b\equiv a-1/a$) are
+equidistributed, with error $O(\sqrt p\log^4p)$, with respect to the law in which $(x_\kappa,y_\kappa,x_\lambda)$ is uniform on
+$(-p/2,p/2)^3$ and $y_\lambda$ is determined; the event $\mathcal A$ ``the $H(1)$-pair is shared'' ($\kappa\in A\cup D$) has probability
+$\tfrac12$ (two independent signs), $\mathcal A\wedge\mathcal B$ (both shared) has probability $\tfrac13$ (the volume computed there), so
+$\mathcal A\wedge\neg\mathcal B$ has probability $\tfrac16$.  The map $(x_\kappa,y_\kappa,x_\lambda)\mapsto(x_\lambda,y_\lambda,x_\kappa)$ is
+measure preserving on the torus and interchanges the roles of the two pairs, so $\neg\mathcal A\wedge\mathcal B$ has probability $\tfrac16$
+as well and $\neg\mathcal A\wedge\neg\mathcal B$ probability $\tfrac13$.  Multiplying by the number $\tfrac14p+O(\sqrt p)$ of full residues
+gives the claims.
+\end{proof}
+
+\begin{proposition}\label{prop:clean}
+$c_7(p)=\tfrac7{16}\cdot\tfrac{m_7(p)}2+O(\sqrt p\log^6p)=\tfrac{7}{384}\,p+O(\sqrt p\,\log^6p)$.  Consequently
+\[
+ \alpha(\Pset_{-1})\ \le\ \Bigl(\tfrac{11}3-\tfrac7{96}+o(1)\Bigr)(p-1)\ =\ \Bigl(\tfrac{115}{32}+o(1)\Bigr)(p-1)\ =\ (3.59375+o(1))(p-1).
+\]
+\end{proposition}
+\begin{proof}
+Let $d$ be a full residue with pairs $\{\kappa,\sigma\kappa\}$ ($d_\kappa\equiv d$) and $R\{\lambda,\tau\lambda\}$ ($e_\lambda\equiv-d$), and write
+$e_+:=e_\kappa$, $e_-:=d_\lambda$; then $e_+^2\equiv d^2+4$, $e_-^2\equiv d^2-4$ (as $x_\kappa y_\kappa\equiv x_\lambda y_\lambda\equiv1$), and by
+Lemma~\ref{lem:neighbours} the orbits meeting $\Omega_d$ are $\Omega_{e_+}$ and $\Omega_{e_-}$.  \emph{The neighbour $e_+$.}  The group
+$G_{e_+}$ contains the $R$-images of the $\tau$-pair $\{\sigma\kappa,\nu\kappa\}$ (indeed $e_{\sigma\kappa}=e_{\nu\kappa}\equiv-e_+$), which is
+shared iff $\sigma\kappa\in B\cup C$ iff $\kappa\in B\cup C$ (Lemma~\ref{lem:partners}: $\sigma$ preserves $A\cup D$), i.e.\ iff the $H(1)$-pair
+of $G_d$ is \emph{not} shared; and it contains an $H(1)$-pair $\{\mu,\sigma\mu\}$ with $d_\mu\equiv e_+$ iff $d^2+8=e_+^2+4$ is a nonzero
+square, shared iff $\mu\in A\cup D$.  So $e_+$ is good or a seven-group iff $d^2+8$ is a nonzero square and ($\kappa\in B\cup C$ or
+$\mu\in A\cup D$).  \emph{The neighbour $e_-$.}  Symmetrically, $G_{e_-}$ contains the $H(1)$-pair $\{\lambda,\sigma\lambda\}$, shared iff
+$\lambda\in A\cup D$ iff the $H(-1)$-pair of $G_d$ is not shared, and an $H(-1)$-pair $R\{\mu',\tau\mu'\}$ ($e_{\mu'}\equiv-e_-$) iff
+$d^2-8$ is a nonzero square, shared iff $\mu'\in B\cup C$; $e_-$ is good or a seven-group iff $d^2-8$ is a nonzero square and
+($\lambda\in A\cup D$ or $\mu'\in B\cup C$).
+
+Now let $d$ be a seven-group with $\kappa\in A\cup D$, $\lambda\in A\cup D$ (the case $\kappa,\lambda\in B\cup C$ is symmetric under the
+exchange of the two pairs, as in Proposition~\ref{prop:m7asym}).  Then $\Omega_{e_-}$ is used iff $d^2-8$ is a nonzero square, and
+$\Omega_{e_+}$ is used iff $d^2+8$ is a nonzero square and $\mu\in A\cup D$.  We claim that, among such $d$, the proportion with
+$\mu\in A\cup D$ is $\tfrac14+O(p^{-1/2}\log^6p)$, and that the two square conditions are independent of each other and of the position
+conditions, each holding for a proportion $\tfrac12+O(p^{-1/2}\log^6p)$.  Granting this, the proportion of clean seven-groups is
+$(1-\tfrac12\cdot\tfrac14)(1-\tfrac12)=\tfrac7{16}$ up to the error, and $c_7=\tfrac7{16}\cdot\tfrac{m_7}2+O(\sqrt p\log^6p)$; the last
+display follows from Theorem~\ref{thm:seven} and Propositions~\ref{prop:m8asym}, \ref{prop:m7asym}.
+
+\emph{The local law.}  Parametrise by $a=x_\kappa\bmod p$, $l=x_\lambda\bmod p$, $t=x_\mu\bmod p$: the relations are $l+1/l\equiv-(a-1/a)$
+and $t-1/t\equiv a+1/a$, i.e.\ $(a,l,t)$ runs over the curve $C_1$ whose function field is $\Fp(d)(\sqrt{d^2+4},\sqrt{d^2-4},\sqrt{d^2+8})$,
+absolutely irreducible of genus $5$ (three independent quadratic extensions branched at the six roots of $(d^2+4)(d^2-4)(d^2+8)$).
+The six coordinates $x_\kappa,y_\kappa,x_\lambda,y_\lambda,x_\mu,y_\mu$ are the centred (resp.\ positive) representatives of
+$a,1/a,l,1/l,t,1/t$; the last two of these are integer linear forms in the four free residues $a,1/a,l,t$ (plus a multiple of $p$), and every
+nontrivial integer linear form in $a,1/a,l,t$ is a nonconstant function on $C_1$ ($l$ and $t$ have nonzero components along the
+independent square roots $\sqrt{d^2-4}$, $\sqrt{d^2+8}$, and $a,1/a,1$ are linearly independent), so the argument of
+Proposition~\ref{prop:m8asym} (Bombieri's bound on $C_1$, Selberg's polynomials for the six interval conditions) shows that the number of points of $C_1(\Fp)$ with the six coordinates
+in prescribed intervals is $|C_1(\Fp)|\lambda+O(\sqrt p\log^6p)$, $\lambda$ the volume of the corresponding region for the law in which
+$(u_1,u_2,u_3,u_5)=(x_\kappa,y_\kappa,x_\lambda,x_\mu)/p$ is uniform on $(-\tfrac12,\tfrac12)^4$ and $u_4=y_\lambda/p$, $u_6=y_\mu/p$ are the
+representatives of $u_1-u_2-u_3$ and $u_5-u_1-u_2$ modulo~$1$ (we may use centred representatives throughout, since the types
+depend only on the signs).  Points of $C_1$ exist over $d$ iff $d^2+8$ is a nonzero square, two for each of the pairs, so restricting to
+$C_1$ is the same as imposing that condition; the second condition ($d^2-8$ square) is the Kummer character $\chi(d^2-8)$, and
+$d^2\pm4,d^2\pm8$ are multiplicatively independent modulo squares in $\Fp(d)$, so the same count on the curve $C_2$ with function
+field $\Fp(C_1)(\sqrt{d^2-8})$ (genus $17$) gives the joint frequencies; this is the independence claimed.
+
+\emph{The volume.}  Condition on $(u_1,u_2)$ with $u_1u_2<0$ and put $s=u_1+u_2$, $t_0=|u_1|+|u_2|$, $m=\min(t_0,1-t_0)$.  For $u_3$
+uniform, $u_4\equiv-(u_3-(u_2-u_1))$, so $u_3u_4<0$ iff $u_3$ and the representative of $u_3-(u_2-u_1)$ have the same sign, which
+happens with probability $1-2m$ ($|u_2-u_1|=t_0$); for $u_5$ uniform, $u_6\equiv u_5-s$, and $u_5u_6<0$ with probability $2|s|$.  Given
+$t_0$, the difference $|u_1|-|u_2|=\pm s$ is uniform on $(-m,m)$, so $\mathbb E[2|s|\mid t_0]=m$.  The density of $t_0$ is $4t_0$ on
+$(0,\tfrac12)$ and $4(1-t_0)$ on $(\tfrac12,1)$; weighting by $1-2m$ gives $m$ the density $24m(1-2m)$ on $(0,\tfrac12)$, whence
+$\mathbb P(u_5u_6<0\mid u_1u_2<0,\,u_3u_4<0)=\mathbb E[m]=24\int_0^{1/2}m^2(1-2m)\,dm=\tfrac14$.
+\end{proof}
+
+\begin{remark}
+(a) \emph{Data} (\texttt{slack/t221\_agents/clean\_counts.py}, all $405$ primes in $[100,3000]$ and five primes up to $10^5$): the
+proportion of clean seven-orbits is $0.4424$ (pooled; $7/16=0.4375$), the seven-orbits meeting only good orbits, only seven-orbits, and
+both are $32.5\%$, $18.4\%$, $4.9\%$ of all seven-orbits (the local law gives $21/64=32.8\%$, $12/64=18.75\%$ and $\approx5.0\%$ by
+simulation, the two neighbours being positively correlated through $m$), and $4(p-1)-4m_8-4c_7=(3.5945)(p-1)$ pooled
+($115/32=3.59375$).  The neighbour rule of Lemma~\ref{lem:neighbours} and the cover of Lemma~\ref{lem:klein} were checked
+point by point for all primes $p\le500$ (\texttt{slack/t221\_agents/orbit\_cover.py}: $837$ orbits, $|S\cap\Omega|\le28$ certified by
+the LP in every case, the twelve lines of sizes $7,5,3$ partitioning $60$ of the $64$ points).
+(b) The certificate is again a cover by lines and rows; the LP with rows, columns and all slope-$(\pm1)$ lines is lower ($\approx3.45(p-1)$
+for $p\le199$), but its saving beyond the two blocks is not localised (Section~\ref{sec:beyond}).  A seven-orbit whose only used neighbours
+are seven-orbits could be kept when they are discarded (an independent set in the neighbour graph, whose components are paths since every
+orbit has at most two neighbours); the model puts $\approx3/32$ more of the seven-orbits within reach, i.e.\ a constant near $3.58$, at the
+price of a longer bookkeeping.  Both blocks together save $\tfrac13+\tfrac7{96}=\tfrac{39}{96}$ of $p$; the LP saves about $0.55p$.
+\end{remark}
