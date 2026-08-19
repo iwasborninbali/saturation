@@ -1,0 +1,92 @@
+All exact self-checks passed (total volume = 1; V_both = 1/3; the four W_i = 1/12 each; octant totals = 1/8).
+====================================================================================================
+EXACT VOLUMES  V(s,c) = vol{ u in (-1/2,1/2)^3-slice-param : sign(u)=s, u4=c-u1+u2-u3 in (-1/2,1/2) }
+s = (sign A1, sign A2, sign B1, sign B2);  sigma-shared = sign(A1)!=sign(A2); tau-shared = sign(B1)=sign(B2)
+====================================================================================================
+ s1 s2 s3 s4  cell            c=-1         c=0         c=1       sum_c  (float sum_c)
+  +  +  +  +  one              0/1        1/48        1/48        1/24  (0.041667)
+  +  +  +  -  neither          0/1        1/12         0/1        1/12  (0.083333)
+  +  +  -  +  neither          0/1        1/12         0/1        1/12  (0.083333)
+  +  +  -  -  one             1/48        1/48         0/1        1/24  (0.041667)
+  +  -  +  +  both             0/1         0/1        1/12        1/12  (0.083333)
+  +  -  +  -  one              0/1        1/48        1/48        1/24  (0.041667)
+  +  -  -  +  one              0/1        1/48        1/48        1/24  (0.041667)
+  +  -  -  -  both             0/1        1/12         0/1        1/12  (0.083333)
+  -  +  +  +  both             0/1        1/12         0/1        1/12  (0.083333)
+  -  +  +  -  one             1/48        1/48         0/1        1/24  (0.041667)
+  -  +  -  +  one             1/48        1/48         0/1        1/24  (0.041667)
+  -  +  -  -  both            1/12         0/1         0/1        1/12  (0.083333)
+  -  -  +  +  one              0/1        1/48        1/48        1/24  (0.041667)
+  -  -  +  -  neither          0/1        1/12         0/1        1/12  (0.083333)
+  -  -  -  +  neither          0/1        1/12         0/1        1/12  (0.083333)
+  -  -  -  -  one             1/48        1/48         0/1        1/24  (0.041667)
+----------------------------------------------------------------------------------------------------
+Per (cell,c) aggregate:
+  both     c=-1:    1/12  c=0:     1/6  c=1:    1/12   | total 1/3  (0.333333)
+  one      c=-1:    1/12  c=0:     1/6  c=1:    1/12   | total 1/3  (0.333333)
+  neither  c=-1:     0/1  c=0:     1/3  c=1:     0/1   | total 1/3  (0.333333)
+  TOTAL                                             | total 1/1  (1.000000)   [must be 1]
+----------------------------------------------------------------------------------------------------
+V_both : V_one : V_neither  =  1/3 : 1/3 : 1/3  =  1 : 1 : 1
+  as decimals: 0.333333 : 0.333333 : 0.333333   (equal thirds would be 0.333333 each)
+  V_one/2 (sigma-only)  vs  V_one/2 (tau-only): see breakdown below
+  sigma-only-shared = 1/6 (0.166667),  tau-only-shared = 1/6 (0.166667)  [sum = V_one]
+====================================================================================================
+
+p = 1009:  N4 (4-class groups, one slope) = 257   N4/p = 0.25471  (model/proved: 1/4 = 0.25000)
+  m8 (both) =     90  frac of N4 = 0.35019  (model 0.33333)   m8/p = 0.08920  (model*1/4 = 0.08333, proved limit 1/12 = 0.08333)
+  m7 (one)  =     82  frac of N4 = 0.31907  (model 0.33333)   m7/p = 0.08127  (model*1/4 = 0.08333)
+  m6 (neither)=   85  frac of N4 = 0.33074  (model 0.33333)   m6/p = 0.08424  (model*1/4 = 0.08333)
+  (1/3,1/3,1/3) empirical check: 0.3502, 0.3191, 0.3307  vs 0.3333, 0.3333, 0.3333
+  breakdown by c (fraction of N4):
+    both     c=-1:0.08560(model 0.08333)  c=0:0.17899(model 0.16667)  c=1:0.08560(model 0.08333)
+    one      c=-1:0.08949(model 0.08333)  c=0:0.14008(model 0.16667)  c=1:0.08949(model 0.08333)
+    neither  c=-1:0.00000(model 0.00000)  c=0:0.33074(model 0.33333)  c=1:0.00000(model 0.00000)
+  fine (16-pattern x 3c) check over all 1028 representative pairs (= 4*N4):
+    max |empirical_fraction - exact_volume| over all 48 cells = 0.01111
+
+p = 2003:  N4 (4-class groups, one slope) = 500   N4/p = 0.24963  (model/proved: 1/4 = 0.25000)
+  m8 (both) =    148  frac of N4 = 0.29600  (model 0.33333)   m8/p = 0.07389  (model*1/4 = 0.08333, proved limit 1/12 = 0.08333)
+  m7 (one)  =    184  frac of N4 = 0.36800  (model 0.33333)   m7/p = 0.09186  (model*1/4 = 0.08333)
+  m6 (neither)=  168  frac of N4 = 0.33600  (model 0.33333)   m6/p = 0.08387  (model*1/4 = 0.08333)
+  (1/3,1/3,1/3) empirical check: 0.2960, 0.3680, 0.3360  vs 0.3333, 0.3333, 0.3333
+  breakdown by c (fraction of N4):
+    both     c=-1:0.06200(model 0.08333)  c=0:0.17200(model 0.16667)  c=1:0.06200(model 0.08333)
+    one      c=-1:0.09000(model 0.08333)  c=0:0.18800(model 0.16667)  c=1:0.09000(model 0.08333)
+    neither  c=-1:0.00000(model 0.00000)  c=0:0.33600(model 0.33333)  c=1:0.00000(model 0.00000)
+  fine (16-pattern x 3c) check over all 2000 representative pairs (= 4*N4):
+    max |empirical_fraction - exact_volume| over all 48 cells = 0.02133
+
+p = 4001:  N4 (4-class groups, one slope) = 973   N4/p = 0.24319  (model/proved: 1/4 = 0.25000)
+  m8 (both) =    314  frac of N4 = 0.32271  (model 0.33333)   m8/p = 0.07848  (model*1/4 = 0.08333, proved limit 1/12 = 0.08333)
+  m7 (one)  =    332  frac of N4 = 0.34121  (model 0.33333)   m7/p = 0.08298  (model*1/4 = 0.08333)
+  m6 (neither)=  327  frac of N4 = 0.33607  (model 0.33333)   m6/p = 0.08173  (model*1/4 = 0.08333)
+  (1/3,1/3,1/3) empirical check: 0.3227, 0.3412, 0.3361  vs 0.3333, 0.3333, 0.3333
+  breakdown by c (fraction of N4):
+    both     c=-1:0.07503(model 0.08333)  c=0:0.17266(model 0.16667)  c=1:0.07503(model 0.08333)
+    one      c=-1:0.08119(model 0.08333)  c=0:0.17883(model 0.16667)  c=1:0.08119(model 0.08333)
+    neither  c=-1:0.00000(model 0.00000)  c=0:0.33607(model 0.33333)  c=1:0.00000(model 0.00000)
+  fine (16-pattern x 3c) check over all 3892 representative pairs (= 4*N4):
+    max |empirical_fraction - exact_volume| over all 48 cells = 0.00831
+
+p = 20011:  N4 (4-class groups, one slope) = 5002   N4/p = 0.24996  (model/proved: 1/4 = 0.25000)
+  m8 (both) =   1668  frac of N4 = 0.33347  (model 0.33333)   m8/p = 0.08335  (model*1/4 = 0.08333, proved limit 1/12 = 0.08333)
+  m7 (one)  =   1654  frac of N4 = 0.33067  (model 0.33333)   m7/p = 0.08265  (model*1/4 = 0.08333)
+  m6 (neither)= 1680  frac of N4 = 0.33587  (model 0.33333)   m6/p = 0.08395  (model*1/4 = 0.08333)
+  (1/3,1/3,1/3) empirical check: 0.3335, 0.3307, 0.3359  vs 0.3333, 0.3333, 0.3333
+  breakdown by c (fraction of N4):
+    both     c=-1:0.08437(model 0.08333)  c=0:0.16473(model 0.16667)  c=1:0.08437(model 0.08333)
+    one      c=-1:0.08197(model 0.08333)  c=0:0.16673(model 0.16667)  c=1:0.08197(model 0.08333)
+    neither  c=-1:0.00000(model 0.00000)  c=0:0.33587(model 0.33333)  c=1:0.00000(model 0.00000)
+  fine (16-pattern x 3c) check over all 20008 representative pairs (= 4*N4):
+    max |empirical_fraction - exact_volume| over all 48 cells = 0.00103
+
+p = 100003:  N4 (4-class groups, one slope) = 25000   N4/p = 0.24999  (model/proved: 1/4 = 0.25000)
+  m8 (both) =   8154  frac of N4 = 0.32616  (model 0.33333)   m8/p = 0.08154  (model*1/4 = 0.08333, proved limit 1/12 = 0.08333)
+  m7 (one)  =   8382  frac of N4 = 0.33528  (model 0.33333)   m7/p = 0.08382  (model*1/4 = 0.08333)
+  m6 (neither)= 8464  frac of N4 = 0.33856  (model 0.33333)   m6/p = 0.08464  (model*1/4 = 0.08333)
+  (1/3,1/3,1/3) empirical check: 0.3262, 0.3353, 0.3386  vs 0.3333, 0.3333, 0.3333
+  breakdown by c (fraction of N4):
+    both     c=-1:0.08416(model 0.08333)  c=0:0.15784(model 0.16667)  c=1:0.08416(model 0.08333)
+    one      c=-1:0.08284(model 0.08333)  c=0:0.16960(model 0.16667)  c=1:0.08284(model 0.08333)
+    neither  c=-1:0.00000(model 0.00000)  c=0:0.33856(model 0.33333)  c=1:0.00000(model 0.00000)
