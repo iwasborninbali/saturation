@@ -1,1 +1,6 @@
 p=23 k=2 pair: |points|=176 lines>=3: 668  alpha = 70 = 3.182(p-1)  [FEASIBLE, bound 78]
+p=23 k=2 quad: |points|=352 lines>=3: 3762  alpha = 74 = 3.364(p-1)  [FEASIBLE, bound 87]
+p=29 k=2 pair: |points|=224 lines>=3: 1028  alpha = 84 = 3.000(p-1)  [FEASIBLE, bound 92]
+p=29 k=2 quad: |points|=448 lines>=3: 5696  alpha = 90 = 3.214(p-1)  [FEASIBLE, bound 112]
+p=31 k=2 pair: |points|=240 lines>=3: 1248  alpha = 91 = 3.033(p-1)  [FEASIBLE, bound 104]
+p=31 k=2 quad: |points|=480 lines>=3: 6496  alpha = 99 = 3.300(p-1)  [FEASIBLE, bound 120]

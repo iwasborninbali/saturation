@@ -1,52 +1,201 @@
-# quad_k_scan.py  PS=[11, 13]  screen=1x2s  refine=1x2s  cpsat<=5s
+# quad_k_scan.py  PS=[11, 13, 17, 19, 23, 29, 31]  screen=2x12.0s  refine=3x40.0s  cpsat<=300.0s
 
 == p=11  N=22  (p-1)=10  k-range [2, 3, 4, 5] ==
   screen p=11 k=  2 [QNR]: lb= 35 = 3.500(p-1) = 1.591N  CERTIFIED-lawful
-  screen p=11 k=  3 [QR]: lb= 34 = 3.400(p-1) = 1.545N  CERTIFIED-lawful
-  screen p=11 k=  4 [QR]: lb= 34 = 3.400(p-1) = 1.545N  CERTIFIED-lawful
-  screen p=11 k=  5 [QR]: lb= 34 = 3.400(p-1) = 1.545N  CERTIFIED-lawful
-  -- refining top candidates [2, 3] for p=11 with 1x2s --
-  refine p=11 k=  2 [QNR]: lb= 35 = 3.500(p-1) = 1.591N  CERTIFIED-lawful
-  refine p=11 k=  3 [QR]: lb= 34 = 3.400(p-1) = 1.545N  CERTIFIED-lawful
-  CP-SAT p=11 k=2: NOT PROVEN OPTIMAL within 5s -- feasible lawful set of size 36 (LB, not exact)  [FEASIBLE, bound 40]  CERTIFIED-lawful
-  ==> p=11: best k=2  alpha (LB) = 36 = 3.600(p-1) = 1.636N
+  screen p=11 k=  3 [QR]: lb= 35 = 3.500(p-1) = 1.591N  CERTIFIED-lawful
+  screen p=11 k=  4 [QR]: lb= 35 = 3.500(p-1) = 1.591N  CERTIFIED-lawful
+  screen p=11 k=  5 [QR]: lb= 36 = 3.600(p-1) = 1.636N  CERTIFIED-lawful
+  -- refining top candidates [5, 2] for p=11 with 3x40.0s --
+  refine p=11 k=  5 [QR]: lb= 36 = 3.600(p-1) = 1.636N  CERTIFIED-lawful
+  refine p=11 k=  2 [QNR]: lb= 37 = 3.700(p-1) = 1.682N  CERTIFIED-lawful
+  CP-SAT p=11 k=2: NOT PROVEN OPTIMAL within 300s -- feasible lawful set of size 38 (LB, not exact)  [FEASIBLE, bound 40]  CERTIFIED-lawful
+  ==> p=11: best k=2  alpha (LB) = 38 = 3.800(p-1) = 1.727N
 
 == p=13  N=26  (p-1)=12  k-range [2, 3, 4, 5, 6] ==
-  screen p=13 k=  2 [QNR]: lb= 41 = 3.417(p-1) = 1.577N  CERTIFIED-lawful
-  screen p=13 k=  3 [QR]: lb= 40 = 3.333(p-1) = 1.538N  CERTIFIED-lawful
-  screen p=13 k=  4 [QR]: lb= 40 = 3.333(p-1) = 1.538N  CERTIFIED-lawful
-  screen p=13 k=  5 [QNR]: lb= 40 = 3.333(p-1) = 1.538N  CERTIFIED-lawful
-  screen p=13 k=  6 [QNR]: lb= 41 = 3.417(p-1) = 1.577N  CERTIFIED-lawful
-  -- refining top candidates [2, 6] for p=13 with 1x2s --
-  refine p=13 k=  2 [QNR]: lb= 41 = 3.417(p-1) = 1.577N  CERTIFIED-lawful
-  refine p=13 k=  6 [QNR]: lb= 41 = 3.417(p-1) = 1.577N  CERTIFIED-lawful
-  CP-SAT p=13 k=2: NOT PROVEN OPTIMAL within 5s -- feasible lawful set of size 43 (LB, not exact)  [FEASIBLE, bound 48]  CERTIFIED-lawful
-  ==> p=13: best k=2  alpha (LB) = 43 = 3.583(p-1) = 1.654N
+  screen p=13 k=  2 [QNR]: lb= 42 = 3.500(p-1) = 1.615N  CERTIFIED-lawful
+  screen p=13 k=  3 [QR]: lb= 42 = 3.500(p-1) = 1.615N  CERTIFIED-lawful
+  screen p=13 k=  4 [QR]: lb= 41 = 3.417(p-1) = 1.577N  CERTIFIED-lawful
+  screen p=13 k=  5 [QNR]: lb= 41 = 3.417(p-1) = 1.577N  CERTIFIED-lawful
+  screen p=13 k=  6 [QNR]: lb= 42 = 3.500(p-1) = 1.615N  CERTIFIED-lawful
+  -- refining top candidates [2, 3] for p=13 with 3x40.0s --
+  refine p=13 k=  2 [QNR]: lb= 43 = 3.583(p-1) = 1.654N  CERTIFIED-lawful
+  refine p=13 k=  3 [QR]: lb= 43 = 3.583(p-1) = 1.654N  CERTIFIED-lawful
+  CP-SAT p=13 k=2: NOT PROVEN OPTIMAL within 300s -- feasible lawful set of size 44 (LB, not exact)  [FEASIBLE, bound 48]  CERTIFIED-lawful
+  ==> p=13: best k=2  alpha (LB) = 44 = 3.667(p-1) = 1.692N
+
+== p=17  N=34  (p-1)=16  k-range [2, 3, 4, 5, 6, 7, 8] ==
+  screen p=17 k=  2 [QR]: lb= 53 = 3.312(p-1) = 1.559N  CERTIFIED-lawful
+  screen p=17 k=  3 [QNR]: lb= 53 = 3.312(p-1) = 1.559N  CERTIFIED-lawful
+  screen p=17 k=  4 [QR]: lb= 53 = 3.312(p-1) = 1.559N  CERTIFIED-lawful
+  screen p=17 k=  5 [QNR]: lb= 56 = 3.500(p-1) = 1.647N  CERTIFIED-lawful
+  screen p=17 k=  6 [QNR]: lb= 54 = 3.375(p-1) = 1.588N  CERTIFIED-lawful
+  screen p=17 k=  7 [QNR]: lb= 54 = 3.375(p-1) = 1.588N  CERTIFIED-lawful
+  screen p=17 k=  8 [QR]: lb= 54 = 3.375(p-1) = 1.588N  CERTIFIED-lawful
+  -- refining top candidates [5, 6] for p=17 with 3x40.0s --
+  refine p=17 k=  5 [QNR]: lb= 57 = 3.562(p-1) = 1.676N  CERTIFIED-lawful
+  refine p=17 k=  6 [QNR]: lb= 55 = 3.438(p-1) = 1.618N  CERTIFIED-lawful
+  CP-SAT p=17 k=5: NOT PROVEN OPTIMAL within 300s -- feasible lawful set of size 58 (LB, not exact)  [FEASIBLE, bound 64]  CERTIFIED-lawful
+  ==> p=17: best k=5  alpha (LB) = 58 = 3.625(p-1) = 1.706N
+
+== p=19  N=38  (p-1)=18  k-range [2, 3, 4, 5, 6, 7, 8, 9] ==
+  screen p=19 k=  2 [QNR]: lb= 59 = 3.278(p-1) = 1.553N  CERTIFIED-lawful
+  screen p=19 k=  3 [QNR]: lb= 61 = 3.389(p-1) = 1.605N  CERTIFIED-lawful
+  screen p=19 k=  4 [QR]: lb= 58 = 3.222(p-1) = 1.526N  CERTIFIED-lawful
+  screen p=19 k=  5 [QR]: lb= 57 = 3.167(p-1) = 1.500N  CERTIFIED-lawful
+  screen p=19 k=  6 [QR]: lb= 61 = 3.389(p-1) = 1.605N  CERTIFIED-lawful
+  screen p=19 k=  7 [QR]: lb= 59 = 3.278(p-1) = 1.553N  CERTIFIED-lawful
+  screen p=19 k=  8 [QNR]: lb= 59 = 3.278(p-1) = 1.553N  CERTIFIED-lawful
+  screen p=19 k=  9 [QR]: lb= 60 = 3.333(p-1) = 1.579N  CERTIFIED-lawful
+  -- refining top candidates [3, 6] for p=19 with 3x40.0s --
+  refine p=19 k=  3 [QNR]: lb= 64 = 3.556(p-1) = 1.684N  CERTIFIED-lawful
+  refine p=19 k=  6 [QR]: lb= 62 = 3.444(p-1) = 1.632N  CERTIFIED-lawful
+  CP-SAT p=19 k=3: NOT PROVEN OPTIMAL within 300s -- feasible lawful set of size 63 (LB, not exact)  [FEASIBLE, bound 72]  CERTIFIED-lawful
+  ==> p=19: best k=3  alpha (LB) = 64 = 3.556(p-1) = 1.684N
+
+== p=23  N=46  (p-1)=22  k-range [2, 3, 4, 5, 6, 7, 8, 9, 10, 11] ==
+  screen p=23 k=  2 [QR]: lb= 69 = 3.136(p-1) = 1.500N  CERTIFIED-lawful
+  screen p=23 k=  3 [QR]: lb= 72 = 3.273(p-1) = 1.565N  CERTIFIED-lawful
+  screen p=23 k=  4 [QR]: lb= 72 = 3.273(p-1) = 1.565N  CERTIFIED-lawful
+  screen p=23 k=  5 [QNR]: lb= 73 = 3.318(p-1) = 1.587N  CERTIFIED-lawful
+  screen p=23 k=  6 [QR]: lb= 74 = 3.364(p-1) = 1.609N  CERTIFIED-lawful
+  screen p=23 k=  7 [QNR]: lb= 69 = 3.136(p-1) = 1.500N  CERTIFIED-lawful
+  screen p=23 k=  8 [QR]: lb= 73 = 3.318(p-1) = 1.587N  CERTIFIED-lawful
+  screen p=23 k=  9 [QR]: lb= 71 = 3.227(p-1) = 1.543N  CERTIFIED-lawful
+  screen p=23 k= 10 [QNR]: lb= 68 = 3.091(p-1) = 1.478N  CERTIFIED-lawful
+  screen p=23 k= 11 [QNR]: lb= 70 = 3.182(p-1) = 1.522N  CERTIFIED-lawful
+  -- refining top candidates [6, 5] for p=23 with 3x40.0s --
+  refine p=23 k=  6 [QR]: lb= 74 = 3.364(p-1) = 1.609N  CERTIFIED-lawful
+  refine p=23 k=  5 [QNR]: lb= 75 = 3.409(p-1) = 1.630N  CERTIFIED-lawful
+  CP-SAT p=23 k=5: SKIPPED (p > 19, time budget) -- using SA lower bound only
+  ==> p=23: best k=5  alpha (LB) = 75 = 3.409(p-1) = 1.630N
+
+== p=29  N=58  (p-1)=28  k-range [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] ==
+  screen p=29 k=  2 [QNR]: lb= 89 = 3.179(p-1) = 1.534N  CERTIFIED-lawful
+  screen p=29 k=  3 [QNR]: lb= 85 = 3.036(p-1) = 1.466N  CERTIFIED-lawful
+  screen p=29 k=  4 [QR]: lb= 88 = 3.143(p-1) = 1.517N  CERTIFIED-lawful
+  screen p=29 k=  5 [QR]: lb= 88 = 3.143(p-1) = 1.517N  CERTIFIED-lawful
+  screen p=29 k=  6 [QR]: lb= 86 = 3.071(p-1) = 1.483N  CERTIFIED-lawful
+  screen p=29 k=  7 [QR]: lb= 85 = 3.036(p-1) = 1.466N  CERTIFIED-lawful
+  screen p=29 k=  8 [QNR]: lb= 85 = 3.036(p-1) = 1.466N  CERTIFIED-lawful
+  screen p=29 k=  9 [QR]: lb= 89 = 3.179(p-1) = 1.534N  CERTIFIED-lawful
+  screen p=29 k= 10 [QNR]: lb= 84 = 3.000(p-1) = 1.448N  CERTIFIED-lawful
+  screen p=29 k= 11 [QNR]: lb= 85 = 3.036(p-1) = 1.466N  CERTIFIED-lawful
+  screen p=29 k= 12 [QNR]: lb= 91 = 3.250(p-1) = 1.569N  CERTIFIED-lawful
+  screen p=29 k= 13 [QR]: lb= 87 = 3.107(p-1) = 1.500N  CERTIFIED-lawful
+  screen p=29 k= 14 [QNR]: lb= 86 = 3.071(p-1) = 1.483N  CERTIFIED-lawful
+  -- refining top candidates [12, 2] for p=29 with 3x40.0s --
+  refine p=29 k= 12 [QNR]: lb= 93 = 3.321(p-1) = 1.603N  CERTIFIED-lawful
+  refine p=29 k=  2 [QNR]: lb= 90 = 3.214(p-1) = 1.552N  CERTIFIED-lawful
+  CP-SAT p=29 k=12: SKIPPED (p > 19, time budget) -- using SA lower bound only
+  ==> p=29: best k=12  alpha (LB) = 93 = 3.321(p-1) = 1.603N
+
+== p=31  N=62  (p-1)=30  k-range [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15] ==
+  screen p=31 k=  2 [QR]: lb= 98 = 3.267(p-1) = 1.581N  CERTIFIED-lawful
+  screen p=31 k=  3 [QNR]: lb= 93 = 3.100(p-1) = 1.500N  CERTIFIED-lawful
+  screen p=31 k=  4 [QR]: lb= 92 = 3.067(p-1) = 1.484N  CERTIFIED-lawful
+  screen p=31 k=  5 [QR]: lb= 90 = 3.000(p-1) = 1.452N  CERTIFIED-lawful
+  screen p=31 k=  6 [QNR]: lb= 92 = 3.067(p-1) = 1.484N  CERTIFIED-lawful
+  screen p=31 k=  7 [QR]: lb= 90 = 3.000(p-1) = 1.452N  CERTIFIED-lawful
+  screen p=31 k=  8 [QR]: lb= 93 = 3.100(p-1) = 1.500N  CERTIFIED-lawful
+  screen p=31 k=  9 [QR]: lb= 89 = 2.967(p-1) = 1.435N  CERTIFIED-lawful
+  screen p=31 k= 10 [QR]: lb= 93 = 3.100(p-1) = 1.500N  CERTIFIED-lawful
+  screen p=31 k= 11 [QNR]: lb= 91 = 3.033(p-1) = 1.468N  CERTIFIED-lawful
+  screen p=31 k= 12 [QNR]: lb= 92 = 3.067(p-1) = 1.484N  CERTIFIED-lawful
+  screen p=31 k= 13 [QNR]: lb= 93 = 3.100(p-1) = 1.500N  CERTIFIED-lawful
+  screen p=31 k= 14 [QR]: lb= 93 = 3.100(p-1) = 1.500N  CERTIFIED-lawful
+  screen p=31 k= 15 [QNR]: lb= 94 = 3.133(p-1) = 1.516N  CERTIFIED-lawful
+  -- refining top candidates [2, 15] for p=31 with 3x40.0s --
+  refine p=31 k=  2 [QR]: lb= 99 = 3.300(p-1) = 1.597N  CERTIFIED-lawful
+  refine p=31 k= 15 [QNR]: lb= 95 = 3.167(p-1) = 1.532N  CERTIFIED-lawful
+  CP-SAT p=31 k=2: SKIPPED (p > 19, time budget) -- using SA lower bound only
+  ==> p=31: best k=2  alpha (LB) = 99 = 3.300(p-1) = 1.597N
 
 
 ===== TABLE: p, k, QR-class(k), best alpha for {H(1),H(-1),H(k),H(-k)}, alpha/N, alpha/(p-1), exact/LB =====
-  p= 11 k=  2 [QNR] alpha= 36  alpha/N=1.6364  alpha/(p-1)=3.6000  LB
-  p= 11 k=  3 [QR] alpha= 34  alpha/N=1.5455  alpha/(p-1)=3.4000  LB
-  p= 11 k=  4 [QR] alpha= 34  alpha/N=1.5455  alpha/(p-1)=3.4000  LB
-  p= 11 k=  5 [QR] alpha= 34  alpha/N=1.5455  alpha/(p-1)=3.4000  LB
-  p= 13 k=  2 [QNR] alpha= 43  alpha/N=1.6538  alpha/(p-1)=3.5833  LB
-  p= 13 k=  3 [QR] alpha= 40  alpha/N=1.5385  alpha/(p-1)=3.3333  LB
-  p= 13 k=  4 [QR] alpha= 40  alpha/N=1.5385  alpha/(p-1)=3.3333  LB
-  p= 13 k=  5 [QNR] alpha= 40  alpha/N=1.5385  alpha/(p-1)=3.3333  LB
-  p= 13 k=  6 [QNR] alpha= 41  alpha/N=1.5769  alpha/(p-1)=3.4167  LB
+  p= 11 k=  2 [QNR] alpha= 38  alpha/N=1.7273  alpha/(p-1)=3.8000  LB
+  p= 11 k=  3 [QR] alpha= 35  alpha/N=1.5909  alpha/(p-1)=3.5000  LB
+  p= 11 k=  4 [QR] alpha= 35  alpha/N=1.5909  alpha/(p-1)=3.5000  LB
+  p= 11 k=  5 [QR] alpha= 36  alpha/N=1.6364  alpha/(p-1)=3.6000  LB
+  p= 13 k=  2 [QNR] alpha= 44  alpha/N=1.6923  alpha/(p-1)=3.6667  LB
+  p= 13 k=  3 [QR] alpha= 43  alpha/N=1.6538  alpha/(p-1)=3.5833  LB
+  p= 13 k=  4 [QR] alpha= 41  alpha/N=1.5769  alpha/(p-1)=3.4167  LB
+  p= 13 k=  5 [QNR] alpha= 41  alpha/N=1.5769  alpha/(p-1)=3.4167  LB
+  p= 13 k=  6 [QNR] alpha= 42  alpha/N=1.6154  alpha/(p-1)=3.5000  LB
+  p= 17 k=  2 [QR] alpha= 53  alpha/N=1.5588  alpha/(p-1)=3.3125  LB
+  p= 17 k=  3 [QNR] alpha= 53  alpha/N=1.5588  alpha/(p-1)=3.3125  LB
+  p= 17 k=  4 [QR] alpha= 53  alpha/N=1.5588  alpha/(p-1)=3.3125  LB
+  p= 17 k=  5 [QNR] alpha= 58  alpha/N=1.7059  alpha/(p-1)=3.6250  LB
+  p= 17 k=  6 [QNR] alpha= 55  alpha/N=1.6176  alpha/(p-1)=3.4375  LB
+  p= 17 k=  7 [QNR] alpha= 54  alpha/N=1.5882  alpha/(p-1)=3.3750  LB
+  p= 17 k=  8 [QR] alpha= 54  alpha/N=1.5882  alpha/(p-1)=3.3750  LB
+  p= 19 k=  2 [QNR] alpha= 59  alpha/N=1.5526  alpha/(p-1)=3.2778  LB
+  p= 19 k=  3 [QNR] alpha= 64  alpha/N=1.6842  alpha/(p-1)=3.5556  LB
+  p= 19 k=  4 [QR] alpha= 58  alpha/N=1.5263  alpha/(p-1)=3.2222  LB
+  p= 19 k=  5 [QR] alpha= 57  alpha/N=1.5000  alpha/(p-1)=3.1667  LB
+  p= 19 k=  6 [QR] alpha= 62  alpha/N=1.6316  alpha/(p-1)=3.4444  LB
+  p= 19 k=  7 [QR] alpha= 59  alpha/N=1.5526  alpha/(p-1)=3.2778  LB
+  p= 19 k=  8 [QNR] alpha= 59  alpha/N=1.5526  alpha/(p-1)=3.2778  LB
+  p= 19 k=  9 [QR] alpha= 60  alpha/N=1.5789  alpha/(p-1)=3.3333  LB
+  p= 23 k=  2 [QR] alpha= 69  alpha/N=1.5000  alpha/(p-1)=3.1364  LB
+  p= 23 k=  3 [QR] alpha= 72  alpha/N=1.5652  alpha/(p-1)=3.2727  LB
+  p= 23 k=  4 [QR] alpha= 72  alpha/N=1.5652  alpha/(p-1)=3.2727  LB
+  p= 23 k=  5 [QNR] alpha= 75  alpha/N=1.6304  alpha/(p-1)=3.4091  LB
+  p= 23 k=  6 [QR] alpha= 74  alpha/N=1.6087  alpha/(p-1)=3.3636  LB
+  p= 23 k=  7 [QNR] alpha= 69  alpha/N=1.5000  alpha/(p-1)=3.1364  LB
+  p= 23 k=  8 [QR] alpha= 73  alpha/N=1.5870  alpha/(p-1)=3.3182  LB
+  p= 23 k=  9 [QR] alpha= 71  alpha/N=1.5435  alpha/(p-1)=3.2273  LB
+  p= 23 k= 10 [QNR] alpha= 68  alpha/N=1.4783  alpha/(p-1)=3.0909  LB
+  p= 23 k= 11 [QNR] alpha= 70  alpha/N=1.5217  alpha/(p-1)=3.1818  LB
+  p= 29 k=  2 [QNR] alpha= 90  alpha/N=1.5517  alpha/(p-1)=3.2143  LB
+  p= 29 k=  3 [QNR] alpha= 85  alpha/N=1.4655  alpha/(p-1)=3.0357  LB
+  p= 29 k=  4 [QR] alpha= 88  alpha/N=1.5172  alpha/(p-1)=3.1429  LB
+  p= 29 k=  5 [QR] alpha= 88  alpha/N=1.5172  alpha/(p-1)=3.1429  LB
+  p= 29 k=  6 [QR] alpha= 86  alpha/N=1.4828  alpha/(p-1)=3.0714  LB
+  p= 29 k=  7 [QR] alpha= 85  alpha/N=1.4655  alpha/(p-1)=3.0357  LB
+  p= 29 k=  8 [QNR] alpha= 85  alpha/N=1.4655  alpha/(p-1)=3.0357  LB
+  p= 29 k=  9 [QR] alpha= 89  alpha/N=1.5345  alpha/(p-1)=3.1786  LB
+  p= 29 k= 10 [QNR] alpha= 84  alpha/N=1.4483  alpha/(p-1)=3.0000  LB
+  p= 29 k= 11 [QNR] alpha= 85  alpha/N=1.4655  alpha/(p-1)=3.0357  LB
+  p= 29 k= 12 [QNR] alpha= 93  alpha/N=1.6034  alpha/(p-1)=3.3214  LB
+  p= 29 k= 13 [QR] alpha= 87  alpha/N=1.5000  alpha/(p-1)=3.1071  LB
+  p= 29 k= 14 [QNR] alpha= 86  alpha/N=1.4828  alpha/(p-1)=3.0714  LB
+  p= 31 k=  2 [QR] alpha= 99  alpha/N=1.5968  alpha/(p-1)=3.3000  LB
+  p= 31 k=  3 [QNR] alpha= 93  alpha/N=1.5000  alpha/(p-1)=3.1000  LB
+  p= 31 k=  4 [QR] alpha= 92  alpha/N=1.4839  alpha/(p-1)=3.0667  LB
+  p= 31 k=  5 [QR] alpha= 90  alpha/N=1.4516  alpha/(p-1)=3.0000  LB
+  p= 31 k=  6 [QNR] alpha= 92  alpha/N=1.4839  alpha/(p-1)=3.0667  LB
+  p= 31 k=  7 [QR] alpha= 90  alpha/N=1.4516  alpha/(p-1)=3.0000  LB
+  p= 31 k=  8 [QR] alpha= 93  alpha/N=1.5000  alpha/(p-1)=3.1000  LB
+  p= 31 k=  9 [QR] alpha= 89  alpha/N=1.4355  alpha/(p-1)=2.9667  LB
+  p= 31 k= 10 [QR] alpha= 93  alpha/N=1.5000  alpha/(p-1)=3.1000  LB
+  p= 31 k= 11 [QNR] alpha= 91  alpha/N=1.4677  alpha/(p-1)=3.0333  LB
+  p= 31 k= 12 [QNR] alpha= 92  alpha/N=1.4839  alpha/(p-1)=3.0667  LB
+  p= 31 k= 13 [QNR] alpha= 93  alpha/N=1.5000  alpha/(p-1)=3.1000  LB
+  p= 31 k= 14 [QR] alpha= 93  alpha/N=1.5000  alpha/(p-1)=3.1000  LB
+  p= 31 k= 15 [QNR] alpha= 95  alpha/N=1.5323  alpha/(p-1)=3.1667  LB
 
 ===== QR-class correlation (does alpha(k) depend only on QR/QNR of k, at fixed p?) =====
-  p=11: QR alphas=[34, 34, 34]  QNR alphas=[36]
-  p=13: QR alphas=[40, 40]  QNR alphas=[43, 40, 41]
+  p=11: QR alphas=[35, 35, 36]  QNR alphas=[38]
+  p=13: QR alphas=[43, 41]  QNR alphas=[44, 41, 42]
+  p=17: QR alphas=[53, 53, 54]  QNR alphas=[53, 58, 55, 54]
+  p=19: QR alphas=[58, 57, 62, 59, 60]  QNR alphas=[59, 64, 59]
+  p=23: QR alphas=[69, 72, 72, 74, 73, 71]  QNR alphas=[75, 69, 68, 70]
+  p=29: QR alphas=[88, 88, 86, 85, 89, 87]  QNR alphas=[90, 85, 85, 84, 85, 93, 86]
+  p=31: QR alphas=[99, 92, 90, 90, 93, 89, 93, 93]  QNR alphas=[93, 92, 91, 92, 93, 95]
 
 ===== TREND: best-k alpha vs p =====
-  p= 11  best_k=  2  alpha= 36 (LB)  alpha/N=1.6364  alpha/(p-1)=3.6000
-  p= 13  best_k=  2  alpha= 43 (LB)  alpha/N=1.6538  alpha/(p-1)=3.5833
+  p= 11  best_k=  2  alpha= 38 (LB)  alpha/N=1.7273  alpha/(p-1)=3.8000
+  p= 13  best_k=  2  alpha= 44 (LB)  alpha/N=1.6923  alpha/(p-1)=3.6667
+  p= 17  best_k=  5  alpha= 58 (LB)  alpha/N=1.7059  alpha/(p-1)=3.6250
+  p= 19  best_k=  3  alpha= 64 (LB)  alpha/N=1.6842  alpha/(p-1)=3.5556
+  p= 23  best_k=  5  alpha= 75 (LB)  alpha/N=1.6304  alpha/(p-1)=3.4091
+  p= 29  best_k= 12  alpha= 93 (LB)  alpha/N=1.6034  alpha/(p-1)=3.3214
+  p= 31  best_k=  2  alpha= 99 (LB)  alpha/N=1.5968  alpha/(p-1)=3.3000
 
-Least-squares fit over best-k points: alpha ~ 3.5000 * (p-1) + 1.000
-  residuals: [0.0, 0.0]
+Least-squares fit over best-k points: alpha ~ 3.0343 * (p-1) + 8.333
+  residuals: [-0.68, -0.75, 1.12, 1.05, -0.09, -0.29, -0.36]
 
-alpha/N sequence over p=[11, 13]: [1.6364, 1.6538]
-Trend from p=11 to p=13: alpha/N is INCREASING (from 1.6364 to 1.6538); 1.5 threshold not crossed
+alpha/N sequence over p=[11, 13, 17, 19, 23, 29, 31]: [1.7273, 1.6923, 1.7059, 1.6842, 1.6304, 1.6034, 1.5968]
+Trend from p=11 to p=31: alpha/N is DECREASING (from 1.7273 to 1.5968); 1.5 threshold not crossed
 
-total wall time: 38s
+total wall time: 4352s

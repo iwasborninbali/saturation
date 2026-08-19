@@ -1,2 +1,8 @@
 
 === spotcheck_largep.py Wed Aug 19 13:53:16 2026 budget=90.0s/config seeds=3 ===
+p= 43 pair    : points= 336 lines= 1616 best=127 certified=True alpha/N=1.4767 alpha/(p-1)=3.0238 time=90s
+p= 43 quad_k2 : points= 672 lines=10666 best=124 certified=True alpha/N=1.4419 alpha/(p-1)=2.9524 time=90s
+p=43: quad-pair=-3 quad/pair=0.9764
+p= 47 pair    : points= 368 lines= 1764 best=138 certified=True alpha/N=1.4681 alpha/(p-1)=3.0000 time=90s
+p= 47 quad_k2 : points= 736 lines=11848 best=136 certified=True alpha/N=1.4468 alpha/(p-1)=2.9565 time=90s
+p=47: quad-pair=-2 quad/pair=0.9855

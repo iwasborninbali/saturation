@@ -1,2 +1,4 @@
 
 === verify_quad.py independent re-derivation, Wed Aug 19 13:50:41 2026 ===
+p=11: |points|=160 lines(>=3)=1046 CP-SAT status=FEASIBLE bound=40 time=300.1s -> alpha=37 = 3.7000(p-1) = 1.6818N
+  CERTIFY (raw O(n^3) triple scan, 7770 triples checked, exact int cross-product): PASS

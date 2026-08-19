@@ -22,3 +22,40 @@ p=  61 k=3: quad=174 pair=182 quad-pair=-8 quad/pair=0.9560
 p=  61 quad_k5  : points=  960 lines(>=3pts)= 18998 best= 167 certified=True alpha/N=1.3689 alpha/(p-1)=2.7833  time=120s
 p=  61 k=5: quad=167 pair=182 quad-pair=-15 quad/pair=0.9176
 p=  71 pair     : points=  560 lines(>=3pts)=  3824 best= 210 certified=True alpha/N=1.4789 alpha/(p-1)=3.0000  time=120s
+p=  71 quad_k2  : points= 1120 lines(>=3pts)= 24354 best= 194 certified=True alpha/N=1.3662 alpha/(p-1)=2.7714  time=120s
+p=  71 k=2: quad=194 pair=210 quad-pair=-16 quad/pair=0.9238
+p=  71 quad_k3  : points= 1120 lines(>=3pts)= 23716 best= 194 certified=True alpha/N=1.3662 alpha/(p-1)=2.7714  time=120s
+p=  71 k=3: quad=194 pair=210 quad-pair=-16 quad/pair=0.9238
+p=  71 quad_k5  : points= 1120 lines(>=3pts)= 23522 best= 198 certified=True alpha/N=1.3944 alpha/(p-1)=2.8286  time=120s
+p=  71 k=5: quad=198 pair=210 quad-pair=-12 quad/pair=0.9429
+p=  89 pair     : points=  704 lines(>=3pts)=  5180 best= 264 certified=True alpha/N=1.4831 alpha/(p-1)=3.0000  time=120s
+p=  89 quad_k2  : points= 1408 lines(>=3pts)= 33968 best= 241 certified=True alpha/N=1.3539 alpha/(p-1)=2.7386  time=120s
+p=  89 k=2: quad=241 pair=264 quad-pair=-23 quad/pair=0.9129
+p=  89 quad_k3  : points= 1408 lines(>=3pts)= 28590 best= 249 certified=True alpha/N=1.3989 alpha/(p-1)=2.8295  time=120s
+p=  89 k=3: quad=249 pair=264 quad-pair=-15 quad/pair=0.9432
+p=  89 quad_k5  : points= 1408 lines(>=3pts)= 33040 best= 243 certified=True alpha/N=1.3652 alpha/(p-1)=2.7614  time=120s
+p=  89 k=5: quad=243 pair=264 quad-pair=-21 quad/pair=0.9205
+p= 101 pair     : points=  800 lines(>=3pts)=  5624 best= 299 certified=True alpha/N=1.4802 alpha/(p-1)=2.9900  time=120s
+p= 101 quad_k2  : points= 1600 lines(>=3pts)= 37670 best= 274 certified=True alpha/N=1.3564 alpha/(p-1)=2.7400  time=120s
+p= 101 k=2: quad=274 pair=299 quad-pair=-25 quad/pair=0.9164
+p= 101 quad_k3  : points= 1600 lines(>=3pts)= 40238 best= 268 certified=True alpha/N=1.3267 alpha/(p-1)=2.6800  time=120s
+p= 101 k=3: quad=268 pair=299 quad-pair=-31 quad/pair=0.8963
+p= 101 quad_k5  : points= 1600 lines(>=3pts)= 38392 best= 276 certified=True alpha/N=1.3663 alpha/(p-1)=2.7600  time=120s
+p= 101 k=5: quad=276 pair=299 quad-pair=-23 quad/pair=0.9231
+p= 127 pair     : points= 1008 lines(>=3pts)=  7272 best= 376 certified=True alpha/N=1.4803 alpha/(p-1)=2.9841  time=120s
+p= 127 quad_k2  : points= 2016 lines(>=3pts)= 57298 best= 333 certified=True alpha/N=1.3110 alpha/(p-1)=2.6429  time=120s
+p= 127 k=2: quad=333 pair=376 quad-pair=-43 quad/pair=0.8856
+p= 127 quad_k3  : points= 2016 lines(>=3pts)= 54452 best= 332 certified=True alpha/N=1.3071 alpha/(p-1)=2.6349  time=120s
+p= 127 k=3: quad=332 pair=376 quad-pair=-44 quad/pair=0.8830
+p= 127 quad_k5  : points= 2016 lines(>=3pts)= 54008 best= 335 certified=True alpha/N=1.3189 alpha/(p-1)=2.6587  time=120s
+p= 127 k=5: quad=335 pair=376 quad-pair=-41 quad/pair=0.8910
+
+--- SUMMARY (best over k in {2,3,5} for the quad) ---
+p=  41 N=  82  pair= 122 (1.4878N, 3.0500(p-1))  best_quad(k=3)= 121 (1.4756N, 3.0250(p-1))  quad/pair=0.9918  quad-pair=-1
+p=  53 N= 106  pair= 157 (1.4811N, 3.0192(p-1))  best_quad(k=5)= 155 (1.4623N, 2.9808(p-1))  quad/pair=0.9873  quad-pair=-2
+p=  61 N= 122  pair= 182 (1.4918N, 3.0333(p-1))  best_quad(k=3)= 174 (1.4262N, 2.9000(p-1))  quad/pair=0.9560  quad-pair=-8
+p=  71 N= 142  pair= 210 (1.4789N, 3.0000(p-1))  best_quad(k=5)= 198 (1.3944N, 2.8286(p-1))  quad/pair=0.9429  quad-pair=-12
+p=  89 N= 178  pair= 264 (1.4831N, 3.0000(p-1))  best_quad(k=3)= 249 (1.3989N, 2.8295(p-1))  quad/pair=0.9432  quad-pair=-15
+p= 101 N= 202  pair= 299 (1.4802N, 2.9900(p-1))  best_quad(k=5)= 276 (1.3663N, 2.7600(p-1))  quad/pair=0.9231  quad-pair=-23
+p= 127 N= 254  pair= 376 (1.4803N, 2.9841(p-1))  best_quad(k=5)= 335 (1.3189N, 2.6587(p-1))  quad/pair=0.8910  quad-pair=-41
+=== done Wed Aug 19 14:22:36 2026 ===
