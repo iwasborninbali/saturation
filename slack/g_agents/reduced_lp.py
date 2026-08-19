@@ -33,8 +33,9 @@ TASKS (a)-(d), see docs/research/g_agents/reduced_lp.md for the write-up and num
      'single') -- fit_interaction_rule() (the cross-slope interaction the task allows for).  Both are found
      by SOLVING a small constrained LP (shared weight per bucket; still a genuine sub-family of reduced_lp's
      feasible region, so its cost is a rigorous, checkable upper bound for ANY weights >= 0 plugged in,
-     whether or not they are bucket-optimal) and independently re-evaluated by evaluate_rule() (pure O(p)
-     arithmetic, no LP solve) as a cross-check.
+     whether or not they are bucket-optimal) and independently re-evaluated by evaluate_labelled() (pure
+     O(p) arithmetic, no LP solve) as a cross-check -- a genuinely separate code path from the fitting
+     LPs, which caught a real sign bug during development (see docs/research/g_agents/reduced_lp.md d.3).
 
 usage: python3 slack/g_agents/reduced_lp.py [p1 p2 ...]     (default: 101 197 401 599 797; ~10s total)
 Python: /Users/iwasborninbali/venvs/sat/bin/python3 (numpy/scipy, scipy.optimize.linprog method='highs').
@@ -359,10 +360,13 @@ def main():
     t0 = time.time(); flat_rule = fit_flat_rule(ps, rects_cache); w(f"  fit time {time.time()-t0:.2f}s")
     for k in sorted(flat_rule, key=lambda k: (k[0], k[1])): w(f"    {k}: {flat_rule[k]:.4f}")
     w("  cost/N (evaluated independently, direct arithmetic, NOT re-using the fit's own bookkeeping):")
+    flat_vals = {}
     for p in ps:
         rects = rects_cache[p]; dk, ak = line_labels(p, rects)
         val, _, _ = evaluate_labelled(rects, dk, ak, lambda slope, t, ns: flat_rule[(slope, t)])
+        flat_vals[p] = val
         rv = lpvals[p][0]; N = 2*p
+        assert rv <= val + 1e-6, "flat rule beat the unrestricted LP -- impossible, a restriction can't"
         w(f"    p={p:4d}: rule={val:10.4f} = {val/N:.4f} N   |   LP={rv:10.4f} = {rv/N:.4f} N"
           f"   |   gap = {(val-rv)/N:+.4f} N   |   1.5N - rule = {(1.5*N - val)/N:+.4f} N")
 
@@ -381,9 +385,14 @@ def main():
         val, _, _ = evaluate_labelled(rects, dk, ak, lambda slope, t, ns: irule[(slope, t, ns)])
         rv = lpvals[p][0]; N = 2*p
         ratios.append(val/N)
+        # nesting check: unrestricted LP <= interaction rule (a restriction of it) <= flat rule (a further
+        # restriction, sharing weights across nsmall too) -- must hold at every p, or a fit has a bug.
+        assert rv <= val + 1e-6, "interaction rule beat the unrestricted LP -- impossible"
+        assert val <= flat_vals[p] + 1e-6, "interaction rule did worse than flat rule -- impossible (superset family)"
         w(f"    p={p:4d}: rule={val:10.4f} = {val/N:.4f} N   |   LP={rv:10.4f} = {rv/N:.4f} N"
           f"   |   gap = {(val-rv)/N:+.4f} N   |   1.5N - rule = {(1.5*N - val)/N:+.4f} N")
     w(f"  worst (max) rule/N over the tested p: {max(ratios):.4f}  => c >= {1.5-max(ratios):.4f} on this range")
+    w("  (nesting check passed at every p: LP <= interaction-rule <= flat-rule)")
 
     with open('slack/g_agents/reduced_lp_output.txt', 'w') as f:
         f.write('\n'.join(out) + '\n')

@@ -13,7 +13,7 @@ note redoes its numerics for f(x) = x⁵ and x⁷, and checks how far its k=3 lo
 
 | f | mean cost/(2p) (explicit cover) | mean LP/(2p) (±1-lines, fractional) | idealized-model constant (exact) |
 |---|---|---|---|
-| x³ (note, rigorous) | 1.35–1.38 at p≤401 | 1.317–1.355 at p≤197 | **11/8 = 1.375000** |
+| x³ (note, rigorous) | 1.35–1.40 at p≤401 | 1.313–1.355 at p≤197 | **11/8 = 1.375000** |
 | x⁵ (7 primes, 197–887) | **1.3884** (1.3618–1.4068) | **1.3241** (1.2867–1.3553) | **12059/8640 = 1.395718** |
 | x⁷ (6 primes, 263–887) | **1.4151** (1.3940–1.4340) | **1.3432** (1.3156–1.3641) | **203347/145152 = 1.400925** |
 
@@ -25,9 +25,15 @@ those two constants are conjectural, not theorems. Both increase mildly with deg
 means sit close to (a bit above, as expected from `+O(√p)` fluctuations pulling either way at these
 sizes) the corresponding constant.
 
-**I did not find any output from a `profile_table` agent anywhere in the repo at run time** (checked
-`docs/research/g_agents/`, `slack/g_agents/`, and `grep -r profile_table .`); part (c)'s prediction is
-therefore self-derived rather than a cross-check against that agent's numbers.
+**Update:** part (c)'s prediction below was derived independently — no `profile_table` output existed
+anywhere in the repo when this run started (checked `docs/research/g_agents/`, `slack/g_agents/`, and
+`grep -r profile_table .`). Its report appeared later, while this note was being written up, so §4 now
+also includes the cross-check: **`profile_table`'s independently-derived exact rational for d=5,
+`12059/8640`, is bit-for-bit identical to the one below**, including the intermediate `E[U]/p = 1519/864`
+— a strong mutual validation between two independently-written implementations of the same generalized
+hypotheses. `profile_table` stays entirely in the idealized/symbolic regime (its code has no loop over
+an actual prime modulus or an actual xᵏ permutation polynomial — confirmed by inspection); this note
+supplies the complementary piece, checking that idealized law against real finite-p data for actual x⁵, x⁷.
 
 ## 1. Setup
 
@@ -191,6 +197,31 @@ so proving (H1)-(H3) at k=5,7 is genuinely open; here they are only checked nume
 The empirical means (1.3884 for x⁵ over 7 primes, 1.4151 for x⁷ over 6 primes) bracket their respective
 idealized constants (1.3957, 1.4009) from both sides across the individual primes, consistent with
 `O(√p)`-scale fluctuations around a genuine limit rather than a systematic offset.
+
+### Cross-check against `profile_table`
+
+Companion agent `profile_table` (`docs/research/g_agents/profile_table.md`) derived the same idealized
+constant independently — different code, same three hypotheses, worked entirely symbolically from the
+rencontres law with **no dependence on this note's finite-p computation at all** (its code never loops
+over an actual prime modulus). Its d=3..6 table, in its own column convention
+(`E[2L4]/p`, `E[U]/p`, `cost/p`, `cost/(2p)`), together with this note's d=7 (not in their table — it
+only ran d=3..6) recomputed in the same convention:
+
+| d | E[2L4]/p | E[U]/p | cost/p | **cost/(2p)** | decimal | source |
+|---|---|---|---|---|---|---|
+| 3 | 1 | 7/4 | 11/4 | **11/8** | 1.3750 | `profile_table` (= note's Theorem G3.5) |
+| 4 | 16/15 | 53/30 | 17/6 | **17/12** | 1.4167 | `profile_table` |
+| 5 | 31/30 | 1519/864 | 12059/4320 | **12059/8640** | 1.3957 | `profile_table`, **exactly reproduced** by this note's §4 |
+| 6 | 661/630 | 295/168 | 7069/2520 | **7069/5040** | 1.4026 | `profile_table` |
+| 7 | 877/840 | 637871/362880 | 203347/72576 | **203347/145152** | 1.4009 | this note (§4), new |
+
+Every entry `E[2L4]/p` and `E[U]/p` for d=3 and d=5 matches `profile_table`'s table cell-for-cell
+(`1↔1`, `7/4↔7/4`, `31/30↔31/30`, `1519/864↔1519/864`) despite the two derivations being written by
+different agents from the same prose hypotheses without access to each other's code. `profile_table`
+also confirms (its part 3) that all of the constants in this family stay `< 3/2` for every root-count
+law it tried, including several small transitive groups other than `S_d` and a Poisson(1) tail limit
+(`cost/(2p) → ≈1.4012` as `d→∞`) — the d=5, 7 values found here (1.3957, 1.4009) sit right where that
+trend predicts, between the d=3 value and the `d→∞` limit.
 
 ## 5. Part (d): LP over all ±1-lines (fractional), for calibration
 

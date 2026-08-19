@@ -110,7 +110,7 @@ p= 797: N= 1594  reduced_lp= 2209.0000  =  1.3858 N  =  2.7716 p
       shape=split    own_size= 1: n=  71  weight mean=0.0000  [0.0000,0.0000]  std=0.0000
 
 === (d.1) flat type-based rule: weight depends only on (slope, shape, own_size) [no interaction] ===
-  fit time 0.53s
+  fit time 0.52s
     ('a', 'balanced_mid'): 1.0000
     ('a', 'balanced_tip'): 0.6667
     ('a', 'single_mid'): 0.3333
@@ -154,3 +154,4 @@ p= 797: N= 1594  reduced_lp= 2209.0000  =  1.3858 N  =  2.7716 p
     p= 599: rule= 1720.0000 = 1.4357 N   |   LP= 1644.1667 = 1.3724 N   |   gap = +0.0633 N   |   1.5N - rule = +0.0643 N
     p= 797: rule= 2312.0000 = 1.4504 N   |   LP= 2209.0000 = 1.3858 N   |   gap = +0.0646 N   |   1.5N - rule = +0.0496 N
   worst (max) rule/N over the tested p: 1.4504  => c >= 0.0496 on this range
+  (nesting check passed at every p: LP <= interaction-rule <= flat-rule)
