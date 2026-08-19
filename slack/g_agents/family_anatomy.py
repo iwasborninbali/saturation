@@ -109,7 +109,7 @@ def solve_lp(n, line_membs):
     return res
 
 
-def degree_stats(n, generic, Jmax):
+def degree_stats(n, generic, Jmax, exclude=None):
     deg = np.zeros(n, dtype=int)
     cnt = 0
     for g in generic:
@@ -117,12 +117,17 @@ def degree_stats(n, generic, Jmax):
             cnt += 1
             for q in g['mem']:
                 deg[q] += 1
-    mean = deg.mean(); std = deg.std()
+    keep = np.ones(n, dtype=bool)
+    if exclude:
+        keep[list(exclude)] = False
+    d = deg[keep]
+    mean = d.mean(); std = d.std()
     return {
-        'n_lines': cnt, 'mean': mean, 'std': std, 'min': int(deg.min()),
-        'frac_le_half_mean': float(np.mean(deg <= mean / 2)) if mean > 0 else float('nan'),
+        'n_lines': cnt, 'mean': mean, 'std': std, 'min': int(d.min()), 'max': int(d.max()),
+        'frac_le_half_mean': float(np.mean(d <= mean / 2)) if mean > 0 else float('nan'),
         'cv': (std / mean) if mean > 0 else float('nan'),
-        'frac_deg0': float(np.mean(deg == 0)),
+        'frac_deg0': float(np.mean(d == 0)),
+        'argmax': int(np.argmax(deg)),
     }
 
 
@@ -203,15 +208,32 @@ def analyze(p):
         print(f"  LP(pm1 + 3-lines J<={J0:3d}) = {VJ0:8.2f} = {VJ0/N:.4f} N   n_lines(J<={J0})={len(generic_mem(J0))}"
               f"   fraction of full saving captured = {frac:.3f}   [{tR1-tR0:.1f}s]", flush=True)
 
-    # degree stats of the 3-line hypergraph restricted to J<=J0, for J0 in {4,8,16,all}
-    print("  3-line hypergraph degree stats (mean, std, min, frac<=mean/2, CV=std/mean, frac deg=0):", flush=True)
+    # the box-corner hub: (p,p) is the "far" lift of the curve's unique symmetric fixed point (0,0) (f odd: f(-x)=-f(x)); for every
+    # residue x0 in (0,p) and either Y-lift, C = 2*(p,p) - (x0,Y0) is an EXACT integer reflection, automatically on the curve too
+    # (proof: Cx=2p-x0 -> -x0 (mod p), Cy=2p-Y0 -> -y0 (mod p), and (-x0)^3 = -x0^3 = -y0 identically) -- giving 2(p-1) collinear
+    # triples through (p,p) minus the ones that land on slope +-1 (already counted as pm1): x0 in {1,p-1} always slope+1 (f(1)=1,
+    # f(-1)=-1), and the two square roots of -1 mod p (slope -1) when p == 1 (mod 4). Predicted generic degree at (p,p):
+    idx_map = {pts[k]: k for k in range(n)}
+    hub_idx = idx_map.get((p, p))
+    pm1_at_hub = 2 if (p % 4 == 1) else 0
+    hub_pred = 2 * (p - 1) - 2 - pm1_at_hub
+    print(f"  box-corner hub (p,p): predicted generic degree = 2(p-1) - 2 - {pm1_at_hub} = {hub_pred}  (p%4={p%4})", flush=True)
+
+    # degree stats of the 3-line hypergraph restricted to J<=J0, for J0 in {4,8,16,all}: both raw and with the single
+    # max-degree point excluded (to separate the box-corner artifact from the regularity of the bulk)
+    print("  3-line hypergraph degree stats (mean, std, min, max, frac<=mean/2, CV=std/mean, frac deg=0):", flush=True)
     deg_report = {}
     for J0 in J0_LIST + ['all']:
         Jcap = Jmax_all if J0 == 'all' else J0
         st = degree_stats(n, generic, Jcap)
+        hub_ok = (hub_idx is not None and st['argmax'] == hub_idx)
+        st_ex = degree_stats(n, generic, Jcap, exclude={st['argmax']})
         deg_report[J0] = st
-        print(f"    J0={str(J0):>4s}: n_lines={st['n_lines']:6d}  mean={st['mean']:6.2f}  std={st['std']:6.2f}  min={st['min']:3d}"
-              f"  frac<=mean/2={st['frac_le_half_mean']:.3f}  CV={st['cv']:.3f}  frac_deg0={st['frac_deg0']:.3f}", flush=True)
+        print(f"    J0={str(J0):>4s}: n_lines={st['n_lines']:6d}  mean={st['mean']:6.2f}  std={st['std']:6.2f}  min={st['min']:3d} max={st['max']:5d}"
+              f"  frac<=mean/2={st['frac_le_half_mean']:.3f}  CV={st['cv']:.3f}  frac_deg0={st['frac_deg0']:.3f}  argmax_is_hub={hub_ok}", flush=True)
+        print(f"              excl. top point: mean={st_ex['mean']:6.2f}  std={st_ex['std']:6.2f}  CV={st_ex['cv']:.3f}  frac_deg0={st_ex['frac_deg0']:.3f}", flush=True)
+        deg_report[J0]['cv_excl_hub'] = st_ex['cv']
+        deg_report[J0]['mean_excl_hub'] = st_ex['mean']
 
     print(f"  total time for p={p}: {time.time()-t0:.1f}s", flush=True)
     return {
@@ -235,7 +257,11 @@ if __name__ == '__main__':
         print(f"p={r['p']:4d}: N={r['N']:5d}  LP(pm1)={r['Vpm1']/r['N']:.4f}N  LP(full)={r['Vfull']/r['N']:.4f}N"
               f"  LP(J<=4)={r['restricted'][4]/r['N']:.4f}N  LP(J<=8)={r['restricted'][8]/r['N']:.4f}N  LP(J<=16)={r['restricted'][16]/r['N']:.4f}N"
               f"  #generic3={r['n_generic']}  Jmax={r['Jmax']}  formula-mismatches={r['bad_formula']}")
-    print("\nCV(J0) by p:")
+    print("\nCV(J0) by p (raw, includes the box-corner hub point):")
     for r in results:
         row = {J0: round(r['deg_report'][J0]['cv'], 3) for J0 in J0_LIST + ['all']}
+        print(f"  p={r['p']:4d}: {row}")
+    print("\nCV(J0) by p (hub point excluded):")
+    for r in results:
+        row = {J0: round(r['deg_report'][J0]['cv_excl_hub'], 3) for J0 in J0_LIST + ['all']}
         print(f"  p={r['p']:4d}: {row}")
