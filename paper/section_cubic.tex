@@ -1,0 +1,261 @@
+% section_cubic.tex — Section 8: cubic graphs do not reach the HJSW value (first solver, 2026-08-19).
+% Self-contained section for insertion into hjsw_window.tex (before 'Computational observations').
+% Uses the existing macros \Fp, \Z and the existing theorem/lemma/corollary/remark
+% environments and label conventions (thm:, lem:, cor:) of that file.
+%
+% NOTE TO INTEGRATOR: this section cites \cite{Perelmuter} and \cite{IK}, already
+% in the bibliography of hjsw_window.tex, plus two references not yet there:
+%   \bibitem{Dickson1897} L.~E. Dickson, The analytic representation of substitutions
+%     on a power of a prime number of letters with a discussion of the linear group,
+%     Ann.\ of Math.\ 11 (1897) 65--120.
+%   \bibitem{LidlNiederreiter} R.~Lidl and H.~Niederreiter, Finite Fields, 2nd ed.,
+%     Encyclopedia of Mathematics and Its Applications 20, Cambridge Univ. Press, 1997
+%     (Chapter 7, on the classification of low-degree permutation polynomials and
+%     Chebotarev/Weil estimates for value sets).
+% Add these two \bibitem lines to the thebibliography of hjsw_window.tex.
+
+\section{Cubic graphs do not reach the HJSW value}\label{sec:cubic}
+
+We now leave the hyperbola and ask the same question of an arbitrary cubic curve $Y\equiv f(X)\pmod p$. Throughout
+this section $f\in\Fp[x]$ has degree $3$ and $B=[x_0,x_0+2p)\times[y_0,y_0+2p)$ is an arbitrary $2p\times2p$ box of
+integers. Every residue $x\in\Fp$ has exactly two lifts $X\in\{x_0+r_x,\,x_0+r_x+p\}$ in the $x$-window
+($r_x\in[0,p)$), and $y\equiv f(x)\pmod p$ has two lifts $Y$ in the $y$-window, so
+\[
+P(f,B)\ :=\ \{(X,Y)\in B:\ Y\equiv f(X)\pmod p\},\qquad |P(f,B)|=4p .
+\]
+We call $P(f,B)$ the \emph{box lift of the cubic graph} $y=f(x)$, and write $\alpha(f,B)$ for the largest size of a
+subset of $P(f,B)$ with no three points on a common line. We call $f$ a
+\emph{permutation cubic} if $x\mapsto f(x)$ is a bijection of $\Fp$; recall that the HJSW value on a $2p\times2p$
+box has side $N=2p$ and the HJSW/hyperbola construction attains $3(p-1)=\tfrac32N-3$ (Theorem~\ref{thm:main}).
+
+\subsection*{The projection bound and non-permutation cubics}
+
+\begin{lemma}[projection bound]\label{lem:projection}
+Let $f:\Fp\to\Fp$ be any function and $B$ any $2p\times2p$ box. Then $\alpha(f,B)\le4\,|f(\Fp)|$.
+\end{lemma}
+\begin{proof}
+For $c\in f(\Fp)$, the two horizontal lines $Y\equiv c\pmod p$ meeting $B$ together carry $2\,|f^{-1}(c)|$ points of
+$P(f,B)$ (two lifts of $X$ for each $x\in f^{-1}(c)$), and a no-three-in-line subset meets a line in at most $2$
+points; summing over the $2\,|f(\Fp)|$ occupied rows gives $\alpha(f,B)\le2\cdot2\,|f(\Fp)|=4\,|f(\Fp)|$.
+\end{proof}
+
+By Dickson's classification of the low-degree permutation polynomials over $\Fp$ \cite{Dickson1897,LidlNiederreiter},
+the permutation cubics are exactly the maps $f(x)=a(x+\beta)^3+\gamma$ with $a\in\Fp^*$, $\beta,\gamma\in\Fp$, and
+$p\equiv2\pmod3$; for $p\equiv1\pmod3$ no cubic is a permutation of $\Fp$. If $f$ is \emph{not} a permutation cubic,
+its value-set size is governed by the Galois group of $f(x)-t$ over $\Fp(t)$ via Chebotarev's density theorem
+together with the Weil bound for the corresponding curve (a standard computation; see e.g.\ \cite{IK,LidlNiederreiter}):
+generically this group is $S_3$ and
+\[
+|f(\Fp)|=\tfrac23p+O(\sqrt p)\qquad(S_3\ \text{case}),
+\]
+while in the degenerate cyclic case ($f(x)-t$ has Galois group $A_3$, which forces $p\equiv1\pmod3$ and, after an
+affine change of variable, $f(x)=a(x+\beta)^3+\gamma$ again, now $3$-to-$1$) the value set is exactly
+\[
+|f(\Fp)|=\tfrac{p+2}3\qquad(A_3\ \text{case}).
+\]
+Lemma~\ref{lem:projection} then gives, for every non-permutation cubic and every box,
+\begin{equation}\label{eq:nonperm}
+\alpha(f,B)\ \le\ \Bigl(\tfrac83+o(1)\Bigr)p\quad(S_3\ \text{case}),\qquad\qquad
+\alpha(f,B)\ \le\ \tfrac43\,p+O(1)\quad(A_3\ \text{case}).
+\end{equation}
+Both bounds are well below $\tfrac{11}4p$, the value at which Theorem~\ref{thm:cubic} below caps the permutation
+case; this is what makes the permutation cubics, not the generic ones, the extremal case of the problem.
+
+\subsection*{Permutation cubics}
+
+By the translations $x\mapsto x+\beta$, $y\mapsto y+\gamma$ (which move the box but not $\alpha$) we may assume
+$f(x)=ax^3$, $a\ne0$, $p\equiv2\pmod3$. Write $N_3=\#\{c\in\Fp:\ at^3-t=c\ \text{has three distinct roots in }\Fp\}$;
+the substitution $t\mapsto-t$ carries the roots of $at^3+t=c$ to those of $at^3-t=-c$, so $c$ makes the former
+cubic three-rooted iff $-c$ makes the latter three-rooted; hence the analogous count for $at^3+t=c$ is the same $N_3$.
+
+\begin{theorem}[permutation cubics]\label{thm:cubic}
+Let $p\equiv2\pmod3$ be prime, $a\in\Fp^*$, and $f(x)=ax^3$. For every $2p\times2p$ box $B$,
+\[
+\alpha(f,B)\ \le\ 4p-\tfrac{15}2N_3+O(\sqrt p\log^3p)\ =\ \tfrac{11}4\,p+O(\sqrt p\log^3p),
+\]
+where $N_3=(p+1)/6+O(1)$. The implied constants are absolute, independent of $a$, $x_0$, $y_0$.
+\end{theorem}
+
+The proof occupies the rest of this subsection: we first classify, exactly, the lines of slope $\pm1$ carrying $\ge4$
+points of $P(f,B)$ (rows and columns are useless, as $f$ is a bijection); we exhibit an explicit weighted cover by
+these lines; and we evaluate its cost to the stated precision using the Weil bound on a genus-$0$ conic together
+with a Bombieri--Perel'muter estimate along a genus-$1$ Kummer twist of it.
+
+\smallskip\noindent\emph{The $\pm1$-lines and their classes.} Fix $x\in\Fp$ with lifts $X\in\{r_x,r_x+p\}$,
+$Y\in\{s_x,s_x+p\}$ ($r_x\in[x_0,x_0+p)$, $s_x\in[y_0,y_0+p)$). Among the four lifted points,
+$Y-X\in\{s_x-r_x\ (\text{twice}),\,s_x-r_x+p,\,s_x-r_x-p\}$, and
+$Y-X\equiv ax^3-x=:c_+(x)\pmod p$. For $c\in\Fp$ let $R(c)=\{t:at^3-t=c\}$; generically $|R(c)|\in\{0,1,3\}$ (at
+most two values of $c$ carry a double root). The integers $s_t-r_t$, $t\in R(c)$, all lie in the length-$2p$ interval
+$(y_0-x_0-p,\,y_0-x_0+p)$, which contains exactly two integers $\equiv c\pmod p$ (one, for a single exceptional
+residue $c$, which we ignore), say $c'<c'+p$; call $t$ of
+\emph{class $0$} if $s_t-r_t=c'$ and of \emph{class $1$} if $s_t-r_t=c'+p$. With $n_0,n_1$ roots of each class, the
+four lines $Y-X\in\{c'-p,c',c'+p,c'+2p\}$ carry $n_0,\,2n_0+n_1,\,n_0+2n_1,\,n_1$ points of $P(f,B)$ respectively.
+For $|R(c)|=3$ this profile is $(3,6,3,0)$ or $(0,3,6,3)$ if the three roots share a class (call $c$, or its root
+set, \textbf{same}) and $(2,5,4,1)$ or $(1,4,5,2)$ if they split $2\!:\!1$ (\textbf{split}); for $|R(c)|\le1$ every
+such line carries $\le2$ points. Hence the slope-$(+1)$ lines with $\ge4$ points of $P(f,B)$ are exactly: one
+$6$-point line for every \emph{same} $3$-root residue $c$, and one $5$-point and one $4$-point line for every
+\emph{split} one (plus $O(1)$ lines from the $\le2$ double-root residues, absorbed into the error term).
+A direct check of which lifts of a root $t\in R(c)$ lie on which line shows: in a \emph{same} triple the two lifts
+with equal shift ($X=r_t+\delta p,\,Y=s_t+\delta p$, $\delta\in\{0,1\}$) lie on a rich line and the two mixed lifts
+do not; in a \emph{split} triple all four lifts of $t$ lie on a rich line except one, namely $(\delta,\varepsilon)=(1,0)$
+if $t$ has class $0$ and $(0,1)$ if $t$ has class $1$.
+
+By the symmetric computation with $X+Y\equiv ax^3+x=:c_-(x)$, the slope-$(-1)$ lines carry the same four profiles
+(now the roles of the "equal" and "mixed" lifts are reversed: a \emph{same} triple rescues its two mixed lifts, a
+\emph{split} triple rescues all but the lift $(0,0)$ or $(1,1)$ according to the class of the exceptional root),
+governed by the roots of $at^3+t=c$.
+
+\smallskip\noindent\emph{Root conics and $N_3$.} Since $at^3-t-c$ has no quadratic term, its roots satisfy
+$t_1+t_2+t_3=0$, $t_1t_2+t_1t_3+t_2t_3=-1/a$; eliminating $t_3=-t_1-t_2$ gives the conic
+\[
+Q_+:\ t_1^2+t_1t_2+t_2^2=1/a\qquad(\text{likewise }Q_-:\ t_1^2+t_1t_2+t_2^2=-1/a\ \text{for }at^3+t-c).
+\]
+The quadratic form $t_1^2+t_1t_2+t_2^2$ is the norm form of $\mathbb F_{p^2}/\Fp$ exactly when $p\equiv2\pmod3$
+(its discriminant $-3$ is then a non-residue), so $Q_\pm$ is a smooth conic with $|Q_\pm(\Fp)|=p+1$; every
+$3$-root residue $c$ of the corresponding cubic accounts for exactly six ordered pairs of distinct roots on
+$Q_\pm(\Fp)$, so $N_3=(p+1-r)/6$ with $r\in\{0,6\}$ the (bounded) contribution of double roots, i.e.\
+$N_3=(p+1)/6+O(1)$, and the number of residues $x$ that occur as a root of some $3$-root $c$ (for a fixed sign) is
+$3N_3=\tfrac12p+O(1)$. (The $\le2$ double-root residues contribute $O(1)$ further points and at most $O(1)$ lines with $\ge4$
+points; they are absorbed in the error terms below.)
+
+\smallskip\noindent\emph{The cover and its exact cost.} Put weight $1$ on every $\pm1$-line with $\ge4$ points and
+weight $1$ on every point of $P(f,B)$ lying on none of them; since a no-three-in-line subset $S$ meets a weight-$1$
+line in $\le2$ points, $|S|\le2L_4+U$ where $L_4$ is the number of weighted lines and $U$ the number of singleton
+points. Writing $A^\sigma,S^\sigma$ ($\sigma\in\{+,-\}$) for the numbers of \emph{same} and \emph{split} $3$-root
+residues of slope $\sigma$, $A^\sigma+S^\sigma=N_3$ and
+\[
+L_4=\sum_\sigma\bigl(A^\sigma+2S^\sigma\bigr).
+\]
+For $U$: fix a residue $x$ and let $m_\pm(x)$ be the indicator that $x$ is a root of a $3$-root residue of slope
+$\pm$ (equivalently, that the "partner" quadratic $t^2+xt+x^2-1/a=0$, resp.\ $t^2+xt+x^2+1/a=0$, has two distinct
+roots in $\Fp$), and $\mathrm{split}_\pm(x)$ that this triple is a split one; write $\mathrm{class}_\pm(x)\in\{0,1\}$
+for the class of $x$ in it when $m_\pm(x)$ holds. By the lift-count above, the two equal-shift lifts $(0,0),(1,1)$ of $x$ are both
+covered by slope-$(+1)$ lines whenever $m_+(x)$; if $m_-(x)$ and $\mathrm{split}_-(x)$, exactly one of them is covered
+by a slope-$(-1)$ line (the other is the exceptional lift of $x$ in its split triple), and if $m_-(x)$ fails or the
+$(-)$-triple of $x$ is a \emph{same} one, neither is; symmetrically for the two mixed lifts with the roles of the slopes
+exchanged. Summing over the two kinds of lifts of every residue $x$,
+\begin{equation}\label{eq:U}
+U=\sum_{x\in\Fp}\Bigl\{[\neg m_+(x)]\bigl(2-[m_-\wedge\mathrm{split}_-](x)\bigr)+[\neg m_-(x)]\bigl(2-[m_+\wedge\mathrm{split}_+](x)\bigr)\Bigr\}.
+\end{equation}
+The proof of Theorem~\ref{thm:cubic} is now the evaluation, to error $O(\sqrt p\log^3p)$, of $N_3$, $S^\pm$, and the
+two \emph{cross sums} $\sum_x[\neg m_+][m_-\wedge\mathrm{split}_-]$, $\sum_x[\neg m_-][m_+\wedge\mathrm{split}_+]$
+in \eqref{eq:U}.
+
+\smallskip\noindent\emph{Classes as box conditions, and equidistribution.} Let $u_t=(r_t-x_0)/p\in[0,1)$ be the
+position of the residue $t$ in the $x$-window, $v_t=(s_t-y_0)/p$ the position of $f(t)$ in the $y$-window, and
+$g=g(c)=((c-y_0+x_0)\bmod p)/p\in[0,1)$. For a root $t$ of $at^3-t=c$, $s_t-r_t=(y_0-x_0)+p(v_t-u_t)$ with
+$v_t-u_t\equiv g\pmod1$ and $|v_t-u_t|<1$, so $s_t-r_t=c'$ (the smaller value) iff $v_t<u_t$ iff $u_t\ge1-g$:
+writing $\theta=1-g$,
+\[
+\mathrm{class}_+(t)=[\,u_t<\theta\,],
+\]
+all roots of the same $c$ compared with the same threshold $\theta\in[0,1)$ (the labelling of the two classes is
+immaterial to what follows); the slope-$(-1)$ computation is identical with the threshold $\theta'=g'(c_-)$,
+$g'(c)=((c-x_0-y_0)\bmod p)/p$ (class $0$ iff $u_t\le\theta'$). Over the six-fold cover of $3$-root residues by ordered
+root pairs $(t_1,t_2)\in Q_+(\Fp)$, the triple $(u_{t_1},u_{t_2},g)\in(\mathbb R/\mathbb Z)^3$ is equidistributed
+with error $O(\sqrt p)$ per nonzero Fourier coefficient: for $(h_1,h_2,h_3)\ne0$ the function
+$h_1t_1+h_2t_2+h_3(at_1^3-t_1)$ is non-constant on the conic $Q_+$ (if $h_3\ne0$ it has a genuine cubic term in
+$t_1$, and $t_2$ is algebraic of degree $2$ over $\Fp(t_1)$ on $Q_+$, so it cannot cancel it; if $h_3=0$ a
+non-trivial line meets the conic in $\le2$ points), so $\sum_{Q_+(\Fp)}e(\cdot/p)=O(\sqrt p)$ by the Weil bound for
+low-degree rational functions on $\mathbb P^1$ \cite{IK}. Expanding a box indicator in a Fourier/Selberg series of
+$\ell^1$-norm $O(\log p)$ \cite{Montgomery,Vaaler} turns this into an error $O(\sqrt p\log^3p)$ for the count of any
+fixed condition on $(u_{t_1},u_{t_2},\theta)$ (three interval indicators); the third root satisfies
+$u_{t_3}\equiv-u_{t_1}-u_{t_2}-\kappa\pmod1$ with the constant $\kappa=(3x_0\bmod p)/p$, so any two of the three
+roots, together with $\theta$, are (up to relabelling) two coordinates of a point of $Q_+(\Fp)$ and inherit the same
+equidistribution; likewise for $Q_-$.
+
+\smallskip\noindent\emph{The split count: only pairwise data survive.} Let $A_i=[u_{t_i}<\theta]$, $i=1,2,3$, for the
+three roots of a $3$-root $c$. The indicator of \emph{same} is $[\text{all }\ge\theta]+[\text{all}<\theta]$, and
+\[
+[\text{all}\ge\theta]+[\text{all}<\theta]=\bigl(1-\textstyle\sum_iA_i+\sum_{i<j}A_iA_j-A_1A_2A_3\bigr)+A_1A_2A_3
+=1-\sum_iA_i+\sum_{i<j}A_iA_j:
+\]
+\emph{the triple term cancels}, so \emph{same} depends only on pairwise data. Since $\theta$ is equidistributed on
+$[0,1)$ independently (to the stated error) of each $u_{t_i}$ and of each pair $(u_{t_i},u_{t_j})$, $E[A_i]=E[\theta]=1/2$
+and $E[A_iA_j]=E[\theta^2]=1/3$ to error $O(1/\sqrt p)$ per residue, summed with $O(\sqrt p\log^3p)$ absolute error over
+all $3N_3$ roots (equivalently $N_3$ triples), giving
+\[
+\#\{\text{same }3\text{-root residues}\}=N_3\bigl(1-3\cdot\tfrac12+3\cdot\tfrac13\bigr)+O(\sqrt p\log^3p)=\tfrac12N_3+O(\sqrt p\log^3p),
+\]
+hence, for both slopes,
+\begin{equation}\label{eq:AS}
+A^\sigma=S^\sigma=\tfrac12N_3+O(\sqrt p\log^3p)\qquad(\sigma=+,-),
+\end{equation}
+with no dependence on $\kappa$, $x_0$, $y_0$: the split proportion is exactly $1/2$ for \emph{every} box.
+
+\smallskip\noindent\emph{The cross sums: a Kummer twist and Bombieri--Perel'muter.} Write
+$\Delta_+(x)=4/a-3x^2$, the discriminant of the partner quadratic $t^2+xt+x^2-1/a$, so $[\neg m_+(x)]=
+\tfrac12\bigl(1-\chi(\Delta_+(x))\bigr)$ for $\Delta_+(x)\ne0$ ($\chi$ the quadratic character of $\Fp^*$), and by
+the identity above $[\mathrm{split}_-](x)=\sum_iA_i-\sum_{i<j}A_iA_j$, a function of the box-positions of the roots
+of $at^3+t=c_-(x)$, i.e.\ of the point $(t_1,t_2)=(x,\text{partner})\in Q_-(\Fp)$ (each $x$ with $m_-(x)$ gives two such
+points). Thus
+\[
+\sum_x[\neg m_+(x)][m_-\wedge\mathrm{split}_-](x)=\tfrac14\sum_{(t_1,t_2)\in Q_-(\Fp)}\bigl(1-\chi(\Delta_+(t_1))\bigr)\cdot[\mathrm{split}_-](t_1,t_2),
+\]
+where $[\mathrm{split}_-]$ is a box condition on $(u_{t_1},u_{t_2},\theta')$; the term without $\chi$ equals
+$\tfrac14\cdot2\sum_x[m_-\wedge\mathrm{split}_-]=\tfrac12\cdot3S^-$. The term with $\chi$ is a mixed sum, over the genus-$0$ curve $Q_-$, of the
+multiplicative character $\chi(\Delta_+(t_1))=\chi(4/a-3t_1^2)$ times additive characters of the box conditions on
+$(t_1,t_2,c_-)$. The Kummer sheaf of $\chi\circ\Delta_+$ pulled back to $Q_-$ is geometrically non-trivial: $\Delta_+$
+has simple zeros at the (at most) four points of $Q_-(\overline\Fp)$ over $t_1=\pm\sqrt{4/(3a)}$, and these are
+unramified for the projection $Q_-\to t_1$ because $Q_-$ ramifies over $t_1^2=-4/(3a)\ne4/(3a)$ ($p\ne2,3$); hence
+$\chi\circ\Delta_+$ is not a square in the function field of $Q_-$, and the twisted sheaf remains geometrically
+non-trivial after tensoring with the Artin--Schreier sheaf of any additive character (their orders are coprime).
+By the Bombieri--Perel'muter bound for mixed character sums along a curve \cite{Perelmuter} (as already used for
+Lemma~\ref{lem:arc} above), the $\chi$-term is $O(\sqrt p)$ absolutely, and after the same Selberg expansion of the
+box conditions, $O(\sqrt p\log^3p)$. Hence
+\[
+\sum_x[\neg m_+][m_-\wedge\mathrm{split}_-]=\tfrac12\cdot3S^-+O(\sqrt p\log^3p),
+\]
+and symmetrically for the other cross sum with the roles of $+,-$ exchanged.
+
+\smallskip\noindent\emph{Assembly.} Since $\sum_x[\neg m_\sigma(x)]=p-3N_3+O(1)$ (only the $3N_3+O(1)$ roots of
+$3$-root residues, plus $O(1)$ from double roots, satisfy $m_\sigma$), and $S^{\bar\sigma}=\tfrac12N_3+O(\sqrt p\log^3p)$
+for both slopes by \eqref{eq:AS} (writing $\bar\sigma$ for the sign opposite to $\sigma$),
+\begin{align*}
+U&=\sum_\sigma\Bigl[2(p-3N_3)-\tfrac32S^{\bar\sigma}\Bigr]+O(\sqrt p\log^3p)\\
+&=2\bigl[2(p-3N_3)-\tfrac34N_3\bigr]+O(\sqrt p\log^3p)\ =\ 4p-\tfrac{27}2N_3+O(\sqrt p\log^3p),
+\end{align*}
+while by $A^\sigma+2S^\sigma=\tfrac32N_3+O(\sqrt p\log^3p)$ (again from \eqref{eq:AS}),
+\[
+2L_4=2\sum_\sigma\bigl(A^\sigma+2S^\sigma\bigr)=2\cdot2\cdot\tfrac32N_3+O(\sqrt p\log^3p)=6N_3+O(\sqrt p\log^3p).
+\]
+Combining, and using $N_3=(p+1)/6+O(1)$,
+\[
+\mathrm{cost}=2L_4+U=6N_3+4p-\tfrac{27}2N_3+O(\sqrt p\log^3p)=4p-\tfrac{15}2N_3+O(\sqrt p\log^3p)=\tfrac{11}4p+O(\sqrt p\log^3p),
+\]
+and $\alpha(f,B)\le\mathrm{cost}$ since $S$ meets a weighted line in $\le2$ points and a singleton point in $\le1$.
+This proves Theorem~\ref{thm:cubic}. $\qed$
+
+\begin{corollary}[no cubic graph reaches HJSW]\label{cor:cubic}
+For every prime $p$, every cubic $f\in\Fp[x]$, and every $2p\times2p$ box $B$,
+\[
+\alpha(f,B)\ \le\ \Bigl(\tfrac{11}8+o(1)\Bigr)N,\qquad N=2p.
+\]
+In particular $\alpha(f,B)<\tfrac32N-3$ for $p$ large: no cubic graph in any $2p\times2p$ box attains, or beats, the
+HJSW value $3(p-1)$ of the modular hyperbola.
+\end{corollary}
+\begin{proof}
+If $p\equiv1\pmod3$, or $p\equiv2\pmod3$ and $f$ is not a permutation cubic, \eqref{eq:nonperm} gives
+$\alpha(f,B)\le(\tfrac83+o(1))p$; if $p\equiv2\pmod3$ and $f$ is a permutation cubic, Theorem~\ref{thm:cubic} gives
+$\alpha(f,B)\le\tfrac{11}4p+O(\sqrt p\log^3p)$. Since $\tfrac83<\tfrac{11}4$, in every case
+$\alpha(f,B)\le(\tfrac{11}4+o(1))p=(\tfrac{11}8+o(1))N$, and $\tfrac{11}8<\tfrac32$.
+\end{proof}
+
+\begin{remark}[numerics and further permutation polynomials]
+The cover of Theorem~\ref{thm:cubic} is explicit and was checked by direct computation
+(\texttt{slack/cube\_cover4.py}): at $p=197$ ($N_3=33$, prediction $4p-\tfrac{15}2N_3=540.5$) five boxes give costs
+$544,540,532,539,534$, i.e.\ $1.35$--$1.38\,N$, with fluctuations of the expected order $O(\sqrt p)$; comparable
+agreement holds at $p=293,401$. The cover is not the true extremal LP: solving the line-cover LP restricted to
+$\pm1$-lines already improves the ratio to about $1.32$--$1.36\,N$ (fractional weights and $3$-point lines help),
+and the LP over \emph{all} lines with $\ge3$ points of $P(f,B)$ drops further to about $1.10\,N$, using the
+three-point ``family'' lines that Theorem~\ref{thm:cubic} discards; closing this gap to a proven constant near
+$4/3$ is open. The same method applies to any permutation polynomial $f$ of a fixed degree $d$ (rows/columns are
+again useless): the $\pm1$-lines organize by the residues of $f(x)\mp x$, their point-profiles are governed by the
+class pattern of the roots of $f(t)\mp t=c$ on the corresponding (bounded-genus) curve, and the constant is an
+explicit function of the root-count distribution — governed by the Galois group of $f(t)\mp t-c$ over $\Fp(t)$, via
+Chebotarev, exactly as in the non-permutation case above — computed by the same kind of argument (for residues with $r\ge4$ roots the class pattern enters beyond
+pairwise data). Numerically the same $\pm1$-line cover stays below $\tfrac32N$ for $x^5,x^7,x^{11}$ and the Dickson
+polynomial $D_5(x,1)$ on all sampled primes and boxes ($1.15$--$1.48\,N$; \texttt{slack/verification/perm\_poly\_covers.txt}),
+but with a smaller margin than for $x^3$: it is the third root of $at^3\mp t=c$, present for a sixth of the residues, that
+creates the $6$- and $5$-point lines and pushes the cubic constant down to $\tfrac{11}8$.
+\end{remark}

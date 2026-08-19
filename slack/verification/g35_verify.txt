@@ -1,0 +1,356 @@
+--- p=101 a=1 box=(0, 0) ---
+  !! DISCREPANCY p=101 a=1 box=(0, 0) [class+_formula]: c=0 t=0: raw class=0 vs formula [u<1-g]=1 (u=0.0000 g=0.0000)
+  !! DISCREPANCY p=101 a=1 box=(0, 0) [class+_formula]: c=0 t=1: raw class=0 vs formula [u<1-g]=1 (u=0.0099 g=0.0000)
+  !! DISCREPANCY p=101 a=1 box=(0, 0) [class+_formula]: c=0 t=100: raw class=0 vs formula [u<1-g]=1 (u=0.9901 g=0.0000)
+p= 101 a=1 box=(0,0): N3+=17 N3-=17 (dbl+=0 dbl-=0) A+/S+=17/0 A-/S-=6/11 | L4=45 U=186 cost=276 (1.3663 N) | predicted 4p-7.5N3=276.50 gap=-0.50 (O(sqrt p log^3 p) band ~4939)
+
+--- p=101 a=1 box=(-50, 0) ---
+p= 101 a=1 box=(-50,0): N3+=17 N3-=17 (dbl+=0 dbl-=0) A+/S+=6/11 A-/S-=6/11 | L4=56 U=164 cost=276 (1.3663 N) | predicted 4p-7.5N3=276.50 gap=-0.50 (O(sqrt p log^3 p) band ~4939)
+
+--- p=101 a=1 box=(37, -211) ---
+p= 101 a=1 box=(37,-211): N3+=17 N3-=17 (dbl+=0 dbl-=0) A+/S+=8/9 A-/S-=9/8 | L4=51 U=171 cost=273 (1.3515 N) | predicted 4p-7.5N3=276.50 gap=-3.50 (O(sqrt p log^3 p) band ~4939)
+
+--- p=101 a=2 box=(0, 0) ---
+  !! DISCREPANCY p=101 a=2 box=(0, 0) [m-_legendre]: x=36: root-count m-=False vs Legendre(Delta-)=True
+  !! DISCREPANCY p=101 a=2 box=(0, 0) [m+_legendre]: x=44: root-count m+=False vs Legendre(Delta+)=True
+  !! DISCREPANCY p=101 a=2 box=(0, 0) [m+_legendre]: x=57: root-count m+=False vs Legendre(Delta+)=True
+  !! DISCREPANCY p=101 a=2 box=(0, 0) [m-_legendre]: x=65: root-count m-=False vs Legendre(Delta-)=True
+  !! DISCREPANCY p=101 a=2 box=(0, 0) [L4formula]: L4 formula=48 vs direct=52
+  !! DISCREPANCY p=101 a=2 box=(0, 0) [Uformula]: U formula=184 vs direct=170
+  !! DISCREPANCY p=101 a=2 box=(0, 0) [costformula]: cost formula=280 vs direct=274
+p= 101 a=2 box=(0,0): N3+=16 N3-=16 (dbl+=2 dbl-=2) A+/S+=8/8 A-/S-=8/8 | L4=52 U=170 cost=274 (1.3564 N) | predicted 4p-7.5N3=284.00 gap=-10.00 (O(sqrt p log^3 p) band ~4939)
+
+--- p=101 a=2 box=(-50, 0) ---
+  !! DISCREPANCY p=101 a=2 box=(-50, 0) [m-_legendre]: x=36: root-count m-=False vs Legendre(Delta-)=True
+  !! DISCREPANCY p=101 a=2 box=(-50, 0) [m+_legendre]: x=44: root-count m+=False vs Legendre(Delta+)=True
+  !! DISCREPANCY p=101 a=2 box=(-50, 0) [m+_legendre]: x=57: root-count m+=False vs Legendre(Delta+)=True
+  !! DISCREPANCY p=101 a=2 box=(-50, 0) [m-_legendre]: x=65: root-count m-=False vs Legendre(Delta-)=True
+  !! DISCREPANCY p=101 a=2 box=(-50, 0) [class+_formula]: c=50 t=27: raw class=0 vs formula [u<1-g]=1 (u=0.7624 g=0.0000)
+  !! DISCREPANCY p=101 a=2 box=(-50, 0) [class+_formula]: c=50 t=77: raw class=0 vs formula [u<1-g]=1 (u=0.2574 g=0.0000)
+  !! DISCREPANCY p=101 a=2 box=(-50, 0) [class+_formula]: c=50 t=98: raw class=0 vs formula [u<1-g]=1 (u=0.4653 g=0.0000)
+  !! DISCREPANCY p=101 a=2 box=(-50, 0) [L4formula]: L4 formula=48 vs direct=52
+  !! DISCREPANCY p=101 a=2 box=(-50, 0) [Uformula]: U formula=184 vs direct=172
+  !! DISCREPANCY p=101 a=2 box=(-50, 0) [costformula]: cost formula=280 vs direct=276
+p= 101 a=2 box=(-50,0): N3+=16 N3-=16 (dbl+=2 dbl-=2) A+/S+=8/8 A-/S-=8/8 | L4=52 U=172 cost=276 (1.3663 N) | predicted 4p-7.5N3=284.00 gap=-8.00 (O(sqrt p log^3 p) band ~4939)
+
+--- p=101 a=2 box=(37, -211) ---
+  !! DISCREPANCY p=101 a=2 box=(37, -211) [m-_legendre]: x=36: root-count m-=False vs Legendre(Delta-)=True
+  !! DISCREPANCY p=101 a=2 box=(37, -211) [m+_legendre]: x=44: root-count m+=False vs Legendre(Delta+)=True
+  !! DISCREPANCY p=101 a=2 box=(37, -211) [m+_legendre]: x=57: root-count m+=False vs Legendre(Delta+)=True
+  !! DISCREPANCY p=101 a=2 box=(37, -211) [m-_legendre]: x=65: root-count m-=False vs Legendre(Delta-)=True
+  !! DISCREPANCY p=101 a=2 box=(37, -211) [L4formula]: L4 formula=47 vs direct=49
+  !! DISCREPANCY p=101 a=2 box=(37, -211) [Uformula]: U formula=192 vs direct=184
+  !! DISCREPANCY p=101 a=2 box=(37, -211) [costformula]: cost formula=286 vs direct=282
+p= 101 a=2 box=(37,-211): N3+=16 N3-=16 (dbl+=2 dbl-=2) A+/S+=8/8 A-/S-=9/7 | L4=49 U=184 cost=282 (1.3960 N) | predicted 4p-7.5N3=284.00 gap=-2.00 (O(sqrt p log^3 p) band ~4939)
+
+--- p=131 a=1 box=(0, 0) ---
+  !! DISCREPANCY p=131 a=1 box=(0, 0) [m+_legendre]: x=31: root-count m+=False vs Legendre(Delta+)=True
+  !! DISCREPANCY p=131 a=1 box=(0, 0) [m+_legendre]: x=100: root-count m+=False vs Legendre(Delta+)=True
+  !! DISCREPANCY p=131 a=1 box=(0, 0) [class+_formula]: c=0 t=0: raw class=0 vs formula [u<1-g]=1 (u=0.0000 g=0.0000)
+  !! DISCREPANCY p=131 a=1 box=(0, 0) [class+_formula]: c=0 t=1: raw class=0 vs formula [u<1-g]=1 (u=0.0076 g=0.0000)
+  !! DISCREPANCY p=131 a=1 box=(0, 0) [class+_formula]: c=0 t=130: raw class=0 vs formula [u<1-g]=1 (u=0.9924 g=0.0000)
+  !! DISCREPANCY p=131 a=1 box=(0, 0) [L4formula]: L4 formula=57 vs direct=59
+  !! DISCREPANCY p=131 a=1 box=(0, 0) [Uformula]: U formula=240 vs direct=234
+  !! DISCREPANCY p=131 a=1 box=(0, 0) [costformula]: cost formula=354 vs direct=352
+p= 131 a=1 box=(0,0): N3+=21 N3-=22 (dbl+=2 dbl-=0) A+/S+=13/8 A-/S-=16/6 | L4=59 U=234 cost=352 (1.3435 N) | predicted 4p-7.5N3=362.75 gap=-10.75 (O(sqrt p log^3 p) band ~6631)
+
+--- p=131 a=1 box=(-65, 0) ---
+  !! DISCREPANCY p=131 a=1 box=(-65, 0) [m+_legendre]: x=31: root-count m+=False vs Legendre(Delta+)=True
+  !! DISCREPANCY p=131 a=1 box=(-65, 0) [m+_legendre]: x=100: root-count m+=False vs Legendre(Delta+)=True
+  !! DISCREPANCY p=131 a=1 box=(-65, 0) [class+_formula]: c=0 t=0: raw class=0 vs formula [u<1-g]=1 (u=0.4962 g=0.5038)
+p= 131 a=1 box=(-65,0): N3+=21 N3-=22 (dbl+=2 dbl-=0) A+/S+=4/17 A-/S-=12/10 | L4=70 U=223 cost=363 (1.3855 N) | predicted 4p-7.5N3=362.75 gap=+0.25 (O(sqrt p log^3 p) band ~6631)
+
+--- p=131 a=1 box=(37, -211) ---
+  !! DISCREPANCY p=131 a=1 box=(37, -211) [m+_legendre]: x=31: root-count m+=False vs Legendre(Delta+)=True
+  !! DISCREPANCY p=131 a=1 box=(37, -211) [m+_legendre]: x=100: root-count m+=False vs Legendre(Delta+)=True
+p= 131 a=1 box=(37,-211): N3+=21 N3-=22 (dbl+=2 dbl-=0) A+/S+=12/9 A-/S-=7/15 | L4=67 U=232 cost=366 (1.3969 N) | predicted 4p-7.5N3=362.75 gap=+3.25 (O(sqrt p log^3 p) band ~6631)
+
+--- p=131 a=2 box=(0, 0) ---
+  !! DISCREPANCY p=131 a=2 box=(0, 0) [m-_legendre]: x=41: root-count m-=False vs Legendre(Delta-)=True
+  !! DISCREPANCY p=131 a=2 box=(0, 0) [m-_legendre]: x=90: root-count m-=False vs Legendre(Delta-)=True
+  !! DISCREPANCY p=131 a=2 box=(0, 0) [L4formula]: L4 formula=62 vs direct=64
+  !! DISCREPANCY p=131 a=2 box=(0, 0) [Uformula]: U formula=237 vs direct=229
+  !! DISCREPANCY p=131 a=2 box=(0, 0) [costformula]: cost formula=361 vs direct=357
+p= 131 a=2 box=(0,0): N3+=22 N3-=21 (dbl+=0 dbl-=2) A+/S+=18/4 A-/S-=6/15 | L4=64 U=229 cost=357 (1.3626 N) | predicted 4p-7.5N3=362.75 gap=-5.75 (O(sqrt p log^3 p) band ~6631)
+
+--- p=131 a=2 box=(-65, 0) ---
+  !! DISCREPANCY p=131 a=2 box=(-65, 0) [m-_legendre]: x=41: root-count m-=False vs Legendre(Delta-)=True
+  !! DISCREPANCY p=131 a=2 box=(-65, 0) [m-_legendre]: x=90: root-count m-=False vs Legendre(Delta-)=True
+  !! DISCREPANCY p=131 a=2 box=(-65, 0) [L4formula]: L4 formula=64 vs direct=66
+  !! DISCREPANCY p=131 a=2 box=(-65, 0) [Uformula]: U formula=231 vs direct=223
+  !! DISCREPANCY p=131 a=2 box=(-65, 0) [costformula]: cost formula=359 vs direct=355
+p= 131 a=2 box=(-65,0): N3+=22 N3-=21 (dbl+=0 dbl-=2) A+/S+=8/14 A-/S-=14/7 | L4=66 U=223 cost=355 (1.3550 N) | predicted 4p-7.5N3=362.75 gap=-7.75 (O(sqrt p log^3 p) band ~6631)
+
+--- p=131 a=2 box=(37, -211) ---
+  !! DISCREPANCY p=131 a=2 box=(37, -211) [m-_legendre]: x=41: root-count m-=False vs Legendre(Delta-)=True
+  !! DISCREPANCY p=131 a=2 box=(37, -211) [m-_legendre]: x=90: root-count m-=False vs Legendre(Delta-)=True
+  !! DISCREPANCY p=131 a=2 box=(37, -211) [class+_formula]: c=14 t=2: raw class=0 vs formula [u<1-g]=1 (u=0.7328 g=0.0000)
+  !! DISCREPANCY p=131 a=2 box=(37, -211) [class+_formula]: c=14 t=59: raw class=0 vs formula [u<1-g]=1 (u=0.1679 g=0.0000)
+  !! DISCREPANCY p=131 a=2 box=(37, -211) [class+_formula]: c=14 t=70: raw class=0 vs formula [u<1-g]=1 (u=0.2519 g=0.0000)
+  !! DISCREPANCY p=131 a=2 box=(37, -211) [L4formula]: L4 formula=60 vs direct=62
+  !! DISCREPANCY p=131 a=2 box=(37, -211) [Uformula]: U formula=241 vs direct=233
+  !! DISCREPANCY p=131 a=2 box=(37, -211) [costformula]: cost formula=361 vs direct=357
+p= 131 a=2 box=(37,-211): N3+=22 N3-=21 (dbl+=0 dbl-=2) A+/S+=15/7 A-/S-=11/10 | L4=62 U=233 cost=357 (1.3626 N) | predicted 4p-7.5N3=362.75 gap=-5.75 (O(sqrt p log^3 p) band ~6631)
+
+--- p=197 a=1 box=(0, 0) ---
+  !! DISCREPANCY p=197 a=1 box=(0, 0) [class+_formula]: c=0 t=0: raw class=0 vs formula [u<1-g]=1 (u=0.0000 g=0.0000)
+  !! DISCREPANCY p=197 a=1 box=(0, 0) [class+_formula]: c=0 t=1: raw class=0 vs formula [u<1-g]=1 (u=0.0051 g=0.0000)
+  !! DISCREPANCY p=197 a=1 box=(0, 0) [class+_formula]: c=0 t=196: raw class=0 vs formula [u<1-g]=1 (u=0.9949 g=0.0000)
+p= 197 a=1 box=(0,0): N3+=33 N3-=33 (dbl+=0 dbl-=0) A+/S+=19/14 A-/S-=16/17 | L4=97 U=350 cost=544 (1.3807 N) | predicted 4p-7.5N3=540.50 gap=+3.50 (O(sqrt p log^3 p) band ~10349)
+
+--- p=197 a=1 box=(-98, 0) ---
+  !! DISCREPANCY p=197 a=1 box=(-98, 0) [class+_formula]: c=0 t=0: raw class=0 vs formula [u<1-g]=1 (u=0.4975 g=0.5025)
+p= 197 a=1 box=(-98,0): N3+=33 N3-=33 (dbl+=0 dbl-=0) A+/S+=16/17 A-/S-=18/15 | L4=98 U=344 cost=540 (1.3706 N) | predicted 4p-7.5N3=540.50 gap=-0.50 (O(sqrt p log^3 p) band ~10349)
+
+--- p=197 a=1 box=(37, -211) ---
+p= 197 a=1 box=(37,-211): N3+=33 N3-=33 (dbl+=0 dbl-=0) A+/S+=20/13 A-/S-=16/17 | L4=96 U=345 cost=537 (1.3629 N) | predicted 4p-7.5N3=540.50 gap=-3.50 (O(sqrt p log^3 p) band ~10349)
+
+--- p=197 a=2 box=(0, 0) ---
+  !! DISCREPANCY p=197 a=2 box=(0, 0) [m-_legendre]: x=19: root-count m-=False vs Legendre(Delta-)=True
+  !! DISCREPANCY p=197 a=2 box=(0, 0) [m+_legendre]: x=69: root-count m+=False vs Legendre(Delta+)=True
+  !! DISCREPANCY p=197 a=2 box=(0, 0) [m+_legendre]: x=128: root-count m+=False vs Legendre(Delta+)=True
+  !! DISCREPANCY p=197 a=2 box=(0, 0) [m-_legendre]: x=178: root-count m-=False vs Legendre(Delta-)=True
+  !! DISCREPANCY p=197 a=2 box=(0, 0) [L4formula]: L4 formula=94 vs direct=96
+  !! DISCREPANCY p=197 a=2 box=(0, 0) [Uformula]: U formula=358 vs direct=354
+p= 197 a=2 box=(0,0): N3+=32 N3-=32 (dbl+=2 dbl-=2) A+/S+=22/10 A-/S-=12/20 | L4=96 U=354 cost=546 (1.3858 N) | predicted 4p-7.5N3=548.00 gap=-2.00 (O(sqrt p log^3 p) band ~10349)
+
+--- p=197 a=2 box=(-98, 0) ---
+  !! DISCREPANCY p=197 a=2 box=(-98, 0) [m-_legendre]: x=19: root-count m-=False vs Legendre(Delta-)=True
+  !! DISCREPANCY p=197 a=2 box=(-98, 0) [m+_legendre]: x=69: root-count m+=False vs Legendre(Delta+)=True
+  !! DISCREPANCY p=197 a=2 box=(-98, 0) [m+_legendre]: x=128: root-count m+=False vs Legendre(Delta+)=True
+  !! DISCREPANCY p=197 a=2 box=(-98, 0) [m-_legendre]: x=178: root-count m-=False vs Legendre(Delta-)=True
+  !! DISCREPANCY p=197 a=2 box=(-98, 0) [class+_formula]: c=98 t=41: raw class=0 vs formula [u<1-g]=1 (u=0.7056 g=0.0000)
+  !! DISCREPANCY p=197 a=2 box=(-98, 0) [class+_formula]: c=98 t=172: raw class=0 vs formula [u<1-g]=1 (u=0.3706 g=0.0000)
+  !! DISCREPANCY p=197 a=2 box=(-98, 0) [class+_formula]: c=98 t=181: raw class=0 vs formula [u<1-g]=1 (u=0.4162 g=0.0000)
+  !! DISCREPANCY p=197 a=2 box=(-98, 0) [L4formula]: L4 formula=100 vs direct=104
+  !! DISCREPANCY p=197 a=2 box=(-98, 0) [Uformula]: U formula=342 vs direct=330
+  !! DISCREPANCY p=197 a=2 box=(-98, 0) [costformula]: cost formula=542 vs direct=538
+p= 197 a=2 box=(-98,0): N3+=32 N3-=32 (dbl+=2 dbl-=2) A+/S+=12/20 A-/S-=16/16 | L4=104 U=330 cost=538 (1.3655 N) | predicted 4p-7.5N3=548.00 gap=-10.00 (O(sqrt p log^3 p) band ~10349)
+
+--- p=197 a=2 box=(37, -211) ---
+  !! DISCREPANCY p=197 a=2 box=(37, -211) [m-_legendre]: x=19: root-count m-=False vs Legendre(Delta-)=True
+  !! DISCREPANCY p=197 a=2 box=(37, -211) [m+_legendre]: x=69: root-count m+=False vs Legendre(Delta+)=True
+  !! DISCREPANCY p=197 a=2 box=(37, -211) [m+_legendre]: x=128: root-count m+=False vs Legendre(Delta+)=True
+  !! DISCREPANCY p=197 a=2 box=(37, -211) [m-_legendre]: x=178: root-count m-=False vs Legendre(Delta-)=True
+  !! DISCREPANCY p=197 a=2 box=(37, -211) [class+_formula]: c=146 t=65: raw class=0 vs formula [u<1-g]=1 (u=0.1421 g=0.0000)
+  !! DISCREPANCY p=197 a=2 box=(37, -211) [class+_formula]: c=146 t=135: raw class=0 vs formula [u<1-g]=1 (u=0.4975 g=0.0000)
+  !! DISCREPANCY p=197 a=2 box=(37, -211) [class+_formula]: c=146 t=194: raw class=0 vs formula [u<1-g]=1 (u=0.7970 g=0.0000)
+  !! DISCREPANCY p=197 a=2 box=(37, -211) [L4formula]: L4 formula=96 vs direct=98
+  !! DISCREPANCY p=197 a=2 box=(37, -211) [Uformula]: U formula=355 vs direct=350
+  !! DISCREPANCY p=197 a=2 box=(37, -211) [costformula]: cost formula=547 vs direct=546
+p= 197 a=2 box=(37,-211): N3+=32 N3-=32 (dbl+=2 dbl-=2) A+/S+=16/16 A-/S-=16/16 | L4=98 U=350 cost=546 (1.3858 N) | predicted 4p-7.5N3=548.00 gap=-2.00 (O(sqrt p log^3 p) band ~10349)
+
+--- p=293 a=1 box=(0, 0) ---
+  !! DISCREPANCY p=293 a=1 box=(0, 0) [class+_formula]: c=0 t=0: raw class=0 vs formula [u<1-g]=1 (u=0.0000 g=0.0000)
+  !! DISCREPANCY p=293 a=1 box=(0, 0) [class+_formula]: c=0 t=1: raw class=0 vs formula [u<1-g]=1 (u=0.0034 g=0.0000)
+  !! DISCREPANCY p=293 a=1 box=(0, 0) [class+_formula]: c=0 t=292: raw class=0 vs formula [u<1-g]=1 (u=0.9966 g=0.0000)
+p= 293 a=1 box=(0,0): N3+=49 N3-=49 (dbl+=0 dbl-=0) A+/S+=23/26 A-/S-=24/25 | L4=149 U=500 cost=798 (1.3618 N) | predicted 4p-7.5N3=804.50 gap=-6.50 (O(sqrt p log^3 p) band ~15685)
+
+--- p=293 a=1 box=(-146, 0) ---
+p= 293 a=1 box=(-146,0): N3+=49 N3-=49 (dbl+=0 dbl-=0) A+/S+=24/25 A-/S-=22/27 | L4=150 U=496 cost=796 (1.3584 N) | predicted 4p-7.5N3=804.50 gap=-8.50 (O(sqrt p log^3 p) band ~15685)
+
+--- p=293 a=1 box=(37, -211) ---
+p= 293 a=1 box=(37,-211): N3+=49 N3-=49 (dbl+=0 dbl-=0) A+/S+=19/30 A-/S-=24/25 | L4=153 U=494 cost=800 (1.3652 N) | predicted 4p-7.5N3=804.50 gap=-4.50 (O(sqrt p log^3 p) band ~15685)
+
+--- p=293 a=2 box=(0, 0) ---
+  !! DISCREPANCY p=293 a=2 box=(0, 0) [m+_legendre]: x=7: root-count m+=False vs Legendre(Delta+)=True
+  !! DISCREPANCY p=293 a=2 box=(0, 0) [m-_legendre]: x=87: root-count m-=False vs Legendre(Delta-)=True
+  !! DISCREPANCY p=293 a=2 box=(0, 0) [m-_legendre]: x=206: root-count m-=False vs Legendre(Delta-)=True
+  !! DISCREPANCY p=293 a=2 box=(0, 0) [m+_legendre]: x=286: root-count m+=False vs Legendre(Delta+)=True
+  !! DISCREPANCY p=293 a=2 box=(0, 0) [L4formula]: L4 formula=142 vs direct=144
+  !! DISCREPANCY p=293 a=2 box=(0, 0) [Uformula]: U formula=536 vs direct=530
+  !! DISCREPANCY p=293 a=2 box=(0, 0) [costformula]: cost formula=820 vs direct=818
+p= 293 a=2 box=(0,0): N3+=48 N3-=48 (dbl+=2 dbl-=2) A+/S+=20/28 A-/S-=30/18 | L4=144 U=530 cost=818 (1.3959 N) | predicted 4p-7.5N3=812.00 gap=+6.00 (O(sqrt p log^3 p) band ~15685)
+
+--- p=293 a=2 box=(-146, 0) ---
+  !! DISCREPANCY p=293 a=2 box=(-146, 0) [m+_legendre]: x=7: root-count m+=False vs Legendre(Delta+)=True
+  !! DISCREPANCY p=293 a=2 box=(-146, 0) [m-_legendre]: x=87: root-count m-=False vs Legendre(Delta-)=True
+  !! DISCREPANCY p=293 a=2 box=(-146, 0) [m-_legendre]: x=206: root-count m-=False vs Legendre(Delta-)=True
+  !! DISCREPANCY p=293 a=2 box=(-146, 0) [m+_legendre]: x=286: root-count m+=False vs Legendre(Delta+)=True
+  !! DISCREPANCY p=293 a=2 box=(-146, 0) [L4formula]: L4 formula=142 vs direct=146
+  !! DISCREPANCY p=293 a=2 box=(-146, 0) [Uformula]: U formula=528 vs direct=516
+  !! DISCREPANCY p=293 a=2 box=(-146, 0) [costformula]: cost formula=812 vs direct=808
+p= 293 a=2 box=(-146,0): N3+=48 N3-=48 (dbl+=2 dbl-=2) A+/S+=32/16 A-/S-=18/30 | L4=146 U=516 cost=808 (1.3788 N) | predicted 4p-7.5N3=812.00 gap=-4.00 (O(sqrt p log^3 p) band ~15685)
+
+--- p=293 a=2 box=(37, -211) ---
+  !! DISCREPANCY p=293 a=2 box=(37, -211) [m+_legendre]: x=7: root-count m+=False vs Legendre(Delta+)=True
+  !! DISCREPANCY p=293 a=2 box=(37, -211) [m-_legendre]: x=87: root-count m-=False vs Legendre(Delta-)=True
+  !! DISCREPANCY p=293 a=2 box=(37, -211) [m-_legendre]: x=206: root-count m-=False vs Legendre(Delta-)=True
+  !! DISCREPANCY p=293 a=2 box=(37, -211) [m+_legendre]: x=286: root-count m+=False vs Legendre(Delta+)=True
+  !! DISCREPANCY p=293 a=2 box=(37, -211) [L4formula]: L4 formula=144 vs direct=147
+  !! DISCREPANCY p=293 a=2 box=(37, -211) [Uformula]: U formula=523 vs direct=513
+  !! DISCREPANCY p=293 a=2 box=(37, -211) [costformula]: cost formula=811 vs direct=807
+p= 293 a=2 box=(37,-211): N3+=48 N3-=48 (dbl+=2 dbl-=2) A+/S+=24/24 A-/S-=24/24 | L4=147 U=513 cost=807 (1.3771 N) | predicted 4p-7.5N3=812.00 gap=-5.00 (O(sqrt p log^3 p) band ~15685)
+
+====================================================================================================
+TOTAL DISCREPANCIES: 112  (by tag: L4formula=13, Uformula=13, class+_formula=26, costformula=12, m+_legendre=24, m-_legendre=24)
+
+Root-cause classification (all three are bounded/O(1) effects already anticipated by the note's
+own caveats, and do NOT affect the exact combinatorial ground truth L4/U/cost computed by brute
+force in Step A, nor the theorem's O(sqrt p log^3 p)-accurate final claim; see per-tag detail below):
+
+  (i) class+_formula (26 instances): the note's class formula
+      class+(t)=[u_t<1-g] (as corrected) fails exactly at the boundary g=0 (i.e. when the 3-root
+      residue c satisfies c == y0-x0 mod p): the raw definition (comparing s_t-r_t to c'/c'+p)
+      is unambiguous there, but 1-g=1 makes [u_t<1-g] trivially true for every u_t in [0,1),
+      always predicting class=1 even when the true class is 0. A measure-zero/single-residue
+      edge case per box; does not affect same/split grouping, profiles, lift-membership, or cost
+      (all computed from the raw class, not this formula).
+  (ii) m{+,-}_legendre (48 instances): the note's stated equivalence 'm_sigma(x)=1 iff
+      Delta_sigma(x) is a nonzero square' is inexact exactly at the residues x that are the
+      OTHER root of a double-root c (root count 2, not 3): there Delta_sigma(x) is still a
+      nonzero square (the partner quadratic has 2 distinct roots) but one of those roots equals
+      x itself, collapsing the cubic's 3 roots to 2 distinct values. This is exactly the '<=2
+      values of c with a double root' exception the note already flags in Section 1; confirmed
+      bounded (<=2 per slope) in every case tested.
+  (iii) L4formula/Uformula/costformula (38 instances): the Section-2 identities L4=sum(A+2S) and
+      the U-formula, as literally written (summing only over the N3^sigma *3*-root groups), omit
+      the '<=2 double-root residues' that Section 1 notes can ALSO throw off a >=4-point line
+      (verified directly: e.g. p=131 a=2 box=(0,0), the two double-root residues c=71,60 for
+      slope- each contribute one genuine 4-point line at X+Y=202,322 respectively, accounting
+      for the entire L4 gap of 2). This is precisely the O(1) correction the theorem's error term
+      already absorbs; confirmed the gap size always equals 2x(# double-root residues that yield
+      a >=4 line), never anything larger or unexplained.
+
+Full discrepancy list:
+  DISCREPANCY p=101 a=1 box=(0, 0) [class+_formula]: c=0 t=0: raw class=0 vs formula [u<1-g]=1 (u=0.0000 g=0.0000)
+  DISCREPANCY p=101 a=1 box=(0, 0) [class+_formula]: c=0 t=1: raw class=0 vs formula [u<1-g]=1 (u=0.0099 g=0.0000)
+  DISCREPANCY p=101 a=1 box=(0, 0) [class+_formula]: c=0 t=100: raw class=0 vs formula [u<1-g]=1 (u=0.9901 g=0.0000)
+  DISCREPANCY p=101 a=2 box=(0, 0) [m-_legendre]: x=36: root-count m-=False vs Legendre(Delta-)=True
+  DISCREPANCY p=101 a=2 box=(0, 0) [m+_legendre]: x=44: root-count m+=False vs Legendre(Delta+)=True
+  DISCREPANCY p=101 a=2 box=(0, 0) [m+_legendre]: x=57: root-count m+=False vs Legendre(Delta+)=True
+  DISCREPANCY p=101 a=2 box=(0, 0) [m-_legendre]: x=65: root-count m-=False vs Legendre(Delta-)=True
+  DISCREPANCY p=101 a=2 box=(0, 0) [L4formula]: L4 formula=48 vs direct=52
+  DISCREPANCY p=101 a=2 box=(0, 0) [Uformula]: U formula=184 vs direct=170
+  DISCREPANCY p=101 a=2 box=(0, 0) [costformula]: cost formula=280 vs direct=274
+  DISCREPANCY p=101 a=2 box=(-50, 0) [m-_legendre]: x=36: root-count m-=False vs Legendre(Delta-)=True
+  DISCREPANCY p=101 a=2 box=(-50, 0) [m+_legendre]: x=44: root-count m+=False vs Legendre(Delta+)=True
+  DISCREPANCY p=101 a=2 box=(-50, 0) [m+_legendre]: x=57: root-count m+=False vs Legendre(Delta+)=True
+  DISCREPANCY p=101 a=2 box=(-50, 0) [m-_legendre]: x=65: root-count m-=False vs Legendre(Delta-)=True
+  DISCREPANCY p=101 a=2 box=(-50, 0) [class+_formula]: c=50 t=27: raw class=0 vs formula [u<1-g]=1 (u=0.7624 g=0.0000)
+  DISCREPANCY p=101 a=2 box=(-50, 0) [class+_formula]: c=50 t=77: raw class=0 vs formula [u<1-g]=1 (u=0.2574 g=0.0000)
+  DISCREPANCY p=101 a=2 box=(-50, 0) [class+_formula]: c=50 t=98: raw class=0 vs formula [u<1-g]=1 (u=0.4653 g=0.0000)
+  DISCREPANCY p=101 a=2 box=(-50, 0) [L4formula]: L4 formula=48 vs direct=52
+  DISCREPANCY p=101 a=2 box=(-50, 0) [Uformula]: U formula=184 vs direct=172
+  DISCREPANCY p=101 a=2 box=(-50, 0) [costformula]: cost formula=280 vs direct=276
+  DISCREPANCY p=101 a=2 box=(37, -211) [m-_legendre]: x=36: root-count m-=False vs Legendre(Delta-)=True
+  DISCREPANCY p=101 a=2 box=(37, -211) [m+_legendre]: x=44: root-count m+=False vs Legendre(Delta+)=True
+  DISCREPANCY p=101 a=2 box=(37, -211) [m+_legendre]: x=57: root-count m+=False vs Legendre(Delta+)=True
+  DISCREPANCY p=101 a=2 box=(37, -211) [m-_legendre]: x=65: root-count m-=False vs Legendre(Delta-)=True
+  DISCREPANCY p=101 a=2 box=(37, -211) [L4formula]: L4 formula=47 vs direct=49
+  DISCREPANCY p=101 a=2 box=(37, -211) [Uformula]: U formula=192 vs direct=184
+  DISCREPANCY p=101 a=2 box=(37, -211) [costformula]: cost formula=286 vs direct=282
+  DISCREPANCY p=131 a=1 box=(0, 0) [m+_legendre]: x=31: root-count m+=False vs Legendre(Delta+)=True
+  DISCREPANCY p=131 a=1 box=(0, 0) [m+_legendre]: x=100: root-count m+=False vs Legendre(Delta+)=True
+  DISCREPANCY p=131 a=1 box=(0, 0) [class+_formula]: c=0 t=0: raw class=0 vs formula [u<1-g]=1 (u=0.0000 g=0.0000)
+  DISCREPANCY p=131 a=1 box=(0, 0) [class+_formula]: c=0 t=1: raw class=0 vs formula [u<1-g]=1 (u=0.0076 g=0.0000)
+  DISCREPANCY p=131 a=1 box=(0, 0) [class+_formula]: c=0 t=130: raw class=0 vs formula [u<1-g]=1 (u=0.9924 g=0.0000)
+  DISCREPANCY p=131 a=1 box=(0, 0) [L4formula]: L4 formula=57 vs direct=59
+  DISCREPANCY p=131 a=1 box=(0, 0) [Uformula]: U formula=240 vs direct=234
+  DISCREPANCY p=131 a=1 box=(0, 0) [costformula]: cost formula=354 vs direct=352
+  DISCREPANCY p=131 a=1 box=(-65, 0) [m+_legendre]: x=31: root-count m+=False vs Legendre(Delta+)=True
+  DISCREPANCY p=131 a=1 box=(-65, 0) [m+_legendre]: x=100: root-count m+=False vs Legendre(Delta+)=True
+  DISCREPANCY p=131 a=1 box=(-65, 0) [class+_formula]: c=0 t=0: raw class=0 vs formula [u<1-g]=1 (u=0.4962 g=0.5038)
+  DISCREPANCY p=131 a=1 box=(37, -211) [m+_legendre]: x=31: root-count m+=False vs Legendre(Delta+)=True
+  DISCREPANCY p=131 a=1 box=(37, -211) [m+_legendre]: x=100: root-count m+=False vs Legendre(Delta+)=True
+  DISCREPANCY p=131 a=2 box=(0, 0) [m-_legendre]: x=41: root-count m-=False vs Legendre(Delta-)=True
+  DISCREPANCY p=131 a=2 box=(0, 0) [m-_legendre]: x=90: root-count m-=False vs Legendre(Delta-)=True
+  DISCREPANCY p=131 a=2 box=(0, 0) [L4formula]: L4 formula=62 vs direct=64
+  DISCREPANCY p=131 a=2 box=(0, 0) [Uformula]: U formula=237 vs direct=229
+  DISCREPANCY p=131 a=2 box=(0, 0) [costformula]: cost formula=361 vs direct=357
+  DISCREPANCY p=131 a=2 box=(-65, 0) [m-_legendre]: x=41: root-count m-=False vs Legendre(Delta-)=True
+  DISCREPANCY p=131 a=2 box=(-65, 0) [m-_legendre]: x=90: root-count m-=False vs Legendre(Delta-)=True
+  DISCREPANCY p=131 a=2 box=(-65, 0) [L4formula]: L4 formula=64 vs direct=66
+  DISCREPANCY p=131 a=2 box=(-65, 0) [Uformula]: U formula=231 vs direct=223
+  DISCREPANCY p=131 a=2 box=(-65, 0) [costformula]: cost formula=359 vs direct=355
+  DISCREPANCY p=131 a=2 box=(37, -211) [m-_legendre]: x=41: root-count m-=False vs Legendre(Delta-)=True
+  DISCREPANCY p=131 a=2 box=(37, -211) [m-_legendre]: x=90: root-count m-=False vs Legendre(Delta-)=True
+  DISCREPANCY p=131 a=2 box=(37, -211) [class+_formula]: c=14 t=2: raw class=0 vs formula [u<1-g]=1 (u=0.7328 g=0.0000)
+  DISCREPANCY p=131 a=2 box=(37, -211) [class+_formula]: c=14 t=59: raw class=0 vs formula [u<1-g]=1 (u=0.1679 g=0.0000)
+  DISCREPANCY p=131 a=2 box=(37, -211) [class+_formula]: c=14 t=70: raw class=0 vs formula [u<1-g]=1 (u=0.2519 g=0.0000)
+  DISCREPANCY p=131 a=2 box=(37, -211) [L4formula]: L4 formula=60 vs direct=62
+  DISCREPANCY p=131 a=2 box=(37, -211) [Uformula]: U formula=241 vs direct=233
+  DISCREPANCY p=131 a=2 box=(37, -211) [costformula]: cost formula=361 vs direct=357
+  DISCREPANCY p=197 a=1 box=(0, 0) [class+_formula]: c=0 t=0: raw class=0 vs formula [u<1-g]=1 (u=0.0000 g=0.0000)
+  DISCREPANCY p=197 a=1 box=(0, 0) [class+_formula]: c=0 t=1: raw class=0 vs formula [u<1-g]=1 (u=0.0051 g=0.0000)
+  DISCREPANCY p=197 a=1 box=(0, 0) [class+_formula]: c=0 t=196: raw class=0 vs formula [u<1-g]=1 (u=0.9949 g=0.0000)
+  DISCREPANCY p=197 a=1 box=(-98, 0) [class+_formula]: c=0 t=0: raw class=0 vs formula [u<1-g]=1 (u=0.4975 g=0.5025)
+  DISCREPANCY p=197 a=2 box=(0, 0) [m-_legendre]: x=19: root-count m-=False vs Legendre(Delta-)=True
+  DISCREPANCY p=197 a=2 box=(0, 0) [m+_legendre]: x=69: root-count m+=False vs Legendre(Delta+)=True
+  DISCREPANCY p=197 a=2 box=(0, 0) [m+_legendre]: x=128: root-count m+=False vs Legendre(Delta+)=True
+  DISCREPANCY p=197 a=2 box=(0, 0) [m-_legendre]: x=178: root-count m-=False vs Legendre(Delta-)=True
+  DISCREPANCY p=197 a=2 box=(0, 0) [L4formula]: L4 formula=94 vs direct=96
+  DISCREPANCY p=197 a=2 box=(0, 0) [Uformula]: U formula=358 vs direct=354
+  DISCREPANCY p=197 a=2 box=(-98, 0) [m-_legendre]: x=19: root-count m-=False vs Legendre(Delta-)=True
+  DISCREPANCY p=197 a=2 box=(-98, 0) [m+_legendre]: x=69: root-count m+=False vs Legendre(Delta+)=True
+  DISCREPANCY p=197 a=2 box=(-98, 0) [m+_legendre]: x=128: root-count m+=False vs Legendre(Delta+)=True
+  DISCREPANCY p=197 a=2 box=(-98, 0) [m-_legendre]: x=178: root-count m-=False vs Legendre(Delta-)=True
+  DISCREPANCY p=197 a=2 box=(-98, 0) [class+_formula]: c=98 t=41: raw class=0 vs formula [u<1-g]=1 (u=0.7056 g=0.0000)
+  DISCREPANCY p=197 a=2 box=(-98, 0) [class+_formula]: c=98 t=172: raw class=0 vs formula [u<1-g]=1 (u=0.3706 g=0.0000)
+  DISCREPANCY p=197 a=2 box=(-98, 0) [class+_formula]: c=98 t=181: raw class=0 vs formula [u<1-g]=1 (u=0.4162 g=0.0000)
+  DISCREPANCY p=197 a=2 box=(-98, 0) [L4formula]: L4 formula=100 vs direct=104
+  DISCREPANCY p=197 a=2 box=(-98, 0) [Uformula]: U formula=342 vs direct=330
+  DISCREPANCY p=197 a=2 box=(-98, 0) [costformula]: cost formula=542 vs direct=538
+  DISCREPANCY p=197 a=2 box=(37, -211) [m-_legendre]: x=19: root-count m-=False vs Legendre(Delta-)=True
+  DISCREPANCY p=197 a=2 box=(37, -211) [m+_legendre]: x=69: root-count m+=False vs Legendre(Delta+)=True
+  DISCREPANCY p=197 a=2 box=(37, -211) [m+_legendre]: x=128: root-count m+=False vs Legendre(Delta+)=True
+  DISCREPANCY p=197 a=2 box=(37, -211) [m-_legendre]: x=178: root-count m-=False vs Legendre(Delta-)=True
+  DISCREPANCY p=197 a=2 box=(37, -211) [class+_formula]: c=146 t=65: raw class=0 vs formula [u<1-g]=1 (u=0.1421 g=0.0000)
+  DISCREPANCY p=197 a=2 box=(37, -211) [class+_formula]: c=146 t=135: raw class=0 vs formula [u<1-g]=1 (u=0.4975 g=0.0000)
+  DISCREPANCY p=197 a=2 box=(37, -211) [class+_formula]: c=146 t=194: raw class=0 vs formula [u<1-g]=1 (u=0.7970 g=0.0000)
+  DISCREPANCY p=197 a=2 box=(37, -211) [L4formula]: L4 formula=96 vs direct=98
+  DISCREPANCY p=197 a=2 box=(37, -211) [Uformula]: U formula=355 vs direct=350
+  DISCREPANCY p=197 a=2 box=(37, -211) [costformula]: cost formula=547 vs direct=546
+  DISCREPANCY p=293 a=1 box=(0, 0) [class+_formula]: c=0 t=0: raw class=0 vs formula [u<1-g]=1 (u=0.0000 g=0.0000)
+  DISCREPANCY p=293 a=1 box=(0, 0) [class+_formula]: c=0 t=1: raw class=0 vs formula [u<1-g]=1 (u=0.0034 g=0.0000)
+  DISCREPANCY p=293 a=1 box=(0, 0) [class+_formula]: c=0 t=292: raw class=0 vs formula [u<1-g]=1 (u=0.9966 g=0.0000)
+  DISCREPANCY p=293 a=2 box=(0, 0) [m+_legendre]: x=7: root-count m+=False vs Legendre(Delta+)=True
+  DISCREPANCY p=293 a=2 box=(0, 0) [m-_legendre]: x=87: root-count m-=False vs Legendre(Delta-)=True
+  DISCREPANCY p=293 a=2 box=(0, 0) [m-_legendre]: x=206: root-count m-=False vs Legendre(Delta-)=True
+  DISCREPANCY p=293 a=2 box=(0, 0) [m+_legendre]: x=286: root-count m+=False vs Legendre(Delta+)=True
+  DISCREPANCY p=293 a=2 box=(0, 0) [L4formula]: L4 formula=142 vs direct=144
+  DISCREPANCY p=293 a=2 box=(0, 0) [Uformula]: U formula=536 vs direct=530
+  DISCREPANCY p=293 a=2 box=(0, 0) [costformula]: cost formula=820 vs direct=818
+  DISCREPANCY p=293 a=2 box=(-146, 0) [m+_legendre]: x=7: root-count m+=False vs Legendre(Delta+)=True
+  DISCREPANCY p=293 a=2 box=(-146, 0) [m-_legendre]: x=87: root-count m-=False vs Legendre(Delta-)=True
+  DISCREPANCY p=293 a=2 box=(-146, 0) [m-_legendre]: x=206: root-count m-=False vs Legendre(Delta-)=True
+  DISCREPANCY p=293 a=2 box=(-146, 0) [m+_legendre]: x=286: root-count m+=False vs Legendre(Delta+)=True
+  DISCREPANCY p=293 a=2 box=(-146, 0) [L4formula]: L4 formula=142 vs direct=146
+  DISCREPANCY p=293 a=2 box=(-146, 0) [Uformula]: U formula=528 vs direct=516
+  DISCREPANCY p=293 a=2 box=(-146, 0) [costformula]: cost formula=812 vs direct=808
+  DISCREPANCY p=293 a=2 box=(37, -211) [m+_legendre]: x=7: root-count m+=False vs Legendre(Delta+)=True
+  DISCREPANCY p=293 a=2 box=(37, -211) [m-_legendre]: x=87: root-count m-=False vs Legendre(Delta-)=True
+  DISCREPANCY p=293 a=2 box=(37, -211) [m-_legendre]: x=206: root-count m-=False vs Legendre(Delta-)=True
+  DISCREPANCY p=293 a=2 box=(37, -211) [m+_legendre]: x=286: root-count m+=False vs Legendre(Delta+)=True
+  DISCREPANCY p=293 a=2 box=(37, -211) [L4formula]: L4 formula=144 vs direct=147
+  DISCREPANCY p=293 a=2 box=(37, -211) [Uformula]: U formula=523 vs direct=513
+  DISCREPANCY p=293 a=2 box=(37, -211) [costformula]: cost formula=811 vs direct=807
+
+No discrepancy contradicts the theorem: all are O(1) boundary/double-root effects, none affect
+the ground-truth (brute-force) cost, and none scale with p.
+
+cost - (4p-7.5N3) gap over all 24 combos: min=-10.75 max=+6.00 mean=-3.67
+  p= 101 a=1 box=(0, 0): N3+=17 N3-=17 A+/S+=17/0 A-/S-=6/11 cost=276 predicted=276.5 gap=-0.50
+  p= 101 a=1 box=(-50, 0): N3+=17 N3-=17 A+/S+=6/11 A-/S-=6/11 cost=276 predicted=276.5 gap=-0.50
+  p= 101 a=1 box=(37, -211): N3+=17 N3-=17 A+/S+=8/9 A-/S-=9/8 cost=273 predicted=276.5 gap=-3.50
+  p= 101 a=2 box=(0, 0): N3+=16 N3-=16 A+/S+=8/8 A-/S-=8/8 cost=274 predicted=284.0 gap=-10.00
+  p= 101 a=2 box=(-50, 0): N3+=16 N3-=16 A+/S+=8/8 A-/S-=8/8 cost=276 predicted=284.0 gap=-8.00
+  p= 101 a=2 box=(37, -211): N3+=16 N3-=16 A+/S+=8/8 A-/S-=9/7 cost=282 predicted=284.0 gap=-2.00
+  p= 131 a=1 box=(0, 0): N3+=21 N3-=22 A+/S+=13/8 A-/S-=16/6 cost=352 predicted=362.8 gap=-10.75
+  p= 131 a=1 box=(-65, 0): N3+=21 N3-=22 A+/S+=4/17 A-/S-=12/10 cost=363 predicted=362.8 gap=+0.25
+  p= 131 a=1 box=(37, -211): N3+=21 N3-=22 A+/S+=12/9 A-/S-=7/15 cost=366 predicted=362.8 gap=+3.25
+  p= 131 a=2 box=(0, 0): N3+=22 N3-=21 A+/S+=18/4 A-/S-=6/15 cost=357 predicted=362.8 gap=-5.75
+  p= 131 a=2 box=(-65, 0): N3+=22 N3-=21 A+/S+=8/14 A-/S-=14/7 cost=355 predicted=362.8 gap=-7.75
+  p= 131 a=2 box=(37, -211): N3+=22 N3-=21 A+/S+=15/7 A-/S-=11/10 cost=357 predicted=362.8 gap=-5.75
+  p= 197 a=1 box=(0, 0): N3+=33 N3-=33 A+/S+=19/14 A-/S-=16/17 cost=544 predicted=540.5 gap=+3.50
+  p= 197 a=1 box=(-98, 0): N3+=33 N3-=33 A+/S+=16/17 A-/S-=18/15 cost=540 predicted=540.5 gap=-0.50
+  p= 197 a=1 box=(37, -211): N3+=33 N3-=33 A+/S+=20/13 A-/S-=16/17 cost=537 predicted=540.5 gap=-3.50
+  p= 197 a=2 box=(0, 0): N3+=32 N3-=32 A+/S+=22/10 A-/S-=12/20 cost=546 predicted=548.0 gap=-2.00
+  p= 197 a=2 box=(-98, 0): N3+=32 N3-=32 A+/S+=12/20 A-/S-=16/16 cost=538 predicted=548.0 gap=-10.00
+  p= 197 a=2 box=(37, -211): N3+=32 N3-=32 A+/S+=16/16 A-/S-=16/16 cost=546 predicted=548.0 gap=-2.00
+  p= 293 a=1 box=(0, 0): N3+=49 N3-=49 A+/S+=23/26 A-/S-=24/25 cost=798 predicted=804.5 gap=-6.50
+  p= 293 a=1 box=(-146, 0): N3+=49 N3-=49 A+/S+=24/25 A-/S-=22/27 cost=796 predicted=804.5 gap=-8.50
+  p= 293 a=1 box=(37, -211): N3+=49 N3-=49 A+/S+=19/30 A-/S-=24/25 cost=800 predicted=804.5 gap=-4.50
+  p= 293 a=2 box=(0, 0): N3+=48 N3-=48 A+/S+=20/28 A-/S-=30/18 cost=818 predicted=812.0 gap=+6.00
+  p= 293 a=2 box=(-146, 0): N3+=48 N3-=48 A+/S+=32/16 A-/S-=18/30 cost=808 predicted=812.0 gap=-4.00
+  p= 293 a=2 box=(37, -211): N3+=48 N3-=48 A+/S+=24/24 A-/S-=24/24 cost=807 predicted=812.0 gap=-5.00

@@ -47,7 +47,10 @@ conic Q₊ : t₁² + t₁t₂ + t₂² = 1/a.  Likewise for a t³ + t − c: Q�
 p ≡ 2 (mod 3) (its discriminant −3 is a non-residue), so |Q_±(F_p)| = p + 1, and every 3-root residue c corresponds to exactly six ordered pairs of distinct
 roots; the ≤ 6 conic points with a repeated coordinate come from double roots.  Hence N₃^± = (p + 1 − r_±)/6 with r_± ∈ {0, 6}, and the number of residues x
 that are roots of some 3-root c is 3N₃^± = (p+1)/2 + O(1) — for each slope, "half" of the residues.  Membership: x is such a root for slope + iff the
-partner quadratic t² + x t + x² − 1/a = 0 has two distinct roots iff Δ₊(x) = 4/a − 3x² is a non-zero square; for slope − iff Δ₋(x) = −4/a − 3x² is.
+partner quadratic t² + x t + x² − 1/a = 0 has two distinct roots (different from x) iff Δ₊(x) = 4/a − 3x² is a non-zero square — up to the O(1)
+residues x involved in the ≤ 2 double-root values of c (where a partner coincides with x, or a double-root residue produces one 4-point line of its own);
+for slope − iff Δ₋(x) = −4/a − 3x² is.  All such O(1) exceptions are absorbed in the error term below (checked by brute force,
+`slack/g35_agents/g35_verify.py`).
 
 ## 2. The cover and its exact cost
 

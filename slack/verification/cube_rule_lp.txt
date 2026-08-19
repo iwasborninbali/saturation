@@ -1,0 +1,170 @@
+p=197 box=(0,0) N=2p=394 pts=788
+  raw LP(pm1, size>=3 lines + singletons): obj=534.0000 = 1.3553 N
+  line classification (slope,size,type): count, mean LP-weight
+    slope=-1 size=3 type=same(outer)    count=  32 mean_w=0.6875
+    slope=-1 size=4 type=split          count=  17 mean_w=1.0000
+    slope=-1 size=5 type=split          count=  17 mean_w=1.0000
+    slope=-1 size=6 type=same           count=  16 mean_w=1.0000
+    slope=+1 size=3 type=same(outer)    count=  38 mean_w=0.3947
+    slope=+1 size=4 type=split          count=  14 mean_w=0.8571
+    slope=+1 size=5 type=split          count=  14 mean_w=1.0000
+    slope=+1 size=6 type=same           count=  19 mean_w=1.0000
+  counts: #6-lines=35 #3-lines=70 (expect 2x #6-lines) #5-lines=31 #4-lines=31 (expect equal)
+  #2-point diagonal side-lines (all slopes, incl. non-split-related): 227
+  explicit rule costs (1 on 4/5/6-lines + w3 on 3-lines [+ optional 1/2 on 2pt side-lines]):
+    w3=0.0000 side2=False        cost=544.0000 = 1.3807 N
+    w3=0.0000 side2=True         cost=581.0000 = 1.4746 N
+    w3=0.2500 side2=False        cost=550.0000 = 1.3959 N
+    w3=0.2500 side2=True         cost=587.0000 = 1.4898 N
+    w3=0.3333 side2=False        cost=552.0000 = 1.4010 N
+    w3=0.3333 side2=True         cost=589.0000 = 1.4949 N
+    w3=0.5000 side2=False        cost=556.0000 = 1.4112 N
+    w3=0.5000 side2=True         cost=593.0000 = 1.5051 N
+    w3=1.0000 side2=False        cost=568.0000 = 1.4416 N
+    w3=1.0000 side2=True         cost=663.0000 = 1.6827 N
+  BEST explicit rule: w3=0.0000 side2=False cost=544.0000 = 1.3807 N
+  baseline (note's rule, weight1 on 4/5/6-lines only): cost=544.0000 = 1.3807 N  [theory: 4p-7.5*N3 = 540.50]
+
+p=197 box=(-98,0) N=2p=394 pts=788
+  raw LP(pm1, size>=3 lines + singletons): obj=528.0000 = 1.3401 N
+  line classification (slope,size,type): count, mean LP-weight
+    slope=-1 size=3 type=same(outer)    count=  36 mean_w=0.2222
+    slope=-1 size=4 type=split          count=  15 mean_w=0.9333
+    slope=-1 size=5 type=split          count=  15 mean_w=1.0000
+    slope=-1 size=6 type=same           count=  18 mean_w=1.0000
+    slope=+1 size=3 type=same(outer)    count=  32 mean_w=0.5938
+    slope=+1 size=4 type=split          count=  17 mean_w=0.8235
+    slope=+1 size=5 type=split          count=  17 mean_w=1.0000
+    slope=+1 size=6 type=same           count=  16 mean_w=1.0000
+  counts: #6-lines=34 #3-lines=68 (expect 2x #6-lines) #5-lines=32 #4-lines=32 (expect equal)
+  #2-point diagonal side-lines (all slopes, incl. non-split-related): 228
+  explicit rule costs (1 on 4/5/6-lines + w3 on 3-lines [+ optional 1/2 on 2pt side-lines]):
+    w3=0.0000 side2=False        cost=540.0000 = 1.3706 N
+    w3=0.0000 side2=True         cost=581.0000 = 1.4746 N
+    w3=0.2500 side2=False        cost=548.0000 = 1.3909 N
+    w3=0.2500 side2=True         cost=589.0000 = 1.4949 N
+    w3=0.3333 side2=False        cost=550.6667 = 1.3976 N
+    w3=0.3333 side2=True         cost=591.6667 = 1.5017 N
+    w3=0.5000 side2=False        cost=556.0000 = 1.4112 N
+    w3=0.5000 side2=True         cost=597.0000 = 1.5152 N
+    w3=1.0000 side2=False        cost=572.0000 = 1.4518 N
+    w3=1.0000 side2=True         cost=665.0000 = 1.6878 N
+  BEST explicit rule: w3=0.0000 side2=False cost=540.0000 = 1.3706 N
+  baseline (note's rule, weight1 on 4/5/6-lines only): cost=540.0000 = 1.3706 N  [theory: 4p-7.5*N3 = 540.50]
+
+p=293 box=(0,0) N=2p=586 pts=1172
+  raw LP(pm1, size>=3 lines + singletons): obj=786.0000 = 1.3413 N
+  line classification (slope,size,type): count, mean LP-weight
+    slope=-1 size=3 type=same(outer)    count=  48 mean_w=0.7708
+    slope=-1 size=4 type=split          count=  25 mean_w=0.9200
+    slope=-1 size=5 type=split          count=  25 mean_w=1.0000
+    slope=-1 size=6 type=same           count=  24 mean_w=1.0000
+    slope=+1 size=3 type=same(outer)    count=  46 mean_w=0.5435
+    slope=+1 size=4 type=split          count=  26 mean_w=0.8846
+    slope=+1 size=5 type=split          count=  26 mean_w=0.9231
+    slope=+1 size=6 type=same           count=  23 mean_w=1.0000
+  counts: #6-lines=47 #3-lines=94 (expect 2x #6-lines) #5-lines=51 #4-lines=51 (expect equal)
+  #2-point diagonal side-lines (all slopes, incl. non-split-related): 343
+  explicit rule costs (1 on 4/5/6-lines + w3 on 3-lines [+ optional 1/2 on 2pt side-lines]):
+    w3=0.0000 side2=False        cost=798.0000 = 1.3618 N
+    w3=0.0000 side2=True         cost=865.0000 = 1.4761 N
+    w3=0.2500 side2=False        cost=805.0000 = 1.3737 N
+    w3=0.2500 side2=True         cost=872.0000 = 1.4881 N
+    w3=0.3333 side2=False        cost=807.3333 = 1.3777 N
+    w3=0.3333 side2=True         cost=874.3333 = 1.4920 N
+    w3=0.5000 side2=False        cost=812.0000 = 1.3857 N
+    w3=0.5000 side2=True         cost=879.0000 = 1.5000 N
+    w3=1.0000 side2=False        cost=826.0000 = 1.4096 N
+    w3=1.0000 side2=True         cost=973.0000 = 1.6604 N
+  BEST explicit rule: w3=0.0000 side2=False cost=798.0000 = 1.3618 N
+  baseline (note's rule, weight1 on 4/5/6-lines only): cost=798.0000 = 1.3618 N  [theory: 4p-7.5*N3 = 804.50]
+
+p=293 box=(-146,0) N=2p=586 pts=1172
+  raw LP(pm1, size>=3 lines + singletons): obj=780.0000 = 1.3311 N
+  line classification (slope,size,type): count, mean LP-weight
+    slope=-1 size=3 type=same(outer)    count=  44 mean_w=0.4318
+    slope=-1 size=4 type=split          count=  27 mean_w=0.9259
+    slope=-1 size=5 type=split          count=  27 mean_w=0.9259
+    slope=-1 size=6 type=same           count=  22 mean_w=1.0000
+    slope=+1 size=3 type=same(outer)    count=  48 mean_w=0.7083
+    slope=+1 size=4 type=split          count=  25 mean_w=0.9600
+    slope=+1 size=5 type=split          count=  25 mean_w=1.0000
+    slope=+1 size=6 type=same           count=  24 mean_w=1.0000
+  counts: #6-lines=46 #3-lines=92 (expect 2x #6-lines) #5-lines=52 #4-lines=52 (expect equal)
+  #2-point diagonal side-lines (all slopes, incl. non-split-related): 344
+  explicit rule costs (1 on 4/5/6-lines + w3 on 3-lines [+ optional 1/2 on 2pt side-lines]):
+    w3=0.0000 side2=False        cost=796.0000 = 1.3584 N
+    w3=0.0000 side2=True         cost=863.0000 = 1.4727 N
+    w3=0.2500 side2=False        cost=804.0000 = 1.3720 N
+    w3=0.2500 side2=True         cost=871.0000 = 1.4863 N
+    w3=0.3333 side2=False        cost=806.6667 = 1.3766 N
+    w3=0.3333 side2=True         cost=873.6667 = 1.4909 N
+    w3=0.5000 side2=False        cost=812.0000 = 1.3857 N
+    w3=0.5000 side2=True         cost=879.0000 = 1.5000 N
+    w3=1.0000 side2=False        cost=828.0000 = 1.4130 N
+    w3=1.0000 side2=True         cost=971.0000 = 1.6570 N
+  BEST explicit rule: w3=0.0000 side2=False cost=796.0000 = 1.3584 N
+  baseline (note's rule, weight1 on 4/5/6-lines only): cost=796.0000 = 1.3584 N  [theory: 4p-7.5*N3 = 804.50]
+
+p=401 box=(0,0) N=2p=802 pts=1604
+  raw LP(pm1, size>=3 lines + singletons): obj=1062.0000 = 1.3242 N
+  line classification (slope,size,type): count, mean LP-weight
+    slope=-1 size=3 type=same(outer)    count=  64 mean_w=0.4844
+    slope=-1 size=4 type=split          count=  35 mean_w=0.8286
+    slope=-1 size=5 type=split          count=  35 mean_w=1.0000
+    slope=-1 size=6 type=same           count=  32 mean_w=1.0000
+    slope=+1 size=3 type=same(outer)    count=  78 mean_w=0.4615
+    slope=+1 size=4 type=split          count=  28 mean_w=0.8214
+    slope=+1 size=5 type=split          count=  28 mean_w=1.0000
+    slope=+1 size=6 type=same           count=  39 mean_w=1.0000
+  counts: #6-lines=71 #3-lines=142 (expect 2x #6-lines) #5-lines=63 #4-lines=63 (expect equal)
+  #2-point diagonal side-lines (all slopes, incl. non-split-related): 463
+  explicit rule costs (1 on 4/5/6-lines + w3 on 3-lines [+ optional 1/2 on 2pt side-lines]):
+    w3=0.0000 side2=False        cost=1104.0000 = 1.3766 N
+    w3=0.0000 side2=True         cost=1183.0000 = 1.4751 N
+    w3=0.2500 side2=False        cost=1120.0000 = 1.3965 N
+    w3=0.2500 side2=True         cost=1199.0000 = 1.4950 N
+    w3=0.3333 side2=False        cost=1125.3333 = 1.4032 N
+    w3=0.3333 side2=True         cost=1204.3333 = 1.5017 N
+    w3=0.5000 side2=False        cost=1136.0000 = 1.4165 N
+    w3=0.5000 side2=True         cost=1215.0000 = 1.5150 N
+    w3=1.0000 side2=False        cost=1168.0000 = 1.4564 N
+    w3=1.0000 side2=True         cost=1357.0000 = 1.6920 N
+  BEST explicit rule: w3=0.0000 side2=False cost=1104.0000 = 1.3766 N
+  baseline (note's rule, weight1 on 4/5/6-lines only): cost=1104.0000 = 1.3766 N  [theory: 4p-7.5*N3 = 1101.50]
+
+p=401 box=(-200,0) N=2p=802 pts=1604
+  raw LP(pm1, size>=3 lines + singletons): obj=1082.0000 = 1.3491 N
+  line classification (slope,size,type): count, mean LP-weight
+    slope=-1 size=3 type=same(outer)    count=  64 mean_w=0.6250
+    slope=-1 size=4 type=split          count=  35 mean_w=0.8857
+    slope=-1 size=5 type=split          count=  35 mean_w=0.8571
+    slope=-1 size=6 type=same           count=  32 mean_w=1.0000
+    slope=+1 size=3 type=same(outer)    count=  48 mean_w=0.7083
+    slope=+1 size=4 type=split          count=  43 mean_w=0.7209
+    slope=+1 size=5 type=split          count=  43 mean_w=0.8605
+    slope=+1 size=6 type=same           count=  24 mean_w=1.0000
+  counts: #6-lines=56 #3-lines=112 (expect 2x #6-lines) #5-lines=78 #4-lines=78 (expect equal)
+  #2-point diagonal side-lines (all slopes, incl. non-split-related): 478
+  explicit rule costs (1 on 4/5/6-lines + w3 on 3-lines [+ optional 1/2 on 2pt side-lines]):
+    w3=0.0000 side2=False        cost=1112.0000 = 1.3865 N
+    w3=0.0000 side2=True         cost=1211.0000 = 1.5100 N
+    w3=0.2500 side2=False        cost=1124.0000 = 1.4015 N
+    w3=0.2500 side2=True         cost=1223.0000 = 1.5249 N
+    w3=0.3333 side2=False        cost=1128.0000 = 1.4065 N
+    w3=0.3333 side2=True         cost=1227.0000 = 1.5299 N
+    w3=0.5000 side2=False        cost=1136.0000 = 1.4165 N
+    w3=0.5000 side2=True         cost=1235.0000 = 1.5399 N
+    w3=1.0000 side2=False        cost=1160.0000 = 1.4464 N
+    w3=1.0000 side2=True         cost=1347.0000 = 1.6796 N
+  BEST explicit rule: w3=0.0000 side2=False cost=1112.0000 = 1.3865 N
+  baseline (note's rule, weight1 on 4/5/6-lines only): cost=1112.0000 = 1.3865 N  [theory: 4p-7.5*N3 = 1101.50]
+
+
+SUMMARY
+p=197 box=(0,0) N3~33.0 rawLP=534.00(1.3553N) best_rule=w3=0.0000 side2=False cost=544.00(1.3807N)
+p=197 box=(-98,0) N3~33.0 rawLP=528.00(1.3401N) best_rule=w3=0.0000 side2=False cost=540.00(1.3706N)
+p=293 box=(0,0) N3~49.0 rawLP=786.00(1.3413N) best_rule=w3=0.0000 side2=False cost=798.00(1.3618N)
+p=293 box=(-146,0) N3~49.0 rawLP=780.00(1.3311N) best_rule=w3=0.0000 side2=False cost=796.00(1.3584N)
+p=401 box=(0,0) N3~67.0 rawLP=1062.00(1.3242N) best_rule=w3=0.0000 side2=False cost=1104.00(1.3766N)
+p=401 box=(-200,0) N3~67.0 rawLP=1082.00(1.3491N) best_rule=w3=0.0000 side2=False cost=1112.00(1.3865N)

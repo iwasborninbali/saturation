@@ -1,0 +1,11 @@
+G3.5 cubic-section LaTeX draft — compile verification
+File: paper/cubic_section_draft.tex
+Wrapper: slack/g35_agents/wrapper_cubic.tex (documentclass article, amsmath/amssymb/amsthm,
+  macros \Fp,\Z,\Hc,\Gp,\Lc,\Pset copied from paper/hjsw_window.tex preamble, stub
+  Theorem~thm:main / Lemma~lem:arc targets since those live elsewhere in hjsw_window.tex,
+  local thebibliography with Dickson1897, LidlNiederreiter, IK, Montgomery, Vaaler, Perelmuter).
+Command: pdflatex -interaction=nonstopmode wrapper_cubic.tex (run twice for cross-refs/citations).
+Result: exit 0, wrapper_cubic.pdf produced, 5 pages, 262263 bytes.
+Final pass: no "!" errors, no Overfull/Underfull hbox, no undefined references/citations.
+Remaining warnings: 2x hyperref "Suppressing empty link" from the wrapper's own stub
+  Theorem/Lemma targets (thm:main, lem:arc) — not from the section content itself.
