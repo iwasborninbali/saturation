@@ -63,20 +63,89 @@ class CNF:
                 s.add(-lits[i], -sv[i-1][j-1], sv[i][j]); s.add(-sv[i-1][j], sv[i][j])
             s.add(-lits[i], -sv[i-1][k-1])
         s.add(-lits[n-1], -sv[n-2][k-1])
+    def totalizer(s, lits, cap):
+        """унарный счётчик с обрезкой: o[j] <-> «истинных не менее j+1», обе импликации.
+           Нужен потому, что at-least-M через счётчик Синца по отрицаниям стоит |lits|*(nc-M)
+           переменных (111 тысяч при n=7) — больше всей остальной формулы. Из ограничения «в каждом
+           слое не более трёх» сразу следует, что всего точек не более 3n, поэтому счётчик обрезается
+           на 3n+1 и стоит O(|lits| * 3n)."""
+        if len(lits) == 1: return [lits[0]]
+        mid = len(lits)//2
+        A = s.totalizer(lits[:mid], cap); B = s.totalizer(lits[mid:], cap)
+        k = min(len(A)+len(B), cap)
+        O = [s.new() for _ in range(k)]
+        for a in range(len(A)+1):
+            for b in range(len(B)+1):
+                c = a+b
+                if 0 < c <= k:                       # A_a & B_b -> O_{a+b}
+                    cl = [O[c-1]]
+                    if a: cl.append(-A[a-1])
+                    if b: cl.append(-B[b-1])
+                    s.add(*cl)
+                if a < len(A) and b < len(B) or (c < k):   # ~A_{a+1} & ~B_{b+1} -> ~O_{a+b+1}
+                    if c+1 <= k:
+                        cl = [-O[c]]
+                        if a < len(A): cl.append(A[a])
+                        if b < len(B): cl.append(B[b])
+                        s.add(*cl)
+        return O
+
+    def atleast(s, lits, m, cap):
+        O = s.totalizer(lits, cap)
+        assert m <= len(O), f"обрезка счётчика {len(O)} меньше требуемого {m}"
+        s.add(O[m-1])
+
     def write(s, path, comment=""):
         with open(path, "w") as f:
             if comment: f.write(f"c {comment}\n")
             f.write(f"p cnf {s.nv} {len(s.cl)}\n")
             f.write("".join(" ".join(map(str, c)) + " 0\n" for c in s.cl))
 
-def build(n, M, path):
+def cube_group(n):
+    """48 симметрий куба как перестановки индексов клеток: 6 перестановок осей x 8 отражений"""
+    from itertools import permutations, product
+    cells=[(x,y,z) for x in range(n) for y in range(n) for z in range(n)]
+    idx={c:i for i,c in enumerate(cells)}
+    G=[]
+    for perm in permutations(range(3)):
+        for sg in product((1,-1),repeat=3):
+            sigma=[0]*len(cells)
+            for c in cells:
+                t=tuple(c[perm[k]] if sg[k]==1 else n-1-c[perm[k]] for k in range(3))
+                sigma[idx[c]]=idx[t]
+            if sigma!=list(range(len(cells))): G.append(sigma)
+    return G
+
+def lex_leader(F, x, sigma, nc):
+    """x <=_lex sigma(x): оставляет в каждой орбите лексикографически минимальный элемент.
+       Корректно, потому что свойство 'нет четырёх компланарных' инвариантно относительно группы,
+       и значит вместе с любым решением лекс-минимальный представитель его орбиты тоже решение."""
+    eq = None                                   # eq_i: префиксы совпали до позиции i включительно
+    for i in range(nc):
+        a, b = x(i), x(sigma[i])
+        if a == b:                              # клетка неподвижна — сравнение тривиально
+            continue
+        if eq is None: F.add(-a, b)             # x_0 <= sigma(x)_0
+        else:          F.add(-eq, -a, b)
+        ne = F.new()                            # ne <-> eq & (a <-> b)
+        if eq is None:
+            F.add(-ne, -a, b); F.add(-ne, a, -b); F.add(ne, a, b); F.add(ne, -a, -b)
+        else:
+            F.add(-ne, eq); F.add(-ne, -a, b); F.add(-ne, a, -b)
+            F.add(ne, -eq, a, b); F.add(ne, -eq, -a, -b)
+        eq = ne
+
+def build(n, M, path, sym=False):
     nc, pl = planes(n)
     F = CNF(nc)
     x = lambda i: i + 1
     for m in pl: F.atmost([x(i) for i in m], 3)
-    F.atmost([-x(i) for i in range(nc)], nc - M)        # at-least-M = at-most-(nc-M) отрицаний
-    F.write(path, f"A280537 n={n} M={M}: {nc} cells, {len(pl)} rich planes; SAT <=> a({n}) >= {M}")
-    print(f"n={n} M={M}: клеток {nc}, богатых плоскостей {len(pl)}, переменных {F.nv}, клауз {len(F.cl)} -> {path}")
+    F.atleast([x(i) for i in range(nc)], M, 3*n + 1)    # обрезка законна: a(n) <= 3n (слой есть плоскость)
+    ns = 0
+    if sym:
+        for sigma in cube_group(n): lex_leader(F, x, sigma, nc); ns += 1
+    F.write(path, f"A280537 n={n} M={M}: {nc} cells, {len(pl)} rich planes, {ns} symmetries broken; SAT <=> a({n}) >= {M}")
+    print(f"n={n} M={M}{' +сим' if sym else ''}: клеток {nc}, плоскостей {len(pl)}, симметрий {ns}, переменных {F.nv}, клауз {len(F.cl)} -> {path}")
 
 if __name__ == "__main__":
-    build(int(sys.argv[1]), int(sys.argv[2]), sys.argv[3])
+    build(int(sys.argv[1]), int(sys.argv[2]), sys.argv[3], sym=("--sym" in sys.argv))
