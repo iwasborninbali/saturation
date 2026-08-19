@@ -65,8 +65,8 @@ case; this is what makes the permutation cubics, not the generic ones, the extre
 
 By the translations $x\mapsto x+\beta$, $y\mapsto y+\gamma$ (which move the box but not $\alpha$) we may assume
 $f(x)=ax^3$, $a\ne0$, $p\equiv2\pmod3$. Write $N_3=\#\{c\in\Fp:\ at^3-t=c\ \text{has three distinct roots in }\Fp\}$;
-the substitution $t\mapsto-t$ carries the roots of $at^3+t=c$ to those of $at^3-t=-c$, so $c$ makes the former
-cubic three-rooted iff $-c$ makes the latter three-rooted; hence the analogous count for $at^3+t=c$ is the same $N_3$.
+the analogous count $N_3^-$ for $at^3+t=c$ satisfies $N_3^-=N_3+O(1)$ (both root conics below have exactly $p+1$
+points), which is all we use; we write $N_3$ for either.
 
 \begin{theorem}[permutation cubics]\label{thm:cubic}
 Let $p\equiv2\pmod3$ be prime, $a\in\Fp^*$, and $f(x)=ax^3$. For every $2p\times2p$ box $B$,
@@ -79,7 +79,7 @@ where $N_3=(p+1)/6+O(1)$. The implied constants are absolute, independent of $a$
 The proof occupies the rest of this subsection: we first classify, exactly, the lines of slope $\pm1$ carrying $\ge4$
 points of $P(f,B)$ (rows and columns are useless, as $f$ is a bijection); we exhibit an explicit weighted cover by
 these lines; and we evaluate its cost to the stated precision using the Weil bound on a genus-$0$ conic together
-with a Bombieri--Perel'muter estimate along a genus-$1$ Kummer twist of it.
+with a Bombieri--Perel'muter estimate for a quadratic (Kummer) twist along the same conic.
 
 \smallskip\noindent\emph{The $\pm1$-lines and their classes.} Fix $x\in\Fp$ with lifts $X\in\{r_x,r_x+p\}$,
 $Y\in\{s_x,s_x+p\}$ ($r_x\in[x_0,x_0+p)$, $s_x\in[y_0,y_0+p)$). Among the four lifted points,
@@ -101,7 +101,7 @@ do not; in a \emph{split} triple all four lifts of $t$ lie on a rich line except
 if $t$ has class $0$ and $(0,1)$ if $t$ has class $1$.
 
 By the symmetric computation with $X+Y\equiv ax^3+x=:c_-(x)$, the slope-$(-1)$ lines carry the same four profiles
-(now the roles of the "equal" and "mixed" lifts are reversed: a \emph{same} triple rescues its two mixed lifts, a
+(now the roles of the ``equal'' and ``mixed'' lifts are reversed: a \emph{same} triple rescues its two mixed lifts, a
 \emph{split} triple rescues all but the lift $(0,0)$ or $(1,1)$ according to the class of the exceptional root),
 governed by the roots of $at^3+t=c$.
 
@@ -127,7 +127,7 @@ residues of slope $\sigma$, $A^\sigma+S^\sigma=N_3$ and
 L_4=\sum_\sigma\bigl(A^\sigma+2S^\sigma\bigr).
 \]
 For $U$: fix a residue $x$ and let $m_\pm(x)$ be the indicator that $x$ is a root of a $3$-root residue of slope
-$\pm$ (equivalently, that the "partner" quadratic $t^2+xt+x^2-1/a=0$, resp.\ $t^2+xt+x^2+1/a=0$, has two distinct
+$\pm$ (equivalently, that the ``partner'' quadratic $t^2+xt+x^2-1/a=0$, resp.\ $t^2+xt+x^2+1/a=0$, has two distinct
 roots in $\Fp$), and $\mathrm{split}_\pm(x)$ that this triple is a split one; write $\mathrm{class}_\pm(x)\in\{0,1\}$
 for the class of $x$ in it when $m_\pm(x)$ holds. By the lift-count above, the two equal-shift lifts $(0,0),(1,1)$ of $x$ are both
 covered by slope-$(+1)$ lines whenever $m_+(x)$; if $m_-(x)$ and $\mathrm{split}_-(x)$, exactly one of them is covered
