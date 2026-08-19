@@ -1,6 +1,6 @@
 # Task 2 for external reasoning agents (ChatGPT or others) — the two-hyperbola theorem: verify, strengthen, generalise
 
-Repository (public): https://github.com/iwasborninbali/saturation — read `paper/hjsw_window.pdf` (tag hjsw-note-v1.2; Section "Two hyperbolae", Section 7 for the data), Section
+Repository (public): https://github.com/iwasborninbali/saturation — read `paper/hjsw_window.pdf` (tag hjsw-note-v1.7; Sections 6–9: two hyperbolae, every second hyperbola, cubic graphs, permutation monomials; Section 10 for the data), Section
 "Two hyperbolae: a first bound for H(1) ∪ H(−1)", and `docs/research/pair_bound_notes.md` §§11–17, §§23–24, B.9, B.19.  Verifiers:
 `slack/km1_theorem_check.py`, `slack/block_cover_km1.py`, `slack/km1_lines.py`, `slack/lp1_dual.py`.
 
@@ -45,3 +45,17 @@ Do not trust generated proofs without line-by-line checking; we re-derive everyt
 Задание внешним агентам: (A) попытаться сломать нашу теорему о паре гипербол k=−1 (контрпример по p или дыра в леммах); (B) усилить
 константу 11/3 до 3.5 через 5–7‑точечные диагонали явным дробным покрытием; (C) общие k — есть ли хоть какая‑то доказуемая оценка ниже
 4(p−1); (D) идеи для использования целочисленности. Репозиторий публичный, доступ не нужен.
+
+
+## Update 19.08 (v1.7) — new sections and the corresponding open questions
+* Section 7 (every second hyperbola): Theorem α(P_k) ≤ 4(p−1) − (2G₈ − 2Σ|A_c−B_c|)/R (potential cover along the cycles of the row/column class graph),
+  Corollary α ≤ 4(p−1) − c√p/log⁵p for ord(k) ≥ C√p log⁵p.  OPEN E: the LINEAR form: the same cover with uniform line weight t = 1/m (m = 4…6) saves ≈ 0.2 per
+  eight-group numerically for every (p,k) and on random arrangements (docs/research/pair_bound_notes.md §28–29): prove α ≤ (4 − c₀)(p−1) — needs the local law
+  of the special-class sequence along the cycles (fixed-window equidistribution at the level of fibred products of C₀(k)); the explicit local law for k = 2 is in
+  the first solver's L1 (THREAD[122]); the obstacle: window length ≈ 60 ⇒ absurd constants.  A short-support argument (β = O(1/m) from two-point correlations +
+  diffusivity) would do.
+* Section 8 (cubic graphs ≤ (11/8+o(1))N) and Section 9 (permutation monomials, all odd k, ≤ (1.474+o(1))N; generic permutation polynomials corollary).
+  OPEN F: the STRONG form: LP over all lines ≈ 1.1 N for cubics (three-point-line families of docs/research/curves_conjecture.md §7): prove α ≤ (4/3+o(1))N or
+  ≈ 1.1 N — degrees in the 3-line hypergraph do not concentrate (CV ≈ 0.4), so a cover organised by families/positions is needed.
+  OPEN G: the UNIVERSAL statement: every permutation polynomial of degree ≥ 3 has α ≤ (3/2 − c)N (Wan's value-set bound + Niederreiter–Robinson give a linear
+  saving on at least one slope; the constant and the exceptional cases (dependent slopes, as for the hyperbola x ↦ 1/x) are the work).
