@@ -48,10 +48,22 @@ def lines(n):
         if len(m) >= 3: out.append(m)
     return len(cells), out
 
-def build(n, M, path, sym=False):
+def build(n, M, path, sym=False, profile=None):
+    """profile: список из n чисел — сколько точек в каждом слое, перпендикулярном ВСЕМ трём осям.
+       Структурная форма задачи: она несравненно легче общей, потому что кардинальность
+       распадается на n маленьких ограничений вместо одного большого. Именно так первый солвер
+       нашёл конфигурацию на 64 точки при n=6 за восемь секунд."""
     nc, ln = lines(n)
     F = CNF(nc); x = lambda i: i + 1
     for m in ln: F.atmost([x(i) for i in m], 2)
+    if profile:
+        assert len(profile) == n and sum(profile) == M, "профиль не согласован с M"
+        for axis in range(3):
+            for t in range(n):
+                cells = [x(i) for i in range(nc)
+                         if (i//(n*n) if axis==0 else (i//n)%n if axis==1 else i%n) == t]
+                F.atmost(cells, profile[t])                       # не больше
+                F.atmost([-c for c in cells], len(cells)-profile[t])  # и не меньше
     F.atleast([x(i) for i in range(nc)], M, 2*n*n + 1)   # обрезка законна: a(n) <= 2n^2
     ns = 0
     if sym:
@@ -60,4 +72,7 @@ def build(n, M, path, sym=False):
     print(f"n={n} M={M}{' +сим' if sym else ''}: клеток {nc}, богатых прямых {len(ln)}, переменных {F.nv}, клауз {len(F.cl)} -> {path}")
 
 if __name__ == "__main__":
-    build(int(sys.argv[1]), int(sys.argv[2]), sys.argv[3], sym=("--sym" in sys.argv))
+    prof = None
+    if "--profile" in sys.argv:
+        prof = [int(t) for t in sys.argv[sys.argv.index("--profile")+1].split(",")]
+    build(int(sys.argv[1]), int(sys.argv[2]), sys.argv[3], sym=("--sym" in sys.argv), profile=prof)
