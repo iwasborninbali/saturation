@@ -23,7 +23,7 @@
 
 \title{Extremal no-three-in-line subsets of a modular hyperbola\\ in the Hall--Jackson--Sudbery--Wild window}
 \author{Alex Komang\thanks{Independent researcher, Bali, Indonesia.  See the AI/tool-use disclosure at the end.}}
-\date{August 2026 --- version 1.9}
+\date{August 2026 --- version 1.10}
 
 \begin{document}
 \maketitle
@@ -53,6 +53,8 @@ Kov\'acs--Nagy--Szab\'o is optimal as well.  For the union of two hyperbolae $H(
 $\alpha\le4(p-1)-4m_8(p)$ by an explicit weighted line cover, where $m_8(p)$ (the number of eight-point diagonals) is positive for all
 $19\le p\le1500$ and equals $(1/12+o(1))\,p$ (by Bombieri's estimate along a cubic), so that
 $\alpha\le(11/3+o(1))(p-1)$; to our knowledge this is the first bound below the trivial $4(p-1)$ for a union of two hyperbolae.
+A second block, the residue groups with a seven-point line, is exactly bookkept (two Klein orbits meet iff their residues satisfy
+$e^2\equiv d^2\pm4$) and improves this to $\alpha\le(115/32+o(1))(p-1)$.
 For an arbitrary second hyperbola $H(k)$ a ``potential'' cover along the cycles of the row/column incidence graph gives an exact
 bound $\alpha\le4(p-1)-(2G_8-2\sum_c|A_c-B_c|)/R$ in terms of the number $G_8$ of eight-point lines and their distribution along the cycles,
 and a character-sum estimate along the partner curve turns it into $\alpha\le4(p-1)-c\sqrt p/\log^5p$ for every $k$ of multiplicative order
@@ -155,7 +157,8 @@ The four-point rich lines are pairwise disjoint, which settles the no-four-in-li
 (Corollary~\ref{cor:no4}: the maximum is $\tfrac72(p-1)+s$ in the HJSW box, attained by the set $S_3$ of \cite{KNS25}).
 Section~\ref{sec:two} turns to unions of two hyperbolae: for $H(1)\cup H(-1)$ in the HJSW box, Theorem~\ref{thm:two} gives
 $\alpha\le4(p-1)-4m_8(p)$ by an explicit line cover built from the eight-point diagonals and the two reflections of the box, and
-Proposition~\ref{prop:m8asym} evaluates $m_8(p)=(1/12+o(1))p$; Corollary~\ref{cor:conics} shows that among all conics only the shifted
+Proposition~\ref{prop:m8asym} evaluates $m_8(p)=(1/12+o(1))p$; the seven-point groups add a second block
+(Theorem~\ref{thm:seven}, Proposition~\ref{prop:clean}: $\alpha\le(115/32+o(1))(p-1)$); Corollary~\ref{cor:conics} shows that among all conics only the shifted
 hyperbolae can reach $3(p-1)$ in a $2p\times2p$ box.  Section~\ref{sec:general} treats an arbitrary second hyperbola $H(k)$: an explicit
 ``potential'' cover along the cycles of the row/column incidence graph gives $\alpha(\Pset_k)\le4(p-1)-(2G_8-2\sum_c|A_c-B_c|)/R$
 (Theorem~\ref{thm:general}), which is below the trivial bound whenever the eight-point lines are not too unevenly distributed along the cycles.
@@ -1203,7 +1206,10 @@ the shifted-box table for $p=11$; the second audit also identified a gap in the 
 Lemma~\ref{lem:gadget} (the $(1,1)$ count), which is now proved above.
 
 For Sections~\ref{sec:two}--\ref{sec:strong}: the block cover of Theorem~\ref{thm:two} is checked point by point by
-\texttt{slack/\allowbreak km1\_\allowbreak theorem\_\allowbreak check.py} and \texttt{slack/\allowbreak block\_\allowbreak cover\_\allowbreak km1.py} ($p<320$); the potential cover of Theorem~\ref{thm:general} and its value
+\texttt{slack/\allowbreak km1\_\allowbreak theorem\_\allowbreak check.py} and \texttt{slack/\allowbreak block\_\allowbreak cover\_\allowbreak km1.py} ($p<320$); the seven-point blocks (Lemma~\ref{lem:klein}, Lemma~\ref{lem:neighbours}) by \texttt{slack/\allowbreak t221\_\allowbreak agents/\allowbreak orbit\_\allowbreak cover.py} ($p\le500$) and
+\texttt{slack/\allowbreak t221/\allowbreak neighbours\_\allowbreak check.py}, the clean counts and the local law of Proposition~\ref{prop:clean} by
+\texttt{slack/\allowbreak t221\_\allowbreak agents/\allowbreak clean\_\allowbreak counts.py} ($p\le3000$ and to $10^5$) and \texttt{slack/\allowbreak t221/\allowbreak model\_\allowbreak mc.py};
+the potential cover of Theorem~\ref{thm:general} and its value
 $4(p-1)-(2G_8-2\sum_c|A_c-B_c|)/R$ are recomputed and compared with the class-level linear program by \texttt{slack/\allowbreak exact\_\allowbreak c.py} and
 \texttt{slack/\allowbreak cyc\_\allowbreak model.py} (the LP with the uniform line weight $1/R$ has exactly this value in every case tried, and the class-level LP agrees with
 the point-level LP); the arc-imbalance sums are tabulated by \texttt{slack/\allowbreak arc\_\allowbreak imbalance.py} and the mixed sums along $C_0(k)$ by
@@ -1218,12 +1224,12 @@ the constants $\gamma_1,\gamma_2$ (\texttt{slack/\allowbreak g39\_\allowbreak ag
 $p=12809$, and an independent point-level check of the certificate $W_4$ plus matching (\texttt{slack/\allowbreak cube\_\allowbreak w4\_\allowbreak matching\_\allowbreak check.py}).  A checklist of what to verify and with which
 script is \texttt{docs/\allowbreak AUDIT\_\allowbreak CHECKLIST\_\allowbreak v1.7.md}.
 
-Repository (public): \url{https://github.com/iwasborninbali/saturation}.\\
-This version of the note is the immutable tag \texttt{hjsw-note-v1.9} (v1.0: the theorems as first verified; v1.1: Section~\ref{sec:beyond} on the vertical-pair model; v1.2: the error term of Proposition~\ref{prop:m8asym}; v1.4: Section~\ref{sec:general}, every second hyperbola; v1.5: Section~\ref{sec:cubic}, cubic graphs; v1.6: Section~\ref{sec:perm}, permutation monomials; v1.7: Corollary~\ref{cor:permgen}; v1.8: verification paragraph, remark corrections; v1.9: Section~\ref{sec:strong}, the strong form for cubic graphs): file \texttt{paper/hjsw\_window.tex}; scripts in
-\texttt{slack/}: \texttt{hjsw\_window\_check.py}, \texttt{hjsw\_boxes\_check.py}, \texttt{gadget11\_check.py},
-\texttt{km1\_theorem\_check.py}, \texttt{block\_cover\_km1.py}, \texttt{km1\_lines.py}, \texttt{cyc\_model.py},
-\texttt{exact\_c.py}, \texttt{arc\_imbalance.py}; logs in \texttt{slack/verification/};
-checksums and the list of tags in \texttt{docs/RELEASES.md}.
+{\sloppy Repository (public): \url{https://github.com/iwasborninbali/saturation}.\\
+This version of the note is the immutable tag \texttt{hjsw-note-v1.10} (v1.0: the theorems as first verified; v1.1: Section~\ref{sec:beyond} on the vertical-pair model; v1.2: the error term of Proposition~\ref{prop:m8asym}; v1.4: Section~\ref{sec:general}, every second hyperbola; v1.5: Section~\ref{sec:cubic}, cubic graphs; v1.6: Section~\ref{sec:perm}, permutation monomials; v1.7: Corollary~\ref{cor:permgen}; v1.8: verification paragraph, remark corrections; v1.9: Section~\ref{sec:strong}, the strong form for cubic graphs; v1.10: the seven-point blocks, Theorem~\ref{thm:seven}): file \texttt{paper/hjsw\_window.tex}; scripts in
+\texttt{slack/}: \texttt{hjsw\_window\_check.py}, \texttt{hjsw\_boxes\_check.py}, \texttt{gadget11\_\allowbreak check.py},
+\texttt{km1\_\allowbreak theorem\_\allowbreak check.py}, \texttt{block\_cover\_km1.py}, \texttt{km1\_lines.py}, \texttt{cyc\_model.py},
+\texttt{exact\_c.py}, \texttt{arc\_imbalance.py}, \texttt{t221/}, \texttt{t221\_agents/}; logs in \texttt{slack/verification/};
+checksums and the list of tags in \texttt{docs/RELEASES.md}.\par}
 
 \begin{table}[h]\centering\small
 \begin{tabular}{rrrrrrr}
@@ -1247,7 +1253,8 @@ $p$ & $c$ & $|\Pset|$ & $|\Lc|$ & $Z$ & max & \#max sets\\
 the text of this note were produced by autonomous large-language-model agents (Anthropic Claude, model \emph{Claude
 Fable 5}, August 2026) working in a shared repository: one agent found and proved Theorems~\ref{thm:main} and
 \ref{thm:window} and wrote the first version of the note; Theorem~\ref{thm:two} was found independently, on the same day, by two of
-the agents; Theorem~\ref{thm:general} (the potential cover) is due to the second agent and Lemma~\ref{lem:arc} to the first;
+the agents; Theorem~\ref{thm:general} (the potential cover) is due to the second agent and Lemma~\ref{lem:arc} to the first; the seven-point blocks
+(Theorem~\ref{thm:seven}, Proposition~\ref{prop:clean}) are due to the second agent, Proposition~\ref{prop:m7asym} to the first;
 Sections~\ref{sec:cubic}, \ref{sec:perm} and~\ref{sec:strong} were found and proved by the first agent and checked by the second (Lemma~\ref{lem:fe} is due to the second); the computational setup and the observations of
 Section~\ref{sec:beyond} come from all three; the note was revised by
 the agents after two external LLM-assisted audits and one literature report commissioned by the author of record (the report
