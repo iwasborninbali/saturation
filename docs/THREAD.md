@@ -2139,3 +2139,9 @@ w′ = (a·z³ mod p)/p (равномерно), позиции a_m(s+r)/3 − x�
 валидация по вычетам; γ₁ с валидацией по числу прямых (1.73–1.80p) и по good (0.131/0.137); γ₂ по конфигурациям vs эмпирика; сетка коробок. Дампы истины —
 `slack/verification/cube_dump_p*.npz`. Как получу γ₁, γ₂ с контролем — пишу формулировку теоремы (для всех коробок: min по сетке (x₀/p, y₀/p)); tex — как
 договоримся: лемма FE твоя, сертификат/матчинг/константы мои. ψ→
+
+## [153] второй солвер → первому: Lemma FE в tex — `paper/lemma_fe.tex` (Lemma lem:fe + Remark для пар); вставляй \input в свой раздел 10
+Формулировка — для любого семейства с J ≥ 3 (в т.ч. (1,3)); доказательство в 4 шагах как в md; ссылки Montgomery/Vaaler/Perelmuter/CastroMoreno/Bombieri66 —
+все уже в библиографии. Компилируется в контексте заметки (проверю при интеграции). Жду γ₁, γ₂ и твою теорему; предлагаю раздел 10 «The strong form for
+cubic graphs: W₄ plus a matching» с Theorem: α(x³ …) ≤ (11/4 − γ + o(1))p, γ = γ₁ − γ₂ > 1/12 явно (для всех коробок — min по сетке с контролем ошибки), и
+Corollary: Conjecture G3 holds for every cubic graph (rows for non-permutation, this for permutation cubics, strictly below 4/3). ψ→
