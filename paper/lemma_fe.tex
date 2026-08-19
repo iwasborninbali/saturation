@@ -1,0 +1,62 @@
+% lemma_fe.tex — Lemma FE (family equidistribution) for the strong form of the cubic theorem (second solver, 2026-08-19).
+% To be \input inside the section on the strong form; uses \Fp, amsthm environments; labels lem:fe.
+
+\begin{lemma}[equidistribution along a family of three-point lines]\label{lem:fe}
+Let $p\equiv2\pmod3$, $f(x)=ax^3$ with $a\in\Fp^*$, and let $(i,j)$ be a family of three-point lines with span $J\ge3$ (so that the three residues of a
+line are $\alpha_mu$, $m=1,2,3$, with $\alpha_m\in\{-(i+j)/3,(2i-j)/3,(2j-i)/3\}$ and pairwise distinct squares $\alpha_m^2$), with direction
+$(u^*,v^*)$, $v\equiv c_1u^3+au$, $c_1=(i^2-ij+j^2)/3$.  For $\sigma\in\{\pm1\}$ and $m=1,2,3$ let $\Delta_{\sigma,m}(u)=4\sigma/a-3\alpha_m^2u^2$ be the
+discriminant of the partner conic $t^2+\alpha_mut+\alpha_m^2u^2-\sigma/a=0$ of the residue $\alpha_mu$, and let $t_{\sigma,m}$ denote one of its roots
+(the other is $-\alpha_mu-t_{\sigma,m}$).  Let $F$ be a fixed finite Boolean combination of the following conditions: interval conditions on the least
+residues of $u$ (equivalently on the representative $u^*$), of $v(u)$, of the linear forms $\alpha_mu$, and of the roots $t_{\sigma,m}$ and
+$-\alpha_mu-t_{\sigma,m}$; and the six membership conditions ``$\Delta_{\sigma,m}(u)$ is a nonzero square''.  Then
+\[
+ \#\{u\in\Fp^*:\ F\}\;=\;p\,\mu(F)+O_{i,j}\bigl(\sqrt p\,\log^{16}p\bigr),
+\]
+where $\mu(F)$ is the probability of $F$ under the following ``local law'': $u^*/p$ is uniform on its interval, the residues $\alpha_mu$ are the
+deterministic multiples $\alpha_mu^*\bmod p$, $v(u)/p$ is an independent uniform variable, the six membership bits are independent fair coins, and,
+conditionally on membership, each root $t_{\sigma,m}/p$ is an independent uniform variable (the second root being $-\alpha_mu-t_{\sigma,m}$).  The implied
+constant depends only on $(i,j)$; the statement is uniform in $a$ and in the box, and holds for $p$ larger than a constant depending on $(i,j)$.
+\end{lemma}
+\begin{proof}
+\emph{(1) The fibre products.}  The six discriminants are quadratics in $u$ with root sets $\{\pm(2/\alpha_m)\sqrt{\sigma/(3a)}\}$.  For fixed $\sigma$ the
+three root sets are pairwise disjoint because the $\alpha_m^2$ are pairwise distinct; the root sets of $\Delta_{+,m}$ and $\Delta_{-,m'}$ coincide only if
+$\alpha_m^2\equiv-\alpha_{m'}^2\pmod p$, a congruence between fixed rationals which we exclude by taking $p$ large.  Hence the six $\Delta_{\sigma,m}$ are
+pairwise coprime squarefree polynomials, their classes in $\overline\Fp(u)^*/(\overline\Fp(u)^*)^2$ are multiplicatively independent, and for every set
+$S$ of pairs $(\sigma,m)$ the fibre product $X_S$ of the conics indexed by $S$ over the $u$-line (function field $\overline\Fp(u,\sqrt{\Delta_s}:s\in S)$)
+is an absolutely irreducible curve of degree $2^{|S|}$ over the $u$-line, of genus bounded in terms of $|S|$ (at most twelve branch points), whose
+$\Fp$-points over a given $u$ number $2^{|S|}$ when all $\Delta_s(u)$, $s\in S$, are nonzero squares and $0$ when one of them is a non-square (the $O(1)$
+values of $u$ with some $\Delta_s(u)=0$ are discarded).  Moreover the square roots $\sqrt{\Delta_s}$, $s\in S$, are linearly independent over
+$\overline\Fp(u)$, and for $S'$ disjoint from $S$ the function $\prod_{s\in S'}\Delta_s$ is not a square in $\overline\Fp(X_S)$.
+
+\emph{(2) Reduction to character sums.}  Fix a membership pattern, with member set $S$ and non-member set $\bar S$.  Writing
+$[\Delta_s(u)\ \text{is a nonzero square}]=\tfrac12(1+\chi(\Delta_s(u)))$ and its negation as $\tfrac12(1-\chi(\Delta_s(u)))$ ($\chi$ the quadratic
+character), and every interval condition on a least residue as a Fourier series on $\Z/p$ with $\ell^1$-norm $\le\log p+3$ (or as Selberg polynomials of
+degree $H=\lfloor\sqrt p\rfloor$, \cite{Montgomery,Vaaler}), the count of $u$ satisfying $F$ with this membership pattern equals
+$2^{-|S|}\sum_{P\in X_S(\Fp)}\prod_{s\in\bar S}\tfrac12(1-\chi(\Delta_s(u(P))))\cdot\prod(\text{interval indicators})$, where the roots $t_s$, $s\in S$, are the
+coordinates of $P$.  Expanding, the count is a combination, with total coefficient mass $O(\log^{16}p)$, of the sums
+\[
+ T(\mathbf h,S')=\sum_{P\in X_S(\Fp)}\chi\Bigl(\prod_{s\in S'}\Delta_s(u)\Bigr)\,
+ e\Bigl(\tfrac1p\bigl(h_uu+h_vv(u)+\textstyle\sum_mh_m\alpha_mu+\sum_{s\in S}(h_st_s+h'_s(-\alpha_{m(s)}u-t_s))\bigr)\Bigr),
+\qquad S'\subset\bar S,\ \|\mathbf h\|_\infty\le H .
+\]
+
+\emph{(3) Main terms.}  If $S'=\emptyset$ and the additive form is identically zero on $X_S$, then $T=|X_S(\Fp)|=2^{|S|}p+O(\sqrt p)$.  The additive form
+equals $h_vc_1u^3+(h_u+h_va+\sum_mh_m\alpha_m-\sum_sh'_s\alpha_{m(s)})u+\sum_s(h_s-h'_s)t_s$; it vanishes identically iff $h_v\equiv0$ (as $c_1\not\equiv0$),
+$h_s=h'_s$ for all $s\in S$ (by the linear independence of the $\sqrt{\Delta_s}$: $\sum_s(h_s-h'_s)t_s=\tfrac12\sum_s(h_s-h'_s)\sqrt{\Delta_s}+$ a polynomial in $u$),
+and the coefficient of $u$ is $\equiv0\pmod p$.  These frequency vectors are exactly the annihilators of the linear relations of the local law $\mu$
+(the residues $\alpha_mu$ are fixed multiples of $u$, and the second root is $-\alpha_mu-t_s$); summing their Fourier coefficients gives $p\,\mu(F)$ up to the
+truncation error $O(p/H\cdot\log^{16}p)=O(\sqrt p\log^{16}p)$, and the independence of the memberships and of the roots in $\mu$ is the statement that no other
+frequency vector produces a main term.
+
+\emph{(4) Error terms.}  If $S'\ne\emptyset$, the Kummer sheaf of $\chi(\prod_{S'}\Delta_s)$ pulled back to $X_S$ is geometrically non-trivial by (1), and stays
+so after tensoring with any Artin--Schreier sheaf (coprime orders); by the Bombieri--Perel'muter bound \cite{Perelmuter,CastroMoreno} $|T(\mathbf h,S')|\le
+C(i,j)\sqrt p$ uniformly in $\mathbf h$.  If $S'=\emptyset$ and the additive form is not identically zero on $X_S$, it is a non-constant function of bounded degree
+on the absolutely irreducible curve $X_S$ (not of the form $g^p-g+c$ for $p$ large), and Bombieri's bound \cite{Bombieri66} gives $|T|\le C(i,j)\sqrt p$.
+Multiplying by the coefficient masses gives the error $O_{i,j}(\sqrt p\log^{16}p)$.
+\end{proof}
+\begin{remark}
+The same proof applies to a pair of lines of two families sharing a point (the configurations of the second moment): the second line's parameter is a fixed
+rational multiple of $u$, its residues are again fixed multiples of $u$, and the (up to) ten partner conics of the five residues give a fibre product of the
+same kind; residues that coincide up to sign between the two lines only reduce the number of independent discriminants.  The exceptional primes (dividing a
+numerator of $\alpha_m^2\pm\alpha_{m'}^2$, or $c_1$, or a resultant of two discriminants) are finitely many for each configuration.
+\end{remark}
