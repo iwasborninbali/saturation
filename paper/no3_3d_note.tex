@@ -126,11 +126,19 @@ $10,9,8,9,10$; $10,8,9,8,10$; $10,10,10,10,10$; $9,9,9,9,9$ & infeasible\\
 $10,8,8,8,8$ (total $42$) and $10,7,8,7,10$ (total $42$) & infeasible\\
 $\mathbf{10,6,8,6,10}$ \textbf{(total }$\mathbf{40}$\textbf{)} & \textbf{infeasible}\\
 $8,8,8,8,8$ (total $40$) & feasible\\\midrule
-$n=6$: $12,10,10,10,10,12$ (total $64$) & feasible\\\bottomrule
+$n=6$: $12,10,10,10,10,12$ (total $64$) & feasible\\
+$n=7$: $14,12,12,12,12,12,14$ (total $88$) & infeasible\\\bottomrule
 \end{tabular}\end{center}
+A caveat on how these verdicts are to be read.  Prescribing the profile along all three axes at once is a
+restriction, so an infeasibility obtained that way would exclude only symmetric configurations, not that number
+of points.  Every infeasibility above was therefore re-derived with the profile prescribed along a
+\emph{single} axis, which excludes every configuration with that layer distribution.  The satisfiable rows need
+no such care: a solution is a solution.
 The fourth line is the sharpest: at $n=5$ two outer layers cannot both attain the planar maximum $2n$ at
 \emph{any} total, so the optimum is forced onto a uniform profile.  The same computation at $n=6$ finds the
-analogous profile realisable, so the obstruction is specific to $n=5$ and not to the idea of maximal outer layers.
+analogous profile realisable, and at $n=7$ it is again impossible.  The pattern $[2n,(2n-2)^{n-2},2n]$ is thus
+realisable at $n=2,3,4,6$ and impossible at $n=5,7$ --- the obstruction is not an artefact of one case, and it
+is not an obstruction to the idea of maximal outer layers as such.
 
 We do not have a proof of why.  A count of the planar configurations attaining $2n$ points suggests rigidity:
 the $4\times4$ grid admits $11$ such configurations in $4$ classes under the square's symmetries, the $5\times5$
