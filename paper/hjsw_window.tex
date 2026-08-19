@@ -1195,6 +1195,20 @@ no-four values for all $c$ with $p\le31$ (samples for larger $p$), all box patte
 the shifted-box table for $p=11$; the second audit also identified a gap in the earlier presentation of
 Lemma~\ref{lem:gadget} (the $(1,1)$ count), which is now proved above.
 
+For Sections~\ref{sec:two}--\ref{sec:perm}: the block cover of Theorem~\ref{thm:two} is checked point by point by
+\texttt{slack/km1\_theorem\_check.py} and \texttt{slack/block\_cover\_km1.py} ($p<320$); the potential cover of Theorem~\ref{thm:general} and its value
+$4(p-1)-(2G_8-2\sum_c|A_c-B_c|)/R$ are recomputed and compared with the class-level linear program by \texttt{slack/exact\_c.py} and
+\texttt{slack/cyc\_model.py} (the LP with the uniform line weight $1/R$ has exactly this value in every case tried, and the class-level LP agrees with
+the point-level LP); the arc-imbalance sums are tabulated by \texttt{slack/arc\_imbalance.py} and the mixed sums along $C_0(k)$ by
+\texttt{slack/mixed\_sums\_curve.py} ($p\le4001$).  For Section~\ref{sec:cubic}: the line profiles and lift rules were verified by brute force for
+$p\in\{101,131,197,293\}$, $a\in\{1,2\}$ and three boxes (\texttt{slack/verification/g35\_verify.txt}), the cost of the explicit cover by
+\texttt{slack/cube\_cover4.py} (Remark), and the local law (same/split $=1/2$, independence of the slopes) by \texttt{slack/cube\_local\_law.py} and by
+exact counts up to $p=100019$ (\texttt{slack/g\_agents/group\_types\_output.txt}).  For Section~\ref{sec:perm}: the lift table of Lemma~\ref{lem:lifts}
+(\texttt{slack/g\_agents/profile\_table\_output.txt}), the root-count laws and the cross-slope independence (\texttt{slack/pp\_joint\_counts.py}), the exact
+rational constants $C_k$ (\texttt{slack/pp\_constant\_exact.py}) and the $O(p)$ evaluation of the cover's cost at $p\approx10^7$
+(\texttt{slack/pp\_exact\_UL\_np.py}); the discriminant resultants for $k=3,5,7$ symbolically.  A checklist of what to verify and with which
+script is \texttt{docs/AUDIT\_CHECKLIST\_v1.7.md}.
+
 Repository (public): \url{https://github.com/iwasborninbali/saturation}.\\
 This version of the note is the immutable tag \texttt{hjsw-note-v1.7} (v1.0: the theorems as first verified; v1.1: Section~\ref{sec:beyond} on the vertical-pair model; v1.2: the error term of Proposition~\ref{prop:m8asym}; v1.4: Section~\ref{sec:general}, every second hyperbola; v1.5: Section~\ref{sec:cubic}, cubic graphs; v1.6: Section~\ref{sec:perm}, permutation monomials; v1.7: Corollary~\ref{cor:permgen}): file \texttt{paper/hjsw\_window.tex}; scripts in
 \texttt{slack/}: \texttt{hjsw\_window\_check.py}, \texttt{hjsw\_boxes\_check.py}, \texttt{gadget11\_check.py},
