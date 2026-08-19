@@ -106,6 +106,11 @@ static int best, sel[MAXC], nsel, bestsel[MAXC], nbest;
 static int cx[MAXN], cy[MAXN], cz[MAXN];
 static long long nodes;
 static int estimate_dives=0; static double est_total=0;
+/* РЕЖИМ ПОДСЧЁТА: считать все множества РОВНО заданного размера (COUNT=k).
+   Нужен для сверки с независимо опубликованными числами Эда Пегга (2014):
+   в [3]^3 конфигурация из 8 точек единственна, в [4]^3 из 10 точек 232, в [5]^3 из 13 точек 38.
+   Совпадение ЧИСЛА решений — проверка куда более жёсткая, чем совпадение максимума. */
+static int count_size=0; static long long nsol=0;
 /* СТРАТИФИЦИРОВАННЫЙ ОЦЕНЩИК.  Чистая оценка Кнута несмещена, но на нашем дереве её среднее
    определялось ОДНИМ спуском из двадцати тысяч (89 % суммы при n=6) — это не измерение.
    Лечение стандартное: верх дерева до глубины strata_depth разворачивается ТОЧНО, а случайные
@@ -154,6 +159,12 @@ static void dive(int start, BS forb, double weight);   /* forward */
 
 static void dfs(int start, BS forb, int depth, double weight){
   nodes++;
+  if(count_size){
+    if(nsel==count_size){ nsol++;
+      if(getenv("PRINTSOL")){ for(int k=0;k<nsel;k++) printf("%d ",sel[k]); printf("\n"); }
+      return; }
+    if(nsel>count_size) return;
+  }
   if(strata_depth && depth==strata_depth){
     strat_frontier++;
     double s=0; int old=nsel;
@@ -212,6 +223,7 @@ int main(int argc,char**argv){
   N=atoi(argv[1]); NC=N*N*N;
   best = argc>2?atoi(argv[2]):0;
   const char*e=getenv("ESTIMATE"); if(e) estimate_dives=atoi(e);
+  const char*cs=getenv("COUNT"); if(cs){ count_size=atoi(cs); best=count_size-1; }
   build_planes();
   fprintf(stderr,"n=%d: ячеек %d, богатых плоскостей %d\n",N,NC,nplanes);
   { const char*sd=getenv("STRATA"), *dv=getenv("DIVES");
@@ -234,6 +246,7 @@ int main(int argc,char**argv){
   }
   BS f; bs_zero(&f); nsel=0; nodes=0;
   dfs(0,f,0,0);
+  if(count_size){ printf("n=%d: множеств размера РОВНО %d: %lld (узлов %lld)\n",N,count_size,nsol,nodes); return 0; }
   printf("n=%d MAX=%d узлов=%lld\n",N,best,nodes);
   { int bad=0;
     for(int p=0;p<nbest;p++)for(int q=p+1;q<nbest;q++)for(int r=q+1;r<nbest;r++)for(int t=r+1;t<nbest;t++){
