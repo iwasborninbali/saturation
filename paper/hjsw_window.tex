@@ -1124,7 +1124,11 @@ $p=19$; the exact value at $p=23$ is not settled.  As an explicit falsifiable co
 and all $k\notin\{0,1\}$ (consistent with all exact values; at $p=23$ the range $70$--$74$ still allows $+8$; a certified witness with
 gain $\ge7$ would refute it).  (ii) The LP relaxation with all rich lines is far
 from the truth (column ``LP''; $\approx4(p-1)-\varepsilon$), because for two hyperbolae the fractional $2$-factor $x\equiv\tfrac12$ is
-almost feasible; certificates need lines with at least five candidates (Section~\ref{sec:two}).  Rank-$1$ certificates using only
+almost feasible; certificates need lines with at least five candidates (Section~\ref{sec:two}).  The whole class of covering certificates is bounded away from $3$: the LP with \emph{all}
+rich lines gives $3.348\,(p-1)$ at $p=71$ and $3.406\,(p-1)$ at $p=101$ (against the exact values $\approx3.3\,(p-1)$ at $p\le19$), and the
+level-$2$ moment relaxation (a positive semidefinite matrix indexed by the candidates, with the three-point lines lifted) closes only
+$8$--$17\%$ of the gap between that LP and the truth at $p=13,17,19$, a fraction that decreases with $p$
+(\texttt{docs/research/certificate\_hierarchy.md}).  Rank-$1$ certificates using only
 rows, columns and slope-$(\pm1)$ lines give $\approx3.45\,(p-1)$ for $k=-1$ ($19\le p\le199$) and $3.6$--$3.9\,(p-1)$ for $k=2,3$
 ($p\le199$), and the integer optimum of that restricted system equals its LP value up to $2$ ($k=-1$, $p\le59$; \texttt{slack/verification/ip1\_km1.log}): so no local
 inequality of any rank on those lines can certify less; the remaining loss down to $3(p-1)+O(1)$ is carried by lines of unboundedly
