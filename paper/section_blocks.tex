@@ -72,15 +72,18 @@ For every $K\ge2$,
 \[
  \alpha(\Pset_{-1})\ \le\ \Bigl(4-\sum_{k=2}^{K}2^{-(k+2)}\sum_{\varepsilon\in\{0,1\}^{k-1}}\frac{D_k(S_\varepsilon)}{k!}\,s(\varepsilon)+o(1)\Bigr)(p-1),
 \]
-a finite computation for each $K$.  With $K=8$ (the table of $s(\varepsilon)$ was computed twice independently, \texttt{slack/t221/fast\_blocks.py} and
-\texttt{slack/sig\_savings.py}, with no discrepancy on the $28$ signatures common to the first tables and none later; two signatures of
-length~$8$, of total density $10^{-6}$, are still counted as $0$, which only weakens the bound) the sum is at least
-$2778667/5160960$, so
+a finite computation for each $K$.  The table of $s(\varepsilon)$ was computed in three independent ways: by constructing the block of every run occurring at the primes
+$p\le20000$ (\texttt{slack/t221/fast\_blocks.py}), by an independent implementation through the $\xi$-bits at $p\le9000$
+(\texttt{slack/sig\_savings.py}), and --- with no prime at all --- from the \emph{standard model} of a block, in which the positions
+$v_i=X(u_i)/p$ are replaced by generic rationals with the prescribed descent pattern and the incidences are decided by exact arithmetic
+(\texttt{slack/t221/standard\_model.py}); the three agree wherever they overlap ($500$ comparisons for $k\le9$, no discrepancy), and the
+standard model supplies every $\varepsilon$, including those too rare to occur at moderate primes.  With $K=9$ the sum equals
+$68350729/123863040$, so
 \[
- \alpha(\Pset_{-1})\ \le\ \frac{17865173}{5160960}\,(p-1)+o(p)\ =\ (3.46160\ldots+o(1))\,(p-1).
+ \alpha(\Pset_{-1})\ \le\ \frac{427101431}{123863040}\,(p-1)+o(p)\ =\ (3.44817\ldots+o(1))\,(p-1).
 \]
-Since $s(\varepsilon)\le4(k-1)$, the terms with $k>8$ contribute at most $\sum_{k>8}2^{-(k+2)}4(k-1)=0.0352$, so the constant of this
-certificate lies in $[3.427,\,3.4616]$; numerically it is $3.4413\ldots$
+Since $s(\varepsilon)\le4(k-1)$, the terms with $k>9$ contribute at most $\sum_{k>9}2^{-(k+2)}4(k-1)=0.0196$, so the constant of this
+certificate lies in $[3.4286,\,3.4482]$; numerically it is $3.4413\ldots$
 \end{corollary}
 
 \begin{remark}\label{rem:blocks}

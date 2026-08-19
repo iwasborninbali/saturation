@@ -21,9 +21,12 @@ $|S|=\alpha(P_O)-d$ satisfies $\min_M|S\setminus M|\le d$, the minimum being ove
 $\min_M|S\setminus M|=0$: every lawful subset of size $6-d$ is contained in a maximum set).
 \end{lemma}
 \begin{proof}
-The four classes of a generic orbit have the four types $A,B,C,D$, one each (Lemma~\ref{lem:partners}), so the incidence structure of
-$P_O$ --- which of its points lie on a common rich line --- is the same for every generic orbit and every $p$; likewise the two classes of
-an exceptional orbit are $\{\kappa,\nu\kappa\}$ with $\kappa$ fixed by $\sigma$ or by $\tau$, giving two isomorphism types.  The
+A generic orbit consists either of two classes of type $A$ and two of type $D$, or of two of type $B$ and two of
+type $C$ (Lemma~\ref{lem:partners}: $\sigma$ preserves $A$ and $D$ and exchanges $B,C$, while $\tau$ does the opposite), and in the first
+case the two $\sigma$-pairs share their centres while the two $\tau$-pairs do not, in the second case the roles are exchanged; the
+reflection $(x,y)\mapsto(y,x)$ carries one case to the other, so all generic orbits have the same incidence structure, with rich-line
+profile $(4,4,3,3,3,3)$ (verified for every orbit of every $p\le19$: exactly two incidence types occur, one per orbit size).  Likewise the
+two classes of an exceptional orbit are $\{\kappa,\nu\kappa\}$ with $\kappa$ fixed by $\sigma$ or by $\tau$, giving profile $(3,3)$.  The
 statements are therefore a finite verification, carried out by exhaustive enumeration of all subsets
 (\texttt{slack/t221/orbit\_stability.py}; the values $\alpha(P_O)$, the number of maximum sets and the bound
 $\min_M|S\setminus M|\le d$ for $d\le3$ were confirmed for every orbit of every prime $p\le31$; for $d\ge4$ the bound is trivial, since

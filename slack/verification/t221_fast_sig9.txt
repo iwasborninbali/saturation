@@ -11,3 +11,307 @@
   p=6761: signatures=237 bad=0
   p=6917: signatures=242 bad=0
   p=7103: signatures=243 bad=0
+  p=7297: signatures=246 bad=0
+  p=7499: signatures=248 bad=0
+  p=7643: signatures=250 bad=0
+  p=7829: signatures=253 bad=0
+  p=8017: signatures=254 bad=0
+  p=8219: signatures=254 bad=0
+  p=8387: signatures=255 bad=0
+  p=8597: signatures=256 bad=0
+  p=8741: signatures=258 bad=0
+  p=8929: signatures=259 bad=0
+  p=9109: signatures=259 bad=0
+  p=9283: signatures=259 bad=0
+  p=9439: signatures=259 bad=0
+  p=9631: signatures=259 bad=0
+  p=9811: signatures=260 bad=0
+  p=10007: signatures=260 bad=0
+  p=10177: signatures=260 bad=0
+  p=10343: signatures=260 bad=0
+  p=10567: signatures=260 bad=0
+  p=10739: signatures=261 bad=0
+  p=10949: signatures=261 bad=0
+  p=11149: signatures=261 bad=0
+  p=11329: signatures=261 bad=0
+  p=11527: signatures=261 bad=0
+  p=11777: signatures=261 bad=0
+  p=11933: signatures=261 bad=0
+  p=12109: signatures=261 bad=0
+  p=12289: signatures=262 bad=0
+  p=12487: signatures=264 bad=0
+  p=12641: signatures=264 bad=0
+  p=12829: signatures=264 bad=0
+  p=13007: signatures=264 bad=0
+  p=13187: signatures=264 bad=0
+  p=13411: signatures=264 bad=0
+  p=13619: signatures=264 bad=0
+  p=13781: signatures=265 bad=0
+  p=13967: signatures=265 bad=0
+
+TOTAL signatures=265  bad=0
+  ab         sav=  0.00 count=579265
+  a6a        sav=  6.00 count=95816
+  a7b        sav=  4.00 count=96741
+  b8b        sav=  8.00 count=96789
+  a67a       sav=  9.00 count=36114
+  a68b       sav=  8.00 count=60434
+  a77b       sav=  7.00 count=12102
+  b78b       sav=  8.00 count=36134
+  a677a      sav= 12.00 count=4796
+  a678b      sav= 14.00 count=13283
+  a686a      sav= 14.00 count=9756
+  a687b      sav= 11.00 count=10920
+  a767a      sav= 12.00 count=3652
+  a768b      sav= 12.00 count=10769
+  a777b      sav= 10.00 count=1196
+  b778b      sav= 12.00 count=4753
+  b787b      sav=  8.00 count=3487
+  b868b      sav= 16.00 count=9693
+  a6777a     sav= 16.00 count=503
+  a6778b     sav= 17.00 count=1871
+  a6786a     sav= 16.00 count=4043
+  a6787b     sav= 14.00 count=2675
+  a6867a     sav= 17.00 count=3509
+  a6868b     sav= 16.00 count=6194
+  a6877b     sav= 15.00 count=1387
+  a7677a     sav= 16.00 count=1058
+  a7678b     sav= 17.00 count=2631
+  a7687b     sav= 14.00 count=1961
+  a7768b     sav= 15.00 count=1377
+  a7777b     sav= 14.00 count=86
+  b7778b     sav= 15.00 count=538
+  b7787b     sav= 12.00 count=989
+  b7868b     sav= 16.00 count=3452
+  b8678b     sav= 16.00 count=3961
+  a67777a    sav= 20.00 count=44
+  a67778b    sav= 20.00 count=205
+  a67786a    sav= 20.00 count=519
+  a67787b    sav= 18.00 count=381
+  a67867a    sav= 20.00 count=691
+  a67868b    sav= 22.00 count=1314
+  a67876a    sav= 20.00 count=484
+  a67877b    sav= 18.00 count=359
+  a68677a    sav= 20.00 count=479
+  a68678b    sav= 22.00 count=1287
+  a68686a    sav= 22.00 count=978
+  a68687b    sav= 19.00 count=1095
+  a68767a    sav= 20.00 count=802
+  a68768b    sav= 19.00 count=1226
+  a68777b    sav= 18.00 count=158
+  a76777a    sav= 20.00 count=126
+  a76778b    sav= 20.00 count=423
+  a76787b    sav= 18.00 count=547
+  a76867a    sav= 20.00 count=320
+  a76868b    sav= 20.00 count=1092
+  a76877b    sav= 18.00 count=261
+  a77677a    sav= 20.00 count=75
+  a77678b    sav= 20.00 count=318
+  a77687b    sav= 18.00 count=235
+  a77768b    sav= 18.00 count=148
+  a77777b    sav= 18.00 count=7
+  b77778b    sav= 18.00 count=36
+  b77787b    sav= 16.00 count=101
+  b77868b    sav= 20.00 count=436
+  b77877b    sav= 16.00 count=82
+  b78678b    sav= 19.00 count=670
+  b78687b    sav= 16.00 count=311
+  b78768b    sav= 16.00 count=797
+  b86778b    sav= 20.00 count=574
+  b86868b    sav= 24.00 count=961
+  b87678b    sav= 22.00 count=461
+  a677777a   sav= 24.00 count=1
+  a677778b   sav= 24.00 count=23
+  a677786a   sav= 24.00 count=50
+  a677787b   sav= 22.00 count=43
+  a677867a   sav= 24.00 count=104
+  a677868b   sav= 25.00 count=180
+  a677876a   sav= 24.00 count=153
+  a677877b   sav= 22.00 count=52
+  a678677a   sav= 24.00 count=80
+  a678678b   sav= 24.00 count=274
+  a678686a   sav= 24.00 count=394
+  a678687b   sav= 22.00 count=223
+  a678767a   sav= 24.00 count=171
+  a678768b   sav= 22.00 count=280
+  a678777b   sav= 22.00 count=31
+  a686777a   sav= 24.00 count=33
+  a686778b   sav= 25.00 count=177
+  a686786a   sav= 24.00 count=419
+  a686787b   sav= 22.00 count=238
+  a686867a   sav= 25.00 count=358
+  a686868b   sav= 24.00 count=585
+  a686877b   sav= 23.00 count=150
+  a687677a   sav= 24.00 count=108
+  a687678b   sav= 24.00 count=283
+  a687687b   sav= 22.00 count=233
+  a687767a   sav= 24.00 count=102
+  a687768b   sav= 23.00 count=200
+  a687777b   sav= 22.00 count=10
+  a767777a   sav= 24.00 count=7
+  a767778b   sav= 24.00 count=46
+  a767787b   sav= 22.00 count=55
+  a767867a   sav= 24.00 count=140
+  a767868b   sav= 25.00 count=252
+  a767877b   sav= 22.00 count=71
+  a768677a   sav= 24.00 count=62
+  a768678b   sav= 25.00 count=234
+  a768687b   sav= 22.00 count=193
+  a768768b   sav= 22.00 count=219
+  a768777b   sav= 22.00 count=22
+  a776777a   sav= 24.00 count=9
+  a776778b   sav= 24.00 count=56
+  a776787b   sav= 22.00 count=56
+  a776868b   sav= 23.00 count=129
+  a776877b   sav= 22.00 count=30
+  a777678b   sav= 24.00 count=34
+  a777687b   sav= 22.00 count=21
+  a777768b   sav= 22.00 count=12
+  b777778b   sav= 22.00 count=3
+  b777787b   sav= 20.00 count=5
+  b777868b   sav= 23.00 count=42
+  b777877b   sav= 20.00 count=14
+  b778678b   sav= 23.00 count=100
+  b778687b   sav= 20.00 count=92
+  b778768b   sav= 20.00 count=116
+  b786778b   sav= 22.00 count=112
+  b786787b   sav= 20.00 count=147
+  b786868b   sav= 24.00 count=381
+  b787678b   sav= 22.00 count=149
+  b787768b   sav= 20.00 count=136
+  b867778b   sav= 23.00 count=57
+  b867868b   sav= 24.00 count=349
+  b868678b   sav= 24.00 count=422
+  b876778b   sav= 25.00 count=156
+  a6777777a  sav= 28.00 count=1
+  a6777786a  sav= 28.00 count=4
+  a6777787b  sav= 26.00 count=4
+  a6777867a  sav= 28.00 count=10
+  a6777868b  sav= 28.00 count=21
+  a6777876a  sav= 28.00 count=16
+  a6777877b  sav= 26.00 count=6
+  a6778677a  sav= 28.00 count=12
+  a6778678b  sav= 28.00 count=42
+  a6778686a  sav= 28.00 count=43
+  a6778687b  sav= 26.00 count=53
+  a6778767a  sav= 28.00 count=24
+  a6778768b  sav= 26.00 count=45
+  a6778776a  sav= 28.00 count=8
+  a6778777b  sav= 26.00 count=7
+  a6786777a  sav= 28.00 count=15
+  a6786778b  sav= 28.00 count=34
+  a6786786a  sav= 28.00 count=78
+  a6786787b  sav= 26.00 count=60
+  a6786867a  sav= 28.00 count=72
+  a6786868b  sav= 30.00 count=138
+  a6786876a  sav= 28.00 count=49
+  a6786877b  sav= 26.00 count=23
+  a6787677a  sav= 28.00 count=30
+  a6787678b  sav= 28.00 count=68
+  a6787686a  sav= 28.00 count=102
+  a6787687b  sav= 26.00 count=42
+  a6787767a  sav= 28.00 count=27
+  a6787768b  sav= 26.00 count=51
+  a6787777b  sav= 26.00 count=6
+  a6867777a  sav= 28.00 count=6
+  a6867778b  sav= 28.00 count=21
+  a6867786a  sav= 28.00 count=48
+  a6867787b  sav= 26.00 count=40
+  a6867867a  sav= 28.00 count=62
+  a6867868b  sav= 30.00 count=125
+  a6867877b  sav= 26.00 count=31
+  a6868677a  sav= 28.00 count=26
+  a6868678b  sav= 30.00 count=135
+  a6868686a  sav= 30.00 count=119
+  a6868687b  sav= 27.00 count=115
+  a6868767a  sav= 28.00 count=81
+  a6868768b  sav= 27.00 count=136
+  a6868777b  sav= 26.00 count=14
+  a6876777a  sav= 28.00 count=8
+  a6876778b  sav= 28.00 count=47
+  a6876786a  sav= 28.00 count=44
+  a6876787b  sav= 26.00 count=56
+  a6876867a  sav= 28.00 count=59
+  a6876868b  sav= 27.00 count=142
+  a6876877b  sav= 26.00 count=25
+  a6877677a  sav= 28.00 count=10
+  a6877678b  sav= 28.00 count=39
+  a6877687b  sav= 26.00 count=18
+  a6877767a  sav= 28.00 count=16
+  a6877768b  sav= 26.00 count=14
+  a6877777b  sav= 26.00 count=3
+  a7677777a  sav= 28.00 count=1
+  a7677778b  sav= 28.00 count=2
+  a7677787b  sav= 26.00 count=10
+  a7677867a  sav= 28.00 count=17
+  a7677868b  sav= 28.00 count=39
+  a7677877b  sav= 26.00 count=10
+  a7678677a  sav= 28.00 count=21
+  a7678678b  sav= 28.00 count=65
+  a7678687b  sav= 26.00 count=48
+  a7678767a  sav= 28.00 count=10
+  a7678768b  sav= 26.00 count=55
+  a7678777b  sav= 26.00 count=13
+  a7686777a  sav= 28.00 count=8
+  a7686778b  sav= 28.00 count=34
+  a7686787b  sav= 26.00 count=62
+  a7686867a  sav= 28.00 count=34
+  a7686868b  sav= 28.00 count=125
+  a7686877b  sav= 26.00 count=24
+  a7687677a  sav= 28.00 count=24
+  a7687678b  sav= 28.00 count=60
+  a7687687b  sav= 26.00 count=32
+  a7687768b  sav= 26.00 count=25
+  a7687777b  sav= 26.00 count=5
+  a7767777a  sav= 28.00 count=5
+  a7767778b  sav= 28.00 count=8
+  a7767787b  sav= 26.00 count=10
+  a7767868b  sav= 28.00 count=44
+  a7767877b  sav= 26.00 count=9
+  a7768677a  sav= 28.00 count=6
+  a7768678b  sav= 28.00 count=22
+  a7768687b  sav= 26.00 count=19
+  a7768768b  sav= 26.00 count=26
+  a7768777b  sav= 26.00 count=2
+  a7776777a  sav= 28.00 count=2
+  a7776778b  sav= 28.00 count=5
+  a7776787b  sav= 26.00 count=6
+  a7776868b  sav= 26.00 count=13
+  a7776877b  sav= 26.00 count=3
+  a7777678b  sav= 28.00 count=1
+  a7777687b  sav= 26.00 count=2
+  b7777787b  sav= 24.00 count=1
+  b7777868b  sav= 26.00 count=5
+  b7777877b  sav= 24.00 count=2
+  b7778678b  sav= 26.00 count=10
+  b7778687b  sav= 24.00 count=12
+  b7778768b  sav= 24.00 count=11
+  b7778777b  sav= 24.00 count=2
+  b7786778b  sav= 26.00 count=18
+  b7786787b  sav= 24.00 count=24
+  b7786868b  sav= 28.00 count=35
+  b7786877b  sav= 24.00 count=5
+  b7787678b  sav= 26.00 count=31
+  b7787687b  sav= 24.00 count=20
+  b7787768b  sav= 24.00 count=18
+  b7867778b  sav= 26.00 count=6
+  b7867787b  sav= 24.00 count=19
+  b7867868b  sav= 27.00 count=72
+  b7868678b  sav= 27.00 count=70
+  b7868687b  sav= 24.00 count=31
+  b7868768b  sav= 24.00 count=64
+  b7876778b  sav= 26.00 count=34
+  b7876787b  sav= 24.00 count=18
+  b7876868b  sav= 24.00 count=74
+  b7877678b  sav= 26.00 count=31
+  b7877768b  sav= 24.00 count=18
+  b8677778b  sav= 26.00 count=4
+  b8677868b  sav= 28.00 count=55
+  b8678678b  sav= 27.00 count=82
+  b8678768b  sav= 24.00 count=53
+  b8686778b  sav= 28.00 count=52
+  b8686868b  sav= 32.00 count=102
+  b8687678b  sav= 30.00 count=79
+  b8767778b  sav= 28.00 count=20
+  b8768678b  sav= 30.00 count=35
+  b8776778b  sav= 28.00 count=7
