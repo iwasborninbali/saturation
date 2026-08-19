@@ -2,3 +2,7 @@
 n=5 M=14 +сим: клеток 125, плоскостей 16077, симметрий 47, переменных 29462, клауз 178616 -> /var/folders/jr/50z4x0md1kg8drpl03t887h40000gn/T//a280537/n5_M14.cnf
 РЕЗУЛЬТАТ: UNSAT за 1074с  => a(5) <= 13
 сертификат: 284.8 МБ
+c 12859 RAT lemmas in core; 2041638 redundant literals in core lemmas
+s VERIFIED
+c verification time: 1481.464 seconds
+проверка сертификата: 1482с
