@@ -130,3 +130,12 @@ disclosure updated; refs Dickson 1897, Lidl–Niederreiter. Files: paper/section
 | `paper/hjsw_window.pdf` | `ed9b20ab9a3d58acb7f353d0b76cf79c2884f066a6a1f84b79eaf10ceb1d3dd0` |
 | `paper/hjsw_window.tex` | `3b25eaa5a5e03659533bf593df34c4037aba6cfad4ac1591ebcb4be9cb8519bd` |
 | `paper/section_cubic.tex` | `24f59a557c6ec406fcf4f27807ab085b9644fa83bb001efa3889e8e81306d4e2` |
+
+## hjsw-note-v1.5.1 (2026-08-19, 08:30 WITA)
+v1.5 + first solver's fixes in Section 8 (the t ↦ −t remark replaced by N₃⁻ = N₃ + O(1) via the two conics; wording of the Kummer twist; quotes).
+
+| file | SHA-256 |
+|---|---|
+| `paper/hjsw_window.pdf` | `90dddbe7db71e332cc47f959b28d188b949b66ad55e53f0d22fcd934cd17e48d` |
+| `paper/hjsw_window.tex` | `4cdb407a150e7653959b11d200e9690278a59078e039010e3d1c362808ceae0e` |
+| `paper/section_cubic.tex` | `6920baf299410b32b9ecea3f20d02f9c850fb41e9d04ca54e0e5a11d2b7806bc` |
