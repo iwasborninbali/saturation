@@ -76,7 +76,9 @@ and independent of the positions (Kummer/Artin–Schreier twists as in the cubic
 them separately (a (d−1)-dimensional integral depending on κ = (d·x₀ mod p)/p, hence weakly on the box) or bound crudely: the residues x lying in a d-root
 residue of a given slope have density d·P_d = 1/(d−1)!; for such x only the factor [n_σ ≤ 3] in the cross term of U(x) (at most 1 lift-pair) and the two
 outer-line indicators [n₀ ≥ 4] + [n₁ ≥ 4] of L can deviate from the i.i.d. computation, so C_d changes by at most 2/(d−1)! + 4·P_d = 2/(d−1)! + 4/d!:
-for d = 5 this is 0.083 + 0.033 ≈ 0.12, i.e. C₅ ≤ 2.80 + 0.12 = 2.92 < 3 even with the crude bound; for d ≥ 7 the correction is < 0.01. For d = 3 the pairwise identity makes everything exact.
+for d = 5 this is 0.083 + 0.033 ≈ 0.12, i.e. C₅ ≤ 2.80 + 0.12 = 2.92 < 3 even with the crude bound; for d ≥ 7 the correction is < 0.01.
+Monte-Carlo with the relation built in (`slack/pp_constant_mc.py`, 6·10⁵ samples, κ ∈ {0, 0.3, 0.5, 0.8}): C₅ = 2.7952 ± 0.0005 for every κ, versus 2.7950
+without the relation — the k = d effect is invisible at this precision, so C₅ = 2.795 (1.398 N) can be taken as the constant (rigorous version: 2.92). For d = 3 the pairwise identity makes everything exact.
 Note d = 4 is vacuous: by Dickson's classification there are no permutation polynomials of degree 4 over F_p for p > 7. ∎ (outline)
 Open for the theorem text: the k = d bookkeeping (5) done cleanly; the discriminant coprimality (ii) for x^k; the constant's tabulation with rigorous
 quadrature error (the integrand is piecewise polynomial in (u_x, g): exact rational values are computable).
