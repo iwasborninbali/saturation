@@ -23,7 +23,7 @@
 
 \title{Extremal no-three-in-line subsets of a modular hyperbola\\ in the Hall--Jackson--Sudbery--Wild window}
 \author{Alex Komang\thanks{Independent researcher, Bali, Indonesia.  See the AI/tool-use disclosure at the end.}}
-\date{August 2026 --- version 1.8}
+\date{August 2026 --- version 1.9}
 
 \begin{document}
 \maketitle
@@ -60,7 +60,9 @@ at least $C\sqrt p\log^5p$, in particular for every primitive root.  Finally, no
 $f\in\Fp[x]$ and every $2p\times2p$ box the lifted graph $Y\equiv f(X)$ has no-three-in-line subsets of size at most $(11/8+o(1))\cdot2p<3(p-1)$;
 for the permutation cubics ($p\equiv2\bmod3$) this is an explicit cover by the lines of slope $\pm1$ whose cost is computed exactly on the conic of
 root pairs, for the other cubics a row count; the same cover handles the permutation monomials $x^k$, $k\in\{3,5,7\}$, with explicit rational constants
-($\approx1.40\cdot2p$).
+($\approx1.40\cdot2p$).  Adding to the $\pm1$-cover a matching of the ``good'' lines of the family $(1,3)$ (a local law made exact by a
+Kummer-type equidistribution lemma) improves the permutation-cubic bound to $(1.326+o(1))\cdot2p$, hence every cubic graph has at most
+$(\tfrac43+o(1))\cdot2p$ points; the constant is a numerical quadrature of explicit integrands, with a margin of more than ten times its error.
 The proofs are elementary and self-contained; independent programs check the statements about the HJSW box for all
 $p\le101$ (all $c$ for $p\le31$), the bound $3(p-1)$ for all boxes with $p\le61$, and the box formula and orbit lemma
 for all boxes with $p\le13$ and $p\le31$ respectively.
@@ -160,7 +162,8 @@ hyperbolae can reach $3(p-1)$ in a $2p\times2p$ box.  Section~\ref{sec:general} 
 Section~\ref{sec:cubic} shows that cubic graphs $Y\equiv f(X)$ never reach the hyperbola's $3(p-1)$ in a $2p\times2p$ box
 (Corollary~\ref{cor:cubic}: at most $(11/8+o(1))\cdot2p$ points), and Section~\ref{sec:perm} extends the same $\pm1$-line cover to the
 permutation monomials $x^k$, $k\in\{3,5,7\}$ (Theorem~\ref{thm:perm}), in the direction of Green's remark on Problem~72 of \cite{Green} that
-algebraic constructions modulo $p$ should not beat $\tfrac32N$.  Section~\ref{sec:beyond} collects the computations that motivate the (unproved)
+algebraic constructions modulo $p$ should not beat $\tfrac32N$; Section~\ref{sec:strong} adds a matching to the $\pm1$-cover and obtains the strong
+form $(\tfrac43+o(1))\cdot2p$ for every cubic graph (Theorem~\ref{thm:strong}, Corollary~\ref{cor:g3}).  Section~\ref{sec:beyond} collects the computations that motivate the (unproved)
 expectation that unions of hyperbolae gain only $O(1)$ over $3(p-1)$.
 
 \section{Notation}
@@ -1078,6 +1081,8 @@ LP with rows, columns and the eight-groups' lines saves about one per eight-grou
 
 \input{section_perm}
 
+\input{section_strong}
+
 \section{Computational observations beyond one hyperbola}\label{sec:beyond}
 
 Nothing in this section is a theorem: it records finite computations (all witnesses verified by an independent checker of all
@@ -1195,22 +1200,24 @@ no-four values for all $c$ with $p\le31$ (samples for larger $p$), all box patte
 the shifted-box table for $p=11$; the second audit also identified a gap in the earlier presentation of
 Lemma~\ref{lem:gadget} (the $(1,1)$ count), which is now proved above.
 
-For Sections~\ref{sec:two}--\ref{sec:perm}: the block cover of Theorem~\ref{thm:two} is checked point by point by
-\texttt{slack/km1\_theorem\_check.py} and \texttt{slack/block\_cover\_km1.py} ($p<320$); the potential cover of Theorem~\ref{thm:general} and its value
-$4(p-1)-(2G_8-2\sum_c|A_c-B_c|)/R$ are recomputed and compared with the class-level linear program by \texttt{slack/exact\_c.py} and
-\texttt{slack/cyc\_model.py} (the LP with the uniform line weight $1/R$ has exactly this value in every case tried, and the class-level LP agrees with
-the point-level LP); the arc-imbalance sums are tabulated by \texttt{slack/arc\_imbalance.py} and the mixed sums along $C_0(k)$ by
-\texttt{slack/mixed\_sums\_curve.py} ($p\le4001$).  For Section~\ref{sec:cubic}: the line profiles and lift rules were verified by brute force for
-$p\in\{101,131,197,293\}$, $a\in\{1,2\}$ and three boxes (\texttt{slack/verification/g35\_verify.txt}), the cost of the explicit cover by
-\texttt{slack/cube\_cover4.py} (Remark), and the local law (same/split $=1/2$, independence of the slopes) by \texttt{slack/cube\_local\_law.py} and by
-exact counts up to $p=100019$ (\texttt{slack/g\_agents/group\_types\_output.txt}).  For Section~\ref{sec:perm}: the lift table of Lemma~\ref{lem:lifts}
-(\texttt{slack/g\_agents/profile\_table\_output.txt}), the root-count laws and the cross-slope independence (\texttt{slack/pp\_joint\_counts.py}), the exact
-rational constants $C_k$ (\texttt{slack/pp\_constant\_exact.py}) and the $O(p)$ evaluation of the cover's cost at $p\approx10^7$
-(\texttt{slack/pp\_exact\_UL\_np.py}); the discriminant resultants for $k=3,5,7$ symbolically.  A checklist of what to verify and with which
-script is \texttt{docs/AUDIT\_CHECKLIST\_v1.7.md}.
+For Sections~\ref{sec:two}--\ref{sec:strong}: the block cover of Theorem~\ref{thm:two} is checked point by point by
+\texttt{slack/\allowbreak km1\_\allowbreak theorem\_\allowbreak check.py} and \texttt{slack/\allowbreak block\_\allowbreak cover\_\allowbreak km1.py} ($p<320$); the potential cover of Theorem~\ref{thm:general} and its value
+$4(p-1)-(2G_8-2\sum_c|A_c-B_c|)/R$ are recomputed and compared with the class-level linear program by \texttt{slack/\allowbreak exact\_\allowbreak c.py} and
+\texttt{slack/\allowbreak cyc\_\allowbreak model.py} (the LP with the uniform line weight $1/R$ has exactly this value in every case tried, and the class-level LP agrees with
+the point-level LP); the arc-imbalance sums are tabulated by \texttt{slack/\allowbreak arc\_\allowbreak imbalance.py} and the mixed sums along $C_0(k)$ by
+\texttt{slack/\allowbreak mixed\_\allowbreak sums\_\allowbreak curve.py} ($p\le4001$).  For Section~\ref{sec:cubic}: the line profiles and lift rules were verified by brute force for
+$p\in\{101,131,197,293\}$, $a\in\{1,2\}$ and three boxes (\texttt{slack/\allowbreak verification/\allowbreak g35\_\allowbreak verify.txt}), the cost of the explicit cover by
+\texttt{slack/\allowbreak cube\_\allowbreak cover4.py} (Remark), and the local law (same/split $=1/2$, independence of the slopes) by \texttt{slack/\allowbreak cube\_\allowbreak local\_\allowbreak law.py} and by
+exact counts up to $p=100019$ (\texttt{slack/\allowbreak g\_\allowbreak agents/\allowbreak group\_\allowbreak types\_\allowbreak output.txt}).  For Section~\ref{sec:perm}: the lift table of Lemma~\ref{lem:lifts}
+(\texttt{slack/\allowbreak g\_\allowbreak agents/\allowbreak profile\_\allowbreak table\_\allowbreak output.txt}), the root-count laws and the cross-slope independence (\texttt{slack/\allowbreak pp\_\allowbreak joint\_\allowbreak counts.py}), the exact
+rational constants $C_k$ (\texttt{slack/\allowbreak pp\_\allowbreak constant\_\allowbreak exact.py}) and the $O(p)$ evaluation of the cover's cost at $p\approx10^7$
+(\texttt{slack/\allowbreak pp\_\allowbreak exact\_\allowbreak UL\_\allowbreak np.py}); the discriminant resultants for $k=3,5,7$ symbolically.  For Section~\ref{sec:strong}: the local law $U$ and
+the constants $\gamma_1,\gamma_2$ (\texttt{slack/\allowbreak g39\_\allowbreak agents/\allowbreak }, outputs \texttt{slack/\allowbreak verification/\allowbreak g39\_\allowbreak *.txt}) against exact counts at $p=3203$ and
+$p=12809$, and an independent point-level check of the certificate $W_4$ plus matching (\texttt{slack/\allowbreak cube\_\allowbreak w4\_\allowbreak matching\_\allowbreak check.py}).  A checklist of what to verify and with which
+script is \texttt{docs/\allowbreak AUDIT\_\allowbreak CHECKLIST\_\allowbreak v1.7.md}.
 
 Repository (public): \url{https://github.com/iwasborninbali/saturation}.\\
-This version of the note is the immutable tag \texttt{hjsw-note-v1.8} (v1.0: the theorems as first verified; v1.1: Section~\ref{sec:beyond} on the vertical-pair model; v1.2: the error term of Proposition~\ref{prop:m8asym}; v1.4: Section~\ref{sec:general}, every second hyperbola; v1.5: Section~\ref{sec:cubic}, cubic graphs; v1.6: Section~\ref{sec:perm}, permutation monomials; v1.7: Corollary~\ref{cor:permgen}; v1.8: verification paragraph, remark corrections): file \texttt{paper/hjsw\_window.tex}; scripts in
+This version of the note is the immutable tag \texttt{hjsw-note-v1.9} (v1.0: the theorems as first verified; v1.1: Section~\ref{sec:beyond} on the vertical-pair model; v1.2: the error term of Proposition~\ref{prop:m8asym}; v1.4: Section~\ref{sec:general}, every second hyperbola; v1.5: Section~\ref{sec:cubic}, cubic graphs; v1.6: Section~\ref{sec:perm}, permutation monomials; v1.7: Corollary~\ref{cor:permgen}; v1.8: verification paragraph, remark corrections; v1.9: Section~\ref{sec:strong}, the strong form for cubic graphs): file \texttt{paper/hjsw\_window.tex}; scripts in
 \texttt{slack/}: \texttt{hjsw\_window\_check.py}, \texttt{hjsw\_boxes\_check.py}, \texttt{gadget11\_check.py},
 \texttt{km1\_theorem\_check.py}, \texttt{block\_cover\_km1.py}, \texttt{km1\_lines.py}, \texttt{cyc\_model.py},
 \texttt{exact\_c.py}, \texttt{arc\_imbalance.py}; logs in \texttt{slack/verification/};
@@ -1239,7 +1246,7 @@ the text of this note were produced by autonomous large-language-model agents (A
 Fable 5}, August 2026) working in a shared repository: one agent found and proved Theorems~\ref{thm:main} and
 \ref{thm:window} and wrote the first version of the note; Theorem~\ref{thm:two} was found independently, on the same day, by two of
 the agents; Theorem~\ref{thm:general} (the potential cover) is due to the second agent and Lemma~\ref{lem:arc} to the first;
-Sections~\ref{sec:cubic} and~\ref{sec:perm} were found and proved by the first agent and checked by the second; the computational setup and the observations of
+Sections~\ref{sec:cubic}, \ref{sec:perm} and~\ref{sec:strong} were found and proved by the first agent and checked by the second (Lemma~\ref{lem:fe} is due to the second); the computational setup and the observations of
 Section~\ref{sec:beyond} come from all three; the note was revised by
 the agents after two external LLM-assisted audits and one literature report commissioned by the author of record (the report
 suggested the simplification of Step~4 in the proof of Proposition~\ref{prop:m8asym}).  The author of record posed the question, directed and organised the work, commissioned the external

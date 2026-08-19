@@ -184,3 +184,7 @@ v1.7 + verification paragraph for Sections 6-9 (scripts per statement; AUDIT_CHE
 | `paper/hjsw_window.pdf` | `9ee1423c1cf17e3b18eb75f8207d759510aa127da91314464abe28613362f84b` |
 | `paper/hjsw_window.tex` | `fca4609682235e118d476253f14e95c896c59531e56789c8487d53640fea70d2` |
 | `paper/section_perm.tex` | `c361a86d42fbc9fcfc5ab9761a12466d3039e129077e2cf963dabd79847e1b70` |
+
+## hjsw-note-v1.9 — 2026-08-19 09:59 WITA
+- paper/hjsw_window.tex, version 1.9 (36 pp.): Section 10 «The strong form for cubic graphs: W4 plus a matching» (`paper/section_strong.tex`, first solver; Lemma FE `paper/lemma_fe.tex`, second solver): certificate and matching lemmas, local law U, constants γ1 ∈ [0.1287, 0.1362], γ2 ≈ 0.028–0.031, Theorem strong α ≤ (11/4 − γ1 + γ2 + o(1))p ≤ (2.652+o(1))p = (1.326+o(1))N for permutation cubics, Corollary G3: every cubic graph ≤ (4/3+o(1))N; abstract/intro/verification/disclosure updated; the constants are floating-point quadrature (stated explicitly; margin ≥ 10× error; safe constant 2.657 with a margin on γ2 for unsampled box positions).
+- SHA-256(paper/hjsw_window.pdf) = f650ac3118978cf870efbeb1b5cde3f65987eaf5cd4880c311213baef0c98817

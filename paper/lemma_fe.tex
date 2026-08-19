@@ -18,7 +18,8 @@ conditionally on membership, each root $t_{\sigma,m}/p$ is an independent unifor
 constant depends only on $(i,j)$; the statement is uniform in $a$ and in the box, and holds for $p$ larger than a constant depending on $(i,j)$.
 \end{lemma}
 \begin{proof}
-\emph{(1) The fibre products.}  The six discriminants are quadratics in $u$ with root sets $\{\pm(2/\alpha_m)\sqrt{\sigma/(3a)}\}$.  For fixed $\sigma$ the
+\emph{(1) The fibre products.}  The six discriminants are quadratics in $u$; the roots of $\Delta_{\sigma,m}$ are $\pm(2/\alpha_m)\sqrt{\sigma/(3a)}$.
+For fixed $\sigma$ the
 three root sets are pairwise disjoint because the $\alpha_m^2$ are pairwise distinct; the root sets of $\Delta_{+,m}$ and $\Delta_{-,m'}$ coincide only if
 $\alpha_m^2\equiv-\alpha_{m'}^2\pmod p$, a congruence between fixed rationals which we exclude by taking $p$ large.  Hence the six $\Delta_{\sigma,m}$ are
 pairwise coprime squarefree polynomials, their classes in $\overline\Fp(u)^*/(\overline\Fp(u)^*)^2$ are multiplicatively independent, and for every set
@@ -34,11 +35,12 @@ character), and every interval condition on a least residue as a Fourier series 
 degree $H=\lfloor\sqrt p\rfloor$, \cite{Montgomery,Vaaler}), the count of $u$ satisfying $F$ with this membership pattern equals
 $2^{-|S|}\sum_{P\in X_S(\Fp)}\prod_{s\in\bar S}\tfrac12(1-\chi(\Delta_s(u(P))))\cdot\prod(\text{interval indicators})$, where the roots $t_s$, $s\in S$, are the
 coordinates of $P$.  Expanding, the count is a combination, with total coefficient mass $O(\log^{16}p)$, of the sums
-\[
+\begin{multline*}
  T(\mathbf h,S')=\sum_{P\in X_S(\Fp)}\chi\Bigl(\prod_{s\in S'}\Delta_s(u)\Bigr)\,
- e\Bigl(\tfrac1p\bigl(h_uu+h_vv(u)+\textstyle\sum_mh_m\alpha_mu+\sum_{s\in S}(h_st_s+h'_s(-\alpha_{m(s)}u-t_s))\bigr)\Bigr),
-\qquad S'\subset\bar S,\ \|\mathbf h\|_\infty\le H .
-\]
+ e\Bigl(\tfrac1p\bigl(h_uu+h_vv(u)+\textstyle\sum_mh_m\alpha_mu\\
+ +\sum_{s\in S}(h_st_s+h'_s(-\alpha_{m(s)}u-t_s))\bigr)\Bigr),
+ \qquad S'\subset\bar S,\ \|\mathbf h\|_\infty\le H .
+\end{multline*}
 
 \emph{(3) Main terms.}  If $S'=\emptyset$ and the additive form is identically zero on $X_S$, then $T=|X_S(\Fp)|=2^{|S|}p+O(\sqrt p)$.  The additive form
 equals $h_vc_1u^3+(h_u+h_va+\sum_mh_m\alpha_m-\sum_sh'_s\alpha_{m(s)})u+\sum_s(h_s-h'_s)t_s$; it vanishes identically iff $h_v\equiv0$ (as $c_1\not\equiv0$),

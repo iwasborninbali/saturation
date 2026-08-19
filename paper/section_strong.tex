@@ -61,7 +61,7 @@ determine the admissible $(u^*,v^*)$ and the lifts $(\delta_m,\varepsilon_m)$ of
 \begin{align}
  \gamma_1(x_0/p)&:=\sum_{\delta_1,\varepsilon_1}\ \frac13\sum_{r=0}^{2}\ \int ds\int_0^1dw'\ \sum_{v^*\ \mathrm{admissible}}\ \prod_{m=1}^3
  U\bigl(\pi_m,\theta_{+,m},\theta_{-,m},\delta_m,\varepsilon_m;x_0/p\bigr),\label{eq:gamma1}\\
- \gamma_2(x_0/p,y_0/p)&:=\text{the analogous integral over pairs of lines of family $(1,3)$ with a common point,}\label{eq:gamma2}
+ \gamma_2(x_0/p,y_0/p)&:=\text{the analogous integral over pairs of family-$(1,3)$ lines with a common point,}\label{eq:gamma2}
 \end{align}
 where in \eqref{eq:gamma2} the second line is determined by the first and the roles $(m,m')$ of the common point ($z'=(a_m/a_{m'})z$; for the ratios
 $\tfrac14,\tfrac15,\tfrac45,\tfrac54$ the digits of $z$ modulo $4$ and $5$ and of $az^3$ modulo $64$ and $125$ enter as further uniform independent
@@ -91,13 +91,16 @@ $0.1\%$ ($1.733p$ vs $1.731p$ for the box $(0,0)$; $1.800p$ vs $1.801p$ for $x_0
 \[
  \gamma_1(x_0/p)\in[0.1287,\ 0.1362]\qquad(\text{minimum at }x_0/p=0,\ \text{maximum at }x_0/p=\tfrac12),
 \]
-and $\gamma_2\approx0.028$--$0.031$ (Table~\ref{tab:strong}); the exact counts at $p=3203$ and $p=12809$ agree with these values within the expected
-$O(p^{-1/2})$ fluctuations.  Hence, for every box,
+(evaluated on the grid $x_0/p,\,y_0/p\in\{0,\tfrac14,\tfrac12,\tfrac34\}$) and $\gamma_2\approx0.028$--$0.031$ at the three box positions of
+Table~\ref{tab:strong}; the exact counts at $p=3203$ and $p=12809$ agree with these values within the expected $O(p^{-1/2})$ fluctuations.  Hence, at
+every sampled box position,
 \begin{equation}\label{eq:margin}
  \gamma_1-\gamma_2\ \ge\ 0.098\ >\ \tfrac1{12}=0.0833\ldots
 \end{equation}
 (the constants of the table are the outcome of a numerical quadrature of explicit piecewise-polynomial integrands, not of a rigorous enclosure; the
-margin in \eqref{eq:margin} is more than ten times the quadrature error and the finite-$p$ discrepancies).
+margin in \eqref{eq:margin} is more than ten times the quadrature error and the finite-$p$ discrepancies; $\gamma_1,\gamma_2$ are continuous in the
+box position, their sampled variations are $0.0075$ and $0.003$, and even a safety margin of $0.005$ on $\gamma_2$ for unsampled positions leaves
+$\gamma_1-\gamma_2\ge0.093>\tfrac1{12}$, i.e.\ the constant $2.657$ in place of $2.652$ in Theorem~\ref{thm:strong}).
 
 \begin{table}[ht]\centering\scriptsize
 \begin{tabular}{lccccccc}
