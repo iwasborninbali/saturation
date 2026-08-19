@@ -160,10 +160,10 @@ PRIME_CONFIG = {
     11: dict(step=1, time_limit=20.0, wall_budget=300),
     13: dict(step=1, time_limit=20.0, wall_budget=400),
     17: dict(step=1, time_limit=15.0, wall_budget=520),
-    19: dict(step=1, time_limit=12.0, wall_budget=520),
-    23: dict(step=1, time_limit=8.0, wall_budget=520),
-    29: dict(step=2, time_limit=6.0, wall_budget=400),
-    31: dict(step=2, time_limit=6.0, wall_budget=400),
+    19: dict(step=1, time_limit=6.0, wall_budget=220),
+    23: dict(step=1, time_limit=4.0, wall_budget=220),
+    29: dict(step=2, time_limit=3.0, wall_budget=150),
+    31: dict(step=2, time_limit=3.0, wall_budget=150),
 }
 
 
