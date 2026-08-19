@@ -49,6 +49,7 @@ def lift_index(X, Y):
 def is_pm1(u, v): return u == 0 or v == 0 or abs(u) == abs(v)
 lines_by_span = {}
 fam = {}
+rec13 = []
 seen = set()
 steps = [(i, j) for j in range(2, J0 + 1) for i in range(1, j) if gcd(i, j) == 1]
 for (i, j) in steps:
@@ -80,7 +81,8 @@ for (i, j) in steps:
                         g = gcd(abs(P3[0] - key[0][0]) if False else abs(key[2][0] - key[0][0]), abs(key[2][1] - key[0][1]))
                         span = g
                         good = (not cov[x1, d0, e0]) and (not cov[l2[0], l2[1], l2[2]]) and (not cov[l3[0], l3[1], l3[2]])
-                        lines_by_span.setdefault(span, []).append((key, good, j)); fam.setdefault((i, j), [0, 0]); fam[(i, j)][0] += 1; fam[(i, j)][1] += good
+                        lines_by_span.setdefault(span, []).append((key, good, j)); fam.setdefault((i, j), [0, 0])
+                        if (i, j) == (1, 3): rec13.append((us, vs, X, Y, d0, e0, l2[1], l2[2], l3[1], l3[2], int(not cov[x1, d0, e0]), int(not cov[l2[0], l2[1], l2[2]]), int(not cov[l3[0], l3[1], l3[2]]), u, x1, l2[0], l3[0])); fam[(i, j)][0] += 1; fam[(i, j)][1] += good
 costW4 = None
 # rich lines count L for cost: recompute L from residue profiles
 def rich_count(sig):
@@ -113,3 +115,11 @@ for Jc in sorted(set([3, 4, 5, 6, 8, J0])):
     for e in sorted(range(len(good)), key=lambda e: len(nbr[e])):
         if all(P not in used for P in good[e]): used.update(good[e]); m += 1
     print(f"  family j<={Jc}: good={len(good)} ({len(good)/p:.4f}p) pairs={pairs} ({pairs/p:.4f}p) |good|-pairs={(len(good)-pairs)/p:.4f}p  Caro-Wei={cw/p:.4f}p  greedy={m/p:.4f}p -> cost(greedy)={(costW4-m)/(2*p):.4f} N")
+
+if '--dump' in sys.argv:
+    cp_ = (f - t) % p; cm_ = (f + t) % p
+    thp = 1 - ((cp_ - y0 + x0) % p) / p; thm = ((cm_ - x0 - y0) % p) / p
+    out = f"slack/verification/cube_dump_p{p}_box{x0}_{y0}.npz"
+    np.savez_compressed(out, p=p, x0=x0, y0=y0, pos=pos / p, thp=thp, thm=thm, kp=kp, ap=ap, npl=npl, km=km, bm=bm, nmi=nmi,
+                        cov=cov, rec13=np.array(rec13, dtype=np.int64))
+    print("dumped", out, "lines(1,3):", len(rec13))
