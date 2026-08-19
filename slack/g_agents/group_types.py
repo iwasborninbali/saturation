@@ -118,6 +118,28 @@ def correlation(p, A_res, B_res):
     return pA, pB, pAB, pA * pB, contingency
 
 
+def verify_involution(p, roots_of):
+    """The map x -> (p-x)%p sends the class c to the class (p-c)%p (since (-x)^3 +- (-x) = -(x^3 +- x)
+    for both signs). For 3-root classes with c != 0 this pairs classes exactly (roots negate and swap
+    order, bits complement and reverse, so k -> 3-k); the unique fixed class c=0 has no partner and is
+    reported separately. Returns (#classes checked as an exact pair, list of any mismatches, roots of
+    the c=0 class). A clean run (no mismatches) is an exact, non-heuristic confirmation of the pairing
+    that forces n(k=1)=n(k=2) and n(k=0)=n(k=3) among the OTHER classes."""
+    mismatches = []
+    checked = 0
+    for c, roots in roots_of.items():
+        if len(roots) != 3 or c == 0:
+            continue
+        cp = (-c) % p
+        roots2 = roots_of.get(cp, [])
+        expected = sorted((p - x) % p for x in roots)
+        if list(roots2) != expected:
+            mismatches.append((c, cp, list(roots2), expected))
+        else:
+            checked += 1
+    return checked, mismatches, roots_of.get(0, [])
+
+
 def class_sizes_by_x(p, sign, roots_of):
     if sign == 1:
         return {x: len(roots_of[(x ** 3 + x) % p]) for x in range(p)}
@@ -155,6 +177,15 @@ def run(p, out):
         w("  full (b1,b2,b3) bit-tuple counts (root order = ascending x): " +
           ", ".join(f"{bt}:{bc.get(bt,0)}" for bt in
                      ((0,0,0),(0,0,1),(0,1,0),(1,0,0),(0,1,1),(1,0,1),(1,1,0),(1,1,1))))
+        checked, mism, c0roots = verify_involution(p, d['roots_of'])
+        n3 = nb.get(3, 0)
+        n3_excl_c0 = n3 - (1 if len(c0roots) == 3 else 0)
+        status = "OK (exact)" if not mism else f"MISMATCH x{len(mism)}"
+        c0info = f"c=0 has {len(c0roots)} root(s) {tuple(c0roots)}"
+        if len(c0roots) == 3:
+            c0info += (f", bits={tuple(bit_of(x, p, sign) for x in c0roots)}"
+                       f", k={sum(1 for x in c0roots if bit_of(x, p, sign) == 0)}")
+        w(f"  involution c<->-c check: {checked}/{n3_excl_c0} paired 3-root classes verified exact ({status}); {c0info}")
     # correlation between the two slopes at the same residue point x
     A_res = class_sizes_by_x(p, 1, slope_data[1]['roots_of'])
     B_res = class_sizes_by_x(p, -1, slope_data[-1]['roots_of'])
