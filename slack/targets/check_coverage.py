@@ -13,9 +13,15 @@ for f in files:
     for line in open(f):
         line=line.strip()
         if not line or line.startswith('#') or line=='ALLDONE': continue
-        m=re.match(r'^(\d+)\s+(\d+)\s+::\s+(OK|FAIL)\s*(.*)$', line)
-        if not m: fails.append(('UNPARSED',line[:80])); continue
-        a,b,st,rest=int(m.group(1)),int(m.group(2)),m.group(3),m.group(4)
+        m=re.match(r'^(\d+)\s+(\d+)\s+::\s+(OK|FAIL)\s+(.*)$', line)
+        if m:
+            a,b,st,rest=int(m.group(1)),int(m.group(2)),m.group(3),m.group(4)
+        else:
+            # legacy wrapper: "m0 m1 :: <text>"; treated as OK only if it carries a completion marker
+            m2=re.match(r'^(\d+)\s+(\d+)\s+::\s*(.*)$', line)
+            if not m2: fails.append(('UNPARSED',line[:80])); continue
+            a,b,rest=int(m2.group(1)),int(m2.group(2)),m2.group(3)
+            st='OK' if 'MAX=' in rest else 'FAIL'
         if st!='OK': fails.append(((a,b),rest[:60])); continue
         mm=re.search(r'MAX=(\d+)',rest)
         if not mm: fails.append(((a,b),'no MAX in OK line')); continue
