@@ -1,0 +1,3 @@
+  k=2 done (2 patterns)
+  k=3 done (6 patterns)
+  k=4 done (14 patterns)
