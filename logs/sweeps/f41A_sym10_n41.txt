@@ -2376,3 +2376,5 @@
 3,16;24,18;22,3 all n=41 sym=10: solutions=0 nodes=1540752 secs=14.13
 3,16;16,20;20,3 all n=41 sym=10: solutions=0 nodes=1354662 secs=10.23
 # done 2026-08-19T00:05:04Z books=0 exhausted=2365 dead=10 timeouts=0
+# resume 2026-08-19T01:45:01Z: todo 0
+# done 2026-08-19T01:45:01Z books=0 exhausted=2365 dead=11 timeouts=1
