@@ -1,0 +1,4 @@
+# sdp_lawful.py — level-1 Lasserre (moment matrix (n+1)²) vs cover LP vs exact maxima; box = HJSW; Wed Aug 19 03:21:36 AM UTC 2026
+p=11: n=80 lines>=3: 208  LP(all)=32.00 (3.200(p-1))  SDP1=32.00 (3.200(p-1))  exact=32 (3.200(p-1))  [39s]
+p=13: n=96 lines>=3: 230  LP(all)=44.80 (3.733(p-1))  SDP1=43.96 (3.664(p-1))  exact=40 (3.333(p-1))  [140s]
+p=17: n=128 lines>=3: 422  LP(all)=60.15 (3.760(p-1))  SDP1=59.64 (3.727(p-1))  exact=54 (3.375(p-1))  [539s]
