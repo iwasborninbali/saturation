@@ -88,9 +88,10 @@ two edges at it), Theorem~\ref{thm:seven} the case of a $(3,7,5,1)$ vertex ($\be
 (b) Numerically (\texttt{slack/t221/}, all primes $200\le p\le1400$): the saving $|B_\varrho|/2-\beta(B_\varrho)$ depends only on the type of the run
 (no exception among the several hundred blocks tested), and $\sum_\varrho(|B_\varrho|/2-\beta(B_\varrho))=0.5587\,p$ on average over
 $401\le p\le1103$, in agreement with Corollary~\ref{cor:blockconst}; truncating to runs of length $\le L_0$ gives
-$3.595$ for $L_0=5$, $3.480$ for $L_0=7$ and $3.452$ for $L_0=10$.  The bound~\eqref{eq:blocks} is \emph{below} the value of the linear relaxation with all these
-lines ($3.4286$ vs $3.4286$ at $p=113$, $3.3824$ vs $3.3873$ at $p=137$, $3.4343$ vs $3.4545$ at $p=199$, $3.4100$ vs $3.4300$ at $p=401$),
-because $\beta$ is an integer maximum inside each block.
+$3.595$ for $L_0=5$, $3.480$ for $L_0=7$ and $3.452$ for $L_0=10$.  At a given prime the bound~\eqref{eq:blocks} is at most the value of the linear relaxation with
+all these lines, and strictly below it when integrality bites inside a block ($3.4286$ vs $3.4286$ at $p=113$, $3.3824$ vs $3.3873$ at
+$p=137$, $3.4343$ vs $3.4545$ at $p=199$, $3.4100$ vs $3.4300$ at $p=401$); the \emph{proved} constant $3.462$ of
+Corollary~\ref{cor:blockconst} is larger than the numerical value $3.4413$ of the same certificate only because of the truncation at $K=8$.
 (c) The decomposition explains the plateau of Section~\ref{sec:beyond}: no certificate built from rows, columns and slope-$(\pm1)$ lines can
 give less than $\sum_\varrho\beta(B_\varrho)$, and this is $\approx3.44(p-1)$, far above the computed maxima $3(p-1)+O(1)$.  The remaining
 gap is carried by the three-point lines of the other slopes, which are invisible to the block decomposition.

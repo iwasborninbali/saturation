@@ -419,10 +419,15 @@ pattern — e.g. at p=13 t=3 the holes are classes {4,9,12} and the added H2 poi
 exchange is not simply "delete class a's H1 lift, add class a's H2 lift in the same column" (which the column
 constraint alone would allow, see below), it is genuinely a multi-line, multi-class rebalancing. The
 column-local mechanism (a class's column already has both its H1 lifts, i.e. is "full"; deleting one frees
-exactly that column for the sibling H2 lift of the *same* class, since H1 and H2 of one residue class a share
-their two columns by construction) **does occur** — e.g. p=17 t=3's hole (8,1,0) directly frees added point
-(8,1,1) via the line `[[8,1,0],[8,1,1]]`, a same-column pair — but it is one mechanism among several, not the
-dominant one; most critical lines broken are cross-class lines of general slope.
+that column for the sibling H2 lift of the *same* class, since H1 and H2 of one residue class a share their two
+columns by construction) **does occur** — e.g. at p=17, t=3, the column at class 8, r=1 holds both H1 lifts
+(8,1,0) and (8,1,1) in M; both are removed as holes, and the resulting empty column directly frees the added
+H2 point carrying the *same* label (8,1,1) — a same-class, same-column point of the *other* hyperbola, via the
+single critical line `[[8,1,0], [8,1,1]]` (both endpoints H1). (Labels (a,r,s) are shared between H1 and H2 —
+each hyperbola has its own point at every label — so a hole and an added point can carry an identical (a,r,s)
+tuple while being two different points on two different curves; context, "holes" vs "added_h2", disambiguates.)
+This column mechanism is one among several, not the dominant one; most critical lines broken are cross-class
+lines of general slope.
 
 ## 7. Honest accounting: what is proven, what is found, and why p=23 is 1 short
 
@@ -458,8 +463,9 @@ the *true* f(t) is known to fall below t.
 
 **Where the gain concentrates is prime-dependent and not simply "near 1.5(p−1)".** p=19's plateau (t=23..26) is
 almost exactly centered on 3(p−1)/2 = 27 (offset by the −C/2 shift of §5's symmetry center, (3(p−1)−C)/2 =
-24.5). p=11's plateau (t=5..23) is wide and centered at 14 ≈ 1.5(p−1)/... well, at (3(p−1)−C)/2 = 14 — again
-matching the symmetry center exactly, not the naive 1.5(p−1)=15, though close. p=17 is qualitatively different:
+24.5). p=11's gain-2 points span t=5 to t=23 (with occasional dips to gain 1 inside that span, e.g. t=7,13,15,21
+— the exact-envelope shape, not a solid block), centered at (3(p−1)−C)/2 = 14 — again matching the symmetry
+center exactly, close to but not identical with the naive 1.5(p−1)=15. p=17 is qualitatively different:
 **two disjoint plateaus** (t=9..15 and t=27..33), mirror images of each other under §5's symmetry, not one
 "balanced middle" — so "where is the gain concentrated" does not have a single universal answer; it is exactly
 the C(p)-shifted mirror-symmetric set forced by the H1↔H2 reflection, which can be unimodal or bimodal
