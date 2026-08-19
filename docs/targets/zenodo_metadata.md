@@ -1,3 +1,11 @@
+# ОПУБЛИКОВАНО 2026-08-20
+
+* **DOI версии:** 10.5281/zenodo.22019280
+* **Concept DOI (всегда последняя версия):** 10.5281/zenodo.22019279
+* Запись: https://zenodo.org/record/22019280
+
+---
+
 # Метаданные записи Zenodo (заполнить при загрузке)
 
 **Title:** Certified exact values for the no-three-in-line problem in the three-dimensional grid

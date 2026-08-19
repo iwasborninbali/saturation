@@ -10,7 +10,8 @@
 %C A000000 An anomaly at n = 5: the profile 10,6,8,6,10 is infeasible even though its total is only 40, when prescribed along any single axis. Hence at n = 5 two outer layers cannot both attain the planar maximum 2n at any total, and the optimum is forced onto the uniform profile. At n = 7 the profile 14,12,12,12,12,12,14 (total 88) is likewise infeasible, while at n = 6 the analogous profile is realisable. The mechanism is not known.
 %e A000000 a(2) = 8: all eight points of the 2 X 2 X 2 cube may be taken, since no line contains three points of that grid.
 %H A000000 A. Por, D. R. Wood, <a href="https://doi.org/10.1007/s00453-006-0158-9">No-Three-in-Line-in-3D</a>, Algorithmica 47 (2007), 481-488.
-%H A000000 Repository with programs, journals, witnesses and certificates: https://github.com/iwasborninbali/saturation
+%H A000000 Aleksei Kudriashov, <a href="https://doi.org/10.5281/zenodo.22019279">Certified exact values for the no-three-in-line problem in the three-dimensional grid</a>, Zenodo, 2026; doi:10.5281/zenodo.22019279 (programs, journals, witnesses, manifests and a verification protocol).
+%H A000000 Repository with the full history: https://github.com/iwasborninbali/saturation
 %H A000000 Protocol for independent verification: docs/VERIFICATION.md in the repository above.
 %Y A000000 Cf. A000769 (the two-dimensional problem), A280537 (no four coplanar in the same grid), A157882.
 %K A000000 nonn,more,hard
@@ -23,4 +24,5 @@
 #   UNSAT даёт сертификат DRAT, проверяемый drat-trim; большие экземпляры разбиты по столбцам,
 #   полнота разбиения следует из того, что три точки столбца коллинеарны.
 # Значения a(5)=40 и a(6)=64 получены 2026-08-20; сверка в logs/no3_3d/FINAL_VERDICT.txt.
-# ПЕРЕД ОТПРАВКОЙ: вставить DOI записи Zenodo в %H.
+# DOI вставлен: версия 10.5281/zenodo.22019280, concept 10.5281/zenodo.22019279 (concept всегда ведёт на последнюю версию).
+# ОСТАЛОСЬ: дождаться одобрения аккаунта OEIS и отправить.
