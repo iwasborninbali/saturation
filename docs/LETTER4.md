@@ -23,3 +23,12 @@ none in the V2-base part); the corresponding sweep for n = 41 is still running (
 With best regards,
 Aleksei Kudriashov (Alex Komang)
 ```
+
+## Ответ Ахима (получен 2026-08-19 21:39 WITA; письмо от 19.08.2026 15:32 +0200)
+Тема: «Your 9 new solutions are published on the no-three-in-line web-page».
+1. НОВАЯ КОНФИГУРАЦИЯ ОПУБЛИКОВАНА. Уточнил кодировку: стандартная запись имеет 2n+1 символов (плюс разделитель — 2n+2),
+   так что файл из решений фиксированного размера n позволяет считать их число по объёму файла.
+2. ЗАМЕЧАНИЕ ПО ПЕРЕПИСКЕ (дословно): «Why do you always tell me many redundant things. Be sure, I always check the solutions
+   I get sent in! :-/» — то есть наши письма для него ИЗБЫТОЧНЫ. ВЫВОД НА БУДУЩЕЕ: писать Ахиму МИНИМАЛЬНО — только строка
+   кодировки и одна фраза «n = …, half-turn symmetric, new». Никаких пересказов метода, проверок, контекста и благодарностей.
+   Отвечать на это письмо НЕ НУЖНО (ответ был бы ещё одним избыточным сообщением).
