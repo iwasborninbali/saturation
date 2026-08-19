@@ -41,10 +41,14 @@ def solve(blocked):
     return None, el, sol.StatusName(st)
 S1, el1, st1 = solve([])
 if S1 is None: print(f"n={n} M={M}: no solution at all ({st1}, {el1:.0f}s)"); sys.exit()
-print(f"n={n} M={M} shuffle={shuffle}: first solution found in {el1:.0f}s; blocking all {len(images(S1))} cube images...", flush=True)
-S2, el2, st2 = solve(images(S1))
+imgs = images(S1)
+print(f"n={n} M={M} shuffle={shuffle}: first solution found in {el1:.0f}s; the configuration has {len(imgs)} distinct images under the 48 symmetries (stabiliser of order {48//len(imgs)}); blocking all of them...", flush=True)
+S2, el2, st2 = solve(imgs)
 if S2 is None:
-    print(f"  second solution: {st2} in {el2:.0f}s  ->  THE OPTIMUM IS UNIQUE UP TO THE 48 CUBE SYMMETRIES")
+    if st2 == 'INFEASIBLE':
+        print(f"  second solution: INFEASIBLE in {el2:.0f}s  ->  THE OPTIMUM IS UNIQUE UP TO THE 48 CUBE SYMMETRIES")
+    else:
+        print(f"  second solution: {st2} in {el2:.0f}s  ->  NOT DECIDED (a timeout is NOT a proof of uniqueness)")
 else:
     def canon(P):
         return min(tuple(sorted(Q)) for Q in images(P))
