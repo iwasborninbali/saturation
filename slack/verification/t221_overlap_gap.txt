@@ -1,0 +1,16 @@
+p=11 one-hyperbola max target=30: distinct solutions=9 overlaps min=28 med=29 max=29 (normalised 0.93..0.97)
+    histogram: 28:18 29:18
+p=13 one-hyperbola max target=36: distinct solutions=39 overlaps min=32 med=33 max=35 (normalised 0.89..0.97)
+    histogram: 32:152 33:296 34:215 35:78
+p=17 one-hyperbola max target=48: distinct solutions=46 overlaps min=44 med=45 max=47 (normalised 0.92..0.98)
+    histogram: 44:207 45:399 46:321 47:108
+p=11 pair (alpha-0) target=32: distinct solutions=30 overlaps min=2 med=14 max=31 (normalised 0.06..0.97)
+    histogram: 2:1 4:1 6:13 8:12 9:7 10:44 11:37 12:32 13:70 14:33 15:27 16:32 17:13 18:21 19:16 20:25 21:6 22:12 23:16 24:7 25:2 30:1 31:7
+p=11 pair (alpha-1) target=31: distinct solutions=60 overlaps min=2 med=14 max=27 (normalised 0.06..0.87)
+    histogram: 2:2 3:2 4:4 5:8 6:18 7:31 8:49 9:76 10:127 11:155 12:179 13:187 14:221 15:184 16:147 17:116 18:98 19:63 20:42 21:20 22:15 23:13 24:6 25:3
+p=11 pair (alpha-2) target=30: distinct solutions=60 overlaps min=3 med=12 max=25 (normalised 0.10..0.83)
+    histogram: 3:2 4:3 5:14 6:22 7:39 8:93 9:100 10:170 11:230 12:228 13:225 14:198 15:135 16:105 17:92 18:53 19:29 20:13 21:11 22:3 23:2 24:1 25:2
+p=13 pair (alpha-0) target=40: distinct solutions=8 overlaps min=0 med=16 max=38 (normalised 0.00..0.95)
+    histogram: 0:1 8:3 10:4 12:2 14:4 16:2 20:2 22:4 36:2 38:4
+p=13 pair (alpha-1) target=39: distinct solutions=59 overlaps min=3 med=17 max=37 (normalised 0.08..0.95)
+    histogram: 3:2 4:2 5:6 6:10 7:7 8:18 9:39 10:55 11:47 12:81 13:85 14:109 15:141 16:147 17:132 18:131 19:122 20:115 21:92 22:82 23:83 24:55 25:36 26:34
