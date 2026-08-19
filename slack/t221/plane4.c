@@ -43,7 +43,7 @@ static int gcd3(int a,int b,int c){return gcd2(gcd2(a,b),c);}
    Причина — пойманная ошибка: нормаль есть векторное произведение разностей, её координаты
    доходят до 2(n-1)^2, и ограничение |a|,|b|,|c| <= n-1 теряло плоскости (например 6x-3y-4z=0
    при n=4).  Перебор троек не может потерять ни одной плоскости по построению. */
-#define HB 22
+static int HB=22;
 static int *htab; static int *hkey_a,*hkey_b,*hkey_c,*hkey_d;
 static int hn;
 static int plane_id(int a,int b,int c,int d){
@@ -57,11 +57,14 @@ static int plane_id(int a,int b,int c,int d){
   htab[h]=hn; hkey_a[hn]=a;hkey_b[hn]=b;hkey_c[hn]=c;hkey_d[hn]=d; return hn++;
 }
 static void build_planes(void){
-  int MAXP=1<<21;
-  htab=malloc(sizeof(int)*(1<<HB)); for(int i=0;i<(1<<HB);i++)htab[i]=-1;
+  long long tri=(long long)NC*(NC-1)*(NC-2)/6;      /* верхняя граница числа различных плоскостей */
+  long long MAXP=tri+16;
+  HB=1; while((1LL<<HB) < 4*MAXP) HB++;               /* заполнение таблицы <= 25% */
+  fprintf(stderr,"  троек %lld, таблица 2^%d\n",tri,HB);
+  htab=malloc(sizeof(int)*(1LL<<HB)); for(long long i=0;i<(1LL<<HB);i++)htab[i]=-1;
   hkey_a=malloc(sizeof(int)*MAXP);hkey_b=malloc(sizeof(int)*MAXP);
   hkey_c=malloc(sizeof(int)*MAXP);hkey_d=malloc(sizeof(int)*MAXP); hn=0;
-  int *cntpts=calloc(MAXP,sizeof(int));
+
   int X[MAXC],Y[MAXC],Z[MAXC];
   for(int i=0;i<NC;i++){X[i]=i/(N*N);Y[i]=(i/N)%N;Z[i]=i%N;}
   /* первый проход: какие плоскости вообще возникают */
@@ -72,7 +75,7 @@ static void build_planes(void){
     if(!a&&!b&&!c) continue;                 /* три точки коллинеарны — плоскость не определена */
     int d=a*X[i]+b*Y[i]+c*Z[i];
     int id=plane_id(a,b,c,d);
-    if(id<MAXP) cntpts[id]=1;
+    (void)id;
   }
   /* второй проход: маски и отбор плоскостей с >= 4 узлами */
   pmask=malloc(sizeof(BS)*hn); int cnt=0;
@@ -82,7 +85,8 @@ static void build_planes(void){
     for(int i=0;i<NC;i++) if(hkey_a[p]*X[i]+hkey_b[p]*Y[i]+hkey_c[p]*Z[i]==hkey_d[p]){bs_set(&m,i);k++;}
     if(k>=4){ pmask[cnt]=m; keep[cnt]=p; cnt++; }
   }
-  nplanes=cnt; free(keep); free(cntpts);
+  nplanes=cnt; free(keep);
+  fprintf(stderr,"  различных плоскостей %d, из них с >=4 узлами %d\n",hn,nplanes);
   cell_pl_n=calloc(NC,sizeof(int));
   for(int p=0;p<nplanes;p++)for(int i=0;i<NC;i++) if(bs_get(&pmask[p],i)) cell_pl_n[i]++;
   cell_pl=malloc(sizeof(int*)*NC);
@@ -97,6 +101,13 @@ static void build_planes(void){
 static int best, sel[MAXC], nsel, bestsel[MAXC], nbest;
 static long long nodes;
 static int estimate_dives=0; static double est_total=0;
+/* СТРАТИФИЦИРОВАННЫЙ ОЦЕНЩИК.  Чистая оценка Кнута несмещена, но на нашем дереве её среднее
+   определялось ОДНИМ спуском из двадцати тысяч (89 % суммы при n=6) — это не измерение.
+   Лечение стандартное: верх дерева до глубины strata_depth разворачивается ТОЧНО, а случайные
+   спуски стартуют только из узлов этого уровня.  Наверху, где ветвление самое неравномерное,
+   выбор больше не случаен, и дисперсия падает на порядки. */
+static int strata_depth=0, strata_dives=0;
+static double strat_total=0; static long long strat_exact=0, strat_frontier=0;
 static unsigned long long rngs=88172645463325252ULL;
 static inline unsigned long long rnd(void){rngs^=rngs<<13;rngs^=rngs>>7;rngs^=rngs<<17;return rngs;}
 
@@ -111,9 +122,40 @@ static int add_point(int i, BS *forb){
 }
 static void del_point(int i){ for(int t=0;t<cell_pl_n[i];t++) pcnt[cell_pl[i][t]]--; }
 
+static void dive(int start, BS forb, double weight){
+  est_total += weight;                       /* этот узел */
+  { int layer=start/(N*N), used=0;
+    for(int k=0;k<nsel;k++) if(sel[k]/(N*N)==layer) used++;
+    if(nsel + (3-used) + 3*(N-1-layer) <= best) return; }
+  int cand[MAXC], nc=0;
+  for(int i=start;i<NC;i++) if(!bs_get(&forb,i)) cand[nc++]=i;
+  int live=0, pick=-1;
+  for(int t=0;t<nc;t++){
+    int i=cand[t];
+    { int lay=i/(N*N), uil=0; for(int k=0;k<nsel;k++) if(sel[k]/(N*N)==lay) uil++;
+      if(nsel + (3-uil) + 3*(N-1-lay) <= best) continue; }
+    BS f2=forb; if(!add_point(i,&f2)) continue;
+    live++; if(rnd()%live==0) pick=i; del_point(i);
+  }
+  if(!live||pick<0) return;
+  BS f2=forb; add_point(pick,&f2); sel[nsel++]=pick;
+  dive(pick+1,f2,weight*live);
+  nsel--; del_point(pick);
+}
+
 /* перебор по слоям z-столбца: обходим ячейки в порядке индекса, но границу берём по слоям x */
+static void dive(int start, BS forb, double weight);   /* forward */
+
 static void dfs(int start, BS forb, int depth, double weight){
   nodes++;
+  if(strata_depth && depth==strata_depth){
+    strat_frontier++;
+    double s=0; int old=nsel;
+    for(int d=0;d<strata_dives;d++){ est_total=0; nsel=old; dive(start,forb,1.0); s+=est_total; }
+    strat_total += s/strata_dives;
+    nsel=old; return;
+  }
+  if(strata_depth) strat_exact++;
   if(nsel>best){ best=nsel; nbest=nsel; memcpy(bestsel,sel,sizeof(int)*nsel); }
   /* граница: в каждом слое x=const не более 3 точек */
   int layer = start/(N*N);
@@ -127,7 +169,10 @@ static void dfs(int start, BS forb, int depth, double weight){
   if(estimate_dives){                        /* оценщик Кнута: один случайный ребёнок */
     int live=0, pick=-1;
     for(int t=0;t<nc;t++){
-      int i=cand[t]; BS f2=forb;
+      int i=cand[t];
+      { int lay=i/(N*N), uil=0; for(int k=0;k<nsel;k++) if(sel[k]/(N*N)==lay) uil++;
+        if(nsel + (3-uil) + 3*(N-1-lay) <= best) continue; }   /* то же отсечение, что в полном переборе */
+      BS f2=forb;
       if(!add_point(i,&f2)) continue;
       live++; if(rnd()%live==0) pick=i;
       del_point(i);
@@ -158,10 +203,22 @@ int main(int argc,char**argv){
   const char*e=getenv("ESTIMATE"); if(e) estimate_dives=atoi(e);
   build_planes();
   fprintf(stderr,"n=%d: ячеек %d, богатых плоскостей %d\n",N,NC,nplanes);
+  { const char*sd=getenv("STRATA"), *dv=getenv("DIVES");
+    if(sd){ strata_depth=atoi(sd); strata_dives=dv?atoi(dv):200;
+      BS f; bs_zero(&f); nsel=0; nodes=0; strat_total=0; strat_exact=0; strat_frontier=0;
+      dfs(0,f,0,1.0);
+      printf("n=%d СТРАТИФИЦИРОВАННАЯ ОЦЕНКА: глубина страты %d, спусков на узел %d\n",N,strata_depth,strata_dives);
+      printf("   точных узлов выше страты %lld, узлов на границе страты %lld\n",strat_exact,strat_frontier);
+      printf("   ОЦЕНКА ВСЕГО УЗЛОВ ~ %.4g\n", (double)strat_exact + (double)strat_frontier + strat_total);
+      return 0; } }
   if(estimate_dives){
-    double sum=0;
-    for(int d=0;d<estimate_dives;d++){ est_total=1; BS f; bs_zero(&f); nsel=0; dfs(0,f,0,1.0); sum+=est_total; }
-    printf("n=%d ESTIMATE dives=%d  среднее число узлов ~ %.4g\n",N,estimate_dives,sum/estimate_dives);
+    double *v=malloc(sizeof(double)*estimate_dives), sum=0;
+    for(int d=0;d<estimate_dives;d++){ est_total=1; BS f; bs_zero(&f); nsel=0; dfs(0,f,0,1.0); v[d]=est_total; sum+=est_total; }
+    for(int a=0;a<estimate_dives;a++)for(int b=a+1;b<estimate_dives;b++) if(v[b]<v[a]){double t=v[a];v[a]=v[b];v[b]=t;}
+    double mean=sum/estimate_dives;
+    printf("n=%d ESTIMATE dives=%d  среднее %.4g  медиана %.4g  p90 %.4g  max %.4g  доля max в сумме %.1f%%\n",
+      N,estimate_dives,mean,v[estimate_dives/2],v[(int)(estimate_dives*0.9)],v[estimate_dives-1],
+      100.0*v[estimate_dives-1]/sum);
     return 0;
   }
   BS f; bs_zero(&f); nsel=0; nodes=0;

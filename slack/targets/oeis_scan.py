@@ -26,16 +26,27 @@ import json, re, subprocess, sys, time
 
 UA = "Mozilla/5.0"          # oeis.org отдаёт 403 стандартным клиентам; проверенный обходной путь
 QUERIES = [
-    "keyword:more keyword:hard keyword:nonn",
-    "keyword:more keyword:nice keyword:nonn",
-    "keyword:more keyword:hard keyword:tabl",
-    "keyword:more maximum number of points",
-    "keyword:more maximal number",
-    "keyword:more minimum number of",
-    "keyword:more largest subset",
-    "keyword:more no three",
-    "keyword:more general position",
-    "keyword:more asymptotically",
+    # ключевые слова: полнота охвата важнее точности — отсев делает ранжирование
+    "keyword:more keyword:hard keyword:nonn", "keyword:more keyword:nice keyword:nonn",
+    "keyword:more keyword:hard keyword:tabl", "keyword:hard keyword:nice keyword:nonn",
+    # формулировки комбинаторных экстремумов
+    "keyword:more maximum number of points", "keyword:more maximal number",
+    "keyword:more minimum number of", "keyword:more largest subset",
+    "keyword:more smallest number of", "keyword:more greatest number of",
+    "keyword:more maximum size of", "keyword:more largest set of",
+    # геометрия на решётках и в кубах — наш профиль
+    "keyword:more no three", "keyword:more no four", "keyword:more general position",
+    "keyword:more grid points", "keyword:more lattice points no",
+    "keyword:more n X n X n grid", "keyword:more points in the plane",
+    "keyword:more collinear", "keyword:more coplanar", "keyword:more convex position",
+    # графы, гиперкубы, коды
+    "keyword:more induced subgraph maximum", "keyword:more hypercube subset",
+    "keyword:more binary code maximum", "keyword:more cap set", "keyword:more sidon set",
+    "keyword:more nonattacking", "keyword:more packing in", "keyword:more covering code",
+    # прямые маркеры жанра 1
+    "keyword:more exhaustive search", "keyword:more found by exhaustive",
+    "keyword:more conjectured value", "keyword:more based on numerical evidence",
+    "keyword:more asymptotically", "keyword:more upper bound is known",
 ]
 ASYMPTOTIC = re.compile(r"asymptot|Theta\(|O\(n|grows (?:like|as)|~\s*[cC]?\s*n|conjectur|upper bound|lower bound|order of magnitude", re.I)
 COMBINATORIAL = re.compile(r"maxim(?:um|al)|minim(?:um|al)|largest|smallest number of|number of ways|greatest number", re.I)
