@@ -48,17 +48,25 @@ def lines(n):
         if len(m) >= 3: out.append(m)
     return len(cells), out
 
-def build(n, M, path, sym=False, profile=None):
+def build(n, M, path, sym=False, profile=None, axes=(0,1,2)):
     """profile: список из n чисел — сколько точек в каждом слое, перпендикулярном ВСЕМ трём осям.
        Структурная форма задачи: она несравненно легче общей, потому что кардинальность
        распадается на n маленьких ограничений вместо одного большого. Именно так первый солвер
-       нашёл конфигурацию на 64 точки при n=6 за восемь секунд."""
+       нашёл конфигурацию на 64 точки при n=6 за восемь секунд.
+
+       axes: по каким осям навязывать профиль. ЭТО СУЩЕСТВЕННО ДЛЯ ТОЛКОВАНИЯ ОТВЕТА.
+         * SAT при любом наборе осей -> конфигурация существует -> законная НИЖНЯЯ граница.
+         * UNSAT при ОДНОЙ оси -> ни одна конфигурация с таким распределением по этой оси
+           не существует. Сильное утверждение.
+         * UNSAT при трёх осях -> не существует конфигурации с таким СИММЕТРИЧНЫМ профилем.
+           Это НЕ означает, что нет конфигурации с тем же числом точек: профиль по разным осям
+           может различаться. Слабое утверждение, и путать их нельзя."""
     nc, ln = lines(n)
     F = CNF(nc); x = lambda i: i + 1
     for m in ln: F.atmost([x(i) for i in m], 2)
     if profile:
         assert len(profile) == n and sum(profile) == M, "профиль не согласован с M"
-        for axis in range(3):
+        for axis in axes:
             for t in range(n):
                 cells = [x(i) for i in range(nc)
                          if (i//(n*n) if axis==0 else (i//n)%n if axis==1 else i%n) == t]
@@ -75,4 +83,6 @@ if __name__ == "__main__":
     prof = None
     if "--profile" in sys.argv:
         prof = [int(t) for t in sys.argv[sys.argv.index("--profile")+1].split(",")]
-    build(int(sys.argv[1]), int(sys.argv[2]), sys.argv[3], sym=("--sym" in sys.argv), profile=prof)
+    ax = (0,1,2)
+    if "--axes" in sys.argv: ax = tuple(int(t) for t in sys.argv[sys.argv.index("--axes")+1].split(","))
+    build(int(sys.argv[1]), int(sys.argv[2]), sys.argv[3], sym=("--sym" in sys.argv), profile=prof, axes=ax)
