@@ -1,0 +1,4 @@
+1 5 :: OK n=5  MAX=40  nodes=201269379246  lines=625
+1 17 :: OK n=5  MAX=40  nodes=217522863704  lines=625
+1 3 :: OK n=5  MAX=40  nodes=219153961804  lines=625
+1 6 :: OK n=5  MAX=40  nodes=285169551317  lines=625

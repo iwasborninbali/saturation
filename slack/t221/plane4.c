@@ -99,6 +99,11 @@ static void build_planes(void){
 
 /* ---- перебор ---- */
 static int best, sel[MAXC], nsel, bestsel[MAXC], nbest;
+/* ГРАНИЦА ПО ТРЁМ НАПРАВЛЕНИЯМ.  Слой, перпендикулярный ЛЮБОЙ из трёх осей, сам является
+   плоскостью, поэтому в нём не более трёх точек — а прежняя версия пользовалась только осью x.
+   Для 19 точек в [7]^3 это означает, что почти каждый слой в каждом направлении обязан быть полным;
+   ограничение крайне жёсткое, и игнорировать две трети его — терять порядки. */
+static int cx[MAXN], cy[MAXN], cz[MAXN];
 static long long nodes;
 static int estimate_dives=0; static double est_total=0;
 /* СТРАТИФИЦИРОВАННЫЙ ОЦЕНЩИК.  Чистая оценка Кнута несмещена, но на нашем дереве её среднее
@@ -113,27 +118,28 @@ static inline unsigned long long rnd(void){rngs^=rngs<<13;rngs^=rngs>>7;rngs^=rn
 
 /* добавить точку i: вернуть 0, если нарушена ёмкость */
 static int add_point(int i, BS *forb){
+  cx[i/(N*N)]++; cy[(i/N)%N]++; cz[i%N]++;
   for(int t=0;t<cell_pl_n[i];t++){
     int p=cell_pl[i][t];
     if(++pcnt[p]==3) bs_or(forb,&pmask[p]);
-    else if(pcnt[p]>3){ for(int u=0;u<=t;u++) pcnt[cell_pl[i][u]]--; return 0; }
+    else if(pcnt[p]>3){ for(int u=0;u<=t;u++) pcnt[cell_pl[i][u]]--; cx[i/(N*N)]--; cy[(i/N)%N]--; cz[i%N]--; return 0; }
   }
   return 1;
 }
-static void del_point(int i){ for(int t=0;t<cell_pl_n[i];t++) pcnt[cell_pl[i][t]]--; }
+static void del_point(int i){ cx[i/(N*N)]--; cy[(i/N)%N]--; cz[i%N]--; for(int t=0;t<cell_pl_n[i];t++) pcnt[cell_pl[i][t]]--; }
 
 static void dive(int start, BS forb, double weight){
   est_total += weight;                       /* этот узел */
-  { int layer=start/(N*N), used=0;
-    for(int k=0;k<nsel;k++) if(sel[k]/(N*N)==layer) used++;
-    if(nsel + (3-used) + 3*(N-1-layer) <= best) return; }
-  int cand[MAXC], nc=0;
-  for(int i=start;i<NC;i++) if(!bs_get(&forb,i)) cand[nc++]=i;
+  int cand[MAXC], nc=0; int fx[MAXN]={0}, fy[MAXN]={0}, fz[MAXN]={0};
+  for(int i=start;i<NC;i++) if(!bs_get(&forb,i)){ cand[nc++]=i; fx[i/(N*N)]++; fy[(i/N)%N]++; fz[i%N]++; }
+  { int bx=0,by=0,bz=0;
+    for(int t=0;t<N;t++){ int rx=3-cx[t],ry=3-cy[t],rz=3-cz[t];
+      bx+=(fx[t]<rx?fx[t]:rx); by+=(fy[t]<ry?fy[t]:ry); bz+=(fz[t]<rz?fz[t]:rz); }
+    if(nsel + (bx<by?(bx<bz?bx:bz):(by<bz?by:bz)) <= best) return; }
   int live=0, pick=-1;
   for(int t=0;t<nc;t++){
     int i=cand[t];
-    { int lay=i/(N*N), uil=0; for(int k=0;k<nsel;k++) if(sel[k]/(N*N)==lay) uil++;
-      if(nsel + (3-uil) + 3*(N-1-lay) <= best) continue; }
+    if(cx[i/(N*N)]>=3 || cy[(i/N)%N]>=3 || cz[i%N]>=3) continue;
     BS f2=forb; if(!add_point(i,&f2)) continue;
     live++; if(rnd()%live==0) pick=i; del_point(i);
   }
@@ -160,12 +166,18 @@ static void dfs(int start, BS forb, int depth, double weight){
   /* граница: в каждом слое x=const не более 3 точек */
   int layer = start/(N*N);
   int bound = nsel + 3*(N-layer) - (nsel - 0);   /* заполняется ниже точнее */
-  { int used_in_layer=0; for(int k=0;k<nsel;k++) if(sel[k]/(N*N)==layer) used_in_layer++;
-    bound = nsel + (3-used_in_layer) + 3*(N-1-layer); }
-  if(bound<=best) return;
-
   int cand[MAXC], nc=0;
-  for(int i=start;i<NC;i++) if(!bs_get(&forb,i)) cand[nc++]=i;
+  int fx[MAXN]={0}, fy[MAXN]={0}, fz[MAXN]={0};
+  for(int i=start;i<NC;i++) if(!bs_get(&forb,i)){
+    cand[nc++]=i; fx[i/(N*N)]++; fy[(i/N)%N]++; fz[i%N]++; }
+  /* в каждом слое можно взять не более min(остаток ёмкости, число ещё свободных клеток слоя) */
+  { int bx=0,by=0,bz=0;
+    for(int t=0;t<N;t++){
+      int rx=3-cx[t], ry=3-cy[t], rz=3-cz[t];
+      bx += (fx[t]<rx?fx[t]:rx); by += (fy[t]<ry?fy[t]:ry); bz += (fz[t]<rz?fz[t]:rz); }
+    bound = nsel + (bx<by ? (bx<bz?bx:bz) : (by<bz?by:bz)); }
+  (void)layer;
+  if(bound<=best) return;
   if(estimate_dives){                        /* оценщик Кнута: один случайный ребёнок */
     int live=0, pick=-1;
     for(int t=0;t<nc;t++){
@@ -187,8 +199,7 @@ static void dfs(int start, BS forb, int depth, double weight){
   for(int t=0;t<nc;t++){
     int i=cand[t];
     /* граница на остаток: сколько ещё можно добавить с позиции i */
-    { int lay=i/(N*N), uil=0; for(int k=0;k<nsel;k++) if(sel[k]/(N*N)==lay) uil++;
-      if(nsel + (3-uil) + 3*(N-1-lay) <= best) continue; }
+    if(cx[i/(N*N)]>=3 || cy[(i/N)%N]>=3 || cz[i%N]>=3) continue;   /* слой уже полон */
     BS f2=forb;
     if(!add_point(i,&f2)) continue;
     sel[nsel++]=i;
