@@ -247,7 +247,8 @@ def gate_density_threshold(problem: str, n: int, M: int, kind: str = "дроби
     return float(rec[fld])
 
 
-def gate_fleet_accounted(project: str = "loyobondar-prod", expect_prefix: str = "sat") -> list:
+def gate_fleet_accounted(project: str = "loyobondar-prod", expect_prefix: str = "sat",
+                         min_age_s: int = 300) -> list:
     """Ловушка 16 (2026-08-21). Машина, о которой никто не помнит, тикает деньгами и не видна
     ни в одном отчёте. За одну ночь разведки было создано и брошено больше десятка проб.
 
@@ -258,7 +259,8 @@ def gate_fleet_accounted(project: str = "loyobondar-prod", expect_prefix: str = 
     try:
         out = subprocess.run(
             ["gcloud", "compute", "instances", "list", "--project", project,
-             "--format", "value(name,zone,machineType.basename(),status,scheduling.maxRunDuration.seconds)"],
+             "--format", "value(name,zone,machineType.basename(),status,"
+             "scheduling.maxRunDuration.seconds,creationTimestamp)"],
             capture_output=True, text=True, timeout=90)
     except Exception as e:
         _refuse(f"не удалось перечислить машины проекта {project}: {e}. "
@@ -275,7 +277,21 @@ def gate_fleet_accounted(project: str = "loyobondar-prod", expect_prefix: str = 
         if name.startswith(expect_prefix) and ttl:
             continue                      # рабочая машина со сроком — в порядке
         if name.startswith(("probe", "pw")):
-            suspicious.append(f"{name} (ЗАБЫТАЯ ПРОБА)")
+            # ПОРОГ ПО ВОЗРАСТУ. Разведчик создаёт пробу и сносит её за секунды; поймать её
+            # в этот миг и назвать забытой — ЛОЖНАЯ ТРЕВОГА, и я её получил на первом же
+            # запуске сторожа. Детектор тревоги ошибается в сторону тревоги — правило,
+            # записанное мной за час до того, как я на нём попался.
+            age = None
+            if len(f) > 5:
+                try:
+                    import datetime as _dt
+                    t = _dt.datetime.fromisoformat(f[5].replace("Z", "+00:00"))
+                    age = (_dt.datetime.now(_dt.timezone.utc) - t).total_seconds()
+                except Exception:
+                    age = None
+            if age is None or age >= min_age_s:
+                suspicious.append(f"{name} (ЗАБЫТАЯ ПРОБА, возраст "
+                                  f"{'неизвестен' if age is None else f'{age/60:.0f} мин'})")
         elif not ttl:
             suspicious.append(f"{name} (БЕЗ СРОКА самоуничтожения)")
     return suspicious
