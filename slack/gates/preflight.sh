@@ -4,6 +4,17 @@
 # Печатает, сколько ядер реально свободно, и возвращает 1, если запускать нельзя.
 set -u
 T=${1:-local}; NEEDGB=${2:-5}; NEEDCPU=${3:-1}
+# режим обзора: preflight.sh all — состояние ВСЕХ машин разом, без отказа
+if [ "$T" = all ]; then
+  rc=0
+  for m in local saturation-solver-2 saturation-solver-3; do
+    "$0" "$m" "${2:-0}" "${3:-0}" || rc=1
+  done
+  echo
+  echo "СВОДКА: суммарно свободных ядер — сумма строк выше. Прежде чем запускать новое,"
+  echo "спроси: что это вытеснит, и не считает ли уже кто-то то же самое."
+  exit $rc
+fi
 # без ассоциативных массивов: bash 3.2 на macOS их не знает
 case "$T" in
   saturation-solver-2) ZONE=us-central1-b; PROJ=loyobondar-prod ;;
