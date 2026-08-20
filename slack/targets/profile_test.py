@@ -26,7 +26,7 @@ for s in lines: m.Add(sum(x[i] for i in s) <= 2)
 for axis in axes:
     for lay in range(n):
         m.Add(sum(x[idx[p]] for p in pts if p[axis] == lay) == prof[lay])
-sol = cp_model.CpSolver(); sol.parameters.max_time_in_seconds = T; sol.parameters.num_search_workers = 4
+sol = cp_model.CpSolver(); sol.parameters.max_time_in_seconds = T; sol.parameters.num_search_workers = 2
 t0 = time.time(); st = sol.Solve(m); el = time.time()-t0
 tot = sum(prof)
 if st in (cp_model.OPTIMAL, cp_model.FEASIBLE):

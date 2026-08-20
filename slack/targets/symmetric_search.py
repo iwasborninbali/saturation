@@ -92,6 +92,17 @@ cell = [None] * len(pts)
 for k, o in enumerate(orbits):
     for i in o: cell[i] = ov[k]
 for s in lines: mo.Add(sum(cell[i] for i in s) <= 2)
+# необязательный профиль по слоям и нижняя отсечка — оба сужают поиск и потому годятся
+# ТОЛЬКО для нижних границ, ровно как и сама инвариантность
+_prof = None
+if "--profile" in sys.argv:
+    _prof = [int(v) for v in sys.argv[sys.argv.index("--profile")+1].split(",")]
+    assert len(_prof) == n
+    for _ax in range(3):
+        for _t in range(n):
+            mo.Add(sum(cell[i] for i in range(len(pts)) if pts[i][_ax] == _t) == _prof[_t])
+if "--lb" in sys.argv:
+    mo.Add(sum(len(orbits[k]) * ov[k] for k in range(len(orbits))) >= int(sys.argv[sys.argv.index("--lb")+1]))
 mo.Maximize(sum(len(orbits[k]) * ov[k] for k in range(len(orbits))))
 print(f"n={n}: |G|={len(G)}, орбит клеток {len(orbits)} (из {len(pts)}), богатых прямых {len(lines)}", flush=True)
 
