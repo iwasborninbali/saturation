@@ -12,6 +12,12 @@
 """
 import sys
 
+# ОТОБРАЖЕНИЕ ИСПОРЧЕННЫХ СТЕБЛЕЙ. Если базовый файл ветки был скопирован под другим именем,
+# все её потомки получают чужой стебель и с деревом не связываются — покрытие занижается молча.
+# Отображение допустимо ТОЛЬКО после побайтовой сверки базы с настоящим узлом; здесь она сделана
+# (cmp показал равенство), и потому подстановка законна, а не удобна.
+REMAP = {"node_s006_s000": "case_00000_s006_s000"}
+
 out, logs = sys.argv[1], sys.argv[2:]
 facts, sat, other = set(), [], 0
 by_src = {}
@@ -37,6 +43,10 @@ for path in logs:
         if not t or not t[0].startswith("case_"):
             continue
         name = t[0][:-4] if t[0].endswith(".cnf") else t[0]
+        for _bad, _good in REMAP.items():
+            if name.startswith(_bad):
+                name = _good + name[len(_bad):]
+                break
         w = set(t)
         if "UNSAT" in w:
             facts.add(name); by_src.setdefault(path.split("/")[-1], set()).add(name)
