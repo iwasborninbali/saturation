@@ -14,6 +14,7 @@ import sys
 
 out, logs = sys.argv[1], sys.argv[2:]
 facts, sat, other = set(), [], 0
+by_src = {}
 for path in logs:
     try:
         fh = open(path, errors="replace")
@@ -26,7 +27,7 @@ for path in logs:
         name = t[0][:-4] if t[0].endswith(".cnf") else t[0]
         w = set(t)
         if "UNSAT" in w:
-            facts.add(name)
+            facts.add(name); by_src.setdefault(path.split("/")[-1], set()).add(name)
         elif "SAT" in w or "ВЫПОЛНИМ" in ln:
             sat.append((name, path))
         else:
@@ -37,7 +38,12 @@ depth = {}
 for n in facts:
     depth[n.count("_s")] = depth.get(n.count("_s"), 0) + 1
 with open(out, "w") as f:
-    f.write("# Атомарные факты первого солвера: узлы с СОБСТВЕННЫМ UNSAT (решатель Glucose).\n")
+    f.write("# Атомарные факты первого солвера: узлы с СОБСТВЕННЫМ UNSAT.\n")
+    f.write("# ВАЖНО: решатель указан ПО ИСТОЧНИКУ, а не общей строкой — часть узлов закрыта\n")
+    f.write("#   Glucose (неродственная линия), часть kissat. Смешивать в одну подпись нельзя:\n")
+    f.write("#   утверждение «подтверждено вторым решателем» верно не для всех строк.\n")
+    for src_path, names in sorted(by_src.items()):
+        f.write(f"#   {src_path}: {len(names)}\n")
     f.write("# Одно имя в строке. Покрытие НЕ выводится здесь — пересчитывайте своим правилом:\n")
     f.write("#   узел закрыт, если он в объединении фактов ЛИБО если закрыты все 64 его потомка _sK.\n")
     f.write(f"# Всего {len(facts)}; по глубинам {dict(sorted(depth.items()))}.\n")
