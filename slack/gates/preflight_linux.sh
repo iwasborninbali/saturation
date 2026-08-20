@@ -10,11 +10,26 @@
 set -u
 NEEDGB=${1:-5}; NEEDCPU=${2:-1}; LOGDIR=${3:-}
 cpus=$(nproc)
-read_idle () { awk '/^cpu /{idle=$5+$6; tot=0; for(i=2;i<=NF;i++) tot+=$i; print idle, tot}' /proc/stat; }
+# ВНИМАНИЕ: печатать надо printf "%.0f", а не print и НЕ "%d". awk по умолчанию выводит большие числа в
+# научной нотации (3.53003e+09), точность теряется, разность двух замеров становится нулём или
+# отрицательной, и занятость выходит -nan. В скрипте это молча давало «занято 12 из 12» и
+# ЛОЖНЫЙ ОТКАЗ на пустой машине. Первая починка — на "%d" — не помогла: awk обрезает целые по
+# 32 битам и печатал 2147483647 вместо 3.5e9, разность снова выходила нулём. Годится только
+# "%.0f". Найдено испытанием детектора на ложную тревогу, а не рассуждением; и заметь, что первая
+# починка выглядела правильной и была проверена только чтением.
+read_idle () { awk '/^cpu /{idle=$5+$6; tot=0; for(i=2;i<=NF;i++) tot+=$i; printf "%.0f %.0f", idle, tot}' /proc/stat; }
 read -r i1 t1 <<< "$(read_idle)"; sleep 1; read -r i2 t2 <<< "$(read_idle)"
 busy=$(awk -v i1="$i1" -v t1="$t1" -v i2="$i2" -v t2="$t2" -v c="$cpus" \
   'BEGIN{d=t2-t1; if(d<=0){print c; exit} printf "%.1f", c*(1-(i2-i1)/d)}')
+# СОСТАВ ЗАНЯТОСТИ. Детектор тревоги ошибается в сторону тревоги — принять безобидное за опасное
+# ему легче, чем наоборот. Этот отказал мне ложно: показал «занято 12 из 12» и запретил запуск,
+# тогда как шесть ядер держали ЧУЖИЕ процессы, а мои шесть машину не перегружали. Поэтому теперь
+# он называет состав, а не только итог: сколько занято НАМИ и сколько посторонними.
+mine_cpu=$(ps -eo pcpu,args --no-headers | awk '/kissat|no4_fast|no4_est|cross_solver|symmetric_search|maximize_witness|solve_or_split/ && !/awk/ {s+=$1} END{printf "%.1f", s/100}')
+mine_cpu=${mine_cpu:-0}
+others=$(awk -v b="$busy" -v m="$mine_cpu" 'BEGIN{v=b-m; if(v<0)v=0; printf "%.1f", v}')
 freecpu=$(awk -v c="$cpus" -v b="$busy" 'BEGIN{printf "%d", c-b}')
+echo "  состав занятости: наших ~$mine_cpu ядер, посторонних ~$others"
 load1=$(cut -d' ' -f1 /proc/loadavg)
 freegb=$(df -BG /tmp | tail -1 | awk '{gsub("G","",$4); print $4}')
 echo "== local: ядер $cpus, занято ~$busy (load1 $load1), свободно ~$freecpu, диск ${freegb}ГБ"
