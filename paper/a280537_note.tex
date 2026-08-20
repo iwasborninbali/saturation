@@ -6,7 +6,7 @@
 \newtheorem{proposition}{Proposition}
 \title{No four coplanar in the cube: a witness for $a(7)\ge18$ and the state of the upper bound}
 \author{Aleksei Kudriashov (Alex Komang)\\ \small Nusa Dua Studio, Nusa Dua, Bali, Indonesia\\ \small ORCID: 0009-0006-8885-5338}
-\date{20 August 2026 --- version 1.0}
+\date{20 August 2026 --- version 1.1}
 \begin{document}\maketitle
 \begin{abstract}
 Let $a(n)$ be the largest number of points of $\{0,\dots,n-1\}^3$ no four of which are coplanar, OEIS
@@ -55,6 +55,27 @@ $225\cdot48+6\cdot24+1\cdot16=10960$.  Matching a maximum can happen by accident
 cannot.  We stress that the enumerator producing these numbers has no notion of a plane at all: it tests
 coplanarity by an integer determinant on each quadruple, so agreement with our plane-based encoding is
 agreement between two constructions that share nothing but the problem.
+
+\section{Three values proved twice, by paths sharing no code}
+For $n\le5$ the values do not depend on whether the propositional machinery of this note is sound at all.  A
+second route establishes them without a solver, without an encoding and without any notion of a plane:
+coplanarity is tested by an integer determinant on each quadruple, and the search is split over orbits of
+\emph{triples} of layer profiles under the cube group.
+\begin{center}\begin{tabular}{rrrrl}\toprule
+$n$ & $M$ & orbits & weight sum vs.\ triples & configurations found\\\midrule
+3 & 9 & 1 & $1/1$ & 0 $\Rightarrow a(3)\le8$\\
+4 & 11 & 4 & $64/64$ & 0 $\Rightarrow a(4)\le10$\\
+5 & 14 & 10 & $125/125$ & 0 $\Rightarrow a(5)\le13$\\\bottomrule
+\end{tabular}\end{center}
+The weight sum is checked against the total number of triples in every row, so no orbit is missing; omitting one
+would void the argument.  With the witnesses already exhibited, this gives $a(3)=8$, $a(4)=10$, $a(5)=13$ twice
+over, by constructions that share nothing but the problem statement.
+
+The distinction from the count agreement above is worth stating.  Matching counts says the two enumerators see
+the same problem.  An independent proof says the result does not depend on our propositional machinery being
+correct at all.  The boundary is sharp: at $n=6$ this route was measured and does not reach (some $70$ hours on
+four cores), and at $n=7$ neither route has an upper bound.  The double proof covers $n\le5$ and not one value
+further.
 
 \section{What is \emph{not} established: there are no upper bounds here}
 This deserves its own paragraph, because a reader who has seen the companion note on the no-three-in-line
