@@ -579,3 +579,75 @@ def gate_density_ceiling(facts_path, n=7, M=19, ceil=3.0/7.0, top=8):
         "глубины растраты": dict(sorted(over_depths.items())),
         "худшие": [(round(d, 3), k, b[:60]) for d, k, b in worst[:top]],
     }
+
+
+def gate_utilization(project, min_ratio=0.6, min_age_s=300, timeout_s=45):
+    """ЗАГРУЗКА ЯДЕР, А НЕ НАЛИЧИЕ МАШИН. Ворота существуют потому, что 21 августа я три часа
+    искал ядра СНАРУЖИ — квоты, регионы, спот, чужие проекты, разведка по семнадцати регионам
+    в семнадцать агентов — имея 90% простоя ВНУТРИ. На 32-ядерной машине работали три ядра.
+
+    Мера загрузки — load average, а НЕ число процессов. Я посмотрел на 87 процессов и прочитал
+    это как 87 ветвей; это были три ветви, а остальные 84 — предки, ждущие своих детей.
+    Число процессов измеряет ГЛУБИНУ рекурсии, а не ширину работы.
+
+    Отношение load/ядра ниже min_ratio означает: машина оплачена целиком, а используется
+    частью. Прежде чем просить у поставщика новый ресурс, надо доказать, что выданный занят.
+
+    ТРИ ИСХОДА, а не два: измерено-хорошо, измерено-плохо и НЕ СМОГ ИЗМЕРИТЬ. Ворота,
+    отказавшие из-за собственной неспособности измерить, дают ложную тревогу — так у меня
+    встал целый прогон при 4.5 ГБ свободных, потому что df мерил несуществующий путь.
+    """
+    import json, subprocess, time
+    out = {"итог": None, "машины": [], "недогружены": [], "не измерены": []}
+    try:
+        r = subprocess.run(
+            ["gcloud", "compute", "instances", "list", f"--project={project}",
+             "--format=json(name,zone,status,creationTimestamp,machineType)"],
+            capture_output=True, text=True, timeout=120)
+        if r.returncode != 0:
+            return {"итог": "НЕ СМОГ ИЗМЕРИТЬ", "почему": r.stderr.strip()[:300]}
+        insts = json.loads(r.stdout or "[]")
+    except Exception as e:
+        return {"итог": "НЕ СМОГ ИЗМЕРИТЬ", "почему": f"{type(e).__name__}: {e}"}
+
+    now = time.time()
+    for i in insts:
+        if i.get("status") != "RUNNING":
+            continue
+        name = i["name"]; zone = i["zone"].rsplit("/", 1)[-1]
+        try:
+            born = time.mktime(time.strptime(i["creationTimestamp"][:19], "%Y-%m-%dT%H:%M:%S"))
+            age = now - born
+        except Exception:
+            age = min_age_s + 1        # возраст неизвестен — считаем зрелой, не прячем за молодостью
+        try:
+            s = subprocess.run(
+                ["gcloud", "compute", "ssh", name, f"--project={project}", f"--zone={zone}",
+                 "--command", "nproc; cat /proc/loadavg"],
+                capture_output=True, text=True, timeout=timeout_s)
+            if s.returncode != 0:
+                out["не измерены"].append((name, s.stderr.strip().splitlines()[-1][:120] if s.stderr.strip() else "ssh вернул ошибку"))
+                continue
+            lines = [l for l in s.stdout.strip().splitlines() if l.strip()]
+            cores = int(lines[0]); load = float(lines[1].split()[0])
+        except Exception as e:
+            out["не измерены"].append((name, f"{type(e).__name__}"))
+            continue
+        ratio = load / cores if cores else 0.0
+        rec = {"машина": name, "ядер": cores, "load": round(load, 2), "доля": round(ratio, 2),
+               "возраст_с": int(age)}
+        out["машины"].append(rec)
+        if ratio < min_ratio and age >= min_age_s:
+            out["недогружены"].append(rec)
+
+    if not out["машины"] and out["не измерены"]:
+        out["итог"] = "НЕ СМОГ ИЗМЕРИТЬ"
+    elif out["недогружены"]:
+        out["итог"] = "ПРОСТОЙ"
+    elif not out["машины"]:
+        out["итог"] = "МАШИН НЕТ"
+    else:
+        out["итог"] = "ЗАГРУЖЕНЫ"
+    if out["не измерены"]:
+        out["оговорка"] = "часть машин НЕ ИЗМЕРЕНА — это не то же самое, что «загружены»"
+    return out
