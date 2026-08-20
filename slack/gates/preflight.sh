@@ -1,0 +1,35 @@
+#!/bin/bash
+# preflight.sh — проверка ПЕРЕД запуском работы. Ничего не советует: отказывает.
+#   usage: preflight.sh <local|имя-вм> [нужно_ГБ] [нужно_ядер]
+# Печатает, сколько ядер реально свободно, и возвращает 1, если запускать нельзя.
+set -u
+T=${1:-local}; NEEDGB=${2:-5}; NEEDCPU=${3:-1}
+declare -A ZONE=( [saturation-solver-2]=us-central1-b [saturation-solver-3]=us-west1-b )
+declare -A PROJ=( [saturation-solver-2]=loyobondar-prod [saturation-solver-3]=eg-multi-domain )
+
+probe () {  # печатает: cpus load1 freeGB busy_kissat
+  if [ "$T" = local ]; then
+    echo "$(sysctl -n hw.ncpu) $(uptime | sed 's/.*averages*: *//' | awk '{print $1}' | tr -d ,) \
+$(df -g /tmp 2>/dev/null | tail -1 | awk '{print $4}') $(pgrep -x kissat | wc -l | tr -d ' ')"
+  else
+    timeout 60 gcloud compute ssh "$T" --zone="${ZONE[$T]}" --project="${PROJ[$T]}" \
+      --command='echo "$(nproc) $(cut -d" " -f1 /proc/loadavg) $(df -BG /tmp|tail -1|awk "{print \$4}"|tr -d G) $(pgrep -c kissat||echo 0)"' 2>/dev/null
+  fi
+}
+read -r CPUS LOAD FREEGB BUSY <<< "$(probe)"
+[ -z "${CPUS:-}" ] && { echo "ОТКАЗ: не удалось снять состояние $T"; exit 1; }
+FREECPU=$(awk -v c="$CPUS" -v l="$LOAD" 'BEGIN{printf "%d", c-l}')
+echo "== $T: ядер $CPUS, загрузка $LOAD, свободно ядер ~$FREECPU, kissat $BUSY, диск ${FREEGB}ГБ"
+
+rc=0
+if [ "${FREEGB%%.*}" -lt "$NEEDGB" ]; then
+  echo "  ОТКАЗ: диска ${FREEGB}ГБ < ${NEEDGB}ГБ. Генерация даст НЕПОЛНОЕ разбиение (ловушка 9)"; rc=1
+fi
+if [ "$FREECPU" -lt "$NEEDCPU" ]; then
+  echo "  ОТКАЗ: свободных ядер ~$FREECPU < $NEEDCPU. Запуск только вытеснит уже идущее"; rc=1
+fi
+if [ "$BUSY" -gt "$CPUS" ]; then
+  echo "  ОТКАЗ: решателей $BUSY больше, чем ядер $CPUS — машина уже перегружена"; rc=1
+fi
+[ $rc = 0 ] && echo "  ворота пройдены: можно запускать до $FREECPU параллельных задач"
+exit $rc
