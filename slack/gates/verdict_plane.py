@@ -1,0 +1,36 @@
+"""verdict_plane.py — ВЕРДИКТ ПО ПЛОСКОСТНОМУ МАРШРУТУ, из объединения обеих сторон.
+
+Перебор исчерпывающ по построению: у любой конфигурации есть определённое пересечение
+с плоскостью x=0, и в нём не более 3 точек, значит подмножеств ровно
+    C(49,0)+C(49,1)+C(49,2)+C(49,3) = 19650.
+Утверждение a(7)<=18 доказано этим маршрутом, когда ВСЕ 19650 закрыты и НИ ОДИН не выполним.
+
+ОБЪЕДИНЯЮТСЯ ИМЕНА, А НЕ ЧИСЛА: объединение множеств идемпотентно, и повторно решённый
+кусок не раздувает счёт. Складывание счётчиков дало нам когда-то «584 из 448».
+ОТКАЗ ПО УМОЛЧАНИЮ: неполное покрытие — не «почти доказано», а «не доказано».
+"""
+import sys, os
+from itertools import combinations
+TOTAL = sum(len(list(combinations(range(49), k))) for k in range(4))
+assert TOTAL == 19650
+closed, sat, bad = set(), [], []
+for fp in sys.argv[1:]:
+    if not os.path.exists(fp):
+        print(f"  ОТКАЗ: источника {fp} нет — покрытие было бы ЗАНИЖЕНО молча"); sys.exit(3)
+    n_here = 0
+    for l in open(fp, encoding="utf-8", errors="replace"):
+        l = l.strip()
+        if l.startswith("SAT "): sat.append(l[4:]); continue
+        if not l.startswith("plx0_"): continue
+        closed.add(l); n_here += 1
+    print(f"  источник {os.path.basename(fp)}: {n_here} имён")
+print()
+print(f"закрыто РАЗНЫХ кусков: {len(closed)} из {TOTAL} ({100*len(closed)/TOTAL:.2f}%)")
+print(f"выполнимых: {len(sat)}")
+if sat:
+    print("ТРЕВОГА: найден выполнимый кусок — утверждение a(7)<=18 ЛОЖНО"); print(sat[:3]); sys.exit(9)
+if len(closed) == TOTAL:
+    print("ВЕРДИКТ: все 19650 закрыты, выполнимых ноль — a(7) <= 18 ДОКАЗАНО этим маршрутом")
+    sys.exit(0)
+print(f"ВЕРДИКТ: НЕЛЬЗЯ заявлять — не закрыто {TOTAL-len(closed)} кусков")
+sys.exit(1)
