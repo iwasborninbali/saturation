@@ -1,0 +1,36 @@
+Правки для A399138 по замечаниям Мишеля Маркуса (рецензия 2026-08-20)
+======================================================================
+Номер A399138 ВЫДЕЛЕН и закреплён. Это не отказ — это обычная редакторская работа.
+
+ЗАМЕЧАНИЕ 1: «P after K»
+------------------------
+OEIS упорядочивает ссылки в %H по фамилии ПЕРВОГО АВТОРА. У нас Pór стоит перед Kudriashov,
+а по алфавиту K < P. Поменять местами.
+
+БЫЛО (порядок):
+  %H  A. Por, D. R. Wood, <a href="...">No-Three-in-Line-in-3D</a>, ...
+  %H  Aleksei Kudriashov, <a href="...zenodo...">Certified exact values ...</a>
+  %H  Repository ...
+  %H  Protocol ...
+
+СТАЛО:
+  %H  Aleksei Kudriashov, <a href="https://doi.org/10.5281/zenodo.22019279">Certified exact values for the no-three-in-line problem in the three-dimensional grid</a>, Zenodo, 2026.
+  %H  A. Por and D. R. Wood, <a href="https://doi.org/10.1007/s00453-006-0158-9">No-Three-in-Line-in-3D</a>, Algorithmica 47 (2007), 481-488.
+  %H  Aleksei Kudriashov, <a href="https://github.com/iwasborninbali/saturation">Repository with programs, journals, witnesses and a verification protocol</a>.
+
+ЗАМЕЧАНИЕ 2: «Theta should be moved to formula? but what is Theta?»
+-------------------------------------------------------------------
+Справедливо: Θ — стандартное обозначение, но в записи его надо раскрыть, и место ему в %F.
+
+УБРАТЬ из %C строку:
+  %C  a(n) = Theta(n^2) by A. Por and D. R. Wood.
+
+ДОБАВИТЬ поле %F (формулы идут ПОСЛЕ %H и ПЕРЕД %e):
+  %F  a(n) = Theta(n^2) in the Bachmann-Landau sense: there are constants 0 < c_1 <= c_2 and an N such that c_1*n^2 <= a(n) <= c_2*n^2 for all n >= N.
+  %F  The upper bound a(n) <= 2*n^2 is elementary: each of the n^2 lines parallel to a coordinate axis contains at most 2 chosen points. The matching lower bound a(n) = Omega(n^2) is due to Por and Wood.
+
+ПОЧЕМУ ИМЕННО ТАК: разделение честное. Верхняя граница 2n^2 — наша, элементарная, доказывается
+в одну строку. Нижняя Omega(n^2) — чужая теорема. Прежняя формулировка «a(n) = Theta(n^2) by
+Por and Wood» приписывала им обе половины, что неточно.
+
+ЧТО НЕ МЕНЯТЬ: данные, %N, %O 1,2, %K nonn,more,hard, %A — по ним замечаний нет.
