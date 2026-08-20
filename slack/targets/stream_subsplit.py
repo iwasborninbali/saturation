@@ -19,18 +19,33 @@ from itertools import combinations
 def subsets(n: int, cap: int):
     return [s for k in range(cap+1) for s in combinations(range(n), k)]
 
+# Тело базового куска читается ОДИН РАЗ на базу и держится как байты. Раньше каждый из 64
+# подкусков заново читал 54 МБ, разбирал их в список из 2.8 млн строк и склеивал обратно:
+# замерено 0.65 с против 0.04 с, то есть 41 с против 2 с на базовый кусок, при 15 работниках
+# на машине с 11 ГБ памяти. Замер показал и другое: экономия всего полчаса ядрового времени на
+# все 45 кусков, то есть УЗКОЕ МЕСТО НЕ ЗДЕСЬ — оно в самих тяжёлых подкусках. Правка взята
+# потому, что она бесплатна и снимает давление на память, а не потому, что она решает задачу.
+_BODY: dict = {}
+
+def _body_of(base: str):
+    if base not in _BODY:
+        raw = open(base, "rb").read()
+        nl = raw.index(b"\n", raw.index(b"p cnf"))
+        hdr = raw[raw.index(b"p cnf"):nl].split()
+        _BODY.clear()                      # держим ровно одну базу: 54 МБ на работника, не больше
+        _BODY[base] = (hdr[2], int(hdr[3]), raw[nl+1:])
+    return _BODY[base]
+
 def work(job):
     base, col, n, sub, idx, workdir = job
-    lines = open(base).read().splitlines()
-    h = next(i for i, l in enumerate(lines) if l.startswith("p cnf"))
-    nv, ncl = lines[h].split()[2:4]
+    nv, ncl, body = _body_of(base)
     x, y = col // n, col % n
     units = [((x*n + y)*n + z) + 1 if z in sub else -(((x*n + y)*n + z) + 1) for z in range(n)]
     path = os.path.join(workdir, f"s{idx}.cnf")
-    with open(path, "w") as f:
-        f.write(f"p cnf {nv} {int(ncl)+len(units)}\n")
-        f.write("\n".join(lines[h+1:]) + "\n")
-        f.write("".join(f"{u} 0\n" for u in units))
+    with open(path, "wb") as f:
+        f.write(b"p cnf %s %d\n" % (nv, ncl + len(units)))
+        f.write(body)
+        f.write(b"".join(b"%d 0\n" % u for u in units))
     t0 = time.time()
     try:
         r = subprocess.run(["kissat", "-q", path], capture_output=True)
