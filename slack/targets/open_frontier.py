@@ -13,6 +13,14 @@
 import glob, sys
 from collections import defaultdict
 
+def norm(nm):
+    """Нормализация имени: каждое звено _sN к трёхзначному виду.
+    У сторон разная запись индексов — _s7 против _s007, — и один узел под двумя именами даёт
+    родителю 128 детей вместо 64, после чего правило «закрыт при всех 64» не сработает НИКОГДА.
+    Нормализуем при ЧТЕНИИ, чтобы старые файлы не пришлось переписывать."""
+    import re as _re
+    return _re.sub(r"_s(\d+)", lambda m: "_s%03d" % int(m.group(1)), nm)
+
 BRANCH = 64
 facts = set()
 for p in glob.glob("logs/a280537/facts_*solver*.txt"):
@@ -21,7 +29,7 @@ for p in glob.glob("logs/a280537/facts_*solver*.txt"):
         s = ln.strip()
         if not s or s.startswith("#"): continue
         nm = s.split()[0]
-        facts.add(nm[:-4] if nm.endswith(".cnf") else nm)
+        facts.add(norm(nm[:-4] if nm.endswith(".cnf") else nm))
 
 children = defaultdict(set)
 for nm in facts:

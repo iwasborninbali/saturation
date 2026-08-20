@@ -17,6 +17,14 @@
 import sys
 from collections import defaultdict
 
+def norm(nm):
+    """Нормализация имени: каждое звено _sN к трёхзначному виду.
+    У сторон разная запись индексов — _s7 против _s007, — и один узел под двумя именами даёт
+    родителю 128 детей вместо 64, после чего правило «закрыт при всех 64» не сработает НИКОГДА.
+    Нормализуем при ЧТЕНИИ, чтобы старые файлы не пришлось переписывать."""
+    import re as _re
+    return _re.sub(r"_s(\d+)", lambda m: "_s%03d" % int(m.group(1)), nm)
+
 BRANCH = 64                       # подмножеств размера <= 3 из 7
 own_unsat, sat_lines, other = set(), [], defaultdict(list)
 for path in sys.argv[1:]:
@@ -24,7 +32,7 @@ for path in sys.argv[1:]:
         t = ln.split()
         if not t or not t[0].startswith("case_"):
             continue
-        name = t[0][:-4] if t[0].endswith(".cnf") else t[0]
+        name = norm(t[0][:-4] if t[0].endswith(".cnf") else t[0])
         words = set(t)
         if "UNSAT" in words:
             own_unsat.add(name)

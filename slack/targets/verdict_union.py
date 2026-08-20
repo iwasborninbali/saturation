@@ -13,6 +13,14 @@
 import sys
 from collections import defaultdict
 
+def norm(nm):
+    """Нормализация имени: каждое звено _sN к трёхзначному виду.
+    У сторон разная запись индексов — _s7 против _s007, — и один узел под двумя именами даёт
+    родителю 128 детей вместо 64, после чего правило «закрыт при всех 64» не сработает НИКОГДА.
+    Нормализуем при ЧТЕНИИ, чтобы старые файлы не пришлось переписывать."""
+    import re as _re
+    return _re.sub(r"_s(\d+)", lambda m: "_s%03d" % int(m.group(1)), nm)
+
 BRANCH = 64
 # ОТКАЗ ПРИ ПОТЕРЕ ИСТОЧНИКА. Инструмент, лишившийся входных данных, обязан отказать, а не
 # посчитать по остатку: без данных стороны все её узлы для нас не существуют, несуществующих
@@ -39,8 +47,7 @@ for p in sys.argv[1:]:
         s = ln.strip()
         if not s or s.startswith("#"): continue
         nm = s.split()[0]
-        nm = nm[:-4] if nm.endswith(".cnf") else nm
-        facts.add(nm); src[p].add(nm)
+        facts.add(norm(nm[:-4] if nm.endswith(".cnf") else nm)); src[p].add(nm)
     print(f"  {p}: имён {len(src[p])}, новых {len(facts)-n0}")
 
 children = defaultdict(set)
