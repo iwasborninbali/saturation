@@ -21,7 +21,28 @@ f="$1"; ci="$2"; lim="$3"; maxd="$4"; facts="$5"; NN="${6:-7}"
 SCHED=(); for ((c=0;c<2*NN;c++)); do SCHED+=($c); done
 b=$(basename "$f" .cnf)
 
-timeout "$lim" kissat -q "$f" >/dev/null 2>&1; rc=$?
+# ПЛОТНОСТЬ ОСТАТКА — трудность, вычислимая ИЗ ИМЕНИ до всякого запуска решателя.
+# Найдено первым солвером, подтверждено независимо на моих данных: d = (M - p)/(49 - k),
+# где p — точек зафиксировано, k — столбцов. Ниже 0.35 не раздробился НИ ОДИН кусок из 4704.
+# Порог ТРУДНОСТИ (0.35) и порог «дробить сразу» — РАЗНЫЕ величины: при 0.37 дробится лишь
+# 16%, и пропуск решателя там теряет больше, чем экономит (посчитано: -13.6 с на кусок).
+# Выгода начинается с 0.38, где дробится 58% (+51.5 с на кусок). Отсюда 0.38, а не 0.35.
+DENS=$(python3 - "$b" <<'PYD'
+import sys
+from itertools import combinations
+N,M,COLS=7,19,49
+S=[x for k in range(4) for x in combinations(range(N),k)]
+idxs=[int(t) for t in sys.argv[1].split("_s")[1:]]
+p=sum(len(S[i]) for i in idxs); k=len(idxs)+1
+print(f"{(M-p)/(COLS-k):.4f}")
+PYD
+)
+if [ "$NN" -eq 7 ] && python3 -c "import sys; sys.exit(0 if float('$DENS')>=0.38 else 1)" 2>/dev/null; then
+  echo "ПЛОТНО $b (d=$DENS) — дроблю без запуска решателя"
+  rc=99
+else
+  timeout "$lim" kissat -q "$f" >/dev/null 2>&1; rc=$?
+fi
 case $rc in
   20) echo "$b" >> "$facts"; echo "ЗАКРЫТ $b"; exit 0 ;;
   10) echo "ВЫПОЛНИМ $b — УТВЕРЖДЕНИЕ РУШИТСЯ"; cp "$f" "$W/SAT_$b.cnf"; exit 9 ;;
