@@ -218,6 +218,35 @@ def gate_sibling_columns(parent_cols: set, children_cols: list) -> int:
     return next(iter(new_cols)) if new_cols else -1
 
 
+def gate_density_threshold(problem: str, n: int, M: int, kind: str = "дробить_сразу") -> float:
+    """Ловушка 15 (2026-08-21). Порог плотности остатка ИЗМЕРЕН для одной задачи и одних n, M.
+    Перенести его на другие — ровно та ошибка, которую мы ловили весь предыдущий день:
+    свойство, проверенное в одном контексте, не переносится в другой само собой.
+
+    Эти ворота делают перенос НЕВОЗМОЖНЫМ: порог берётся только из файла замеров, и если
+    для данной задачи замера нет, ворота ОТКАЗЫВАЮТ, а не возвращают правдоподобное число.
+    Порог, взятый на глаз, опаснее отсутствующего: он выглядит как измеренная величина.
+
+    kind: 'трудности' (что считать трудным) либо 'дробить_сразу' (когда пропускать решателя).
+    Это РАЗНЫЕ величины, и путать их дорого — см. density_calibration.json."""
+    import json
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "density_calibration.json")
+    if not os.path.exists(path):
+        _refuse(f"файла замеров {path} нет — порог взять неоткуда")
+    tab = json.load(open(path, encoding="utf-8"))
+    key = f"{problem}:n={n}:M={M}"
+    if key not in tab:
+        have = [k for k in tab if not k.startswith("_")]
+        _refuse(f"порог плотности для «{key}» НЕ ИЗМЕРЕН. Замеренные: {have}. "
+                f"Применять чужой порог нельзя: он откалиброван под другую задачу и другие n, M, "
+                f"а выглядит как измеренная величина. Сначала замер, потом применение")
+    rec = tab[key]
+    fld = f"порог_{kind}"
+    if fld not in rec:
+        _refuse(f"в замере «{key}» нет поля {fld}; есть {list(rec)}")
+    return float(rec[fld])
+
+
 def gate_restriction(kind: str, axes_used: int, verdict: str) -> str:
     """Ловушка про избыточные ограничения. Невозможность, полученная при СУЖЕНИИ,
     относится только к суженному классу. Случай: «профиль 88 при n=7 невозможен» было
