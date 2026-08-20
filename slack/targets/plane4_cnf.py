@@ -135,11 +135,26 @@ def lex_leader(F, x, sigma, nc):
             F.add(ne, -eq, a, b); F.add(ne, -eq, -a, -b)
         eq = ne
 
-def build(n, M, path, sym=False, invariant=None):
+def build(n, M, path, sym=False, invariant=None, profiles=None):
     nc, pl = planes(n)
     F = CNF(nc)
     x = lambda i: i + 1
     for m in pl: F.atmost([x(i) for i in m], 3)
+    if profiles:
+        # ПРОФИЛЬ ПО НЕСКОЛЬКИМ ОСЯМ (предложение первого солвера).
+        # У конфигурации есть определённый профиль вдоль КАЖДОЙ оси, поэтому разбиение по ПАРЕ
+        # (профиль по x, профиль по y) исчерпывающе, если перечислены ВСЕ пары. Куски при этом
+        # несут вдвое больше равенств и потому несравнимо жёстче.
+        # Совместимо с симметрийным отсечением ровно потому, что перечисляются все пары:
+        # лексминимальный представитель имеет какие-то профили, и кусок с ними в списке есть.
+        # ПРОПУСК ХОТЯ БЫ ОДНОЙ ПАРЫ ОБЕСЦЕНИВАЕТ ВСЁ.
+        for axis, prof in profiles.items():
+            assert len(prof) == n and sum(prof) == M, f"профиль по оси {axis} не согласован с M"
+            for t in range(n):
+                cs = [x(i) for i in range(nc)
+                      if (i//(n*n) if axis==0 else (i//n)%n if axis==1 else i%n) == t]
+                F.atmost(cs, prof[t])
+                F.atmost([-c for c in cs], len(cs)-prof[t])
     F.atleast([x(i) for i in range(nc)], M, 3*n + 1)    # обрезка законна: a(n) <= 3n (слой есть плоскость)
     if invariant:
         # поиск среди ИНВАРИАНТНЫХ конфигураций: законно только для нижних границ
@@ -172,4 +187,11 @@ if __name__ == "__main__":
     elif "--cyc3" in sys.argv:
         n0 = int(sys.argv[1])
         inv = [[ ((i//n0)%n0)*n0*n0 + (i%n0)*n0 + (i//(n0*n0)) for i in range(n0**3) ]]
-    build(int(sys.argv[1]), int(sys.argv[2]), sys.argv[3], sym=("--sym" in sys.argv), invariant=inv)
+    profs = None
+    if "--profiles" in sys.argv:      # формат: "0=3,3,3,3,3,2;1=3,3,3,3,2,3"
+        profs = {}
+        for part in sys.argv[sys.argv.index("--profiles")+1].split(";"):
+            a, p = part.split("=")
+            profs[int(a)] = [int(t) for t in p.split(",")]
+    build(int(sys.argv[1]), int(sys.argv[2]), sys.argv[3], sym=("--sym" in sys.argv),
+          invariant=inv, profiles=profs)
