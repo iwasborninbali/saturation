@@ -11,12 +11,14 @@
 #    даром, прямой порядок ставит трудные первыми;
 #  * имя временного файла НЕСЁТ базу: иначе подкуски разных баз пишутся в один путь.
 #
-#   sos_second.sh <cnf> <шаг-расписания> <лимит-с> <макс-шагов> <файл-фактов>
+#   sos_second.sh <cnf> <шаг-расписания> <лимит-с> <макс-шагов> <файл-фактов> [n]
+# n по умолчанию 7; для n=6 расписание короче (слой 6 столбцов).
 set -u
 W=${SOS_WORK:-/tmp/sos}
 R=${SOS_REPO:-$HOME/sat}
-f="$1"; ci="$2"; lim="$3"; maxd="$4"; facts="$5"
-SCHED=(0 1 2 3 4 5 6 7 8 9 10 11 12 13)   # слой x=0 целиком (0..6), затем x=1 (7..13)
+f="$1"; ci="$2"; lim="$3"; maxd="$4"; facts="$5"; NN="${6:-7}"
+# Расписание: слой x=0 целиком, затем x=1. Длина слоя = n столбцов.
+SCHED=(); for ((c=0;c<2*NN;c++)); do SCHED+=($c); done
 b=$(basename "$f" .cnf)
 
 timeout "$lim" kissat -q "$f" >/dev/null 2>&1; rc=$?
@@ -31,13 +33,14 @@ if [ "$ci" -ge "$maxd" ] || [ "$ci" -ge "${#SCHED[@]}" ]; then
 fi
 col=${SCHED[$ci]}
 d="$W/sos/$b"; rm -rf "$d"; mkdir -p "$d"
-python3 "$R/subsplit.py" "$f" 7 "$col" 3 "$d" >/dev/null 2>&1
+python3 "$R/subsplit.py" "$f" "$NN" "$col" 3 "$d" >/dev/null 2>&1
 k=$(ls "$d"/*.cnf 2>/dev/null | wc -l)
-if [ "$k" -ne 64 ]; then echo "ОТКАЗ $b: детей $k вместо 64 — разбиение неполно"; rm -rf "$d"; exit 2; fi
+EXP=$(python3 -c "from math import comb;print(sum(comb($NN,k) for k in range(4)))")
+if [ "$k" -ne "$EXP" ]; then echo "ОТКАЗ $b: детей $k вместо $EXP — разбиение неполно"; rm -rf "$d"; exit 2; fi
 echo "ДРОБЛЮ $b столбцом $col"
 bad=0
 for g in $(ls -r "$d"/*.cnf); do
-  "$0" "$g" $((ci+1)) "$lim" "$maxd" "$facts" || bad=1
+  "$0" "$g" $((ci+1)) "$lim" "$maxd" "$facts" "$NN" || bad=1
   rm -f "$g"
 done
 rm -rf "$d"
