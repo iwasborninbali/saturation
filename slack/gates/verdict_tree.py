@@ -94,6 +94,25 @@ for st, c in sorted(by_status.items(), key=lambda x: -x[1]):
 # Строка для наблюдателей: разбирать прозу они не должны.
 print(f"ИТОГ верх={NSUB-len(open_top)}/{NSUB} фронт={len(front)} выполнимых={len(sat)}")
 
+if "--export" in sys.argv:
+    # САМОДОСТАТОЧНАЯ выгрузка. Множество ЛИСТЬЕВ покрытием не является: если часть узла закрыта
+    # не листьями, сторонний проверяющий соберёт из листьев неполное покрытие и не поймёт почему.
+    # Поэтому выгружаются АТОМАРНЫЕ ФАКТЫ — все узлы с собственным UNSAT на всех уровнях, — из
+    # которых покрытие ПЕРЕСЧИТЫВАЕТСЯ по правилу, а не принимается на веру.
+    out = "/tmp/verdict19/closed_all.txt"
+    facts = sorted(nd for nd in own if "UNSAT" in own[nd])
+    with open(out, "w") as fh:
+        fh.write(f"# Атомарные факты для A280537 n={n} M=19: узлы с СОБСТВЕННЫМ UNSAT, все уровни.\n")
+        fh.write(f"# Правило пересчёта: узел закрыт, если он здесь ЛИБО если здесь все {NSUB} его\n")
+        fh.write(f"# потомков вида <узел>_sK, K = 0..{NSUB-1}. Вопрос закрыт, когда закрыты все\n")
+        fh.write(f"# {NSUB} узлов верхнего уровня case_00000..case_{NSUB-1:05d}.\n")
+        fh.write(f"# Список ЛИСТЬЕВ покрытием НЕ является — часть узлов закрыта на меньшей глубине.\n")
+        for nd in facts: fh.write(nd + "\n")
+    depth = defaultdict(int)
+    for nd in facts: depth[nd.count("_s")] += 1
+    print(f"  выгружено атомарных фактов: {len(facts)} -> {out}")
+    print(f"  по глубине: {dict(sorted(depth.items()))}")
+
 if sat:
     print("\nВЕРДИКТ: НАЙДЕН ВЫПОЛНИМЫЙ КУСОК — утверждение ЛОЖНО"); sys.exit(2)
 if open_top or missing_top:
