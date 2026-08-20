@@ -23,7 +23,10 @@ own = defaultdict(set)          # узел -> множество увиденн�
 seen_child = defaultdict(set)   # узел -> множество индексов детей с результатом UNSAT
 NAME = re.compile(r"^case_\d+(?:_s\d+)*$")
 
-for path in sys.argv[3:]:
+# Флаги ОТДЕЛЯЮТСЯ от имён файлов. Без этого "--export" уходил в список файлов,
+# open() падал, и вся выгрузка молча не происходила.
+FILES = [a for a in sys.argv[3:] if not a.startswith("--")]
+for path in FILES:
     for line in open(path, encoding="utf-8", errors="replace"):
         p = line.split()
         if len(p) < 2: continue
