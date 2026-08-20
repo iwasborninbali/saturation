@@ -26,12 +26,24 @@ FILES="/tmp/r7_19.txt /tmp/r7_19rev.txt /tmp/rs7_19.txt /tmp/rss19.txt /tmp/r4_1
 pull () { # host zone project tag
   timeout 180 gcloud compute ssh "$1" --zone="$2" --project="$3" \
     --command="for f in $FILES; do [ -f \"\$f\" ] && grep -h '^case_' \"\$f\"; done" 2>/dev/null > "$W/m19_$4.txt"
-  n=$(grep -c . "$W/m19_$4.txt" 2>/dev/null || echo 0)
+  n=$(grep -c . "$W/m19_$4.txt" 2>/dev/null); n=${n:-0}; n=$(printf '%s' "$n" | head -1)
   echo "  с $1 получено строк: $n"
-  [ "$n" -eq 0 ] && echo "  ВНИМАНИЕ: с $1 НИЧЕГО — молчание машины не означает отсутствия работы"
+  if [ "$n" -eq 0 ]; then
+    echo "  ОТКАЗ: с $1 не получено НИЧЕГО."
+    echo "  Потеря доступа к машине НЕ ЕСТЬ закрытие работы. Без её данных всякий узел, который"
+    echo "  она считает, выглядит несуществующим, и фронт схлопывается в ноль — то есть отсутствие"
+    echo "  сведений принимает вид завершённости. Вердикт не выдаётся."
+    MISSING=1
+  fi
 }
+MISSING=0
 pull saturation-solver-2 us-central1-b loyobondar-prod a
 pull saturation-solver-3 us-west1-b   eg-multi-domain  b
+if [ "$MISSING" -ne 0 ]; then
+  echo
+  echo "ВЕРДИКТ НЕ ВЫДАН: источники неполны (см. отказы выше). Это НЕ «фронт пуст»."
+  exit 3
+fi
 echo
 # Факты, опубликованные в репозиторий обоими решающими. Объединяются ИМЕНА, а не числа.
 FACTS=""
