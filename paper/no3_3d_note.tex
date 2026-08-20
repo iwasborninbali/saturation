@@ -7,14 +7,14 @@
 \newtheorem{lemma}[proposition]{Lemma}
 \title{Exact values and certified lower bounds for the no-three-in-line problem in the cube}
 \author{Aleksei Kudriashov (Alex Komang)\\ \small Nusa Dua Studio, Nusa Dua, Bali, Indonesia\\ \small ORCID: 0009-0006-8885-5338}
-\date{20 August 2026 --- version 1.0\\ \small\texttt{doi:10.5281/zenodo.22019279}}
+\date{20 August 2026 --- version 1.1 (draft)\\ \small\texttt{doi:10.5281/zenodo.22019279}}
 \begin{document}\maketitle
 \begin{abstract}
 Let $a(n)$ be the largest number of points of the grid $\{0,1,\dots,n-1\}^3$ no three of which are collinear.
 P\'or and Wood proved $a(n)=\Theta(n^2)$; no exact values appear to have been recorded, and the sequence does
 not appear to be in the OEIS.  We determine
 \[a(1),\dots,a(6)=1,\,8,\,16,\,28,\,40,\,64,\]
-give certified lower bounds $a(7)\ge71$ and $a(8)\ge89$, and prove $a(p)\ge p^2$ for every prime $p$ by an
+give certified lower bounds $a(7)\ge73$ and $a(8)\ge89$, and prove $a(p)\ge p^2$ for every prime $p$ by an
 elementary construction from an anisotropic binary quadratic form.
 
 The method is a certified decision procedure rather than a search: a line carrying at most two lattice points
@@ -55,7 +55,7 @@ $(a,b)=(0,0)$, a contradiction.
 \end{proof}
 Neither $x^2+y^2$ (anisotropic iff $p\equiv3\bmod 4$) nor $x^2+xy+y^2$ (iff $p\equiv2\bmod3$) works for all
 $p$; the choice $x^2-dy^2$ does.  The bound of Proposition~\ref{p:alg} is not sharp: $a(5)\ge40>25$ and
-$a(7)\ge71>49$.
+$a(7)\ge73>49$.
 
 \section{Method: a certified decision procedure}
 A line carrying at most two lattice points of $[n]^3$ forbids nothing, so
@@ -209,12 +209,17 @@ that constraint does not bind.
 \section{Certified lower bounds for $n=7,8$}
 \begin{center}\begin{tabular}{rrrl}\toprule
 $n$ & $a(n)\ge$ & $/n^2$ & source of the witness\\\midrule
-7 & 71 & 1.45 & randomised destroy-and-repair\\
+7 & 73 & 1.49 & search among configurations invariant under a cyclic axis permutation\\
 8 & 89 & 1.39 & randomised destroy-and-repair\\\bottomrule
 \end{tabular}\end{center}
 Each configuration is re-verified by testing all $\binom{|S|}{3}$ triples with integer cross products.  These
 are lower bounds only; we make no claim about how far they are from the truth, and we expect them to be weak,
-since a randomised search is a poor instrument at this size.  (An earlier draft of this note quoted
+since a randomised search is a poor instrument at this size.  The $n=7$ bound illustrates the point: it stood
+at $71$ from randomised search and rose to $73$ within the hour once the search was restricted to
+configurations invariant under a cyclic permutation of the axes.  Restricting to a subgroup collapses the cells
+into orbits and shrinks the search by the order of the group; it is legitimate for lower bounds only, since a
+configuration found is a configuration, while failure to find one among the symmetric ones says nothing about
+the rest.  (An earlier draft of this note quoted
 $72$ and $90$ here.  Those numbers came from a run whose witness was never saved, and when we came to attach
 witnesses to them the journals we could reproduce gave $71$ and $89$.  We report the values we can exhibit.)
 Two indications.  First, the layer structure of
