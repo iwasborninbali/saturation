@@ -22,6 +22,18 @@ for path in logs:
         print(f"  пропущен (нет файла): {path}"); continue
     for ln in fh:
         t = ln.split()
+        # Формат solve_or_split: «ЗАКРЫТ <узел>» — прямое закрытие, атомарный факт.
+        # «ЗАКРЫТ ЧЕРЕЗ ПРОДОЛЖЕНИЯ <узел>» — ВЫВОД из фактов о потомках, а не измерение:
+        # в файл фактов он идти НЕ должен, иначе читающий получит вывод под видом наблюдения.
+        if t and t[0] == "ЗАКРЫТ":
+            if len(t) == 2 and t[1].startswith("case_"):
+                t = [t[1], "UNSAT"]
+            else:
+                continue
+        if t and t[0] in ("ВЫПОЛНИМ", "ПРЕДЕЛ", "ДРОБЛЮ", "НЕ", "ОТКАЗ"):
+            if t[0] == "ВЫПОЛНИМ" and len(t) > 1:
+                sat.append((t[1], path))
+            continue
         if not t or not t[0].startswith("case_"):
             continue
         name = t[0][:-4] if t[0].endswith(".cnf") else t[0]
