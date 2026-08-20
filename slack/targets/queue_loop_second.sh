@@ -17,7 +17,11 @@ round=0
 while :; do
   round=$((round+1))
   rm -f /tmp/frontier.txt
-  python3 "$REPO/frontier.py" "$FACTS" > /tmp/frontier_round.txt 2>&1
+  # ФРОНТ СЧИТАЕТСЯ ИЗ ОБЪЕДИНЕНИЯ, А НЕ ИЗ СВОИХ ФАКТОВ. Считая только по своим, машина
+  # переделывает то, что коллега уже закрыл: у меня было открыто 36 кусков глубины 3,
+  # в объединении закрытых. Мера продвижения показала это сразу — вклад глубины 3 исчез,
+  # как только я подмешал чужие факты. Объединять ИМЕНА можно (идемпотентно), числа нельзя.
+  python3 "$REPO/frontier_second.py" "$FACTS" ${MERGED:-/tmp/facts_merged.txt} > /tmp/frontier_round.txt 2>&1
   Q="/tmp/frontier_$round.txt"
   # ТРИ ИСХОДА, а не два: пересчёт мог НЕ СОСТОЯТЬСЯ, и это не то же самое, что пустой фронт.
   if [ ! -f /tmp/frontier.txt ]; then
@@ -32,6 +36,6 @@ while :; do
     echo "ФРОНТ ПУСТ — считать нечего. Это либо победа, либо ошибка пересчёта; проверь вердиктом."
     exit 0
   fi
-  xargs -a "$Q" -P "$PAR" -I{} "$REPO/sos_named.sh" {} "$LIM"
+  xargs -a "$Q" -P "$PAR" -I{} "$REPO/sos_named_second.sh" {} "$LIM"
   echo "=== круг $round завершён; фактов: $(wc -l < "$FACTS") ==="
 done
