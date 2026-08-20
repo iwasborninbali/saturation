@@ -1,0 +1,28 @@
+case_00011.cnf UNSAT
+case_00000.cnf UNSAT
+case_00013.cnf ПУСТО rc=143
+case_00005.cnf ПУСТО rc=143
+case_00003.cnf ПУСТО rc=143
+case_00004.cnf ПУСТО rc=143
+case_00012.cnf ПУСТО rc=143
+case_00064.cnf UNSAT
+case_00066.cnf UNSAT
+case_00068.cnf UNSAT
+case_00069.cnf UNSAT
+case_00076.cnf UNSAT
+case_00083.cnf UNSAT
+case_00080.cnf UNSAT
+case_00085.cnf UNSAT
+case_00015.cnf UNSAT
+case_00084.cnf UNSAT
+case_00082.cnf UNSAT
+case_00091.cnf UNSAT
+case_00014.cnf UNSAT
+case_00092.cnf UNSAT
+case_00080.cnf UNSAT
+case_00083.cnf UNSAT
+case_00084.cnf UNSAT
+case_00085.cnf UNSAT
+case_00082.cnf UNSAT
+case_00092.cnf UNSAT
+case_00091.cnf UNSAT
