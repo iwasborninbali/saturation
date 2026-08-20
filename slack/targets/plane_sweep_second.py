@@ -43,12 +43,29 @@ vid = lambda c: (c[0]*n*n + c[1]*n + c[2]) + 1
 SUBS = [s for k in range(4) for s in combinations(range(len(cells)), k)]
 assert len(SUBS) == 19650, f"кусков {len(SUBS)}, ожидалось 19650 — перебор НЕ исчерпывающ"
 
-mine = [(i, s) for i, s in enumerate(SUBS) if i % nsh == shard]
+# ВОЗОБНОВЛЕНИЕ. Уборка, стоящая в конце процесса, у убитого процесса не выполняется —
+# а убиваем мы их при каждой смене стратегии. То же и с работой: перезапуск не должен
+# начинать заново. Читаем уже закрытые имена и пропускаем их. Первый решатель поймал
+# соседнюю грань того же: 149 ГБ осиротевших каталогов рекурсии, чьи процессы умерли
+# до своего rm -rf. Владение надо проверять снаружи, а не полагаться на послесловие.
+уже = set()
+if os.path.exists(FACTS):
+    for l in open(FACTS, encoding="utf-8", errors="replace"):
+        l = l.strip()
+        if l.startswith("plx0_"): уже.add(l)
+
+def имя(sub):
+    return "plx0_" + ("-".join(f"{c:02d}" for c in sub) if sub else "пусто")
+
+mine = [(i, s) for i, s in enumerate(SUBS) if i % nsh == shard and имя(s) not in уже]
+пропущено = sum(1 for i, s in enumerate(SUBS) if i % nsh == shard) - len(mine)
+if пропущено:
+    print(f"доля {shard}: пропускаю {пропущено} уже закрытых", flush=True)
 fh = open(FACTS, "a", buffering=1)
 t_start = time.time()
 closed = sat = unresolved = 0
 for idx, sub in mine:
-    name = "plx0_" + ("-".join(f"{c:02d}" for c in sub) if sub else "пусто")
+    name = имя(sub)
     f = f"{OUT}/{shard}_{idx}.cnf"
     ss = set(sub)
     u = [vid(cells[j]) if j in ss else -vid(cells[j]) for j in range(len(cells))]

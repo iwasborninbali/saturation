@@ -15,27 +15,27 @@
 #   локальную оболочку, ssh и удалённую оболочку, и экранирование по дороге теряется.
 #   Файл через scp не проходит ни через одну из них.
 #
-#   killer.sh <что-убивать-через-|> [что-СОХРАНИТЬ-через-|]
+#   killer.sh <что-убивать-через-|> [что-KEEP_RE-через-|]
 # Пример: killer.sh 'kissat|sos_named|xargs' '/dev/shm/ps/|direct/target.cnf'
 set -u
-УБИТЬ="${1:-kissat}"
-СОХРАНИТЬ="${2:-}"
+KILL_RE="${1:-kissat}"
+KEEP_RE="${2:-}"
 MYPID=$$; MYPPID=$PPID
-убито=0; сохранено=0
+n_killed=0; n_kept=0
 for P in /proc/[0-9]*; do
   pid=${P#/proc/}
   [ "$pid" = "$MYPID" ] && continue          # свой pid — ЯВНО, а не по образцу
   [ "$pid" = "$MYPPID" ] && continue         # и родителя: это оболочка ssh
   cl=$(tr '\0' ' ' < "$P/cmdline" 2>/dev/null)
   [ -z "$cl" ] && continue                   # процесс уже умер либо это поток ядра
-  if [ -n "$СОХРАНИТЬ" ] && echo "$cl" | grep -qE "$СОХРАНИТЬ"; then
-    сохранено=$((сохранено+1)); continue
+  if [ -n "$KEEP_RE" ] && echo "$cl" | grep -qE "$KEEP_RE"; then
+    n_kept=$((n_kept+1)); continue
   fi
-  if echo "$cl" | grep -qE "$УБИТЬ"; then
-    kill -9 "$pid" 2>/dev/null && убито=$((убито+1))
+  if echo "$cl" | grep -qE "$KILL_RE"; then
+    kill -9 "$pid" 2>/dev/null && n_killed=$((n_killed+1))
   fi
 done
 sleep 3
-осталось=$(for P in /proc/[0-9]*; do tr '\0' ' ' < "$P/cmdline" 2>/dev/null; echo; done | grep -cE "$УБИТЬ")
-echo "убито: $убито, сохранено по списку: $сохранено, осталось подходящих: $осталось"
+n_left=$(for P in /proc/[0-9]*; do tr '\0' ' ' < "$P/cmdline" 2>/dev/null; echo; done | grep -cE "$KILL_RE")
+echo "n_killed: $n_killed, n_kept по списку: $n_kept, n_left подходящих: $n_left"
 echo "load: $(cut -d' ' -f1 /proc/loadavg)"
