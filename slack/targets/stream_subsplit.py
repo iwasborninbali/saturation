@@ -41,7 +41,12 @@ def work(job):
     nv, ncl, body = _body_of(base)
     x, y = col // n, col % n
     units = [((x*n + y)*n + z) + 1 if z in sub else -(((x*n + y)*n + z) + 1) for z in range(n)]
-    path = os.path.join(workdir, f"s{idx}.cnf")
+    # ИМЯ ФАЙЛА ОБЯЗАНО НЕСТИ БАЗУ. Раньше путь зависел ТОЛЬКО от idx, а рабочий каталог
+    # один на весь прогон: подкусок №idx базы A и подкусок №idx базы B писались в ОДИН файл.
+    # open(path,"wb") усекает тот же inode, поэтому решатель, уже читающий его, получал чужое
+    # или обрезанное содержимое. Отсюда наши rc=1 (обрыв при чтении) — и, что хуже, возможность
+    # записать UNSAT ЧУЖОЙ формулы под именем своей. Это ошибка состоятельности, а не потеря работы.
+    path = os.path.join(workdir, f"{os.path.basename(base)[:-4]}__s{idx}.cnf")
     with open(path, "wb") as f:
         f.write(b"p cnf %s %d\n" % (nv, ncl + len(units)))
         f.write(body)
