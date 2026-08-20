@@ -158,7 +158,7 @@ def lex_leader(F, x, sigma, nc):
             F.add(ne, -eq, a, b); F.add(ne, -eq, -a, -b)
         eq = ne
 
-def build(n, M, path, sym=False, invariant=None, profiles=None):
+def build(n, M, path, sym=False, invariant=None, profiles=None, no_layer_min=False):
     nc, pl = planes(n)
     F = CNF(nc)
     x = lambda i: i + 1
@@ -178,6 +178,24 @@ def build(n, M, path, sym=False, invariant=None, profiles=None):
                       if (i//(n*n) if axis==0 else (i//n)%n if axis==1 else i%n) == t]
                 F.atmost(cs, prof[t])
                 F.atmost([-c for c in cs], len(cs)-prof[t])
+    # НИЖНЯЯ ГРАНИЦА НА СЛОЙ — следствие ЗАПАСА ЁМКОСТИ, которого в кодировке не было.
+    # Слой есть богатая плоскость и несёт <= 3 точек; слоёв n; значит по каждой оси
+    # сумма n слоёв равна M при потолке 3 на слой, откуда КАЖДЫЙ слой несёт >= M - 3(n-1).
+    # При n=7, M=19 это 1 (пустых слоёв нет вовсе); при n=6, M=17 это 2.
+    # Из глобального счётчика это следует, но распространяется он слабо, а здесь — сразу.
+    if not no_layer_min:
+        lo = M - 3 * (n - 1)
+        if lo >= 1:
+            for axis in range(3):
+                for t in range(n):
+                    cs = [x(i) for i in range(nc)
+                          if (i//(n*n) if axis == 0 else (i//n) % n if axis == 1 else i % n) == t]
+                    if lo == 1:
+                        F.add(*cs)                       # хотя бы одна
+                    else:                                # хотя бы lo: наивно, но дёшево при lo<=2
+                        from itertools import combinations as _cmb
+                        for drop in _cmb(cs, lo - 1):
+                            F.add(*[c for c in cs if c not in drop])
     F.atleast([x(i) for i in range(nc)], M, 3*n + 1)    # обрезка законна: a(n) <= 3n (слой есть плоскость)
     if invariant:
         # поиск среди ИНВАРИАНТНЫХ конфигураций: законно только для нижних границ
@@ -192,6 +210,7 @@ def build(n, M, path, sym=False, invariant=None, profiles=None):
     print(f"n={n} M={M}{' +сим' if sym else ''}: клеток {nc}, плоскостей {len(pl)}, симметрий {ns}, переменных {F.nv}, клауз {len(F.cl)} -> {path}")
 
 if __name__ == "__main__":
+    no_lm = "--no-layer-min" in sys.argv
     inv = None
     if "--inv" in sys.argv:
         n0 = int(sys.argv[1]); name = sys.argv[sys.argv.index("--inv")+1]
@@ -217,4 +236,4 @@ if __name__ == "__main__":
             a, p = part.split("=")
             profs[int(a)] = [int(t) for t in p.split(",")]
     build(int(sys.argv[1]), int(sys.argv[2]), sys.argv[3], sym=("--sym" in sys.argv),
-          invariant=inv, profiles=profs)
+          invariant=inv, profiles=profs, no_layer_min=no_lm)
