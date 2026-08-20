@@ -17,7 +17,7 @@ usage: stream_profiles.py <no3|no4> n M [-P параллелизм] [--axes a,b]
 """
 from __future__ import annotations
 import os, subprocess, sys, tempfile, time
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from itertools import product
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -62,8 +62,13 @@ def main():
         f.write(f"# {kind} n={n} M={M} axes={axes} sym={sym} pairs={len(pairs)}\n")
     args = [(kind, n, M, a, b, axes, sym, workdir, i) for i, (a, b) in enumerate(pairs)]
     done = sat = 0
+    # as_completed, а НЕ map: map отдаёт результаты по порядку, и пока не закончится первый кусок,
+    # в журнал не попадает ничего — даже если следующие уже готовы. Это дефект наблюдаемости
+    # того же семейства, о котором весь наш список ловушек: работа идёт, а по журналу её не видно.
     with ThreadPoolExecutor(max_workers=P) as ex:
-        for idx, spec, status, secs in ex.map(run_one, args):
+        futures = [ex.submit(run_one, a) for a in args]
+        for fut in as_completed(futures):
+            idx, spec, status, secs = fut.result()
             done += 1
             if status == "SAT": sat += 1
             with open(out, "a") as f:
