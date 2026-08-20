@@ -53,6 +53,17 @@ if prof:
 if lb: m.Add(sum(x) >= lb)
 m.Maximize(sum(x))
 
+hint = arg("--hint")
+if hint:                       # тёплый старт: конфигурация, найденная в симметричном слое
+    H = set()
+    for _l in open(hint):
+        _l = _l.strip()
+        if not _l or _l.startswith("#"): continue
+        _t = _l.split()
+        if len(_t) >= 3: H.add(tuple(int(v) for v in _t[:3]))
+    for _i, _p in enumerate(pts): m.AddHint(x[_i], 1 if _p in H else 0)
+    print(f"тёплый старт из {hint}: {len(H)} точек", flush=True)
+
 
 def collinear_count(S):
     bad = 0

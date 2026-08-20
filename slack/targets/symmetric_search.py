@@ -22,7 +22,13 @@ from math import gcd
 from ortools.sat.python import cp_model
 
 n = int(sys.argv[1]); out = sys.argv[2]; T = float(sys.argv[3])
-gens_txt = sys.argv[4:]
+# генераторы — всё после третьего аргумента, кроме ключей и их значений
+_rest = sys.argv[4:]
+gens_txt, _skip = [], False
+for _a in _rest:
+    if _skip: _skip = False; continue
+    if _a.startswith("--"): _skip = True; continue
+    gens_txt.append(_a)
 m1 = n - 1
 pts = [(x, y, z) for x in range(n) for y in range(n) for z in range(n)]
 idx = {p: i for i, p in enumerate(pts)}
@@ -115,7 +121,7 @@ class Saver(cp_model.CpSolverSolutionCallback):
 
 
 sol = cp_model.CpSolver(); sol.parameters.max_time_in_seconds = T
-sol.parameters.num_search_workers = 2
+sol.parameters.num_search_workers = int(sys.argv[sys.argv.index("--workers")+1]) if "--workers" in sys.argv else 2
 st = sol.Solve(mo, Saver())
 print(f"n={n} |G|={len(G)}: статус {sol.StatusName(st)}; лучшее среди ИНВАРИАНТНЫХ {Saver.best if False else ''}"
       f" -> см. файл; потолок для инвариантных {sol.BestObjectiveBound():.0f}")
