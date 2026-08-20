@@ -14,6 +14,24 @@ import sys
 from collections import defaultdict
 
 BRANCH = 64
+# ОТКАЗ ПРИ ПОТЕРЕ ИСТОЧНИКА. Инструмент, лишившийся входных данных, обязан отказать, а не
+# посчитать по остатку: без данных стороны все её узлы для нас не существуют, несуществующих
+# открытых узлов нет, и фронт выходит пустым. У второго солвера просроченный токен gcloud ровно
+# так и объявил фронт нулём — потеря доступа приняла вид победы. Считать по остатку значит принять
+# «я не вижу» за «этого нет».
+EXPECTED = ["facts_first_solver.txt", "facts_second_solver.txt"]
+given = [p.split("/")[-1] for p in sys.argv[1:]]
+missing = [e for e in EXPECTED if e not in given]
+if missing:
+    print(f"ОТКАЗ: не переданы источники {missing}. Вердикт по остатку не выдаётся:")
+    print("  без фактов стороны её узлы для инструмента не существуют, и фронт выходит пустым —")
+    print("  отсутствие сведений приняло бы вид завершённости.")
+    sys.exit(3)
+empty = [p for p in sys.argv[1:] if not any(
+    l.strip() and not l.startswith("#") for l in open(p, errors="replace"))]
+if empty:
+    print(f"ОТКАЗ: источники пусты {empty} — то же самое, что их нет."); sys.exit(3)
+
 facts, src = set(), defaultdict(set)
 for p in sys.argv[1:]:
     n0 = len(facts)
