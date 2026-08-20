@@ -4,15 +4,24 @@
 # Печатает, сколько ядер реально свободно, и возвращает 1, если запускать нельзя.
 set -u
 T=${1:-local}; NEEDGB=${2:-5}; NEEDCPU=${3:-1}
-declare -A ZONE=( [saturation-solver-2]=us-central1-b [saturation-solver-3]=us-west1-b )
-declare -A PROJ=( [saturation-solver-2]=loyobondar-prod [saturation-solver-3]=eg-multi-domain )
+# без ассоциативных массивов: bash 3.2 на macOS их не знает
+case "$T" in
+  saturation-solver-2) ZONE=us-central1-b; PROJ=loyobondar-prod ;;
+  saturation-solver-3) ZONE=us-west1-b;   PROJ=eg-multi-domain ;;
+  local) ZONE=; PROJ= ;;
+  *) echo "ОТКАЗ: неизвестная машина «$T». Известны: local, saturation-solver-2, saturation-solver-3"; exit 1 ;;
+esac
 
 probe () {  # печатает: cpus load1 freeGB busy_kissat
   if [ "$T" = local ]; then
-    echo "$(sysctl -n hw.ncpu) $(uptime | sed 's/.*averages*: *//' | awk '{print $1}' | tr -d ,) \
-$(df -g /tmp 2>/dev/null | tail -1 | awk '{print $4}') $(pgrep -x kissat | wc -l | tr -d ' ')"
+    # На macOS load average учитывает и ожидание ввода-вывода и НЕ сопоставим с числом ядер
+    # (наблюдали 207 при семи занятых ядрах). Берём долю простоя процессора из top.
+    idle=$(top -l 1 -n 0 2>/dev/null | awk -F'[ %]+' '/^CPU usage/{print $(NF-1)}')
+    cpus=$(sysctl -n hw.ncpu)
+    busy=$(awk -v c="$cpus" -v i="${idle:-100}" 'BEGIN{printf "%.1f", c*(100-i)/100}')
+    echo "$cpus $busy $(df -g /tmp 2>/dev/null | tail -1 | awk '{print $4}') $(pgrep -x kissat | wc -l | tr -d ' ')"
   else
-    timeout 60 gcloud compute ssh "$T" --zone="${ZONE[$T]}" --project="${PROJ[$T]}" \
+    timeout 60 gcloud compute ssh "$T" --zone="$ZONE" --project="$PROJ" \
       --command='echo "$(nproc) $(cut -d" " -f1 /proc/loadavg) $(df -BG /tmp|tail -1|awk "{print \$4}"|tr -d G) $(pgrep -c kissat||echo 0)"' 2>/dev/null
   fi
 }
