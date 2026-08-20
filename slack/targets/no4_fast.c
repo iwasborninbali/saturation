@@ -28,7 +28,7 @@ static int px[512], py[512], pz[512];
 static int S[64], sz;
 static int blocked[512], linbl[512], inS[512];
 static long long found = 0, nodes = 0;
-static int lay0[16], lay1[16], lay2[16], P0[16], P1[16];
+static int lay0[16], lay1[16], lay2[16], P0[16], P1[16], P2[16];
 
 /* блокировка/разблокировка при добавлении p к текущему S (S ещё БЕЗ p) */
 static void touch(int p, int d)
@@ -72,7 +72,7 @@ static void rec(int start)
         if (sz + (NC - q) < M) return;
         if (px[q] > 0 && lay0[px[q]-1] != P0[px[q]-1]) return;   /* предыдущий x-слой уже не добрать */
         if (blocked[q] || linbl[q]) continue;
-        if (lay0[px[q]] >= P0[px[q]] || lay1[py[q]] >= P1[py[q]] || lay2[pz[q]] >= 3) continue;
+        if (lay0[px[q]] >= P0[px[q]] || lay1[py[q]] >= P1[py[q]] || lay2[pz[q]] >= P2[pz[q]]) continue;
         touch(q, +1);
         S[sz++] = q; inS[q] = 1; lay0[px[q]]++; lay1[py[q]]++; lay2[pz[q]]++;
         rec(q+1);
@@ -86,14 +86,17 @@ int main(int argc, char **argv)
     n = atoi(argv[1]); M = atoi(argv[2]);
     { char *t = strtok(argv[3], ","); for (int i = 0; i < n; i++) { P0[i] = atoi(t); t = strtok(NULL, ","); } }
     { char *t = strtok(argv[4], ","); for (int i = 0; i < n; i++) { P1[i] = atoi(t); t = strtok(NULL, ","); } }
-    int s0 = 0, s1 = 0; for (int i = 0; i < n; i++) { s0 += P0[i]; s1 += P1[i]; }
-    if (s0 != M || s1 != M) { printf("ОТКАЗ: профили не дают M (%d, %d против %d)\n", s0, s1, M); return 2; }
+    if (argc > 5) { char *t = strtok(argv[5], ","); for (int i = 0; i < n; i++) { P2[i] = atoi(t); t = strtok(NULL, ","); } }
+    else for (int i = 0; i < n; i++) P2[i] = 3;          /* без третьего профиля — обычная ёмкость слоя */
+    int s0 = 0, s1 = 0, s2 = 0; for (int i = 0; i < n; i++) { s0 += P0[i]; s1 += P1[i]; s2 += P2[i]; }
+    if (s0 != M || s1 != M || (argc > 5 && s2 != M)) { printf("ОТКАЗ: профили не дают M (%d, %d, %d против %d)\n", s0, s1, s2, M); return 2; }
     NC = 0;
     for (int x = 0; x < n; x++) for (int y = 0; y < n; y++) for (int z = 0; z < n; z++) { px[NC]=x; py[NC]=y; pz[NC]=z; NC++; }
     rec(0);
     { char b0[80], b1[80]; int o = 0;
       for (int i = 0; i < n; i++) o += sprintf(b0+o, i ? ",%d" : "%d", P0[i]);
       o = 0; for (int i = 0; i < n; i++) o += sprintf(b1+o, i ? ",%d" : "%d", P1[i]);
-      printf("n=%d M=%d P0=%s P1=%s: конфигураций %lld (узлов %lld)\n", n, M, b0, b1, found, nodes); }
+      char b2[80]; o = 0; for (int i = 0; i < n; i++) o += sprintf(b2+o, i ? ",%d" : "%d", P2[i]);
+      printf("n=%d M=%d P0=%s P1=%s P2=%s: конфигураций %lld (узлов %lld)\n", n, M, b0, b1, b2, found, nodes); }
     return 0;
 }
