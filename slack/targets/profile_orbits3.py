@@ -1,56 +1,45 @@
-"""profile_orbits3.py — орбиты ТРОЕК профилей (по всем трём осям) под полной группой куба.
+"""profile_orbits3.py — представители орбит ТРОЕК профилей под группой куба.
 
-Тройку (профиль по x, по y, по z) группа куба переводит в тройку: перестановка осей переставляет
-профили, отражение вдоль оси обращает свой профиль. Всего 48 образов. Конфигурации у троек одной
-орбиты состоят в биекции, поэтому считать надо один представитель на орбиту.
+Приём первого солвера. Фиксировать все три профиля слоёв (по осям x, y, z), а не один или два:
+кусок становится несравнимо жёстче, потому что кардинальность распадается на 3n маленьких равенств
+вместо одного большого. Кусков при этом больше, но орбитальное сокращение съедает рост.
 
-Фиксировать все три профиля выгоднее, чем два: кусков больше, но каждый несравнимо жёстче, а
-орбитальное сокращение съедает рост числа. При n=6, M=17: 216 троек, 10 орбит.
+Группа действует на тройке профилей: перестановка осей переставляет профили (6 способов),
+отражение вдоль оси обращает СВОЙ профиль (2^3 способов) — всего 48 образов.
 
-    python3 profile_orbits3.py n M            -> представители и веса
-    python3 profile_orbits3.py n M --check f  -> сверка по файлу результатов (все тройки)
+ЗАКОННОСТЬ. Симметрия переносит конфигурацию ВМЕСТЕ с её профилями, поэтому достаточно взять по
+представителю от каждой орбиты: любая конфигурация эквивалентна какой-то, чья тройка профилей есть
+представитель. Условие жёсткое: перебирать ВСЕ орбиты; пропуск одной обесценивает всё. Вес орбиты
+(число троек в ней) берётся из этого же кода, а не проставляется руками.
+
+usage: profile_orbits3.py n M cap  [--weights]
 """
 import sys
-from itertools import permutations, product
+from itertools import product, permutations
 
+def main():
+    n, M, cap = int(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3])
+    profs = [c for c in product(range(cap+1), repeat=n) if sum(c) == M]
+    triples = [(a, b, c) for a in profs for b in profs for c in profs]
+    def images(t):
+        out = set()
+        for perm in permutations(range(3)):
+            for rev in product((0, 1), repeat=3):
+                out.add(tuple(tuple(reversed(t[perm[k]])) if rev[k] else t[perm[k]] for k in range(3)))
+        return out
+    seen, reps = set(), []
+    for t in triples:
+        if t in seen: continue
+        im = images(t)
+        reps.append((t, len(im)))
+        seen |= im
+    tot = sum(w for _, w in reps)
+    print(f"# n={n} M={M} cap={cap}: профилей по оси {len(profs)}, троек {len(triples)}, "
+          f"ОРБИТ {len(reps)}, сумма весов {tot} (должна равняться числу троек: {tot == len(triples)})",
+          file=sys.stderr)
+    for t, w in reps:
+        spec = ";".join(f"{i}=" + ",".join(map(str, t[i])) for i in range(3))
+        print(f"{spec}\t{w}" if "--weights" in sys.argv else spec)
 
-def profiles(n, M, cap=3):
-    return [p for p in product(range(cap + 1), repeat=n) if sum(p) == M]
-
-
-def images(t):
-    out = set()
-    for perm in permutations(range(3)):
-        for sg in product((0, 1), repeat=3):
-            out.add(tuple(t[perm[k]][::-1] if sg[k] else t[perm[k]] for k in range(3)))
-    return out
-
-
-n, M = int(sys.argv[1]), int(sys.argv[2])
-P = set(profiles(n, M))
-seen, orbs = set(), []
-for t in product(sorted(P), repeat=3):
-    if t in seen: continue
-    o = sorted(x for x in images(t) if all(u in P for u in x))
-    seen |= set(o); orbs.append(o)
-
-if "--check" in sys.argv:
-    res = {}
-    for ln in open(sys.argv[sys.argv.index("--check") + 1]):
-        if "конфигураций" not in ln: continue
-        head = ln.split(":")[0]
-        t = tuple(tuple(int(v) for v in head.split(f"P{i}=")[1].split()[0].split(",")) for i in range(3))
-        res[t] = int(ln.split("конфигураций ")[1].split()[0])
-    bad, tot = [], 0
-    for o in orbs:
-        vals = {res[x] for x in o if x in res}
-        if len(vals) > 1: bad.append((o[0], sorted(vals)))
-        if vals: tot += next(iter(vals)) * len(o)
-    print(f"n={n} M={M}: троек {len(seen)}, орбит {len(orbs)}, сокращение в {len(seen)/len(orbs):.1f} раз")
-    print(f"  орбит с РАЗНЫМИ числами внутри: {len(bad)}  {bad[:2]}")
-    print(f"  взвешенная сумма: {tot}")
-else:
-    print(f"# n={n} M={M}: троек {len(seen)}, орбит {len(orbs)}", file=sys.stderr)
-    for o in orbs:
-        a, b, c = o[0]
-        print(",".join(map(str, a)), ",".join(map(str, b)), ",".join(map(str, c)), len(o))
+if __name__ == "__main__":
+    main()
