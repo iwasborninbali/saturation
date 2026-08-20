@@ -511,3 +511,71 @@ def gate_background(cmd: str, expect_seconds: int, override: str | None = None) 
 if __name__ == "__main__":
     print(__doc__)
     print("Ворота:", ", ".join(k for k in globals() if k.startswith("gate_")))
+
+
+def gate_density_ceiling(facts_path, n=7, M=19, ceil=3.0/7.0, top=8):
+    """ФОРМА, А НЕ ВЕЛИЧИНА. Ворота смотрят не на число закрытий, а на то, каким путём
+    закрытие получено. У куска на глубине k с p поставленными точками плотность остатка
+    d = (M-p)/(NC-k). Столбцы обходятся послойно, слой держит 3 точки на 7 столбцов,
+    поэтому выполнимый кусок имеет d <= 3/7. Кусок с d > 3/7 невыполним по чистому счёту
+    и закрывается распространением, не начиная поиска, — замерено 0.33 с на живых кусках.
+
+    Значит факт с d > 3/7 — это НЕ ошибка в ответе (закрытый кусок закрыт), а улика о пути:
+    его родитель уже был невыполним, и мы раздробили его на 64 ребёнка вместо того, чтобы
+    закрыть за треть секунды. Ворота ловят растрату, а не ложь.
+
+    Почему именно так, а не по глубине: глубокий факт сам по себе законен. Ловить нужно
+    несоответствие между тем, что кусок был бесплатен, и тем, что мы за него заплатили.
+
+    Патологию первым увидел первый решатель — в гистограмме своих фактов по глубинам,
+    хвост до самого дна расписания. Ни одна проверка на величины её не показывала:
+    закрытия росли, тупиков не было, выполнимых не было. Числа были в порядке,
+    а форма распределения — нет.
+    """
+    import os
+    from itertools import combinations
+    from collections import Counter
+    NC = n * n
+    S = [x for k in range(4) for x in combinations(range(n), k)]
+    if not os.path.exists(facts_path):
+        return {"итог": "НЕ СМОГ ИЗМЕРИТЬ", "почему": f"нет файла {facts_path}"}
+    total = 0
+    over = 0
+    depths = Counter()
+    over_depths = Counter()
+    worst = []
+    for ln in open(facts_path):
+        b = ln.strip()
+        if not b:
+            continue
+        try:
+            idxs = [int(t) for t in b.split("_s")[1:]]
+        except ValueError:
+            continue
+        k = len(idxs) + 1
+        rc = NC - k
+        if rc <= 0:
+            continue
+        p = sum(len(S[i]) for i in idxs if i < len(S))
+        d = (M - p) / rc
+        total += 1
+        depths[k] += 1
+        if d > ceil:
+            over += 1
+            over_depths[k] += 1
+            worst.append((d, k, b))
+    if total == 0:
+        return {"итог": "НЕ СМОГ ИЗМЕРИТЬ", "почему": "файл пуст — фактов нет"}
+    worst.sort(reverse=True)
+    доля = over / total
+    итог = "ЧИСТО" if over == 0 else "РАСТРАТА"
+    return {
+        "итог": итог,
+        "всего фактов": total,
+        "выше потолка": over,
+        "доля": round(доля, 4),
+        "потолок": round(ceil, 4),
+        "макс глубина": max(depths) if depths else 0,
+        "глубины растраты": dict(sorted(over_depths.items())),
+        "худшие": [(round(d, 3), k, b[:60]) for d, k, b in worst[:top]],
+    }
