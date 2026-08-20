@@ -158,7 +158,7 @@ def lex_leader(F, x, sigma, nc):
             F.add(ne, -eq, a, b); F.add(ne, -eq, -a, -b)
         eq = ne
 
-def build(n, M, path, sym=False, invariant=None, profiles=None, no_layer_min=False, layer_pair=False):
+def build(n, M, path, sym=False, invariant=None, profiles=None, no_layer_min=False, layer_pair=False, no3=False):
     nc, pl = planes(n)
     F = CNF(nc)
     x = lambda i: i + 1
@@ -214,6 +214,46 @@ def build(n, M, path, sym=False, invariant=None, profiles=None, no_layer_min=Fal
                     cs = [x(i) for i in range(nc)
                           if (i//(n*n) if axis == 0 else (i//n) % n if axis == 1 else i % n) in (t1, t2)]
                     F.atleast(cs, lo2, lo2)
+    # ЗАПРЕТ КОЛЛИНЕАРНЫХ ТРОЕК. Три коллинеарные точки и ЛЮБАЯ четвёртая всегда компланарны
+    # (плоскость через прямую и четвёртую точку). Значит при M>=4 конфигурация не может
+    # содержать ни одной коллинеарной тройки вовсе — следствие чистого счёта, а не догадка.
+    # Кодировка это УЖЕ запрещает, но окольно: решателю нужно найти четвёртую точку и
+    # упереться в ограничение «не более 3» её плоскости. Прямая запись — трёхлитеральные
+    # дизъюнкты, которые убивает распространение единиц, без всякого поиска.
+    # Идея пришла из внешнего разбора; ускорение НЕ считается фактом до замера.
+    if no3:
+        # ПЕРЕЧИСЛЕНИЕ ЧЕРЕЗ ПРЯМЫЕ, А НЕ ЧЕРЕЗ ПОДРЯД ИДУЩИЕ УЗЛЫ. Первая моя редакция брала
+        # только тройки соседних узлов решётки и дала 10227 вместо 16427: тройка с пропуском,
+        # вроде (0,0,0),(2,0,0),(4,0,0), в неё не попадала. Число 16427 у нас проверено дважды
+        # независимыми перечислителями, и именно оно поймало ошибку — величина с известным
+        # ответом проверяет программу, которая её считает.
+        from math import gcd
+        from itertools import combinations as _cmb3
+        pts = [(a, b, c) for a in range(n) for b in range(n) for c in range(n)]
+        idx = {p: i for i, p in enumerate(pts)}
+        lines = {}
+        for a, b in _cmb3(pts, 2):
+            d = (b[0]-a[0], b[1]-a[1], b[2]-a[2])
+            g = gcd(gcd(abs(d[0]), abs(d[1])), abs(d[2])) or 1
+            s3 = (d[0]//g, d[1]//g, d[2]//g)
+            if s3 > tuple(-v for v in s3): s3 = tuple(-v for v in s3)
+            # катимся назад до выхода из куба, чтобы получить канонический первый узел
+            q = a
+            while all(0 <= q[k] - s3[k] < n for k in range(3)):
+                q = tuple(q[k] - s3[k] for k in range(3))
+            if (q, s3) in lines: continue
+            pl = []
+            r = q
+            while all(0 <= r[k] < n for k in range(3)):
+                pl.append(idx[r]); r = tuple(r[k] + s3[k] for k in range(3))
+            lines[(q, s3)] = pl
+        seen = set()
+        for pl in lines.values():
+            if len(pl) < 3: continue
+            for t in _cmb3(sorted(pl), 3): seen.add(t)
+        for t in seen:
+            F.add(-x(t[0]), -x(t[1]), -x(t[2]))
+        globals()["_NO3_COUNT"] = len(seen)
     F.atleast([x(i) for i in range(nc)], M, 3*n + 1)    # обрезка законна: a(n) <= 3n (слой есть плоскость)
     if invariant:
         # поиск среди ИНВАРИАНТНЫХ конфигураций: законно только для нижних границ
@@ -230,6 +270,7 @@ def build(n, M, path, sym=False, invariant=None, profiles=None, no_layer_min=Fal
 if __name__ == "__main__":
     no_lm = "--no-layer-min" in sys.argv
     lp = "--layer-pair" in sys.argv
+    n3 = "--no3" in sys.argv
     inv = None
     if "--inv" in sys.argv:
         n0 = int(sys.argv[1]); name = sys.argv[sys.argv.index("--inv")+1]
@@ -255,4 +296,4 @@ if __name__ == "__main__":
             a, p = part.split("=")
             profs[int(a)] = [int(t) for t in p.split(",")]
     build(int(sys.argv[1]), int(sys.argv[2]), sys.argv[3], sym=("--sym" in sys.argv),
-          invariant=inv, profiles=profs, no_layer_min=no_lm, layer_pair=lp)
+          invariant=inv, profiles=profs, no_layer_min=no_lm, layer_pair=lp, no3=n3)
