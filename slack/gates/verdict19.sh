@@ -16,7 +16,7 @@
 #
 #   usage: verdict19.sh
 set -u
-R="$(cd "$(dirname "$0")/../.." && pwd)"; W=/tmp/verdict19; mkdir -p $W; rm -f $W/m19_*.txt
+R="$(cd "$(dirname "$0")/../.." && pwd)"; W=/tmp/verdict19; mkdir -p $W   # НЕ чистим кэш заранее: неудачная выгрузка стёрла бы последнюю удачную
 
 # ФАЙЛЫ ИМЕННО ЭТОГО ВОПРОСА. Брать /tmp/*.txt нельзя: там лежат результаты ДРУГИХ вопросов,
 # и выполнимый кусок из прогона M=18 (где 18 точек существуют и это наш свидетель) выглядит
@@ -25,7 +25,8 @@ FILES="/tmp/r7_19.txt /tmp/r7_19rev.txt /tmp/rs7_19.txt /tmp/rss19.txt /tmp/r4_1
 
 pull () { # host zone project tag
   timeout 180 gcloud compute ssh "$1" --zone="$2" --project="$3" \
-    --command="for f in $FILES; do [ -f \"\$f\" ] && grep -h '^case_' \"\$f\"; done" 2>/dev/null > "$W/m19_$4.txt"
+    --command="for f in $FILES; do [ -f \"\$f\" ] && grep -h '^case_' \"\$f\"; done" 2>/dev/null > "$W/m19_$4.new"
+  if [ -s "$W/m19_$4.new" ]; then mv "$W/m19_$4.new" "$W/m19_$4.txt"; else rm -f "$W/m19_$4.new"; fi
   n=$(grep -c . "$W/m19_$4.txt" 2>/dev/null); n=${n:-0}; n=$(printf '%s' "$n" | head -1)
   echo "  с $1 получено строк: $n"
   if [ "$n" -eq 0 ]; then
