@@ -155,7 +155,21 @@ def build(n, M, path, sym=False, invariant=None):
 
 if __name__ == "__main__":
     inv = None
-    if "--cyc3" in sys.argv:
+    if "--inv" in sys.argv:
+        n0 = int(sys.argv[1]); name = sys.argv[sys.argv.index("--inv")+1]
+        def enc(x,y,z): return (x*n0+y)*n0+z
+        def dec(i): return (i//(n0*n0), (i//n0)%n0, i%n0)
+        MAPS = {
+            "cyc3":  lambda x,y,z: (y,z,x),                    # порядок 3
+            "swapxy":lambda x,y,z: (y,x,z),                    # порядок 2
+            "refx":  lambda x,y,z: (n0-1-x,y,z),               # порядок 2
+            "point": lambda x,y,z: (n0-1-x,n0-1-y,n0-1-z),     # порядок 2, центральная
+            "rot4z": lambda x,y,z: (y,n0-1-x,z),               # порядок 4
+            "diag":  lambda x,y,z: (n0-1-y,n0-1-x,z),          # порядок 2
+        }
+        f = MAPS[name]
+        inv = [[ enc(*f(*dec(i))) for i in range(n0**3) ]]
+    elif "--cyc3" in sys.argv:
         n0 = int(sys.argv[1])
         inv = [[ ((i//n0)%n0)*n0*n0 + (i%n0)*n0 + (i//(n0*n0)) for i in range(n0**3) ]]
     build(int(sys.argv[1]), int(sys.argv[2]), sys.argv[3], sym=("--sym" in sys.argv), invariant=inv)

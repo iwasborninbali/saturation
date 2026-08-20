@@ -219,10 +219,19 @@ at $71$ from randomised search and rose to $73$ within the hour once the search 
 configurations invariant under a cyclic permutation of the axes.  Restricting to a subgroup collapses the cells
 into orbits and shrinks the search by the order of the group; it is legitimate for lower bounds only, since a
 configuration found is a configuration, while failure to find one among the symmetric ones says nothing about
-the rest.  What is counter-intuitive is that a \emph{larger} group gives a \emph{better} result: at $n=8$ the
-groups of order $2$, $3$, $4$ and $6$ yield $82$, $88$, $88$ and $93$ points respectively.  The narrowing is
-not a handicap but a purchase --- with $|G|=6$ there are six times fewer variables, and the solver reaches
-configurations it never gets near in the full space within the same budget.  (An earlier draft of this note quoted
+the rest.  The size of the group has an optimum in the middle rather than at either end, and the optimum is a balance:
+the group must be large enough to make the problem solvable and small enough that good configurations still
+fall inside the symmetric stratum.  At $n=8$:
+\begin{center}\begin{tabular}{rl}\toprule
+order of the group & best found\\\midrule
+2 & 82, 84\\ 3 & 88\\ 4 & 88, 90\\ \textbf{6} & \textbf{92, 92, 93}\\ 8 & 80, 88\\ 12 & 88\\
+24 & 88 (proved optimal within its stratum)\\ 48 & 80 (proved optimal within its stratum)\\\bottomrule
+\end{tabular}\end{center}
+At $|G|=48$ only $20$ orbits remain, the solver settles the stratum in seconds, and the answer is $80$, because
+genuinely good configurations do not have that much symmetry.  Note also that the order alone does not decide
+it: two different groups of order $8$ gave $80$ and $88$.  We record this as data.  An earlier draft of this
+note stated instead that a larger group simply gives a better result --- a pattern read off the first four
+rows, which the remaining four contradict.  (An earlier draft of this note quoted
 $72$ and $90$ here.  Those numbers came from a run whose witness was never saved, and when we came to attach
 witnesses to them the journals we could reproduce gave $71$ and $89$.  We report the values we can exhibit.)
 Two indications.  First, the layer structure of
