@@ -81,6 +81,19 @@ def explain(node, depth=0, limit=6):
 
 for t in open_top: explain(t)
 
+# Открытый фронт: узлы без собственного UNSAT и без ПОЛНОГО разбиения — их надо решить или разбить.
+front = [nd for nd in own if not closed(nd) and len(children.get(nd, set())) < NSUB]
+by_status = defaultdict(int)
+for nd in front:
+    for st in own[nd]: by_status[st] += 1
+print(f"\nОТКРЫТЫЙ ФРОНТ: {len(front)} узлов")
+for st, c in sorted(by_status.items(), key=lambda x: -x[1]):
+    note = "  <- ОШИБКА решателя, кусок не решался вовсе" if st == "rc=1" else ""
+    print(f"   {st:>8}: {c}{note}")
+
+# Строка для наблюдателей: разбирать прозу они не должны.
+print(f"ИТОГ верх={NSUB-len(open_top)}/{NSUB} фронт={len(front)} выполнимых={len(sat)}")
+
 if sat:
     print("\nВЕРДИКТ: НАЙДЕН ВЫПОЛНИМЫЙ КУСОК — утверждение ЛОЖНО"); sys.exit(2)
 if open_top or missing_top:
