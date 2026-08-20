@@ -15,10 +15,11 @@ gc saturation-solver-3 /tmp/rs4b.txt   $W/l4_b.txt us-west1-b   eg-multi-domain
 gc saturation-solver-2 /tmp/ss_a.txt   $W/l5_a1.txt us-central1-b loyobondar-prod
 gc saturation-solver-2 /tmp/ss_a2.txt  $W/l5_a2.txt us-central1-b loyobondar-prod
 gc saturation-solver-3 /tmp/ss_b.txt   $W/l5_b.txt us-west1-b   eg-multi-domain
-python3 - "$W" <<'PY'
+python3 - "$W" "${1:-}" <<'PY'
 import sys, os, glob
 from collections import defaultdict
 W = sys.argv[1]
+LIST = len(sys.argv) > 2 and sys.argv[2] == "--list"
 SUBS = 64                                   # подмножеств размера <=3 из 7
 lvl4 = set()
 for f in glob.glob(os.path.join(W, "l4_*.txt")):
@@ -41,6 +42,18 @@ print(f"  закрыто через все {SUBS} подкуска: {len(by5)}")
 print(f"  ЗАКРЫТО УНИКАЛЬНЫХ:          {len(closed)}")
 print(f"  дробится, но не закончено:   {len(partial)}" + (f"  например {list(partial.items())[:2]}" if partial else ""))
 print(f"  ВЫПОЛНИМЫХ:                  {len(sat)}" + (f"  {sat[:2]}" if sat else "  — ни одного"))
+if LIST:
+    # Список выдаётся ТЕМ ЖЕ инструментом, что и вердикт. Отдельный скрипт разошёлся бы
+    # с ним ровно тогда, когда это опаснее всего — при сверке с чужой машиной.
+    out = os.path.join(W, "closed.txt")
+    with open(out, "w") as fh:
+        for nm in sorted(closed): fh.write(nm + "\n")
+    print(f"\n  список закрытых записан: {out}  ({len(closed)} имён)")
+    if partial:
+        po = os.path.join(W, "partial.txt")
+        with open(po, "w") as fh:
+            for b, k in sorted(partial.items()): fh.write(f"{b} {k}/{SUBS}\n")
+        print(f"  список недодробленных:   {po}  ({len(partial)} имён)")
 if sat:
     print("\nВЕРДИКТ: НАЙДЕН ВЫПОЛНИМЫЙ КУСОК — 19 точек СУЩЕСТВУЮТ, утверждение a(7)<=18 ЛОЖНО"); sys.exit(2)
 if len(closed) < 448:
