@@ -31,11 +31,22 @@ for path in logs:
         # Формат solve_or_split: «ЗАКРЫТ <узел>» — прямое закрытие, атомарный факт.
         # «ЗАКРЫТ ЧЕРЕЗ ПРОДОЛЖЕНИЯ <узел>» — ВЫВОД из фактов о потомках, а не измерение:
         # в файл фактов он идти НЕ должен, иначе читающий получит вывод под видом наблюдения.
+        def _fix(nm):
+            nm = nm[:-4] if nm.endswith(".cnf") else nm
+            for _bad, _good in REMAP.items():
+                if nm.startswith(_bad):
+                    return _good + nm[len(_bad):]
+            return nm
         if t and t[0] == "ЗАКРЫТ":
-            if len(t) == 2 and t[1].startswith("case_"):
-                t = [t[1], "UNSAT"]
+            # отображение применяется к СЫРОМУ имени: фильтр startswith("case_") ниже иначе
+            # отбросит имена с испорченным стеблем ДО того, как их успеют исправить —
+            # именно так 622 факта молча не дошли до дерева в прошлый раз
+            if len(t) == 2 and _fix(t[1]).startswith("case_"):
+                t = [_fix(t[1]), "UNSAT"]
             else:
                 continue
+        elif t and t[0]:
+            t = [_fix(t[0])] + t[1:]
         if t and t[0] in ("ВЫПОЛНИМ", "ПРЕДЕЛ", "ДРОБЛЮ", "НЕ", "ОТКАЗ"):
             if t[0] == "ВЫПОЛНИМ" and len(t) > 1:
                 sat.append((t[1], path))
