@@ -46,6 +46,16 @@ def work(job):
         f.write(b"p cnf %s %d\n" % (nv, ncl + len(units)))
         f.write(body)
         f.write(b"".join(b"%d 0\n" % u for u in units))
+    # ЦЕЛОСТНОСТЬ ПЕРЕД РЕШЕНИЕМ. Обрыв записи (кончился диск) даёт файл правильного ИМЕНИ и
+    # неправильного содержимого: решатель вернёт rc=1 за ноль секунд, и в журнале эта строка
+    # неотличима от результата. Так у нас 162 узла остались нерешёнными и незамеченными.
+    # Проверка стоит доли секунды против часов счёта.
+    hdr_n = body.count(b"\n") + len(units) + (0 if body.endswith(b"\n") else 1)
+    got = os.path.getsize(path)
+    want = len(body) + len(b"p cnf %s %d\n" % (nv, ncl + len(units))) + \
+           sum(len(b"%d 0\n" % u) for u in units)
+    if got != want:
+        return os.path.basename(base), idx, f"ОБОРВАН({got}!={want})", 0
     t0 = time.time()
     try:
         r = subprocess.run(["kissat", "-q", path], capture_output=True)

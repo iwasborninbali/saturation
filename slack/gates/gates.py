@@ -150,6 +150,46 @@ def gate_watcher_blind(sources: list[tuple[str, float]], solvers_running: int,
                f"недопустим — он неотличим от слепоты", override)
 
 
+def gate_cnf_intact(path: str, sample_only: bool = False) -> int:
+    """Ловушка 13 (2026-08-20). Мы проверяли ЧИСЛО порождённых файлов и ни разу — их ЦЕЛОСТНОСТЬ.
+    Случай: 162 куска решающего вопроса вернули rc=1 — kissat выходил с ошибкой за ноль секунд,
+    потому что файл был оборван (почти наверняка кончился диск). Число файлов при этом сходилось,
+    `gate_generated` был доволен, а 162 узла остались нерешёнными И НЕЗАМЕЧЕННЫМИ: в журнале
+    они выглядели как строки результата, наравне с UNSAT.
+
+    Обрыв записи даёт ПРАВИЛЬНОЕ число файлов и неправильное содержимое. Поэтому кроме счёта
+    обязана проверяться заявленная в шапке длина. Возвращает число клауз; бросает при расхождении.
+
+    Ворота на УТВЕРЖДЕНИЕ: испорченный кусок не решён, что бы ни говорил журнал."""
+    if not os.path.exists(path):
+        _refuse(f"кусок {path} отсутствует — он НЕ решён")
+    size = os.path.getsize(path)
+    if size == 0:
+        _refuse(f"кусок {path} ПУСТ — он не решён")
+    nv = ncl = None
+    seen = 0
+    with open(path, "rb") as f:
+        for line in f:
+            if not line or line[:1] in (b"c", b"\n"):
+                continue
+            if line[:5] == b"p cnf":
+                parts = line.split()
+                nv, ncl = int(parts[2]), int(parts[3])
+                continue
+            seen += 1
+            if sample_only and seen > 1000:
+                break
+    if nv is None:
+        _refuse(f"в {path} нет строки 'p cnf' — файл не является CNF")
+    if sample_only:
+        return ncl
+    if seen != ncl:
+        _refuse(f"кусок {path} ОБОРВАН: шапка обещает {ncl} клауз, в файле {seen} "
+                f"(разница {ncl - seen}). Такой кусок не решается — решатель вернёт ошибку, "
+                f"и в журнале она будет неотличима от результата")
+    return seen
+
+
 def gate_restriction(kind: str, axes_used: int, verdict: str) -> str:
     """Ловушка про избыточные ограничения. Невозможность, полученная при СУЖЕНИИ,
     относится только к суженному классу. Случай: «профиль 88 при n=7 невозможен» было
