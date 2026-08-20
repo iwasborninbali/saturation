@@ -42,10 +42,19 @@ $n$ & value & how\\\midrule
 7 & $a\ge18$ & witness, verified three ways here and four ways independently\\\bottomrule
 \end{tabular}\end{center}
 The strongest of these checks is not that the maxima agree but that the \emph{counts} do.  Ed Pegg reported a
-unique $8$-point configuration at $n=3$ and $232$ configurations of $10$ points at $n=4$; our enumerator gives
-$16$ and $10960$ labelled configurations, collapsing to exactly $1$ and $232$ classes under the $48$ symmetries
-of the cube, with stabiliser split $225\cdot48+6\cdot24+1\cdot16=10960$.  Matching a maximum can happen by
-accident; matching a count cannot.
+unique $8$-point configuration at $n=3$, $232$ configurations of $10$ points at $n=4$, and $38$ ways to choose
+$13$ points at $n=5$.  Our enumerator gives
+\begin{center}\begin{tabular}{rrrr}\toprule
+$n$ & size & labelled configurations & classes under the cube group\\\midrule
+3 & 8 & 16 & \textbf{1} (published: unique)\\
+4 & 10 & 10960 & \textbf{232} (published: 232)\\
+5 & 13 & 1768 & \textbf{38} (published: 38)\\\bottomrule
+\end{tabular}\end{center}
+with the stabiliser checksum $\sum 48/|\mathrm{Stab}|$ equal to the labelled total in each row --- at $n=4$,
+$225\cdot48+6\cdot24+1\cdot16=10960$.  Matching a maximum can happen by accident; matching a count three times
+cannot.  We stress that the enumerator producing these numbers has no notion of a plane at all: it tests
+coplanarity by an integer determinant on each quadruple, so agreement with our plane-based encoding is
+agreement between two constructions that share nothing but the problem.
 
 \section{What is \emph{not} established: there are no upper bounds here}
 This deserves its own paragraph, because a reader who has seen the companion note on the no-three-in-line
