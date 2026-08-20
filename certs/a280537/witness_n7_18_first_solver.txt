@@ -1,0 +1,12 @@
+# a(7) >= 18 for A280537 (no four coplanar in [7]^3)
+# Configuration obtained by the first solver's stochastic search (determinants only, no planes, no SAT).
+# PROVENANCE OF THE FILE IS DISPUTED: its journals showed 17 while the file held 18, and all four
+# journals had identical mtimes, so the file may have been rewritten by git rather than by the process.
+# THIS DOES NOT MATTER FOR A WITNESS. A configuration is admissible or not by its own coordinates.
+# Verified here THREE independent ways, each written separately:
+#   all C(18,4)=3060 quadruples, 3x3 determinant of differences ... 0 coplanar
+#   against our list of 346743 rich planes ...................... 0 planes carrying >3 points
+#   all 3060 quadruples, 4x4 determinant of homogeneous coords ... 0 coplanar
+#   plus: 18 distinct points, all coordinates in [0,6], 0 collinear triples
+(3,0,4) (4,0,1) (1,1,1) (0,3,5) (4,5,0) (4,4,0) (1,0,6) (0,4,3) (5,1,6)
+(6,4,1) (6,1,2) (5,6,3) (3,5,5) (2,2,0) (6,5,3) (0,3,6) (2,6,2) (5,2,5)
