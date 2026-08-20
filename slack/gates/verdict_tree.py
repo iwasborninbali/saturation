@@ -26,6 +26,28 @@ NAME = re.compile(r"^case_\d+(?:_s\d+)*$")
 # Флаги ОТДЕЛЯЮТСЯ от имён файлов. Без этого "--export" уходил в список файлов,
 # open() падал, и вся выгрузка молча не происходила.
 FILES = [a for a in sys.argv[3:] if not a.startswith("--")]
+
+# ФАЙЛЫ ФАКТОВ. Работа идёт на разных машинах у двух решающих независимо, и если у каждого свой
+# вердикт по своей половине — общего вердикта нет ни у кого. Факт (узел с собственным UNSAT)
+# публикуется в репозиторий, а вердикт ПЕРЕСЧИТЫВАЕТСЯ из объединения. Складывать чужие ЧИСЛА
+# нельзя — это ровно то сложение счётчиков, что дало «584 из 448»; объединять ИМЕНА можно,
+# потому что объединение множеств идемпотентно и пересечение не удваивается.
+if "--facts" in sys.argv:
+    i = sys.argv.index("--facts")
+    for fp in sys.argv[i+1:]:
+        if fp.startswith("--"): break
+        try: fh = open(fp, encoding="utf-8")
+        except OSError:
+            print(f"  ВНИМАНИЕ: файла фактов {fp} нет — покрытие будет ЗАНИЖЕНО"); continue
+        cnt = 0
+        for l in fh:
+            l = l.strip()
+            if not l or l.startswith("#"): continue
+            nd = l.split()[0]
+            if nd.endswith(".cnf"): nd = nd[:-4]
+            if NAME.match(nd): own[nd].add("UNSAT"); cnt += 1
+        print(f"  фактов принято из {fp}: {cnt}")
+
 for path in FILES:
     for line in open(path, encoding="utf-8", errors="replace"):
         p = line.split()

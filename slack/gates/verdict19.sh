@@ -33,4 +33,8 @@ pull () { # host zone project tag
 pull saturation-solver-2 us-central1-b loyobondar-prod a
 pull saturation-solver-3 us-west1-b   eg-multi-domain  b
 echo
-python3 "$R/slack/gates/verdict_tree.py" 7 3 $W/m19_a.txt $W/m19_b.txt
+# Факты, опубликованные в репозиторий обоими решающими. Объединяются ИМЕНА, а не числа.
+FACTS=""
+for f in "$R"/logs/a280537/facts_*.txt; do [ -f "$f" ] && FACTS="$FACTS $f"; done
+[ -n "$FACTS" ] && echo "  файлы фактов из репозитория:$FACTS"
+python3 "$R/slack/gates/verdict_tree.py" 7 3 $W/m19_a.txt $W/m19_b.txt ${FACTS:+--facts $FACTS}
