@@ -29,6 +29,12 @@ for r in $(seq 1 "$ROUNDS"); do
   echo "круг $r: во фронте $n кусков, закрытая масса $m"
   if [ "$n" -eq 0 ]; then echo "круг $r: фронт ПУСТ — проверь вердикт, возможно всё закрыто"; break; fi
   # 3) отработать круг
-  cat $SP/queue_live.txt | xargs -P "$P" -I{} $R/slack/targets/work_unit_first_solver.sh {} "$LIM" 49 >> $SP/logs/queue_live_out.txt 2>&1
+  # РАБОТА ГРУППИРУЕТСЯ ПО РОДИТЕЛЯМ. Восстановление куска весит 0.9 с и 54 МБ, а в очереди
+  # в среднем 47 кусков на одного родителя: по одному это 13.6 часа только на восстановление,
+  # по родителям — около двух. Одно и то же множество работы, разница в том, что не переделывается.
+  awk '{n=split($0,a,"_s"); p=a[1]; for(i=2;i<n;i++) p=p "_s" a[i]; print p}' $SP/queue_live.txt       | sort -u > $SP/parents_live.txt
+  np=$(awk 'END{print NR+0}' $SP/parents_live.txt)
+  echo "круг $r: родителей $np (кусков $n)"
+  cat $SP/parents_live.txt | xargs -P "$P" -I{} $R/slack/targets/work_parent_first.sh {} "$LIM" 49 >> $SP/logs/queue_live_out.txt 2>&1
 done
 echo "ЦИКЛ ЗАВЕРШЁН"
