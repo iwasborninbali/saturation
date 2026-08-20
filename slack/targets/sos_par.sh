@@ -1,0 +1,18 @@
+#!/bin/bash
+# sos_par.sh — параллельный запуск рекурсивного прохода: узел дробится один раз, а его 64 ребёнка
+# обходятся параллельно, каждый со своей рекурсией. Сама рекурсия однопоточна по устройству, и без
+# этой обёртки машина используется на одну двенадцатую — что и происходило, пока я не посмотрел.
+#   sos_par.sh <cnf> <индекс-столбца> <лимит-с> <макс-глубина> <параллелизм>
+SP=/tmp/claude-1000/-home-pmbot-projects-solver-kit/df30d6f4-57eb-4267-abb8-3e2d3cd04a69/scratchpad
+R=/home/pmbot/projects/saturation_peer
+f="$1"; ci="$2"; lim="$3"; maxd="$4"; P="${5:-6}"
+SCHED=(0 1 2 3 4 5 6 7 8 9 10 11 12 13)
+b=$(basename "$f" .cnf); col=${SCHED[$ci]}
+d=$SP/sospar/$b; rm -rf $d; mkdir -p $d
+python3 $R/slack/targets/subsplit.py "$f" 7 "$col" 3 $d >/dev/null 2>&1
+k=$(ls $d/*.cnf 2>/dev/null | wc -l)
+[ "$k" -eq 64 ] || { echo "ОТКАЗ $b: детей $k вместо 64"; rm -rf $d; exit 2; }
+echo "ДРОБЛЮ $b столбцом $col, обход параллельно по $P"
+ls -r $d/*.cnf | xargs -P "$P" -I{} $R/slack/targets/solve_or_split.sh {} $((ci+1)) "$lim" "$maxd"
+rm -rf $d
+echo "ВЕТКА $b ПРОЙДЕНА"
