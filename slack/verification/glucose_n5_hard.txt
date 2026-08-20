@@ -26,3 +26,9 @@ case_00085.cnf UNSAT
 case_00082.cnf UNSAT
 case_00092.cnf UNSAT
 case_00091.cnf UNSAT
+case_00012.cnf UNSAT
+case_00013.cnf UNSAT
+case_00005.cnf UNSAT
+case_00003.cnf UNSAT
+case_00004.cnf ЛИМИТ
+case_00004.cnf UNSAT
