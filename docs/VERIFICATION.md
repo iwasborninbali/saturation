@@ -27,12 +27,27 @@
 и целочисленное векторное произведение (соответственно определитель).
 
 ```
-python3 certs/no3_3d/verify_witness_lines.py 6 "$(cat certs/no3_3d/sat_witness_n6_64.txt)"
-python3 certs/a280537/verify_witness.py      5 "$(cat certs/a280537/sat_witness_n5_13.txt)"
+# сначала — проверить сам ПРОВЕРЯЛЬЩИК: он обязан уметь отвергать, иначе его «чисто» ничего не стоит
+python3 certs/no3_3d/verify_witness_lines.py --selftest
+python3 certs/a280537/verify_witness.py      --selftest
+
+# затем свидетели (третий аргумент — ожидаемое число точек; без него размер не проверяется)
+python3 certs/no3_3d/verify_witness_lines.py 6 certs/no3_3d/sat_witness_n6_64.txt 64
+python3 certs/no3_3d/verify_witness_lines.py 7 certs/no3_3d/n7_warm_first_solver.txt 73
+python3 certs/no3_3d/verify_witness_lines.py 8 certs/no3_3d/n8_warm93_first_solver.txt 93
+python3 certs/a280537/verify_witness.py      5 certs/a280537/witness_n5.txt 13
+python3 certs/a280537/verify_witness.py      7 certs/a280537/witness_n7_18_first_solver.txt 18
 ```
 
 Программа перебирает ВСЕ тройки (соответственно четвёрки), проверяет различность точек и
 попадание в куб, и печатает число вырожденных наборов. Ожидается ноль.
+
+**Почему первыми идут `--selftest`.** До 2026-08-20 эти команды в документации были написаны, но
+никогда не исполнялись как написаны: путь к свидетелю молча разбирался как сами данные, ветка
+`--file` в проверяльщике четвёрок была мёртвым кодом, а одна из ссылок вела на несуществующий файл.
+Ни один результат от этого не изменился — но посторонний, делающий ровно то, что здесь написано,
+получал отказ на верном свидетеле. Теперь весь этот раздел исполняется одной командой
+`bash slack/gates/check_docs.sh`, и она отказывает, если хоть одна ссылка или команда не работает.
 
 Если вы не доверяете и этой программе — она умещается в двадцать строк и её проще переписать,
 чем читать.
@@ -87,10 +102,10 @@ drat-trim /tmp/a.cnf /tmp/a.drat      # ожидается: s VERIFIED
 и вывод будет ложным. **Ни одна из проверок звеньев 1, 2, 4 этого не увидит**, потому что каждая
 смотрит на свой участок цепи, а отсечение стоит сбоку от них всех.
 
-Проверка (`slack/targets/verify_symmetry.py` первого солвера):
+Проверка (`slack/targets/verify_symmetry_direct.py` первого солвера):
 
 ```
-python3 slack/targets/verify_symmetry.py 6
+python3 slack/targets/verify_symmetry_direct.py 6
 ```
 
 Метод: формула собирается из ОДНИХ симметрийных клауз — без ограничений на прямые и без
