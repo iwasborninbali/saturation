@@ -60,6 +60,16 @@ table above that is written $a\ge$ is a lower bound and nothing more.
 We say this explicitly because the tempting summary --- ``we settled $a(7)$'' --- would be false in the half
 that is hard.  Exhibiting a configuration is cheap and self-verifying; showing that none is larger is neither.
 
+A second admission belongs here.  At $n=6$ the published $a(6)=16$ is the one value in this sequence that was
+proved before us, by exhaustive search, and it is therefore our calibration: reproducing it is what licenses
+anything we say about $n=7$.  We reproduce it by one route only.  A second, propositional-logic-free route was
+attempted --- a direct enumeration testing coplanarity by determinants, with no notion of a plane and no solver
+--- and abandoned after its cost was measured rather than waited out: a calibrated tree-size estimator puts it
+at some $28$ hours per orbit representative and $70$ hours in total on four cores, and that figure is a lower
+bound, since the ratio of mean to median across probes is $31$ and a heavy tail makes a finite sample
+systematically optimistic.  So the calibration is single-path.  We prefer saying so to the appearance of double
+confirmation.
+
 \section{The near-miss, in full}
 We record this because the mechanism is more transferable than the result.
 
