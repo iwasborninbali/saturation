@@ -158,7 +158,7 @@ def lex_leader(F, x, sigma, nc):
             F.add(ne, -eq, a, b); F.add(ne, -eq, -a, -b)
         eq = ne
 
-def build(n, M, path, sym=False, invariant=None, profiles=None, no_layer_min=False):
+def build(n, M, path, sym=False, invariant=None, profiles=None, no_layer_min=False, layer_pair=False):
     nc, pl = planes(n)
     F = CNF(nc)
     x = lambda i: i + 1
@@ -196,6 +196,24 @@ def build(n, M, path, sym=False, invariant=None, profiles=None, no_layer_min=Fal
                         from itertools import combinations as _cmb
                         for drop in _cmb(cs, lo - 1):
                             F.add(*[c for c in cs if c not in drop])
+    # ПАРНАЯ НИЖНЯЯ ГРАНИЦА. То же рассуждение о запасе ёмкости, но для ДВУХ слоёв сразу:
+    # остальные n-2 слоя держат максимум 3(n-2), значит любая пара несёт >= M - 3(n-2).
+    # При n=7, M=19 это 4, и граница ТОЧНАЯ: профиль по оси есть перестановка (3,3,3,3,3,3,1)
+    # либо (3,3,3,3,3,2,2), и минимальная пара даёт ровно 1+3=4 или 2+2=4.
+    #
+    # Прежде пару отвергли, посчитав её неподъёмной: "at-least-4 по 98 переменным — наивная
+    # кодировка даёт сотни тысяч клауз". Это была цена КОДИРОВКИ, а не ограничения. Тотализатор
+    # с обрезкой на 4 стоит ~1.6k клауз на пару: 63 пары (21 на ось, три оси) укладываются в
+    # проценты от базы. Отвергнутое по цене стоит перепроверять, когда цена меряется заново.
+    if layer_pair and n >= 3:
+        lo2 = M - 3 * (n - 2)
+        if lo2 >= 1:
+            from itertools import combinations as _cmb2
+            for axis in range(3):
+                for t1, t2 in _cmb2(range(n), 2):
+                    cs = [x(i) for i in range(nc)
+                          if (i//(n*n) if axis == 0 else (i//n) % n if axis == 1 else i % n) in (t1, t2)]
+                    F.atleast(cs, lo2, lo2)
     F.atleast([x(i) for i in range(nc)], M, 3*n + 1)    # обрезка законна: a(n) <= 3n (слой есть плоскость)
     if invariant:
         # поиск среди ИНВАРИАНТНЫХ конфигураций: законно только для нижних границ
@@ -211,6 +229,7 @@ def build(n, M, path, sym=False, invariant=None, profiles=None, no_layer_min=Fal
 
 if __name__ == "__main__":
     no_lm = "--no-layer-min" in sys.argv
+    lp = "--layer-pair" in sys.argv
     inv = None
     if "--inv" in sys.argv:
         n0 = int(sys.argv[1]); name = sys.argv[sys.argv.index("--inv")+1]
@@ -236,4 +255,4 @@ if __name__ == "__main__":
             a, p = part.split("=")
             profs[int(a)] = [int(t) for t in p.split(",")]
     build(int(sys.argv[1]), int(sys.argv[2]), sys.argv[3], sym=("--sym" in sys.argv),
-          invariant=inv, profiles=profs, no_layer_min=no_lm)
+          invariant=inv, profiles=profs, no_layer_min=no_lm, layer_pair=lp)
