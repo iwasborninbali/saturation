@@ -49,9 +49,23 @@ if __name__ == "__main__":
     facts, k = sys.argv[1], int(sys.argv[2])
     seed = int(sys.argv[3]) if len(sys.argv) > 3 else 0
     names = [l.strip() for l in open(facts) if l.strip() and not l.startswith("#")]
-    names = [n for n in names if n.count("_s") >= 3]        # неглубокие слишком дороги
-    random.Random(seed).shuffle(names)
-    names = names[:k]
+    # ВЫБОРКА ПО СЛОЯМ ГЛУБИНЫ, а не случайная. Случайная почти вся попадает в самую
+    # многочисленную группу — глубокие куски (2770 из 3072), — а глубокий значит сильно
+    # ограниченный, то есть ЛЁГКИЙ: все двенадцать первых решились за 0.5 с. Сертифицировать
+    # там, где решатель не искал, — проверять работу там, где ошибиться было негде.
+    # Берём поровну из каждой глубины, начиная с наименьшей: неглубокий = трудный.
+    from collections import defaultdict as _dd
+    by = _dd(list)
+    for n in names: by[n.count("_s")].append(n)
+    rnd = random.Random(seed)
+    for d in by: rnd.shuffle(by[d])
+    depths = sorted(by)
+    names, i = [], 0
+    while len(names) < k and any(by[d] for d in depths):
+        d = depths[i % len(depths)]
+        if by[d]: names.append(by[d].pop())
+        i += 1
+    print(f"выборка по слоям: {[(d, sum(1 for n in names if n.count('_s')==d)) for d in depths]}", flush=True)
     base = os.path.join(W, "base.cnf")
     if not os.path.exists(base):
         t0 = time.time()
