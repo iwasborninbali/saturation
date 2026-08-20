@@ -247,6 +247,40 @@ def gate_density_threshold(problem: str, n: int, M: int, kind: str = "дроби
     return float(rec[fld])
 
 
+def gate_fleet_accounted(project: str = "loyobondar-prod", expect_prefix: str = "sat") -> list:
+    """Ловушка 16 (2026-08-21). Машина, о которой никто не помнит, тикает деньгами и не видна
+    ни в одном отчёте. За одну ночь разведки было создано и брошено больше десятка проб.
+
+    Ворота на ЗАПУСК: перечисляют ВСЕ машины проекта и требуют, чтобы каждая была либо известной
+    рабочей, либо помечена сроком самоуничтожения. Всё прочее — забытое, и его надо назвать.
+
+    Возвращает список подозрительных. Пустой список — единственный хороший исход."""
+    try:
+        out = subprocess.run(
+            ["gcloud", "compute", "instances", "list", "--project", project,
+             "--format", "value(name,zone,machineType.basename(),status,scheduling.maxRunDuration.seconds)"],
+            capture_output=True, text=True, timeout=90)
+    except Exception as e:
+        _refuse(f"не удалось перечислить машины проекта {project}: {e}. "
+                f"Невозможность посмотреть НЕ ЕСТЬ отсутствие машин")
+    if out.returncode != 0:
+        _refuse(f"перечисление машин отказало: {out.stderr.strip()[:120]}")
+    suspicious = []
+    for line in out.stdout.strip().splitlines():
+        if not line.strip():
+            continue
+        f = line.split("\t") if "\t" in line else line.split()
+        name = f[0]
+        ttl = f[4] if len(f) > 4 else ""
+        if name.startswith(expect_prefix) and ttl:
+            continue                      # рабочая машина со сроком — в порядке
+        if name.startswith(("probe", "pw")):
+            suspicious.append(f"{name} (ЗАБЫТАЯ ПРОБА)")
+        elif not ttl:
+            suspicious.append(f"{name} (БЕЗ СРОКА самоуничтожения)")
+    return suspicious
+
+
 def gate_restriction(kind: str, axes_used: int, verdict: str) -> str:
     """Ловушка про избыточные ограничения. Невозможность, полученная при СУЖЕНИИ,
     относится только к суженному классу. Случай: «профиль 88 при n=7 невозможен» было
