@@ -6,7 +6,7 @@
 \newtheorem{proposition}{Proposition}
 \title{No four coplanar in the cube: a witness for $a(7)\ge18$ and the state of the upper bound}
 \author{Aleksei Kudriashov (Alex Komang)\\ \small Nusa Dua Studio, Nusa Dua, Bali, Indonesia\\ \small ORCID: 0009-0006-8885-5338}
-\date{August 2026 --- version 0.1 (draft, pending the decisive computation)}
+\date{20 August 2026 --- version 1.0}
 \begin{document}\maketitle
 \begin{abstract}
 Let $a(n)$ be the largest number of points of $\{0,\dots,n-1\}^3$ no four of which are coplanar, OEIS
@@ -102,8 +102,17 @@ What saved us was not caution.  It was that neither of us ever wrote ``does not 
 not found''.
 
 \section{The remaining question}
-Whether $19$ points fit at $n=7$ is open at the time of writing and is being decided by exhaustive case split.
-We will not report a fraction of it.
+Whether $19$ points fit at $n=7$ --- equivalently, whether $a(7)\le18$ --- is open at the time of writing.  An
+exhaustive case split is running; $402$ of its $448$ regions are closed and none is satisfiable.  We deliberately
+do not offer that fraction as evidence: the unclosed regions are the least constrained ones, which is precisely
+where the symmetry pruning drives solutions, and reading such a fraction as progress towards a conclusion is the
+error described in the previous section.
+
+We can, however, say what it costs.  The regions still open subdivide into pieces of which roughly half are
+hard, not one in sixty-four as at earlier levels, and the hard ones run beyond ten minutes each; the projection
+is some eight hours on the forty-four cores available, and the tail of such distributions is not to be trusted
+downwards.  A value that has stood unproved for nine years is unlikely to fall in an evening.  Should the split
+close, this note will be revised under the same concept DOI.
 
 \section*{AI/tool-use disclosure}
 The searches, the programs and the text were produced by autonomous AI agents (Anthropic Claude) under the
