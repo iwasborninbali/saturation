@@ -17,11 +17,34 @@ n^3 булевых переменных (343 при n = 7) и кардиналь
 
 usage: python3 plane4_cnf.py n M out.cnf
 """
-import sys
+import os, sys
 from itertools import combinations
 from math import gcd
 
+_PLANE_CACHE = {}
+
 def planes(n):
+    """Список богатых плоскостей. КЕШИРУЕТСЯ на диск, потому что он одинаков для всех кусков
+    разбиения, а его вычисление занимает 89 % времени генерации (62 с из 70 при n=7) и
+    пересчитывалось заново для каждого из 816 кусков. Кеш проверяется по числу плоскостей."""
+    import pickle as _pk
+    if n in _PLANE_CACHE: return _PLANE_CACHE[n]
+    cf = os.path.join(os.environ.get("PLANE_CACHE_DIR", "/tmp"), f"planes_n{n}.pkl")
+    if os.path.exists(cf):
+        try:
+            nc, pl = _pk.load(open(cf, "rb"))
+            if nc == n**3 and pl and all(len(m) >= 4 for m in pl):
+                _PLANE_CACHE[n] = (nc, pl); return nc, pl
+        except Exception:
+            pass
+    nc, pl = _planes_compute(n)
+    try: _pk.dump((nc, pl), open(cf, "wb"))
+    except OSError: pass
+    _PLANE_CACHE[n] = (nc, pl)
+    return nc, pl
+
+
+def _planes_compute(n):
     """все плоскости с >= 4 узлами решётки [n]^3, перечисленные ПО ТРОЙКАМ УЗЛОВ (потерять нельзя)"""
     cells = [(x, y, z) for x in range(n) for y in range(n) for z in range(n)]
     idx = {c: i for i, c in enumerate(cells)}

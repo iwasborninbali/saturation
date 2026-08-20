@@ -1,0 +1,4 @@
+# a(5) >= 13 for A280537, found by the C generator (plane4_gen.c) on the layer profile of the known witness
+# This is a DIFFERENT configuration from certs/a280537/witness_n5.txt — same profile class, different set.
+# Verified: 13 distinct points in [5]^3, all C(13,4)=715 quadruples, 0 coplanar.
+(0,0,3) (0,0,4) (0,4,1) (1,2,1) (1,3,3) (2,0,0) (2,3,4) (3,1,2) (3,2,0) (3,4,0) (4,1,1) (4,3,4) (4,4,3)
