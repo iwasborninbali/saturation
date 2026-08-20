@@ -63,7 +63,7 @@ if пропущено:
     print(f"доля {shard}: пропускаю {пропущено} уже закрытых", flush=True)
 fh = open(FACTS, "a", buffering=1)
 t_start = time.time()
-closed = sat = unresolved = 0
+closed = sat = unresolved = broken = 0
 for idx, sub in mine:
     name = имя(sub)
     f = f"{OUT}/{shard}_{idx}.cnf"
@@ -82,13 +82,25 @@ for idx, sub in mine:
         sat += 1
         print(f"ВЫПОЛНИМ {name} — УТВЕРЖДЕНИЕ a(7)<=18 РУШИТСЯ", flush=True)
         fh.write("SAT " + name + "\n")
-    else:
+    elif r.returncode == 124:
         unresolved += 1
-        print(f"НЕ РЕШЁН {name} за {BUD}с (rc={r.returncode})", flush=True)
+        print(f"НЕ РЕШЁН {name} за {BUD}с — БЮДЖЕТ ИСТЁК (это ИЗМЕРЕНИЕ трудности)", flush=True)
+    else:
+        # ОСНАСТКА СЛОМАНА — это НЕ измерение. Первый решатель получил 468 таких за 82 секунды:
+        # rc=127, «команда не найдена», потому что kissat лежал у него вне PATH. Он посмотрел
+        # на слово «НЕ РЕШЁН», а не на число рядом, и принял поломку за трудность задачи.
+        # Скрипт смотрел на код возврата ОБЁРТКИ, а охранял решение куска.
+        broken += 1
+        print(f"ОТКАЗ ОСНАСТКИ {name}: rc={r.returncode} — решателя нет или он не запустился. "
+              f"Это НЕ трудность куска. {(r.stderr or b'')[:120].decode('utf-8','replace')}", flush=True)
+        if broken >= 5 and closed == 0:
+            print("ОСТАНОВ: пять отказов оснастки подряд без единого закрытия — дальше считать бессмысленно",
+                  flush=True)
+            break
     if (closed + sat + unresolved) % 200 == 0:
         el = time.time() - t_start
         print(f"доля {shard}: {closed+sat+unresolved}/{len(mine)}, закрыто {closed}, "
-              f"не решено {unresolved}, {el:.0f}с", flush=True)
+              f"не решено {unresolved}, ОТКАЗОВ ОСНАСТКИ {broken}, {el:.0f}с", flush=True)
 el = time.time() - t_start
 print(f"ДОЛЯ {shard} ГОТОВА: всего {len(mine)}, закрыто {closed}, выполнимых {sat}, "
-      f"не решено {unresolved}, {el:.0f}с", flush=True)
+      f"не решено {unresolved}, ОТКАЗОВ ОСНАСТКИ {broken}, {el:.0f}с", flush=True)
