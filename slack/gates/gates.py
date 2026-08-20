@@ -16,8 +16,33 @@ class Refusal(Exception):
     """Ворота отказали. Это не ошибка программы — это её правильная работа."""
 
 
+class ClaimRefusal(Refusal):
+    """ВОРОТА НА УТВЕРЖДЕНИЕ. Обходить нельзя никогда: обход здесь есть ложь.
+    Сюда относится всё, что отвечает на вопрос «что мы установили»: «не знаю» не есть «нет»,
+    кусок закрывает только явный UNSAT, число без артефакта, невозможность при сужении."""
+
+
+class RunRefusal(Refusal):
+    """ВОРОТА НА ЗАПУСК. Это ОЦЕНКА, и она бывает неверна — у первого солвера ворота отказали,
+    показав «занято 12 из 12», хотя шесть ядер были чужие и его шесть задач машину не перегружали.
+    Обход допустим, но обязан быть ЯВНЫМ и записанным: override=«причина».
+    Различение предложено первым солвером; без него ворота либо игнорируют, либо ломают работу."""
+
+
+def _allow(msg: str, override: str | None) -> None:
+    """Обход ворот на запуск: только с названной причиной, и она попадает в журнал."""
+    if not override:
+        raise RunRefusal(msg)
+    import datetime, os as _os
+    line = f"{datetime.datetime.now():%F %H:%M} ОБХОД ВОРОТ: {msg} || причина: {override}\n"
+    with open(_os.environ.get("GATE_LOG", "/tmp/gate_overrides.log"), "a") as f:
+        f.write(line)
+    print("  " + line.strip())
+
+
 def _refuse(msg: str) -> None:
-    raise Refusal(msg)
+    """по умолчанию — ворота на утверждение: обход невозможен"""
+    raise ClaimRefusal(msg)
 
 
 # ─────────────────────────── 1. ворота на УТВЕРЖДЕНИЯ ───────────────────────────
@@ -155,11 +180,11 @@ def gate_text_vs_artifacts(text: str, repo_root: str) -> list[str]:
 
 # ─────────────────────────── 2. ворота на ЗАПУСКИ ───────────────────────────
 
-def gate_disk(path: str = "/tmp", need_gb: float = 5.0) -> None:
+def gate_disk(path: str = "/tmp", need_gb: float = 5.0, override: str | None = None) -> None:
     """Случай: диск на ВМ забился, subsplit записал 38 файлов вместо 192 и напечатал «192»."""
     free = shutil.disk_usage(path).free / 2**30
     if free < need_gb:
-        _refuse(f"на {path} свободно {free:.1f} ГБ, требуется {need_gb}: генерация даст НЕПОЛНОЕ разбиение")
+        _allow(f"на {path} свободно {free:.1f} ГБ, требуется {need_gb}: генерация даст НЕПОЛНОЕ разбиение", override)
 
 
 def gate_generated(outdir: str, prefix: str, expected: int) -> None:
@@ -169,7 +194,7 @@ def gate_generated(outdir: str, prefix: str, expected: int) -> None:
         _refuse(f"просили {expected} файлов, записалось {got}: разбиение НЕПОЛНО, пользоваться нельзя")
 
 
-def gate_load(host: str | None = None, max_ratio: float = 0.9) -> int:
+def gate_load(host: str | None = None, max_ratio: float = 0.9, override: str | None = None) -> int:
     """Сколько ядер РЕАЛЬНО свободно. Случай: 21 решатель на 8 ядрах; и обратный —
     ВМ-3 простаивала с нулевой загрузкой, пока я считал, что она занята.
     Возвращает число свободных ядер; отказывает, если их нет."""
@@ -185,7 +210,7 @@ def gate_load(host: str | None = None, max_ratio: float = 0.9) -> int:
         load = os.getloadavg()[0]
     free = int(cpus - load)
     if free <= 0:
-        _refuse(f"свободных ядер нет: {cpus} ядер, загрузка {load:.1f}. Запуск только вытеснит текущее")
+        _allow(f"свободных ядер нет: {cpus} ядер, занято {load:.1f}. Запуск только вытеснит текущее", override)
     return free
 
 
@@ -206,11 +231,11 @@ def gate_kill_pattern(pattern: str) -> None:
                 f"pkill убьёт и его. Снимать по списку PID")
 
 
-def gate_background(cmd: str, expect_seconds: int) -> None:
+def gate_background(cmd: str, expect_seconds: int, override: str | None = None) -> None:
     """Случай: генерация запущена не в фоне, оборвалась вместе с командой на середине;
     четыре ядра десять минут «считали» несуществующие файлы."""
     if expect_seconds > 100 and '&' not in cmd and 'nohup' not in cmd and 'setsid' not in cmd:
-        _refuse(f"прогон на ~{expect_seconds} с запускается на переднем плане: он оборвётся вместе с командой")
+        _allow(f"прогон на ~{expect_seconds} с запускается на переднем плане: он оборвётся вместе с командой", override)
 
 
 if __name__ == "__main__":
