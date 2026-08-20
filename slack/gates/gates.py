@@ -214,6 +214,57 @@ def gate_load(host: str | None = None, max_ratio: float = 0.9, override: str | N
     return free
 
 
+def gate_log_is_stale(log_path: str, writer_pid: int | None = None, max_silence_s: int = 900) -> None:
+    """Журнал живого процесса, который давно не менялся, — НЕ картина работы.
+
+    Наблюдение хозяина, и оно верное: всё, что мы видим через журналы, врёт систематически
+    В ОДНУ СТОРОНУ — занижает. Причина в том, что все механизмы обрыва действуют одинаково:
+    git заменил файл и дескриптор повис; вывод буферизован; писатель убит; результаты отдаются
+    по порядку и ждут медленный первый. Ни один из них не может показать БОЛЬШЕ сделанного,
+    только меньше. Поэтому «журнал стоит» никогда не значит «работа стоит».
+
+    За сутки трижды: поиск нашёл 18 точек при журнале с 17; семя, названное застрявшим, дошло
+    до 18; потоковый прогон держал готовые результаты, ожидая первый.
+    """
+    import time as _t
+    if not os.path.exists(log_path):
+        _refuse(f"журнала {log_path} нет вовсе — судить о работе по нему нельзя")
+    silence = _t.time() - os.path.getmtime(log_path)
+    alive = False
+    if writer_pid:
+        try: os.kill(writer_pid, 0); alive = True
+        except OSError: alive = False
+    if alive and silence > max_silence_s:
+        _refuse(f"процесс {writer_pid} ЖИВ, а журнал {log_path} молчит {int(silence)} с. "
+                f"Журнал не отражает работу: смотреть на артефакт (файл-свидетель, файл результатов), "
+                f"а не на вывод. Занижение — обычный исход, завышение невозможно")
+
+
+def gate_report_from_artifact(claimed: int, artifact_dir: str, kind: str, n: int) -> None:
+    """Отчитываться числом из ЖУРНАЛА, когда рядом лежит артефакт, нельзя.
+
+    Проверяет: нет ли в artifact_dir свидетеля ЛУЧШЕ заявленного. Если есть — заявленное число
+    занижено, и отчёт надо строить по файлу.  Обратная ситуация (артефакт хуже заявленного)
+    ещё опаснее: значит числа, которое называют, вообще нет на диске."""
+    import re as _re, glob as _glob
+    best, where = -1, None
+    for f in _glob.glob(os.path.join(artifact_dir, "*.txt")):
+        txt = "\n".join(l for l in open(f) if not l.strip().startswith("#"))
+        pts = [tuple(map(int, m)) for m in _re.findall(r'\((\d+),(\d+),(\d+)\)', txt)]
+        if not pts:
+            pts = [tuple(int(t) for t in l.split()) for l in txt.splitlines()
+                   if len(l.split()) == 3 and all(t.lstrip('-').isdigit() for t in l.split())]
+        if len(pts) > best: best, where = len(pts), f
+    if best < 0:
+        _refuse(f"в {artifact_dir} нет ни одного свидетеля: число {claimed} предъявить нечем")
+    if best > claimed:
+        _refuse(f"заявлено {claimed}, а на диске лежит свидетель на {best} точек ({os.path.basename(where)}): "
+                f"отчёт занижен — журнал отстал от артефакта")
+    if best < claimed:
+        _refuse(f"заявлено {claimed}, а лучший свидетель на диске — {best} ({os.path.basename(where)}): "
+                f"числа {claimed} нет ни в одном артефакте")
+
+
 def gate_orphaned_solvers(names=("kissat", "cadical", "glucose")) -> list:
     """Решатели, работающие на УДАЛЁННЫХ файлах. Возвращает список PID; пустой — всё в порядке.
 
