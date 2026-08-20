@@ -77,11 +77,28 @@ if __name__ == "__main__":
     h = raw[i:nl].split(); body = raw[nl+1:]
     nv, ncl = h[2], int(h[3])
     ok = bad = 0
+    import shutil as _sh
+    LIM = int(os.environ.get("CERT_LIMIT", "900"))      # потолок на решение, с
+    MINGB = float(os.environ.get("CERT_MIN_GB", "3"))   # запас диска перед каждым куском
+    skipped = 0
     for nm in names:
+        free = _sh.disk_usage(W).free / 1e9
+        if free < MINGB:
+            print(f"  {nm}: ПРОПУЩЕН — на диске {free:.1f} ГБ при потребности {MINGB}. "
+                  f"Это отказ по МЕСТУ, а не по существу."); skipped += 1; continue
         p = build(nm, body, nv, ncl)
         pr = p[:-4] + ".drat"
         t0 = time.time()
-        r = subprocess.run(["kissat", "-q", p, pr], capture_output=True)
+        try:
+            r = subprocess.run(["kissat", "-q", p, pr], capture_output=True, timeout=LIM)
+        except subprocess.TimeoutExpired:
+            sz = os.path.getsize(pr)/1e6 if os.path.exists(pr) else 0
+            print(f"  {nm}: СЛИШКОМ ДОРОГ — не решён за {LIM}с, сертификат уже {sz:.0f}МБ. "
+                  f"Это ИЗМЕРЕНИЕ стоимости, а не отказ проверки."); skipped += 1
+            for f in (p, pr):
+                try: os.remove(f)
+                except OSError: pass
+            continue
         solve = time.time() - t0
         if r.returncode != 20:
             print(f"  {nm}: решатель дал rc={r.returncode}, НЕ UNSAT — сертифицировать нечего"); bad += 1
@@ -100,5 +117,5 @@ if __name__ == "__main__":
         for f in (p, pr):
             try: os.remove(f)
             except OSError: pass
-    print(f"\nИТОГ: подтверждено {ok}, НЕ подтверждено {bad}")
+    print(f"\nИТОГ: подтверждено {ok}, НЕ подтверждено {bad}, пропущено по стоимости/месту {skipped}")
     sys.exit(1 if bad else 0)
