@@ -214,6 +214,27 @@ def gate_load(host: str | None = None, max_ratio: float = 0.9, override: str | N
     return free
 
 
+def gate_orphaned_solvers(names=("kissat", "cadical", "glucose")) -> list:
+    """Решатели, работающие на УДАЛЁННЫХ файлах. Возвращает список PID; пустой — всё в порядке.
+
+    Случай (трижды за сутки): я удалял каталог с кусками, считая работу снятой, а процессы
+    держали дескрипторы и продолжали считать осиротевшие inode — ядра заняты, результат никому
+    не нужен, и по списку процессов это выглядит как нормальная работа.
+
+    Родственно ловушке 10: там git оставлял живой процесс писать в никуда, здесь я оставлял его
+    читать из ниоткуда. Общее — файл исчез, а процесс об этом не знает."""
+    import subprocess as _sp
+    out = []
+    for nm in names:
+        pids = _sp.run(["pgrep", "-x", nm], capture_output=True, text=True).stdout.split()
+        for pid in pids:
+            args = _sp.run(["ps", "-o", "args=", "-p", pid], capture_output=True, text=True).stdout.strip()
+            f = args.split()[-1] if args else ""
+            if f.endswith(".cnf") and not os.path.exists(f):
+                out.append((int(pid), f))
+    return out
+
+
 def gate_log_location(path: str, repo_root: str) -> None:
     """Ловушка 10. git заменяет файл целиком, и вывод ЖИВОГО процесса обрывается молча.
     Журнал работающего прогона не должен лежать внутри рабочего дерева."""
