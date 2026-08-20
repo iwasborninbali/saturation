@@ -135,12 +135,18 @@ def lex_leader(F, x, sigma, nc):
             F.add(ne, -eq, a, b); F.add(ne, -eq, -a, -b)
         eq = ne
 
-def build(n, M, path, sym=False):
+def build(n, M, path, sym=False, invariant=None):
     nc, pl = planes(n)
     F = CNF(nc)
     x = lambda i: i + 1
     for m in pl: F.atmost([x(i) for i in m], 3)
     F.atleast([x(i) for i in range(nc)], M, 3*n + 1)    # обрезка законна: a(n) <= 3n (слой есть плоскость)
+    if invariant:
+        # поиск среди ИНВАРИАНТНЫХ конфигураций: законно только для нижних границ
+        for sigma in invariant:
+            for i in range(nc):
+                if i != sigma[i]:
+                    F.add(-x(i), x(sigma[i])); F.add(x(i), -x(sigma[i]))
     ns = 0
     if sym:
         for sigma in cube_group(n): lex_leader(F, x, sigma, nc); ns += 1
@@ -148,4 +154,8 @@ def build(n, M, path, sym=False):
     print(f"n={n} M={M}{' +сим' if sym else ''}: клеток {nc}, плоскостей {len(pl)}, симметрий {ns}, переменных {F.nv}, клауз {len(F.cl)} -> {path}")
 
 if __name__ == "__main__":
-    build(int(sys.argv[1]), int(sys.argv[2]), sys.argv[3], sym=("--sym" in sys.argv))
+    inv = None
+    if "--cyc3" in sys.argv:
+        n0 = int(sys.argv[1])
+        inv = [[ ((i//n0)%n0)*n0*n0 + (i%n0)*n0 + (i//(n0*n0)) for i in range(n0**3) ]]
+    build(int(sys.argv[1]), int(sys.argv[2]), sys.argv[3], sym=("--sym" in sys.argv), invariant=inv)
