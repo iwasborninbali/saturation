@@ -6,7 +6,7 @@
 \newtheorem{proposition}{Proposition}
 \title{The error of the Guy--Kelly heuristic, measured against exact counts}
 \author{Aleksei Kudriashov (Alex Komang)\\ \small Nusa Dua Studio, Nusa Dua, Bali, Indonesia\\ \small ORCID: 0009-0006-8885-5338}
-\date{22 August 2026 --- version 1.7}
+\date{22 August 2026 --- version 1.8}
 \begin{document}\maketitle
 \begin{abstract}
 The Guy--Kelly heuristic for the no-three-in-line problem is a first-moment threshold: one equates
@@ -244,10 +244,14 @@ $\Theta(n\ln n)$.  If $E=\Theta(n\ln n)$ it moves.  The data do not decide, and 
 Fitting the full $r=0.5$ row to $E=c+an+bn\ln n$ returns $b$ at hundreds of standard deviations
 from zero --- and a $\chi^2$ of $240$ on eight degrees of freedom, which rejects the model and
 voids the uncertainty with it.  Fifteen further one-term variants using $\ln n$, $\sqrt n$ and
-$n/\ln n$ are also rejected, the best by a factor of eighty-four.  The per-point error was measured rather than assumed, and it is not constant: eight fully
-independent seeds give $0.262\%$ at $n=30$, $0.404\%$ at $n=35$ and $0.979\%$ at $n=40$.  At
-$n=40$ the batch spread \emph{is} the error; at $n=30$ it overstates it fourfold.  A single
-measured value applied to a whole series inflates or deflates every $\chi^2$ that follows.
+$n/\ln n$ are also rejected, the best by a factor of eighty-four.  The per-point error must be measured rather than assumed, and it does not scale: in the second
+implementation, eight independent seeds give $0.262\%$ at $n=30$, $0.404\%$ at $n=35$ and
+$0.979\%$ at $n=40$, so that the ratio of seed spread to batch spread runs $0.23$, $0.42$, $1.00$
+--- no single measured value transfers to a neighbouring $n$.  Our own repeats give $0.55\%$ at
+$n=30$ (two runs) and $2.98\%$ at $n=40$ (four seeds), against nominal figures of $1.3\%$ and
+$1.8\%$: measured over nominal is $0.4$ in one place and $1.7$ in the other.  Below, points with
+repeats carry the standard error of their mean and the rest carry the estimator's own figure,
+with no scaling between them.
 
 We attempted to go further and failed, and the failure is worth recording because it is the
 error this note is otherwise about.  The whole column was computed twice by implementations
@@ -273,13 +277,13 @@ fits.  Averaging four seeds and using their measured spread turns that false cer
 the correct verdict, which is that the forms cannot be told apart.
 
 The rejection is confined to small $n$.  Taken on tails, three-parameter forms are admissible
-from $n\ge15$ onward: $\chi^2=1.2/3$, $0.9/2$, $0.8/1$ for $c+an+bn\ln n$ at $n\ge15,20,25$.
+from $n\ge15$ onward: $\chi^2=0.7/3$, $0.4/2$, $0.3/1$ for $c+an+bn\ln n$ at $n\ge15,20,25$.
 The asymptotic regime appears to begin near $n=15$, and below it we were fitting asymptotic forms
 to pre-asymptotic data.
 
-On that tail the fit is emphatic: $b=-0.0909\pm0.0011$, $-0.0898\pm0.0024$, $-0.0824\pm0.0056$
-across three nested tails, while the purely linear $c+an$ is rejected at $\chi^2=966/3$ and $111/2$
-on the tails $n\ge20$ and $n\ge25$.  The significance of $b$ is $81$, $37$ and $15$ standard deviations on the
+On that tail the fit is emphatic: $b=-0.0892\pm0.0021$, $-0.0872\pm0.0047$, $-0.0837\pm0.0109$
+across three nested tails, while the purely linear $c+an$ is rejected at $\chi^2=1884/4$, $350/3$
+and $59/2$.  The significance of $b$ is $43$, $19$ and $8$ standard deviations on the
 three tails --- itself a warning, since a robust quantity does not lose three quarters of its
 significance when four points are dropped.  Read alone this says $E=\Theta(n\ln n)$ and the constant
 moves.  It does not say that.  On the same tail,
@@ -288,10 +292,10 @@ moves.  It does not say that.  On the same tail,
 \toprule
 form ($n\ge20$) & $\chi^2$ (2 d.o.f.) & implication\\
 \midrule
-$c+an+b\,n\ln n$ & $1.76$ & constant moves\\
-$c+an+d\sqrt n$ & $0.37$ & constant intact\\
-$c+an+e\,n/\ln n$ & $1.25$ & constant intact\\
-$c+an+f\ln n$ & $0.10$ & constant intact\\
+$c+an+b\,n\ln n$ & $0.44$ & constant moves\\
+$c+an+d\sqrt n$ & $0.23$ & constant intact\\
+$c+an+e\,n/\ln n$ & $0.34$ & constant intact\\
+$c+an+f\ln n$ & $0.34$ & constant intact\\
 \bottomrule
 \end{tabular}
 \end{center}
