@@ -20,6 +20,11 @@
 #include <stdlib.h>
 #include <time.h>
 static int n,N,TARGET,PRUNE,DUMP;
+/* ДОЛИ. Дерево разбивается по индексу ПЕРВОЙ выбранной клетки: у всякого набора она одна,
+ * значит доли не пересекаются и в сумме дают всё. Проверяется тем, что сумма долей равна
+ * цельному счёту. Повод: при n=10 цельный обход не уложился в час (10.3 млрд узлов), а его
+ * результат нужен для проверки оценки Кнута, на которой стоит весь продлённый ряд. */
+static int SHARD=-1, NSHARD=1;
 static double LIMIT; static struct timespec T0; static int stopped=0;
 typedef struct { unsigned long long a,b; } M2;      /* маска на 128 клеток */
 static M2 *LINE;
@@ -55,6 +60,7 @@ static void dfs(int start,int k,M2 alive){
     if(k+запас < TARGET) return;
     for(int c=start;c<N;c++){
         if(!m2_get(alive,c)) continue;
+        if(k==0 && SHARD>=0 && (c % NSHARD)!=SHARD) continue;   /* доля по первой клетке */
         M2 na=alive;
         for(int t=0;t<=c;t++) m2_clr(&na,t);
         for(int t=0;t<k;t++) na = m2_and_not(na, LINE[(size_t)c*N+chosen[t]]);
@@ -66,6 +72,7 @@ static void dfs(int start,int k,M2 alive){
 int main(int argc,char**argv){
     n=atoi(argv[1]); TARGET=atoi(argv[2]); PRUNE=atoi(argv[3]);
     LIMIT=(argc>4)?atof(argv[4]):1e18; DUMP=(argc>5)?atoi(argv[5]):0;
+    if(argc>7){ SHARD=atoi(argv[6]); NSHARD=atoi(argv[7]); }
     N=n*n; if(N>128){fprintf(stderr,"n>11 не помещается\n");return 2;}
     LINE=malloc((size_t)N*N*sizeof(M2));
     for(int i=0;i<N;i++)for(int j=0;j<N;j++){
