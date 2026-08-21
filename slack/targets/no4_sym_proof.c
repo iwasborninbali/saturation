@@ -15,7 +15,7 @@
 #include <string.h>
 #include <time.h>
 static int n,m; typedef struct{int x,y,z;} P;
-#define MAXORB 1200
+#define MAXORB 9000
 static P orb[MAXORB][3]; static int orbsz[MAXORB], norb=0;
 static P pts[64]; static int npts=0;
 static int best; static P bestp[64]; static int bestn=0;
@@ -56,7 +56,10 @@ static void dfs(int *live,int nlive){
 }
 int main(int argc,char**argv){
     n=atoi(argv[1]); m=n-1; best=atoi(argv[2]); T=argc>3?atof(argv[3]):0;
-    static int seen[13*13*13]; memset(seen,0,sizeof seen);
+    if ((long)n*n*n > 27000 || (long)n*n*n/3 + n > 9000) {
+        fprintf(stderr, "ОТКАЗ: n=%d не помещается в статические массивы. Молча портить память нельзя.\n", n);
+        return 2; }
+    static int seen[27000]; memset(seen,0,sizeof seen);
     for(int x=0;x<n;x++)for(int y=0;y<n;y++)for(int z=0;z<n;z++){
         int id=(x*n+y)*n+z; if(seen[id])continue;
         P p={x,y,z},cur=p; int k=0;

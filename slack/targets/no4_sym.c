@@ -28,7 +28,7 @@ static int n, m;
 typedef struct { int x, y, z; } P;
 
 /* --- орбиты --- */
-#define MAXORB 2048
+#define MAXORB 9000
 static P orb[MAXORB][3];
 static int orbsz[MAXORB], norb = 0;
 static int orbsum[MAXORB];           /* x+y+z, общий для всей орбиты у cyc3 */
@@ -42,7 +42,7 @@ static void apply_cyc3(P p, P *o) { o->x = p.y; o->y = p.z; o->z = p.x; }
 static void apply_rot2(P p, P *o) { o->x = m - p.x; o->y = m - p.y; o->z = p.z; }
 
 static void build_orbits(const char *grp) {
-    int seen[13 * 13 * 13]; memset(seen, 0, sizeof seen);
+    static int seen[27000]; memset(seen, 0, sizeof seen);
     int cyc = strcmp(grp, "cyc3") == 0;
     for (int x = 0; x < n; x++) for (int y = 0; y < n; y++) for (int z = 0; z < n; z++) {
         int id = (x * n + y) * n + z; if (seen[id]) continue;
@@ -114,9 +114,21 @@ static int verify(P *s, int k, int *bad3, int *bad4) {
     return *bad3 == 0 && *bad4 == 0;
 }
 
+static void dump(const char *out, unsigned seed) {
+    fprintf(stderr, "  %d точек\n", bestpts_n); fflush(stderr);
+    if (!out) return;
+    FILE *f = fopen(out, "w"); if (!f) return;
+    fprintf(f, "# n=%d группа=cyc3 точек=%d семя=%u\n", n, bestpts_n, seed);
+    for (int i = 0; i < bestpts_n; i++) fprintf(f, "%d %d %d\n", bestpts[i].x, bestpts[i].y, bestpts[i].z);
+    fclose(f);
+}
+
 int main(int argc, char **argv) {
     if (argc < 7) { fprintf(stderr, "usage: n группа цель секунды семя выход\n"); return 2; }
     n = atoi(argv[1]); m = n - 1;
+    if ((long)n*n*n > 27000 || (long)n*n*n/3 + n > 9000) {
+        fprintf(stderr, "ОТКАЗ: n=%d не помещается в статические массивы. Молча портить память нельзя.\n", n);
+        return 2; }
     const char *grp = argv[2];
     int target = atoi(argv[3]); double T = atof(argv[4]);
     unsigned seed = (unsigned)atoi(argv[5]); const char *out = argv[6];
@@ -135,13 +147,13 @@ int main(int argc, char **argv) {
         /* итерированный локальный: выбить 1-2 орбиты, дорастить */
         for (int it = 0; it < 4000 && npts < target; it++) {
             if ((double)(clock() - st) / CLOCKS_PER_SEC > T) break;
-            if (npts > bestpts_n) { bestpts_n = npts; memcpy(bestpts, pts, npts * sizeof(P)); }
+            if (npts > bestpts_n) { bestpts_n = npts; memcpy(bestpts, pts, npts * sizeof(P)); dump(out, seed); }
             int kick = 1 + rand() % 2;
             for (int q = 0; q < kick && nch > 0; q++) drop_at(rand() % nch);
             for (int i = norb - 1; i > 0; i--) { int j = rand() % (i + 1); int t = order[i]; order[i] = order[j]; order[j] = t; }
             for (int i = 0; i < norb; i++) if (!inset[order[i]] && can_add(order[i])) add_orbit(order[i]);
         }
-        if (npts > bestpts_n) { bestpts_n = npts; memcpy(bestpts, pts, npts * sizeof(P)); }
+        if (npts > bestpts_n) { bestpts_n = npts; memcpy(bestpts, pts, npts * sizeof(P)); dump(out, seed); }
         if (bestpts_n >= target) break;
     }
     int b3, b4; int ok = verify(bestpts, bestpts_n, &b3, &b4);
