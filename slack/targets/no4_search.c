@@ -21,9 +21,9 @@
 #include <time.h>
 
 static int n, NC, target;
-static int px[512], py[512], pz[512];
-static int S[64], sz;
-static int bestS[64], bestSz = 0;
+static int px[2048], py[2048], pz[2048];   /* 2048 = запас до n=12; при n=9 клеток 729, а прежние 512 давали ПЕРЕПОЛНЕНИЕ и мусорный ответ */
+static int S[128], sz;
+static int bestS[128], bestSz = 0;
 static char *outpath;
 
 static inline int det3(int ax,int ay,int az,int bx,int by,int bz,int cx,int cy,int cz){
