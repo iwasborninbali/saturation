@@ -4,17 +4,16 @@
 \usepackage{booktabs}
 \usepackage[hidelinks]{hyperref}
 \newtheorem{proposition}{Proposition}
-\title{Seventeen certified configurations, fifteen independent bounds for the no-four-coplanar problem in the cube,\\
+\title{Twenty-one certified configurations, eighteen independent bounds for the no-four-coplanar problem in the cube,\\
 and what they do not establish}
 \author{Aleksei Kudriashov (Alex Komang)\\ \small Nusa Dua Studio, Nusa Dua, Bali, Indonesia\\ \small ORCID: 0009-0006-8885-5338}
-\date{21 August 2026 --- version 2.7}
+\date{22 August 2026 --- version 2.8}
 \begin{document}\maketitle
 \begin{abstract}
 Let $a(n)$ be the largest number of points of $\{0,\dots,n-1\}^3$ no four of which are coplanar
-(OEIS A280537).  The published data stop at $a(8)=20$.  We exhibit seventeen configurations, each verified independently, certifying
+(OEIS A280537).  The published data stop at $a(8)=20$.  We exhibit twenty-one configurations, each verified independently, certifying
 \begin{align*}
-&a(9)\ge23,\ a(10)\ge26,\ a(11)\ge28,\ a(12)\ge31,\ a(13)\ge32,\ a(14)\ge34,\\
-&a(15)\ge35,\ a(16)\ge38,\ a(17)\ge38,\ a(18)\ge41,\ a(19)\ge43,\ a(20)\ge45,\ a(21)\ge47,\ a(23)\ge50,\ a(24)\ge52,
+&a(9)\ge23,\ a(10)\ge26,\ a(11)\ge28,\ a(12)\ge31,\ a(13)\ge32,\ a(14)\ge34,\ a(15)\ge35,\ a(16)\ge38,\ a(18)\ge41,\ a(19)\ge43,\ a(20)\ge45,\ a(21)\ge47,\ a(22)\ge49,\ a(23)\ge50,\ a(24)\ge52,\ a(25)\ge53,\ a(27)\ge56,\ a(29)\ge59
 \end{align*}
 each verified by two programs sharing no code and using structurally different criteria.
 We state plainly what is \emph{not} established: no upper bound above $n=8$ is known to us
@@ -41,26 +40,31 @@ This is the only upper bound above $n=8$ that we can prove.
 \toprule
 $n$ & lower bound & $3n$ & gap & quadruples checked \\
 \midrule
- 9 & 23 & 27 &  4 &  8\,855 \\
-10 & 26 & 30 &  4 & 14\,950 \\
-11 & 28 & 33 &  5 & 20\,475 \\
-12 & 31 & 36 &  5 & 31\,465 \\
-13 & 32 & 39 &  7 & 35\,960 \\
-14 & 34 & 42 &  8 & 46\,376 \\
+9 & 23 & 27 & 4 & 8\,855 \\
+10 & 26 & 30 & 4 & 14\,950 \\
+11 & 28 & 33 & 5 & 20\,475 \\
+12 & 31 & 36 & 5 & 31\,465 \\
+13 & 32 & 39 & 7 & 35\,960 \\
+14 & 34 & 42 & 8 & 46\,376 \\
 15 & 35 & 45 & 10 & 52\,360 \\
 16 & 38 & 48 & 10 & 73\,815 \\
-17 & 38 & 51 & 13 & 73\,815 \\  % не выше n=16
+17 & 38 & 51 & 13 & 73\,815 \\  % наследует
 18 & 41 & 54 & 13 & 101\,270 \\
 19 & 43 & 57 & 14 & 123\,410 \\
 20 & 45 & 60 & 15 & 148\,995 \\
 21 & 47 & 63 & 16 & 178\,365 \\
-22 & 47 & 66 & 19 & 178\,365 \\  % не выше n=21
+22 & 49 & 66 & 17 & 211\,876 \\
 23 & 50 & 69 & 19 & 230\,300 \\
 24 & 52 & 72 & 20 & 270\,725 \\
+25 & 53 & 75 & 22 & 292\,825 \\
+26 & 53 & 78 & 25 & 292\,825 \\  % наследует
+27 & 56 & 81 & 25 & 367\,290 \\
+28 & 56 & 84 & 28 & 367\,290 \\  % наследует
+29 & 59 & 87 & 28 & 455\,126 \\
 \bottomrule
 \end{tabular}
 \end{center}
-Seventeen configurations, but fifteen independent statements: the rows for $n=17$ and $n=22$ no
+Twenty-one configurations, but eighteen independent statements: the rows for $n=17$, $n=26$ and $n=28$ no
 longer carry their own information, since $a(17)\ge a(16)\ge38$ follows by monotonicity.  This has happened three
 times as the neighbouring row was improved, and it is the reason to read the table as a set of
 bounds rather than of values --- a row is worth something only while it exceeds its left neighbour.
