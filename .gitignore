@@ -52,3 +52,4 @@ there_tw2
 # Сама переписка (achim_full.md) в репозитории; расписка нужна только гейту на этой машине,
 # а в общем репозитории она давала бы расхождения при каждой сверке почты.
 docs/correspondence/READ_RECEIPT.json
+docs/sealed/*.secret
