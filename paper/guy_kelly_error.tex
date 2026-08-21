@@ -6,7 +6,7 @@
 \newtheorem{proposition}{Proposition}
 \title{The error of the Guy--Kelly heuristic, measured against exact counts}
 \author{Aleksei Kudriashov (Alex Komang)\\ \small Nusa Dua Studio, Nusa Dua, Bali, Indonesia\\ \small ORCID: 0009-0006-8885-5338}
-\date{21 August 2026 --- version 1.0}
+\date{22 August 2026 --- version 1.2}
 \begin{document}\maketitle
 \begin{abstract}
 The Guy--Kelly heuristic for the no-three-in-line problem is a first-moment threshold: one equates
@@ -52,6 +52,47 @@ below $2n$ at $n=493$ (at $n=492$ it equals $984=2n$; at $n=493$ it is $985<986$
 integer with the value reported by Prellberg~\cite{Prellberg} and quoted in the recent
 survey~\cite{Survey}: ``the heuristic probabilistic argument only applies for $n\ge493$''.
 Our computation is independent of his and reproduces the same integer.
+
+\section{The constant in closed form, and the shape of the slip}
+The corrected value can be obtained in closed form, and doing so shows exactly what the retracted
+one is.  The input is the asymptotics of $T(n)$.  Measuring $T(n)/n^4$ at $n=2000,\dots,64000$, its
+increment per doubling of $n$ is constant to six figures over five doublings ---
+$0.210690,\ 0.210692,\ 0.210693,\ 0.210692,\ 0.210691$ --- against
+\[(3/\pi^2)\ln 2=0.210691,\]
+so that
+\begin{equation}\label{eq:T}
+T(n)=\tfrac{3}{\pi^2}\,n^4\big(\ln n-0.8373\big)+o(n^4\ln n).
+\end{equation}
+Put $m=\alpha n$.  Then $\ln\binom{n^2}{m}=\alpha n(\ln n+1-\ln\alpha)+O(n)$, while by \eqref{eq:T}
+the exponent of \eqref{eq:h} is $T(n)(m/n^2)^3=\tfrac{3}{\pi^2}\alpha^3 n(\ln n-0.8373)+O(n)$.
+Both sides are $\Theta(n\ln n)$; balancing the coefficients of $n\ln n$ gives
+\[\alpha=\tfrac{3}{\pi^2}\alpha^3,\qquad\text{i.e.}\qquad \alpha^2=\pi^2/3,\qquad \alpha=\pi/\sqrt3 .\]
+The balance is quadratic.  Guy's $(2\pi^2/3)^{1/3}$ is the root of $\alpha^3=2\pi^2/3$: a cubic
+where a quadratic belongs.  That is the whole of the slip, and it is visible only once
+\eqref{eq:T} is in hand, which is presumably why it stood for thirty-six years.
+
+Numerically, the integer threshold $m^*(n)/n$ approaches the limit only logarithmically, so a
+single large $n$ proves nothing.  Two implementations built independently --- one summing over
+displacement vectors, one reducing the same sum to $O(n\log n)$ by the Dirichlet identity
+$\gcd=\sum_{d\mid\gcd}\varphi(d)$ --- agree to $10^{-5}$ from $n=16000$ on:
+\begin{center}
+\begin{tabular}{rll}
+\toprule
+$n$ & first & second\\
+\midrule
+16000 & $1.93101$ & $1.93100$\\
+32000 & $1.92307$ & $1.92306$\\
+64000 & $1.91615$ & $1.91614$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Fitting $m^*/n=L+A/\ln n$ gives $L=1.8126$ and $1.8118$; adding $B/(\ln n)^2$ gives $1.8154$ and
+$1.8142$; a third correction term destabilises on seven points and is not used.  The two orders
+bracket from below and from above in \emph{both} implementations, giving
+\[L=1.8138\pm0.002,\]
+which contains $\pi/\sqrt3=1.813799$ and excludes $(2\pi^2/3)^{1/3}=1.873856$ by thirty times the
+uncertainty.  We state two decimals of confidence and no more: three decimals are tempting here and
+are not supported once the third fitting term is seen to wander.
 
 \section{Testing the count, not the threshold}
 A threshold inherits the whole error of the estimate without exhibiting its size.  The count does
@@ -118,6 +159,23 @@ $-1.6$ per step, while the triple-independent version decays fourfold.  A consta
 an error growing exponentially in $n$, i.e.\ a wrong exponent; a decaying increment means a wrong
 multiplier only.  So the refinement is not merely further from the truth on a given $n$: it is
 wrong in a different and worse way.
+
+We add what this does \emph{not} yield.  It is tempting to calibrate: subtract the measured error
+from \eqref{eq:h} and re-solve for the $n$ at which $2n$-point configurations should cease to
+exist.  We carried that out and then withdrew it.  Fitting the error on $n=12,\dots,20$ against
+$\ln n$, $\sqrt n$, $n^{3/4}$, $n/\ln n$ and $n$ gives root-mean-square residuals of
+$0.133,\,0.166,\,0.186,\,0.194,\,0.207$ --- nine points do not separate five one-parameter
+families --- and calibrated crossings ranging over a factor of three.  Worse, the spread is a
+property of the family we chose to fit, not of the data: $n/(\ln n)^2$ and $n^{0.9}$ are equally
+admissible, equally $o(n\ln n)$, and give further values.  The honest statement is that the
+finite-$n$ crossing is not determined by the data at all, and we give no number for it, because a
+number given here would be quoted later as a measurement.
+
+What the data do determine is the direction that matters.  Every form compatible with the nine
+points is $o(n\ln n)$, and the terms of the heuristic are $\Theta(n\ln n)$.  A correction of lower
+order does not move the balance in Section 3, so the discrepancy --- seven orders of magnitude
+though it is at $n=20$ --- leaves $\pi/\sqrt3$ where it is.
+
 
 \section{At fixed ratio, the multiplier is bounded}
 All of the above is at $m=2n$, which is the hard ceiling (two points per row).  The decay of the
