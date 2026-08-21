@@ -6,7 +6,7 @@
 \newtheorem{proposition}{Proposition}
 \title{The error of the Guy--Kelly heuristic, measured against exact counts}
 \author{Aleksei Kudriashov (Alex Komang)\\ \small Nusa Dua Studio, Nusa Dua, Bali, Indonesia\\ \small ORCID: 0009-0006-8885-5338}
-\date{22 August 2026 --- version 1.3}
+\date{22 August 2026 --- version 1.4}
 \begin{document}\maketitle
 \begin{abstract}
 The Guy--Kelly heuristic for the no-three-in-line problem is a first-moment threshold: one equates
@@ -215,9 +215,20 @@ $0.80$ & $+1.18,\,+1.71,\,+0.98,\,-0.33,\,-1.95,\,-4.58$ & $\ge5\%$ & one exact\
 \bottomrule
 \end{tabular}
 \end{center}
-($n=5,6,7,8,10,15,\dots$ for the first row; $n=5,10,15,20,25,30$ for the others.)  There is no
-plateau at any ratio.  The multiplier is not bounded: the heuristic understates the count by a
-factor growing at least exponentially in $n$, faster at larger $r$.
+($n=5,6,7,8,10,15,\dots$ for the first row; $n=5,10,15,20,25,30$ for the others.)  At each of
+these ratios the error rises, turns, and then declines without levelling.  The multiplier is not
+bounded: the heuristic understates the count by a factor growing at least exponentially in $n$,
+faster at larger $r$.
+
+The summit, however, moves right as $r$ grows --- near $n=7$ at $r=0.5$, near $n=10$ at $r=0.7$
+and $r=0.8$ --- and at $r=0.9$ it has not been reached at all.  Five million descents at
+$n=20$, $m=36$ produce fifty-four hits and an estimate of $6.59\cdot10^{18}\pm38\%$, giving
+$E=+4.42\pm0.32$ against the exact $E=+4.08$ at $n=10$: still rising.  (The earlier value
+$2.03\cdot10^{19}$ for this cell would have given $+3.30$; it was high by a factor of three, and
+rested on five hits.)  So at the ratio that actually determines the constant --- the threshold
+sits at $r=c/2=0.907$ --- \emph{we have never observed the decline}, only the ascent to a summit
+we cannot reach.  Any statement about the behaviour of $E$ near the threshold is therefore an
+extrapolation across a turning point that has not been located.
 
 We record one further trap here, because we fell into it.  On the first four (exact) points of
 the $r=0.5$ row the error is flat, and we announced that the decline was a near-threshold
