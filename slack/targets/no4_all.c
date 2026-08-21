@@ -26,6 +26,7 @@ typedef struct { signed char x,y,z; } P;
 static P cell[1400]; static int ncell;
 static P S[40]; static int k;
 static long long found=0, sym=0, nodes=0;
+static FILE *dump=NULL;   /* DUMPFILE: выгрузка самих максимумов для замеров рассеянности */
 static int occ[3][20];
 static double T; static clock_t st; static int timedout=0;
 static int shard=-1,nshard=1,d0=0;
@@ -87,7 +88,9 @@ static int capacity(int start){
 static void dfs(int start){
     if(timedout) return;
     if(((++nodes)&0xFFFF)==0 && T>0 && (double)(clock()-st)/CLOCKS_PER_SEC>T){timedout=1;return;}
-    if(k==M){ found++; if(has_symmetry()) sym++; return; }
+    if(k==M){ found++; if(has_symmetry()) sym++;
+        if(dump){ for(int i=0;i<k;i++) fprintf(dump,"%d %d %d%s",S[i].x,S[i].y,S[i].z,i+1<k?" ":"\n"); }
+        return; }
     if(k+(ncell-start)<M) return;
     if(k+capacity(start)<M) return;
     for(int i=start;i<ncell;i++){
@@ -114,7 +117,9 @@ int main(int argc,char**argv){
     ncell=0; for(int x=0;x<n;x++)for(int y=0;y<n;y++)for(int z=0;z<n;z++){cell[ncell].x=x;cell[ncell].y=y;cell[ncell].z=z;ncell++;}
     DM=n-1; DSPAN=2*DM+1; dseen=calloc((size_t)DSPAN*DSPAN*DSPAN,1);
     if(!dseen){fprintf(stderr,"ОТКАЗ: нет памяти под направления\n");return 2;}
+    { const char*d=getenv("DUMPFILE"); if(d) dump=fopen(d,"w"); }
     memset(occ,0,sizeof occ); st=clock(); dfs(0);
+    if(dump) fclose(dump);
     if(timedout) printf("n=%d M=%d ВРЕМЯ ВЫШЛО (узлов %lld, насчитано %lld)\n",n,M,nodes,found);
     else printf("n=%d M=%d доля %d/%d: ВСЕГО %lld, с симметрией %lld (%.1f%%), узлов %lld\n",
                 n,M,shard,nshard,found,sym,found?100.0*sym/found:0.0,nodes);
