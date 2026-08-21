@@ -74,6 +74,10 @@ static int TARGET;
 /* ДОЛИ по индексу ПЕРВОЙ взятой орбиты: у всякой конфигурации она одна, доли не пересекаются
  * и в сумме дают всё. Проверяется тем, что сумма долей воспроизводит цельный ответ. */
 static int SHARD=-1, NSHARD=1;
+/* ВТОРОЙ УРОВЕНЬ ДРОБЛЕНИЯ. Повод: при n=10 вся оставшаяся тяжесть свелась к ОДНОЙ
+ * орбите (нулевой) — соседняя, 256-я, исчерпалась за два узла. Значит дробление по
+ * первой орбите как ось кончилось, и дальше делить надо по ВТОРОЙ выбранной орбите. */
+static int SHARD2=-1, NSHARD2=1;
 /* НАЧАЛЬНОЕ ЛУЧШЕЕ. Если нижняя граница уже известна свидетелем (например 26 при n=10),
  * можно начать с best = граница-1 и резать всё, что её не превосходит. Ответ не меняется:
  * мы ищем максимум, а он заведомо не ниже известного. Дерево сжимается сильно.
@@ -104,7 +108,8 @@ static void dfs(int start,int k,int no){
      * текущему лучшему: ветка мертва, если не может ПРЕВЗОЙТИ уже найденное. */
     if(k+capacity(start) <= best) return;
     for(int o=start;o<NORB;o++){
-        if(k==0 && SHARD>=0 && (o % NSHARD)!=SHARD) continue;
+        if(no==0 && SHARD>=0 && (o % NSHARD)!=SHARD) continue;
+        if(no==1 && SHARD2>=0 && (o % NSHARD2)!=SHARD2) continue;
         if(!lawful(o,k)) continue;
         int m=OSZ[o];
         for(int i=0;i<m;i++){ int p=ORB[o][i]; chosen[k+i]=p;
@@ -122,6 +127,7 @@ int main(int argc,char**argv){
     TARGET=(argc>3)?atoi(argv[3]):3*n;
     if(argc>5){ SHARD=atoi(argv[4]); NSHARD=atoi(argv[5]); }
     if(argc>6){ BEST0=atoi(argv[6]); best=BEST0; }
+    if(argc>8){ SHARD2=atoi(argv[7]); NSHARD2=atoi(argv[8]); }
     if(n>60){ fprintf(stderr,"n слишком велик\n"); return 2; }
     PX=malloc(NN);PY=malloc(NN);PZ=malloc(NN);
     { int t=0; for(int x=0;x<n;x++)for(int y=0;y<n;y++)for(int z=0;z<n;z++){PX[t]=x;PY[t]=y;PZ[t]=z;t++;} }
