@@ -4,14 +4,14 @@
 \usepackage{booktabs}
 \usepackage[hidelinks]{hyperref}
 \newtheorem{proposition}{Proposition}
-\title{Twelve certified lower bounds for the no-four-coplanar problem in the cube,\\
+\title{Twelve certified configurations, eleven independent bounds for the no-four-coplanar problem in the cube,\\
 and what they do not establish}
 \author{Aleksei Kudriashov (Alex Komang)\\ \small Nusa Dua Studio, Nusa Dua, Bali, Indonesia\\ \small ORCID: 0009-0006-8885-5338}
 \date{21 August 2026 --- version 2.3}
 \begin{document}\maketitle
 \begin{abstract}
 Let $a(n)$ be the largest number of points of $\{0,\dots,n-1\}^3$ no four of which are coplanar
-(OEIS A280537).  The published data stop at $a(8)=20$.  We exhibit configurations certifying
+(OEIS A280537).  The published data stop at $a(8)=20$.  We exhibit twelve configurations, each verified independently, certifying
 \begin{align*}
 &a(9)\ge23,\ a(10)\ge26,\ a(11)\ge28,\ a(12)\ge31,\ a(13)\ge32,\ a(14)\ge34,\\
 &a(15)\ge35,\ a(16)\ge38,\ a(17)\ge38,\ a(18)\ge41,\ a(19)\ge43,\ a(20)\ge44,
@@ -35,7 +35,7 @@ $a(n)\le 3n$ for every $n$.
 \end{proposition}
 This is the only upper bound above $n=8$ that we can prove.
 
-\section{The twelve lower bounds}
+\section{The bounds}
 \begin{center}
 \begin{tabular}{rrrrr}
 \toprule
@@ -57,6 +57,11 @@ $n$ & lower bound & $3n$ & gap & quadruples checked \\
 \bottomrule
 \end{tabular}
 \end{center}
+Twelve configurations, but eleven independent statements: the row for $n=17$ no longer carries
+its own information, since $a(17)\ge a(16)\ge38$ follows by monotonicity.  This has happened three
+times as the neighbouring row was improved, and it is the reason to read the table as a set of
+bounds rather than of values --- a row is worth something only while it exceeds its left neighbour.
+
 The configurations themselves are in the repository cited below.  The gap to
 Proposition~\ref{p:3n} grows with $n$; whether this reflects the problem or the reach of the
 search we cannot say, and Section~\ref{s:effort} explains why we believe the question is not
