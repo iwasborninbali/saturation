@@ -27,7 +27,9 @@
 #include <string.h>
 #include <time.h>
 
-#define MAXW 16
+#define MAXW 32   /* было 16 = 1024 клетки. При n=11 клеток 1331, при n=12 — 1728:
+                     * NW превышал MAXW и слово писалось за конец BS. Проверка NW>MAXW стояла
+                     * и отсекала запуск, но буфер buf[1024] ниже НЕ проверялся ничем. */
 typedef struct { unsigned long long w[MAXW]; } BS;
 
 static int N, NN, NW;
@@ -60,7 +62,7 @@ static void place(const BS*alive,int i,const int*chosen,int k,BS*out){
     bs_clr(out,i);
     for(int t=0;t<k;t++) bs_andnot(out,&killp[(size_t)i*NN+chosen[t]]);
     if(k<2) return;
-    int buf[1024]; int m=alive_list(out,buf);
+    static int buf[MAXW*64]; int m=alive_list(out,buf);  /* было buf[1024] — молчаливое переполнение при NN>1024 */
     for(int a=0;a<k;a++){
         long long ux=PX[chosen[a]]-PX[i], uy=PY[chosen[a]]-PY[i], uz=PZ[chosen[a]]-PZ[i];
         for(int b=a+1;b<k;b++){
