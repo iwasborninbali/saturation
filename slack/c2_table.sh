@@ -1,7 +1,7 @@
 #!/bin/bash
 # C2 (first solver, unattended): chain_walk.py over k for p=101 (all k), 199 (all k), 401 (representative k by order); table + auto-commit
 cd "$(dirname "$0")/.."
-out=slack/verification/c2_table.txt
+out=slack/verification/c2_table_current.html
 echo "# $(date -u +%FT%TZ) C2: p k ord(k) G8 forcedLP_saving total_saving net_per_group  (from slack/chain_walk.py)" > $out
 run() { p=$1; k=$2; r=$(timeout 1800 python3 slack/chain_walk.py $p $k 2>/dev/null); o=$(echo "$r" | grep -o "ord(k)=[0-9]*" | head -1 | cut -d= -f2); g=$(echo "$r" | grep -o "G8=[0-9]*" | head -1 | cut -d= -f2); f=$(echo "$r" | grep -o "forced lines: [0-9.]* = 4(p-1) - [-0-9.]*" | grep -o "\- [-0-9.]*$" | cut -c3-); t=$(echo "$r" | grep -o "total cover = [0-9.]* = 4(p-1) - [-0-9.]*" | grep -o "\- [-0-9.]*$" | cut -c3-); n=$(echo "$r" | grep -o "net per 8-group [-0-9.]*" | grep -o "[-0-9.]*$"); echo "$p $k $o $g $f $t $n" >> $out; }
 for k in $(seq 2 100); do run 101 $k; done
