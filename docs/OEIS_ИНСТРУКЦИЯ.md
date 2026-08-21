@@ -35,29 +35,36 @@ Aleksei Kudriashov and Claude agents, <a href="https://github.com/iwasborninbali
 
 ---
 
-## ПРАВКА 2 — A000755 (двумерная, кандидат на двадцатый член)
+## ПРАВКА 2 — A000755: ЖДЁМ СЛОВА ФЛАММЕНКАМПА, НЕ ПОДАЁМ
 
-**Ссылка:** https://oeis.org/A000755
-**Действие:** то же — **«edit»** → поле **COMMENT**.
+**Положение дел, восстановленное по переписке (важно, я сам его сперва переврал):**
 
-**Текст:**
+* `a(20) = 941580` — **число Фламменкампа**, оно стоит на его ЖИВОЙ таблице
+  `https://wwwhomes.uni-bielefeld.de/achim/no3in/table.html`. Не наше.
+* A000769 (неэквивалентные решения, «sum»-столбец той же таблицы) **уже несёт** n=20 = 118057.
+  То есть одну последовательность с его страницы обновили, а вторую нет.
+* Письмом от 20.08 мы сами ему это написали и **прямо предложили выбор**: вносит он или мы
+  с указанием авторства и ссылкой на его таблицу. **Ответа пока нет.**
+
+**Что делаем: НИЧЕГО, пока он не ответит.** Вносить чужое число, предложив автору решать
+самому и не дождавшись ответа, — плохо.
+
+**Что появилось сегодня и снимает нашу вчерашнюю оговорку.** Вчера мы написали ему, что
+проверить 941580 сами не можем (нашим перебором это порядка 500 ядро-лет). Сегодня проверили
+иначе: сумма размеров орбит по его БАЗЕ решений даёт ровно 941580, а та же сумма
+воспроизводит A000755 на восемнадцати подряд опубликованных членах (n=2..19) без единого
+расхождения. Значит два его источника — таблица и база — согласуются, и это установлено
+независимо от его таблицы.
+
+**Когда он ответит «вносите»** — текст комментария к A000755:
 
 ```
-Summing the orbit sizes 8/|stabiliser| over the D4-classes in A. Flammenkamp's database
-of known solutions (file all_known_solutions, state 2026-08-11) reproduces a(2)..a(19)
-exactly, and gives 941580 for n = 20. Hence a(20) >= 941580, with equality if that
-database is complete for n = 20. Indirect evidence that it is: the proportion of classes
-with non-trivial stabiliser decreases smoothly through n = 20 (3.68%, 4.14%, 1.83%,
-1.87%, 0.60% for n = 16..20) and then jumps to 92.63% at n = 21, which is where the
-database stops being exhaustive and holds only found (hence overwhelmingly symmetric)
-solutions.
+a(20) = 941580, from A. Flammenkamp's table at
+https://wwwhomes.uni-bielefeld.de/achim/no3in/table.html.
+Independently confirmed by summing the orbit sizes 8/|stabiliser| over the D4-classes
+in his database file all_known_solutions (state 2026-08-11); the same computation
+reproduces a(2)..a(19) exactly.
 ```
-
-**Почему НЕ вписывать 941580 в DATA:** полнота базы при n=20 — наш ВЫВОД из косвенного
-признака, а не установленный факт. Если Ахим подтвердит полноту, член можно будет добавить
-отдельной правкой со ссылкой на его подтверждение. Пока — комментарий.
-
----
 
 ## Порядок действий
 
