@@ -80,10 +80,29 @@ static int dir_bound(const BS *alive, int a){
     return cnt;
 }
 
-static void rec(BS alive, int row){
+/* ВРЕМЯ ЖИЗНИ ЗАДАЁТ ПОРЯДОК (мысль хозяина: пространственную задачу нельзя решать
+ * в отрыве от времени). У каждой клетки есть время смерти — номер рождения, на котором она
+ * перестала быть живой. Обход по НОМЕРАМ строк идёт по календарю, а не по жизни: он берётся
+ * за строку, которой ещё долго жить, и оставляет напоследок ту, где выбора почти нет.
+ * Правильный порядок обратный: браться за то, что вот-вот умрёт. Строка, где живых клеток
+ * меньше всего, ближе всех к смерти — и ветвление там наименьшее.
+ * Порядок выбирается ДЕТЕРМИНИРОВАННО по текущему состоянию, поэтому каждая конфигурация
+ * по-прежнему считается ровно один раз. */
+static int pick_row(const BS *alive, unsigned int done){
+    int best=-1, bestc=1<<30;
+    for(int r=0;r<N;r++){
+        if (done & (1u<<r)) continue;
+        int c=alive_in_row(alive,r);
+        if (c<bestc){ bestc=c; best=r; if(c<=2) break; }
+    }
+    return best;
+}
+
+static void rec(BS alive, unsigned int done, int placed){
     NODES++;
-    if (row == N){ COUNT++; return; }
-    int need = 2*(N-row);
+    if (placed == N){ COUNT++; return; }
+    int need = 2*(N-placed);
+    int row = pick_row(&alive, done);
     /* ОТСЕЧЕНИЕ ПО СМЕРТИ: живых меньше, чем осталось положить */
     if (bs_pop(&alive) < need) return;
     /* ЁМКОСТЬ СТОЛБЦОВ: суммарное свободное место в столбцах должно покрыть остаток */
@@ -91,7 +110,7 @@ static void rec(BS alive, int row){
     for(int c=0;c<N;c++){ int r2 = 2-colcnt[c]; if (r2>0) room += r2; }
     if (room < need) return;
     /* каждая оставшаяся строка обязана нести ДВЕ: если в какой-то живых меньше двух — отбой */
-    for(int r=row;r<N;r++) if (alive_in_row(&alive,r) < 2) return;
+    for(int r=0;r<N;r++) if (!(done & (1u<<r)) && alive_in_row(&alive,r) < 2) return;
     /* СМЕРТЬ В НАПРАВЛЕНИЯХ. Из последних рождённых точек считаем число РАЗЛИЧНЫХ живых
      * направлений: больше него взять нельзя, потому что две точки на одном луче из A
      * дали бы три на прямой вместе с A. Оценка не хуже счёта клеток и часто строго лучше. */
@@ -125,7 +144,7 @@ static void rec(BS alive, int row){
             bs_andnot(&na,&killp[(size_t)i*NN + j]);
             chosen[nchosen++]=i; chosen[nchosen++]=j;
             colcnt[c1]++; colcnt[c2]++;
-            rec(na,row+1);
+            rec(na, done | (1u<<row), placed+1);
             colcnt[c1]--; colcnt[c2]--;
             nchosen-=2;
         }
@@ -182,7 +201,7 @@ int main(int argc,char**argv){
     nchosen=0; NODES=0; COUNT=0;
 
     struct timespec t0,t1; clock_gettime(CLOCK_MONOTONIC,&t0);
-    rec(all,0);
+    rec(all,0u,0);
     clock_gettime(CLOCK_MONOTONIC,&t1);
     double el=(t1.tv_sec-t0.tv_sec)+1e-9*(t1.tv_nsec-t0.tv_nsec);
     printf("n=%d M=%d: решений %llu, узлов %llu, %.2fс (%.0f узлов/с)\n",
