@@ -6,7 +6,7 @@
 \newtheorem{proposition}{Proposition}
 \title{The error of the Guy--Kelly heuristic, measured against exact counts}
 \author{Aleksei Kudriashov (Alex Komang)\\ \small Nusa Dua Studio, Nusa Dua, Bali, Indonesia\\ \small ORCID: 0009-0006-8885-5338}
-\date{22 August 2026 --- version 1.2}
+\date{22 August 2026 --- version 1.3}
 \begin{document}\maketitle
 \begin{abstract}
 The Guy--Kelly heuristic for the no-three-in-line problem is a first-moment threshold: one equates
@@ -177,34 +177,100 @@ order does not move the balance in Section 3, so the discrepancy --- seven order
 though it is at $n=20$ --- leaves $\pi/\sqrt3$ where it is.
 
 
-\section{At fixed ratio, the multiplier is bounded}
-All of the above is at $m=2n$, which is the hard ceiling (two points per row).  The decay of the
-increment could be an artefact of approaching that ceiling rather than a property of the exponent.
-We therefore fixed the ratio $r=m/2n=0.9$ and measured the error as $n$ grows.  Two of the four
-points are exhaustive enumerations; the other two use an unbiased tree-size estimator of Knuth
-type, validated against exact counts at $n=6,\dots,10$ with errors $0.35\%$ to $2.14\%$, and
-combined across independent seeds in the arithmetic mean, in which the estimator is unbiased.
+\section{At fixed ratio the multiplier is not bounded, and the growth form cannot be chosen}
+An earlier version of this note reported that at fixed ratio $r=m/2n=0.9$ the error of
+\eqref{eq:h} stops growing with $n$, and read that as thirteen standard deviations of evidence
+that the exponential rate of the heuristic is correct.  We withdraw the measurement, the
+inference, and the significance, and we record why each failed, since the failures are of
+general kinds.
+
+\subsection*{The measurement: an instrument that did not report its own reach}
+The estimator's \emph{hit rate} --- the fraction of random descents that reach depth $m$ at all
+--- was not recorded.  It should have been.  At $r=0.9$ the two points carrying the claim were
+obtained at hit rates of $0.08\%$ and $0.003\%$: one hundred and sixty successful descents at
+$n=15$, and \emph{five} at $n=20$, per two hundred thousand attempts.  A quoted uncertainty of
+$\pm0.144$ in $\log_{10}$ is not attainable from five hits by any number of seeds.  Re-running
+that cell independently returns $1.15\cdot10^{20}$ against the earlier $2.03\cdot10^{19}$.
+Neither number carries information.  We note that the values were never shown to be
+\emph{wrong}; they were unsupported, which is a different and more common defect.
+
+Against this we measured the estimator itself where exact counts exist, and it is sound:
+at $n{=}10,m{=}18$ (hit rate $2.9\%$) ten seeds give $+2.2\%$; at $n{=}8,m{=}15$, $-0.5\%$; at
+$n{=}8,m{=}16$ --- the ceiling, eighty-four hits --- $+1.8\%$.  There is no bias to speak of.
+The defect is variance, not bias, and it is curable by descents rather than fatal.
+
+\subsection*{The finding, once ratios with high hit rates are used}
+Writing $E(n,r)=\ln(\text{estimate of \eqref{eq:h}})-\ln(\text{true count})$ in natural
+logarithms, and holding $r$ at values where $2rn$ is an integer for every $n$ used --- the ratio
+must not be rounded, since at $n=20$ the error moves by $36$ per unit of $r$, so rounding $m$
+shifts it by $0.45$ ---
 \begin{center}
-\begin{tabular}{rrlrr}
+\begin{tabular}{llll}
 \toprule
-$n$ & $m$ & count & error & increment per unit $n$\\
+$r$ & $E$ against $n$ & hit rate & anchors\\
 \midrule
- 5 &  9 & $840$ (exact)            & $-0.975$ & \\
-10 & 18 & $92\,734\,158$ (exact)   & $-1.771$ & $-0.1592$\\
-15 & 27 & $3.70\cdot10^{13}$       & $-1.743\pm0.100$ & $+0.0056\pm0.0199$\\
-20 & 36 & $2.03\cdot10^{19}$       & $-1.431\pm0.144$ & $+0.0625\pm0.0351$\\
+$0.50$ & $+0.09,\,+0.10,\,+0.14,\,+0.12,\,+0.08,\,-0.22,\,-0.69,\,-1.28,\,-1.96,\,-2.71$ & $100\%$ & four exact\\
+$0.70$ & $+0.58,\,+0.68,\,-0.09,\,-1.29,\,-2.80,\,-4.50$ & $99.6\%$ & one exact\\
+$0.80$ & $+1.18,\,+1.71,\,+0.98,\,-0.33,\,-1.95,\,-4.58$ & $\ge5\%$ & one exact\\
 \bottomrule
 \end{tabular}
 \end{center}
-Had the initial rate persisted, the error at $n=20$ would be $-3.363$; it is $-1.431$, a
-discrepancy of $1.933$ against an uncertainty of $0.144$ --- thirteen standard deviations.  The
-multiplicative error is bounded on this range, and if it moves at all it shrinks.  A bounded
-multiplier leaves the exponential rate untouched, and the rate is the constant.
+($n=5,6,7,8,10,15,\dots$ for the first row; $n=5,10,15,20,25,30$ for the others.)  There is no
+plateau at any ratio.  The multiplier is not bounded: the heuristic understates the count by a
+factor growing at least exponentially in $n$, faster at larger $r$.
 
-We do not claim more.  Whether the plateau is flat or slowly shrinking is unresolved: the last
-increment is $+0.0625\pm0.0351$, under two standard deviations from zero.  Beyond $n=20$ the
-estimator's random descents no longer reach the required depth --- at $n=25$, zero hits in two
-million --- so $n\le20$ is the reach of this method.
+We record one further trap here, because we fell into it.  On the first four (exact) points of
+the $r=0.5$ row the error is flat, and we announced that the decline was a near-threshold
+phenomenon.  It is not: those four points lie before the summit.  Reading a pre-summit segment
+as a plateau is precisely the error being corrected in this section, and four exact values
+persuaded us of it more readily than eight estimated ones would have.  Exactness of values is
+not length of series.
+
+\subsection*{Why the growth form cannot be chosen}
+If $E=\Theta(n)$ the constant of Section~3 is untouched, since the terms balanced there are
+$\Theta(n\ln n)$.  If $E=\Theta(n\ln n)$ it moves.  The data do not decide, and cannot.
+
+Fitting the full $r=0.5$ row to $E=c+an+bn\ln n$ returns $b$ at hundreds of standard deviations
+from zero --- and a $\chi^2$ of $240$ on eight degrees of freedom, which rejects the model and
+voids the uncertainty with it.  Fifteen further one-term variants using $\ln n$, $\sqrt n$ and
+$n/\ln n$ are also rejected, the best by a factor of eighty-four.  The honest per-point error is
+$0.26\%$, measured from eight fully independent seeds at $n=30$, so the rejection is not an
+artefact of optimistic error bars; it is stronger than the nominal ones suggested.
+
+The rejection is confined to small $n$.  Taken on tails, three-parameter forms are admissible
+from $n\ge15$ onward: $\chi^2=4.6/3$, $3.0/2$, $0.1/1$ for $c+an+bn\ln n$ at $n\ge15,20,25$.
+The asymptotic regime appears to begin near $n=15$, and below it we were fitting asymptotic forms
+to pre-asymptotic data.
+
+On that tail the fit is stable and emphatic: $b=-0.0891\pm0.0010$, $-0.0871$, $-0.0814$ across
+three nested tails --- eighty-six standard deviations from zero --- while the purely linear
+$c+an$ is rejected at $\chi^2=2150/3$.  Read alone this says $E=\Theta(n\ln n)$ and the constant
+moves.  It does not say that.  On the same tail,
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+form ($n\ge20$) & $\chi^2$ (2 d.o.f.) & implication\\
+\midrule
+$c+an+b\,n\ln n$ & $3.00$ & constant moves\\
+$c+an+d\sqrt n$ & $0.18$ & constant intact\\
+$c+an+e\,n/\ln n$ & $1.76$ & constant intact\\
+$c+an+f\ln n$ & $0.92$ & constant intact\\
+\bottomrule
+\end{tabular}
+\end{center}
+All four are admissible; three imply the opposite conclusion and fit better.  The eighty-six
+standard deviations are a quantity computed \emph{inside} a model, and such a quantity does not
+transfer to a choice \emph{between} models.  The test to apply is not whether a coefficient
+differs from zero, but whether a second admissible model exists in which it is absent.  Here
+several do.
+
+Nor is this curable by computing further.  The two candidate bases are collinear to $0.9983$ over
+$n\le40$, and the collinearity does not improve with range: $0.9986$ to $n=400$, $0.9993$ to
+$n=10^4$.  What separates them is precision, not length, and the precision is already $0.26\%$.
+
+We therefore withdraw the support that the earlier Section~6 offered and do not replace it.  The
+derivation of Section~3 stands, but it establishes what the first moment gives, not what the
+problem gives, and the distance between those two is what this section failed to measure.
 
 \section{Where the reach ends, and why}
 The limit is not an artefact of the estimator.  A descent guided by importance sampling reaches
@@ -225,14 +291,12 @@ constant is proposed.
 
 The objection is exactly right about the derivation, and Sections 3 and 4 quantify how badly:
 the independence assumption is off by seven orders of magnitude at $n=20$, and the crude form
-survives only because two of its errors cancel.  What Section 6 adds is the measurement the
-objection asks for.  The dependence is real and large, but at fixed ratio its cost is a bounded
-multiplier on the range we can reach, and a bounded multiplier leaves an exponential rate alone.
-So on $n\le20$ the answer to ``might we not reach the same conclusion'' is: we do reach it, and
-now for a measured reason rather than an assumed one.
-
-We claim nothing beyond that range, and we note that the range stops precisely where every method
-of this kind stops --- see Section 8.
+survives only because two of its errors cancel.  We had believed Section~6 supplied the
+measurement the objection asks for.  It does not, and we now believe no measurement of this kind
+can: the two possible answers correspond to bases that stay collinear at every range, and both
+admit an acceptable fit to the data we can obtain.  To ``might we not reach the same conclusion''
+the honest answer is that we cannot tell by counting, and that we have measured how far from
+telling we are.
 
 \section{On three dimensions}
 The same test was carried out in the cube (no four coplanar) on complete enumerations at
