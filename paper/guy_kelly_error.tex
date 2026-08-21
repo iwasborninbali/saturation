@@ -6,7 +6,7 @@
 \newtheorem{proposition}{Proposition}
 \title{The error of the Guy--Kelly heuristic, measured against exact counts}
 \author{Aleksei Kudriashov (Alex Komang)\\ \small Nusa Dua Studio, Nusa Dua, Bali, Indonesia\\ \small ORCID: 0009-0006-8885-5338}
-\date{22 August 2026 --- version 1.4}
+\date{22 August 2026 --- version 1.5}
 \begin{document}\maketitle
 \begin{abstract}
 The Guy--Kelly heuristic for the no-three-in-line problem is a first-moment threshold: one equates
@@ -244,32 +244,39 @@ $\Theta(n\ln n)$.  If $E=\Theta(n\ln n)$ it moves.  The data do not decide, and 
 Fitting the full $r=0.5$ row to $E=c+an+bn\ln n$ returns $b$ at hundreds of standard deviations
 from zero --- and a $\chi^2$ of $240$ on eight degrees of freedom, which rejects the model and
 voids the uncertainty with it.  Fifteen further one-term variants using $\ln n$, $\sqrt n$ and
-$n/\ln n$ are also rejected, the best by a factor of eighty-four.  The honest per-point error is
-$0.26\%$, measured from eight fully independent seeds at $n=30$, so the rejection is not an
-artefact of optimistic error bars; it is stronger than the nominal ones suggested.
+$n/\ln n$ are also rejected, the best by a factor of eighty-four.  The per-point error was measured rather than assumed, and it is not constant: eight fully
+independent seeds give $0.262\%$ at $n=30$, $0.404\%$ at $n=35$ and $0.979\%$ at $n=40$.  At
+$n=40$ the batch spread \emph{is} the error; at $n=30$ it overstates it fourfold.  A single
+measured value applied to a whole series --- which both of us did, in opposite directions ---
+inflates or deflates every $\chi^2$ that follows.  All figures below use the per-point values.
 
 The rejection is confined to small $n$.  Taken on tails, three-parameter forms are admissible
-from $n\ge15$ onward: $\chi^2=4.6/3$, $3.0/2$, $0.1/1$ for $c+an+bn\ln n$ at $n\ge15,20,25$.
+from $n\ge15$ onward: $\chi^2=2.5/3$, $2.2/2$, $0.05/1$ for $c+an+bn\ln n$ at $n\ge15,20,25$.
 The asymptotic regime appears to begin near $n=15$, and below it we were fitting asymptotic forms
 to pre-asymptotic data.
 
-On that tail the fit is stable and emphatic: $b=-0.0891\pm0.0010$, $-0.0871$, $-0.0814$ across
-three nested tails --- eighty-six standard deviations from zero --- while the purely linear
-$c+an$ is rejected at $\chi^2=2150/3$.  Read alone this says $E=\Theta(n\ln n)$ and the constant
+On that tail the fit is emphatic: $b=-0.0909\pm0.0011$, $-0.0898\pm0.0024$, $-0.0824\pm0.0056$
+across three nested tails, while the purely linear $c+an$ is rejected at $\chi^2=6573/4$,
+$1379/3$, $216/2$.  The significance of $b$ is $81$, $37$ and $15$ standard deviations on the
+three tails --- itself a warning, since a robust quantity does not lose three quarters of its
+significance when four points are dropped.  Read alone this says $E=\Theta(n\ln n)$ and the constant
 moves.  It does not say that.  On the same tail,
 \begin{center}
 \begin{tabular}{lll}
 \toprule
 form ($n\ge20$) & $\chi^2$ (2 d.o.f.) & implication\\
 \midrule
-$c+an+b\,n\ln n$ & $3.00$ & constant moves\\
+$c+an+b\,n\ln n$ & $2.19$ & constant moves\\
 $c+an+d\sqrt n$ & $0.18$ & constant intact\\
-$c+an+e\,n/\ln n$ & $1.76$ & constant intact\\
-$c+an+f\ln n$ & $0.92$ & constant intact\\
+$c+an+e\,n/\ln n$ & $1.36$ & constant intact\\
+$c+an+f\ln n$ & $0.44$ & constant intact\\
 \bottomrule
 \end{tabular}
 \end{center}
-All four are admissible; three imply the opposite conclusion and fit better.  The eighty-six
+All four are admissible; three imply the opposite conclusion and fit better.  An independent
+implementation, run without sight of these figures, obtains reduced $\chi^2$ of $8.1$, $7.0$,
+$7.4$, $7.5$ for the same four forms --- different in level, identical in verdict: mutually
+indistinguishable, oppositely answering.  The eighty-six
 standard deviations are a quantity computed \emph{inside} a model, and such a quantity does not
 transfer to a choice \emph{between} models.  The test to apply is not whether a coefficient
 differs from zero, but whether a second admissible model exists in which it is absent.  Here
