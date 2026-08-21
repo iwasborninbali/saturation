@@ -20,7 +20,7 @@
 #include <string.h>
 #include <math.h>
 #include <time.h>
-#define MAXW 16
+#define MAXW 26   /* n<=40: NN=1600, NW=25. Запас в 64 слова замедлял вдвое — структура копируется. */
 typedef struct { unsigned long long w[MAXW]; } BS;
 static int N,NN,NW;
 static BS *LINE;
