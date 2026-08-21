@@ -14,7 +14,7 @@
 ```
 Lower bounds beyond the published data, each certified by an explicit configuration:
 a(9) >= 23, a(10) >= 26, a(11) >= 28, a(12) >= 31, a(13) >= 32, a(14) >= 34,
-a(15) >= 35, a(16) >= 38, a(17) >= 38, a(18) >= 41, a(19) >= 43, a(20) >= 45, a(22) >= 47, a(24) >= 50.
+a(15) >= 35, a(16) >= 38, a(17) >= 38, a(18) >= 41, a(19) >= 43, a(20) >= 45, a(22) >= 47, a(23) >= 50.
 (Twelve configurations were verified; the bound at n = 17 follows from the one at n = 16 by
 monotonicity and is listed for completeness rather than as an independent result.)
 Each configuration was verified twice by structurally different programs (all C(m,4)
