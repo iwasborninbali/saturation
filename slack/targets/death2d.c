@@ -51,7 +51,34 @@ static inline int alive_in_row(const BS *a,int r){
     return c;
 }
 
+static int DIRCHK = 0;   /* сколько последних точек проверять по направлениям */
 static int chosen[64], nchosen;
+
+/* НАПРАВЛЕНИЯ: смерть, перенесённая из клеток в направления (мысль хозяина).
+ * У каждой уже рождённой точки A все остальные обязаны лежать в РАЗНЫХ направлениях —
+ * иначе три на прямой. Несколько живых клеток могут лежать на ОДНОМ луче из A, и взять
+ * из них можно только одну. Значит
+ *      осталось взять  <=  число живых НАПРАВЛЕНИЙ из A
+ * и эта оценка строго не хуже счёта живых клеток: луч схлопывается в единицу.
+ * dirid[a*NN+q] — номер примитивного направления из a в q. */
+static int *dirid;
+static int NDIR;
+static unsigned long long dseen[16];   /* до 1024 направлений */
+
+static int dir_bound(const BS *alive, int a){
+    for (int t=0;t<16;t++) dseen[t]=0ULL;
+    int cnt=0;
+    const int *row = dirid + (size_t)a*NN;
+    for(int t=0;t<NW;t++){
+        unsigned long long w = alive->w[t];
+        while(w){
+            int b=__builtin_ctzll(w); w&=w-1;
+            int d = row[(t<<6)+b];
+            if (!((dseen[d>>6]>>(d&63))&1ULL)){ dseen[d>>6]|=1ULL<<(d&63); cnt++; }
+        }
+    }
+    return cnt;
+}
 
 static void rec(BS alive, int row){
     NODES++;
@@ -65,6 +92,11 @@ static void rec(BS alive, int row){
     if (room < need) return;
     /* каждая оставшаяся строка обязана нести ДВЕ: если в какой-то живых меньше двух — отбой */
     for(int r=row;r<N;r++) if (alive_in_row(&alive,r) < 2) return;
+    /* СМЕРТЬ В НАПРАВЛЕНИЯХ. Из последних рождённых точек считаем число РАЗЛИЧНЫХ живых
+     * направлений: больше него взять нельзя, потому что две точки на одном луче из A
+     * дали бы три на прямой вместе с A. Оценка не хуже счёта клеток и часто строго лучше. */
+    for(int t=nchosen-1; t>=0 && t>=nchosen-DIRCHK; t--)
+        if (dir_bound(&alive, chosen[t]) < need) return;
     /* ОТСЕЧЕНИЕ ПО ПОЛНОТЕ СТОЛБЦОВ — ИЗМЕРЕНО И ОТВЕРГНУТО.
      * При цели 2n столбец обязан набрать ровно две, и проверка «живых в столбце меньше,
      * чем ему нужно» сокращала узлы на 36% (361 -> 230 млн при n=11). Но каждый узел
@@ -103,6 +135,7 @@ static void rec(BS alive, int row){
 int main(int argc,char**argv){
     if (argc<2){ fprintf(stderr,"usage: death2d <n>\n"); return 2; }
     N = atoi(argv[1]); NN = N*N; NW = (NN+63)/64;
+    if (argc>2) DIRCHK = atoi(argv[2]);
     if (NW>MAXW){ fprintf(stderr,"n слишком велико: нужно %d слов, есть %d\n",NW,MAXW); return 2; }
 
     killp = calloc((size_t)NN*NN,sizeof(BS));
@@ -119,6 +152,29 @@ int main(int argc,char**argv){
             }
             killp[(size_t)i*NN+j]=m; killp[(size_t)j*NN+i]=m;
         }
+    }
+    /* нумерация примитивных направлений */
+    {
+        int *map = calloc((size_t)(2*N+1)*(2*N+1), sizeof(int));
+        for (size_t t=0;t<(size_t)(2*N+1)*(2*N+1);t++) map[t] = -1;
+        dirid = malloc((size_t)NN*NN*sizeof(int));
+        NDIR = 0;
+        for(int a=0;a<NN;a++){
+            int ax=a/N, ay=a%N;
+            for(int q=0;q<NN;q++){
+                int dx=q/N-ax, dy=q%N-ay;
+                if (dx==0 && dy==0){ dirid[(size_t)a*NN+q]=0; continue; }
+                int g=dx<0?-dx:dx, h=dy<0?-dy:dy;
+                while(h){ int r2=g%h; g=h; h=r2; }
+                if(g==0) g=1;
+                int px=dx/g, py=dy/g;
+                int key=(px+N)*(2*N+1)+(py+N);
+                if (map[key]<0) map[key]=NDIR++;
+                dirid[(size_t)a*NN+q]=map[key];
+            }
+        }
+        free(map);
+        if (NDIR > 1024){ fprintf(stderr,"направлений %d — больше 1024\n",NDIR); return 2; }
     }
     BS all; bs_zero(&all);
     for(int i=0;i<NN;i++) bs_set(&all,i);
