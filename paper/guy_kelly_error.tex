@@ -1,0 +1,153 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.6cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{proposition}{Proposition}
+\title{The error of the Guy--Kelly heuristic, measured against exact counts}
+\author{Aleksei Kudriashov (Alex Komang)\\ \small Nusa Dua Studio, Nusa Dua, Bali, Indonesia\\ \small ORCID: 0009-0006-8885-5338}
+\date{21 August 2026 --- version 1.0}
+\begin{document}\maketitle
+\begin{abstract}
+The Guy--Kelly heuristic for the no-three-in-line problem is a first-moment threshold: one equates
+$\log\binom{n^2}{m}$ with the expected number of collinear triples in a random $m$-subset, computed
+as if the triples were independent.  Its corrected constant is $\pi/\sqrt3=1.8138$ (Guy, after
+Ellmann, 2004).  We test the heuristic not at its threshold but on the quantity it actually
+predicts --- the \emph{number} of configurations --- against exact counts, which are available for
+$m=2n$ up to $n=19$ and, at the ratio $m/2n=0.9$, up to $n=20$ by exhaustive enumeration and an
+unbiased tree-size estimator validated against it.
+
+Three things come out.  The heuristic overestimates the count of $2n$-point configurations by
+$10^{6.9}$ at $n=20$, but the per-step growth of that error \emph{decays}.  Refining the heuristic
+--- treating lines rather than triples as independent --- makes it \emph{twice as wrong}, because
+the crude version carries two errors of opposite sign that partly cancel; we measure the
+cancellation at $10^{2.65}$.  And at the fixed ratio $m/2n=0.9$, away from the hard ceiling $2n$,
+the multiplicative error is bounded on $n=5,\dots,20$: continued growth at the initial rate is
+excluded at thirteen standard deviations.  A bounded multiplier does not move an exponential rate,
+so nothing in these data argues against $\pi/\sqrt3$.
+\end{abstract}
+
+\section{The heuristic, and which constant is which}
+Let $T(n)$ be the number of collinear triples in the $n\times n$ grid.  It has a closed form,
+\[T(n)=\sum_{\gcd(a,b)=1}\ \sum_{s\ge2}(s-1)(n-s|a|)^{+}(n-s|b|)^{+},\]
+which we verified against brute force on eighteen values.  The heuristic estimates the number of
+admissible $m$-subsets by
+\begin{equation}\label{eq:h}
+\binom{N}{m}\exp\!\Big(-T(n)\binom{m}{3}\Big/\binom{N}{3}\Big),\qquad N=n^2,
+\end{equation}
+and locates the threshold where this drops below one.  Guy and Kelly's original constant was
+$(2\pi^2/3)^{1/3}=1.8739$; Gabor Ellmann found an error in the argument in March 2004, and the
+corrected value, recorded by Guy in OEIS A000769 that October and documented by Voutier
+(arXiv:2603.00215), is
+\[c=\pi/\sqrt3=1.813799.\]
+Our own derivation of the threshold reproduces the corrected value, not the retracted one.  As a
+check of the machinery we located the crossing exactly: the threshold from \eqref{eq:h} first falls
+below $2n$ at $n=493$ (at $n=492$ it equals $984=2n$; at $n=493$ it is $985<986$), which agrees to
+the integer with the value quoted in the recent survey literature.
+
+\section{Testing the count, not the threshold}
+A threshold inherits the whole error of the estimate without exhibiting its size.  The count does
+not.  Exact counts of $2n$-point configurations are A000755, published to $n=19$; the value at
+$n=20$ is on A.~Flammenkamp's table.  We obtain both independently by summing orbit sizes
+$8/|\mathrm{stab}|$ over the $D_4$-classes of his solution database, which reproduces
+$a(2),\dots,a(19)$ exactly and gives $941580$ at $n=20$.  Against \eqref{eq:h}:
+\begin{center}
+\begin{tabular}{rrrr}
+\toprule
+$n$ & exact & estimate & $\log_{10}$(exact/estimate) \\
+\midrule
+ 6 & $50$      & $10^{4.12}$  & $-2.421$\\
+10 & $1135$    & $10^{7.11}$  & $-4.055$\\
+14 & $10568$   & $10^{9.63}$  & $-5.604$\\
+18 & $152210$  & $10^{11.78}$ & $-6.597$\\
+20 & $941580$  & $10^{12.87}$ & $-6.896$\\
+\bottomrule
+\end{tabular}
+\end{center}
+The error reaches seven orders of magnitude.  Its increment per step, however, decays by a factor
+of four across the range: $-0.86,\dots,-0.25,-0.13$.  That distinction --- between an error whose
+increment is constant and one whose increment decays --- is what the rest of this note turns on.
+
+\section{Refining the heuristic makes it worse}
+Triples on one line are strongly dependent.  The natural repair is to treat \emph{lines} as
+independent and use the exact hypergeometric probability that a line of $k$ grid points carries at
+most two chosen points.  It is worse, and by a clean factor:
+\begin{center}
+\begin{tabular}{rrr}
+\toprule
+ & triples independent & lines independent \\
+\midrule
+$n=6$, $m=12$ & $-2.421$ & $-4.107$\\
+$n=7$, $m=14$ & $-2.639$ & $-5.285$\\
+\bottomrule
+\end{tabular}
+\end{center}
+The mechanism is that \eqref{eq:h} carries \emph{two} errors of opposite sign.  Independence
+\emph{between} lines overestimates, since a set that has already avoided one line avoids the next
+more easily.  Counting the $\binom{k}{3}$ overlapping triples on a line as independent events
+overestimates the probability of a violation, hence underestimates the survival probability.
+Replacing the second by an exact computation removes the compensation and leaves the first bare.
+At $n=7$ the cancellation is worth $10^{2.65}$.
+
+The practical corollary is uncomfortable: any refinement that fixes one of the two errors will make
+the heuristic worse.  Only fixing both helps, and the first requires the correlations between lines,
+which is precisely what nobody knows how to compute.  This may be why the 1968 form has not been
+superseded in fifty-eight years.
+
+It also accounts for an observation of Prellberg's, that the heuristic predicts fewer than one
+expected solution already for symmetric classes, which is false.  In a symmetric class the points
+are rigidly coupled, the first error grows sharply while the second does not, and the cancellation
+breaks --- the heuristic fails exactly where the coupling is strongest.
+
+\section{Which error is which class}
+Over sixteen steps the line-independent version has an essentially constant increment,
+$-1.6$ per step, while the triple-independent version decays fourfold.  A constant increment means
+an error growing exponentially in $n$, i.e.\ a wrong exponent; a decaying increment means a wrong
+multiplier only.  So the refinement is not merely further from the truth on a given $n$: it is
+wrong in a different and worse way.
+
+\section{At fixed ratio, the multiplier is bounded}
+All of the above is at $m=2n$, which is the hard ceiling (two points per row).  The decay of the
+increment could be an artefact of approaching that ceiling rather than a property of the exponent.
+We therefore fixed the ratio $r=m/2n=0.9$ and measured the error as $n$ grows.  Two of the four
+points are exhaustive enumerations; the other two use an unbiased tree-size estimator of Knuth
+type, validated against exact counts at $n=6,\dots,10$ with errors $0.35\%$ to $2.14\%$, and
+combined across independent seeds in the arithmetic mean, in which the estimator is unbiased.
+\begin{center}
+\begin{tabular}{rrlrr}
+\toprule
+$n$ & $m$ & count & error & increment per unit $n$\\
+\midrule
+ 5 &  9 & $840$ (exact)            & $-0.975$ & \\
+10 & 18 & $92\,734\,158$ (exact)   & $-1.771$ & $-0.1592$\\
+15 & 27 & $3.70\cdot10^{13}$       & $-1.743\pm0.100$ & $+0.0056\pm0.0199$\\
+20 & 36 & $2.03\cdot10^{19}$       & $-1.431\pm0.144$ & $+0.0625\pm0.0351$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Had the initial rate persisted, the error at $n=20$ would be $-3.363$; it is $-1.431$, a
+discrepancy of $1.933$ against an uncertainty of $0.144$ --- thirteen standard deviations.  The
+multiplicative error is bounded on this range, and if it moves at all it shrinks.  A bounded
+multiplier leaves the exponential rate untouched, and the rate is the constant.
+
+We do not claim more.  Whether the plateau is flat or slowly shrinking is unresolved: the last
+increment is $+0.0625\pm0.0351$, under two standard deviations from zero.  Beyond $n=20$ the
+estimator's random descents no longer reach the required depth --- at $n=25$, zero hits in two
+million --- so $n\le20$ is the reach of this method.
+
+\section{On three dimensions}
+The same test was carried out in the cube (no four coplanar) on complete enumerations at
+$n=3,4,5$ by the first solver.  There the increment of the error \emph{grows}: $+2.22$, then
+$+5.53$.  By the criterion above that is a wrong exponent.  The conclusion of Section 5 is
+therefore two-dimensional and must not be carried into the cube.  This is consistent with the
+mechanism: in the plane the hard ceiling $2n$ binds and anchors the estimate, while in the cube the
+corresponding bound $3n$ stands far from the achievable values and does not.
+
+\section*{AI/tool-use disclosure}
+The computations, the programs and the text were produced by autonomous AI agents (Anthropic Claude)
+under the direction of the author of record, who posed the question, chose what to compute, decided
+what to claim and takes responsibility for the content.  Two agents worked independently, one in
+each dimension, and each checked the other's conclusions rather than its code.  Programs, journals
+and the full record --- including the measurements that refuted our own earlier claims --- are at
+\url{https://github.com/iwasborninbali/saturation}.
+\end{document}
