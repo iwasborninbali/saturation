@@ -14,7 +14,7 @@
 typedef struct { int x,y,z; } P;
 static int n; static P W[64]; static int nw=0;
 static P cur[64]; static int nc=0; static int bestadd=0; static P bestset[64]; static int bestn=0;
-static P cand[2200]; static int ncand;
+static P cand[9261]; static int ncand;   /* 9261 = 21^3, запас; при 2200 сетка 16^3 (4096) молча портила память */
 static long long nodes=0;
 static long long det4(P a,P b,P c,P d){long long ux=b.x-a.x,uy=b.y-a.y,uz=b.z-a.z,vx=c.x-a.x,vy=c.y-a.y,vz=c.z-a.z,wx=d.x-a.x,wy=d.y-a.y,wz=d.z-a.z;return ux*(vy*wz-vz*wy)-uy*(vx*wz-vz*wx)+uz*(vx*wy-vy*wx);}
 static int col3(P a,P b,P c){long long ux=b.x-a.x,uy=b.y-a.y,uz=b.z-a.z,vx=c.x-a.x,vy=c.y-a.y,vz=c.z-a.z;return (uy*vz-uz*vy)==0&&(uz*vx-ux*vz)==0&&(ux*vy-uy*vx)==0;}
@@ -43,6 +43,8 @@ int main(int argc,char**argv){
     fclose(f);
     if(nw<4){fprintf(stderr,"ОТКАЗ: во входе %d точек, считать нечего.\n",nw);return 2;}
     setvbuf(stdout,NULL,_IOLBF,0);
+    if((long)n*n*n>9261){fprintf(stderr,"ОТКАЗ: n=%d не помещается в массив кандидатов. Молча портить память нельзя.\n",n);return 2;}
+    if(nw>60){fprintf(stderr,"ОТКАЗ: во входе %d точек, буферы рассчитаны на 60.\n",nw);return 2;}
     ncand=0; for(int x=0;x<n;x++)for(int y=0;y<n;y++)for(int z=0;z<n;z++){cand[ncand].x=x;cand[ncand].y=y;cand[ncand].z=z;ncand++;}
     printf("свидетель %d точек, выбиваем по %d, кандидатов %d\n",nw,j,ncand);
     int globalbest=nw; long long tried=0;
