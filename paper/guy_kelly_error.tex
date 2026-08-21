@@ -23,8 +23,14 @@ $10^{6.9}$ at $n=20$, but the per-step growth of that error \emph{decays}.  Refi
 the crude version carries two errors of opposite sign that partly cancel; we measure the
 cancellation at $10^{2.65}$.  And at the fixed ratio $m/2n=0.9$, away from the hard ceiling $2n$,
 the multiplicative error is bounded on $n=5,\dots,20$: continued growth at the initial rate is
-excluded at thirteen standard deviations.  A bounded multiplier does not move an exponential rate,
-so nothing in these data argues against $\pi/\sqrt3$.
+excluded at thirteen standard deviations.  A bounded multiplier does not move an exponential rate.
+
+This last point speaks to a stated objection.  Kaplan has argued against the conjecture on the
+grounds that the heuristic treats as independent events that are not, and that ``if we look more
+closely at how non-independent they actually are we might not reach the same conclusion''
+\cite{Kaplan}.  We looked: on $n=5,\dots,20$ at fixed ratio the dependence costs a bounded factor,
+around $10^{1.4}$--$10^{1.8}$, and not a growing one.  On that range the non-independence does not
+move the exponent.
 \end{abstract}
 
 \section{The heuristic, and which constant is which}
@@ -142,6 +148,34 @@ increment is $+0.0625\pm0.0351$, under two standard deviations from zero.  Beyon
 estimator's random descents no longer reach the required depth --- at $n=25$, zero hits in two
 million --- so $n\le20$ is the reach of this method.
 
+\section{Where the reach ends, and why}
+The limit is not an artefact of the estimator.  A descent guided by importance sampling reaches
+only the depths a greedy search reaches, and the quality of greedy search degrades with $n$: we
+measured the fraction of random restarts attaining the known maximum as $8/8,\ 3/8,\ 2/8,\ 1/8$
+at $n=5,\dots,8$, a geometric decay.  At $n=20$ greedy attains about $0.925$ of the maximum, so
+the ratio $0.9$ is within reach; by $n=25$ it falls below $0.9$ and the required depth is outside
+what such a descent visits at all.  Every top-down greedy method shares this bound.  To go past it
+one needs a descent guided by something that knows the target --- which is to say, the upper bound
+that the problem does not have.
+
+\section{The objection this answers}
+Kaplan's objection to the Guy--Kelly conjecture, as summarised in \cite{Kaplan}, is not that the
+constant is wrong but that the derivation is unsafe: it ``suggests that certain random events would
+be largely independent of each other when they're really not'', and ``if we look more closely at
+how non-independent they actually are we might not reach the same conclusion''.  No alternative
+constant is proposed.
+
+The objection is exactly right about the derivation, and Sections 3 and 4 quantify how badly:
+the independence assumption is off by seven orders of magnitude at $n=20$, and the crude form
+survives only because two of its errors cancel.  What Section 6 adds is the measurement the
+objection asks for.  The dependence is real and large, but at fixed ratio its cost is a bounded
+multiplier on the range we can reach, and a bounded multiplier leaves an exponential rate alone.
+So on $n\le20$ the answer to ``might we not reach the same conclusion'' is: we do reach it, and
+now for a measured reason rather than an assumed one.
+
+We claim nothing beyond that range, and we note that the range stops precisely where every method
+of this kind stops --- see Section 8.
+
 \section{On three dimensions}
 The same test was carried out in the cube (no four coplanar) on complete enumerations at
 $n=3,4,5$ by the first solver.  There the increment of the error \emph{grows}: $+2.22$, then
@@ -155,6 +189,7 @@ corresponding bound $3n$ stands far from the achievable values and does not.
 \bibitem{Voutier} P.~M.~Voutier, On the Guy--Kelly conjecture for the no-three-in-line problem, arXiv:2603.00215 (2026).
 \bibitem{Prellberg} T.~Prellberg, Constraint satisfaction programming for the no-three-in-line problem, \emph{J. Combin. Theory} 225 (2027) 106244.
 \bibitem{Survey} The general position problem: a survey, arXiv:2501.19385 (2025).
+\bibitem{Kaplan} D.~Eppstein, Random no-three-in-line sets (summary of a talk by H.~Kaplan), \url{https://11011110.github.io/blog/2018/11/10/random-no-three.html}.
 \bibitem{Flammenkamp} A.~Flammenkamp, The no-three-in-line problem, \url{https://wwwhomes.uni-bielefeld.de/achim/no3in/readme.html}.
 \end{thebibliography}
 
