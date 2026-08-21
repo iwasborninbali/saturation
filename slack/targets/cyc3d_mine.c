@@ -147,7 +147,10 @@ int main(int argc,char**argv){
     for(int o=0;o<3;o++) for(int t=0;t<n;t++) slab[o][t]=0;
     clock_gettime(CLOCK_MONOTONIC,&T0);
     dfs(0,0,0);
-    printf("n=%d орбит=%d доля=%d/%d нач.лучшее=%d: %s МАКСИМУМ %d, узлов %lld, %.1fс\n",
-           n,NORB,SHARD,NSHARD,BEST0, stopped?"ОБОРВАНО —":"ИСЧЕРПАНО —", best, nodes, elapsed());
+    /* ИЗЪЯН ПЕРВОЙ РЕДАКЦИИ: доля ВТОРОГО уровня не печаталась, и все восемь долей
+     * по нулевой орбите вышли неотличимыми («0/1024»), из-за чего сводка их спутала.
+     * Строка отчёта — часть инструмента, а не украшение. */
+    printf("n=%d орбит=%d доля=%d/%d.%d/%d нач.лучшее=%d: %s МАКСИМУМ %d, узлов %lld, %.1fс\n",
+           n,NORB,SHARD,NSHARD,SHARD2,NSHARD2,BEST0, stopped?"ОБОРВАНО —":"ИСЧЕРПАНО —", best, nodes, elapsed());
     return 0;
 }
