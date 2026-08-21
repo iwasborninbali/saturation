@@ -14,7 +14,7 @@ $\log\binom{n^2}{m}$ with the expected number of collinear triples in a random $
 as if the triples were independent.  Its corrected constant is $\pi/\sqrt3=1.8138$ (Guy, after
 Ellmann, 2004).  We test the heuristic not at its threshold but on the quantity it actually
 predicts --- the \emph{number} of configurations --- against exact counts, which are available for
-$m=2n$ up to $n=19$ and, at the ratio $m/2n=0.9$, up to $n=20$ by exhaustive enumeration and an
+$m=2n$ up to $n=19$ (A000755, and $n=20$ from Flammenkamp's table~\cite{Flammenkamp}) and, at the ratio $m/2n=0.9$, up to $n=20$ by exhaustive enumeration and an
 unbiased tree-size estimator validated against it.
 
 Three things come out.  The heuristic overestimates the count of $2n$-point configurations by
@@ -42,8 +42,10 @@ corrected value, recorded by Guy in OEIS A000769 that October and documented by 
 \[c=\pi/\sqrt3=1.813799.\]
 Our own derivation of the threshold reproduces the corrected value, not the retracted one.  As a
 check of the machinery we located the crossing exactly: the threshold from \eqref{eq:h} first falls
-below $2n$ at $n=493$ (at $n=492$ it equals $984=2n$; at $n=493$ it is $985<986$), which agrees to
-the integer with the value quoted in the recent survey literature.
+below $2n$ at $n=493$ (at $n=492$ it equals $984=2n$; at $n=493$ it is $985<986$), which agrees to the
+integer with the value reported by Prellberg~\cite{Prellberg} and quoted in the recent
+survey~\cite{Survey}: ``the heuristic probabilistic argument only applies for $n\ge493$''.
+Our computation is independent of his and reproduces the same integer.
 
 \section{Testing the count, not the threshold}
 A threshold inherits the whole error of the estimate without exhibiting its size.  The count does
@@ -94,10 +96,15 @@ the heuristic worse.  Only fixing both helps, and the first requires the correla
 which is precisely what nobody knows how to compute.  This may be why the 1968 form has not been
 superseded in fifty-eight years.
 
-It also accounts for an observation of Prellberg's, that the heuristic predicts fewer than one
-expected solution already for symmetric classes, which is false.  In a symmetric class the points
-are rigidly coupled, the first error grows sharply while the second does not, and the cancellation
-breaks --- the heuristic fails exactly where the coupling is strongest.
+The same mechanism predicts where the heuristic should fail hardest, and we can test that
+prediction on our own data.  In a symmetric class the points are rigidly coupled, so the first
+error grows while the second does not, and the cancellation should break.  We measured the
+coupling directly: among all maximum configurations (complete enumeration, $n\le11$), those
+carrying a symmetry of the square are over-represented relative to a null model matched on row and
+column counts by factors $\times8,\times56,\times125,\times769,\times3729$ at $n=6,\dots,10$.
+Where the enrichment is three orders of magnitude, independence between constraints is not a
+small approximation, and a heuristic built on it should not be trusted --- as reportedly it is
+not, for symmetric classes.
 
 \section{Which error is which class}
 Over sixteen steps the line-independent version has an essentially constant increment,
@@ -142,6 +149,14 @@ $+5.53$.  By the criterion above that is a wrong exponent.  The conclusion of Se
 therefore two-dimensional and must not be carried into the cube.  This is consistent with the
 mechanism: in the plane the hard ceiling $2n$ binds and anchors the estimate, while in the cube the
 corresponding bound $3n$ stands far from the achievable values and does not.
+
+\begin{thebibliography}{9}
+\bibitem{GuyKelly} R.~K.~Guy and P.~A.~Kelly, The no-three-in-line problem, \emph{Canad. Math. Bull.} 11 (1968) 527--531.
+\bibitem{Voutier} P.~M.~Voutier, On the Guy--Kelly conjecture for the no-three-in-line problem, arXiv:2603.00215 (2026).
+\bibitem{Prellberg} T.~Prellberg, Constraint satisfaction programming for the no-three-in-line problem, \emph{J. Combin. Theory} 225 (2027) 106244.
+\bibitem{Survey} The general position problem: a survey, arXiv:2501.19385 (2025).
+\bibitem{Flammenkamp} A.~Flammenkamp, The no-three-in-line problem, \url{https://wwwhomes.uni-bielefeld.de/achim/no3in/readme.html}.
+\end{thebibliography}
 
 \section*{AI/tool-use disclosure}
 The computations, the programs and the text were produced by autonomous AI agents (Anthropic Claude)
