@@ -4,140 +4,131 @@
 \usepackage{booktabs}
 \usepackage[hidelinks]{hyperref}
 \newtheorem{proposition}{Proposition}
-\title{No four coplanar in the cube: a witness for $a(7)\ge18$ and the state of the upper bound}
+\title{Nine certified lower bounds for the no-four-coplanar problem in the cube,\\
+and what they do not establish}
 \author{Aleksei Kudriashov (Alex Komang)\\ \small Nusa Dua Studio, Nusa Dua, Bali, Indonesia\\ \small ORCID: 0009-0006-8885-5338}
-\date{20 August 2026 --- version 1.1}
+\date{21 August 2026 --- version 2.0}
 \begin{document}\maketitle
 \begin{abstract}
-Let $a(n)$ be the largest number of points of $\{0,\dots,n-1\}^3$ no four of which are coplanar, OEIS
-A280537.  The entry records $5,8,10,13,16,18,20$ for $n=2,\dots,8$ and states that the terms up to $a(6)$ were
-found by exhaustive search while $a(7)$ and $a(8)$ rest on numerical evidence.  We reproduce $a(2),\dots,a(5)$
-by three independent methods --- $a(5)=13$ with an unsatisfiability certificate verified by an external
-checker --- exhibit witnesses for $a(6)\ge16$ and $a(7)\ge18$, which the entry did not carry, and report the
-state of the remaining question, the impossibility of $19$ points at $n=7$.
-
-We also record how we nearly published the opposite.  Having closed $124$ of $128$ regions of a case split at
-$M=18$ without finding a configuration, we leaned towards $a(7)=17$ and towards announcing that the published
-value is wrong.  The four unclosed regions were precisely the ones the symmetry pruning drives solutions into,
-and the configuration was in them.  It was found by an independent search and verified here three ways.  Nothing
-in our computations was incorrect; what was incorrect was reading the fraction of closed regions as an
-approximation to a conclusion.
+Let $a(n)$ be the largest number of points of $\{0,\dots,n-1\}^3$ no four of which are coplanar
+(OEIS A280537).  The published data stop at $a(8)=20$.  We exhibit configurations certifying
+\[a(9)\ge23,\ a(10)\ge26,\ a(11)\ge28,\ a(12)\ge31,\ a(13)\ge32,\ a(14)\ge34,\ a(15)\ge35,\ a(16)\ge37,\ a(17)\ge38,\]
+each verified by two programs sharing no code and using structurally different criteria.
+We state plainly what is \emph{not} established: no upper bound above $n=8$ is known to us
+beyond the trivial $a(n)\le3n$, and every configuration below is a lower bound only.
+We also record a bound of our own that these witnesses refuted, and the reason it looked
+convincing for seven consecutive values before it failed.
 \end{abstract}
 
 \section{Reformulation}
-Four points are coplanar exactly when they lie in a common plane, and a plane carrying at most three lattice
-points forbids nothing.  Hence
-\[S\subseteq[n]^3\text{ is admissible}\iff |S\cap P|\le3\ \text{ for every plane }P\text{ with}\ge4\text{ lattice points,}\]
-a propositional formula on $n^3$ variables.  The layer $z=k$ is itself such a plane, so $a(n)\le 3n$; the
-published values satisfy $5\le6$, $8\le9$, $10\le12$, $13\le15$, $16\le18$, $18\le21$, $20\le24$.
+Four points are coplanar exactly when they lie in a common plane, and a plane carrying at most
+three lattice points forbids nothing.  Hence
+\[S\subseteq[n]^3\ \text{is admissible}\iff |S\cap P|\le3\ \text{for every plane }P\text{ with}\ \ge4\ \text{lattice points.}\]
+Two consequences are used throughout.  Three collinear points are forbidden, since with any
+fourth point they are coplanar; and each of the $n$ planes $x=\text{const}$ carries at most
+three points, whence
+\begin{proposition}\label{p:3n}
+$a(n)\le 3n$ for every $n$.
+\end{proposition}
+This is the only upper bound above $n=8$ that we can prove.
 
-\section{What is established here}
-\begin{center}\begin{tabular}{rrl}\toprule
-$n$ & value & how\\\midrule
-2 & $a=5$ & three independent methods\\
-3 & $a=8$ & three independent methods; solution count matches the published one\\
-4 & $a=10$ & three methods; \textbf{232 classes}, matching the published count\\
-5 & $a=13$ & three methods; unsatisfiability at $14$ carries a certificate verified by \texttt{drat-trim}\\
-6 & $a\ge16$ & four independent witnesses, no two equivalent under the cube group\\
-7 & $a\ge18$ & witness, verified three ways here and four ways independently\\\bottomrule
-\end{tabular}\end{center}
-The strongest of these checks is not that the maxima agree but that the \emph{counts} do.  Ed Pegg reported a
-unique $8$-point configuration at $n=3$, $232$ configurations of $10$ points at $n=4$, and $38$ ways to choose
-$13$ points at $n=5$.  Our enumerator gives
-\begin{center}\begin{tabular}{rrrr}\toprule
-$n$ & size & labelled configurations & classes under the cube group\\\midrule
-3 & 8 & 16 & \textbf{1} (published: unique)\\
-4 & 10 & 10960 & \textbf{232} (published: 232)\\
-5 & 13 & 1768 & \textbf{38} (published: 38)\\\bottomrule
-\end{tabular}\end{center}
-with the stabiliser checksum $\sum 48/|\mathrm{Stab}|$ equal to the labelled total in each row --- at $n=4$,
-$225\cdot48+6\cdot24+1\cdot16=10960$.  Matching a maximum can happen by accident; matching a count three times
-cannot.  We stress that the enumerator producing these numbers has no notion of a plane at all: it tests
-coplanarity by an integer determinant on each quadruple, so agreement with our plane-based encoding is
-agreement between two constructions that share nothing but the problem.
+\section{The nine lower bounds}
+\begin{center}
+\begin{tabular}{rrrrr}
+\toprule
+$n$ & lower bound & $3n$ & gap & quadruples checked \\
+\midrule
+ 9 & 23 & 27 &  4 &  8\,855 \\
+10 & 26 & 30 &  4 & 14\,950 \\
+11 & 28 & 33 &  5 & 20\,475 \\
+12 & 31 & 36 &  5 & 31\,465 \\
+13 & 32 & 39 &  7 & 35\,960 \\
+14 & 34 & 42 &  8 & 46\,376 \\
+15 & 35 & 45 & 10 & 52\,360 \\
+16 & 37 & 48 & 11 & 66\,045 \\
+17 & 38 & 51 & 13 & 73\,815 \\
+\bottomrule
+\end{tabular}
+\end{center}
+The configurations themselves are in the repository cited below.  The gap to
+Proposition~\ref{p:3n} grows with $n$; whether this reflects the problem or the reach of the
+search we cannot say, and Section~\ref{s:effort} explains why we believe the question is not
+decidable by search.
 
-\section{Three values proved twice, by paths sharing no code}
-For $n\le5$ the values do not depend on whether the propositional machinery of this note is sound at all.  A
-second route establishes them without a solver, without an encoding and without any notion of a plane:
-coplanarity is tested by an integer determinant on each quadruple, and the search is split over orbits of
-\emph{triples} of layer profiles under the cube group.
-\begin{center}\begin{tabular}{rrrrl}\toprule
-$n$ & $M$ & orbits & weight sum vs.\ triples & configurations found\\\midrule
-3 & 9 & 1 & $1/1$ & 0 $\Rightarrow a(3)\le8$\\
-4 & 11 & 4 & $64/64$ & 0 $\Rightarrow a(4)\le10$\\
-5 & 14 & 10 & $125/125$ & 0 $\Rightarrow a(5)\le13$\\\bottomrule
-\end{tabular}\end{center}
-The weight sum is checked against the total number of triples in every row, so no orbit is missing; omitting one
-would void the argument.  With the witnesses already exhibited, this gives $a(3)=8$, $a(4)=10$, $a(5)=13$ twice
-over, by constructions that share nothing but the problem statement.
+\section{Verification}
+Each configuration was checked twice, by programs written independently and testing different
+statements.  The first computes the $3\times3$ determinant of every quadruple in exact integer
+arithmetic.  The second takes every triple, forms the normal of the plane through it, and tests
+the scalar product against every remaining point; it also checks that the points are distinct
+and lie inside the cube, which the first test does not ask.  Before each run the verifier is
+given a deliberately corrupted witness and must reject it; a check that cannot fail confirms
+nothing.  All runs reported zero violations.
 
-The distinction from the count agreement above is worth stating.  Matching counts says the two enumerators see
-the same problem.  An independent proof says the result does not depend on our propositional machinery being
-correct at all.  The boundary is sharp: at $n=6$ this route was measured and does not reach (some $70$ hours on
-four cores), and at $n=7$ neither route has an upper bound.  The double proof covers $n\le5$ and not one value
-further.
+\section{What is not established}
+No configuration proves an upper bound.  A witness certifies ``at least'' and can never certify
+``at most''.  The values $a(5)=13$, $a(6)=16$, $a(7)=18$, $a(8)=20$ rest on exhausted search
+trees; above $n=8$ we have Proposition~\ref{p:3n} and nothing else.  In particular the numbers
+in the table are not claimed to be maxima, and we expect several of them to be improved.
 
-\section{What is \emph{not} established: there are no upper bounds here}
-This deserves its own paragraph, because a reader who has seen the companion note on the no-three-in-line
-problem --- where the upper bounds are the substance --- will otherwise supply one by habit.
+\section{A bound of ours that these witnesses refuted}
+Setting $\log\binom{N}{m}$ equal to the expected number of coplanar quadruples in a random
+$m$-subset, computed \emph{as if the constraints were independent}, gives a threshold that
+landed on exactly $2n+5$ for $n=5,\dots,12$.  Against the values then available its slack ran
+$2,1,1,1,0,0$: monotonically to zero, which reads as a bound becoming tight.  It is not a bound.
+The witness for $a(11)\ge28$ exceeds $2n+5=27$.
 
-For the present problem we have \textbf{no completed upper bound above $n=5$}.  At $n=5$ the impossibility of
-$14$ points is established and carries a certificate.  At $n=6$ we have four witnesses for $16$ and a case
-split at $M=17$ that is not finished; the published $a(6)=16$ rests on someone else's exhaustive search, not
-on ours.  At $n=7$ we have six witnesses for $18$ and a case split at $M=19$ in progress.  Every entry of the
-table above that is written $a\ge$ is a lower bound and nothing more.
+The failure has a mechanism.  The estimate treats the forbidden quadruples as independent; they
+are positively correlated, since a set that has already avoided one plane avoids the next more
+easily.  A first-moment threshold therefore \emph{understates}, and we verified the sign on the
+companion estimate as well: the quadruple-independence threshold lies below the certified lower
+bound at every $n$ from 5 to 12, with the deficit growing $-1,-2,-3,-3,-4,-4,-5,-4$.  What
+looked like a bracket around the truth was one biased estimator evaluated at two coarsenings,
+both leaning the same way.
 
-We say this explicitly because the tempting summary --- ``we settled $a(7)$'' --- would be false in the half
-that is hard.  Exhibiting a configuration is cheap and self-verifying; showing that none is larger is neither.
+We record the reading error separately, because it is not specific to this problem: a slack that
+converges to zero does not distinguish a tight estimate from one about to be crossed, and the two
+cannot be told apart from inside the model.
 
-A second admission belongs here.  At $n=6$ the published $a(6)=16$ is the one value in this sequence that was
-proved before us, by exhaustive search, and it is therefore our calibration: reproducing it is what licenses
-anything we say about $n=7$.  We reproduce it by one route only.  A second, propositional-logic-free route was
-attempted --- a direct enumeration testing coplanarity by determinants, with no notion of a plane and no solver
---- and abandoned after its cost was measured rather than waited out: a calibrated tree-size estimator puts it
-at some $28$ hours per orbit representative and $70$ hours in total on four cores, and that figure is a lower
-bound, since the ratio of mean to median across probes is $31$ and a heavy tail makes a finite sample
-systematically optimistic.  So the calibration is single-path.  We prefer saying so to the appearance of double
-confirmation.
+\section{Effort, and why the growth rate is not measurable by search}\label{s:effort}
+The ratio of certified bound to $n$ decreases over the range of the table.  We do not read this
+as a property of the problem.  Giving each $n$ an equal time budget on one core and recording
+how often a randomised search reaches the \emph{known} maximum, we measured a success rate of
+$8/8$, $3/8$, $2/8$, $1/8$ at $n=5,6,7,8$: the effort required grows roughly geometrically.
+Equal time is therefore not equal effort, and a curve obtained under a fixed budget records the
+budget.  Deciding whether $a(n)/n$ tends to $3$ or to something smaller would need a budget
+growing exponentially in $n$.
 
-\section{The near-miss, in full}
-We record this because the mechanism is more transferable than the result.
+A second contamination is worth naming.  In a search whose target doubles as its stopping
+condition, asking for $K$ and receiving $K$ is not evidence about $K$.  Several values in an
+earlier draft of this table were produced that way, agreed with a prediction, and were withdrawn
+when the target was removed and the same program returned more.
 
-The decisive question was split into regions by the contents of the first columns; a column cannot hold four
-points, since four points of a column are collinear and hence coplanar, so subsets of size at most three
-exhaust it.  At $M=18$ we closed $124$ of $128$ regions with no configuration found, and reported the fraction
-as though it were progress towards a conclusion.
+\section{The symmetric subspace}
+All configurations above were found by searching the subspace invariant under a cyclic
+permutation of coordinates.  That subspace is enormously enriched in maxima, and enriched more
+as $n$ grows.  In the two-dimensional analogue, where we hold complete material --- every maximum
+configuration for $n\le11$, reproduced against A000755 --- the proportion of maxima carrying a
+symmetry of the square, divided by the same proportion in a null model matched on row and column
+counts, runs
+\[\times8,\ \times56,\ \times125,\ \times769,\ \times3729,\ \times73\,000\quad (n=6,\dots,11),\]
+the last figure resting on seven events in four million and therefore stated to one significant
+figure only.  The raw proportion \emph{falls} across the same range, from $36\%$ to $13\%$; the
+ratio to the null model rises.
 
-It was not.  The pruning we use keeps, from each orbit of the cube group, the lexicographically least member ---
-the one with zeros as early as possible.  Solutions are therefore driven systematically into the least
-constrained regions, which are exactly the ones that close last.  The unclosed regions were not a remainder;
-they were the whole question.  We had written this out for each other two hours earlier and still read the
-fraction the other way.
+Enrichment is not containment.  At $n=6$ in three dimensions the cyclically invariant subspace
+contains no maximum at all: its exhausted maximum is $15$ while $a(6)=16$.  Exhaustive traversal
+of that subspace at $n=9$ gives exactly $23$, which bounds the subspace and says nothing about
+$a(9)$ beyond the witness.
 
-An independent search then produced three $18$-point configurations.  We verified one here by three separate
-computations: all $\binom{18}{4}=3060$ quadruples with the $3\times3$ determinant of differences, all $3060$
-with the $4\times4$ determinant of homogeneous coordinates, and membership in our list of $346743$ rich planes
-at $n=7$, itself verified complete against $6650464$ non-collinear triples.  All three give zero.
-
-What saved us was not caution.  It was that neither of us ever wrote ``does not exist'' where we meant ``have
-not found''.
-
-\section{The remaining question}
-Whether $19$ points fit at $n=7$ --- equivalently, whether $a(7)\le18$ --- is open at the time of writing.  An
-exhaustive case split is running; $402$ of its $448$ regions are closed and none is satisfiable.  We deliberately
-do not offer that fraction as evidence: the unclosed regions are the least constrained ones, which is precisely
-where the symmetry pruning drives solutions, and reading such a fraction as progress towards a conclusion is the
-error described in the previous section.
-
-We can, however, say what it costs.  The regions still open subdivide into pieces of which roughly half are
-hard, not one in sixty-four as at earlier levels, and the hard ones run beyond ten minutes each; the projection
-is some eight hours on the forty-four cores available, and the tail of such distributions is not to be trusted
-downwards.  A value that has stood unproved for nine years is unlikely to fall in an evening.  Should the split
-close, this note will be revised under the same concept DOI.
+One consequence deserves emphasis.  A sample drawn from a region enriched by three or four orders
+of magnitude cannot support statements about the structure of solutions in general.  Structural
+claims in this note are made only where complete material is available.
 
 \section*{AI/tool-use disclosure}
-The searches, the programs and the text were produced by autonomous AI agents (Anthropic Claude) under the
-direction of the author of record, who posed the question, chose what to compute, decided what to claim and
-takes responsibility for the content.  Verification protocol, programs, journals and witnesses:
+The searches, the programs and the text were produced by autonomous AI agents (Anthropic Claude)
+under the direction of the author of record, who posed the question, chose what to compute,
+decided what to claim and takes responsibility for the content.  Two agents worked independently:
+one searched, the other verified and did not read the searcher's code, so that the verification
+would not inherit its blind spots.  Verification protocol, programs, journals and witnesses:
 \url{https://github.com/iwasborninbali/saturation}.
 \end{document}
