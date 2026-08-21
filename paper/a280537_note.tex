@@ -4,17 +4,17 @@
 \usepackage{booktabs}
 \usepackage[hidelinks]{hyperref}
 \newtheorem{proposition}{Proposition}
-\title{Eleven certified lower bounds for the no-four-coplanar problem in the cube,\\
+\title{Twelve certified lower bounds for the no-four-coplanar problem in the cube,\\
 and what they do not establish}
 \author{Aleksei Kudriashov (Alex Komang)\\ \small Nusa Dua Studio, Nusa Dua, Bali, Indonesia\\ \small ORCID: 0009-0006-8885-5338}
-\date{21 August 2026 --- version 2.1}
+\date{21 August 2026 --- version 2.2}
 \begin{document}\maketitle
 \begin{abstract}
 Let $a(n)$ be the largest number of points of $\{0,\dots,n-1\}^3$ no four of which are coplanar
 (OEIS A280537).  The published data stop at $a(8)=20$.  We exhibit configurations certifying
 \begin{align*}
 &a(9)\ge23,\ a(10)\ge26,\ a(11)\ge28,\ a(12)\ge31,\ a(13)\ge32,\ a(14)\ge34,\\
-&a(15)\ge35,\ a(16)\ge37,\ a(17)\ge38,\ a(18)\ge41,\ a(20)\ge44,
+&a(15)\ge35,\ a(16)\ge37,\ a(17)\ge38,\ a(18)\ge41,\ a(19)\ge43,\ a(20)\ge44,
 \end{align*}
 each verified by two programs sharing no code and using structurally different criteria.
 We state plainly what is \emph{not} established: no upper bound above $n=8$ is known to us
@@ -35,7 +35,7 @@ $a(n)\le 3n$ for every $n$.
 \end{proposition}
 This is the only upper bound above $n=8$ that we can prove.
 
-\section{The eleven lower bounds}
+\section{The twelve lower bounds}
 \begin{center}
 \begin{tabular}{rrrrr}
 \toprule
@@ -51,6 +51,7 @@ $n$ & lower bound & $3n$ & gap & quadruples checked \\
 16 & 37 & 48 & 11 & 66\,045 \\
 17 & 38 & 51 & 13 & 73\,815 \\
 18 & 41 & 54 & 13 & 101\,270 \\
+19 & 43 & 57 & 14 & 123\,410 \\
 20 & 44 & 60 & 16 & 135\,751 \\
 \bottomrule
 \end{tabular}

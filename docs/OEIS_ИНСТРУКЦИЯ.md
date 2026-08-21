@@ -14,8 +14,7 @@
 ```
 Lower bounds beyond the published data, each certified by an explicit configuration:
 a(9) >= 23, a(10) >= 26, a(11) >= 28, a(12) >= 31, a(13) >= 32, a(14) >= 34,
-a(15) >= 35, a(16) >= 37, a(17) >= 38, a(18) >= 41, a(20) >= 44
-(and hence a(19) >= 41 by monotonicity).
+a(15) >= 35, a(16) >= 37, a(17) >= 38, a(18) >= 41, a(19) >= 43, a(20) >= 44.
 Each configuration was verified twice by structurally different programs (all C(m,4)
 quadruples via 3x3 determinants in exact integer arithmetic; and independently, the plane
 of every non-collinear triple checked against every remaining point), together with
