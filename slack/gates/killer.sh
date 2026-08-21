@@ -21,21 +21,84 @@ set -u
 KILL_RE="${1:-kissat}"
 KEEP_RE="${2:-}"
 MYPID=$$; MYPPID=$PPID
+
+# ОБРАЗЕЦ НЕ ПОКИДАЕТ ОБОЛОЧКУ. Раньше сравнение шло через `grep -qE "$KILL_RE"`, и тогда
+# argv самого grep СОДЕРЖАЛ образец — то есть убийца попадал под собственный образец.
+# Это ровно то самосовпадение, ради защиты от которого запрещён pkill -f: инструмент,
+# написанный против него, страдал им же. Найдено пробой в контейнере debian, не рассуждением.
+# Сравнение через [[ =~ ]] — встроенное, отдельного процесса не создаёт, argv не порождает.
+# ИМЕНА ПЕРЕМЕННЫХ ТОЛЬКО ASCII: bash отвергает кириллические идентификаторы
+# ("not a valid identifier"), и это УЖЕ обжигало нас однажды — killer.sh тогда печатал
+# число убитых и не убивал никого. Имена ФУНКЦИЙ кириллицей bash принимает, переменных — нет.
+совпало(){ [[ $1 =~ $2 ]]; }
+
+ppid_of(){                          # ppid из /proc/PID/stat. Имя процесса стоит в скобках и
+  local st="" ; { read -r st < "/proc/$1/stat"; } 2>/dev/null || return 1   # может нести пробелы,
+  st=${st##*') '}                   # поэтому берём ХВОСТ после ") ", а не четвёртое поле awk-ом.
+  st=${st#* }                       # дальше: состояние, затем ppid
+  echo "${st%% *}"
+}
+
+my_descendant(){                    # ГЛАВНОЕ ИСКЛЮЧЕНИЕ, и оно не по образцу, а по родству.
+  local a=$1 pp                     # Образец передан убийце АРГУМЕНТОМ, значит он стоит в его
+  while :; do                       # собственной командной строке; всякий форк (подстановка
+    pp=$(ppid_of "$a") || return 1  # процесса, подоболочка) наследует ту же строку и потому
+    [ -z "$pp" ] && return 1        # неизбежно подходит под образец. Исключение по MYPID/MYPPID
+    [ "$pp" = 1 ] && return 1       # их не ловит: у них другие номера. Ловит только родство.
+    [ "$pp" = "$MYPID" ] && return 0
+    [ "$pp" = "$MYPPID" ] && return 0
+    a=$pp
+  done
+}
+
+сканировать(){                      # печатает pid'ы подходящих, кроме своих и оставленных
+  local pid cl
+  for P in /proc/[0-9]*; do
+    pid=${P#/proc/}
+    [ "$pid" = "$MYPID" ] && continue
+    [ "$pid" = "$MYPPID" ] && continue
+    cl=$( { tr '\0' ' ' < "$P/cmdline"; } 2>/dev/null ) || continue
+    [ -z "$cl" ] && continue
+    совпало "$cl" "$KILL_RE" || continue
+    my_descendant "$pid" && continue
+    if [ -n "$KEEP_RE" ] && совпало "$cl" "$KEEP_RE"; then echo "K $pid"; continue; fi
+    echo "M $pid"
+  done
+}
+
 n_killed=0; n_kept=0
-for P in /proc/[0-9]*; do
-  pid=${P#/proc/}
-  [ "$pid" = "$MYPID" ] && continue          # свой pid — ЯВНО, а не по образцу
-  [ "$pid" = "$MYPPID" ] && continue         # и родителя: это оболочка ssh
-  cl=$(tr '\0' ' ' < "$P/cmdline" 2>/dev/null)
-  [ -z "$cl" ] && continue                   # процесс уже умер либо это поток ядра
-  if [ -n "$KEEP_RE" ] && echo "$cl" | grep -qE "$KEEP_RE"; then
-    n_kept=$((n_kept+1)); continue
-  fi
-  if echo "$cl" | grep -qE "$KILL_RE"; then
-    kill -9 "$pid" 2>/dev/null && n_killed=$((n_killed+1))
-  fi
-done
+while read -r mark pid; do
+  if [ "$mark" = K ]; then n_kept=$((n_kept+1)); continue; fi
+  kill -9 "$pid" 2>/dev/null && n_killed=$((n_killed+1))
+done < <(сканировать)
+
 sleep 3
-n_left=$(for P in /proc/[0-9]*; do tr '\0' ' ' < "$P/cmdline" 2>/dev/null; echo; done | grep -cE "$KILL_RE")
+n_left=0
+while read -r mark pid; do [ "$mark" = M ] && n_left=$((n_left+1)); done < <(сканировать)
 echo "n_killed: $n_killed, n_kept по списку: $n_kept, n_left подходящих: $n_left"
-echo "load: $(cut -d' ' -f1 /proc/loadavg)"
+echo "load: $(cut -d' ' -f1 /proc/loadavg 2>/dev/null)"
+
+# ЕСЛИ ЖИВЫЕ ОСТАЛИСЬ — ИХ КТО-ТО РОЖДАЕТ, И НАДО НАЗВАТЬ КОГО.
+# Так и обожглись: образец ловил kissat и timeout, то есть ЛИСТЬЯ, а тридцать
+# plane_sweep_second.py стояли выше и поднимали новых. Убийца печатал «осталось 59»
+# и был прав — но молчал о причине, и это читалось как поломка убийцы, а не как
+# работающий надзиратель наверху. Половинчатый успех обязан сам называть следующий шаг.
+if [ "$n_left" -gt 0 ]; then
+  echo "ОСТАЛИСЬ ЖИВЫЕ — значит их поднимает кто-то выше. Корни выживших:"
+  { while read -r mark pid; do
+      [ "$mark" = M ] || continue
+      a=$pid
+      while :; do
+        pp=$(ppid_of "$a") || break
+        [ -z "$pp" ] && break
+        [ "$pp" = 1 ] && break
+        a=$pp
+      done
+      echo "$a"
+    done < <(сканировать); } | sort -u | while read -r r; do
+      rc=$( { tr '\0' ' ' < "/proc/$r/cmdline"; } 2>/dev/null | cut -c1-100)
+      [ -n "$rc" ] && echo "  корень $r: $rc"
+    done
+  echo "СЛЕДУЮЩИЙ ШАГ: убить перечисленные корни по НОМЕРУ (kill -TERM, затем -KILL),"
+  echo "и только потом повторить убийцу. Убийство листьев при живом корне бесполезно."
+fi
