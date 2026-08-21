@@ -19,6 +19,7 @@ static int n,m; typedef struct{int x,y,z;} P;
 static P orb[MAXORB][3]; static int orbsz[MAXORB], norb=0;
 static P pts[64]; static int npts=0;
 static int best; static P bestp[64]; static int bestn=0;
+static int bar0=0;   /* начальная планка: печатается рядом с ответом, чтобы эхо ввода само себя выдавало */
 static long long nodes=0; static double T; static clock_t st; static int timedout=0;
 static long long det4(P a,P b,P c,P d){long long ux=b.x-a.x,uy=b.y-a.y,uz=b.z-a.z,vx=c.x-a.x,vy=c.y-a.y,vz=c.z-a.z,wx=d.x-a.x,wy=d.y-a.y,wz=d.z-a.z;return ux*(vy*wz-vz*wy)-uy*(vx*wz-vz*wx)+uz*(vx*wy-vy*wx);}
 static int col3(P a,P b,P c){long long ux=b.x-a.x,uy=b.y-a.y,uz=b.z-a.z,vx=c.x-a.x,vy=c.y-a.y,vz=c.z-a.z;return (uy*vz-uz*vy)==0&&(uz*vx-ux*vz)==0&&(ux*vy-uy*vx)==0;}
@@ -55,7 +56,7 @@ static void dfs(int *live,int nlive){
     }
 }
 int main(int argc,char**argv){
-    n=atoi(argv[1]); m=n-1; best=atoi(argv[2]); T=argc>3?atof(argv[3]):0;
+    n=atoi(argv[1]); m=n-1; best=atoi(argv[2]); bar0=best; T=argc>3?atof(argv[3]):0;
     if ((long)n*n*n > 27000 || (long)n*n*n/3 + n > 9000) {
         fprintf(stderr, "ОТКАЗ: n=%d не помещается в статические массивы. Молча портить память нельзя.\n", n);
         return 2; }
@@ -71,8 +72,8 @@ int main(int argc,char**argv){
     fprintf(stderr,"n=%d орбит=%d планка=%d\n",n,norb,best);
     int *live=malloc(sizeof(int)*norb); for(int i=0;i<norb;i++) live[i]=i;
     st=clock(); dfs(live,norb);
-    if(timedout) printf("n=%d ВРЕМЯ ВЫШЛО — ничего не доказано (узлов %lld, лучшее %d)\n",n,nodes,best);
-    else printf("n=%d ДЕРЕВО ИСЧЕРПАНО: симметричный максимум = %d (узлов %lld)\n",n,best,nodes);
+    if(timedout) printf("n=%d ВРЕМЯ ВЫШЛО — ничего не доказано (узлов %lld, лучшее %d при планке %d)\n",n,nodes,best,bar0);
+    else printf("n=%d ДЕРЕВО ИСЧЕРПАНО: максимум = %d при начальной планке %d%s (узлов %lld)\n",n,best,bar0,(best==bar0?" — ПЛАНКА НЕ ПРЕВЗОЙДЕНА, отчёт есть эхо ввода":" — планка превзойдена"),nodes);
     if(bestn){char f[256];snprintf(f,sizeof f,"%s/proof_n%d.txt",getenv("OUT")?getenv("OUT"):".",n);
         FILE*g=fopen(f,"w"); if(g){for(int i=0;i<bestn;i++)fprintf(g,"%d %d %d\n",bestp[i].x,bestp[i].y,bestp[i].z);fclose(g);} }
     return 0;

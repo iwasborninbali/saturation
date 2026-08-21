@@ -19,6 +19,7 @@ static int n,m; typedef struct{int x,y,z;} P;
 static P orb[MAXORB][3]; static int orbsz[MAXORB], norb=0;
 static P pts[64]; static int npts=0;
 static int best; static P bestp[64]; static int bestn=0;
+static int bar0=0;   /* начальная планка: печатается рядом с ответом, чтобы эхо ввода само себя выдавало */
 static long long nodes=0; static double T; static clock_t st; static int timedout=0;
 static int shard=-1, nshard=1, depth0=0;
 static int shard2=-1, nshard2=1;   /* дробление на второй глубине: доля 0 верхнего уровня несёт самую крупную ветвь */
@@ -89,7 +90,7 @@ static void dfs(int *live,int nlive){
 int main(int argc,char**argv){
     n=atoi(argv[1]);
     if(argc>5){shard=atoi(argv[4]); nshard=atoi(argv[5]);}
-    if(argc>7){shard2=atoi(argv[6]); nshard2=atoi(argv[7]);} m=n-1; best=atoi(argv[2]); T=argc>3?atof(argv[3]):0;
+    if(argc>7){shard2=atoi(argv[6]); nshard2=atoi(argv[7]);} m=n-1; best=atoi(argv[2]); bar0=best; T=argc>3?atof(argv[3]):0;
     if (n > 31 || (long)n*n*n > 27000 || (long)n*n*n/3 + n > 9000) {
         fprintf(stderr, "ОТКАЗ: n=%d не помещается в статические массивы. Молча портить память нельзя.\n", n);
         return 2; }
@@ -105,8 +106,8 @@ int main(int argc,char**argv){
     fprintf(stderr,"n=%d орбит=%d планка=%d\n",n,norb,best);
     int *live=malloc(sizeof(int)*norb); for(int i=0;i<norb;i++) live[i]=i;
     st=clock(); dfs(live,norb);
-    if(timedout) printf("n=%d доля %d/%d.%d/%d ВРЕМЯ ВЫШЛО — ничего не доказано (узлов %lld, лучшее %d)\n",n,shard,nshard,shard2,nshard2,nodes,best);
-    else printf("n=%d доля %d/%d.%d/%d ДЕРЕВО ИСЧЕРПАНО: симметричный максимум = %d (узлов %lld)\n",n,shard,nshard,shard2,nshard2,best,nodes);
+    if(timedout) printf("n=%d доля %d/%d.%d/%d ВРЕМЯ ВЫШЛО — ничего не доказано (узлов %lld, лучшее %d при планке %d)\n",n,shard,nshard,shard2,nshard2,nodes,best,bar0);
+    else printf("n=%d доля %d/%d.%d/%d ДЕРЕВО ИСЧЕРПАНО: максимум = %d при начальной планке %d%s (узлов %lld)\n",n,shard,nshard,shard2,nshard2,best,bar0,(best==bar0?" — ПЛАНКА НЕ ПРЕВЗОЙДЕНА, отчёт есть эхо ввода":" — планка превзойдена"),nodes);
     if(bestn){char f[256];snprintf(f,sizeof f,"%s/proof_n%d.txt",getenv("OUT")?getenv("OUT"):".",n);
         FILE*g=fopen(f,"w"); if(g){for(int i=0;i<bestn;i++)fprintf(g,"%d %d %d\n",bestp[i].x,bestp[i].y,bestp[i].z);fclose(g);} }
     return 0;
