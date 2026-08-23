@@ -97,9 +97,18 @@ two edges at it), Theorem~\ref{thm:seven} the case of a $(3,7,5,1)$ vertex ($\be
 (no exception among the several hundred blocks tested), and $\sum_\varrho(|B_\varrho|/2-\beta(B_\varrho))=0.5587\,p$ on average over
 $401\le p\le1103$, in agreement with Corollary~\ref{cor:blockconst}; truncating to runs of length $\le L_0$ gives
 $3.595$ for $L_0=5$, $3.480$ for $L_0=7$ and $3.452$ for $L_0=10$.  At a given prime the bound~\eqref{eq:blocks} is at most the value of the linear relaxation with
-all these lines, and strictly below it when integrality bites inside a block ($3.4286$ vs $3.4286$ at $p=113$, $3.3824$ vs $3.3873$ at
-$p=137$, $3.4343$ vs $3.4545$ at $p=199$, $3.4100$ vs $3.4300$ at $p=401$); the \emph{proved} constant $3.4616$ of
-Corollary~\ref{cor:blockconst} is larger than the numerical value $3.4413$ of the same certificate only because of the truncation at $K=8$.
+all these lines, and strictly below it when integrality bites inside a block ($3.4107$ vs $3.4286$ at $p=113$, $3.3824$ vs $3.3873$ at
+$p=137$, $3.4343$ vs $3.4545$ at $p=199$, $3.4100$ vs $3.4300$ at $p=401$); the \emph{proved} constant $3.4482$ of
+Corollary~\ref{cor:blockconst} is larger than the numerical value $3.4413$ of the same certificate only because of the truncation at $K=9$.
+\emph{Correction (v1.15):} an earlier version of this remark quoted the pair $3.4286$ vs $3.4286$ at $p=113$ and
+the constant $3.4616$ (a $K=8$ truncation surviving from v1.11).  An independent recount --- exact MILP per block,
+the two disputed $64$-point blocks refereed by a SAT solver (satisfiable at $\beta$, unsatisfiable at $\beta+1$),
+and the LP ceilings $\lfloor26.67\rfloor=26$, $\lfloor50.67\rfloor=50$ forcing the same values --- gives
+$\sum_\varrho\beta(B_\varrho)=382=3.4107\,(p-1)$ at $p=113$: the first number of that pair was the LP value, and
+integrality does bite there, in three blocks of twelve.  The other three pairs of this remark were confirmed
+exactly by the same recount, as were the four block-sum anchors and, structurally, the decomposition itself
+(components under rows, columns and slope-$(\pm1)$ lines match the runs of consecutive squares in number, size
+law and total for all $57$ primes $19\le p\le311$).
 (c) The method is special to $k=\pm1$.  For $\Pset_k=H(1)\cup H(k)$ a point of $H(c)$ has $r_-^2-r_+^2=4c$, so with $t=\tfrac14r_+^2$ the points of
 $H(1)$ join $t$ to $t+1$ and those of $H(k)$ join $t$ to $t+k$: for $k=\pm1$ the two rules coincide and the neighbour graph on the squares has mean
 degree $1$ --- subcritical, with components of size $O(\log p)$ --- whereas for every other $k$ the mean degree is $2$, the critical value, and the

@@ -11,8 +11,10 @@
 \begin{document}\maketitle
 \begin{abstract}
 Let $a(n)$ be the largest number of points of the grid $\{0,1,\dots,n-1\}^3$ no three of which are collinear.
-P\'or and Wood proved $a(n)=\Theta(n^2)$; no exact values appear to have been recorded, and the sequence does
-not appear to be in the OEIS.  We determine
+P\'or and Wood proved $a(n)=\Theta(n^2)$, the lower bound by the construction
+$\{(x,y,x^2+y^2\bmod p)\}$, which has no three collinear precisely when $p\equiv3\pmod4$
+(Lemma~4 of \cite{PorWood}); no exact values appear to have been recorded, and the sequence was not in
+the OEIS when this work began (our draft A399138 is under review).  We determine
 \[a(1),\dots,a(6)=1,\,8,\,16,\,28,\,40,\,64,\]
 give certified lower bounds $a(7)\ge73$ and $a(8)\ge93$, and prove $a(p)\ge p^2$ for every prime $p$ by an
 elementary construction from an anisotropic binary quadratic form.
@@ -54,7 +56,11 @@ at three points distinct modulo $p$ has vanishing leading coefficient, so $Q(a,b
 $(a,b)=(0,0)$, a contradiction.
 \end{proof}
 Neither $x^2+y^2$ (anisotropic iff $p\equiv3\bmod 4$) nor $x^2+xy+y^2$ (iff $p\equiv2\bmod3$) works for all
-$p$; the choice $x^2-dy^2$ does.  The bound of Proposition~\ref{p:alg} is not sharp: $a(5)\ge40>25$ and
+$p$; the choice $x^2-dy^2$ does.  Proposition~\ref{p:alg} is thereby the completion, to every odd prime, of
+Lemma~4 of P\'or and Wood \cite{PorWood}, whose construction is the case $Q=x^2+y^2$ and works precisely for
+$p\equiv3\pmod4$; we verified their dichotomy directly ($6$ and $286$ collinear triples at $p=5$ and $p=13$, none
+at $p=7$, $11$).  For $p=2$ the statement is trivial: no line meets $\{0,1\}^3$ in three points, so
+$a(2)=8>4=p^2$.  The bound of Proposition~\ref{p:alg} is not sharp: $a(5)\ge40>25$ and
 $a(7)\ge73>49$.  As a guard against a slip in transcribing the construction rather than in the proof,
 we also built $S$ explicitly for $p=3,5,7,11,13$ and tested \emph{every} one of its triples by integer cross
 product --- $790\,244$ triples at $p=13$ --- finding none collinear.
@@ -123,8 +129,10 @@ bound only; the upper bounds there remain the certified ones.  That is the hones
 values are established twice over, once through the encoding and once without it, and for $n\ge4$ the encoding
 is checked but used.
 
-\medskip\noindent\textbf{Calibration.}  Before computing anything new we reproduced every published value:
-$a(3)=16$ and $a(4)=28$, each with unsatisfiability at $M+1$ in under a second, independently on two machines.
+\medskip\noindent\textbf{Calibration.}  Before computing anything new we recomputed, as a calibration, the two
+smallest nontrivial values $a(3)=16$ and $a(4)=28$ --- there is no prior published source for them that we could
+find, so the calibration is against our own earlier runs, not against the literature --- each with unsatisfiability
+at $M+1$ in under a second, independently on two machines.
 For instances that resist a single solver call we split into independent pieces by fixing the contents of the
 first columns; the split is complete because three points of a column are collinear, so subsets of size at most
 two exhaust it.  The aggregator refuses a verdict unless every piece of the manifest is present and
@@ -241,7 +249,7 @@ that constraint does not bind.
 \section{Certified lower bounds for $n=7,8$}
 \begin{center}\begin{tabular}{rrrl}\toprule
 $n$ & $a(n)\ge$ & $/n^2$ & source of the witness\\\midrule
-7 & 73 & 1.49 & invariant under a cyclic axis permutation (order 3)\\
+7 & 73 & 1.49 & invariant under every permutation of the axes (order 6; an earlier draft said order 3, underselling its own witness)\\
 8 & 93 & 1.45 & invariant under the full group of axis permutations (order 6)\\\bottomrule
 \end{tabular}\end{center}
 Each configuration is re-verified by testing all $\binom{|S|}{3}$ triples with integer cross products.  These
@@ -313,6 +321,19 @@ $4\times4$; $32$ in only $5$ classes for $5\times5$; $50$ in $11$ classes for $6
 mechanism --- the lattice midpoint between two outer layers --- is ruled out by an exact count.  Beyond that we
 do not know.
 \end{itemize}
+
+\begin{thebibliography}{9}
+\bibitem{PorWood} A.~P\'or and D.~R.~Wood, No-Three-in-Line-in-3D, \emph{Algorithmica} 47 (2007) 481--488;
+preliminary version in Proc.\ Graph Drawing 2004, Lecture Notes in Comput.\ Sci.\ 3383, Springer.
+\bibitem{Kissat} A.~Biere, K.~Fazekas, M.~Fleury and M.~Heisinger, CaDiCaL, Kissat, Paracooba, Plingeling and
+Treengeling entering the SAT Competition 2020, Proc.\ SAT Competition 2020, University of Helsinki, 2020.
+\bibitem{DratTrim} N.~Wetzler, M.~J.~H.~Heule and W.~A.~Hunt, Jr., DRAT-trim: efficient checking and trimming
+using expressive clausal proofs, Proc.\ SAT 2014, Lecture Notes in Comput.\ Sci.\ 8561, Springer, 2014.
+\bibitem{Glucose} G.~Audemard and L.~Simon, Predicting learnt clauses quality in modern SAT solvers,
+Proc.\ IJCAI 2009.
+\bibitem{OEIS} OEIS Foundation Inc., The On-Line Encyclopedia of Integer Sequences, \url{https://oeis.org}
+(draft sequence A399138).
+\end{thebibliography}
 
 \section*{AI/tool-use disclosure}
 The searches, the programs and the text were produced by autonomous AI agents (Anthropic Claude) working under
