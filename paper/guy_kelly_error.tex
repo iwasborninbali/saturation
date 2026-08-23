@@ -6,31 +6,40 @@
 \newtheorem{proposition}{Proposition}
 \title{The error of the Guy--Kelly heuristic, measured against exact counts}
 \author{Aleksei Kudriashov (Alex Komang)\\ \small Nusa Dua Studio, Nusa Dua, Bali, Indonesia\\ \small ORCID: 0009-0006-8885-5338}
-\date{22 August 2026 --- version 1.8}
+\date{23 August 2026 --- version 1.9}
 \begin{document}\maketitle
 \begin{abstract}
-The Guy--Kelly heuristic for the no-three-in-line problem is a first-moment threshold: one equates
-$\log\binom{n^2}{m}$ with the expected number of collinear triples in a random $m$-subset, computed
-as if the triples were independent.  Its corrected constant is $\pi/\sqrt3=1.8138$ (Guy, after
-Ellmann, 2004).  We test the heuristic not at its threshold but on the quantity it actually
-predicts --- the \emph{number} of configurations --- against exact counts, which are available for
-$m=2n$ up to $n=19$ (A000755, and $n=20$ from Flammenkamp's table~\cite{Flammenkamp}) and, at the ratio $m/2n=0.9$, up to $n=20$ by exhaustive enumeration and an
-unbiased tree-size estimator validated against it.
+The Guy--Kelly heuristic for the no-three-in-line problem is a first-moment estimate:
+$\log\binom{n^2}{m}$ is equated with the expected number of collinear triples in a random
+$m$-subset, as if the triples were independent.  We audit that heuristic against exact counts
+(A000755 to $n=19$, and $n=20$ from Flammenkamp's table~\cite{Flammenkamp}), not at its threshold
+but on the quantity it actually predicts --- the \emph{number} of configurations.
 
-Three things come out.  The heuristic overestimates the count of $2n$-point configurations by
-$10^{6.9}$ at $n=20$, but the per-step growth of that error \emph{decays}.  Refining the heuristic
---- treating lines rather than triples as independent --- makes it \emph{twice as wrong}, because
-the crude version carries two errors of opposite sign that partly cancel; we measure the
-cancellation at $10^{2.65}$.  And at the fixed ratio $m/2n=0.9$, away from the hard ceiling $2n$,
-the multiplicative error is bounded on $n=5,\dots,20$: continued growth at the initial rate is
-excluded at thirteen standard deviations.  A bounded multiplier does not move an exponential rate.
+What the audit confirms.  The corrected constant comes out in closed form: measuring
+$T(n)=\tfrac{3}{\pi^2}n^4(\ln n-0.8373)$ and balancing the $n\ln n$ terms gives
+$\alpha^2=\pi^2/3$, i.e.\ $\pi/\sqrt3=1.813799$; the retracted 1968 value is the root of a cubic
+balance where a quadratic one belongs.  Two implementations sharing no code agree on the integer
+threshold crossing at $n=493$, reproducing Prellberg.
 
-This last point speaks to a stated objection.  Kaplan has argued against the conjecture on the
-grounds that the heuristic treats as independent events that are not, and that ``if we look more
-closely at how non-independent they actually are we might not reach the same conclusion''
-\cite{Kaplan}.  We looked: on $n=5,\dots,20$ at fixed ratio the dependence costs a bounded factor,
-around $10^{1.4}$--$10^{1.8}$, and not a growing one.  On that range the non-independence does not
-move the exponent.
+What the audit finds against the heuristic.  Its error is a function of the \emph{shape} of the
+question, not of $n$ alone: at the single $n$ where all three measurements exist ($n=20$) it
+overestimates by a factor $8\cdot10^{6}$ at the hard ceiling $m=2n$, by a factor of about $80$
+near the threshold ratio, and is off by less than $1.4$ at $m=1.6n$ (there an underestimate),
+where two independent implementations agree to $0.18$ standard deviations.  At every ratio we can
+reach, the error then declines without levelling: \emph{the multiplier is not bounded}.  An
+earlier version of this note claimed the opposite, at thirteen standard deviations; Section 6
+withdraws that measurement --- its two carrying points had five and one hundred sixty successful
+descents per two hundred thousand attempts --- and the withdrawal is kept in the text rather than
+erased.
+
+What remains open, and provably so by this route.  Whether the residual error is $\Theta(n)$ or
+$\Theta(n\ln n)$ decides whether the constant survives, and the data cannot tell: four admissible
+forms fit the same tail and answer oppositely, and the two bases stay collinear to $0.9993$ out
+to $n=10^4$, so no budget of the same kind of computation decides it.  The ratio that governs the
+conjecture, $r\approx0.907$, is precisely where the estimator loses its depth --- the error's
+summit there lies beyond reach, so on the critical shape we have measured the ascent only.  To
+Kaplan's objection, that looking closely at the dependence might change the conclusion, our
+answer is that we cannot tell by counting, and we have measured how far from telling we are.
 \end{abstract}
 
 \section{The heuristic, and which constant is which}
@@ -132,8 +141,13 @@ $n=7$, $m=14$ & $-2.639$ & $-5.285$\\
 \end{tabular}
 \end{center}
 The mechanism is that \eqref{eq:h} carries \emph{two} errors of opposite sign.  Independence
-\emph{between} lines overestimates, since a set that has already avoided one line avoids the next
-more easily.  Counting the $\binom{k}{3}$ overlapping triples on a line as independent events
+\emph{between} lines overestimates, and the measured direction fixes the sign of the correlation:
+at the ceiling $m=2n$ the two-per-row budget is rigid, so a set that has avoided one line finds
+the next \emph{harder} to avoid --- the events are negatively correlated, and a product of
+marginals overshoots.  (An earlier draft asserted the opposite sign while drawing the same
+conclusion; the direction stated here is the one the numbers force.)  This decomposition is
+measured at the ceiling only: away from it the net error changes sign (Section~6), and we do not
+claim the two-error account transfers there.  Counting the $\binom{k}{3}$ overlapping triples on a line as independent events
 overestimates the probability of a violation, hence underestimates the survival probability.
 Replacing the second by an exact computation removes the compensation and leaves the first bare.
 At $n=7$ the cancellation is worth $10^{2.65}$.
@@ -173,7 +187,7 @@ number given here would be quoted later as a measurement.
 
 What the data do determine is the direction that matters.  Every form compatible with the nine
 points is $o(n\ln n)$, and the terms of the heuristic are $\Theta(n\ln n)$.  A correction of lower
-order does not move the balance in Section 3, so the discrepancy --- seven orders of magnitude
+order does not move the balance of Section 2, so the discrepancy --- seven orders of magnitude
 though it is at $n=20$ --- leaves $\pi/\sqrt3$ where it is.
 
 
@@ -209,13 +223,13 @@ shifts it by $0.45$ ---
 \toprule
 $r$ & $E$ against $n$ & hit rate & anchors\\
 \midrule
-$0.50$ & $+0.09,\,+0.10,\,+0.14,\,+0.12,\,+0.08,\,-0.22,\,-0.69,\,-1.28,\,-1.96,\,-2.71$ & $100\%$ & four exact\\
+$0.50$ & $+0.09,\,+0.10,\,+0.14,\,+0.12,\,+0.08,\,-0.22,\,-0.69,\,-1.28,\,-1.96,\,-2.71,\,-3.51$ & $100\%$ & four exact\\
 $0.70$ & $+0.58,\,+0.68,\,-0.09,\,-1.29,\,-2.80,\,-4.50$ & $99.6\%$ & one exact\\
 $0.80$ & $+1.18,\,+1.71,\,+0.98,\,-0.33,\,-1.95,\,-4.58$ & $\ge5\%$ & one exact\\
 \bottomrule
 \end{tabular}
 \end{center}
-($n=5,6,7,8,10,15,\dots$ for the first row; $n=5,10,15,20,25,30$ for the others.)  At each of
+($n=5,6,7,8,10,15,20,25,30,35,40$ for the first row; $n=5,10,15,20,25,30$ for the others.)  At each of
 these ratios the error rises, turns, and then declines without levelling.  The multiplier is not
 bounded: the heuristic understates the count by a factor growing at least exponentially in $n$,
 faster at larger $r$.
@@ -238,7 +252,7 @@ persuaded us of it more readily than eight estimated ones would have.  Exactness
 not length of series.
 
 \subsection*{Why the growth form cannot be chosen}
-If $E=\Theta(n)$ the constant of Section~3 is untouched, since the terms balanced there are
+If $E=\Theta(n)$ the constant of Section~2 is untouched, since the terms balanced there are
 $\Theta(n\ln n)$.  If $E=\Theta(n\ln n)$ it moves.  The data do not decide, and cannot.
 
 Fitting the full $r=0.5$ row to $E=c+an+bn\ln n$ returns $b$ at hundreds of standard deviations
@@ -302,7 +316,7 @@ $c+an+f\ln n$ & $0.34$ & constant intact\\
 All four are admissible; three imply the opposite conclusion and fit better.  An independent
 implementation, run without sight of these figures, obtains reduced $\chi^2$ of $8.1$, $7.0$,
 $7.4$, $7.5$ for the same four forms --- different in level, identical in verdict: mutually
-indistinguishable, oppositely answering.  The eighty-six
+indistinguishable, oppositely answering.  The forty-three
 standard deviations are a quantity computed \emph{inside} a model, and such a quantity does not
 transfer to a choice \emph{between} models.  The test to apply is not whether a coefficient
 differs from zero, but whether a second admissible model exists in which it is absent.  Here
@@ -313,7 +327,7 @@ $n\le40$, and the collinearity does not improve with range: $0.9986$ to $n=400$,
 $n=10^4$.  What separates them is precision, not length, and the precision is already $0.26\%$.
 
 We therefore withdraw the support that the earlier Section~6 offered and do not replace it.  The
-derivation of Section~3 stands, but it establishes what the first moment gives, not what the
+derivation of Section~2 stands, but it establishes what the first moment gives, not what the
 problem gives, and the distance between those two is what this section failed to measure.
 
 \section{Where the reach ends, and why}
@@ -345,17 +359,20 @@ telling we are.
 \section{On three dimensions}
 The same test was carried out in the cube (no four coplanar) on complete enumerations at
 $n=3,4,5$ by the first solver.  There the increment of the error \emph{grows}: $+2.22$, then
-$+5.53$.  By the criterion above that is a wrong exponent.  The conclusion of Section 5 is
-therefore two-dimensional and must not be carried into the cube.  This is consistent with the
+$+5.53$.  Two increments \emph{suggest} a wrong exponent --- and by our own standard in
+Section~6, where four exact values read as a plateau turned out to lie before the summit, two
+increments decide nothing.  We record this as an indication only.  What it does mean is that the
+conclusion of Section~5 is established in the plane and must not be carried into the cube
+unexamined.  This is consistent with the
 mechanism: in the plane the hard ceiling $2n$ binds and anchors the estimate, while in the cube the
 corresponding bound $3n$ stands far from the achievable values and does not.
 
 \begin{thebibliography}{9}
 \bibitem{GuyKelly} R.~K.~Guy and P.~A.~Kelly, The no-three-in-line problem, \emph{Canad. Math. Bull.} 11 (1968) 527--531.
 \bibitem{Voutier} P.~M.~Voutier, On the Guy--Kelly conjecture for the no-three-in-line problem, arXiv:2603.00215 (2026).
-\bibitem{Prellberg} T.~Prellberg, Constraint satisfaction programming for the no-three-in-line problem, \emph{J. Combin. Theory} 225 (2027) 106244.
+\bibitem{Prellberg} T.~Prellberg, Constraint satisfaction programming for the no-three-in-line problem, arXiv:2602.07751; \emph{J. Combin. Theory Ser.~A}, to appear.
 \bibitem{Survey} The general position problem: a survey, arXiv:2501.19385 (2025).
-\bibitem{Kaplan} D.~Eppstein, Random no-three-in-line sets (summary of a talk by H.~Kaplan), \url{https://11011110.github.io/blog/2018/11/10/random-no-three.html}.
+\bibitem{Kaplan} D.~Eppstein, Random no-three-in-line sets (summary of a talk by N.~Kaplan), \url{https://11011110.github.io/blog/2018/11/10/random-no-three.html}.
 \bibitem{Flammenkamp} A.~Flammenkamp, The no-three-in-line problem, \url{https://wwwhomes.uni-bielefeld.de/achim/no3in/readme.html}.
 \end{thebibliography}
 
