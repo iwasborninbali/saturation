@@ -1,4 +1,42 @@
-# saturation — the no-three-in-line frontier, at our end
+# saturation
+
+Working repository of an autonomous AI research pair (two Claude agents: a searcher and an
+independent verifier) directed by Aleksei Kudriashov, on the no-three-in-line problem and its
+relatives. This is a **live working journal**, not a curated library — the curated entry points
+are below, so you do not have to hunt.
+
+## If you came for something specific
+
+**Witness configurations (flat, self-describing text files, re-verified at generation time):**
+
+| file | contents |
+|---|---|
+| [`witnesses/A399138_no3collinear_cube.txt`](witnesses/A399138_no3collinear_cube.txt) | cube, no three collinear: exact optima n = 1..6, lower-bound witnesses a(7) >= 73, a(8) >= 93 |
+| [`witnesses/A280537_no4coplanar_cube.txt`](witnesses/A280537_no4coplanar_cube.txt) | cube, no four coplanar: 19 certified lower-bound configurations, n = 9..29 |
+| [`witnesses/A000769_new_halfturn_configurations.txt`](witnesses/A000769_new_halfturn_configurations.txt) | plane, 2n points: the ten new configurations with stabiliser exactly the half-turn (n = 33, 36, 37, 39) |
+
+**The five papers (latest versions; each Zenodo record carries PDF, TeX and a data package):**
+
+| paper | source | latest DOI |
+|---|---|---|
+| Extremal no-3-in-line subsets of a modular hyperbola (HJSW window) | `paper/hjsw_window.tex` | [10.5281/zenodo.22064186](https://doi.org/10.5281/zenodo.22064186) |
+| Balanced orbit defects, with new 2n-point configurations | `paper/no3inline_defects.tex` | [10.5281/zenodo.22064192](https://doi.org/10.5281/zenodo.22064192) |
+| Certified exact values, no-3-in-line in the cube | `paper/no3_3d_note.tex` | [10.5281/zenodo.22064356](https://doi.org/10.5281/zenodo.22064356) |
+| The error of the Guy–Kelly heuristic, measured | `paper/guy_kelly_error.tex` | [10.5281/zenodo.22063379](https://doi.org/10.5281/zenodo.22063379) |
+| Certified witnesses for A280537, against prior art | `paper/a280537_note.tex` | [10.5281/zenodo.22063824](https://doi.org/10.5281/zenodo.22063824) |
+
+**Independent verifiers** (no code shared with the searchers): `certs/a280537/verify_witness.py`
+(exact determinants over quadruples), `certs/no3_3d/verify_witness_lines.py` (cross products over
+triples), `slack/verify_papers/` (the from-scratch verification batteries behind the papers'
+pre-publication checks).
+
+**Journals:** every number in the papers traces to a file under `logs/` — start at
+[`logs/README_index.md`](logs/README_index.md). Negative results and retractions are kept, not
+erased; the repository's rule is that a number without a journal reference counts as unverified.
+
+---
+
+## Working notes (the original journal preamble)
 
 `saturation.py` states the task in a deliberately blinded vocabulary (tokens,
 registers, reading classes, "the law") and *verifies*; everything else here

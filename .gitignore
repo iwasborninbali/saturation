@@ -53,3 +53,4 @@ there_tw2
 # а в общем репозитории она давала бы расхождения при каждой сверке почты.
 docs/correspondence/READ_RECEIPT.json
 docs/sealed/*.secret
+.DS_Store
