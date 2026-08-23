@@ -238,3 +238,12 @@ v1.7 + verification paragraph for Sections 6-9 (scripts per statement; AUDIT_CHE
 - НЕЗАВИСИМАЯ ВАЛИДАЦИЯ семейных режимов (slack/t221/verify_family.py — перечислитель, написанный с нуля, независимо от решателя): n = 13, база C4 — 20/20 подклассов совпали (5 с решениями, 15 без), база V2 — 13/13 (3 и 10). Совпадают и сами решения, точка в точку.
 - ЗАФИКСИРОВАНО ОГРАНИЧЕНИЕ: режим sym=2 (чистый rot2) — это режим ПОИСКА, а не перечисления: при n = 8 он выдаёт 8 из 36 помеченных полуоборотных конфигураций (4 класса из 11). Для утверждений статьи он не использовался; для будущей переписи нужен новый код.
 - SHA-256(paper/no3inline_defects.pdf) = 11ce7f8b02c6842254585885b359bf4da931b37c55cdf98d2b9a536f8d912d98
+
+## hjsw-note-v1.16 (2026-08-23)
+Ten-line abstract (body preserved as extended summary); strong-form theorem labelled numerically assisted;
+version list ordered; v1.15 erratum (p=113 block sum; K=9 constant) retained.
+
+| file | SHA-256 |
+|---|---|
+| `paper/hjsw_window.pdf` | `5bd20f30209fb61468339cf7fdea154eee9598d808c127f9624f03cd9a5818ae` |
+| `paper/hjsw_window.tex` | `cb06d583b5667f2f888e161748033e666d6c14ca21a137fecaa8366e6be71f1f` |

@@ -23,12 +23,30 @@
 
 \title{Extremal no-three-in-line subsets of a modular hyperbola\\ in the Hall--Jackson--Sudbery--Wild window}
 \author{Alex Komang\thanks{Independent researcher, Bali, Indonesia.  See the AI/tool-use disclosure at the end.}}
-\date{August 2026 --- version 1.15}
+\date{August 2026 --- version 1.16}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
+Let $p$ be an odd prime, $c\in\Fp^*$, and $\Hc=\{(x,y):xy\equiv c\pmod p\}$ the modular hyperbola in the
+$2p\times2p$ window of Hall, Jackson, Sudbery and Wild (1975), whose construction keeps $3(p-1)$ of its points
+with no three collinear --- still the best known lower bound for the no-three-in-line problem.  Whether that
+deletion is optimal inside its window has remained unproved, and was stated without proof by Kov\'acs, Nagy and
+Szab\'o.  We prove it, for every $c$, and determine the complete extremal structure: the rich lines have slope
+$\pm1$ and number $\tfrac32(p-1)-s$; even the fractional LP relaxation equals $3(p-1)$; the number of maximum
+sets is exactly $9^s$, where $s\in\{0,1,2\}$ counts the quadratic residues among $\pm c$, so the HJSW set is the
+unique maximum iff $p\equiv1\pmod4$ and $c$ is a non-residue; an orbit lemma gives the exact maximum
+$12n_2+10n_1+8n_0+6s$ for every position of the window; near-maximum sets are stable; and the largest
+no-\emph{four}-in-line subset has exactly $\tfrac72(p-1)+s$ points.  Beyond one hyperbola: the union
+$H(1)\cup H(-1)$ satisfies $\alpha\le(115/32+o(1))(p-1)$, refined to $(3.4482\ldots+o(1))(p-1)$ by a block
+decomposition along runs of consecutive squares of $\Fp$; and no conic, cubic graph or permutation monomial
+$x^k$ reaches the hyperbola's $3(p-1)$ --- closing the natural algebraic routes toward Green's Problem~72.
+The constants of the two final sections are fixed by explicit numerical quadrature rather than interval
+enclosure and are labelled accordingly.
+\end{abstract}
+
+\subsection*{Extended summary}
 Let $p$ be an odd prime, $c\in\Fp^*$, and let $\Hc=\{(x,y)\in\Z^2: xy\equiv c \pmod p\}$ be the modular hyperbola.
 Hall, Jackson, Sudbery and Wild (1975) observed that the $2p\times2p$ window
 $\Gp=[-\tfrac{p-1}{2},\tfrac{3p-1}{2}]\times[0,2p-1]$ contains exactly four points of each of the $p-1$ residue classes of
@@ -73,7 +91,7 @@ $(\tfrac43+o(1))\cdot2p$ points; the constant is a numerical quadrature of expli
 The proofs are elementary and self-contained; independent programs check the statements about the HJSW box for all
 $p\le101$ (all $c$ for $p\le31$), the bound $3(p-1)$ for all boxes with $p\le61$, and the box formula and orbit lemma
 for all boxes with $p\le13$ and $p\le31$ respectively.
-\end{abstract}
+
 
 \section{Introduction}
 
@@ -1258,7 +1276,7 @@ $p=12809$, and an independent point-level check of the certificate $W_4$ plus ma
 script is \texttt{docs/\allowbreak AUDIT\_\allowbreak CHECKLIST\_\allowbreak v1.7.md}.
 
 {\sloppy Repository (public): \url{https://github.com/iwasborninbali/saturation}.\\
-This version of the note is the immutable tag \texttt{hjsw-note-v1.13} (v1.0: the theorems as first verified; v1.1: Section~\ref{sec:beyond} on the vertical-pair model; v1.2: the error term of Proposition~\ref{prop:m8asym}; v1.4: Section~\ref{sec:general}, every second hyperbola; v1.5: Section~\ref{sec:cubic}, cubic graphs; v1.6: Section~\ref{sec:perm}, permutation monomials; v1.7: Corollary~\ref{cor:permgen}; v1.8: verification paragraph, remark corrections; v1.9: Section~\ref{sec:strong}, the strong form for cubic graphs; v1.10: the seven-point blocks, Theorem~\ref{thm:seven}; v1.11: the block decomposition along runs of quadratic residues, Theorem~\ref{thm:blocks}; v1.11.1: correction of one comparison in the abstract; v1.14: calibration of the empirical readings after the external research report; v1.11.2: the exact constant $17865173/5160960$ with the rare signatures tabulated; v1.12: stability of one hyperbola, Proposition~\ref{prop:stability}; v1.13: the standard model of a block and the constant $427101431/123863040$): file \texttt{paper/hjsw\_window.tex}; scripts in
+This version of the note is the immutable tag \texttt{hjsw-note-v1.16} (v1.0: the theorems as first verified; v1.1: Section~\ref{sec:beyond} on the vertical-pair model; v1.2: the error term of Proposition~\ref{prop:m8asym}; v1.4: Section~\ref{sec:general}, every second hyperbola; v1.5: Section~\ref{sec:cubic}, cubic graphs; v1.6: Section~\ref{sec:perm}, permutation monomials; v1.7: Corollary~\ref{cor:permgen}; v1.8: verification paragraph, remark corrections; v1.9: Section~\ref{sec:strong}, the strong form for cubic graphs; v1.10: the seven-point blocks, Theorem~\ref{thm:seven}; v1.11: the block decomposition along runs of quadratic residues, Theorem~\ref{thm:blocks}; v1.11.1: correction of one comparison in the abstract; v1.11.2: the exact constant $17865173/5160960$ with the rare signatures tabulated; v1.12: stability of one hyperbola, Proposition~\ref{prop:stability}; v1.13: the standard model of a block and the constant $427101431/123863040$; v1.14: calibration of the empirical readings after the external research report; v1.15: erratum in remark (b) of the blocks section --- at $p=113$ the quoted pair was the LP value, the exact block sum is $382$, and the stale $K=8$ constant $3.4616$ is replaced by the $K=9$ value $3.4482$; v1.16: a ten-line abstract in place of the page-long one, whose body survives as the extended summary, the strong-form theorem labelled numerically assisted, and this version list put in order): file \texttt{paper/hjsw\_window.tex}; scripts in
 \texttt{slack/}: \texttt{hjsw\_window\_check.py}, \texttt{hjsw\_boxes\_check.py}, \texttt{gadget11\_\allowbreak check.py},
 \texttt{km1\_\allowbreak theorem\_\allowbreak check.py}, \texttt{block\_cover\_km1.py}, \texttt{km1\_lines.py}, \texttt{cyc\_model.py},
 \texttt{exact\_c.py}, \texttt{arc\_imbalance.py}, \texttt{t221/}, \texttt{t221\_agents/}; logs in \texttt{slack/verification/};
