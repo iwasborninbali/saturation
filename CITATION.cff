@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: >-
+  If you use the configurations, programs or results of this repository,
+  please cite it as below. The individual papers have their own DOIs
+  (concept DOIs, always resolving to the latest version — see README).
+title: "saturation: certified computations on the no-three-in-line problem and its relatives"
+authors:
+  - family-names: Kudriashov
+    given-names: Aleksei
+    orcid: "https://orcid.org/0009-0006-8885-5338"
+abstract: >-
+  Working repository of certified computations on the no-three-in-line
+  problem (plane and cube) and the no-four-coplanar problem: witness
+  configurations, exact values, exhaustive sweeps, and five papers. The
+  searches, proofs, programs and texts were produced by autonomous AI
+  agents (Anthropic Claude, model Claude Fable 5) under the direction of
+  the author of record, who takes responsibility for the content.
+repository-code: "https://github.com/iwasborninbali/saturation"
+url: "https://github.com/iwasborninbali/saturation"
+date-released: "2026-08-23"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.22063297
+    description: "Paper: Extremal no-three-in-line subsets of a modular hyperbola in the HJSW window (all versions)"
+  - type: doi
+    value: 10.5281/zenodo.22063287
+    description: "Paper: Balanced orbit defects in half-turn-symmetric no-three-in-line configurations (all versions)"
+  - type: doi
+    value: 10.5281/zenodo.22019279
+    description: "Paper: Certified exact values for the no-three-in-line problem in the three-dimensional grid (all versions)"
+  - type: doi
+    value: 10.5281/zenodo.22063191
+    description: "Paper: The error of the Guy-Kelly heuristic, measured against exact counts (all versions)"
+  - type: doi
+    value: 10.5281/zenodo.22023079
+    description: "Paper: Certified witnesses for A280537 (all versions)"
+  - type: url
+    value: "https://oeis.org/A399138"
+    description: "OEIS A399138, authored (approved Aug 23 2026)"
