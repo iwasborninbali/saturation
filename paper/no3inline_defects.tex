@@ -22,7 +22,7 @@
 with new $2n$-point configurations for $n=36,\,37,\,39$}
 \author{Alex Komang\thanks{Independent researcher, Bali, Indonesia.  Correspondence: see the repository page.
 AI/tool-use disclosure: Section~\ref{sec:auth}.}}
-\date{August 2026 --- version 1.0}
+\date{August 2026 --- version 1.1}
 
 \begin{document}
 \maketitle
@@ -37,10 +37,9 @@ diagonal are collinear) this classifies the defects with at most three pairs: on
 Flammenkamp's pseudo-class rct4; two pairs are two loops on different diagonals or a directed $2$-cycle, which is an
 orbit of the diagonal reflections; three pairs form a directed $3$-cycle or a loop plus a $2$-cycle.  We enumerate the
 corresponding families exhaustively for small $n$ with an exact branch-and-bound program (validated against OEIS A000769
-and the class counts of Flammenkamp's database): the $3$-cycle family for odd $n\le25$, $33$ and (in part) $37$, $39$,
-$41$; the two-loop family for even $n\le28$ and $n=36$; the mixed families for $n\le27$ (all empty).  Among the
-configurations found are: for $n=36$, the first located $2n$-point configurations whose symmetry group is exactly the
-half-turn (exactly three inequivalent ones in the two-loop family); for $n=37$ (two) and $n=39$ (four), the first located configurations of that
+and the class counts of Flammenkamp's database): the $3$-cycle family for odd $n\le25$ and $n=33,37,39,41$, each swept to completion in both bases (and, in part, $45$); the two-loop family for even $n\le28$ and $n=36$ ($n=30,32,34$ not swept); the mixed families for $n\le27$ (all empty).  Among the
+configurations found are: for $n=36$, the first located $2n$-point configurations for that $n$ whose symmetry group is exactly the
+half-turn (exactly three inequivalent ones, in the two-loop family); for $n=37$ (two) and $n=39$ (four), the first located configurations of that
 symmetry group outside the rct4 pseudo-class (Flammenkamp's rct4 configurations of 1997/98 already have exactly
 half-turn symmetry); and a further one for $n=33$.  ``First located'' refers to the public files of Flammenkamp's
 database as of 2026-08-11 (confirmed by its maintainer, who has added the configurations to the database).  Configurations,
@@ -253,7 +252,7 @@ $n$ & defects mod $\Dfour$ (central) & C4 base & V2 base & status of the sweep\\
 45 & 6391 (231) & --- & $\ge0$ & V2 base: 400 sub-classes swept (none); C4 base not started\\
 \bottomrule
 \end{tabular}
-\caption{The $3$-cycle family (odd $n$): C4- or V2-orbits plus a directed $3$-cycle of half-turn pairs; numbers of pairwise
+\caption{The $3$-cycle family: C4- or V2-orbits plus a directed $3$-cycle of half-turn pairs.  The parity $|D|\equiv n\pmod2$ forces odd $n$ for the C4 base only; for the V2 base a $3$-cycle at \emph{even} $n$ (with $b$ odd) is permitted by the parity relation and has not been swept --- an open family, named here rather than left implicit.  Numbers below: numbers of pairwise
 inequivalent configurations.  A sub-class is one defect (one directed $3$-cycle up to $\Dfour$) together with one base;
 ``complete'' means every sub-class was searched exhaustively.}\label{tab:threecycle}
 \end{table}
@@ -268,10 +267,10 @@ $n$ & sub-classes $\{x,y\}$ mod $\Dfour$ & inequivalent configurations\\
 26 & 78 & 1 (complete)\\
 28 & 91 & 1 (complete)\\
 36 & 153 & 3 (complete: three sub-classes contain a configuration, two labelled solutions each, i.e.\ one configuration
-up to the diagonal reflections; the sub-class $\{1,4\}$ needed a rerun without time limit, which exhausted it in $4.84\cdot10^7$ nodes with no configuration; the rerun is recorded in \texttt{logs/sweeps/twoloop\_n36\_exh.txt}\\
+up to the diagonal reflections; the sub-class $\{1,4\}$ needed a rerun without time limit, which exhausted it in $4.84\cdot10^7$ nodes with no configuration; the rerun is recorded in \texttt{logs/sweeps/twoloop\_n36\_exh.txt})\\
 \bottomrule
 \end{tabular}
-\caption{The two-loop family (even $n$): C4-orbits plus one half-turn loop on each long diagonal.  A sub-class is an
+\caption{The two-loop family (even $n$): C4-orbits plus one half-turn loop on each long diagonal.  The gap $n=30,32,34$ is a gap in the sweeping budget, not an emptiness claim.  A sub-class is an
 unordered pair of row classes $\{x,y\}$, $0\le x<y<n/2$ ($x$ = class of the main-diagonal loop, $y$ = class of the
 anti-diagonal loop, or vice versa: the quarter turn interchanges the two roles), so there are $n(n-2)/8$ sub-classes.}
 \label{tab:twoloop}
@@ -279,8 +278,19 @@ anti-diagonal loop, or vice versa: the quarter turn interchanges the two roles),
 
 \paragraph{Mixed families.}  The mixed families of Proposition~\ref{prop:small} --- C4 base plus one dia2-orbit that is not a
 C4-orbit (plus one diagonal loop for odd $n$), and V2 base plus one C4-orbit that is not a dia2-orbit --- were swept
-exhaustively for all $9\le n\le27$ (both parities; e.g.\ $1210$ and $55$ sub-classes mod $\Dfour$ at $n=23$, $1956$ and
-$78$ at $n=27$): no configuration exists in them.  We have no structural explanation.
+exhaustively for all $9\le n\le27$ (both parities): no configuration exists in them.  Across the range this is $8508$
+sub-classes mod $\Dfour$, of which $320$ are \emph{dead} --- the defect cells already contain three collinear points ---
+and hence empty a fortiori; the remaining $8188$ were each exhausted by search.  For example, at $n=23$ there are $1210$
+sub-classes ($50$ dead) and $55$ on the V2 side; at $n=27$, $2028$ ($72$ dead) and $78$.
+\emph{Correction to an earlier draft:} the counts quoted here previously mixed two conventions --- the total $1210$ at
+$n=23$ but the live count $1956=2028-72$ at $n=27$; an external review noticed the inconsistency, and the difference of
+exactly $72$ was traced to the dead sub-classes.  All counts above are totals, dead included and stated.
+
+The emptiness is quantifiable.  On the same range of $n$ the $3$-cycle family carries ten configurations over $6132$
+swept sub-classes, one per $613$; at that rate the $8188$ live mixed sub-classes would be expected to carry about $13$,
+and none was found ($e^{-13.4}\approx1.6\cdot10^{-6}$ under a naive Poisson reading).  The comparison is heuristic ---
+sub-classes of different families are not exchangeable --- but it is enough to say that the emptiness looks structural
+rather than accidental.  We still have no structural explanation, and now know one is worth seeking.
 
 \subsection{New configurations with exactly half-turn symmetry}
 Table~\ref{tab:new} lists the new configurations; their coordinates and their encodings in the 90-character format of
