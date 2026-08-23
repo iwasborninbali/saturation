@@ -4,38 +4,30 @@
 
 ---
 
-## ПРАВКА 1 — A280537 (трёхмерная, наши девять границ)
+## ПРАВКА 1 — A280537: ПЕРЕПИСАНА 2026-08-23 ПОСЛЕ ПРОВЕРКИ ПРАЙОР-АРТА
 
-**Ссылка:** https://oeis.org/A280537
-**Действие:** войти → на странице последовательности нажать **«edit»** → в поле **COMMENT** добавить.
+СТАРАЯ ВЕРСИЯ ЭТОЙ ИНСТРУКЦИИ ПРЕДЛАГАЛА КОММЕНТАРИЙ С ГРАНИЦАМИ, ЧАСТЬ КОТОРЫХ
+УЖЕ СТОЯЛА НА СТРАНИЦЕ С ЯНВАРЯ 2017 (до a(17)>=42), А ЧАСТЬ ПРОИГРЫВАЛА
+КОНКУРСУ AZsPCs-2016 (простые n: 28@11, 32@13, 42@17, 46@19, 54@23, 66@29).
+НЕ ПОДАВАТЬ старый текст.
 
-**Текст (вставить как есть, английский — OEIS принимает только его):**
+Что МОЖНО подавать (переживает прайор-арт):
+  a(12) >= 31 — строго лучше записанного в комментарии 30. Свидетель:
+    certs/a280537_first_solver/n12/n12_31pts.txt, проверен двумя программами.
+  Составные n, которых нет ни в комментарии-2017, ни в конкурсе (он только по
+  простым): a(18)>=41, a(20)>=45, a(21)>=47, a(22)>=49, a(24)>=52, a(25)>=53,
+  a(27)>=56. Плюс наследуемые a(26)>=53, a(28)>=56 НЕ подавать (тривиальны).
+  Ссылка на Zenodo 10.5281/zenodo.22063770 (свидетели публичны, двойная проверка).
 
-```
-Lower bounds beyond the published data, each certified by an explicit configuration:
-a(9) >= 23, a(10) >= 26, a(11) >= 28, a(12) >= 31, a(13) >= 32, a(14) >= 34,
-a(15) >= 35, a(16) >= 38, a(17) >= 38, a(18) >= 41, a(19) >= 43, a(20) >= 45, a(21) >= 47, a(23) >= 50, a(24) >= 52.
-(Twelve configurations were verified; the bound at n = 17 follows from the one at n = 16 by
-monotonicity and is listed for completeness rather than as an independent result.)
-Each configuration was verified twice by structurally different programs (all C(m,4)
-quadruples via 3x3 determinants in exact integer arithmetic; and independently, the plane
-of every non-collinear triple checked against every remaining point), together with
-distinctness and range checks; the verifier passes a self-test that rejects a deliberately
-corrupted witness. The configurations are available at
-https://github.com/iwasborninbali/saturation (directory certs/a280537_first_solver).
-Also a(n) <= 3n for all n, since each of the n planes x = const carries at most 3 points.
-```
+Текст комментария (черновик, сверить перед подачей ещё раз со страницей):
+  "Further lower bounds with publicly available certified configurations:
+   a(12) >= 31 (improving the 30 recorded in the January 2017 comment),
+   a(18) >= 41, a(20) >= 45, a(21) >= 47, a(22) >= 49, a(24) >= 52,
+   a(25) >= 53, a(27) >= 56. Witnesses and two independent verifiers:
+   https://doi.org/10.5281/zenodo.22063770. - Aleksei Kudriashov"
 
-**В поле LINK добавить (одной строкой):**
-
-```
-Aleksei Kudriashov and Claude agents, <a href="https://github.com/iwasborninbali/saturation">Certified configurations for n = 9..17</a>
-```
-
-**Почему комментарием, а не членами:** это НИЖНИЕ ГРАНИЦЫ, а не значения. В поле DATA
-идут только доказанные величины; наши свидетели доказывают «не меньше» и никогда «не больше».
-
----
+НЕ заявлять ничего по простым n (кроме, при желании, ссылки на свидетелей для
+ничьих 9,10,11,13,16 — у прежних источников конфигурации недоступны).
 
 ## ПРАВКА 2 — A000755: ЖДЁМ СЛОВА ФЛАММЕНКАМПА, НЕ ПОДАЁМ
 
