@@ -7,7 +7,7 @@
 \title{Nineteen certified configurations, eighteen independent bounds for the no-four-coplanar problem in the cube,\\
 and what they do not establish}
 \author{Aleksei Kudriashov (Alex Komang)\\ \small Nusa Dua Studio, Nusa Dua, Bali, Indonesia\\ \small ORCID: 0009-0006-8885-5338}
-\date{23 August 2026 --- version 3.1}
+\date{23 August 2026 --- version 3.2}
 \begin{document}\maketitle
 \begin{abstract}
 Let $a(n)$ be the largest number of points of $\{0,\dots,n-1\}^3$ no four of which are coplanar
@@ -22,9 +22,12 @@ Three rows of our table ($n=14,15,17$) are below the 2017 bounds and four prime 
 
 What remains, stated against that prior art.  Nineteen configurations, each verified by two
 programs sharing no code, with all coordinates public --- the prior bounds come as numbers
-without accessible witnesses.  One strict improvement over the 2017 comment: $a(12)\ge31$
-against the recorded $30$.  Seven composite sizes not covered by either source, $n=18$, $20$,
-$21$, $22$, $24$, $25$, $27$, where our bounds appear to be the first published.  And two proved
+without accessible witnesses.  Four improvements over the known bounds \emph{and their monotone
+closure} under $a(n+1)\ge a(n)$: $a(12)\ge31$ against the recorded $30$, and $a(21)\ge47$,
+$a(22)\ge49$, $a(27)\ge56$ against the $46$, $46$, $54$ implied by the contest values at $n=19$
+and $n=23$.  The remaining composite rows ($n=18$, $20$, $24$, $25$) fall \emph{below} that
+closure and are public witnesses, not records: version 3.1 called them ``apparently first
+published'', and the monotone comparison that removes them is due to Hugo Pfoertner.  And two proved
 statements above $n=8$, both about the cyclically invariant subspace and both exhausted by two
 independent implementations: its maximum is $23$ at $n=9$ and $26$ at $n=10$.
 
@@ -97,22 +100,23 @@ $n$ & this note & prior (source) & verdict\\
 15 & 35 & 36 (2017) & \emph{below prior art}\\
 16 & 38 & 38 (2017) & tie, witness now public\\
 17 & 38 & 42 (2017; 2016) & \emph{below prior art by 4}\\
-18 & 41 & --- & apparently first published\\
+18 & 41 & 42 (monotone from $a(17)$) & \emph{below the monotone consequence}\\
 19 & 43 & 46 (2016) & \emph{below prior art}\\
-20 & 45 & --- & apparently first published\\
-21 & 47 & --- & apparently first published\\
-22 & 49 & --- & apparently first published\\
+20 & 45 & 46 (monotone from $a(19)$) & \emph{below the monotone consequence}\\
+21 & 47 & 46 (monotone from $a(19)$) & \textbf{improved by 1}\\
+22 & 49 & 46 (monotone from $a(19)$) & \textbf{improved by 3}\\
 23 & 50 & 54 (2016) & \emph{below prior art}\\
-24 & 52 & --- & apparently first published\\
-25 & 53 & --- & apparently first published\\
-27 & 56 & --- & apparently first published\\
+24 & 52 & 54 (monotone from $a(23)$) & \emph{below the monotone consequence}\\
+25 & 53 & 54 (monotone from $a(23)$) & \emph{below the monotone consequence}\\
+27 & 56 & 54 (monotone from $a(23)$) & \textbf{improved by 2}\\
 29 & 59 & 66 (2016) & \emph{below prior art by 7}\\
 \bottomrule
 \end{tabular}
 \end{center}
-``Apparently first published'' means: not in the 2017 comment, not a contest size, and not
-found by our search of the literature; it is a claim about publications, not about what anyone
-may hold privately.  The 2017 and 2016 numbers come without accessible configurations --- the contest server verified
+Values marked ``monotone'' are the closure of the published bounds under $a(n+1)\ge a(n)$
+(an $n$-cube configuration is also an $(n+1)$-cube configuration).  Version 3.1 of this table
+compared against the published rows only and marked the composite sizes ``apparently first
+published''; the monotone comparison is due to Hugo Pfoertner.  The 2017 and 2016 numbers come without accessible configurations --- the contest server verified
 scores, but the point sets themselves were not published; every number of ours comes with a public
 configuration, verified twice by programs sharing no code.  \emph{Certified public witnesses} against
 \emph{score-only records} is the honest division of value, and it is why the rows below prior art stay
