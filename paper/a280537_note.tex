@@ -7,7 +7,7 @@
 \title{Nineteen certified configurations, eighteen independent bounds for the no-four-coplanar problem in the cube,\\
 and what they do not establish}
 \author{Aleksei Kudriashov (Alex Komang)\\ \small Nusa Dua Studio, Nusa Dua, Bali, Indonesia\\ \small ORCID: 0009-0006-8885-5338}
-\date{23 August 2026 --- version 3.0}
+\date{23 August 2026 --- version 3.1}
 \begin{document}\maketitle
 \begin{abstract}
 Let $a(n)$ be the largest number of points of $\{0,\dots,n-1\}^3$ no four of which are coplanar
@@ -61,16 +61,22 @@ corrects an error repeated below in Section~\ref{s:notest} by earlier versions.
 The final report lists, for each size, the best score achieved outside the first 48 hours; the
 score is the square of the number of points, so the per-size bests are recoverable exactly:
 \begin{center}
-\begin{tabular}{rrr|rrr}
+\begin{tabular}{rr|rr|rr|rr|rr}
 \toprule
-$n$ & contest best & this note & $n$ & contest best & this note\\
+$n$ & best & $n$ & best & $n$ & best & $n$ & best & $n$ & best\\
 \midrule
-11 & 28 & 28 (tie) & 23 & 54 & 50\\
-13 & 32 & 32 (tie) & 29 & 66 & 59\\
-17 & 42 & 38       & 97 & 188 & ---\\
-19 & 46 & 43       &    &     & \\
+ 2 &   5 & 13 &  32 & 31 &  71 & 53 & 110 & 73 & 145\\
+ 3 &   8 & 17 &  42 & 37 &  81 & 59 & 121 & 79 & 157\\
+ 5 &  13 & 19 &  46 & 41 &  89 & 61 & 125 & 83 & 164\\
+ 7 &  18 & 23 &  54 & 43 &  92 & 67 & 137 & 89 & 173\\
+11 &  28 & 29 &  66 & 47 & 100 & 71 & 142 & 97 & 188\\
 \bottomrule
 \end{tabular}
+
+\smallskip
+{\small (The full per-size decode from the final report, verified against the exact values $5,8,13,18$
+at $n=2,3,5,7$.  Where this note overlaps: ties at $11$, $13$; below by $4$, $3$, $4$, $7$ at $17$, $19$,
+$23$, $29$.)}
 \end{center}
 The contest reached ratio $2.67n$ at $n=3$ falling to $1.94n$ at $n=97$; whether that decline
 reflects the problem or the budget is precisely the question Section~\ref{s:effort} argues
@@ -106,8 +112,16 @@ $n$ & this note & prior (source) & verdict\\
 \end{center}
 ``Apparently first published'' means: not in the 2017 comment, not a contest size, and not
 found by our search of the literature; it is a claim about publications, not about what anyone
-may hold privately.  The 2017 and 2016 numbers come without accessible configurations; every
-number of ours comes with one, publicly, verified twice.  That is the honest division of value.
+may hold privately.  The 2017 and 2016 numbers come without accessible configurations --- the contest server verified
+scores, but the point sets themselves were not published; every number of ours comes with a public
+configuration, verified twice by programs sharing no code.  \emph{Certified public witnesses} against
+\emph{score-only records} is the honest division of value, and it is why the rows below prior art stay
+in the table: they carry the only accessible configurations at their sizes that we know of.
+
+One more thing the comparison measures.  Our search above $n=16$ was confined to the cyclically
+invariant subspace, and the gap to the 2016 records is $4$, $3$, $4$, $7$ exactly on the primes where
+they exist: an external measurement of what that confinement costs at growing $n$, consistent with
+Section~\ref{s:subspace} --- enrichment is not containment, and here its price has a number.
 
 How this was missed is worth recording, because the mechanism is general: the OEIS DATA line
 does stop at $a(8)=20$, and we read the line and not the page.  The comment with nine further
@@ -210,7 +224,7 @@ condition, asking for $K$ and receiving $K$ is not evidence about $K$.  Several 
 earlier draft of this table were produced that way, agreed with a prediction, and were withdrawn
 when the target was removed and the same program returned more.
 
-\section{The symmetric subspace}
+\section{The symmetric subspace}\label{s:subspace}
 All configurations above were found by searching the subspace invariant under a cyclic
 permutation of coordinates.  That subspace is enormously enriched in maxima, and enriched more
 as $n$ grows.  In the two-dimensional analogue, where we hold complete material --- every maximum
