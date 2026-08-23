@@ -7,7 +7,7 @@
 \newtheorem{lemma}[proposition]{Lemma}
 \title{Exact values and certified lower bounds for the no-three-in-line problem in the cube}
 \author{Aleksei Kudriashov (Alex Komang)\\ \small Nusa Dua Studio, Nusa Dua, Bali, Indonesia\\ \small ORCID: 0009-0006-8885-5338}
-\date{23 August 2026 --- version 1.3\\ \small\texttt{doi:10.5281/zenodo.22019279}}
+\date{23 August 2026 --- version 1.4\\ \small\texttt{doi:10.5281/zenodo.22019279}}
 \begin{document}\maketitle
 \begin{abstract}
 Let $a(n)$ be the largest number of points of the grid $\{0,1,\dots,n-1\}^3$ no three of which are collinear.
@@ -123,9 +123,12 @@ prohibition itself.  Our own full enumeration at $n=3$ visits all $3\,813\,884$ 
 included) and finds exactly \emph{two} optima of size $16$ --- a chiral pair, each with stabiliser of order $24$
 in the full cube group, both with layer profile $[6,4,6]$ along all three axes.  At $n=4$ a traversal from a bar
 of $27$ \emph{exhausted} its tree ($9\,012\,859\,649$ nodes, $3180$ s), proving $a(4)=28$ with no encoding at
-all --- a bar is harmless under exhaustion, since it prunes only branches unable to exceed it.  An external
-recount reports exactly $14$ optima of size $28$ (stabiliser orders $8$, $8$, $24$); our own sharded recount was
-still running when this version was frozen, so that number is quoted as the reviewer's, not yet as ours.
+all --- a bar is harmless under exhaustion, since it prunes only branches unable to exceed it.  The count at $n=4$
+is now ours as well: a $32$-shard traversal (sharded by first cell, run to completion on every shard,
+$13\,215\,017\,061$ nodes in all) finds exactly $14$ optima of size $28$, in three classes under the full cube
+group with stabiliser orders $8$, $8$, $24$ ($6+6+2=14$) --- in agreement with an independent external recount.
+Every optimum at $n\le4$ therefore has the layer profile $[2n,(2n-2)^{n-2},2n]$: the empirical observation of
+Section~5 is a fact up to $n=4$.
 
 \emph{Correction.}  An earlier version of this paragraph quoted two numbers received from the first solver's
 message and never passed through the verification bench of this very note: ``$2\,220\,075$ subsets'' and ``the
