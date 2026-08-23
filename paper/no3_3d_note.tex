@@ -7,7 +7,7 @@
 \newtheorem{lemma}[proposition]{Lemma}
 \title{Exact values and certified lower bounds for the no-three-in-line problem in the cube}
 \author{Aleksei Kudriashov (Alex Komang)\\ \small Nusa Dua Studio, Nusa Dua, Bali, Indonesia\\ \small ORCID: 0009-0006-8885-5338}
-\date{20 August 2026 --- version 1.1\\ \small\texttt{doi:10.5281/zenodo.22019279}}
+\date{23 August 2026 --- version 1.2\\ \small\texttt{doi:10.5281/zenodo.22019279}}
 \begin{document}\maketitle
 \begin{abstract}
 Let $a(n)$ be the largest number of points of the grid $\{0,1,\dots,n-1\}^3$ no three of which are collinear.
@@ -55,7 +55,9 @@ $(a,b)=(0,0)$, a contradiction.
 \end{proof}
 Neither $x^2+y^2$ (anisotropic iff $p\equiv3\bmod 4$) nor $x^2+xy+y^2$ (iff $p\equiv2\bmod3$) works for all
 $p$; the choice $x^2-dy^2$ does.  The bound of Proposition~\ref{p:alg} is not sharp: $a(5)\ge40>25$ and
-$a(7)\ge73>49$.
+$a(7)\ge73>49$.  As a guard against a slip in transcribing the construction rather than in the proof,
+we also built $S$ explicitly for $p=3,5,7,11,13$ and tested \emph{every} one of its triples by integer cross
+product --- $790\,244$ triples at $p=13$ --- finding none collinear.
 
 \section{Method: a certified decision procedure}
 A line carrying at most two lattice points of $[n]^3$ forbids nothing, so
@@ -90,6 +92,36 @@ this link --- it knows nothing of cubes and lines --- and this is exactly where 
 triples, by a program sharing no code with the search.
 \end{enumerate}
 Links 1 and 2 give the upper bound; links 1 and 3 give the lower bound.
+
+\medskip\noindent\textbf{Removing link 1 for small $n$.}  The two checks above verify that the encoding is
+faithful.  A stronger thing is possible: to compute the same values without an encoding at all, so that link 1
+does not need to be trusted because it is not used.  We wrote a plain exhaustive traversal that places points
+in the cube and tests triples by integer cross product --- the literal definition --- with no propositional
+formula, no solver and no certificate.  Two points kill the line through them, so every cell carries a counter
+of dead lines covering it and a cell is available while that counter is zero; a branch is abandoned when the
+points placed plus the cells still available cannot exceed the best found.  Run from a bar of zero, so that no
+value can be fed in and echoed back:
+\begin{center}
+\begin{tabular}{rrr}
+\toprule
+$n$ & result & nodes \\
+\midrule
+1 & $1$ (exhausted) & $2$\\
+2 & $8$ (exhausted) & $37$\\
+3 & $16$ (exhausted) & $49\,812$\\
+\bottomrule
+\end{tabular}
+\end{center}
+These agree with the certified values and share nothing with the certified route but the definition of the
+prohibition itself.  The first solver independently brute-forced all $2\,220\,075$ subsets at $n=3$, obtaining
+$16$, and ran a second enumerator with no pruning beyond the prohibition, obtaining $16$ and the count
+$10\,960$ at $n=4$.
+
+We are explicit that this does not extend far.  At $n=4$ the same traversal reaches $28$ points but does not
+exhaust its tree within an hour, having visited $8.85\cdot10^9$ nodes, so for $n\ge4$ it supplies the lower
+bound only; the upper bounds there remain the certified ones.  That is the honest division: for $n\le3$ the
+values are established twice over, once through the encoding and once without it, and for $n\ge4$ the encoding
+is checked but used.
 
 \medskip\noindent\textbf{Calibration.}  Before computing anything new we reproduced every published value:
 $a(3)=16$ and $a(4)=28$, each with unsatisfiability at $M+1$ in under a second, independently on two machines.
