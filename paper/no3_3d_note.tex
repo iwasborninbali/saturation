@@ -7,7 +7,7 @@
 \newtheorem{lemma}[proposition]{Lemma}
 \title{Exact values and certified lower bounds for the no-three-in-line problem in the cube}
 \author{Aleksei Kudriashov (Alex Komang)\\ \small Nusa Dua Studio, Nusa Dua, Bali, Indonesia\\ \small ORCID: 0009-0006-8885-5338}
-\date{23 August 2026 --- version 1.2\\ \small\texttt{doi:10.5281/zenodo.22019279}}
+\date{23 August 2026 --- version 1.3\\ \small\texttt{doi:10.5281/zenodo.22019279}}
 \begin{document}\maketitle
 \begin{abstract}
 Let $a(n)$ be the largest number of points of the grid $\{0,1,\dots,n-1\}^3$ no three of which are collinear.
@@ -119,15 +119,26 @@ $n$ & result & nodes \\
 \end{tabular}
 \end{center}
 These agree with the certified values and share nothing with the certified route but the definition of the
-prohibition itself.  The first solver independently brute-forced all $2\,220\,075$ subsets at $n=3$, obtaining
-$16$, and ran a second enumerator with no pruning beyond the prohibition, obtaining $16$ and the count
-$10\,960$ at $n=4$.
+prohibition itself.  Our own full enumeration at $n=3$ visits all $3\,813\,884$ lawful subsets (the empty one
+included) and finds exactly \emph{two} optima of size $16$ --- a chiral pair, each with stabiliser of order $24$
+in the full cube group, both with layer profile $[6,4,6]$ along all three axes.  At $n=4$ a traversal from a bar
+of $27$ \emph{exhausted} its tree ($9\,012\,859\,649$ nodes, $3180$ s), proving $a(4)=28$ with no encoding at
+all --- a bar is harmless under exhaustion, since it prunes only branches unable to exceed it.  An external
+recount reports exactly $14$ optima of size $28$ (stabiliser orders $8$, $8$, $24$); our own sharded recount was
+still running when this version was frozen, so that number is quoted as the reviewer's, not yet as ours.
 
-We are explicit that this does not extend far.  At $n=4$ the same traversal reaches $28$ points but does not
-exhaust its tree within an hour, having visited $8.85\cdot10^9$ nodes, so for $n\ge4$ it supplies the lower
-bound only; the upper bounds there remain the certified ones.  That is the honest division: for $n\le3$ the
-values are established twice over, once through the encoding and once without it, and for $n\ge4$ the encoding
-is checked but used.
+\emph{Correction.}  An earlier version of this paragraph quoted two numbers received from the first solver's
+message and never passed through the verification bench of this very note: ``$2\,220\,075$ subsets'' and ``the
+count $10\,960$''.  Both are withdrawn, and both origins have since been reconstructed: $2\,220\,075$ is exactly
+$\binom{27}{8}$ --- the enumeration of all $8$-subsets of $3^3$ that verifies the uniqueness of the $8$-point
+optimum of the \emph{no-four-coplanar} problem (A280538 gives $1$ there) --- and $10\,960=48\cdot232-176$ is
+the number of labelled optima of that same neighbouring problem at $n=4$, where A280538 gives $232$ classes.
+Two numbers from the wrong problem, quoted into the section about removing trust; recorded, not smoothed.
+
+We are explicit about how far this extends.  From a bar of zero the traversal reaches $28$ at $n=4$ without
+exhausting in an hour ($8.85\cdot10^9$ nodes); from a bar of $27$ it exhausts ($9.01\cdot10^9$ nodes, $53$
+minutes), so $a(4)=28$ is established twice over as well.  The honest division: for $n\le4$ both the value and
+the bound are encoding-free in addition to certified; for $n\ge5$ the encoding is checked but used.
 
 \medskip\noindent\textbf{Calibration.}  Before computing anything new we recomputed, as a calibration, the two
 smallest nontrivial values $a(3)=16$ and $a(4)=28$ --- there is no prior published source for them that we could
