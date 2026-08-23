@@ -15,15 +15,27 @@ are below, so you do not have to hunt.
 | [`witnesses/A280537_no4coplanar_cube.txt`](witnesses/A280537_no4coplanar_cube.txt) | cube, no four coplanar: 19 certified lower-bound configurations, n = 9..29 |
 | [`witnesses/A000769_new_halfturn_configurations.txt`](witnesses/A000769_new_halfturn_configurations.txt) | plane, 2n points: the ten new configurations with stabiliser exactly the half-turn (n = 33, 36, 37, 39) |
 
-**The five papers (latest versions; each Zenodo record carries PDF, TeX and a data package):**
+**The five papers (each DOI is a concept DOI: it always resolves to the latest version; every
+Zenodo record carries PDF, TeX and a data package):**
 
-| paper | source | latest DOI |
+| paper | source | DOI (all versions) |
 |---|---|---|
-| Extremal no-3-in-line subsets of a modular hyperbola (HJSW window) | `paper/hjsw_window.tex` | [10.5281/zenodo.22064186](https://doi.org/10.5281/zenodo.22064186) |
-| Balanced orbit defects, with new 2n-point configurations | `paper/no3inline_defects.tex` | [10.5281/zenodo.22064192](https://doi.org/10.5281/zenodo.22064192) |
-| Certified exact values, no-3-in-line in the cube | `paper/no3_3d_note.tex` | [10.5281/zenodo.22064356](https://doi.org/10.5281/zenodo.22064356) |
-| The error of the Guy–Kelly heuristic, measured | `paper/guy_kelly_error.tex` | [10.5281/zenodo.22063379](https://doi.org/10.5281/zenodo.22063379) |
-| Certified witnesses for A280537, against prior art | `paper/a280537_note.tex` | [10.5281/zenodo.22063824](https://doi.org/10.5281/zenodo.22063824) |
+| Extremal no-3-in-line subsets of a modular hyperbola (HJSW window) | `paper/hjsw_window.tex` | [10.5281/zenodo.22063297](https://doi.org/10.5281/zenodo.22063297) |
+| Balanced orbit defects, with new 2n-point configurations | `paper/no3inline_defects.tex` | [10.5281/zenodo.22063287](https://doi.org/10.5281/zenodo.22063287) |
+| Certified exact values, no-3-in-line in the cube | `paper/no3_3d_note.tex` | [10.5281/zenodo.22019279](https://doi.org/10.5281/zenodo.22019279) |
+| The error of the Guy–Kelly heuristic, measured | `paper/guy_kelly_error.tex` | [10.5281/zenodo.22063191](https://doi.org/10.5281/zenodo.22063191) |
+| Certified witnesses for A280537, against prior art | `paper/a280537_note.tex` | [10.5281/zenodo.22023079](https://doi.org/10.5281/zenodo.22023079) |
+
+**OEIS:**
+
+| entry | contribution | status |
+|---|---|---|
+| [A399138](https://oeis.org/A399138) — maximum points in the n X n X n grid, no three collinear | new sequence (1, 8, 16, 28, 40, 64), with attached witness file | approved, Aug 23 2026 |
+| [A000755](https://oeis.org/A000755) — plane, total number of 2n-point solutions | a(20) = 941580 into DATA (from Flammenkamp's database, confirmed by orbit sums) | proposed, in review |
+| [A280537](https://oeis.org/A280537) — cube, no four coplanar | eight strictly improved lower bounds + transcription of the 2016 contest records up to n = 97, with attached witness file | proposed, in review |
+
+**External:** Achim Flammenkamp's [no-three-in-line database](https://wwwhomes.uni-bielefeld.de/achim/no3in/readme.html)
+(changelog, 17 Aug 2026) records nine new rot2 solutions for n = 33, 36, 37, 39 from this project.
 
 **Independent verifiers** (no code shared with the searchers): `certs/a280537/verify_witness.py`
 (exact determinants over quadruples), `certs/no3_3d/verify_witness_lines.py` (cross products over
@@ -51,7 +63,7 @@ known for all n ≤ 70 and for 72, 74, 76; open: 71, 73, 75, ≥ 77.
 
 | file | what |
 |---|---|
-| `saturation.py` | the law + certifier (v1, as received; untouched) |
+| `saturation.py` | the law + certifier (see git history for provenance) |
 | `there.c` | the exact search: bit-parallel DFS with restarts, MRV over both registers, shading of every chosen pair, symmetry orbits, pairwise-orbit clash masks, exhaustive mode with solution counts (validated against A000769 and Flammenkamp's tables), fixed-token completion (`FIX=file`) |
 | `there.py` | driver: `find(n)` = saturation.find at this end; parallel seeds per symmetry class; results in `books.json` (each entry certified) |
 | `there_sat.py` | CNF encoding + kissat (second engine; loses to the DFS from n≈27 up) |
