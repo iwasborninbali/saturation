@@ -68,6 +68,24 @@ def sample_n0(p, rng):
             return sorted(pts)
 
 
+def swap_law(pts, rng, steps):
+    """приблизить равномерное распределение на 4-регулярных двудольных графах: случайные обмены пар
+    рёбер (r1,c1),(r2,c2) -> (r1,c2),(r2,c1), если клетки свободны (степени сохраняются)."""
+    edges = [(y, x) for x, y in pts]; have = set(edges)
+    for _ in range(steps):
+        i, j = rng.randrange(len(edges)), rng.randrange(len(edges))
+        (r1, c1), (r2, c2) = edges[i], edges[j]
+        if r1 == r2 or c1 == c2 or (r1, c2) in have or (r2, c1) in have: continue
+        have -= {(r1, c1), (r2, c2)}; have |= {(r1, c2), (r2, c1)}
+        edges[i], edges[j] = (r1, c2), (r2, c1)
+    return sorted((c, r) for r, c in edges)
+
+
+def triples(cands):
+    """число коллинеарных троек в кандидатах (diagnostic: deep_research_8 даёт 706–808 при p=11)."""
+    return sum(len(mem) * (len(mem) - 1) * (len(mem) - 2) // 6 for mem in lines(cands))
+
+
 def alpha_exact(cands):
     L = lines(cands); n = len(cands)
     A = np.zeros((max(1, len(L)), n))
@@ -84,15 +102,18 @@ def alpha_exact(cands):
 
 if __name__ == "__main__":
     p, samples = int(sys.argv[1]), int(sys.argv[2]); seed = int(sys.argv[3]) if len(sys.argv) > 3 else 1
+    law = sys.argv[4] if len(sys.argv) > 4 else "seq"      # seq: 4 паросочетания подряд; swap: + обмены рёбер
     rng = random.Random(seed)
-    print(f"N0(p={p}): {8*(p-1)} точек в боксе {2*p}×{2*p}, по 4 в строке и столбце; выборок {samples}, seed {seed}")
+    print(f"N0(p={p}): {8*(p-1)} точек в боксе {2*p}×{2*p}, по 4 в строке и столбце; выборок {samples}, seed {seed}, закон {law}")
     vals = []
     for s in range(samples):
         t0 = time.time(); cands = sample_n0(p, rng)
+        if law == "swap": cands = swap_law(cands, rng, 200 * len(cands))
+        tr = triples(cands)
         rows = {}; cols = {}
         for x, y in cands: rows[y] = rows.get(y, 0) + 1; cols[x] = cols.get(x, 0) + 1
         assert set(rows.values()) == {4} and set(cols.values()) == {4}
         a, _ = alpha_exact(cands); vals.append(a)
-        print(f"  образец {s+1}: α = {a}  ({a/(p-1):.3f}(p−1))  за {time.time()-t0:.1f} с", flush=True)
+        print(f"  образец {s+1}: троек {tr}, α = {a}  ({a/(p-1):.3f}(p−1))  за {time.time()-t0:.1f} с", flush=True)
     mean = sum(vals) / len(vals)
     print(f"α: {sorted(vals)}; среднее {mean:.2f} = {mean/(p-1):.3f}(p−1); диапазон [{min(vals)/(p-1):.2f}, {max(vals)/(p-1):.2f}]")
