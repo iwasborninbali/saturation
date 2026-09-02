@@ -30,8 +30,8 @@ while true; do
     # исчерпывающий обмен радиуса ≤ 3 (exchange_search.py): улучшаем ли стратный оптимум перестановкой ≤ 3 точек вне страты
     exch=$(python3 "$ROOT/slack/night_2026-09-02/vtora/exchange_search.py" 3 "$f" 2>&1 | grep -q "УЛУЧШЕНИЕ" && echo "обмен ≤3: УЛУЧШЕНИЕ НАЙДЕНО" || echo "обмен ≤3: нет")
     echo "$base $(date -u +%FT%TZ) $res | $kap | $exch" >> "$LOG"
-    thr=73; [ "$n" = 8 ] && thr=93
-    flag=""; [ "$pts" -gt "$thr" ] 2>/dev/null && flag="  !!! ВЫШЕ ИЗВЕСТНОГО ($thr) — кандидат в A399138"
+    case "$n" in 7) thr=73;; 8) thr=94;; 9) thr=0;; *) thr=999;; esac
+    flag=""; if [ "$n" = 9 ]; then flag="  (n=9: любой чистый свидетель — первая нижняя граница a(9))"; elif [ "$pts" -gt "$thr" ] 2>/dev/null; then flag="  !!! ВЫШЕ ИЗВЕСТНОГО ($thr) — кандидат в A399138"; fi
     case "$exch" in *НАЙДЕНО*) flag="$flag  !!! обмен ≤3 даёт больше точек — смотреть exchange_search.py";; esac
     echo "новый свидетель $base: $res | $kap | $exch$flag"
   done
