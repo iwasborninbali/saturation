@@ -1,0 +1,79 @@
+[
+ {
+  "n": 9,
+  "tag": "c04_ord2",
+  "group": "|H|=2 rot=1 inv=n",
+  "orbits": 405,
+  "constraints": 10383,
+  "status": "FEASIBLE",
+  "best": 114,
+  "bound": 161,
+  "secs": 2400.0
+ },
+ {
+  "n": 9,
+  "tag": "c07_ord4",
+  "group": "|H|=4 rot=2 inv=y",
+  "orbits": 205,
+  "constraints": 5309,
+  "status": "FEASIBLE",
+  "best": 112,
+  "bound": 152,
+  "secs": 2400.0
+ },
+ {
+  "n": 9,
+  "tag": "c06_ord3",
+  "group": "|H|=3 rot=3 inv=n",
+  "orbits": 249,
+  "constraints": 6765,
+  "status": "FEASIBLE",
+  "best": 110,
+  "bound": 162,
+  "secs": 2400.0
+ },
+ {
+  "n": 9,
+  "tag": "c05_ord2",
+  "group": "|H|=2 rot=1 inv=n",
+  "orbits": 405,
+  "constraints": 10365,
+  "status": "FEASIBLE",
+  "best": 110,
+  "bound": 153,
+  "secs": 2400.0
+ },
+ {
+  "n": 9,
+  "tag": "c03_ord2",
+  "group": "|H|=2 rot=2 inv=n",
+  "orbits": 369,
+  "constraints": 10243,
+  "status": "FEASIBLE",
+  "best": 110,
+  "bound": 161,
+  "secs": 2400.0
+ },
+ {
+  "n": 9,
+  "tag": "c02_ord2",
+  "group": "|H|=2 rot=2 inv=n",
+  "orbits": 369,
+  "constraints": 10285,
+  "status": "FEASIBLE",
+  "best": 110,
+  "bound": 161,
+  "secs": 2400.0
+ },
+ {
+  "n": 9,
+  "tag": "c01_ord2",
+  "group": "|H|=2 rot=1 inv=y",
+  "orbits": 365,
+  "constraints": 10321,
+  "status": "FEASIBLE",
+  "best": 110,
+  "bound": 162,
+  "secs": 2400.4
+ }
+]
