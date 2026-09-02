@@ -34,6 +34,17 @@
  },
  {
   "n": 8,
+  "tag": "c18_ord6",
+  "group": "|H|=6 rot=3 inv=n",
+  "orbits": 120,
+  "constraints": 1676,
+  "status": "FEASIBLE",
+  "best": 93,
+  "bound": 118,
+  "secs": 2400.0
+ },
+ {
+  "n": 8,
   "tag": "c02_ord2",
   "group": "|H|=2 rot=2 inv=n",
   "orbits": 256,
