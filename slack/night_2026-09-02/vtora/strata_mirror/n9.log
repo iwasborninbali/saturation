@@ -28,3 +28,8 @@ n=9: классов подгрупп 33, запускаем 33 страт; по�
       c21_ord8      |H|=8 rot=4 inv=y orbits= 125 cons=  2791 -> best=112 bound=112 OPTIMAL 517.5s
       c25_ord8      |H|=8 rot=4 inv=n orbits= 135 cons=  2749 -> best=108 bound=108 OPTIMAL 392.6s
       c24_ord8      |H|=8 rot=4 inv=n orbits= 115 cons=  2691 -> best=108 bound=108 OPTIMAL 505.4s
+      c15_ord4      |H|=4 rot=4 inv=n orbits= 189 cons=  4990 -> best=112 bound=144 FEASIBLE 2400.0s
+      c16_ord6      |H|=6 rot=3 inv=y orbits= 125 cons=  3409 -> best=116 bound=162 FEASIBLE 2400.0s
+      c17_ord6      |H|=6 rot=6 inv=n orbits= 129 cons=  3443 -> best=116 bound=160 FEASIBLE 2400.0s
+      c18_ord6      |H|=6 rot=3 inv=n orbits= 165 cons=  3597 -> best=116 bound=159 FEASIBLE 2400.0s
+ИТОГ n=9: лучший свидетель 116 точек в страте c08_ord4 (|H|=4 rot=2 inv=y), статус FEASIBLE

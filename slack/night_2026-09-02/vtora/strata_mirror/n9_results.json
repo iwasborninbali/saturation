@@ -23,6 +23,39 @@
  },
  {
   "n": 9,
+  "tag": "c16_ord6",
+  "group": "|H|=6 rot=3 inv=y",
+  "orbits": 125,
+  "constraints": 3409,
+  "status": "FEASIBLE",
+  "best": 116,
+  "bound": 162,
+  "secs": 2400.0
+ },
+ {
+  "n": 9,
+  "tag": "c17_ord6",
+  "group": "|H|=6 rot=6 inv=n",
+  "orbits": 129,
+  "constraints": 3443,
+  "status": "FEASIBLE",
+  "best": 116,
+  "bound": 160,
+  "secs": 2400.0
+ },
+ {
+  "n": 9,
+  "tag": "c18_ord6",
+  "group": "|H|=6 rot=3 inv=n",
+  "orbits": 165,
+  "constraints": 3597,
+  "status": "FEASIBLE",
+  "best": 116,
+  "bound": 159,
+  "secs": 2400.0
+ },
+ {
+  "n": 9,
   "tag": "c04_ord2",
   "group": "|H|=2 rot=1 inv=n",
   "orbits": 405,
@@ -130,6 +163,17 @@
   "best": 112,
   "bound": 112,
   "secs": 517.5
+ },
+ {
+  "n": 9,
+  "tag": "c15_ord4",
+  "group": "|H|=4 rot=4 inv=n",
+  "orbits": 189,
+  "constraints": 4990,
+  "status": "FEASIBLE",
+  "best": 112,
+  "bound": 144,
+  "secs": 2400.0
  },
  {
   "n": 9,
