@@ -254,6 +254,17 @@
  },
  {
   "n": 8,
+  "tag": "c15_ord4",
+  "group": "|H|=4 rot=4 inv=n",
+  "orbits": 128,
+  "constraints": 2321,
+  "status": "FEASIBLE",
+  "best": 88,
+  "bound": 112,
+  "secs": 2400.0
+ },
+ {
+  "n": 8,
   "tag": "c13_ord4",
   "group": "|H|=4 rot=2 inv=n",
   "orbits": 128,
