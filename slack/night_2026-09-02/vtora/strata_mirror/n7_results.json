@@ -155,6 +155,17 @@
  },
  {
   "n": 7,
+  "tag": "c10_ord4",
+  "group": "|H|=4 rot=4 inv=n",
+  "orbits": 91,
+  "constraints": 1161,
+  "status": "OPTIMAL",
+  "best": 72,
+  "bound": 72,
+  "secs": 755.1
+ },
+ {
+  "n": 7,
   "tag": "c05_ord2",
   "group": "|H|=2 rot=1 inv=n",
   "orbits": 196,
