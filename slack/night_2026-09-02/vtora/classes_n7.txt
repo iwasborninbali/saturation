@@ -1,0 +1,16 @@
+n7_c03_ord2_73.txt                           n=7 m= 73  класс #1
+n7_c04_ord2_73.txt                           n=7 m= 73  класс #2
+n7_c06_ord3_73.txt                           n=7 m= 73  класс #3
+n7_c18_ord6_73.txt                           n=7 m= 73  класс #3
+n7_73_anneal_v2_s14.txt                      n=7 m= 73  класс #4
+n7_73_anneal_v3_s16_T0.txt                   n=7 m= 73  класс #5
+n7_73_anneal_v3_s17_1.txt                    n=7 m= 73  класс #6
+n7_73_anneal_v3_s17_2.txt                    n=7 m= 73  класс #7
+n7_73_anneal_v3_s17_3.txt                    n=7 m= 73  класс #8
+n7_73_anneal_v3_s17_4.txt                    n=7 m= 73  класс #9
+n7_73_anneal_v3_s17_5.txt                    n=7 m= 73  класс #10
+n7_73_anneal_v3_s18_T0_73_3.txt              n=7 m= 73  класс #11
+n7_73_swap_of_s14_1.txt                      n=7 m= 73  класс #12
+n7_73_swap_of_s14_2.txt                      n=7 m= 73  класс #13
+witness_n7_first_solver.txt                  n=7 m= 72  класс #1
+классов по (n, m): {(7, 72): 1, (7, 73): 13}
