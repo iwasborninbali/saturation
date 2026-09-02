@@ -1,16 +1,14 @@
 #!/usr/bin/env python3
 """cube_anneal.py — T-модель в кубе [n]³ с фиксированным числом точек m: P(S) ∝ exp(−β·T(S)), T — число коллинеарных троек;
-параллельный темперинг по лестнице β. Ходы — перенос одной точки: удаляемая точка — с вероятностью 1/2 (при T > 0) участница какой-нибудь
-коллинеарной тройки (κ(s) > 0 для занятой клетки s = число троек через s), иначе случайная; целевая клетка — с вероятностью 1/2 клетка
-с минимальным κ среди случайной выборки, иначе случайная пустая. T ведётся через массив κ (число пар точек, коллинеарных с клеткой):
-T = Σ_{s∈S} κ(s)/3. Найденная конфигурация с T = 0 — свидетель A399138 с m точками; проверяется полным перебором троек и пишется в файл.
-Калибровка на известном: n=6, m=64 (точный оптимум) — 12 с одним ядром (версия 1); цель — n=7, m=74.
+параллельный темперинг по лестнице β, ходы — перенос одной точки в пустую клетку (с вероятностью 1/2 — в клетку с минимальным κ среди
+случайной выборки, иначе в случайную). T ведётся через массив κ (число пар точек, коллинеарных с клеткой): T = Σ_{s∈S} κ(s)/3.
+Найденная конфигурация с T = 0 — свидетель A399138 с m точками; проверяется полным перебором троек и пишется в файл.
+Калибровка на известном: n=6, m=64 (точный оптимум) и n=7, m=73 должны находиться; цель — n=7, m=74.
 usage: python3 cube_anneal.py n m sweeps M seed [out_prefix]
 """
 import sys, math, random, itertools, time
 
-BETAS = [0.3, 0.6, 1.0, 1.5, 2.2, 3.0, 4.0, 5.0, 6.5, 8.0, 10.0, 13.0]
-SAMPLE = 32
+BETAS = [0.3, 0.6, 1.0, 1.5, 2.2, 3.2, 4.6, 6.7, 10.0]
 
 def build_lines(n):
     N = n ** 3; cells = [(x, y, z) for x in range(n) for y in range(n) for z in range(n)]
@@ -50,24 +48,19 @@ class Rep:
             for c in self.lines[q][s]: self.kap[c] += 1
         self.occ.add(q)
     def sweep(self, M):
-        rnd, occ, N, kap = self.rnd, self.occ, self.n ** 3, self.kap
+        rnd, occ, N = self.rnd, self.occ, self.n ** 3
         for _ in range(M):
-            occl = tuple(occ)
-            if self.T > 0 and rnd.random() < 0.5:
-                bad = [s for s in occl if kap[s] > 0]
-                p = rnd.choice(bad) if bad else rnd.choice(occl)
-            else:
-                p = rnd.choice(occl)
+            p = rnd.choice(tuple(occ)) if len(occ) < 64 else next(iter(rnd.sample(sorted(occ), 1)))
             if rnd.random() < 0.5:
-                cand = [c for c in rnd.sample(range(N), SAMPLE) if c not in occ]
+                cand = [c for c in rnd.sample(range(N), 24) if c not in occ]
                 if not cand: continue
-                q = min(cand, key=lambda c: kap[c])
+                q = min(cand, key=lambda c: self.kap[c])
             else:
                 q = rnd.randrange(N)
                 if q in occ: continue
             self.tries += 1
             self.remove(p); self.add(q)
-            Tn = sum(kap[s] for s in occ) // 3; dT = Tn - self.T
+            Tn = sum(self.kap[s] for s in occ) // 3; dT = Tn - self.T
             if dT <= 0 or rnd.random() < math.exp(-self.beta * dT):
                 self.T = Tn; self.acc += 1
                 if Tn < self.best: self.best = Tn
@@ -94,7 +87,7 @@ if __name__ == "__main__":
                 if verify(pts):
                     found = pts
                     with open(f"{prefix}_T0.txt", "w") as f:
-                        f.write(f"# A399138 n={n} points={m} found by cube_anneal.py v2 (T-model parallel tempering) seed={seed} sweep={sw} beta={r.beta}; verified: no three collinear\n")
+                        f.write(f"# A399138 n={n} points={m} found by cube_anneal.py (T-model parallel tempering) seed={seed} sweep={sw} beta={r.beta}; verified: no three collinear\n")
                         f.write("\n".join(f"{x} {y} {z}" for x, y, z in pts) + "\n")
         for i in range(len(reps) - 1):
             a, b = reps[i], reps[i + 1]
