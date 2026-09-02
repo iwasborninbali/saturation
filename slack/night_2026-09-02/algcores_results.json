@@ -1,0 +1,3303 @@
+{
+ "8": {
+  "solutions": 57,
+  "null": 1000,
+  "primes": [
+   5,
+   7,
+   11,
+   13,
+   17
+  ],
+  "c_mode": "full",
+  "sol_pct": [
+   9,
+   10,
+   10,
+   10
+  ],
+  "null_pct": [
+   10,
+   11,
+   12,
+   14
+  ],
+  "sol_mean": 8.824561403508772,
+  "null_mean": 9.988,
+  "frac_sol_ge_n": 1.0,
+  "frac_null_ge_n": 1.0,
+  "top": [
+   {
+    "overlap": 10,
+    "p": 7,
+    "family": "b",
+    "params": [
+     3,
+     6,
+     5,
+     0
+    ],
+    "window": 17,
+    "line": ".0436136757022415"
+   },
+   {
+    "overlap": 10,
+    "p": 7,
+    "family": "b",
+    "params": [
+     3,
+     1,
+     5,
+     0
+    ],
+    "window": 17,
+    "line": ".1346361702570524"
+   },
+   {
+    "overlap": 10,
+    "p": 5,
+    "family": "b",
+    "params": [
+     1,
+     4,
+     3,
+     0
+    ],
+    "window": 22,
+    "line": ".0235136757024614"
+   },
+   {
+    "overlap": 10,
+    "p": 13,
+    "family": "b",
+    "params": [
+     4,
+     9,
+     3,
+     10
+    ],
+    "window": 10,
+    "line": "-4602351717350246"
+   },
+   {
+    "overlap": 10,
+    "p": 5,
+    "family": "b",
+    "params": [
+     4,
+     1,
+     1,
+     0
+    ],
+    "window": 26,
+    "line": "/2446073501351726"
+   }
+  ]
+ },
+ "9": {
+  "solutions": 51,
+  "null": 1000,
+  "primes": [
+   5,
+   7,
+   11,
+   13,
+   17,
+   19
+  ],
+  "c_mode": "full",
+  "sol_pct": [
+   10,
+   11,
+   12,
+   12
+  ],
+  "null_pct": [
+   11,
+   12,
+   14,
+   15
+  ],
+  "sol_mean": 9.941176470588236,
+  "null_mean": 10.997,
+  "frac_sol_ge_n": 1.0,
+  "frac_null_ge_n": 1.0,
+  "top": [
+   {
+    "overlap": 12,
+    "p": 5,
+    "family": "b",
+    "params": [
+     4,
+     1,
+     1,
+     0
+    ],
+    "window": 33,
+    "line": ".452717343808061256"
+   },
+   {
+    "overlap": 12,
+    "p": 5,
+    "family": "b",
+    "params": [
+     4,
+     1,
+     1,
+     0
+    ],
+    "window": 33,
+    "line": "/452717340308681256"
+   },
+   {
+    "overlap": 11,
+    "p": 5,
+    "family": "b",
+    "params": [
+     1,
+     1,
+     2,
+     0
+    ],
+    "window": 30,
+    "line": ".253527467806011348"
+   },
+   {
+    "overlap": 11,
+    "p": 17,
+    "family": "b",
+    "params": [
+     7,
+     15,
+     13,
+     11
+    ],
+    "window": 12,
+    "line": ".135628044707285613"
+   },
+   {
+    "overlap": 11,
+    "p": 5,
+    "family": "b",
+    "params": [
+     1,
+     1,
+     3,
+     0
+    ],
+    "window": 30,
+    "line": ".451613460838025727"
+   }
+  ]
+ },
+ "10": {
+  "solutions": 156,
+  "null": 1000,
+  "primes": [
+   5,
+   7,
+   11,
+   13,
+   17,
+   19
+  ],
+  "c_mode": "full",
+  "sol_pct": [
+   10,
+   11,
+   12,
+   12
+  ],
+  "null_pct": [
+   12,
+   13,
+   15,
+   17
+  ],
+  "sol_mean": 10.115384615384615,
+  "null_mean": 12.049,
+  "frac_sol_ge_n": 0.8589743589743589,
+  "frac_null_ge_n": 1.0,
+  "top": [
+   {
+    "overlap": 12,
+    "p": 5,
+    "family": "b",
+    "params": [
+     1,
+     3,
+     1,
+     0
+    ],
+    "window": 36,
+    "line": ".46136803790219582457"
+   },
+   {
+    "overlap": 12,
+    "p": 7,
+    "family": "b",
+    "params": [
+     1,
+     0,
+     5,
+     1
+    ],
+    "window": 21,
+    "line": "/25471804296801593736"
+   },
+   {
+    "overlap": 12,
+    "p": 5,
+    "family": "b",
+    "params": [
+     2,
+     3,
+     3,
+     2
+    ],
+    "window": 24,
+    "line": "*45271836090936182745"
+   },
+   {
+    "overlap": 11,
+    "p": 5,
+    "family": "b",
+    "params": [
+     4,
+     2,
+     3,
+     0
+    ],
+    "window": 36,
+    "line": ".06134848190279356725"
+   },
+   {
+    "overlap": 11,
+    "p": 5,
+    "family": "b",
+    "params": [
+     1,
+     0,
+     3,
+     0
+    ],
+    "window": 36,
+    "line": ".46136838190279054725"
+   }
+  ]
+ },
+ "11": {
+  "solutions": 158,
+  "null": 1000,
+  "primes": [
+   5,
+   7,
+   11,
+   13,
+   17,
+   19,
+   23
+  ],
+  "c_mode": "full",
+  "sol_pct": [
+   11,
+   12,
+   13,
+   14
+  ],
+  "null_pct": [
+   13,
+   14,
+   16,
+   18
+  ],
+  "sol_mean": 11.132911392405063,
+  "null_mean": 12.848,
+  "frac_sol_ge_n": 0.8164556962025317,
+  "frac_null_ge_n": 0.999,
+  "top": [
+   {
+    "overlap": 14,
+    "p": 17,
+    "family": "b",
+    "params": [
+     6,
+     12,
+     12,
+     15
+    ],
+    "window": 16,
+    "line": ":4637190A2528580A193746"
+   },
+   {
+    "overlap": 13,
+    "p": 5,
+    "family": "b",
+    "params": [
+     1,
+     2,
+     0,
+     0
+    ],
+    "window": 42,
+    "line": ".121689458A030A57274639"
+   },
+   {
+    "overlap": 13,
+    "p": 5,
+    "family": "b",
+    "params": [
+     1,
+     2,
+     4,
+     0
+    ],
+    "window": 45,
+    "line": ".68341919580A230A572746"
+   },
+   {
+    "overlap": 13,
+    "p": 5,
+    "family": "b",
+    "params": [
+     1,
+     4,
+     1,
+     0
+    ],
+    "window": 44,
+    "line": ".452512894A78030A691736"
+   },
+   {
+    "overlap": 13,
+    "p": 5,
+    "family": "b",
+    "params": [
+     1,
+     4,
+     4,
+     0
+    ],
+    "window": 44,
+    "line": ".471629085A1903362A4758"
+   }
+  ]
+ },
+ "12": {
+  "solutions": 566,
+  "null": 1000,
+  "primes": [
+   7,
+   11,
+   13,
+   17,
+   19,
+   23
+  ],
+  "c_mode": "full",
+  "sol_pct": [
+   11,
+   12,
+   13,
+   14
+  ],
+  "null_pct": [
+   12,
+   14,
+   16,
+   17
+  ],
+  "sol_mean": 10.886925795053003,
+  "null_mean": 12.179,
+  "frac_sol_ge_n": 0.18197879858657243,
+  "frac_null_ge_n": 0.725,
+  "top": [
+   {
+    "overlap": 14,
+    "p": 7,
+    "family": "b",
+    "params": [
+     3,
+     5,
+     5,
+     0
+    ],
+    "window": 36,
+    "line": ":467939015B183A06AB282457"
+   },
+   {
+    "overlap": 13,
+    "p": 7,
+    "family": "b",
+    "params": [
+     3,
+     1,
+     4,
+     0
+    ],
+    "window": 39,
+    "line": ".572947124B9B03016A8A3568"
+   },
+   {
+    "overlap": 13,
+    "p": 11,
+    "family": "b",
+    "params": [
+     2,
+     4,
+     7,
+     0
+    ],
+    "window": 25,
+    "line": ".6859017A4B2A1B2468033957"
+   },
+   {
+    "overlap": 13,
+    "p": 7,
+    "family": "b",
+    "params": [
+     3,
+     1,
+     3,
+     0
+    ],
+    "window": 38,
+    "line": ".45691A01578B3A07239B4826"
+   },
+   {
+    "overlap": 13,
+    "p": 7,
+    "family": "b",
+    "params": [
+     5,
+     2,
+     0,
+     0
+    ],
+    "window": 39,
+    "line": ".452969015A1B037A284B3867"
+   }
+  ]
+ },
+ "13": {
+  "solutions": 499,
+  "null": 1000,
+  "primes": [
+   7,
+   11,
+   13,
+   17,
+   19,
+   23
+  ],
+  "c_mode": "full",
+  "sol_pct": [
+   11,
+   12,
+   14,
+   14
+  ],
+  "null_pct": [
+   13,
+   14,
+   16,
+   17
+  ],
+  "sol_mean": 11.364729458917836,
+  "null_mean": 12.925,
+  "frac_sol_ge_n": 0.06412825651302605,
+  "frac_null_ge_n": 0.622,
+  "top": [
+   {
+    "overlap": 14,
+    "p": 17,
+    "family": "b",
+    "params": [
+     6,
+     11,
+     11,
+     15
+    ],
+    "window": 16,
+    "line": ":0C57482A1B3639691B2A48570C"
+   },
+   {
+    "overlap": 14,
+    "p": 7,
+    "family": "b",
+    "params": [
+     3,
+     1,
+     5,
+     0
+    ],
+    "window": 46,
+    "line": ".571B29586A020C3A148C9B3467"
+   },
+   {
+    "overlap": 14,
+    "p": 7,
+    "family": "b",
+    "params": [
+     5,
+     5,
+     6,
+     0
+    ],
+    "window": 44,
+    "line": ".56480C8A259B1219BC363A4707"
+   },
+   {
+    "overlap": 14,
+    "p": 7,
+    "family": "b",
+    "params": [
+     5,
+     1,
+     1,
+     0
+    ],
+    "window": 49,
+    "line": ":683A158B059A0C237C147B2946"
+   },
+   {
+    "overlap": 14,
+    "p": 7,
+    "family": "b",
+    "params": [
+     3,
+     1,
+     4,
+     0
+    ],
+    "window": 46,
+    "line": ".57291612AB690C4C4A7B035838"
+   }
+  ]
+ },
+ "14": {
+  "solutions": 1366,
+  "null": 1000,
+  "primes": [
+   7,
+   11,
+   13,
+   17,
+   19,
+   23,
+   29
+  ],
+  "c_mode": "full",
+  "sol_pct": [
+   12,
+   13,
+   14,
+   15
+  ],
+  "null_pct": [
+   14,
+   15,
+   17,
+   19
+  ],
+  "sol_mean": 11.980966325036603,
+  "null_mean": 13.662,
+  "frac_sol_ge_n": 0.03294289897510981,
+  "frac_null_ge_n": 0.515,
+  "top": [
+   {
+    "overlap": 15,
+    "p": 7,
+    "family": "b",
+    "params": [
+     5,
+     3,
+     4,
+     0
+    ],
+    "window": 52,
+    "line": ".563A285B1C36AD02CD0448179B79"
+   },
+   {
+    "overlap": 15,
+    "p": 7,
+    "family": "b",
+    "params": [
+     3,
+     5,
+     1,
+     0
+    ],
+    "window": 52,
+    "line": ".7B5A18251DAB68036D04379C4C29"
+   },
+   {
+    "overlap": 15,
+    "p": 7,
+    "family": "b",
+    "params": [
+     3,
+     3,
+     5,
+     0
+    ],
+    "window": 52,
+    "line": ".4889249D13065C01BD7A2C6B357A"
+   },
+   {
+    "overlap": 15,
+    "p": 7,
+    "family": "b",
+    "params": [
+     5,
+     1,
+     3,
+     0
+    ],
+    "window": 52,
+    "line": ".78486B190D29064CBD1235AC3A57"
+   },
+   {
+    "overlap": 15,
+    "p": 7,
+    "family": "b",
+    "params": [
+     5,
+     6,
+     3,
+     0
+    ],
+    "window": 52,
+    "line": ".6A3469BC145D0D0A5923BC177828"
+   }
+  ]
+ },
+ "15": {
+  "solutions": 3978,
+  "null": 1000,
+  "primes": [
+   7,
+   11,
+   13,
+   17,
+   19,
+   23,
+   29,
+   31
+  ],
+  "c_mode": "full",
+  "sol_pct": [
+   13,
+   14,
+   15,
+   16
+  ],
+  "null_pct": [
+   14,
+   16,
+   18,
+   19
+  ],
+  "sol_mean": 12.599296128707893,
+  "null_mean": 14.418,
+  "frac_sol_ge_n": 0.014328808446455505,
+  "frac_null_ge_n": 0.432,
+  "top": [
+   {
+    "overlap": 16,
+    "p": 7,
+    "family": "b",
+    "params": [
+     5,
+     4,
+     6,
+     0
+    ],
+    "window": 61,
+    "line": ".6D9E37296C7C1A0413DE4A288B5B05"
+   },
+   {
+    "overlap": 16,
+    "p": 7,
+    "family": "b",
+    "params": [
+     5,
+     1,
+     2,
+     0
+    ],
+    "window": 61,
+    "line": ":285B175EAD2A360E8B4C14097D396C"
+   },
+   {
+    "overlap": 15,
+    "p": 7,
+    "family": "b",
+    "params": [
+     3,
+     1,
+     0,
+     0
+    ],
+    "window": 58,
+    "line": ".8D482A1EAD24175B0E9B560C393C67"
+   },
+   {
+    "overlap": 15,
+    "p": 7,
+    "family": "b",
+    "params": [
+     3,
+     2,
+     2,
+     0
+    ],
+    "window": 60,
+    "line": ".38BE7C251A57CE039D4D190646AB28"
+   },
+   {
+    "overlap": 15,
+    "p": 7,
+    "family": "b",
+    "params": [
+     5,
+     4,
+     3,
+     0
+    ],
+    "window": 60,
+    "line": ".485C581D396A0E2E139B7DBC06247A"
+   }
+  ]
+ },
+ "16": {
+  "solutions": 5900,
+  "null": 1000,
+  "primes": [
+   11,
+   13,
+   17,
+   19,
+   23,
+   29,
+   31
+  ],
+  "c_mode": "full",
+  "sol_pct": [
+   12,
+   13,
+   14,
+   16
+  ],
+  "null_pct": [
+   13,
+   14,
+   15,
+   17
+  ],
+  "sol_mean": 11.67542372881356,
+  "null_mean": 12.86,
+  "frac_sol_ge_n": 0.00016949152542372882,
+  "frac_null_ge_n": 0.01,
+  "top": [
+   {
+    "overlap": 16,
+    "p": 11,
+    "family": "b",
+    "params": [
+     6,
+     0,
+     3,
+     0
+    ],
+    "window": 43,
+    "line": ".AC57392A051BEF7F1B48048D6E2D693C"
+   },
+   {
+    "overlap": 15,
+    "p": 11,
+    "family": "b",
+    "params": [
+     6,
+     1,
+     5,
+     0
+    ],
+    "window": 46,
+    "line": ".188CBC062B6E0E47249FDF1D5A35397A"
+   },
+   {
+    "overlap": 15,
+    "p": 11,
+    "family": "b",
+    "params": [
+     2,
+     10,
+     6,
+     0
+    ],
+    "window": 44,
+    "line": ".58BC36BC3F151D7AEF02680D49AE4729"
+   },
+   {
+    "overlap": 15,
+    "p": 11,
+    "family": "b",
+    "params": [
+     6,
+     6,
+     5,
+     0
+    ],
+    "window": 46,
+    "line": ".57AE9C5F241917CF243D0A68DE0B6B38"
+   },
+   {
+    "overlap": 14,
+    "p": 13,
+    "family": "b",
+    "params": [
+     10,
+     9,
+     2,
+     0
+    ],
+    "window": 38,
+    "line": ".8C368E3B26AF172E5B0F7D4A059D4C19"
+   }
+  ]
+ },
+ "17": {
+  "solutions": 7094,
+  "null": 1000,
+  "primes": [
+   11,
+   13,
+   17,
+   19,
+   23,
+   29,
+   31
+  ],
+  "c_mode": "full",
+  "sol_pct": [
+   12,
+   13,
+   14,
+   16
+  ],
+  "null_pct": [
+   13,
+   15,
+   16,
+   19
+  ],
+  "sol_mean": 12.117141246123484,
+  "null_mean": 13.41,
+  "frac_sol_ge_n": 0.0,
+  "frac_null_ge_n": 0.005,
+  "top": [
+   {
+    "overlap": 16,
+    "p": 13,
+    "family": "b",
+    "params": [
+     4,
+     2,
+     5,
+     0
+    ],
+    "window": 45,
+    "line": ".377A360D2ADF586E2G1E5F144C098GBC9B"
+   },
+   {
+    "overlap": 16,
+    "p": 11,
+    "family": "b",
+    "params": [
+     2,
+     3,
+     3,
+     0
+    ],
+    "window": 49,
+    "line": ":6A9F4F9B458G2D023DEG3E08BC571C176A"
+   },
+   {
+    "overlap": 15,
+    "p": 11,
+    "family": "b",
+    "params": [
+     2,
+     5,
+     9,
+     0
+    ],
+    "window": 51,
+    "line": ".8C349A361GBE7G2D2F5E0F061A5D47BC89"
+   },
+   {
+    "overlap": 15,
+    "p": 11,
+    "family": "b",
+    "params": [
+     6,
+     3,
+     4,
+     0
+    ],
+    "window": 51,
+    "line": ".362A4C7D160BEF7B140G9FCG585ADE2938"
+   },
+   {
+    "overlap": 15,
+    "p": 11,
+    "family": "b",
+    "params": [
+     6,
+     7,
+     3,
+     0
+    ],
+    "window": 50,
+    "line": ".5B8A46BDCF131G08560GCE2E792D379F4A"
+   }
+  ]
+ },
+ "18": {
+  "solutions": 19204,
+  "null": 1000,
+  "primes": [
+   11,
+   13,
+   17,
+   19,
+   23,
+   29,
+   31,
+   37
+  ],
+  "c_mode": "full",
+  "sol_pct": [
+   13,
+   14,
+   15,
+   16
+  ],
+  "null_pct": [
+   14,
+   15,
+   17,
+   18
+  ],
+  "sol_mean": 12.604978129556342,
+  "null_mean": 13.893,
+  "frac_sol_ge_n": 0.0,
+  "frac_null_ge_n": 0.001,
+  "top": [
+   {
+    "overlap": 16,
+    "p": 11,
+    "family": "b",
+    "params": [
+     7,
+     9,
+     4,
+     0
+    ],
+    "window": 57,
+    "line": ".5A1C685A8H2H3D074GBE1G0723CEDF4969BF"
+   },
+   {
+    "overlap": 16,
+    "p": 11,
+    "family": "b",
+    "params": [
+     6,
+     3,
+     2,
+     0
+    ],
+    "window": 57,
+    "line": ".AB5E2D6ADH2H7C0F3C0G4F1G68149E8B3579"
+   },
+   {
+    "overlap": 16,
+    "p": 11,
+    "family": "b",
+    "params": [
+     6,
+     2,
+     6,
+     0
+    ],
+    "window": 57,
+    "line": ".59348E1A3F7DDH1B284EBG060CGH6C259F7A"
+   },
+   {
+    "overlap": 16,
+    "p": 11,
+    "family": "b",
+    "params": [
+     2,
+     1,
+     1,
+     0
+    ],
+    "window": 59,
+    "line": ".2D8G9C357E5E0H8F4H7D0B1G3F16AB264A9C"
+   },
+   {
+    "overlap": 16,
+    "p": 11,
+    "family": "b",
+    "params": [
+     2,
+     5,
+     4,
+     0
+    ],
+    "window": 56,
+    "line": ".67AD26194EDH9E8AFH0103CG258F5G7BBC34"
+   }
+  ]
+ },
+ "19": {
+  "solutions": 32577,
+  "null": 1000,
+  "primes": [
+   11,
+   13,
+   17,
+   19,
+   23,
+   29,
+   31,
+   37
+  ],
+  "c_mode": "full",
+  "sol_pct": [
+   13,
+   14,
+   15,
+   19
+  ],
+  "null_pct": [
+   14,
+   16,
+   17,
+   19
+  ],
+  "sol_mean": 13.058783804524664,
+  "null_mean": 14.485,
+  "frac_sol_ge_n": 3.069650366823219e-05,
+  "frac_null_ge_n": 0.001,
+  "top": [
+   {
+    "overlap": 19,
+    "p": 11,
+    "family": "b",
+    "params": [
+     2,
+     10,
+     8,
+     0
+    ],
+    "window": 62,
+    "line": ".AG7H9C48157I23DF8CEG02AE360FHI461B59BD"
+   },
+   {
+    "overlap": 18,
+    "p": 11,
+    "family": "b",
+    "params": [
+     2,
+     10,
+     3,
+     0
+    ],
+    "window": 63,
+    "line": ".AE59CG450D8GCH193D4IFH180I7B262B3E67AF"
+   },
+   {
+    "overlap": 18,
+    "p": 11,
+    "family": "b",
+    "params": [
+     1,
+     2,
+     2,
+     8
+    ],
+    "window": 48,
+    "line": ":675AAF251G4F9C7I014EHI0B693E2HDG388DBC"
+   },
+   {
+    "overlap": 17,
+    "p": 11,
+    "family": "b",
+    "params": [
+     6,
+     1,
+     3,
+     0
+    ],
+    "window": 65,
+    "line": ".9C469C145G0D023D8IEH258BFG3H1B6EFI7A7A"
+   },
+   {
+    "overlap": 17,
+    "p": 11,
+    "family": "b",
+    "params": [
+     2,
+     10,
+     2,
+     0
+    ],
+    "window": 64,
+    "line": ".583CABCG8G2H147B9F0E140I6I3D2D5H9FAE67"
+   }
+  ]
+ },
+ "20": {
+  "solutions": 118057,
+  "null": 1000,
+  "primes": [
+   11,
+   13,
+   17,
+   19,
+   23,
+   29,
+   31,
+   37,
+   41
+  ],
+  "c_mode": "full",
+  "sol_pct": [
+   13,
+   15,
+   16,
+   18
+  ],
+  "null_pct": [
+   15,
+   16,
+   18,
+   19
+  ],
+  "sol_mean": 13.548692580702541,
+  "null_mean": 15.036,
+  "frac_sol_ge_n": 0.0,
+  "frac_null_ge_n": 0.0,
+  "top": [
+   {
+    "overlap": 18,
+    "p": 11,
+    "family": "b",
+    "params": [
+     6,
+     7,
+     9,
+     0
+    ],
+    "window": 70,
+    "line": ".37DHBE7JCI3C45285I09EG14081GBJ9FFH6A2D6A"
+   },
+   {
+    "overlap": 18,
+    "p": 11,
+    "family": "b",
+    "params": [
+     2,
+     5,
+     2,
+     0
+    ],
+    "window": 71,
+    "line": ".2C8D6G5BBD587J039HHJ120F4A3I1AEI7F46CG9E"
+   },
+   {
+    "overlap": 18,
+    "p": 11,
+    "family": "b",
+    "params": [
+     6,
+     2,
+     3,
+     0
+    ],
+    "window": 70,
+    "line": ".8A4E1B5F23EH1C39DI0G27FG4C7J0I6ADJ6H5B89"
+   },
+   {
+    "overlap": 18,
+    "p": 11,
+    "family": "b",
+    "params": [
+     6,
+     7,
+     7,
+     0
+    ],
+    "window": 68,
+    "line": ":AC3E24287DBF1J130956DEAJGI0I486CBHFH5G79"
+   },
+   {
+    "overlap": 18,
+    "p": 11,
+    "family": "b",
+    "params": [
+     2,
+     9,
+     2,
+     0
+    ],
+    "window": 71,
+    "line": ".78BF3C7G8C1E2BGJ2J9E35AH6I01DH6A4D0F4I59"
+   }
+  ]
+ },
+ "21": {
+  "solutions": 1000,
+  "null": 1000,
+  "primes": [
+   11,
+   13,
+   17,
+   19,
+   23,
+   29,
+   31,
+   37,
+   41,
+   43
+  ],
+  "c_mode": "few",
+  "sol_pct": [
+   13,
+   14,
+   16,
+   17
+  ],
+  "null_pct": [
+   15,
+   17,
+   18,
+   20
+  ],
+  "sol_mean": 13.378,
+  "null_mean": 15.137,
+  "frac_sol_ge_n": 0.0,
+  "frac_null_ge_n": 0.0,
+  "top": [
+   {
+    "overlap": 17,
+    "p": 11,
+    "family": "b",
+    "params": [
+     2,
+     10,
+     10,
+     0
+    ],
+    "window": 76,
+    "line": ".BC7B4D7I346HEJ28HI0936FK1JFK0259CD1A5G8GAE"
+   },
+   {
+    "overlap": 17,
+    "p": 11,
+    "family": "b",
+    "params": [
+     2,
+     3,
+     4,
+     0
+    ],
+    "window": 77,
+    "line": ":7C499F141HEK5H2I8A0D6E7KAC2I3F063JGJ5BBG8D"
+   },
+   {
+    "overlap": 17,
+    "p": 11,
+    "family": "b",
+    "params": [
+     8,
+     0,
+     6,
+     0
+    ],
+    "window": 76,
+    "line": ":8C5D4H195H0KEG2A9I6D1J7E2BAI460K3FBJ3G7F8C"
+   },
+   {
+    "overlap": 16,
+    "p": 11,
+    "family": "b",
+    "params": [
+     8,
+     1,
+     1,
+     0
+    ],
+    "window": 81,
+    "line": ":9F348A48EF2IDJ3D0K9E1J6B0K7H172I56CGACGH5B"
+   },
+   {
+    "overlap": 16,
+    "p": 13,
+    "family": "b",
+    "params": [
+     10,
+     8,
+     1,
+     0
+    ],
+    "window": 65,
+    "line": ":89AD4E45HI1C397IEFJK0K01562DBH8J23FG6G7ABC"
+   }
+  ]
+ },
+ "22": {
+  "solutions": 1000,
+  "null": 1000,
+  "primes": [
+   11,
+   13,
+   17,
+   19,
+   23,
+   29,
+   31,
+   37,
+   41,
+   43
+  ],
+  "c_mode": "few",
+  "sol_pct": [
+   14,
+   15,
+   17,
+   20
+  ],
+  "null_pct": [
+   15,
+   17,
+   19,
+   21
+  ],
+  "sol_mean": 13.787,
+  "null_mean": 15.564,
+  "frac_sol_ge_n": 0.0,
+  "frac_null_ge_n": 0.0,
+  "top": [
+   {
+    "overlap": 20,
+    "p": 11,
+    "family": "b",
+    "params": [
+     2,
+     6,
+     6,
+     0
+    ],
+    "window": 84,
+    "line": ":9AEF3545DJ17AJFL0349DK18CHIL062BEK28GHGI67BC"
+   },
+   {
+    "overlap": 20,
+    "p": 11,
+    "family": "b",
+    "params": [
+     2,
+     6,
+     6,
+     0
+    ],
+    "window": 84,
+    "line": ":1ACF68BH582EIJ05EI491L0KCH37GL237JDG4ADF69BK"
+   },
+   {
+    "overlap": 18,
+    "p": 11,
+    "family": "b",
+    "params": [
+     2,
+     6,
+     6,
+     0
+    ],
+    "window": 84,
+    "line": ":5ACF68BH582E3J0KEI491L0KCH371L2I7JDG4ADF69BG"
+   },
+   {
+    "overlap": 18,
+    "p": 11,
+    "family": "b",
+    "params": [
+     2,
+     6,
+     6,
+     0
+    ],
+    "window": 84,
+    "line": ":CD6F45AD25CI2I1A4E0E1L0K7L7HBK3J39GJ8BGH6F89"
+   },
+   {
+    "overlap": 18,
+    "p": 11,
+    "family": "b",
+    "params": [
+     2,
+     6,
+     6,
+     0
+    ],
+    "window": 84,
+    "line": ":5ACF68BH582EIJ0KEI491L0KCH371L237JDG4ADF69BG"
+   }
+  ]
+ },
+ "23": {
+  "solutions": 1000,
+  "null": 1000,
+  "primes": [
+   11,
+   13,
+   17,
+   19,
+   23,
+   29,
+   31,
+   37,
+   41,
+   43,
+   47
+  ],
+  "c_mode": "few",
+  "sol_pct": [
+   14,
+   15,
+   17,
+   18
+  ],
+  "null_pct": [
+   16,
+   18,
+   20,
+   21
+  ],
+  "sol_mean": 14.091,
+  "null_mean": 16.122,
+  "frac_sol_ge_n": 0.0,
+  "frac_null_ge_n": 0.0,
+  "top": [
+   {
+    "overlap": 18,
+    "p": 13,
+    "family": "b",
+    "params": [
+     1,
+     2,
+     2,
+     0
+    ],
+    "window": 81,
+    "line": ":8JAB6K8CFH2L6I0H9DLM347FIJ019D5M4G1K57AE2GBC3E"
+   },
+   {
+    "overlap": 18,
+    "p": 13,
+    "family": "b",
+    "params": [
+     10,
+     2,
+     2,
+     0
+    ],
+    "window": 81,
+    "line": ":7DAC38HI2D0K68IL1G5J0B7FBM3H6L14EG2M9K45EJAC9F"
+   },
+   {
+    "overlap": 18,
+    "p": 13,
+    "family": "b",
+    "params": [
+     1,
+     1,
+     1,
+     0
+    ],
+    "window": 81,
+    "line": "/0ADH249I2B6L5GDMFH3A094KGK17JM8J6C183LEFBC5I7E"
+   },
+   {
+    "overlap": 18,
+    "p": 13,
+    "family": "b",
+    "params": [
+     10,
+     2,
+     2,
+     0
+    ],
+    "window": 81,
+    "line": ":6H4C08HJCDDF46281FJLBM2K0B137LEKGI799A35EMAI5G"
+   },
+   {
+    "overlap": 18,
+    "p": 11,
+    "family": "b",
+    "params": [
+     8,
+     0,
+     0,
+     0
+    ],
+    "window": 89,
+    "line": ":9B5HEL34GIAE3L0KDG7A027FKMCF692M1J8C46IJ185HBD"
+   }
+  ]
+ },
+ "24": {
+  "solutions": 1000,
+  "null": 1000,
+  "primes": [
+   13,
+   17,
+   19,
+   23,
+   29,
+   31,
+   37,
+   41,
+   43,
+   47
+  ],
+  "c_mode": "few",
+  "sol_pct": [
+   14,
+   15,
+   17,
+   18
+  ],
+  "null_pct": [
+   15,
+   17,
+   19,
+   20
+  ],
+  "sol_mean": 13.797,
+  "null_mean": 15.395,
+  "frac_sol_ge_n": 0.0,
+  "frac_null_ge_n": 0.0,
+  "top": [
+   {
+    "overlap": 18,
+    "p": 13,
+    "family": "b",
+    "params": [
+     1,
+     8,
+     8,
+     0
+    ],
+    "window": 84,
+    "line": ":EHBC39047AIL04FKHMILAF17GM8D251638JN25DGJNEKBC69"
+   },
+   {
+    "overlap": 18,
+    "p": 17,
+    "family": "b",
+    "params": [
+     1,
+     1,
+     1,
+     0
+    ],
+    "window": 67,
+    "line": "xCD794D46239F3B1G8I15LN6N0H02IM5F7MCK8EKLHJAJEGAB"
+   },
+   {
+    "overlap": 18,
+    "p": 13,
+    "family": "b",
+    "params": [
+     10,
+     8,
+     8,
+     0
+    ],
+    "window": 84,
+    "line": ":26EF2BDN17FIDM3I6K04BE4G7J9CJN3H5K1A58GM0ACL89HL"
+   },
+   {
+    "overlap": 18,
+    "p": 13,
+    "family": "b",
+    "params": [
+     1,
+     8,
+     8,
+     0
+    ],
+    "window": 84,
+    "line": ":7FBD5H8E6L1I0A9LGK4M0J3BCK4N1J372EDN5M2H9F6IAC8G"
+   },
+   {
+    "overlap": 18,
+    "p": 13,
+    "family": "b",
+    "params": [
+     1,
+     8,
+     8,
+     0
+    ],
+    "window": 84,
+    "line": ":688B7H14ACILJN3L397IAMEN091D5GEK2K0425BDJM6GCFFH"
+   }
+  ]
+ },
+ "25": {
+  "solutions": 1000,
+  "null": 1000,
+  "primes": [
+   13,
+   17,
+   19,
+   23,
+   29,
+   31,
+   37,
+   41,
+   43,
+   47
+  ],
+  "c_mode": "few",
+  "sol_pct": [
+   14,
+   16,
+   18,
+   20
+  ],
+  "null_pct": [
+   16,
+   17,
+   19,
+   21
+  ],
+  "sol_mean": 14.18,
+  "null_mean": 15.831,
+  "frac_sol_ge_n": 0.0,
+  "frac_null_ge_n": 0.0,
+  "top": [
+   {
+    "overlap": 20,
+    "p": 13,
+    "family": "b",
+    "params": [
+     10,
+     4,
+     10,
+     0
+    ],
+    "window": 93,
+    "line": ":7ADI5D9MIL4G2O8K0CFN7A135JLNEH19CO4G0M8K362FBJ6BEH"
+   },
+   {
+    "overlap": 20,
+    "p": 13,
+    "family": "b",
+    "params": [
+     1,
+     1,
+     1,
+     0
+    ],
+    "window": 97,
+    "line": ":GH6BAE6G0N3HCO34FJ1MFJ4B2MDK592N59KL0C7L1O8IAEDI78"
+   },
+   {
+    "overlap": 19,
+    "p": 13,
+    "family": "b",
+    "params": [
+     1,
+     3,
+     11,
+     0
+    ],
+    "window": 93,
+    "line": ":7B2F5ICE0LAKFG24IL17BOJN8G150DHN36KM894E3OAC6J9MDH"
+   },
+   {
+    "overlap": 18,
+    "p": 17,
+    "family": "b",
+    "params": [
+     2,
+     5,
+     5,
+     0
+    ],
+    "window": 73,
+    "line": ":8H4L2EBG7F694LBNNOIJ05CMAE2CJO56011D3KFI9H8DAM3K7G"
+   },
+   {
+    "overlap": 18,
+    "p": 13,
+    "family": "b",
+    "params": [
+     3,
+     0,
+     12,
+     0
+    ],
+    "window": 93,
+    "line": ":AJAHJM181ICF498BLOIM3OBH4K7D0L2603DGFK9C6NGN257E5E"
+   }
+  ]
+ },
+ "26": {
+  "solutions": 1000,
+  "null": 1000,
+  "primes": [
+   13,
+   17,
+   19,
+   23,
+   29,
+   31,
+   37,
+   41,
+   43,
+   47,
+   53
+  ],
+  "c_mode": "few",
+  "sol_pct": [
+   14,
+   16,
+   18,
+   20
+  ],
+  "null_pct": [
+   16,
+   18,
+   19,
+   23
+  ],
+  "sol_mean": 14.461,
+  "null_mean": 16.228,
+  "frac_sol_ge_n": 0.0,
+  "frac_null_ge_n": 0.0,
+  "top": [
+   {
+    "overlap": 20,
+    "p": 17,
+    "family": "b",
+    "params": [
+     1,
+     13,
+     13,
+     0
+    ],
+    "window": 76,
+    "line": "oDM9G370NHIAEDH4N461OBK5F06JPAK5E1OJL2L8CBF782PIM9G3C"
+   },
+   {
+    "overlap": 20,
+    "p": 13,
+    "family": "b",
+    "params": [
+     10,
+     7,
+     7,
+     0
+    ],
+    "window": 100,
+    "line": ":BL893DGK6O2F1FJP3B78IKNPCL4D0257HIEM06AOAN1J59CMGH4E"
+   },
+   {
+    "overlap": 19,
+    "p": 13,
+    "family": "b",
+    "params": [
+     10,
+     6,
+     4,
+     0
+    ],
+    "window": 100,
+    "line": ":HK7CBMGL186A3L5PCF7G1NBP26JN0E2O9IAD0K4MFJHO493EDI58"
+   },
+   {
+    "overlap": 18,
+    "p": 13,
+    "family": "b",
+    "params": [
+     1,
+     7,
+     0,
+     0
+    ],
+    "window": 100,
+    "line": ":DE8M8G46DG67FNFK351PLP1B2I7NEO040OKM5A2AIJ9CJL9H3HBC"
+   },
+   {
+    "overlap": 18,
+    "p": 17,
+    "family": "b",
+    "params": [
+     15,
+     13,
+     13,
+     0
+    ],
+    "window": 72,
+    "line": ":BE9I691FDH0K7MKM240A2H6LCO1D4J8NFPLN353I5P8CAOGJ7GBE"
+   }
+  ]
+ },
+ "27": {
+  "solutions": 1000,
+  "null": 1000,
+  "primes": [
+   13,
+   17,
+   19,
+   23,
+   29,
+   31,
+   37,
+   41,
+   43,
+   47,
+   53
+  ],
+  "c_mode": "few",
+  "sol_pct": [
+   15,
+   16,
+   18,
+   19
+  ],
+  "null_pct": [
+   17,
+   18,
+   20,
+   22
+  ],
+  "sol_mean": 14.816,
+  "null_mean": 16.737,
+  "frac_sol_ge_n": 0.0,
+  "frac_null_ge_n": 0.0,
+  "top": [
+   {
+    "overlap": 19,
+    "p": 13,
+    "family": "b",
+    "params": [
+     10,
+     6,
+     5,
+     0
+    ],
+    "window": 109,
+    "line": ":BCAF354EJL8K24GO1I39KQDHJP0Q179D06HN8P2AMO6I57CMLNBGEF"
+   },
+   {
+    "overlap": 19,
+    "p": 13,
+    "family": "b",
+    "params": [
+     10,
+     2,
+     7,
+     0
+    ],
+    "window": 109,
+    "line": ":ADHM8J45BQ2N9J2C8GLN16CF1Q6K0PBEKP35AIEO7H3O0FLM7I49DG"
+   },
+   {
+    "overlap": 19,
+    "p": 13,
+    "family": "b",
+    "params": [
+     1,
+     3,
+     4,
+     0
+    ],
+    "window": 108,
+    "line": ":AFBEEJ689O3H0KMPMPAI23075D5LDLJQNO8G14146Q9N2HIK7CCFBG"
+   },
+   {
+    "overlap": 19,
+    "p": 13,
+    "family": "b",
+    "params": [
+     1,
+     5,
+     12,
+     0
+    ],
+    "window": 109,
+    "line": ":DNBKCFIO6A477E34HPHLAQ0PIL2O581Q0G5919MNCJJMGK28BE6F3D"
+   },
+   {
+    "overlap": 18,
+    "p": 17,
+    "family": "b",
+    "params": [
+     2,
+     1,
+     2,
+     0
+    ],
+    "window": 85,
+    "line": ":CHCF5MAI7M1INQ7BDHAP2K5Q236KNO0L6O1G9DFJ038P4J8G4LBE9E"
+   }
+  ]
+ },
+ "28": {
+  "solutions": 1000,
+  "null": 1000,
+  "primes": [
+   17,
+   19,
+   23,
+   29,
+   31,
+   37,
+   41,
+   43,
+   47,
+   53
+  ],
+  "c_mode": "few",
+  "sol_pct": [
+   14,
+   15,
+   16,
+   18
+  ],
+  "null_pct": [
+   15,
+   17,
+   18,
+   20
+  ],
+  "sol_mean": 13.671,
+  "null_mean": 15.058,
+  "frac_sol_ge_n": 0.0,
+  "frac_null_ge_n": 0.0,
+  "top": [
+   {
+    "overlap": 18,
+    "p": 17,
+    "family": "b",
+    "params": [
+     1,
+     12,
+     12,
+     8
+    ],
+    "window": 64,
+    "line": ":FL9A7Q7GGL0R3FDO4I288M1D5N2AHP4MEQ5JJP9N3ECO0R6BBK1KHI6C"
+   },
+   {
+    "overlap": 17,
+    "p": 17,
+    "family": "b",
+    "params": [
+     2,
+     0,
+     4,
+     0
+    ],
+    "window": 89,
+    "line": ":BF47LOFIBH5H28DP1M8ILR174D03ORENKQ069J5Q2EJPAMAG9C36KNCG"
+   },
+   {
+    "overlap": 17,
+    "p": 17,
+    "family": "b",
+    "params": [
+     1,
+     0,
+     15,
+     0
+    ],
+    "window": 89,
+    "line": ":58DGCH6G8H1M36NRDI7NCI023Q27KP1OPR9F4K9E04LO5QAJBLAFBEJM"
+   },
+   {
+    "overlap": 17,
+    "p": 17,
+    "family": "b",
+    "params": [
+     15,
+     1,
+     11,
+     0
+    ],
+    "window": 90,
+    "line": ":4GCJ7E6MLMADGQ1R249J9HCO0PKO372R3FAI8INP0Q1BEH565LDK8FBN"
+   },
+   {
+    "overlap": 17,
+    "p": 17,
+    "family": "b",
+    "params": [
+     1,
+     12,
+     1,
+     0
+    ],
+    "window": 88,
+    "line": ":AGDG78KO8QFLPR453E9LCI2ANQ0M5R14HP9F6IDOMN026C1J37JKBEBH"
+   }
+  ]
+ },
+ "29": {
+  "solutions": 1000,
+  "null": 1000,
+  "primes": [
+   17,
+   19,
+   23,
+   29,
+   31,
+   37,
+   41,
+   43,
+   47,
+   53,
+   59
+  ],
+  "c_mode": "few",
+  "sol_pct": [
+   14,
+   15,
+   17,
+   19
+  ],
+  "null_pct": [
+   15,
+   17,
+   19,
+   20
+  ],
+  "sol_mean": 14.025,
+  "null_mean": 15.459,
+  "frac_sol_ge_n": 0.0,
+  "frac_null_ge_n": 0.0,
+  "top": [
+   {
+    "overlap": 19,
+    "p": 19,
+    "family": "b",
+    "params": [
+     3,
+     13,
+     7,
+     0
+    ],
+    "window": 87,
+    "line": ":AF7C8JHN7C3O1KQS3F096R2NMOBEAIEH465Q1MJSDP028R4PGL5B9KGLDI"
+   },
+   {
+    "overlap": 18,
+    "p": 17,
+    "family": "b",
+    "params": [
+     15,
+     3,
+     3,
+     0
+    ],
+    "window": 97,
+    "line": ":AHFLAMCL5PCS281M8H1D349ENQ0O9J4S25EJOPFRBK6RKQ0G3N7G6I7DBI"
+   },
+   {
+    "overlap": 18,
+    "p": 17,
+    "family": "b",
+    "params": [
+     2,
+     0,
+     5,
+     0
+    ],
+    "window": 96,
+    "line": ":FMAJFM5CIN1Q7P4L8BEQ08CR0HJO3P49BS1GKS2EHK7O3L2R5AGN6D9I6D"
+   },
+   {
+    "overlap": 18,
+    "p": 19,
+    "family": "b",
+    "params": [
+     2,
+     5,
+     5,
+     0
+    ],
+    "window": 85,
+    "line": ":3B7G9J7G3IEOFN2Q8AMO0SDH581R6M1RKNBF0S46IK2Q5D4EAPCL9JCLHP"
+   },
+   {
+    "overlap": 18,
+    "p": 17,
+    "family": "b",
+    "params": [
+     14,
+     3,
+     3,
+     8
+    ],
+    "window": 60,
+    "line": ":CF7AILBP5C06JNKP4E04QRBD196K2Q8MJRFH12OSEO3859MSGN3H7AILDG"
+   }
+  ]
+ },
+ "30": {
+  "solutions": 1000,
+  "null": 1000,
+  "primes": [
+   17,
+   19,
+   23,
+   29,
+   31,
+   37,
+   41,
+   43,
+   47,
+   53,
+   59,
+   61
+  ],
+  "c_mode": "few",
+  "sol_pct": [
+   14,
+   16,
+   18,
+   19
+  ],
+  "null_pct": [
+   16,
+   17,
+   19,
+   22
+  ],
+  "sol_mean": 14.416,
+  "null_mean": 15.796,
+  "frac_sol_ge_n": 0.0,
+  "frac_null_ge_n": 0.0,
+  "top": [
+   {
+    "overlap": 19,
+    "p": 17,
+    "family": "b",
+    "params": [
+     1,
+     0,
+     4,
+     0
+    ],
+    "window": 103,
+    "line": ":ASEL4OBCEL2CDTJM3N5I9RNP1D073K9QMTGS462KBO6Q7A0GHR8FHI5P8F1J"
+   },
+   {
+    "overlap": 18,
+    "p": 17,
+    "family": "b",
+    "params": [
+     2,
+     1,
+     12,
+     0
+    ],
+    "window": 103,
+    "line": ":HSEKFK2D0QAG28MQ6BOTHMBL6J5PPS144OAN8I7C05IN37LRDJ3TGR9E9F1C"
+   },
+   {
+    "overlap": 18,
+    "p": 17,
+    "family": "b",
+    "params": [
+     15,
+     11,
+     11,
+     0
+    ],
+    "window": 104,
+    "line": ":CECJ7J5M8LDR4Q3T9BISOS2N46EG9T0KDFNP6R151BIK0Q3P2G8L7OAMAHFH"
+   },
+   {
+    "overlap": 18,
+    "p": 19,
+    "family": "b",
+    "params": [
+     3,
+     14,
+     14,
+     0
+    ],
+    "window": 92,
+    "line": ":6BCJ7CGN9Q3J2PGLEL25PT1T9OES7BIM1F5K0S04OR8F8D4RAQ3K6DHMAHIN"
+   },
+   {
+    "overlap": 18,
+    "p": 19,
+    "family": "b",
+    "params": [
+     17,
+     14,
+     14,
+     10
+    ],
+    "window": 52,
+    "line": ":6JDLHLBCOQ7R9BEJ24MQOS0T1DEK46NP9FGS0T1537PRAFIK2M35HI8C8GAN"
+   }
+  ]
+ },
+ "31": {
+  "solutions": 1000,
+  "null": 1000,
+  "primes": [
+   17,
+   19,
+   23,
+   29,
+   31,
+   37,
+   41,
+   43,
+   47,
+   53,
+   59,
+   61
+  ],
+  "c_mode": "few",
+  "sol_pct": [
+   14,
+   16,
+   18,
+   20
+  ],
+  "null_pct": [
+   16,
+   18,
+   20,
+   22
+  ],
+  "sol_mean": 14.623,
+  "null_mean": 16.192,
+  "frac_sol_ge_n": 0.0,
+  "frac_null_ge_n": 0.0,
+  "top": [
+   {
+    "overlap": 20,
+    "p": 17,
+    "family": "b",
+    "params": [
+     2,
+     2,
+     2,
+     0
+    ],
+    "window": 113,
+    "line": ":CI24GK8J69GQAR9T2H3OPU0FBTDN578MNP7H1JFU056RDS1L3K4ELOBMAEQSCI"
+   },
+   {
+    "overlap": 20,
+    "p": 17,
+    "family": "b",
+    "params": [
+     14,
+     2,
+     2,
+     14
+    ],
+    "window": 66,
+    "line": ":CJ47AGHLHN384L2OEK5T0UCO238T5FBJFP1MRS6I0U1PAG6S9QMR7D9DEKNQBI"
+   },
+   {
+    "overlap": 20,
+    "p": 17,
+    "family": "b",
+    "params": [
+     15,
+     0,
+     13,
+     0
+    ],
+    "window": 109,
+    "line": ":8LGIKMBF7P79HTIQ2A4PDO2T3J3EOU0U06GRBR1S6H5QKS4C1DLN5NFJ8ACE9M"
+   },
+   {
+    "overlap": 19,
+    "p": 17,
+    "family": "b",
+    "params": [
+     2,
+     1,
+     7,
+     0
+    ],
+    "window": 111,
+    "line": ":IN4FGTBM3OBG7HKTKQ2LCU69258D5R0U3PHMPSLO0I9S4A1ADNEJ6R8J1EFQ7C"
+   },
+   {
+    "overlap": 19,
+    "p": 17,
+    "family": "b",
+    "params": [
+     15,
+     0,
+     13,
+     0
+    ],
+    "window": 109,
+    "line": ":AQPRAGDF08INET793JIUPS8DJQ26196OLTOS4BHM250CBRLN1G7CMUFHEK354K"
+   }
+  ]
+ },
+ "32": {
+  "solutions": 177,
+  "null": 1000,
+  "primes": [
+   17,
+   19,
+   23,
+   29,
+   31,
+   37,
+   41,
+   43,
+   47,
+   53,
+   59,
+   61
+  ],
+  "c_mode": "few",
+  "sol_pct": [
+   16,
+   18,
+   20,
+   21
+  ],
+  "null_pct": [
+   16,
+   18,
+   20,
+   23
+  ],
+  "sol_mean": 15.790960451977401,
+  "null_mean": 16.531,
+  "frac_sol_ge_n": 0.0,
+  "frac_null_ge_n": 0.0,
+  "top": [
+   {
+    "overlap": 21,
+    "p": 17,
+    "family": "b",
+    "params": [
+     1,
+     1,
+     8,
+     0
+    ],
+    "window": 118,
+    "line": "oEI6RAK9G1J9FAUIN7BQSPT2N4E07JV3Q5S0COVHR8T2635KO8D1LGMCUFMBL4PDH"
+   },
+   {
+    "overlap": 20,
+    "p": 19,
+    "family": "b",
+    "params": [
+     1,
+     13,
+     13,
+     4
+    ],
+    "window": 64,
+    "line": "oIK4O9E79PUFI4G1S8NSTHJ0CAK05AT6Q5P2LQVBLJVCE238N3UFRDG16MOHM7RBD"
+   },
+   {
+    "overlap": 20,
+    "p": 19,
+    "family": "b",
+    "params": [
+     1,
+     13,
+     13,
+     1
+    ],
+    "window": 64,
+    "line": "oGLST181D7BHJCO6RLTDE08FR5PMS5M0KBV9Q396Q4GNVHI2A4P7JCEKOIUNU23AF"
+   },
+   {
+    "overlap": 20,
+    "p": 17,
+    "family": "b",
+    "params": [
+     1,
+     15,
+     5,
+     0
+    ],
+    "window": 116,
+    "line": "/DLGQDI8RES8UKN35KP6G1VNP2BFT29MU1I9RTV054J4AEHQS367MCOAB7OHJFL0C"
+   },
+   {
+    "overlap": 19,
+    "p": 17,
+    "family": "b",
+    "params": [
+     1,
+     1,
+     12,
+     0
+    ],
+    "window": 118,
+    "line": "o5IFILNMP5BRV3NBE263H2JORAF019OJU1C7MUVGL47CTESPTHK8S04KQ698ADGDQ"
+   }
+  ]
+ },
+ "33": {
+  "solutions": 21,
+  "null": 1000,
+  "primes": [
+   17,
+   19,
+   23,
+   29,
+   31,
+   37,
+   41,
+   43,
+   47,
+   53,
+   59,
+   61,
+   67
+  ],
+  "c_mode": "few",
+  "sol_pct": [
+   16,
+   16,
+   17,
+   18
+  ],
+  "null_pct": [
+   17,
+   19,
+   21,
+   22
+  ],
+  "sol_mean": 15.238095238095237,
+  "null_mean": 16.935,
+  "frac_sol_ge_n": 0.0,
+  "frac_null_ge_n": 0.0,
+  "top": [
+   {
+    "overlap": 18,
+    "p": 19,
+    "family": "b",
+    "params": [
+     3,
+     10,
+     0,
+     0
+    ],
+    "window": 110,
+    "line": "c9F7F2ALN67GM8SSVKQ3W5U3E8JCEJLVW5R01BDIKDOIT2R0T6C144OAGPQ9BMUHPHN"
+   },
+   {
+    "overlap": 16,
+    "p": 23,
+    "family": "b",
+    "params": [
+     2,
+     7,
+     7,
+     9
+    ],
+    "window": 56,
+    "line": ":0W9D6LEKIRPSCM36DL7F8T2G9URV1FMO4S8AHV152NGU3OHPBJQTAK475ECIBQJN0W"
+   },
+   {
+    "overlap": 16,
+    "p": 17,
+    "family": "b",
+    "params": [
+     1,
+     5,
+     7,
+     0
+    ],
+    "window": 124,
+    "line": ":0C9LMPBHER49DJ4O3UGI7QAU03FVKOQV5R168C1HTW2M6PEG2T8SDJNS5IFL7ABNKW"
+   },
+   {
+    "overlap": 16,
+    "p": 19,
+    "family": "b",
+    "params": [
+     1,
+     3,
+     3,
+     16
+    ],
+    "window": 72,
+    "line": ":8AKMFTDNGQ8D4LLNRW371W671F2REIKU4S2CEI5UHVPQ0VPT059BBSJO6G9J3HACMO"
+   },
+   {
+    "overlap": 16,
+    "p": 17,
+    "family": "b",
+    "params": [
+     1,
+     1,
+     1,
+     0
+    ],
+    "window": 129,
+    "line": "cACFILN36AJ8NETFO7R25SW2GDW4K1QPVBL176VCS0JGU04RU5P8H3I9ODMQT9BEHKM"
+   }
+  ]
+ },
+ "34": {
+  "solutions": 173,
+  "null": 1000,
+  "primes": [
+   17,
+   19,
+   23,
+   29,
+   31,
+   37,
+   41,
+   43,
+   47,
+   53,
+   59,
+   61,
+   67
+  ],
+  "c_mode": "few",
+  "sol_pct": [
+   16,
+   17,
+   20,
+   20
+  ],
+  "null_pct": [
+   17,
+   19,
+   21,
+   22
+  ],
+  "sol_mean": 15.959537572254336,
+  "null_mean": 17.284,
+  "frac_sol_ge_n": 0.0,
+  "frac_null_ge_n": 0.0,
+  "top": [
+   {
+    "overlap": 20,
+    "p": 17,
+    "family": "b",
+    "params": [
+     1,
+     9,
+     9,
+     0
+    ],
+    "window": 132,
+    "line": "oAHJSJP9BDI1QGO5L2N6U8XIU7DLT124B0R6XMTVW4CKQ3F0P3RAVCS9H7WFKMO8E5EGN"
+   },
+   {
+    "overlap": 20,
+    "p": 17,
+    "family": "b",
+    "params": [
+     1,
+     9,
+     9,
+     0
+    ],
+    "window": 132,
+    "line": "oBI8OIP5LNS4UHQ6C2W1G4DDX3QMNEJ026O9RVXEJAB7U0KKTHW1VLR7G3T5ACS8F9PFM"
+   },
+   {
+    "overlap": 20,
+    "p": 17,
+    "family": "b",
+    "params": [
+     1,
+     9,
+     9,
+     0
+    ],
+    "window": 132,
+    "line": "oDIENPR9B7PDH2ICT24AU1OLUBQSXGW065JESRX1H057M3C9W3NTV4LFVGK8QMO68AJFK"
+   },
+   {
+    "overlap": 20,
+    "p": 19,
+    "family": "b",
+    "params": [
+     1,
+     12,
+     12,
+     5
+    ],
+    "window": 56,
+    "line": "oDJALASBF8M26OSHJ9T6PVW4U1HFX07KU7CLQ3DQX0IGW3T128R4OEG59RVBPIM5NCNEK"
+   },
+   {
+    "overlap": 20,
+    "p": 17,
+    "family": "b",
+    "params": [
+     1,
+     9,
+     9,
+     13
+    ],
+    "window": 64,
+    "line": "oFJIK9M796CNR5TKUCGUV5M2APT170G1XJP8E0WHXQW48NVBS23HL3D4S6ALROQBODFEI"
+   }
+  ]
+ },
+ "35": {
+  "solutions": 25,
+  "null": 1000,
+  "primes": [
+   17,
+   19,
+   23,
+   29,
+   31,
+   37,
+   41,
+   43,
+   47,
+   53,
+   59,
+   61,
+   67,
+   71
+  ],
+  "c_mode": "few",
+  "sol_pct": [
+   16,
+   17,
+   19,
+   20
+  ],
+  "null_pct": [
+   18,
+   19,
+   21,
+   24
+  ],
+  "sol_mean": 16.28,
+  "null_mean": 17.616,
+  "frac_sol_ge_n": 0.0,
+  "frac_null_ge_n": 0.0,
+  "top": [
+   {
+    "overlap": 20,
+    "p": 17,
+    "family": "b",
+    "params": [
+     1,
+     0,
+     0,
+     0
+    ],
+    "window": 137,
+    "line": "c9FGLKM5H8RSV5A4GFUMYNSAD291N2EQYRX3V1708KWBXPWLO6B0C4JIUOT367QHTCEDIJP"
+   },
+   {
+    "overlap": 18,
+    "p": 17,
+    "family": "b",
+    "params": [
+     15,
+     6,
+     3,
+     0
+    ],
+    "window": 140,
+    "line": ":CDCIPRDQOT4J6A2B3K2H4SKRXYVY8B5GJX9P1FITNQ03017E6UHWEVNWOSFU5A8L79GMLM"
+   },
+   {
+    "overlap": 18,
+    "p": 17,
+    "family": "b",
+    "params": [
+     15,
+     5,
+     3,
+     0
+    ],
+    "window": 140,
+    "line": "cFNABEGRU3AGMJL3P9E7QUX0X5H6DQW6YTWCM250S28LSHT1Y148RKP9VDFCIOV47IKNOBJ"
+   },
+   {
+    "overlap": 17,
+    "p": 17,
+    "family": "b",
+    "params": [
+     1,
+     6,
+     8,
+     0
+    ],
+    "window": 140,
+    "line": "cFPCJAU3P2EIN8NCOIS037W56RXEHLU1Y58DLQT0X4DHK17ST2RVY6GAMBQBGKW9V4OFM9J"
+   },
+   {
+    "overlap": 17,
+    "p": 17,
+    "family": "b",
+    "params": [
+     2,
+     3,
+     8,
+     0
+    ],
+    "window": 140,
+    "line": "c09EGEGNQPQJL7AAS344YRS3HFL5CWX5MWXBN12CT12MTDJHV670UUV6OORDF898BIKIKPY"
+   }
+  ]
+ },
+ "36": {
+  "solutions": 285,
+  "null": 1000,
+  "primes": [
+   19,
+   23,
+   29,
+   31,
+   37,
+   41,
+   43,
+   47,
+   53,
+   59,
+   61,
+   67,
+   71,
+   73
+  ],
+  "c_mode": "few",
+  "sol_pct": [
+   16,
+   18,
+   20,
+   24
+  ],
+  "null_pct": [
+   16,
+   18,
+   20,
+   23
+  ],
+  "sol_mean": 15.87719298245614,
+  "null_mean": 16.568,
+  "frac_sol_ge_n": 0.0,
+  "frac_null_ge_n": 0.0,
+  "top": [
+   {
+    "overlap": 24,
+    "p": 31,
+    "family": "b",
+    "params": [
+     1,
+     29,
+     29,
+     9
+    ],
+    "window": 52,
+    "line": "o6FIN5MBI8Q7XJZOUFV4P9C7W1P2GELRZ6M13WYDT08ELJXAY3SNQAV4K5B0G2S9RHODUCHKT"
+   },
+   {
+    "overlap": 20,
+    "p": 23,
+    "family": "b",
+    "params": [
+     1,
+     17,
+     17,
+     8
+    ],
+    "window": 56,
+    "line": "oFL9IMS6AJS9DJW248RUYCWHNBP2U0FLZ461OBYTV0EKZ5XAOCI3N158RVX3GMQ7GPT7DHQEK"
+   },
+   {
+    "overlap": 20,
+    "p": 23,
+    "family": "b",
+    "params": [
+     1,
+     17,
+     17,
+     22
+    ],
+    "window": 64,
+    "line": "o19FZDINOGL5UGM9AAESZRS3I3F6X4RNYTV2BOX461C8V2TKWHW7807LPPQDJ5UEJBCHM0KQY"
+   },
+   {
+    "overlap": 20,
+    "p": 47,
+    "family": "b",
+    "params": [
+     1,
+     6,
+     6,
+     1
+    ],
+    "window": 36,
+    "line": "oHIBKBC6JGPPT5W9R7NDS45XY8XFQEL1M3V0Z0Z4WDYEL9K2R12UV7MCS8Q3U6AAJGTNOFOHI"
+   },
+   {
+    "overlap": 20,
+    "p": 19,
+    "family": "b",
+    "params": [
+     1,
+     11,
+     11,
+     18
+    ],
+    "window": 80,
+    "line": ":FGGYBQFNPT8B48ILTU294EUX3DHN7PWZYZ7MDS0103ASCIMW25LVQX56EHRVOR6ACK9O1JJK"
+   }
+  ]
+ },
+ "37": {
+  "solutions": 23,
+  "null": 1000,
+  "primes": [
+   19,
+   23,
+   29,
+   31,
+   37,
+   41,
+   43,
+   47,
+   53,
+   59,
+   61,
+   67,
+   71,
+   73
+  ],
+  "c_mode": "few",
+  "sol_pct": [
+   16,
+   18,
+   20,
+   20
+  ],
+  "null_pct": [
+   17,
+   18,
+   21,
+   24
+  ],
+  "sol_mean": 15.782608695652174,
+  "null_mean": 16.827,
+  "frac_sol_ge_n": 0.0,
+  "frac_null_ge_n": 0.0,
+  "top": [
+   {
+    "overlap": 20,
+    "p": 19,
+    "family": "b",
+    "params": [
+     1,
+     1,
+     1,
+     9
+    ],
+    "window": 72,
+    "line": "cEF9H2EQTPR6K8V3NKU4Z3O4CAP7HYaIa58NZFL1DSV0I02JTBQOWCX1W6GDX5SGU9B7AMYJRLM"
+   },
+   {
+    "overlap": 20,
+    "p": 29,
+    "family": "b",
+    "params": [
+     1,
+     11,
+     11,
+     0
+    ],
+    "window": 97,
+    "line": "cBLBH26LSGOASHYMR357ARVZa4IGM7D03NWUZCO164DXaNTEKIW0159QTVX9E2J8QCK8FUYJPFP"
+   },
+   {
+    "overlap": 19,
+    "p": 19,
+    "family": "b",
+    "params": [
+     3,
+     8,
+     17,
+     0
+    ],
+    "window": 141,
+    "line": ":HKRXBM5TDM1N9H38BT1ULOSYAI5W24AG0LUaCO06FaKQWY4VIQ28CF6Z7PSXJRDZEN7VEP39GJ"
+   },
+   {
+    "overlap": 18,
+    "p": 19,
+    "family": "b",
+    "params": [
+     2,
+     1,
+     1,
+     0
+    ],
+    "window": 145,
+    "line": "cELBOJK36AGCLJXRS7R78NWDZ1VAPIa052W26EMUY4YVa0IBQ5Z1N4DST9T893HFOKQUXGHCPFM"
+   },
+   {
+    "overlap": 16,
+    "p": 29,
+    "family": "b",
+    "params": [
+     1,
+     11,
+     11,
+     9
+    ],
+    "window": 44,
+    "line": "cJPJLACAE4ESU5LGR5N7PXY09IY8GWX16NT01COZa7DUZ34KS2IRa23BTDV9KFV68MWMQOQFHBH"
+   }
+  ]
+ },
+ "38": {
+  "solutions": 340,
+  "null": 1000,
+  "primes": [
+   19,
+   23,
+   29,
+   31,
+   37,
+   41,
+   43,
+   47,
+   53,
+   59,
+   61,
+   67,
+   71,
+   73
+  ],
+  "c_mode": "few",
+  "sol_pct": [
+   16,
+   18,
+   20,
+   24
+  ],
+  "null_pct": [
+   17,
+   19,
+   21,
+   24
+  ],
+  "sol_mean": 16.294117647058822,
+  "null_mean": 17.178,
+  "frac_sol_ge_n": 0.0,
+  "frac_null_ge_n": 0.0,
+  "top": [
+   {
+    "overlap": 24,
+    "p": 23,
+    "family": "b",
+    "params": [
+     1,
+     16,
+     16,
+     6
+    ],
+    "window": 88,
+    "line": "oNW8QGY2UAE0PFJ3I9aPTGX1O59BF0XOVRZHK6U7VHK2A6D4bMQSWDa4L8C1SJYIMCbNR7Z3LBT5E"
+   },
+   {
+    "overlap": 24,
+    "p": 23,
+    "family": "b",
+    "params": [
+     1,
+     16,
+     16,
+     17
+    ],
+    "window": 80,
+    "line": "oCMPU4J6FHZBDNY18QUJOHN8W1b9W6A0YGLRX29SZ4AGL3bRV5S0a5TEKDI7BTa3EOQ2KMVIX7CFP"
+   },
+   {
+    "overlap": 24,
+    "p": 23,
+    "family": "b",
+    "params": [
+     1,
+     16,
+     16,
+     17
+    ],
+    "window": 80,
+    "line": "oCFPU4J6FHZBDNY18QUJOHN8W1b9W6AYbGLRX29SZ4AGL03RV5S0a5TEKDI7BTa3EOQ2KMVIX7CMP"
+   },
+   {
+    "overlap": 20,
+    "p": 23,
+    "family": "b",
+    "params": [
+     1,
+     16,
+     16,
+     2
+    ],
+    "window": 80,
+    "line": "oCJEM7QRTCHFH6VTZ37DJ3Q2AXbGSGa1WNOWX09Sb45DE5a1L9L04RZBYIOUY286VKMKP8ABUFNIP"
+   },
+   {
+    "overlap": 20,
+    "p": 19,
+    "family": "b",
+    "params": [
+     1,
+     10,
+     10,
+     2
+    ],
+    "window": 80,
+    "line": "oNOAGCL7J6SPV5XTY7A4MTaEM5Z0I0Q9B2aHK3ODYHK1ZQSBbJb2WFN18FXRU384W6C9VIUGPLRDE"
+   }
+  ]
+ },
+ "39": {
+  "solutions": 37,
+  "null": 1000,
+  "primes": [
+   19,
+   23,
+   29,
+   31,
+   37,
+   41,
+   43,
+   47,
+   53,
+   59,
+   61,
+   67,
+   71,
+   73,
+   79
+  ],
+  "c_mode": "few",
+  "sol_pct": [
+   16,
+   18,
+   20,
+   20
+  ],
+  "null_pct": [
+   17,
+   19,
+   21,
+   23
+  ],
+  "sol_mean": 16.513513513513512,
+  "null_mean": 17.536,
+  "frac_sol_ge_n": 0.0,
+  "frac_null_ge_n": 0.0,
+  "top": [
+   {
+    "overlap": 20,
+    "p": 43,
+    "family": "b",
+    "params": [
+     1,
+     24,
+     24,
+     18
+    ],
+    "window": 44,
+    "line": "cINSTIWGN8CJL2R7SBY1G176UHYEODP03TZ5Qac5X02CX39ZcDPEO4L8WVbMb4RAVBaHJQUFM6K9AFK"
+   },
+   {
+    "overlap": 20,
+    "p": 23,
+    "family": "b",
+    "params": [
+     1,
+     4,
+     4,
+     14
+    ],
+    "window": 80,
+    "line": "c681KKNCFGRDOSc9L9cUV6E4LDZQX5S2ZJY7B12GMabRV4J3aAX5C3PHYOW780THT0AEPBMNQFIIbUW"
+   },
+   {
+    "overlap": 20,
+    "p": 23,
+    "family": "b",
+    "params": [
+     1,
+     4,
+     4,
+     16
+    ],
+    "window": 72,
+    "line": "cNOBGABPU6I5HTYIO3T68GaabDH3Q070JSbQXVYFN475C1AJcVcCZLP122MUW9ZEK49LXKW8DRSMREF"
+   },
+   {
+    "overlap": 20,
+    "p": 29,
+    "family": "b",
+    "params": [
+     1,
+     10,
+     10,
+     9
+    ],
+    "window": 52,
+    "line": "cBKLMQS7SDN5N89CZLWEW23Ec2VJYRT451I180MDPGcUbKbXY9B4J7a0OZa6O6H3QTUFXFPAVACGHIR"
+   },
+   {
+    "overlap": 18,
+    "p": 19,
+    "family": "b",
+    "params": [
+     3,
+     1,
+     11,
+     0
+    ],
+    "window": 156,
+    "line": "cLM8AMRHP5FUYEREJ5bPS9b26FI39VWQY020ZIQ7VCK3cac4C67TZKNWa1TAD1XJOBO48NXDLBGSUGH"
+   }
+  ]
+ },
+ "40": {
+  "solutions": 545,
+  "null": 1000,
+  "primes": [
+   23,
+   29,
+   31,
+   37,
+   41,
+   43,
+   47,
+   53,
+   59,
+   61,
+   67,
+   71,
+   73,
+   79
+  ],
+  "c_mode": "few",
+  "sol_pct": [
+   16,
+   17,
+   20,
+   24
+  ],
+  "null_pct": [
+   16,
+   17,
+   20,
+   22
+  ],
+  "sol_mean": 15.63119266055046,
+  "null_mean": 15.975,
+  "frac_sol_ge_n": 0.0,
+  "frac_null_ge_n": 0.0,
+  "top": [
+   {
+    "overlap": 24,
+    "p": 29,
+    "family": "b",
+    "params": [
+     1,
+     24,
+     24,
+     24
+    ],
+    "window": 56,
+    "line": "oMUGI8a27ENIK9ERaTb0X8HFR7BFJXZQS4c0TYc5QDY15Ad1ZBD46KOSWCOMV6d2A3CPUJLGPWb3VLN9H"
+   },
+   {
+    "overlap": 24,
+    "p": 31,
+    "family": "b",
+    "params": [
+     1,
+     27,
+     27,
+     11
+    ],
+    "window": 56,
+    "line": "oKN9DQRIU4ZIKAERV7P3cSXAG272c8XHM0SFOYa05Yd35FOBdHM6V1bWbNT6B1aEW8CPTJL4Z9LCDQUGJ"
+   },
+   {
+    "overlap": 20,
+    "p": 23,
+    "family": "b",
+    "params": [
+     1,
+     15,
+     15,
+     9
+    ],
+    "window": 64,
+    "line": "oALEQ4CKWRb8BQW36BYLMFdVY4b16GcKTHP9N093FOaUdGUEMAJ1NXc2Z580OHI5SXa7DSV2C7JRZDPIT"
+   },
+   {
+    "overlap": 20,
+    "p": 23,
+    "family": "b",
+    "params": [
+     1,
+     15,
+     15,
+     4
+    ],
+    "window": 96,
+    "line": "oJY9KEHDRSY04HNFT9AVc7V4D3NSaLbIW6CXbEO1d0cFP26RX7L2I3BGaQZ8W18TUAOGMZd5BCQMPJU5K"
+   },
+   {
+    "overlap": 20,
+    "p": 23,
+    "family": "b",
+    "params": [
+     1,
+     15,
+     15,
+     6
+    ],
+    "window": 88,
+    "line": "oGREFKRGLBPUVBW6L5K5T9DXZ02HT4cHcadOQ3728VbWaDF031M1ZAMbd46QUAYJYIX7S89ESINCJOPCN"
+   }
+  ]
+ }
+}
