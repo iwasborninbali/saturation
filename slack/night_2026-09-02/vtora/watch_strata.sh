@@ -27,10 +27,13 @@ while true; do
     res=$(python3 "$ROOT/certs/no3_3d/verify_witness_lines.py" "$n" "$f" "$pts" 2>&1 | tail -1 | sed 's/^ *//')
     # жёсткость: min κ (число пар, коллинеарных с пустой клеткой) и число заменяемых точек — rigidity_kappa.py (лемма: жёстко ⟺ min κ ≥ 2)
     kap=$(python3 "$ROOT/slack/night_2026-09-02/vtora/rigidity_kappa.py" cube "$f" 2>&1 | tail -1 | sed -E 's/.*(min κ=[0-9]+).*нежёстких точек ([0-9]+\/[0-9]+).*/\1, заменяемых \2/')
-    echo "$base $(date -u +%FT%TZ) $res | $kap" >> "$LOG"
+    # исчерпывающий обмен радиуса ≤ 3 (exchange_search.py): улучшаем ли стратный оптимум перестановкой ≤ 3 точек вне страты
+    exch=$(python3 "$ROOT/slack/night_2026-09-02/vtora/exchange_search.py" 3 "$f" 2>&1 | grep -q "УЛУЧШЕНИЕ" && echo "обмен ≤3: УЛУЧШЕНИЕ НАЙДЕНО" || echo "обмен ≤3: нет")
+    echo "$base $(date -u +%FT%TZ) $res | $kap | $exch" >> "$LOG"
     thr=73; [ "$n" = 8 ] && thr=93
     flag=""; [ "$pts" -gt "$thr" ] 2>/dev/null && flag="  !!! ВЫШЕ ИЗВЕСТНОГО ($thr) — кандидат в A399138"
-    echo "новый свидетель $base: $res | $kap$flag"
+    case "$exch" in *НАЙДЕНО*) flag="$flag  !!! обмен ≤3 даёт больше точек — смотреть exchange_search.py";; esac
+    echo "новый свидетель $base: $res | $kap | $exch$flag"
   done
   sleep 300
 done
