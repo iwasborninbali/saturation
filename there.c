@@ -283,6 +283,16 @@ static void shade_pair(State *s, int p, int q) {
 static int legal(const State *s, int p) {
     return (s->alive[p / n] & BIT(p % n)) && s->ucount[p / n] < 2 && s->vcount[p % n] < 2;
 }
+/* FORBID="7,11,13,17": forbid these distances between the two tokens of any row or column
+ * (structural streamliner, night of 2026-09-02: prime distances >= 7 are depleted in solutions) */
+static unsigned char forbid_d[MAXN]; static int use_forbid = 0;
+static int dist_ok(const State *s, int p) {
+    if (!use_forbid) return 1;
+    int u = p / n, v = p % n;
+    if (s->ucount[u] == 1) for (int i = 0; i < nchosen; i++) if (chosen[i] / n == u) { int d = chosen[i] % n - v; if (d < 0) d = -d; if (forbid_d[d]) return 0; break; }
+    if (s->vcount[v] == 1) for (int i = 0; i < nchosen; i++) if (chosen[i] % n == v) { int d = chosen[i] / n - u; if (d < 0) d = -d; if (forbid_d[d]) return 0; break; }
+    return 1;
+}
 static void take(State *s, int p) {
     int u = p / n, v = p % n;
     for (int i = 0; i < nchosen; i++) shade_pair(s, p, chosen[i]);
@@ -378,6 +388,7 @@ static int search(int lv) {
     int cand[MAXN], nc = 0;
     if (best < n) { bits b = orow(s, best); while (b) { int v = CTZ(b); b &= b - 1; cand[nc++] = best * n + v; } }
     else          { bits b = ocol(s, best - n); while (b) { int u = CTZ(b); b &= b - 1; cand[nc++] = u * n + best - n; } }
+    if (use_forbid) { int nk = 0; for (int i = 0; i < nc; i++) if (dist_ok(s, cand[i])) cand[nk++] = cand[i]; nc = nk; }
     for (int i = nc - 1; i > 0; i--) { int j = rnd() % (i + 1), t = cand[i]; cand[i] = cand[j]; cand[j] = t; }
 
     int saved = nchosen;
@@ -457,6 +468,8 @@ int main(int argc, char **argv) {
     int growth = argc > 8 ? atoi(argv[8]) : 50;
     shave_slack = argc > 9 ? atoi(argv[9]) : -1;
     enumerate_all = getenv("ALL") != NULL; if (enumerate_all) nodecap = ~(uint64_t)0 >> 1;
+    if (getenv("FORBID")) { const char *q = getenv("FORBID"); int d; use_forbid = 1;
+        while (*q) { if (sscanf(q, "%d", &d) == 1 && d > 0 && d < MAXN) forbid_d[d] = 1; while (*q && *q != ',') q++; if (*q == ',') q++; } }
     if (n < 2 || n > MAXN || sym < 0 || sym > 11 || sym == 9 || sym == 10) return 64;
     if (sym == 8 && !(n & 1)) { printf("skip n=%d sym=%d: for odd n only\n", n, sym); return 3; }
     if (sym == 11) { use_compat = 0; if (getenv("TYPEP")) typep = atof(getenv("TYPEP")); if (getenv("NV2")) nv2 = atoi(getenv("NV2")); }
