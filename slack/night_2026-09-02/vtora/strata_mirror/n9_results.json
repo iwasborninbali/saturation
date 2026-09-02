@@ -12,6 +12,17 @@
  },
  {
   "n": 9,
+  "tag": "c26_ord12",
+  "group": "|H|=12 rot=6 inv=y",
+  "orbits": 85,
+  "constraints": 1852,
+  "status": "OPTIMAL",
+  "best": 116,
+  "bound": 116,
+  "secs": 12.6
+ },
+ {
+  "n": 9,
   "tag": "c04_ord2",
   "group": "|H|=2 rot=1 inv=n",
   "orbits": 405,
@@ -97,6 +108,28 @@
   "best": 112,
   "bound": 112,
   "secs": 113.0
+ },
+ {
+  "n": 9,
+  "tag": "c22_ord8",
+  "group": "|H|=8 rot=4 inv=n",
+  "orbits": 115,
+  "constraints": 2719,
+  "status": "OPTIMAL",
+  "best": 112,
+  "bound": 112,
+  "secs": 459.5
+ },
+ {
+  "n": 9,
+  "tag": "c21_ord8",
+  "group": "|H|=8 rot=4 inv=y",
+  "orbits": 125,
+  "constraints": 2791,
+  "status": "OPTIMAL",
+  "best": 112,
+  "bound": 112,
+  "secs": 517.5
  },
  {
   "n": 9,
@@ -196,5 +229,93 @@
   "best": 108,
   "bound": 108,
   "secs": 265.9
+ },
+ {
+  "n": 9,
+  "tag": "c28_ord16",
+  "group": "|H|=16 rot=8 inv=y",
+  "orbits": 75,
+  "constraints": 1463,
+  "status": "OPTIMAL",
+  "best": 108,
+  "bound": 108,
+  "secs": 0.5
+ },
+ {
+  "n": 9,
+  "tag": "c25_ord8",
+  "group": "|H|=8 rot=4 inv=n",
+  "orbits": 135,
+  "constraints": 2749,
+  "status": "OPTIMAL",
+  "best": 108,
+  "bound": 108,
+  "secs": 392.6
+ },
+ {
+  "n": 9,
+  "tag": "c24_ord8",
+  "group": "|H|=8 rot=4 inv=n",
+  "orbits": 115,
+  "constraints": 2691,
+  "status": "OPTIMAL",
+  "best": 108,
+  "bound": 108,
+  "secs": 505.4
+ },
+ {
+  "n": 9,
+  "tag": "c27_ord12",
+  "group": "|H|=12 rot=12 inv=n",
+  "orbits": 69,
+  "constraints": 1657,
+  "status": "OPTIMAL",
+  "best": 104,
+  "bound": 104,
+  "secs": 3.2
+ },
+ {
+  "n": 9,
+  "tag": "c29_ord24",
+  "group": "|H|=24 rot=12 inv=y",
+  "orbits": 45,
+  "constraints": 882,
+  "status": "OPTIMAL",
+  "best": 104,
+  "bound": 104,
+  "secs": 0.1
+ },
+ {
+  "n": 9,
+  "tag": "c30_ord24",
+  "group": "|H|=24 rot=24 inv=n",
+  "orbits": 39,
+  "constraints": 745,
+  "status": "OPTIMAL",
+  "best": 104,
+  "bound": 104,
+  "secs": 0.0
+ },
+ {
+  "n": 9,
+  "tag": "c31_ord24",
+  "group": "|H|=24 rot=12 inv=n",
+  "orbits": 55,
+  "constraints": 975,
+  "status": "OPTIMAL",
+  "best": 104,
+  "bound": 104,
+  "secs": 0.2
+ },
+ {
+  "n": 9,
+  "tag": "c32_ord48",
+  "group": "|H|=48 rot=24 inv=y",
+  "orbits": 35,
+  "constraints": 527,
+  "status": "OPTIMAL",
+  "best": 104,
+  "bound": 104,
+  "secs": 0.0
  }
 ]
