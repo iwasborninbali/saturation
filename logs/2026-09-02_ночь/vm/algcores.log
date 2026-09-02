@@ -1,0 +1,34 @@
+n= 8 sols=    57 null=1000 primes=5..17 | max overlap: solutions p50/p90/p99/max = [9, 10, 10, 10]  null = [10, 11, 12, 14] | mean 8.82 vs 9.99 | >=n: 1.0000 vs 1.0000 | 0s
+n= 9 sols=    51 null=1000 primes=5..19 | max overlap: solutions p50/p90/p99/max = [10, 11, 12, 12]  null = [11, 12, 14, 15] | mean 9.94 vs 11.00 | >=n: 1.0000 vs 1.0000 | 0s
+n=10 sols=   156 null=1000 primes=5..19 | max overlap: solutions p50/p90/p99/max = [10, 11, 12, 12]  null = [12, 13, 15, 17] | mean 10.12 vs 12.05 | >=n: 0.8590 vs 1.0000 | 1s
+n=11 sols=   158 null=1000 primes=5..23 | max overlap: solutions p50/p90/p99/max = [11, 12, 13, 14]  null = [13, 14, 16, 18] | mean 11.13 vs 12.85 | >=n: 0.8165 vs 0.9990 | 1s
+n=12 sols=   566 null=1000 primes=7..23 | max overlap: solutions p50/p90/p99/max = [11, 12, 13, 14]  null = [12, 14, 16, 17] | mean 10.89 vs 12.18 | >=n: 0.1820 vs 0.7250 | 2s
+n=13 sols=   499 null=1000 primes=7..23 | max overlap: solutions p50/p90/p99/max = [11, 12, 14, 14]  null = [13, 14, 16, 17] | mean 11.36 vs 12.93 | >=n: 0.0641 vs 0.6220 | 2s
+n=14 sols=  1366 null=1000 primes=7..29 | max overlap: solutions p50/p90/p99/max = [12, 13, 14, 15]  null = [14, 15, 17, 19] | mean 11.98 vs 13.66 | >=n: 0.0329 vs 0.5150 | 4s
+n=15 sols=  3978 null=1000 primes=7..31 | max overlap: solutions p50/p90/p99/max = [13, 14, 15, 16]  null = [14, 16, 18, 19] | mean 12.60 vs 14.42 | >=n: 0.0143 vs 0.4320 | 8s
+n=16 sols=  5900 null=1000 primes=11..31 | max overlap: solutions p50/p90/p99/max = [12, 13, 14, 16]  null = [13, 14, 15, 17] | mean 11.68 vs 12.86 | >=n: 0.0002 vs 0.0100 | 18s
+n=17 sols=  7094 null=1000 primes=11..31 | max overlap: solutions p50/p90/p99/max = [12, 13, 14, 16]  null = [13, 15, 16, 19] | mean 12.12 vs 13.41 | >=n: 0.0000 vs 0.0050 | 29s
+n=18 sols= 19204 null=1000 primes=11..37 | max overlap: solutions p50/p90/p99/max = [13, 14, 15, 16]  null = [14, 15, 17, 18] | mean 12.60 vs 13.89 | >=n: 0.0000 vs 0.0010 | 70s
+n=19 sols= 32577 null=1000 primes=11..37 | max overlap: solutions p50/p90/p99/max = [13, 14, 15, 19]  null = [14, 16, 17, 19] | mean 13.06 vs 14.48 | >=n: 0.0000 vs 0.0010 | 159s
+n=20 sols=118057 null=1000 primes=11..41 | max overlap: solutions p50/p90/p99/max = [13, 15, 16, 18]  null = [15, 16, 18, 19] | mean 13.55 vs 15.04 | >=n: 0.0000 vs 0.0000 | 666s
+n=21 sols=  1000 null=1000 primes=11..43 | max overlap: solutions p50/p90/p99/max = [13, 14, 16, 17]  null = [15, 17, 18, 20] | mean 13.38 vs 15.14 | >=n: 0.0000 vs 0.0000 | 668s
+n=22 sols=  1000 null=1000 primes=11..43 | max overlap: solutions p50/p90/p99/max = [14, 15, 17, 20]  null = [15, 17, 19, 21] | mean 13.79 vs 15.56 | >=n: 0.0000 vs 0.0000 | 670s
+n=23 sols=  1000 null=1000 primes=11..47 | max overlap: solutions p50/p90/p99/max = [14, 15, 17, 18]  null = [16, 18, 20, 21] | mean 14.09 vs 16.12 | >=n: 0.0000 vs 0.0000 | 673s
+n=24 sols=  1000 null=1000 primes=13..47 | max overlap: solutions p50/p90/p99/max = [14, 15, 17, 18]  null = [15, 17, 19, 20] | mean 13.80 vs 15.39 | >=n: 0.0000 vs 0.0000 | 676s
+n=25 sols=  1000 null=1000 primes=13..47 | max overlap: solutions p50/p90/p99/max = [14, 16, 18, 20]  null = [16, 17, 19, 21] | mean 14.18 vs 15.83 | >=n: 0.0000 vs 0.0000 | 680s
+n=26 sols=  1000 null=1000 primes=13..53 | max overlap: solutions p50/p90/p99/max = [14, 16, 18, 20]  null = [16, 18, 19, 23] | mean 14.46 vs 16.23 | >=n: 0.0000 vs 0.0000 | 685s
+n=27 sols=  1000 null=1000 primes=13..53 | max overlap: solutions p50/p90/p99/max = [15, 16, 18, 19]  null = [17, 18, 20, 22] | mean 14.82 vs 16.74 | >=n: 0.0000 vs 0.0000 | 690s
+n=28 sols=  1000 null=1000 primes=17..53 | max overlap: solutions p50/p90/p99/max = [14, 15, 16, 18]  null = [15, 17, 18, 20] | mean 13.67 vs 15.06 | >=n: 0.0000 vs 0.0000 | 696s
+n=29 sols=  1000 null=1000 primes=17..59 | max overlap: solutions p50/p90/p99/max = [14, 15, 17, 19]  null = [15, 17, 19, 20] | mean 14.03 vs 15.46 | >=n: 0.0000 vs 0.0000 | 703s
+n=30 sols=  1000 null=1000 primes=17..61 | max overlap: solutions p50/p90/p99/max = [14, 16, 18, 19]  null = [16, 17, 19, 22] | mean 14.42 vs 15.80 | >=n: 0.0000 vs 0.0000 | 713s
+n=31 sols=  1000 null=1000 primes=17..61 | max overlap: solutions p50/p90/p99/max = [14, 16, 18, 20]  null = [16, 18, 20, 22] | mean 14.62 vs 16.19 | >=n: 0.0000 vs 0.0000 | 722s
+n=32 sols=   177 null=1000 primes=17..61 | max overlap: solutions p50/p90/p99/max = [16, 18, 20, 21]  null = [16, 18, 20, 23] | mean 15.79 vs 16.53 | >=n: 0.0000 vs 0.0000 | 728s
+n=33 sols=    21 null=1000 primes=17..67 | max overlap: solutions p50/p90/p99/max = [16, 16, 17, 18]  null = [17, 19, 21, 22] | mean 15.24 vs 16.93 | >=n: 0.0000 vs 0.0000 | 734s
+n=34 sols=   173 null=1000 primes=17..67 | max overlap: solutions p50/p90/p99/max = [16, 17, 20, 20]  null = [17, 19, 21, 22] | mean 15.96 vs 17.28 | >=n: 0.0000 vs 0.0000 | 741s
+n=35 sols=    25 null=1000 primes=17..71 | max overlap: solutions p50/p90/p99/max = [16, 17, 19, 20]  null = [18, 19, 21, 24] | mean 16.28 vs 17.62 | >=n: 0.0000 vs 0.0000 | 749s
+n=36 sols=   285 null=1000 primes=19..73 | max overlap: solutions p50/p90/p99/max = [16, 18, 20, 24]  null = [16, 18, 20, 23] | mean 15.88 vs 16.57 | >=n: 0.0000 vs 0.0000 | 761s
+n=37 sols=    23 null=1000 primes=19..73 | max overlap: solutions p50/p90/p99/max = [16, 18, 20, 20]  null = [17, 18, 21, 24] | mean 15.78 vs 16.83 | >=n: 0.0000 vs 0.0000 | 771s
+n=38 sols=   340 null=1000 primes=19..73 | max overlap: solutions p50/p90/p99/max = [16, 18, 20, 24]  null = [17, 19, 21, 24] | mean 16.29 vs 17.18 | >=n: 0.0000 vs 0.0000 | 785s
+n=39 sols=    37 null=1000 primes=19..79 | max overlap: solutions p50/p90/p99/max = [16, 18, 20, 20]  null = [17, 19, 21, 23] | mean 16.51 vs 17.54 | >=n: 0.0000 vs 0.0000 | 798s
+n=40 sols=   545 null=1000 primes=23..79 | max overlap: solutions p50/p90/p99/max = [16, 17, 20, 24]  null = [16, 17, 20, 22] | mean 15.63 vs 15.97 | >=n: 0.0000 vs 0.0000 | 817s
+готово

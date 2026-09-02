@@ -1,0 +1,1 @@
+all n=10 sym=0: solutions=692 nodes=3765749 secs=3.13

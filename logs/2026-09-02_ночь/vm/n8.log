@@ -1,0 +1,35 @@
+n=8: классов подгрупп 33, запускаем 33 страт; порядки [(1, 1), (2, 5), (3, 1), (4, 9), (6, 3), (8, 7), (12, 2), (16, 1), (24, 3), (48, 1)]
+      c07_ord4      |H|=4 rot=2 inv=y orbits= 128 cons=  2338 -> best= 88 bound=128 FEASIBLE 2400.0s
+      c01_ord2      |H|=2 rot=1 inv=y orbits= 256 cons=  4636 -> best= 90 bound=128 FEASIBLE 2400.0s
+      c02_ord2      |H|=2 rot=2 inv=n orbits= 256 cons=  4642 -> best= 92 bound=128 FEASIBLE 2400.0s
+      c05_ord2      |H|=2 rot=1 inv=n orbits= 256 cons=  4666 -> best= 90 bound=128 FEASIBLE 2400.1s
+      c06_ord3      |H|=3 rot=3 inv=n orbits= 176 cons=  3082 -> best= 93 bound=128 FEASIBLE 2400.2s
+      c04_ord2      |H|=2 rot=1 inv=n orbits= 288 cons=  4765 -> best= 92 bound=128 FEASIBLE 2400.2s
+      c03_ord2      |H|=2 rot=2 inv=n orbits= 256 cons=  4645 -> best= 90 bound=128 FEASIBLE 2400.2s
+      c00_ord1      |H|=1 rot=1 inv=n orbits= 512 cons=  9268 -> best= 91 bound=128 FEASIBLE 3600.0s
+      c09_ord4      |H|=4 rot=4 inv=n orbits= 128 cons=  2329 -> best= 92 bound=128 FEASIBLE 2400.0s
+      c08_ord4      |H|=4 rot=2 inv=y orbits= 144 cons=  2389 -> best= 94 bound=128 FEASIBLE 2400.1s
+      c10_ord4      |H|=4 rot=4 inv=n orbits= 128 cons=  2332 -> best= 92 bound=128 FEASIBLE 2400.0s
+      c11_ord4      |H|=4 rot=2 inv=n orbits= 160 cons=  2452 -> best= 94 bound=128 FEASIBLE 2400.0s
+      c12_ord4      |H|=4 rot=2 inv=n orbits= 144 cons=  2404 -> best= 90 bound=128 FEASIBLE 2400.0s
+      c13_ord4      |H|=4 rot=2 inv=n orbits= 128 cons=  2353 -> best= 84 bound=112 FEASIBLE 2400.0s
+      c14_ord4      |H|=4 rot=2 inv=n orbits= 128 cons=  2321 -> best= 92 bound=128 FEASIBLE 2400.0s
+      c20_ord8      |H|=8 rot=4 inv=y orbits=  64 cons=  1169 -> best= 88 bound=88 OPTIMAL 3.3s
+      c19_ord8      |H|=8 rot=4 inv=y orbits=  64 cons=  1189 -> best= 80 bound=80 OPTIMAL 4.0s
+      c23_ord8      |H|=8 rot=8 inv=n orbits=  64 cons=  1170 -> best= 88 bound=88 OPTIMAL 4.5s
+      c25_ord8      |H|=8 rot=4 inv=n orbits=  80 cons=  1242 -> best= 84 bound=84 OPTIMAL 1.9s
+      c24_ord8      |H|=8 rot=4 inv=n orbits=  64 cons=  1182 -> best= 80 bound=80 OPTIMAL 5.9s
+     c27_ord12    |H|=12 rot=12 inv=n orbits=  48 cons=   733 -> best= 88 bound=88 OPTIMAL 0.3s
+     c28_ord16     |H|=16 rot=8 inv=y orbits=  40 cons=   630 -> best= 80 bound=80 OPTIMAL 0.0s
+     c29_ord24    |H|=24 rot=12 inv=y orbits=  24 cons=   374 -> best= 80 bound=80 OPTIMAL 0.0s
+     c30_ord24    |H|=24 rot=24 inv=n orbits=  24 cons=   370 -> best= 80 bound=80 OPTIMAL 0.0s
+     c31_ord24    |H|=24 rot=12 inv=n orbits=  40 cons=   454 -> best= 88 bound=88 OPTIMAL 0.1s
+     c32_ord48    |H|=48 rot=24 inv=y orbits=  20 cons=   234 -> best= 80 bound=80 OPTIMAL 0.0s
+     c26_ord12     |H|=12 rot=6 inv=y orbits=  60 cons=   844 -> best= 92 bound=92 OPTIMAL 1.6s
+      c21_ord8      |H|=8 rot=4 inv=y orbits=  80 cons=  1240 -> best= 88 bound=88 OPTIMAL 24.9s
+      c22_ord8      |H|=8 rot=4 inv=n orbits=  80 cons=  1230 -> best= 92 bound=92 OPTIMAL 33.1s
+      c17_ord6      |H|=6 rot=6 inv=n orbits=  88 cons=  1550 -> best= 92 bound=92 OPTIMAL 166.3s
+      c16_ord6      |H|=6 rot=3 inv=y orbits=  88 cons=  1542 -> best= 92 bound=92 OPTIMAL 243.9s
+      c15_ord4      |H|=4 rot=4 inv=n orbits= 128 cons=  2321 -> best= 88 bound=112 FEASIBLE 2400.0s
+      c18_ord6      |H|=6 rot=3 inv=n orbits= 120 cons=  1676 -> best= 93 bound=118 FEASIBLE 2400.0s
+ИТОГ n=8: лучший свидетель 94 точек в страте c08_ord4 (|H|=4 rot=2 inv=y), статус FEASIBLE

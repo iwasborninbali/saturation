@@ -1,0 +1,1 @@
+all n=12 sym=0: solutions=1362 nodes=292301970 secs=263.22

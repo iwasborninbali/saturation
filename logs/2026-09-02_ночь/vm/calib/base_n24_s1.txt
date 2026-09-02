@@ -1,0 +1,1 @@
+timeout n=24 sym=0 order=0 value=0 shave=-1 restarts=27 nodes=227241685 trials=414198691 secs=415.44

@@ -1,0 +1,35 @@
+n=7: классов подгрупп 33, запускаем 33 страт; порядки [(1, 1), (2, 5), (3, 1), (4, 9), (6, 3), (8, 7), (12, 2), (16, 1), (24, 3), (48, 1)]
+      c07_ord4      |H|=4 rot=2 inv=y orbits= 100 cons=  1211 -> best= 72 bound=72 OPTIMAL 328.2s
+      c04_ord2      |H|=2 rot=1 inv=n orbits= 196 cons=  2300 -> best= 73 bound=97 FEASIBLE 1500.0s
+      c02_ord2      |H|=2 rot=2 inv=n orbits= 175 cons=  2271 -> best= 72 bound=97 FEASIBLE 1500.0s
+      c01_ord2      |H|=2 rot=1 inv=y orbits= 172 cons=  2287 -> best= 72 bound=98 FEASIBLE 1500.0s
+      c03_ord2      |H|=2 rot=2 inv=n orbits= 175 cons=  2250 -> best= 73 bound=97 FEASIBLE 1500.0s
+      c05_ord2      |H|=2 rot=1 inv=n orbits= 196 cons=  2293 -> best= 70 bound=91 FEASIBLE 1500.0s
+      c06_ord3      |H|=3 rot=3 inv=n orbits= 119 cons=  1471 -> best= 73 bound=98 FEASIBLE 1500.0s
+      c09_ord4      |H|=4 rot=4 inv=n orbits=  91 cons=  1186 -> best= 72 bound=72 OPTIMAL 294.0s
+      c08_ord4      |H|=4 rot=2 inv=y orbits= 100 cons=  1204 -> best= 72 bound=94 FEASIBLE 1500.0s
+      c16_ord6      |H|=6 rot=3 inv=y orbits=  60 cons=   753 -> best= 72 bound=72 OPTIMAL 4.3s
+      c14_ord4      |H|=4 rot=2 inv=n orbits=  88 cons=  1133 -> best= 72 bound=72 OPTIMAL 336.4s
+      c17_ord6      |H|=6 rot=6 inv=n orbits=  63 cons=   770 -> best= 72 bound=72 OPTIMAL 5.5s
+      c19_ord8      |H|=8 rot=4 inv=y orbits=  64 cons=   673 -> best= 64 bound=64 OPTIMAL 0.7s
+      c20_ord8      |H|=8 rot=4 inv=y orbits=  52 cons=   582 -> best= 64 bound=64 OPTIMAL 0.4s
+      c21_ord8      |H|=8 rot=4 inv=y orbits=  64 cons=   666 -> best= 68 bound=68 OPTIMAL 0.9s
+      c22_ord8      |H|=8 rot=4 inv=n orbits=  58 cons=   637 -> best= 68 bound=68 OPTIMAL 0.9s
+      c23_ord8      |H|=8 rot=8 inv=n orbits=  49 cons=   571 -> best= 68 bound=68 OPTIMAL 0.2s
+      c24_ord8      |H|=8 rot=4 inv=n orbits=  58 cons=   623 -> best= 68 bound=68 OPTIMAL 0.4s
+      c25_ord8      |H|=8 rot=4 inv=n orbits=  70 cons=   641 -> best= 68 bound=68 OPTIMAL 0.4s
+     c26_ord12     |H|=12 rot=6 inv=y orbits=  44 cons=   441 -> best= 72 bound=72 OPTIMAL 0.2s
+     c27_ord12    |H|=12 rot=12 inv=n orbits=  35 cons=   364 -> best= 65 bound=65 OPTIMAL 0.1s
+     c28_ord16     |H|=16 rot=8 inv=y orbits=  40 cons=   364 -> best= 64 bound=64 OPTIMAL 0.0s
+     c29_ord24    |H|=24 rot=12 inv=y orbits=  24 cons=   206 -> best= 56 bound=56 OPTIMAL 0.0s
+     c30_ord24    |H|=24 rot=24 inv=n orbits=  21 cons=   166 -> best= 56 bound=56 OPTIMAL 0.0s
+     c31_ord24    |H|=24 rot=12 inv=n orbits=  30 cons=   242 -> best= 65 bound=65 OPTIMAL 0.1s
+     c32_ord48    |H|=48 rot=24 inv=y orbits=  20 cons=   140 -> best= 56 bound=56 OPTIMAL 0.0s
+      c18_ord6      |H|=6 rot=3 inv=n orbits=  84 cons=   824 -> best= 73 bound=73 OPTIMAL 23.8s
+      c15_ord4      |H|=4 rot=4 inv=n orbits=  91 cons=  1075 -> best= 72 bound=72 OPTIMAL 165.1s
+      c13_ord4      |H|=4 rot=2 inv=n orbits= 112 cons=  1214 -> best= 70 bound=70 OPTIMAL 460.9s
+      c10_ord4      |H|=4 rot=4 inv=n orbits=  91 cons=  1161 -> best= 72 bound=72 OPTIMAL 755.1s
+      c12_ord4      |H|=4 rot=2 inv=n orbits= 112 cons=  1207 -> best= 71 bound=89 FEASIBLE 1500.0s
+      c11_ord4      |H|=4 rot=2 inv=n orbits= 112 cons=  1221 -> best= 70 bound=88 FEASIBLE 1500.0s
+      c00_ord1      |H|=1 rot=1 inv=n orbits= 343 cons=  4429 -> best= 72 bound=98 FEASIBLE 3600.0s
+ИТОГ n=7: лучший свидетель 73 точек в страте c04_ord2 (|H|=2 rot=1 inv=n), статус FEASIBLE
