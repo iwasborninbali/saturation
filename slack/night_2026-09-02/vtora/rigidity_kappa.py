@@ -123,7 +123,11 @@ def cube(paths):
         mink, hist, nonrigid, revive = rigidity_report(pts, n, 3)
         h = " ".join(f"{k}:{v}" for k, v in sorted(hist.items())[:8])
         rv = collections.Counter(revive)
-        print(f"{name:<44} n={n} m={len(pts):>3}  min κ={mink}  {'ЖЁСТКО' if mink is not None and mink >= 2 else 'НЕЖЁСТКО'}  нежёстких точек {nonrigid}/{len(pts)}  "
+        rigid_kappa = (mink is None) or mink >= 2          # нет пустых клеток — жёстко вакуумно
+        rigid_direct = nonrigid == 0
+        tag = 'ЖЁСТКО' if rigid_kappa else 'НЕЖЁСТКО'
+        if rigid_kappa != rigid_direct: tag += '  !!! РАСХОЖДЕНИЕ ДВУХ СЧЁТОВ'
+        print(f"{name:<44} n={n} m={len(pts):>3}  min κ={mink}  {tag}  нежёстких точек {nonrigid}/{len(pts)}  "
               f"оживает: {dict(sorted(rv.items()))}  κ-гистограмма пустых: {h}")
 
 if __name__ == "__main__":

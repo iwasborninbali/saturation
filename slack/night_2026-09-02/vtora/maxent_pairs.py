@@ -10,6 +10,8 @@ P(S) ∝ exp(−λ·E(S)),  E(S) = Σ_{пары точек} kill(P,Q),  kill = �
 usage: python3 maxent_pairs.py n lambda moves burnin thin seed
 """
 import sys, math, random, collections
+sys.path.insert(0, __file__.rsplit('/', 1)[0])
+from cycle_null import collinear_triples
 
 def build_kill(n):
     N = n * n; kill = [[0] * N for _ in range(N)]
@@ -65,7 +67,7 @@ def observe(rows, n):
     for i in range(len(pts)):
         for j in range(i + 1, len(pts)):
             if abs(pts[i][0] - pts[j][0]) == abs(pts[i][1] - pts[j][1]): d11 += 1
-    return kap, m2, dists, kee, cyc == 1, d11, kap1
+    return kap, m2, dists, kee, cyc == 1, d11, kap1, collinear_triples(pts)
 
 def run(n, lam, moves, burnin, thin, seed):
     rnd = random.Random(seed); kill = build_kill(n)
@@ -110,7 +112,8 @@ if __name__ == "__main__":
         ms = [sum(f(s) for s in samples[i * bl:(i + 1) * bl]) / bl for i in range(B)]; m = sum(ms) / B
         return math.sqrt(sum((x - m) ** 2 for x in ms) / (B - 1) / B)
     print(f"n={n} λ={lam} ходов {moves} (прогрев {burnin}, шаг {thin}) → {S} выборок, принято {accr:.3f}, ⟨E⟩ = {Em:.1f}")
-    kap1 = sum(s[6] for s in samples) / S
+    kap1 = sum(s[6] for s in samples) / S; Tm = sum(s[7] for s in samples) / S
+    print(f"  ⟨T⟩ (коллинеарных троек) = {Tm:.2f}   [нуль 63.6, решения 0]")
     print(f"  κ (диагонали ровно с 2, среднее по двум направлениям) = {kap:.4f} ± {bse(lambda s: s[0]):.4f}; только x−y: {kap1:.4f}   [нуль-A дня (2/строку+2/столбец) 0.33, решения 0.731; κ дня — по одному направлению x−y]")
     print(f"  прямоугольников на конфигурацию = {m2:.4f} ± {bse(lambda s: s[1]):.4f}   [нуль 0.263, решения 0.3396]")
     print(f"  дисперсия k(чётн.,чётн.) = {vk:.3f}   [нуль 2.47, решения 0.422];  P(k={n//2}) = {sum(1 for k in kees if k == n//2)/S:.3f} [0.252 / 0.609]")
