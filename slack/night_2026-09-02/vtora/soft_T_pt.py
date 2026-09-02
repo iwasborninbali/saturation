@@ -11,7 +11,7 @@ sys.path.insert(0, __file__.rsplit('/', 1)[0])
 from maxent_pairs import random_config, observe
 from soft_T import build_lines
 
-BETAS = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 4.0, 6.0]
+BETAS = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 4.0, 5.0, 6.0, 8.0]
 SHAPES = [(1, 1), (1, 2), (1, 3), (2, 3), (1, 4)]
 
 def abs_spectrum(rows, n):
@@ -80,7 +80,7 @@ if __name__ == "__main__":
                 swap_states(a, b); swaps[i] += 1
         if sw >= burn:
             for r in reps:
-                samples[r.beta].append(observe(r.rows, n) + (r.T, abs_spectrum(r.rows, n)))
+                samples[r.beta].append(observe(r.rows, n) + (r.T, abs_spectrum(r.rows, n), hash(tuple(tuple(sorted(x)) for x in r.rows))))
     obs_rho = {1: 1.07, 2: 1.35, 3: 1.36, 4: 1.30, 5: 0.96, 6: 1.22, 7: 0.59, 8: 0.83, 9: 0.66, 10: 0.88, 11: 0.44, 12: 1.18, 13: 0.43, 14: 0.71, 15: 1.26, 16: 0.91, 17: 0.69, 18: 1.30, 19: 1.02}
     print(f"n={n}, sweeps {sweeps} × M={M} локальных ходов на реплику, лестница β {BETAS}; обмены приняты: " + " ".join(f"{s}/{t}" for s, t in zip(swaps, swap_tries)))
     print(f"{'β':>4} {'⟨T⟩':>6} {'P(T=0)':>6} {'κ':>6} {'c11':>6} {'c12':>6} {'c13':>6} {'c23':>6} {'c14':>6} {'прям.':>6} {'дисп.k':>6} {'гам':>5} {'ρ накл/Сп':>10} {'лок.прин.':>9}")
@@ -102,5 +102,11 @@ if __name__ == "__main__":
             rx, ry = ranks(xs), ranks(ys); a_, b_ = sum(rx) / len(rx), sum(ry) / len(ry)
             sp = sum((u - a_) * (w - b_) for u, w in zip(rx, ry)) / math.sqrt(sum((u - a_) ** 2 for u in rx) * sum((w - b_) ** 2 for w in ry))
         else: slope = sp = float('nan')
-        print(f"{r.beta:>4} {Tm:6.2f} {P0:6.3f} {kap1:6.3f} {cs[(1,1)]:6.3f} {cs[(1,2)]:6.3f} {cs[(1,3)]:6.3f} {cs[(2,3)]:6.3f} {cs[(1,4)]:6.3f} {m2:6.3f} {vk:6.3f} {ham:5.3f} {slope:5.2f}/{sp:4.2f} {r.acc/max(r.tries,1):9.4f}")
+        B = 10; bl = max(L // B, 1)
+        def bse(f):
+            ms = [sum(f(s) for s in S[i * bl:(i + 1) * bl]) / bl for i in range(B)]; mm = sum(ms) / B
+            return math.sqrt(sum((x - mm) ** 2 for x in ms) / (B - 1) / B)
+        distinct = len(set(s[10] for s in S))
+        print(f"{r.beta:>4} {Tm:6.2f} {P0:6.3f} {kap1:6.3f} {cs[(1,1)]:6.3f} {cs[(1,2)]:6.3f} {cs[(1,3)]:6.3f} {cs[(2,3)]:6.3f} {cs[(1,4)]:6.3f} {m2:6.3f} {vk:6.3f} {ham:5.3f} {slope:5.2f}/{sp:4.2f} {r.acc/max(r.tries,1):9.4f}"
+              f"   блочные SE: κ ±{bse(lambda s: s[6]):.3f} c11 ±{bse(lambda s: s[9][(1,1)]):.3f} c12 ±{bse(lambda s: s[9][(1,2)]):.3f}; различных конфигураций {distinct}/{L}")
     print("решения n=20: κ=c11 0.731, c12 0.56, c13 0.455, c23 0.41, c14 0.38 (коллега, abs_spectrum.py); прям. 0.340; дисп.k 0.422; гам 0.307")
