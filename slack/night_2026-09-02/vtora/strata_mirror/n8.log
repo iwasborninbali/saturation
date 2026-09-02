@@ -1,1 +1,8 @@
 n=8: классов подгрупп 33, запускаем 33 страт; порядки [(1, 1), (2, 5), (3, 1), (4, 9), (6, 3), (8, 7), (12, 2), (16, 1), (24, 3), (48, 1)]
+      c07_ord4      |H|=4 rot=2 inv=y orbits= 128 cons=  2338 -> best= 88 bound=128 FEASIBLE 2400.0s
+      c01_ord2      |H|=2 rot=1 inv=y orbits= 256 cons=  4636 -> best= 90 bound=128 FEASIBLE 2400.0s
+      c02_ord2      |H|=2 rot=2 inv=n orbits= 256 cons=  4642 -> best= 92 bound=128 FEASIBLE 2400.0s
+      c05_ord2      |H|=2 rot=1 inv=n orbits= 256 cons=  4666 -> best= 90 bound=128 FEASIBLE 2400.1s
+      c06_ord3      |H|=3 rot=3 inv=n orbits= 176 cons=  3082 -> best= 93 bound=128 FEASIBLE 2400.2s
+      c04_ord2      |H|=2 rot=1 inv=n orbits= 288 cons=  4765 -> best= 92 bound=128 FEASIBLE 2400.2s
+      c03_ord2      |H|=2 rot=2 inv=n orbits= 256 cons=  4645 -> best= 90 bound=128 FEASIBLE 2400.2s
