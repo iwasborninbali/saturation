@@ -1,0 +1,34 @@
+#!/bin/zsh
+# watch_strata.sh — независимая проверка свидетелей куба A399138 (ночь 2→3.09.2026, втора).
+# Каждые 5 минут зеркалит ~/strata с ВМ saturation-alg-1 в strata_mirror/, каждый НОВЫЙ файл
+# n<N>_c<страта>_<точек>.txt прогоняет через certs/no3_3d/verify_witness_lines.py (перебор всех троек
+# векторными произведениями; cube_strata.py не читается) и пишет строку в verify.log.
+# Печатает строку только на событие: новый свидетель (с пометкой, если выше известного 73/93) или
+# смена состояния связи с ВМ.  Лёгкий: scp + проверка ≤ 100 точек.
+export CLOUDSDK_CORE_ACCOUNT=saturation-agent@loyobondar-prod.iam.gserviceaccount.com
+export CLOUDSDK_CORE_PROJECT=loyobondar-prod
+ROOT=/Users/iwasborninbali/saturation
+MIR=$ROOT/slack/night_2026-09-02/vtora/strata_mirror
+LOG=$ROOT/slack/night_2026-09-02/vtora/verify.log
+mkdir -p "$MIR"; touch "$LOG"
+link=ok
+while true; do
+  if gcloud compute scp --zone us-east4-b --quiet --recurse 'saturation-alg-1:~/strata/*' "$MIR/" >/dev/null 2>&1; then
+    [ "$link" = down ] && echo "связь с ВМ восстановлена $(date -u +%FT%TZ)"; link=ok
+  else
+    [ "$link" = ok ] && echo "scp с ВМ не прошёл $(date -u +%FT%TZ) (ВМ снесена или сеть)"; link=down
+  fi
+  for f in "$MIR"/n*_c*_*.txt; do
+    [ -e "$f" ] || continue
+    base=$(basename "$f")
+    grep -q "^$base " "$LOG" 2>/dev/null && continue
+    n=$(echo "$base" | sed -E 's/^n([0-9]+)_.*/\1/')
+    pts=$(echo "$base" | sed -E 's/.*_([0-9]+)\.txt$/\1/')
+    res=$(python3 "$ROOT/certs/no3_3d/verify_witness_lines.py" "$n" "$f" "$pts" 2>&1 | tail -1 | sed 's/^ *//')
+    echo "$base $(date -u +%FT%TZ) $res" >> "$LOG"
+    thr=73; [ "$n" = 8 ] && thr=93
+    flag=""; [ "$pts" -gt "$thr" ] 2>/dev/null && flag="  !!! ВЫШЕ ИЗВЕСТНОГО ($thr) — кандидат в A399138"
+    echo "новый свидетель $base: $res$flag"
+  done
+  sleep 300
+done
