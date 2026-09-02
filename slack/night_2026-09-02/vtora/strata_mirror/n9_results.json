@@ -1,6 +1,17 @@
 [
  {
   "n": 9,
+  "tag": "c08_ord4",
+  "group": "|H|=4 rot=2 inv=y",
+  "orbits": 205,
+  "constraints": 5297,
+  "status": "FEASIBLE",
+  "best": 116,
+  "bound": 160,
+  "secs": 2400.0
+ },
+ {
+  "n": 9,
   "tag": "c04_ord2",
   "group": "|H|=2 rot=1 inv=n",
   "orbits": 405,
@@ -12,6 +23,28 @@
  },
  {
   "n": 9,
+  "tag": "c10_ord4",
+  "group": "|H|=4 rot=4 inv=n",
+  "orbits": 189,
+  "constraints": 5185,
+  "status": "FEASIBLE",
+  "best": 114,
+  "bound": 160,
+  "secs": 2399.9
+ },
+ {
+  "n": 9,
+  "tag": "c11_ord4",
+  "group": "|H|=4 rot=2 inv=n",
+  "orbits": 225,
+  "constraints": 5349,
+  "status": "FEASIBLE",
+  "best": 114,
+  "bound": 154,
+  "secs": 2400.0
+ },
+ {
+  "n": 9,
   "tag": "c07_ord4",
   "group": "|H|=4 rot=2 inv=y",
   "orbits": 205,
@@ -19,6 +52,61 @@
   "status": "FEASIBLE",
   "best": 112,
   "bound": 152,
+  "secs": 2400.0
+ },
+ {
+  "n": 9,
+  "tag": "c09_ord4",
+  "group": "|H|=4 rot=4 inv=n",
+  "orbits": 189,
+  "constraints": 5227,
+  "status": "FEASIBLE",
+  "best": 112,
+  "bound": 160,
+  "secs": 2400.0
+ },
+ {
+  "n": 9,
+  "tag": "c13_ord4",
+  "group": "|H|=4 rot=2 inv=n",
+  "orbits": 225,
+  "constraints": 5331,
+  "status": "FEASIBLE",
+  "best": 112,
+  "bound": 144,
+  "secs": 2400.0
+ },
+ {
+  "n": 9,
+  "tag": "c14_ord4",
+  "group": "|H|=4 rot=2 inv=n",
+  "orbits": 185,
+  "constraints": 5136,
+  "status": "FEASIBLE",
+  "best": 112,
+  "bound": 160,
+  "secs": 2400.0
+ },
+ {
+  "n": 9,
+  "tag": "c23_ord8",
+  "group": "|H|=8 rot=8 inv=n",
+  "orbits": 99,
+  "constraints": 2532,
+  "status": "OPTIMAL",
+  "best": 112,
+  "bound": 112,
+  "secs": 113.0
+ },
+ {
+  "n": 9,
+  "tag": "c12_ord4",
+  "group": "|H|=4 rot=2 inv=n",
+  "orbits": 225,
+  "constraints": 5319,
+  "status": "FEASIBLE",
+  "best": 111,
+  "bound": 153,
   "secs": 2400.0
  },
  {
@@ -75,5 +163,38 @@
   "best": 110,
   "bound": 162,
   "secs": 2400.4
+ },
+ {
+  "n": 9,
+  "tag": "c00_ord1",
+  "group": "|H|=1 rot=1 inv=n",
+  "orbits": 729,
+  "constraints": 20353,
+  "status": "FEASIBLE",
+  "best": 110,
+  "bound": 162,
+  "secs": 3600.0
+ },
+ {
+  "n": 9,
+  "tag": "c20_ord8",
+  "group": "|H|=8 rot=4 inv=y",
+  "orbits": 105,
+  "constraints": 2590,
+  "status": "OPTIMAL",
+  "best": 108,
+  "bound": 108,
+  "secs": 150.9
+ },
+ {
+  "n": 9,
+  "tag": "c19_ord8",
+  "group": "|H|=8 rot=4 inv=y",
+  "orbits": 125,
+  "constraints": 2803,
+  "status": "OPTIMAL",
+  "best": 108,
+  "bound": 108,
+  "secs": 265.9
  }
 ]

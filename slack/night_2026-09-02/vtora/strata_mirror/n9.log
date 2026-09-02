@@ -6,3 +6,14 @@ n=9: классов подгрупп 33, запускаем 33 страт; по�
       c03_ord2      |H|=2 rot=2 inv=n orbits= 369 cons= 10243 -> best=110 bound=161 FEASIBLE 2400.0s
       c02_ord2      |H|=2 rot=2 inv=n orbits= 369 cons= 10285 -> best=110 bound=161 FEASIBLE 2400.0s
       c01_ord2      |H|=2 rot=1 inv=y orbits= 365 cons= 10321 -> best=110 bound=162 FEASIBLE 2400.4s
+      c00_ord1      |H|=1 rot=1 inv=n orbits= 729 cons= 20353 -> best=110 bound=162 FEASIBLE 3600.0s
+      c10_ord4      |H|=4 rot=4 inv=n orbits= 189 cons=  5185 -> best=114 bound=160 FEASIBLE 2399.9s
+      c08_ord4      |H|=4 rot=2 inv=y orbits= 205 cons=  5297 -> best=116 bound=160 FEASIBLE 2400.0s
+      c09_ord4      |H|=4 rot=4 inv=n orbits= 189 cons=  5227 -> best=112 bound=160 FEASIBLE 2400.0s
+      c11_ord4      |H|=4 rot=2 inv=n orbits= 225 cons=  5349 -> best=114 bound=154 FEASIBLE 2400.0s
+      c12_ord4      |H|=4 rot=2 inv=n orbits= 225 cons=  5319 -> best=111 bound=153 FEASIBLE 2400.0s
+      c13_ord4      |H|=4 rot=2 inv=n orbits= 225 cons=  5331 -> best=112 bound=144 FEASIBLE 2400.0s
+      c14_ord4      |H|=4 rot=2 inv=n orbits= 185 cons=  5136 -> best=112 bound=160 FEASIBLE 2400.0s
+      c20_ord8      |H|=8 rot=4 inv=y orbits= 105 cons=  2590 -> best=108 bound=108 OPTIMAL 150.9s
+      c23_ord8      |H|=8 rot=8 inv=n orbits=  99 cons=  2532 -> best=112 bound=112 OPTIMAL 113.0s
+      c19_ord8      |H|=8 rot=4 inv=y orbits= 125 cons=  2803 -> best=108 bound=108 OPTIMAL 265.9s
