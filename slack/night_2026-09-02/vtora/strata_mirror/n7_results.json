@@ -166,6 +166,28 @@
  },
  {
   "n": 7,
+  "tag": "c00_ord1",
+  "group": "|H|=1 rot=1 inv=n",
+  "orbits": 343,
+  "constraints": 4429,
+  "status": "FEASIBLE",
+  "best": 72,
+  "bound": 98,
+  "secs": 3600.0
+ },
+ {
+  "n": 7,
+  "tag": "c12_ord4",
+  "group": "|H|=4 rot=2 inv=n",
+  "orbits": 112,
+  "constraints": 1207,
+  "status": "FEASIBLE",
+  "best": 71,
+  "bound": 89,
+  "secs": 1500.0
+ },
+ {
+  "n": 7,
   "tag": "c05_ord2",
   "group": "|H|=2 rot=1 inv=n",
   "orbits": 196,
@@ -185,6 +207,17 @@
   "best": 70,
   "bound": 70,
   "secs": 460.9
+ },
+ {
+  "n": 7,
+  "tag": "c11_ord4",
+  "group": "|H|=4 rot=2 inv=n",
+  "orbits": 112,
+  "constraints": 1221,
+  "status": "FEASIBLE",
+  "best": 70,
+  "bound": 88,
+  "secs": 1500.0
  },
  {
   "n": 7,
