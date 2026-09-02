@@ -6,7 +6,7 @@ T = Σ_{s∈S} κ(s)/3.  v3: при T ≤ 2 — детерминированна
 живые клетки остатка (κ = 0), поиск совместимого пополнения размера |R| (даёт T = 0 при m точках) или |R|+1 (даёт m+1 точек — улучшение).
 Каждое найденное множество с T = 0 размера ≥ m−1 записывается (провенанс в первой строке), m+1 — как отдельный файл с пометкой РЕКОРД.
 Калибровка на известном: n=6, m=64; n=7, m=73. Цель — n=7, m=74.
-usage: python3 cube_anneal.py n m sweeps M seed [out_prefix]
+usage: python3 cube_anneal.py n m sweeps M seed [out_prefix] [init_file]   (init_file — стартовая конфигурация «x y z» построчно; недостающие точки добираются случайно)
 """
 import sys, math, random, itertools, time
 
@@ -40,9 +40,15 @@ def verify(pts):
     return not any(cz(*t) for t in itertools.combinations(pts, 3))
 
 class Rep:
-    def __init__(self, n, m, beta, lines, rnd):
+    def __init__(self, n, m, beta, lines, rnd, init=None):
         self.n, self.m, self.beta, self.lines, self.rnd = n, m, beta, lines, rnd; N = n ** 3
-        self.occ = set(rnd.sample(range(N), m)); self.kap = [0] * N
+        if init:
+            self.occ = set(init)
+            while len(self.occ) < m: self.occ.add(rnd.randrange(N))
+            while len(self.occ) > m: self.occ.remove(rnd.choice(tuple(self.occ)))
+        else:
+            self.occ = set(rnd.sample(range(N), m))
+        self.kap = [0] * N
         S = sorted(self.occ)
         for a in range(m):
             for b in range(a + 1, m):
@@ -121,7 +127,12 @@ if __name__ == "__main__":
     n, m, sweeps, M, seed = int(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3]), int(sys.argv[4]), int(sys.argv[5])
     prefix = sys.argv[6] if len(sys.argv) > 6 else f"anneal_n{n}_m{m}_s{seed}"
     rnd = random.Random(seed); t0 = time.time(); cells, lines = build_lines(n)
-    reps = [Rep(n, m, b, lines, random.Random(seed * 1000 + i)) for i, b in enumerate(BETAS)]
+    init = None
+    if len(sys.argv) > 7:
+        idx = {c: i for i, c in enumerate(cells)}
+        init = [idx[tuple(int(t) for t in l.split())] for l in open(sys.argv[7]) if l.strip() and not l.startswith('#')]
+        print(f"старт из {sys.argv[7]}: {len(init)} точек", flush=True)
+    reps = [Rep(n, m, b, lines, random.Random(seed * 1000 + i), init) for i, b in enumerate(BETAS)]
     record = None; swaps = [0] * (len(BETAS) - 1); saved = set(); n_same = 0
     def save(pts_idx, tag, sw, beta):
         global record
