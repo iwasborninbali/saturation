@@ -552,7 +552,8 @@ $E_1+E_2+F_1+F_2\equiv(\theta-A)+(\theta-B)+\eta+(\eta-\Gamma+\Delta)\equiv A+B+
 \emph{If $F_1$ holds, then $E_1$ and $E_2$ do not both hold.}  Put $s=X_a-x_0$, $t=X_b-x_0\in[0,p-1]$ and $v=(x_0-y_0)\bmod p$;
 since $Y_u\equiv X_u$, we have $Y_a-y_0=s+v-c_ap$ and $Y_b-y_0=t+v-c_bp$ with $c_a=[s+v\ge p]$, $c_b=[t+v\ge p]$, and therefore
 $\eta=c_b-c_a$.  So $F_1$ means $c_a\ne c_b$; the substitution $a\leftrightarrow b$ exchanges $E_1\leftrightarrow E_2$ and
-fixes $F_1$, so we may assume $c_a=0$, $c_b=1$, i.e.\ $s\le p-1-v<t$.  Since $\mu_x-\mu_y\equiv-2v\pmod p$ and
+fixes $F_1$, so we may assume $c_a=0$, $c_b=1$, i.e.\ $s\le p-1-v<t$.  Note that $F_1$ forces $v\ge1$: for $v=0$ we would have
+$s+v,t+v\le p-1$ and hence $c_a=c_b=0$.  Since $\mu_x-\mu_y\equiv-2v\pmod p$ and
 $|\mu_x-\mu_y|\le p-1$, we have $\mu_x-\mu_y=-2v+kp$ with $k\in\{0,1,2\}$, and
 $\theta p=(2x_0+s+t)-(2y_0+s+t+2v-p)-(\mu_x+2x_0-\mu_y-2y_0)=p-2v-(\mu_x-\mu_y)=(1-k)p$, i.e.\ $\theta=1-k$.
 With $\varepsilon_x(a)=[s>\mu_x]$, $\varepsilon_x(b)=[t>\mu_x]$, $\varepsilon_y(a)=[s+v>\mu_y]$, $\varepsilon_y(b)=[t+v-p>\mu_y]$
@@ -562,7 +563,7 @@ and $\mu_y=\mu_x+2v-kp$:
  then $t>\mu_x$ and $s>\mu_x+v-p$, so $E_1$ fails.  If $s\le\mu_x$, $E_2$ forces $t>\mu_x+v$, so $\mu_x+v\le p-2$ and
  $[t>\mu_x]=1$, and $E_1$ forces $s\le\mu_x+v-p<0$, impossible.
 \item[$k=0$:] here $\mu_y=\mu_x+2v\le p$, so $\varepsilon_y(b)=0$ and $E_2\Leftrightarrow s\le\mu_x$; then $\varepsilon_y(a)=[s>\mu_x+v]=0$
- and $E_1\Leftrightarrow t\le\mu_x$, but $t\ge p-v>p-2v\ge\mu_x$.
+ and $E_1\Leftrightarrow t\le\mu_x$, but $t\ge p-v>p-2v\ge\mu_x$ (the middle inequality uses $v\ge1$).
 \item[$k=2$:] here $\mu_y=\mu_x+2v-2p\ge1$, so $\mu_x\ge2p+1-2v$ and $\varepsilon_y(a)=1$; $E_1\Leftrightarrow t>\mu_x$ and
  $E_2\Leftrightarrow(s>\mu_x)\vee(t\le\mu_x+v-p)$.  Now $s>\mu_x$ would give $2p+2-2v\le s\le p-1-v$, i.e.\ $v\ge p+3$; so
  $s\le\mu_x$ and $E_2$ needs $t\le\mu_x+v-p<\mu_x$, contradicting $E_1$.
