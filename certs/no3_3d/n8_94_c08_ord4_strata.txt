@@ -4,6 +4,7 @@
 # Independent verification (session saturation-73, vtora): certs/no3_3d/verify_witness_lines.py 8 <file> 94 -> 134044 triples by integer cross products, 0 collinear;
 #   second count (own cross-product loop) 0 collinear; 94 distinct points in range; kill-multiplicity min kappa = 3 (rigid: no single-point swap); exhaustive j<=3 exchange finds no 95.
 # c08 and c11 witnesses are NOT equivalent under the 48 symmetries of the cube. Format: x y z per line.
+# конвенция радиуса (lem-001, 03.09): «radius <= j» / «обмен ≤ j: нет» = глубина j исчерпывающего перебора exchange_search.py, не доказанный r(S) = min κ − 1
 0 1 0
 0 1 4
 0 2 3

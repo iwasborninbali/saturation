@@ -25,6 +25,11 @@ for path in sys.argv[1:]:
         cnt = collections.Counter(p for t in K[q] for p in t)
         share[q] = max(cnt.values()) / len(K[q]) if K[q] else 0.0
     low = [q for q in cells if 1 <= len(K[q]) <= 5]
+    # прямой замер Δ_p κ³(q) = число убийц q через p, отдельно по неколлинеарным и коллинеарным клеткам (граница 2 lem-001: ≤ ⌊(|S|−1)/2⌋ у неколлинеарных)
+    colq = {q: any(collinear([q, a, b]) for a, b in itertools.combinations(S, 2)) for q in cells}
+    dmax_nc = max((max(collections.Counter(p for t in K[q] for p in t).values()) for q in cells if not colq[q] and K[q]), default=0)
+    dmax_c = max((max(collections.Counter(p for t in K[q] for p in t).values()) for q in cells if colq[q] and K[q]), default=0)
+    print(f"  прямой замер max_p Δ_p κ³(q): по неколлинеарным клеткам {dmax_nc} (порог ⌊(|S|−1)/2⌋ = {(len(S)-1)//2}), по коллинеарным {dmax_c} (= |S|−2 = {len(S)-2})")
     print(f"{path.rsplit('/',1)[-1]}: n={n} |S|={len(S)} пустых клеток {len(cells)}; min κ³={min(dist)}; распределение κ³ (k ≤ 6): { {k: dist[k] for k in sorted(dist) if k <= 6} }; полное: {dict(sorted(dist.items()))}")
     print(f"  лемма 3: пар убийц проверено {pairs_checked}, с общей парой точек {shared_pair}, из них у клеток, коллинеарных с парой точек S: {shared_pair_collinear}; у неколлинеарных клеток: {shared_pair - shared_pair_collinear}")
     print(f"  хрупких клеток (1 ≤ κ³ ≤ 5): {len(low)}; max по хрупким доли убийц через одну точку: {max((share[q] for q in low), default=0):.3f}; max по всем клеткам: {max(share.values()):.3f}; клеток с долей 1.0 (оживают удалением точки): {sum(1 for q in cells if share[q] == 1.0)}")

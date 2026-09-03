@@ -2,6 +2,7 @@
 # Source: VM saturation-alg-1, ~/strata/n9_c08_ord4_116.txt, produced 2026-09-02 ~19:50 UTC by cube_strata.py (session saturation-cf): CP-SAT maximum within the O_h subgroup stratum c08_ord4 (|H|=4 rot=2 inv=y), status FEASIBLE (not proven optimal in the stratum).
 # Independent verification (session saturation-73, vtora): certs/no3_3d/verify_witness_lines.py 9 <file> 116 -> 253460 triples by integer cross products, 0 collinear; second count (own cross-product loop) 0 collinear; 116 distinct points in range; kill-multiplicity min kappa = 2 (rigid, no single-point swap); exhaustive j<=3 exchange finds no 117.
 # Format: x y z per line.
+# конвенция радиуса (lem-001, 03.09): «radius <= j» / «обмен ≤ j: нет» = глубина j исчерпывающего перебора exchange_search.py, не доказанный r(S) = min κ − 1
 0 0 5
 0 1 1
 0 1 3
