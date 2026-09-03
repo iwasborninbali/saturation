@@ -1,0 +1,3 @@
+n=12: страт 1, K=3, planes=planes/planes_n12.json
+      c06_ord3      |H|=3 rot=3 inv=n orbits= 584 planes=37063350 -> best= 29 bound=36 FEASIBLE rounds=1 21659.9s
+ИТОГ n=12: лучший чистый свидетель 29 точек в страте c06_ord3 (|H|=3 rot=3 inv=n)

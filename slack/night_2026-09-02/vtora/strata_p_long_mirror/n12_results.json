@@ -1,0 +1,14 @@
+[
+ {
+  "n": 12,
+  "tag": "c06_ord3",
+  "group": "|H|=3 rot=3 inv=n",
+  "orbits": 584,
+  "planes": 37063350,
+  "best": 29,
+  "bound": 36,
+  "status": "FEASIBLE",
+  "rounds": 1,
+  "secs": 21659.9
+ }
+]
