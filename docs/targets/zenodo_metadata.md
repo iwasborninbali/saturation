@@ -140,3 +140,9 @@ DRAT certificate, OEIS
 Аудит синхронности: slack/gates/синхрон_записи.sh — 10/10 файлов совпали с repo HEAD.
 3D v1.4: 14 оптимумов n=4 подтверждены НАШИМ счётом (32 доли в облаке, 13 215 017 061
 узел, стабилизаторы 8/8/24), машина погашена автоматически.
+
+## a399138-witnesses v1.0 (3.09.2026) — опубликовано по Хартии свободы, без запроса «да»
+- запись: https://zenodo.org/record/22271376 — DOI 10.5281/zenodo.22271376, concept 10.5281/zenodo.22271375; тип dataset, CC BY 4.0;
+  файлы: a399138-witnesses-v1.0.zip (git archive коммита 1727790), a399138.txt, verify_witness_lines.py, README.md
+- репо: https://github.com/iwasborninbali/a399138-witnesses (свидетели n = 7…11, верификатор, cube_strata.py + results.json, классы, a-файл)
+- содержание: a(8) ≥ 94, a(9) ≥ 116, a(10) ≥ 138, a(11) ≥ 164; четыре класса 73 при n = 7; related: zenodo.22019279, OEIS A399138
