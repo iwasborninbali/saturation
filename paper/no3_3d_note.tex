@@ -7,16 +7,17 @@
 \newtheorem{lemma}[proposition]{Lemma}
 \title{Exact values and certified lower bounds for the no-three-in-line problem in the cube}
 \author{Aleksei Kudriashov (Alex Komang)\\ \small Nusa Dua Studio, Nusa Dua, Bali, Indonesia\\ \small ORCID: 0009-0006-8885-5338}
-\date{23 August 2026 --- version 1.4\\ \small\texttt{doi:10.5281/zenodo.22019279}}
+\date{3 September 2026 --- version 1.5\\ \small\texttt{doi:10.5281/zenodo.22019279}}
 \begin{document}\maketitle
 \begin{abstract}
 Let $a(n)$ be the largest number of points of the grid $\{0,1,\dots,n-1\}^3$ no three of which are collinear.
 P\'or and Wood proved $a(n)=\Theta(n^2)$, the lower bound by the construction
 $\{(x,y,x^2+y^2\bmod p)\}$, which has no three collinear precisely when $p\equiv3\pmod4$
 (Lemma~4 of \cite{PorWood}); no exact values appear to have been recorded, and the sequence was not in
-the OEIS when this work began (our draft A399138 is under review).  We determine
+the OEIS when this work began (it is now A399138, approved August 2026).  We determine
 \[a(1),\dots,a(6)=1,\,8,\,16,\,28,\,40,\,64,\]
-give certified lower bounds $a(7)\ge73$ and $a(8)\ge93$, and prove $a(p)\ge p^2$ for every prime $p$ by an
+give certified lower bounds $a(7)\ge73$, $a(8)\ge94$, $a(9)\ge116$, $a(10)\ge138$, $a(11)\ge164$ (the bounds for $n\ge8$,
+new in version 1.5, come from exact optimisation inside the symmetry classes of the cube group), and prove $a(p)\ge p^2$ for every prime $p$ by an
 elementary construction from an anisotropic binary quadratic form.
 
 The method is a certified decision procedure rather than a search: a line carrying at most two lattice points
@@ -260,13 +261,28 @@ of a segment joining the two outer layers is a lattice point when $n$ is odd, an
 count shows the middle layer still retains up to $16$ free cells --- above its own planar ceiling of $10$ --- so
 that constraint does not bind.
 
-\section{Certified lower bounds for $n=7,8$}
+\section{Certified lower bounds for $n=7,\dots,11$}
 \begin{center}\begin{tabular}{rrrl}\toprule
 $n$ & $a(n)\ge$ & $/n^2$ & source of the witness\\\midrule
-7 & 73 & 1.49 & invariant under every permutation of the axes (order 6; an earlier draft said order 3, underselling its own witness)\\
-8 & 93 & 1.45 & invariant under the full group of axis permutations (order 6)\\\bottomrule
+7 & 73 & 1.49 & fourteen inequivalent configurations known; the first was invariant under every permutation of the axes (order 6)\\
+8 & 94 & 1.47 & two inequivalent configurations, each invariant under a subgroup of order 4 (version 1.4 had $93$, order 6)\\
+9 & 116 & 1.43 & two inequivalent configurations: stabilisers of order 4 and of order 12; the latter is optimal within its class\\
+10 & 138 & 1.38 & full stabiliser of order 12; optimal within the order-12 class\\
+11 & 164 & 1.36 & stabiliser of order 12; the bound inside the class is not closed\\\bottomrule
 \end{tabular}\end{center}
-Each configuration is re-verified by testing all $\binom{|S|}{3}$ triples with integer cross products.  These
+The bounds for $n=8,\dots,11$ (version 1.5, 2--3 September 2026) come from a sweep over all $33$ conjugacy
+classes of subgroups $H$ of the symmetry group of the cube (order $48$): in each class the maximum of $|S|$
+over $H$-invariant admissible sets is computed by exact optimisation (CP-SAT over the $H$-orbits of cells, with
+``at most two chosen cells on every grid line'') under a time limit of $25$--$40$ minutes per class.  Where the
+solver closes the bound the value is the exact maximum of the class (this happened for the order-$12$ class at
+$n=9$ and $n=10$); elsewhere it is a lower bound inside the class.  Every configuration was verified by two
+independent programs over all $\binom{|S|}{3}$ triples, its stabiliser computed under the $48$ symmetries, and
+its local optimality certified: no point can be replaced (all are rigid, min $\kappa\ge2$ in the sense of the
+disjoint-killers lemma of the companion repository \texttt{lemma-atelier}), and no exchange removing at most
+four points ($73$, $94$, $116$) or three points ($138$, $164$) improves it.  The configurations, the per-class
+results and the verifier are archived separately \cite{Witnesses}.
+
+The rest of this section is the version-1.4 account of $n=7,8$, kept as data.  Each configuration is re-verified by testing all $\binom{|S|}{3}$ triples with integer cross products.  These
 are lower bounds only; we make no claim about how far they are from the truth, and we expect them to be weak,
 since a randomised search is a poor instrument at this size.  The $n=7$ bound illustrates the point: it stood
 at $71$ from randomised search and rose to $73$ within the hour once the search was restricted to
@@ -281,6 +297,8 @@ order of the group & best found\\\midrule
 2 & 82, 84\\ 3 & 88\\ 4 & 88, 90\\ \textbf{6} & \textbf{92, 92, 93}\\ 8 & 80, 88\\ 12 & 88\\
 24 & 88 (proved optimal within its stratum)\\ 48 & 80 (proved optimal within its stratum)\\\bottomrule
 \end{tabular}\end{center}
+(The full sweep of version 1.5, $40$ minutes per class, later gave $94$ in two classes of order $4$, so the
+order-$6$ value $93$ of this table was not the maximum of its own neighbourhood of classes either.)
 At $|G|=48$ only $20$ orbits remain, the solver settles the stratum in seconds, and the answer is $80$, because
 genuinely good configurations do not have that much symmetry.  Note also that the order alone does not decide
 it: two different groups of order $8$ gave $80$ and $88$.  We record this as data.  An earlier draft of this
@@ -329,6 +347,9 @@ enumerator does not reach $n=5$: it closed $24$ of $4096$ prefixes at $15$--$33$
 full traversal on the order of $10^{14}$ nodes.  It corroborates the lower bound only.
 \item The verification of the symmetry pruning shows that our \emph{implementation} discards nothing; it is
 not a proof of the underlying lex-leader argument, which is standard but which we did not reprove.
+\item The stratum sweep (version 1.5) proves nothing about $a(n)$: a class maximum is an upper bound for that
+class only, and the classes are enriched in maxima but need not contain them --- at $n=6$ every class with a
+non-trivial symmetry stays below $64$ except those attained by the certified optimum itself.
 \item The layer-structure anomaly at $n=5$ and $n=7$ is a computation, not an explanation.  A count of the
 planar configurations attaining $2n$ points suggests rigidity ($11$ configurations in $4$ classes for
 $4\times4$; $32$ in only $5$ classes for $5\times5$; $50$ in $11$ classes for $6\times6$), and one natural
@@ -345,8 +366,11 @@ Treengeling entering the SAT Competition 2020, Proc.\ SAT Competition 2020, Univ
 using expressive clausal proofs, Proc.\ SAT 2014, Lecture Notes in Comput.\ Sci.\ 8561, Springer, 2014.
 \bibitem{Glucose} G.~Audemard and L.~Simon, Predicting learnt clauses quality in modern SAT solvers,
 Proc.\ IJCAI 2009.
-\bibitem{OEIS} OEIS Foundation Inc., The On-Line Encyclopedia of Integer Sequences, \url{https://oeis.org}
-(draft sequence A399138).
+\bibitem{OEIS} OEIS Foundation Inc., The On-Line Encyclopedia of Integer Sequences, \url{https://oeis.org},
+sequence A399138.
+\bibitem{Witnesses} A.~Kudriashov, Witness configurations and lower bounds for the no-three-in-line problem in the
+$n\times n\times n$ grid (OEIS A399138), Zenodo, 2026, \url{https://doi.org/10.5281/zenodo.22271375}; source
+\url{https://github.com/iwasborninbali/a399138-witnesses}.
 \end{thebibliography}
 
 \section*{AI/tool-use disclosure}
