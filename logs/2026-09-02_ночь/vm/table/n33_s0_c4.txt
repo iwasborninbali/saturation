@@ -1,0 +1,4 @@
+timeout n=33 sym=0 order=0 value=0 shave=-1 restarts=31 nodes=1150427123 trials=2074026521 secs=2352.47
+timeout n=33 sym=0 order=0 value=0 shave=-1 restarts=31 nodes=1150427123 trials=2051718974 secs=1941.51
+timeout n=33 sym=0 order=0 value=0 shave=-1 restarts=31 nodes=1150427123 trials=2058697392 secs=2306.02
+timeout n=33 sym=0 order=0 value=0 shave=-1 restarts=31 nodes=1150427123 trials=2062343446 secs=2280.55

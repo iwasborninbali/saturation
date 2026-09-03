@@ -1,0 +1,16 @@
+timeout n=33 sym=0 order=0 value=0 shave=-1 restarts=31 nodes=1150427123 trials=2056197733 secs=2312.83
+timeout n=33 sym=0 order=0 value=0 shave=-1 restarts=31 nodes=1150427123 trials=2074986434 secs=1862.31
+timeout n=33 sym=0 order=0 value=0 shave=-1 restarts=31 nodes=1150427123 trials=2062541221 secs=2438.98
+timeout n=33 sym=0 order=0 value=0 shave=-1 restarts=31 nodes=1150427123 trials=2056528501 secs=2197.55
+timeout n=33 sym=0 order=0 value=0 shave=-1 restarts=31 nodes=1150427123 trials=2077826517 secs=2290.00
+timeout n=33 sym=0 order=0 value=0 shave=-1 restarts=31 nodes=1150427123 trials=2061556927 secs=1946.74
+timeout n=33 sym=0 order=0 value=0 shave=-1 restarts=31 nodes=1150427123 trials=2048128741 secs=2215.79
+timeout n=33 sym=0 order=0 value=0 shave=-1 restarts=32 nodes=1725642663 trials=3099709386 secs=2470.45
+timeout n=33 sym=0 order=0 value=0 shave=-1 restarts=32 nodes=1725642663 trials=3075695574 secs=2423.58
+timeout n=33 sym=0 order=0 value=0 shave=-1 restarts=32 nodes=1725642663 trials=3154034995 secs=2535.66
+timeout n=33 sym=0 order=0 value=0 shave=-1 restarts=32 nodes=1725642663 trials=3147188268 secs=2811.46
+timeout n=33 sym=0 order=0 value=0 shave=-1 restarts=32 nodes=1725642663 trials=3098682840 secs=2459.51
+timeout n=33 sym=0 order=0 value=0 shave=-1 restarts=32 nodes=1725642663 trials=3093724509 secs=2463.31
+timeout n=33 sym=0 order=0 value=0 shave=-1 restarts=32 nodes=1725642663 trials=3098517310 secs=2541.51
+timeout n=33 sym=0 order=0 value=0 shave=-1 restarts=32 nodes=1725642663 trials=3097057370 secs=2444.43
+timeout n=33 sym=0 order=0 value=0 shave=-1 restarts=32 nodes=1725642663 trials=3072635248 secs=2453.48
