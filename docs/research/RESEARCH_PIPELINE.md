@@ -131,3 +131,22 @@ Kill-gate применяется **буквально**. Итог обязан �
 10–15 новых кандидатов, каждый — с полями контракта доказательности; ранжирование; один победитель ИЛИ честное
 «победителя нет»; раздел «вычеркнуть и почему»; раздел «осталось непроверенным». Плюс отдельно: **какие классы
 источников оказались продуктивными, а какие пустыми** — это нужно для следующей калибровки регламента.
+
+## Поиск, когда лимит WebSearch исчерпан (добавлено 3.09.2026 по пробе третьей сессии saturation-cd; текст её, принят opus)
+- Факт: встроенный WebSearch ограничен 200 вызовами на сессию (CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION). Воркфлоу на 30+ агентов съедает
+  лимит за полчаса; все последующие агенты остаются без свободного поиска, и «не найдено» опирается только на API и прямые загрузки —
+  так было в ресёрче 14 и в сборе по брифу 13.
+- Замена: `python3 ~/projects/lemma-atelier/research/tools/gsearch.py "запрос" [--include arxiv.org github.com '*.edu'] [--exclude wikipedia.org] [--n 10]`
+  — веб-поиск через Groq compound (движок Tavily); ключ — `GROQ_API_KEY` в ~/.config/saturation/env (вне git). Печатает только сырые
+  результаты (title / url / snippet); 8–25 тыс. токенов Groq на запрос.
+- Правило C0 для него: синтезированный ответ модели НЕ читать — обёртка его отбрасывает. В пробе 3.09 groq/compound выдумал препринт
+  «arXiv:2606.01873, Automated Re-encoding Meets Graph Theory (Heule, Subercaseaux, Przybocki 2026)» и слайды
+  satcompetition.github.io/2026/slides/heule-no-three-in-line.pdf — ни того, ни другого не существует. Сниппет — только указатель:
+  цитировать можно то, что открыто по URL (curl / WebFetch) и прочитано; до этого evidence = snippet.
+- Стратегия: много коротких сфокусированных запросов (имя + год + объект; фильтр --include для arXiv, GitHub, OEIS, archive.org; язык
+  источника), а не один широкий. Пробы 3.09: письмо Гамильтона Грейвсу 17.10.1843 — страница и PDF TCD (maths.tcd.ie/pub/HistMath) в первой
+  тройке; Freund 1956 — DOI 10.1080/00029890.1956.11988751, OEIS A035343, продолжение Fibonacci Quart. 2007 «Restricted occupancy of s kinds
+  of cells»; фильтр arxiv.org по «direction slope distribution» — arXiv:2510.17743 (Theorem 1.2: ёмкость, зависящая от направления) и
+  arXiv:2502.00176; по Хойле — Wolfram Community t/3736053 «No-3-in-line problem solved for order 70», репозиторий mvr/no-three-in-line
+  (Mitchell Riley), google-deepmind/formal-conjectures (Green's open problem 72). Всё это в ресёрче 14 отсутствовало.
+- В промпт агентам: первым действием проверить WebSearch; при ответе «budget» — перейти на gsearch; в «где искали» указывать движок.
