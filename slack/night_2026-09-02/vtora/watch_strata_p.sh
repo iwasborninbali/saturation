@@ -29,7 +29,8 @@ while true; do
     case "$n" in 5) thr=13;; 6) thr=16;; 7) thr=18;; 8) thr=20;; 9) thr=23;; 10) thr=26;; 11) thr=28;; 12) thr=31;; *) thr=0;; esac
       tag=""; [ "$thr" -gt 0 ] 2>/dev/null && [ "$pts" -gt "$thr" ] 2>/dev/null && tag=" !!! РЕКОРД: больше лучшего известного $thr"
       [ "$thr" -gt 0 ] 2>/dev/null && [ "$pts" -eq "$thr" ] 2>/dev/null && tag=" — равен лучшему известному ($thr): проверить класс эквивалентности"
-      [ "$pts" -ge 10 ] 2>/dev/null && echo "A280537 новый свидетель $tagdir$base: $res | $rig$tag"   # мелкие стратные конфигурации только в журнал
+      cls=""; [ "$thr" -gt 0 ] 2>/dev/null && [ "$pts" -ge "$thr" ] 2>/dev/null && cls=" | $(python3 "$ROOT/slack/night_2026-09-02/vtora/class_check_a280537.py" "$f" 2>&1 | tail -1)"
+      [ "$pts" -ge 10 ] 2>/dev/null && echo "A280537 новый свидетель $tagdir$base: $res | $rig$tag$cls"   # мелкие стратные конфигурации только в журнал
   done
   sleep 300
 done
