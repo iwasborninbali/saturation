@@ -1,0 +1,18 @@
+{
+  "group_population": {
+    "easy_low": 1048,
+    "easy_triple": 14423,
+    "stubborn_low": 126,
+    "stubborn_triple": 160
+  },
+  "output": "logs/a280537/followup_audit_manifest.tsv",
+  "output_sha256": "fe5906e2559e63c7f68b57adc8025d328a04e950d2218a01c5b0292dde42a068",
+  "per_stratum": 8,
+  "rows": 32,
+  "seed": 20260902,
+  "source_sha256": {
+    "closed_first": "73f2ab27d48921461fe5dcf0e94803fcab5e894ea1db3e801d363a49d3362d68",
+    "closed_second": "865e35f72d3376ee63ab8020c43f57a0c12a289a89b3c4ada7c02f62998f10bd",
+    "stubborn": "81ca6071a386e6b420865ea072c2c3bfd3ea235278590aabf11ad08b828fff57"
+  }
+}
