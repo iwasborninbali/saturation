@@ -1,0 +1,26 @@
+[
+ {
+  "n": 10,
+  "tag": "c06_ord3",
+  "group": "|H|=3 rot=3 inv=n",
+  "orbits": 340,
+  "planes": 7241856,
+  "best": 26,
+  "bound": 30,
+  "status": "FEASIBLE",
+  "rounds": 1,
+  "secs": 3602.0
+ },
+ {
+  "n": 10,
+  "tag": "c03_ord2",
+  "group": "|H|=2 rot=2 inv=n",
+  "orbits": 500,
+  "planes": 7241856,
+  "best": 24,
+  "bound": 30,
+  "status": "FEASIBLE",
+  "rounds": 1,
+  "secs": 3604.1
+ }
+]

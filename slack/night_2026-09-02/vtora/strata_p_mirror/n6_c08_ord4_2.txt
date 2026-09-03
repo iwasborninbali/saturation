@@ -1,0 +1,3 @@
+# A280537 n=6 stratum c08_ord4 (|H|=4 rot=2 inv=y) points=2 status=OPTIMAL bound=2 rounds=1 planes=73056 verified=True
+1 1 1
+4 4 4

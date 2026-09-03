@@ -1,0 +1,18 @@
+# A280537 n=9 stratum c14_ord4 (|H|=4 rot=2 inv=n) points=17 status=OPTIMAL bound=17 rounds=1 planes=2688585 verified=True
+0 2 8
+0 6 0
+1 3 3
+2 0 3
+2 7 5
+3 1 2
+3 5 7
+3 8 6
+4 4 4
+5 1 6
+5 5 1
+5 8 2
+6 0 5
+6 7 3
+7 3 5
+8 2 0
+8 6 8

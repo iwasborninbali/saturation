@@ -1,0 +1,3 @@
+# A280537 n=10 stratum c12_ord4 (|H|=4 rot=2 inv=n) points=2 status=OPTIMAL bound=2 rounds=1 planes=7241856 verified=True
+2 1 1
+7 1 1

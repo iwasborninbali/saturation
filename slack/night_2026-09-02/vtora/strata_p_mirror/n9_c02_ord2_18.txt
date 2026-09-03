@@ -1,0 +1,19 @@
+# A280537 n=9 stratum c02_ord2 (|H|=2 rot=2 inv=n) points=18 status=OPTIMAL bound=18 rounds=1 planes=2688585 verified=True
+0 0 3
+0 4 2
+0 7 7
+1 6 4
+2 2 7
+2 3 0
+2 8 8
+3 1 5
+3 5 8
+5 1 3
+5 5 0
+6 2 1
+6 3 8
+6 8 0
+7 6 4
+8 0 5
+8 4 6
+8 7 1

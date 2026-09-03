@@ -1,0 +1,3 @@
+# A280537 n=5 stratum c23_ord8 (|H|=8 rot=8 inv=n) points=2 status=OPTIMAL bound=2 rounds=1 planes=12453 verified=True
+2 0 2
+2 4 2

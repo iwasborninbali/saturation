@@ -1,0 +1,6 @@
+# A280537 n=5 stratum c12_ord4 (|H|=4 rot=2 inv=n) points=5 status=OPTIMAL bound=5 rounds=1 planes=12453 verified=True
+1 4 4
+2 3 3
+2 3 4
+2 4 3
+3 4 4

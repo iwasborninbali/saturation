@@ -1,0 +1,23 @@
+n=10: страт 21, K=3, planes=planes/planes_n10.json
+      c04_ord2      |H|=2 rot=1 inv=n orbits= 550 planes=7241856 -> best=  5 bound=5 OPTIMAL rounds=1 198.9s
+      c02_ord2      |H|=2 rot=2 inv=n orbits= 500 planes=7241856 -> best= 20 bound=20 OPTIMAL rounds=1 258.0s
+      c05_ord2      |H|=2 rot=1 inv=n orbits= 500 planes=7241856 -> best=  2 bound=2 OPTIMAL rounds=1 199.5s
+      c09_ord4      |H|=4 rot=4 inv=n orbits= 250 planes=7241856 -> best= 20 bound=20 OPTIMAL rounds=1 145.4s
+      c10_ord4      |H|=4 rot=4 inv=n orbits= 250 planes=7241856 -> best= 20 bound=20 OPTIMAL rounds=1 128.9s
+      c11_ord4      |H|=4 rot=2 inv=n orbits= 300 planes=7241856 -> best=  4 bound=4 OPTIMAL rounds=1 107.0s
+      c12_ord4      |H|=4 rot=2 inv=n orbits= 275 planes=7241856 -> best=  2 bound=2 OPTIMAL rounds=1 106.8s
+      c03_ord2      |H|=2 rot=2 inv=n orbits= 500 planes=7241856 -> best= 22 bound=30 FEASIBLE rounds=1 901.9s
+      c13_ord4      |H|=4 rot=2 inv=n orbits= 250 planes=7241856 -> best=  0 bound=0 OPTIMAL rounds=1 104.0s
+      c14_ord4      |H|=4 rot=2 inv=n orbits= 250 planes=7241856 -> best= 20 bound=20 OPTIMAL rounds=1 153.9s
+      c15_ord4      |H|=4 rot=4 inv=n orbits= 250 planes=7241856 -> best=  0 bound=0 OPTIMAL rounds=1 107.4s
+      c06_ord3      |H|=3 rot=3 inv=n orbits= 340 planes=7241856 -> best= 24 bound=35 FEASIBLE rounds=1 901.8s
+      c17_ord6      |H|=6 rot=6 inv=n orbits= 170 planes=7241856 -> best= 20 bound=20 OPTIMAL rounds=1 105.3s
+      c18_ord6      |H|=6 rot=3 inv=n orbits= 220 planes=7241856 -> best=  5 bound=5 OPTIMAL rounds=1 102.2s
+      c22_ord8      |H|=8 rot=4 inv=n orbits= 150 planes=7241856 -> best=  4 bound=4 OPTIMAL rounds=1 95.6s
+      c23_ord8      |H|=8 rot=8 inv=n orbits= 125 planes=7241856 -> best=  0 bound=0 OPTIMAL rounds=1 94.8s
+      c24_ord8      |H|=8 rot=4 inv=n orbits= 125 planes=7241856 -> best=  0 bound=0 OPTIMAL rounds=1 95.9s
+     c27_ord12    |H|=12 rot=12 inv=n orbits=  90 planes=7241856 -> best= 16 bound=16 OPTIMAL rounds=1 91.9s
+      c25_ord8      |H|=8 rot=4 inv=n orbits= 150 planes=7241856 -> best=  0 bound=0 OPTIMAL rounds=1 94.6s
+     c30_ord24    |H|=24 rot=24 inv=n orbits=  45 planes=7241856 -> best=  0 bound=0 OPTIMAL rounds=1 89.4s
+     c31_ord24    |H|=24 rot=12 inv=n orbits=  70 planes=7241856 -> best=  4 bound=4 OPTIMAL rounds=1 88.7s
+ИТОГ n=10: лучший чистый свидетель 24 точек в страте c06_ord3 (|H|=3 rot=3 inv=n)

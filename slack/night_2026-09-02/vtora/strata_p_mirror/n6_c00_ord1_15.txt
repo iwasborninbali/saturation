@@ -1,0 +1,16 @@
+# A280537 n=6 stratum c00_ord1 (|H|=1 rot=1 inv=n) points=15 status=FEASIBLE bound=18 rounds=1 planes=73056 verified=True
+0 3 2
+0 4 4
+0 5 1
+1 1 2
+1 1 4
+2 0 5
+2 5 4
+3 0 0
+3 3 1
+3 4 0
+4 0 2
+4 2 5
+4 5 3
+5 3 1
+5 4 5

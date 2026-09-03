@@ -1,0 +1,5 @@
+# A280537 n=8 stratum c31_ord24 (|H|=24 rot=12 inv=n) points=4 status=OPTIMAL bound=4 rounds=1 planes=965826 verified=True
+1 1 6
+1 6 1
+6 1 1
+6 6 6
