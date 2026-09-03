@@ -1,0 +1,42 @@
+FOLLOW-UP AUDIT: BLIND VALIDATION PROTOCOL
+Frozen before the blind batch on 2026-09-02 (Asia/Makassar).
+
+Problem and base:
+  A280537 n=7 M=19, plane x=0 contents fixed per parent.
+  Base SHA-256: 031dfc2ff1cbcf4638b4127f1b1f017556091ffab65e4c37357a5976b4d2f4b7
+  CaDiCaL: 3.0.1.
+
+Fixed partition parameters:
+  Proofix depth=6, cutoff=20,000 learned clauses, num_samples=4,
+  score=sum, seed=1, shuffle=false.
+  Column baseline: all 64 subsets of size <=3 in cells 50..56, the first
+  untouched z-column (x,y)=(1,0) after plane x=0.
+  Conquer: fresh CaDiCaL instance per leaf, 10,000,000 search ticks per leaf.
+
+Data already seen while forming the rule:
+  calibration: plx0_24, plx0_47-48, plx0_13-15-42, plx0_20-23-33
+  discovery holdout: plx0_20-42, plx0_37-39, plx0_13-40-43, plx0_18-31-36
+
+Frozen dispatcher rule:
+  If at least 2 of the 6 variables selected by Proofix have index >343,
+  dispatch the parent to Proofix.  Otherwise dispatch it to column.
+
+Blind validation parents (all remaining stubborn rows of the 32-row manifest):
+  plx0_25-42
+  plx0_27-45
+  plx0_32-44
+  plx0_40-44
+  plx0_13-33-35
+  plx0_17-34-35
+  plx0_18-28-31
+  plx0_19-22-30
+
+Primary gate:
+  On the eight blind parents, the dispatched route must use <=2/3 of the
+  total capped ticks of always-column (>=1.5x improvement) and close at least
+  as many of the 512 leaves.  Results of both arms are measured, but the
+  dispatcher choice is determined before either conquer result is read.
+
+Secondary diagnostics:
+  per-parent closures and capped ticks; selected original/auxiliary variable
+  counts; failures are retained rather than removed as outliers.
