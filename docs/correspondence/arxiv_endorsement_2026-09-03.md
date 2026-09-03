@@ -43,3 +43,8 @@ rather not endorse, I fully understand and no reply is needed.
 With best regards,
 [ИМЯ]
 olegmikhb@gmail.com
+
+## Отправлено 3.09.2026 (Gmail API, с studio@nusadua.dev; код NJC4KO; текст — slack/gates/arxiv_endorse_letters_2026-09-03.py)
+- david.wood@monash.edu — 2026-09-03 12:41:15 +0800, id 1a06592340d43af7
+- attila.por@wku.edu — 2026-09-03 12:41:17 +0800, id 1a065923a4ef20c6
+Вторая волна (Kaplan, Prellberg) — только если через 3 дня нет ответа. Endorser вводит код на https://arxiv.org/auth/endorse.
