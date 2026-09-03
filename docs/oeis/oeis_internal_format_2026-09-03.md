@@ -56,7 +56,7 @@ f-вектор n=7: 1, 49, 1176, 17600, 175952, 1189868, 5367308, 15657764, 2822
 
 ---------------------------------------------------------------- ПРАВКА A399138 (Edit → internal format)
 Заменить строку %C:
-%C Lower bounds for the next terms, with witness configurations in the attached file: a(7) >= 73, a(8) >= 94, a(9) >= 116, a(10) >= 138, a(11) >= 164. The configurations for n = 8..11 were found by exact optimization (CP-SAT) restricted to configurations invariant under a subgroup of the symmetry group of the cube; those for n = 9 and n = 11 are optimal within their symmetry class (a subgroup of order 12). - _Aleksei Kudriashov_, Sep 03 2026
+%C Lower bounds for the next terms, with witness configurations in the attached file: a(7) >= 73, a(8) >= 94, a(9) >= 116, a(10) >= 138, a(11) >= 164. The configurations for n = 8..11 were found by exact optimization (CP-SAT) restricted to configurations invariant under a subgroup of the symmetry group of the cube; those for n = 9 and n = 10 are optimal within their symmetry class (a subgroup of order 12); the bound at n = 11 is not closed. - _Aleksei Kudriashov_, Sep 03 2026
 Заменить строку %H a-файла:
 %H Aleksei Kudriashov, <a href="/A399138/a399138.txt">Witness configurations for a(1)-a(6) and for the bounds a(7) >= 73, a(8) >= 94, a(9) >= 116, a(10) >= 138, a(11) >= 164</a>.
 Файл для загрузки: docs/oeis/a399138.txt (этот репозиторий).
