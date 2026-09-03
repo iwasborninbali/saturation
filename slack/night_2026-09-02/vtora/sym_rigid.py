@@ -65,11 +65,12 @@ if __name__ == "__main__":
     print(f"# n={n}, runs={runs} на класс, seed={seed}; класс |H| прогонов | размер симм. стадии (мин–макс, среднее) | итог (мин–макс, среднее) | доля жёстких | жёстких среди чисто-симметричных (без достройки)")
     for ci, H in enumerate(classes):
         if len(H) > maxord or len(H) < minord: continue
-        sizes = []; syms = []; rig = 0; pure = 0; pure_rig = 0; nonmax = 0
+        sizes = []; syms = []; rig = 0; pure = 0; pure_rig = 0; nonmax = 0; rig_sizes = []
         for r in range(runs):
             S, ss = grow(n, H, rnd); v = rigid(S, n)
             if v is None: nonmax += 1; continue
             sizes.append(len(S)); syms.append(ss); rig += v
             if ss == len(S): pure += 1; pure_rig += v
+            if v: rig_sizes.append(len(S)); open(f"sym_rigid_n{n}_c{ci:02d}_rigid_{len(S)}_{r}.txt", "w").write(f"# A280537 n={n} points={len(S)} sym_rigid.py class c{ci:02d} |H|={len(H)} seed={seed} run={r}: максимальна и ЖЁСТКА (прямой счёт)\n" + "\n".join(f"{x} {y} {z}" for x, y, z in sorted(S)) + "\n")
         m = len(sizes)
-        print(f"c{ci:02d} |H|={len(H):2d} прогонов {m:3d} | симм {min(syms)}–{max(syms)} ({sum(syms)/m:.1f}) | итог {min(sizes)}–{max(sizes)} ({sum(sizes)/m:.1f}) | жёстких {rig}/{m} = {rig/m:.2f} | чисто-симм {pure}, из них жёстких {pure_rig}" + (f" | немаксимальных {nonmax}" if nonmax else ""), flush=True)
+        print(f"c{ci:02d} |H|={len(H):2d} прогонов {m:3d} | симм {min(syms)}–{max(syms)} ({sum(syms)/m:.1f}) | итог {min(sizes)}–{max(sizes)} ({sum(sizes)/m:.1f}) | жёстких {rig}/{m} = {rig/m:.2f} | чисто-симм {pure}, из них жёстких {pure_rig}" + (f" | немаксимальных {nonmax}" if nonmax else "") + (f" | размеры жёстких {rig_sizes}" if rig_sizes else ""), flush=True)
