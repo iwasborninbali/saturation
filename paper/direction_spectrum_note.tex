@@ -7,7 +7,7 @@
 \newtheorem{proposition}[theorem]{Proposition}
 \title{The direction spectrum of no-three-in-line solutions:\\ a line model derives its shape, not its scale}
 \author{Aleksei Kudriashov (Alex Komang)\\ \small Nusa Dua Studio, Nusa Dua, Bali, Indonesia\\ \small ORCID: 0009-0006-8885-5338}
-\date{3 September 2026 --- version 1.0}
+\date{3 September 2026 --- version 1.1}
 \begin{document}\maketitle
 \begin{abstract}
 A \emph{solution} of the no-three-in-line problem is a set of $2n$ points of the $n\times n$ grid with no three
@@ -25,7 +25,10 @@ $0.88$--$1.02$ at $n\approx30$) and their order at matched $n$ up to one adjacen
 model.  What the model does \emph{not} do is stated with equal care: the scale is imposed, not derived --- the
 model's own total falls $17\%$ short of $2n^2-3n$, and the shortfall it redistributes is exactly the deficit seen in the
 measured directions; the growth of long directions with $n$ is a property of the solutions that the model only
-partly tracks; and no prior-art search beyond the classical sources has yet been run.
+partly tracks.  A multi-channel prior-art search has now been carried out (Section~\ref{s:prior}): we found no published or
+web-posted measurement of pairs per direction on actual solutions, no $\kappa$-like constant, and no per-direction
+decomposition of the Guy--Kelly count; the nearest objects are listed and delimited there, and the search's own
+limits are stated.
 \end{abstract}
 
 \section{Definitions and data}
@@ -47,7 +50,10 @@ is fixed:
 \emph{Data.}  We use Achim Flammenkamp's database of all known solutions (state of 31 August 2026).  It is complete
 for $n\le20$ (for $n=19$: $32\,577$ solutions; $n=20$: $118\,057$) and contains only solutions with a non-trivial
 symmetry for $21\le n\le57$.  The measurements were made by a second agent with code written independently of the
-model below; the values quoted as ``mixed $n$'' average over all $391\,812$ solutions with weight one.
+model below; the values quoted as ``mixed $n$'' average over all $391\,812$ solutions with weight one.  Ensemble
+measurements on this database have been published since 1997 (Flammenkamp's frequency maps of cell occupation
+\cite{Density}, continued by Prellberg in 2026 for $n=56,57$); the present note continues that genre with a
+different observable.
 
 \begin{center}\begin{tabular}{lrrrr}\toprule
 class & mixed $n$ & $n=19$--$20$ & $n=29$--$31$ & $n=32$--$57$\\\midrule
@@ -101,7 +107,10 @@ $\binom{L_i}{2}$ times the coefficient of $t^{m-2}$ in the product over $j\ne i$
 
 This is the canonical ensemble of hard particles in $r$ independent boxes of capacity two with degeneracies
 $1,L_i,\binom{L_i}{2}$ (equivalently, a uniform placement conditioned on ``at most two per box''); the identity is
-elementary.  What is not elementary is that it describes the solutions of the no-three-in-line problem.
+elementary.  We did not find an established name for it; the nearest umbrella term in the refereed literature is
+\emph{restricted occupancy} (Freund 1956 \cite{Freund}; the unweighted equal-box case is an exercise in Comtet),
+and the corresponding relaxation appears as ``capacity-two constraints'' in Prellberg's linear-programming bound for a
+parity variant \cite{PrellbergCB}.  What is not elementary is that it describes the solutions of the no-three-in-line problem.
 
 \emph{The model.}  Put $m=2n$ and let $E_v$ be the expectation of Theorem~\ref{thm:gf} for the lines of direction $v$.
 The model does not know that the pairs of a solution are counted by \eqref{eq:total}: summed over all non-axial
@@ -158,23 +167,57 @@ simultaneously.
 
 \emph{Drift in $n$.}  The model's values drift by $3$--$8\%$ between $n=20$ and $40$ (upward for long directions),
 in the same direction as the data but not by the same amount; the constancy of the short directions in the data is
-reproduced only approximately ($c^{\rm model}_{(1,1)}$: $0.764$, $0.744$, $0.731$ at $n=20,30,40$).
+reproduced only approximately ($c^{\rm model}_{(1,1)}$: $0.764$, $0.744$, $0.731$ at $n=20,30,40$).  We found neither
+a measurement nor an explanation of the growth of the long directions in the literature; the nearest theoretical
+statement, Remark~1.7 of Ghosal et al.\ \cite{Ghosal}, predicts for $k=2$ an equal contribution of every dyadic scale
+of the direction length --- that is, no growth.
 
 \emph{One inversion.}  At $n=20$ the model orders $(1,6)$ above $(3,5)$ by $0.6\%$; the data order them the other way by
 $4.7\%$ ($0.2492$ against $0.2609$) --- the model's largest error, $-11.5\%$, is on $(3,5)$.
 
 \emph{Not claimed.}  No theorem about the ensemble of solutions is proved here; Theorem~\ref{thm:gf} is a statement
 about a model.  No derivation of the scale, and no explanation of the growth of the long directions with $n$, is
-offered.  A search of the literature beyond the classical sources (Guy and Kelly's expected-count heuristic, which
-sums over primitive directions the expected number of collinear triples of a uniform $2n$-subset; Flammenkamp's
-structural observations on his solution classes) has not yet been carried out; a research brief for it is on file,
-and this note will be corrected if the model or the measurement is found in the literature.
+offered.
+
+\section{Prior art (searched 3 September 2026)}\label{s:prior}
+A multi-channel search (direct retrieval of the primary sources; full-text search inside arXiv, zbMATH, OEIS,
+Google Books and Open Library; API queries to Crossref, OpenAlex, Semantic Scholar, GitHub and the Wayback Machine)
+found no published measurement of pairs per direction, or of diagonal occupation, on actual no-three-in-line solutions;
+no $\kappa$-like constant; no per-direction decomposition of the Guy--Kelly count; and no model of the kind of
+Section~2.  The nearest objects, none of which is prior art for the results above, are: Guy and Kelly's expected number
+of collinear triples of a random $2n$-subset \cite{GuyKelly}, a sum over primitive directions that is collapsed through
+Euler's function and never split by direction; Flammenkamp's frequency maps of cell occupation on the same database
+\cite{Density} and his ``superficial explanation'' of the shading cost of a pair of points, aggregated over symmetry
+classes; Prellberg's linear-programming upper bound with capacity-two constraints on rows, columns and the two diagonal
+families for a parity variant \cite{PrellbergCB} --- a relaxation, not an ensemble, and without the weights
+$\binom{L}{x}$; Simkin's occupation of diagonals by direction for $n$-queens (capacity one), with an explicit independence
+assumption across directions \cite{Simkin}; and a web-posted, unrefereed analysis of July 2026 \cite{Du} that measured
+central directions of symmetric solutions against a random null model and reached the same qualitative conclusion
+(short directions depleted).  In view of the last item the qualitative observation is not claimed as new here; what is
+new is the quantitative spectrum over all pairs, its fifteen constants at matched $n$, and the model.
+\emph{Limits of the search:} free-text web search was not available during it, and several primary sources were not
+read (Ungar 1982, Jamison 1984--86, Kaplansky--Riordan 1946, Riordan 1958, Hall--Jackson--Sudbery--Wild 1975,
+Flammenkamp's JCTA papers of 1992 and 1998, the restricted-occupancy papers of Freund), so the negative result is stated
+with that caveat; the full record of channels, verdicts and confidence is public in the repository.
+
+\begin{thebibliography}{9}
+\bibitem{GuyKelly} R.~K.~Guy and P.~A.~Kelly, The no-three-in-line problem, \emph{Canad.\ Math.\ Bull.} 11 (1968) 527--531.
+\bibitem{Density} A.~Flammenkamp, Frequency distributions of points of no-three-in-line configurations,
+\url{https://wwwhomes.uni-bielefeld.de/achim/no3in/density.html} (1997--2026).
+\bibitem{PrellbergCB} T.~Prellberg, No-three-in-line sets on the checkerboard grid, arXiv:2605.09215 (May 2026).
+\bibitem{Ghosal} A.~Ghosal, R.~Goenka, A.~Grebennikov, P.~Keevash, M.~Kwan and H.~T.~Pham, No-$(k+1)$-in-line problem for
+$k\ge3$, arXiv:2607.05255 (July 2026).
+\bibitem{Simkin} M.~Simkin, The number of $n$-queens configurations, \emph{Adv.\ Math.} 427 (2023) 109127.
+\bibitem{Freund} J.~E.~Freund, Restricted occupancy theory --- a generalization of Pascal's triangle, \emph{Amer.\ Math.\
+Monthly} 63 (1956) 20--27.
+\bibitem{Du} J.~Du, no3inline-rigidity (GitHub repository aujurd22/no3inline-rigidity, July 2026), unrefereed.
+\end{thebibliography}
 
 \section{Reproducibility}
 The measurement code, the model code with an executable statement of Theorem~\ref{thm:gf} checked against brute force
 for $n\le5$, the tests written by a second agent, the two adversarial reviews (one of which found the false claim
-``the data are constant in $n$'' in an earlier draft and forced the comparison at matched $n$), and the dated ledger of
-predictions are public: \url{https://github.com/iwasborninbali/lemma-atelier} (lemma 005, need 008) and
+``the data are constant in $n$'' in an earlier draft and forced the comparison at matched $n$), the dated ledger of
+predictions, and the prior-art search of Section~\ref{s:prior} (\texttt{docs/research/deep\_research\_14\_answer.md}) are public: \url{https://github.com/iwasborninbali/lemma-atelier} (lemma 005, need 008) and
 \url{https://github.com/iwasborninbali/saturation}.  The database is Flammenkamp's
 (\url{https://wwwhomes.uni-bielefeld.de/achim/no3in/readme.html}).
 
