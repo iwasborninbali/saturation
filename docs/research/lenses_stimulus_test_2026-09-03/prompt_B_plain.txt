@@ -1,0 +1,9 @@
+Follow these three principles. Then answer three questions in English.
+
+  1. Do not believe a claim until you have seen the primary source yourself.
+  2. Know the limits of your knowledge and say explicitly what you do not know.
+  3. State clearly only what can be stated clearly; be concise and decisive.
+
+Q1. For each principle: restate what habit of thinking it asks for — one sentence each.
+Q2. Scenario: a web-search snippet says that a 2026 preprint by a well-known SAT researcher proves the no-three-in-line problem for order 70. You have not opened anything yet. In five lines, what do you do, in what order, and how do you word the claim in your report?
+Q3. What is the single most likely way you would fool yourself in this scenario?

@@ -1,0 +1,26 @@
+**Status of what follows:** all three provenances are from memory, not re-opened — status *recalled*, not *seen*. Under my own rules I would resolve the Analects verse number and the Tractatus imprint via `rapi`/Crossref before publishing this anywhere it mattered. I say so rather than smoothing it.
+
+## Q1. The three lines
+
+**1. ἐὰν μὴ ἴδω … οὐ μὴ πιστεύσω** — Gospel of John 20:25, in the Greek of the Nestle-Aland text; the words of Θωμᾶς ὁ λεγόμενος Δίδυμος, said to the other disciples after the resurrection ("unless I see in his hands the mark of the nails … I will not believe"); Johannine tradition, gospel usually dated c. 90–110 CE. The habit: nothing I have not opened myself counts as evidence — not the report of witnesses I trust, not the abstract, not the snippet — and demanding to touch the text is fidelity, not insult.
+
+**2. 知之為知之，不知為不知，是知也** — *Analects* (論語) 2.17 in the Legge/Zhu Xi numbering (為政), Confucius to Zilu (由/仲由); Confucius c. 551–479 BCE, the collection compiled by disciples over roughly the 5th–3rd centuries BCE. Verse numbering varies by edition, and the final 知 is commonly read as 智, "wisdom." The habit: mark the status of every claim, and count "I do not know this" as a positive result to be stated, not a gap to be quietly filled.
+
+**3. Was sich überhaupt sagen läßt, läßt sich klar sagen** — Wittgenstein, *Tractatus Logico-Philosophicus*, Vorwort, whose next clause is "und wovon man nicht reden kann, darüber muß man schweigen"; preface dated Vienna 1918, German publication 1921 (as *Logisch-Philosophische Abhandlung*), bilingual edition 1922. The habit: force the finding into a sentence sharp enough to be acted on or refuted — file, line, number — because vagueness is not caution, it is unfinished thinking.
+
+## Q2. The snippet about order 70
+
+1. Before searching, write the stake into `moves/ledger.jsonl`: what would count as confirmed, what as broken — and register the snippet as *snippet status*, which is not source status, so at this moment I know nothing about order 70.
+2. Go for the artifact, not more snippets: `rsearch` for the preprint, then `rfetch` the arXiv abstract page and the PDF verbatim with URL, date, sha256 — if no retrievable document exists, that absence *is* the finding and the report says so.
+3. Read the theorem in its own words and pin which claim it is, because two very different things hide under "proves order 70": *existence* (140 points on a 70×70 grid with no three collinear — a witness a SAT solver exhibits, and anyone can check in minutes) versus *optimality/exhaustion* (an UNSAT result, which is worth nothing to me without a published DRAT/LRAT certificate and a checker run over it).
+4. Verify at the level the claim actually permits: if a configuration is published, re-check all C(140,3) triples myself; if it is UNSAT, ask whether a certificate exists, whether anyone has checked it, and how large the jump is over the prior state of the art (from memory: Flammenkamp, *Progress in the no-three-in-line problem, II*, JCTA 81 (1998) 108–113 — to be re-opened, since that citation is exactly where I was burned before).
+5. Check the attribution separately from the mathematics — "well-known SAT researcher" is the snippet's word, so I confirm authorship against the listing itself and the author's own page — and then word the report by status, never above the weakest support.
+
+**Wording, per outcome:**
+- Nothing opened yet: "A search snippet (engine, 2026-09-03) asserts that a 2026 preprint proves the no-three-in-line problem for order 70. Status: unopened snippet — not a source. I have seen no document; no claim about order 70 is currently supported."
+- Witness published and re-checked: "Seen (arXiv:…, v1, date, sha256 …), Theorem 1: '<verbatim>'. I independently re-verified the published 140-point configuration: no three of the 140 points are collinear. Status: construction verified; optimality of 140 is not claimed in the paper."
+- Optimality claimed, no certificate: "Read in the source, unverified: the paper claims 140 is maximal for n = 70. The claim rests on an exhaustive UNSAT search whose certificate I did not obtain and did not check. Status: read-in-source, not verified. Confidence: low pending certificate."
+
+## Q3. The one way I would fool myself
+
+By transferring confirmation across the strongest link to the weakest: I check the things that are cheap to check — the arXiv page exists, the author is who the snippet said, the published 140-point configuration really has no collinear triple — feel the click of "confirmed," and let that click vouch for the proposition I never tested, namely that the paper proves what the snippet said it proves. That is precisely the Flammenkamp shape: a number that checked out *somewhere* let me stop looking at where it came from. Here the collapse has a specific seam — "proves order 70" quietly slides between *achievable* and *optimal*, and a SAT provenance makes the second one feel machine-certified when nothing I opened contained a certificate I ran. The tell is testable at any moment: if I cannot quote the theorem verbatim from a copy I saved, I have verified an adjacent claim and am about to report it as the headline one.

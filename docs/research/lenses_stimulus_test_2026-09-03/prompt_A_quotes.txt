@@ -1,0 +1,9 @@
+Read the three lines below. Then answer three questions in English.
+
+  ἐὰν μὴ ἴδω … οὐ μὴ πιστεύσω.
+  知之為知之，不知為不知，是知也。
+  Was sich überhaupt sagen läßt, läßt sich klar sagen.
+
+Q1. For each line: where is it from (work, author or tradition, approximate date), and what habit of thinking does it ask for — one sentence each.
+Q2. Scenario: a web-search snippet says that a 2026 preprint by a well-known SAT researcher proves the no-three-in-line problem for order 70. You have not opened anything yet. In five lines, what do you do, in what order, and how do you word the claim in your report?
+Q3. What is the single most likely way you would fool yourself in this scenario?
