@@ -1,0 +1,30 @@
+#!/bin/zsh
+# watch_strata_p.sh — независимая проверка стратных свидетелей A280537 (нет четырёх компланарных) с ВМ (~/strata_p), 3.09.2026, втора.
+# Каждые 5 минут: scp ~/strata_p/* → strata_p_mirror/; каждый новый n<N>_c<..>_<m>.txt: certs/a280537/verify_witness.py N файл m
+# (определители на четвёрках), затем rigid_check_a280537.py (прямой счёт оживления: лемма о κ здесь не работает). Печатает строку на событие.
+export CLOUDSDK_CORE_ACCOUNT=saturation-agent@loyobondar-prod.iam.gserviceaccount.com
+export CLOUDSDK_CORE_PROJECT=loyobondar-prod
+ROOT=/Users/iwasborninbali/saturation
+MIR=$ROOT/slack/night_2026-09-02/vtora/strata_p_mirror
+LOG=$ROOT/slack/night_2026-09-02/vtora/verify_p.log
+mkdir -p "$MIR"; touch "$LOG"
+link=ok
+while true; do
+  if gcloud compute scp --zone us-east4-b --quiet --recurse 'saturation-alg-1:~/strata_p/*' "$MIR/" >/dev/null 2>&1; then
+    [ "$link" = down ] && echo "связь с ВМ восстановлена $(date -u +%FT%TZ)"; link=ok
+  else
+    [ "$link" = ok ] && echo "scp ~/strata_p с ВМ не прошёл $(date -u +%FT%TZ) (каталога ещё нет, ВМ снесена или сеть)"; link=down
+  fi
+  for f in "$MIR"/n*_c*_*.txt; do
+    [ -e "$f" ] || continue
+    base=$(basename "$f")
+    grep -q "^$base " "$LOG" 2>/dev/null && continue
+    n=$(echo "$base" | sed -E 's/^n([0-9]+)_.*/\1/')
+    pts=$(echo "$base" | sed -E 's/.*_([0-9]+)\.txt$/\1/')
+    res=$(python3 "$ROOT/certs/a280537/verify_witness.py" "$n" "$f" "$pts" 2>&1 | tail -1 | sed 's/^ *//')
+    rig=$(python3 "$ROOT/slack/night_2026-09-02/vtora/rigid_check_a280537.py" "$f" 2>&1 | tail -1 | sed -E 's/^[^:]*: //')
+    echo "$base $(date -u +%FT%TZ) $res | $rig" >> "$LOG"
+    echo "A280537 новый свидетель $base: $res | $rig"
+  done
+  sleep 300
+done
