@@ -24,7 +24,7 @@ while true; do
     res=$(python3 "$ROOT/certs/a280537/verify_witness.py" "$n" "$f" "$pts" 2>&1 | tail -1 | sed 's/^ *//')
     rig=$(python3 "$ROOT/slack/night_2026-09-02/vtora/rigid_check_a280537.py" "$f" 2>&1 | tail -1 | sed -E 's/^[^:]*: //')
     echo "$base $(date -u +%FT%TZ) $res | $rig" >> "$LOG"
-    echo "A280537 новый свидетель $base: $res | $rig"
+    [ "$pts" -ge 10 ] 2>/dev/null && echo "A280537 новый свидетель $base: $res | $rig"   # мелкие стратные конфигурации только в журнал
   done
   sleep 300
 done

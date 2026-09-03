@@ -1,0 +1,6 @@
+# A280537 n=5 stratum c18_ord6 (|H|=6 rot=3 inv=n) points=5 status=OPTIMAL bound=5 rounds=23 planes=2220 verified=True
+0 0 0
+1 4 4
+4 1 4
+4 4 1
+4 4 4

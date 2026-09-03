@@ -1,0 +1,2 @@
+# A280537 n=7 stratum c32_ord48 (|H|=48 rot=24 inv=y) points=1 status=OPTIMAL bound=1 rounds=1 planes=3684 verified=True
+3 3 3

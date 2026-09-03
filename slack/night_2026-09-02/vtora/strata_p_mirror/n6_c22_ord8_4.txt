@@ -1,0 +1,5 @@
+# A280537 n=6 stratum c22_ord8 (|H|=8 rot=4 inv=n) points=4 status=OPTIMAL bound=4 rounds=1 planes=2943 verified=True
+1 1 1
+1 4 4
+4 1 4
+4 4 1

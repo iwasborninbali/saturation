@@ -1,0 +1,13 @@
+# A280537 n=6 stratum c17_ord6 (|H|=6 rot=6 inv=n) points=12 status=OPTIMAL bound=12 rounds=8 planes=2979 verified=True
+0 0 1
+0 0 4
+0 4 3
+1 2 0
+1 5 5
+2 1 5
+3 5 1
+4 0 2
+4 5 5
+5 1 0
+5 3 4
+5 4 0
