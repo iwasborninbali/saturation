@@ -1,0 +1,29 @@
+% Appendix (draft by the verifying agent, 3 Sep 2026): constructions along modular hyperbolae do not reach 2n.
+% To be included in hjsw_window.tex (v1.18) after the main text; all statements below are theorems of this note or explicit computations.
+\section*{Appendix: what the hyperbola route cannot give}\label{app:hyperbolae}
+
+Write $n=2p$ for the side of the grid, so that the trivial upper bound is $2n=4p$ and the HJSW set has $3(p-1)=\tfrac32 n-3$ points.
+The results of this note, read as statements about constructions, say the following.
+
+\begin{enumerate}
+\item[(a)] \emph{One hyperbola, any $2p\times2p$ window.}  Every no-three-in-line subset of $\Hc\cap W$ has at most $3(p-1)=\tfrac32 n-3$ points
+ (Theorem~\ref{thm:window}), with equality exactly for the windows with $n_1=n_0=0$, the HJSW window among them (Theorem~\ref{thm:main});
+ the maximum sets are classified and their number is $9^s$ in the HJSW window and $144^{n_1}1296^{n_0}9^{s_1}6^{s_2}$ in general.
+ The barrier $\tfrac32$ is therefore exact for this route, not approximate.
+\item[(b)] \emph{Two hyperbolae.}  For $H(1)\cup H(-1)$ in the HJSW window, $\alpha\le4(p-1)-4m_8(p)\le(\tfrac{11}{3}+o(1))(p-1)<\tfrac{11}{6}\,n$
+ (Theorem~\ref{thm:two}, Proposition~\ref{prop:m8asym}; $m_8(p)>0$ for $19\le p\le1500$), and the block decomposition improves this to
+ $(3.4482+o(1))(p-1)\approx1.724\,n$ (Corollary~\ref{cor:blockconst}).  For an arbitrary second hyperbola $H(k)$ with $k$ of multiplicative order
+ at least $C\sqrt p\log^5p$, $\alpha\le4(p-1)-c\sqrt p/\log^5p$ (Theorem~\ref{thm:general}) --- below the trivial bound, but only barely.
+\item[(c)] \emph{Other conics and cubics.}  Among conics only the shifted hyperbolae reach $3(p-1)$ in a $2p\times2p$ window (Corollary~\ref{cor:conics});
+ every cubic graph $Y\equiv f(X)$ has at most $(\tfrac43+o(1))\,n$ points in general position (Theorem~\ref{thm:strong}), and the permutation
+ monomials $x^k$, $k\in\{3,5,7\}$, at most $\approx1.40\,n$ (Theorem~\ref{thm:perm}).
+\end{enumerate}
+
+\noindent\textbf{What this does not cover.}  (1) Unions of three or more hyperbolae, and pairs $H(k),H(k')$ with $k$ of small multiplicative order
+in an arbitrary window: only the computations of Section~\ref{sec:beyond}, which suggest a gain of $O(1)$ over $3(p-1)$ but prove nothing.
+(2) Windows other than $2p\times2p$: already a $(2p+1)\times2p$ window at $p=5$ admits $13>12$ points of one hyperbola, and for larger windows
+only MIP values are known (Table~\ref{tab:shifts}).  (3) Composite moduli: Lemma~\ref{lem:lagrange} fails (for $m=9$ the rich lines have slopes
+$-1,\tfrac12,1,2$), so everything above is for prime $p$.  (4) Points outside the algebraic set: by Remark~\ref{rem:kns}(b) any improvement of the
+HJSW construction must use another hyperbola, a larger window or non-hyperbola points, and about the last two the theorems are silent.
+(5) Curves of degree at least four.  The claims of (a)--(c) were re-derived by a second, independently written program for all $c$ with $p\le13$
+and, for Theorem~\ref{thm:window}, for all windows and all $c$ with $p\le7$ (repository \texttt{lemma-atelier}, lemma 006).
