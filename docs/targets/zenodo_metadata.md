@@ -179,3 +179,5 @@ DRAT certificate, OEIS
   hjsw_window_v118.zip (все tex-исходники: appendix_hyperbolae, lemma_stability, section_*; bbl)
 - что нового: приложение «What the hyperbola route cannot give» (коллега, need-009 / lem-006) и одна строка в орбитной лемме
   (случай k = 0 использует v ≥ 1, следует из F₁ — по вердикту противника lem-006, вставила втора)
+- **direction_spectrum_note v1.1 (3.09.2026, 20:15):** DOI 10.5281/zenodo.22278951 (concept 22275037) — раздел «Prior art» по ресёрчу 14
+  (третья сессия; файл deep_research_14_answer.md приложен к записи), библиография, абстракт; данные и модель без изменений. Zenodo давал 504 — публикация со второй попытки.

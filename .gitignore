@@ -54,3 +54,4 @@ there_tw2
 docs/correspondence/READ_RECEIPT.json
 docs/sealed/*.secret
 .DS_Store
+.env
