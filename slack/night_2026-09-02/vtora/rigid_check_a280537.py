@@ -7,7 +7,9 @@ import sys, itertools, collections
 sys.path.insert(0, __file__.rsplit('/', 1)[0])
 from kappa_general import read_pts, coplanar
 for path in sys.argv[1:]:
-    S = read_pts(path); n = max(max(p) for p in S) + 1; Sset = set(S)
+    S = read_pts(path); Sset = set(S)
+    import re
+    hdr = re.search(r'\bn=(\d+)', open(path).readline()); n = int(hdr.group(1)) if hdr else max(max(p) for p in S) + 1
     cells = [c for c in itertools.product(range(n), repeat=3) if c not in Sset]
     kap = {c: 0 for c in cells}
     for t in itertools.combinations(S, 3):
