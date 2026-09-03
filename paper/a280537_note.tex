@@ -7,7 +7,7 @@
 \title{Nineteen certified configurations, eighteen independent bounds for the no-four-coplanar problem in the cube,\\
 and what they do not establish}
 \author{Aleksei Kudriashov (Alex Komang)\\ \small Nusa Dua Studio, Nusa Dua, Bali, Indonesia\\ \small ORCID: 0009-0006-8885-5338}
-\date{23 August 2026 --- version 3.2}
+\date{3 September 2026 --- version 3.3}
 \begin{document}\maketitle
 \begin{abstract}
 Let $a(n)$ be the largest number of points of $\{0,\dots,n-1\}^3$ no four of which are coplanar
@@ -30,6 +30,12 @@ closure and are public witnesses, not records: version 3.1 called them ``apparen
 published'', and the monotone comparison that removes them is due to Hugo Pfoertner.  And two proved
 statements above $n=8$, both about the cyclically invariant subspace and both exhausted by two
 independent implementations: its maximum is $23$ at $n=9$ and $26$ at $n=10$.
+
+Version 3.3 adds a search over all 33 symmetry classes of the cube group
+(Section~\ref{s:strata}): no bound changes, but the best known values at $n=7$, $8$, $9$ are
+attained by three pairwise inequivalent configurations each (stabilisers of orders $1$, $2$, $3$
+at $n=7$ and $8$), all rigid and mutually unreachable by small exchanges, and four kinds of
+symmetry are shown to be incompatible with the problem.
 
 No upper bound above $n=8$ is known to us beyond the trivial $a(n)\le3n$; every number in the
 table is a lower bound only, and the earlier failure to check the field before claiming novelty
@@ -248,6 +254,51 @@ $a(9)$ beyond the witness.
 One consequence deserves emphasis.  A sample drawn from a region enriched by three or four orders
 of magnitude cannot support statements about the structure of solutions in general.  Structural
 claims in this note are made only where complete material is available.
+
+\section{Symmetry strata (version 3.3)}\label{s:strata}
+This version adds a second search route and three structural facts, and changes no bound in the
+table.
+
+\emph{Route.}  Instead of one symmetric subspace, take every conjugacy class of subgroups $H$
+of the symmetry group of the cube (order $48$; $33$ classes), and in each class maximise $|S|$
+over $H$-invariant sets by exact optimisation: a CP-SAT model over the $H$-orbits of cells with the
+constraints ``at most two points on every grid line'' and ``at most three on every lattice plane
+carrying at least four cells'', the plane list computed exactly ($12\,453$, $73\,056$, $269\,895$,
+$965\,826$, $2\,688\,585$, $7\,241\,856$ planes for $n=5,\dots,10$).  A lazy version of the model,
+which adds planes only when a solution violates them, does not converge (at $n=6$ it stalls at $12$
+after two hundred rounds) --- the full list is necessary.
+
+Four kinds of symmetry are incompatible with the problem outright.  If $H$ contains the central
+inversion or a rotatory reflection of order $6$, an $H$-invariant admissible set has at most $3$
+points (two antipodal pairs are coplanar); if $H$ contains a reflection, at most $5$ (the segments
+$x$--$\sigma x$ are parallel, so any two such pairs are coplanar, and the mirror carries at most
+three points); if $H$ contains a rotation of order $4$, the set lies on the axis.  Only nine of the
+$33$ classes remain: the trivial group, two classes of half-turns, the $3$-fold rotation, two
+Klein four-groups, the cyclic group of a rotatory reflection of order $4$, the dihedral group
+of order $6$ and the tetrahedral rotation group.  (The elementary proofs, with machine checks
+and a Lean formalisation of the inversion case, are in the companion repository
+\texttt{lemma-atelier}, lemma 003.)
+
+\emph{Calibration.}  Within the strata the known values are reached at $n=5,7,8$ ($13$, $18$,
+$20$) by the classes containing a $3$-fold rotation or a half-turn; at $n=6$ the best symmetric
+value is $15=a(6)-1$, in agreement with Section~\ref{s:subspace}.  At $n=9,10$ the $3$-fold
+stratum reproduces $23$ and $26$ --- the subspace maxima already exhausted by the first route ---
+with a one-hour budget, and nothing above them.  The trivial stratum (no symmetry imposed)
+reached $17$ at $n=7$ and $19$ at $n=8$ within $900$ seconds and proves nothing.
+
+\emph{Structural facts}, every configuration checked by the two verifiers of Section~5 and its
+class computed under the $48$ symmetries: (i) at $n=7$ there are at least three pairwise
+inequivalent $18$-point configurations, with stabilisers of orders $1$, $2$ and $3$; at $n=8$
+three inequivalent $20$-point configurations (orders $1$, $2$, $3$); at $n=9$ three inequivalent
+$23$-point configurations (all of order $3$).  The order-$2$ classes lie outside the cyclically
+invariant subspace of Section~\ref{s:subspace}.  (ii) All nine are rigid --- no point can be
+replaced by another --- and no two are connected by an exchange of at most two points (at most
+three points for $n=7$); under the best alignment the classes differ in more than $80\%$ of
+their points.  (iii) Every stratum at $n=5,\dots,8$ was solved to optimality or to the time limit;
+the per-stratum table and the configurations are in the repository.
+
+What this does not establish: the strata give lower bounds inside symmetry classes only, and the
+strata at $n\ge11$ (best known $28$ and $31$) have not been exhausted.
 
 \begin{thebibliography}{9}
 \bibitem{OEISA280537} OEIS Foundation Inc., Sequence A280537 (M.~Scheuermann, 2017), with the
