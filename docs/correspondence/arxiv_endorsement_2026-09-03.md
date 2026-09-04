@@ -48,3 +48,13 @@ olegmikhb@gmail.com
 - david.wood@monash.edu — 2026-09-03 12:41:15 +0800, id 1a06592340d43af7
 - attila.por@wku.edu — 2026-09-03 12:41:17 +0800, id 1a065923a4ef20c6
 Вторая волна (Kaplan, Prellberg) — только если через 3 дня нет ответа. Endorser вводит код на https://arxiv.org/auth/endorse.
+
+## Вторая волна — отправлено 5.09.2026 07:50 WITA (Gmail API, с studio@nusadua.dev; код NJC4KO; текст — slack/gates/arxiv_endorse_letters_2026-09-05.py)
+Слово владельца 5.09: «отправим ещё 4 как планировали». Входящих ответов от Wood и Pór на 07:40 5.09 нет (проверено inbox_check.py).
+Адреса сверены по страницам университетов 5.09; абзац «почему вам» — свой, только с тем, что действительно есть в наших заметках.
+- t.prellberg@qmul.ac.uk (QMUL; его arXiv:2602.07751 и arXiv:2605.09215 цитируются в наших заметках) — 07:50:33, id 1a06ed4c42e21004
+- O.Pikhurko@warwick.ac.uk (Warwick) — 07:50:33, id 1a06ed4c7d76c9f5
+- jschmitt@middlebury.edu (Middlebury) — 07:50:34, id 1a06ed4c809195bd
+- gswarrin@uvm.edu (Vermont) — 07:50:34, id 1a06ed4ca9578e37
+Трое последних — соавторы «Martin Gardner's minimum no-3-in-a-line problem» (Amer. Math. Monthly 121, 2014; arXiv:1206.5350, math.CO).
+Резерв на случай тишины: Nathan Kaplan (UC Irvine) — адрес и math.CO-статьи проверить перед письмом.
