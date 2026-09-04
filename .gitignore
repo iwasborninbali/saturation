@@ -55,3 +55,4 @@ docs/correspondence/READ_RECEIPT.json
 docs/sealed/*.secret
 .DS_Store
 .env
+vm_archive/
