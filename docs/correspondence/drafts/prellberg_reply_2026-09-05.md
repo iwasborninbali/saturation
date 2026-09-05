@@ -1,4 +1,4 @@
-# Draft reply to Thomas Prellberg (NOT SENT; needs the owner's explicit "да", then the correspondence gate)
+# Reply to Thomas Prellberg — SENT 5 Sep 2026 22:42:19 WITA (owner's "да" at 22:45 his clock; Gmail id 1a072053781f3cc8, thread 1a06ed4c42e21004)
 
 To: Thomas Prellberg <t.prellberg@qmul.ac.uk>
 In-Reply-To: <AS4PR07MB877715F2CC397F6BDEB8B490CCB42@AS4PR07MB8777.eurprd07.prod.outlook.com>
