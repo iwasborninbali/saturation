@@ -58,3 +58,26 @@ olegmikhb@gmail.com
 - gswarrin@uvm.edu (Vermont) — 07:50:34, id 1a06ed4ca9578e37
 Трое последних — соавторы «Martin Gardner's minimum no-3-in-a-line problem» (Amer. Math. Monthly 121, 2014; arXiv:1206.5350, math.CO).
 Резерв на случай тишины: Nathan Kaplan (UC Irvine) — адрес и math.CO-статьи проверить перед письмом.
+
+## Ответ Преллберга — 5.09.2026 10:13 UTC (18:13 CEST), получен, текст в ящике studio@
+
+id 1a0710f2eda5d397, thread 1a06ed4c42e21004, Message-ID `<AS4PR07MB877715F2CC397F6BDEB8B490CCB42@AS4PR07MB8777.eurprd07.prod.outlook.com>`,
+In-Reply-To — наше письмо второй волны (07:50 WITA). Дословно:
+
+> Happy to endorse, but I fall short of the new arxiv rules: I need four papers in math.co "earlier than three months ago and less
+> than five years ago" but only have three. If you wait for a few days, 2606.08834 will count as well, and then I shall gladly do it.
+> I heard about you from your email from Achim Flammenkamp, so you are not entirely unknown to me.
+> Please keep me posted about your results.
+
+Что это значит. Endorser math.CO по правилам arXiv должен иметь четыре статьи в math.CO старше трёх месяцев и моложе пяти лет;
+у Преллберга три, четвёртая — arXiv:2606.08834 (подана в июне 2026) — станет считаться, когда ей исполнится три месяца, т. е.
+ориентировочно 8–12 сентября. Обещание дано; код NJC4KO у него есть. Ахим, оказывается, упоминал нас в письме Преллбергу — так что
+письмо Ахима 4.09 не было «в пустоту».
+
+Оценка владельца (5.09 22:00 WITA): «по-моему — это победа, особенно строка keep me posted».
+
+Дальше:
+- ответ-благодарность заготовлен: `docs/correspondence/drafts/prellberg_reply_2026-09-05.md`; отправка — только по явному «да» владельца, через гейт;
+- ждать до 12.09; если к тому дню endorsement не пришёл (`slack/gates/inbox_check.py`, письма от arxiv.org) — короткое напоминание (тоже по «да»);
+- после endorsement: загрузить пакеты `paper/arxiv_a280537_v34.zip` и `paper/arxiv_no3_3d_v15.zip`; идентификаторы — Преллбергу («keep me posted»);
+- Пихурко, Шмитт, Уоррингтон — без ответа на 22:20 WITA 5.09; Вуд, Пор — без ответа с 3.09.

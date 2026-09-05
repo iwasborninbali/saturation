@@ -2,6 +2,64 @@
 Скачано автоматически. НЕ РЕДАКТИРОВАТЬ РУКАМИ: файл перезаписывается.
 
 
+## ветка 1a06752f3c1d2823 — сообщений 2
+
+### Thu, 3 Sep 2026 05:51:24 -0700 | от: Aleksei Kudriashov <studio@nusadua.dev> | кому: Achim Flammenkamp <achim@uni-bielefeld.de>
+**Тема:** One structural observation from your database (direction spectrum of the solutions)  
+**Message-ID:** ``
+
+```
+Dear Achim,
+
+one structural observation from your database, in case it is of interest: the direction spectrum of the
+2n-point solutions (the mean number of point pairs of each primitive direction, for all n = 19..57) has a shape
+that follows from the single rule "at most two points on every line": distributing 2n points over the lines of
+one direction with that cap, with weight C(L,2) for a line of L cells, reproduces the ratios between fifteen
+directions within 12% and their order, with no fitted parameter; the overall scale is not derived.  Seven of the
+values were predicted before being measured.  Note and data: https://doi.org/10.5281/zenodo.22275037
+
+One small question, only if the answer is short: on your density page the files n52_free_diag_2352.png and
+n52_set_diag_2710.png return 403 -- if they are meant to be public, I would be glad to see them, since a
+diagonal-occupation map may be the closest existing measurement.  Otherwise no reply needed.
+
+Best,
+Aleksei Kudriashov (Alex Komang)
+Nusa Dua, Bali
+```
+
+### Fri, 4 Sep 2026 21:14:19 +0200 | от: Achim Flammenkamp <achim@uni-bielefeld.de> | кому: Aleksei Kudriashov <studio@nusadua.dev>
+**Тема:** Re: One structural observation from your database (direction spectrum of the solutions)  
+**Message-ID:** `<apsYiyU9Cm4z8IKG@dozy3>`
+
+```
+Hallo Aleksei Kudriashov:
+
+On Thu, Sep 03, 2026 at 05:51:24AM -0700, Aleksei Kudriashov wrote:
+> Dear Achim,
+> 
+> one structural observation from your database, in case it is of
+> interest: the direction spectrum of the
+> 2n-point solutions (the mean number of point pairs of each primitive
+> direction, for all n = 19..57) has a shape
+> that follows from the single rule "at most two points on every line":
+> distributing 2n points over the lines of
+> one direction with that cap, with weight C(L,2) for a line of L cells,
+> reproduces the ratios between fifteen
+> directions within 12% and their order, with no fitted parameter; the
+> overall scale is not derived.  Seven of the
+> values were predicted before being measured.  Note and data:
+> https://doi.org/10.5281/zenodo.22275037
+
+What shall this be? Wasting my time with a puzzle? This is NOT mathematics.
+    *** You simply did not define your used/invented terms! ***
+I also had a look at the URL https://doi.org/10.5281/zenodo.22275037.
+The worst article/report/note I ever have seen in mathematics.
+It remains me on marketing/advertising in Sociology and Psychology. :-(
+
+Achim
+```
+
+
 ## ветка 1a0161bba9c4f55b — сообщений 12
 
 ### Tue, 18 Aug 2026 20:21:49 +0200 | от: Achim Flammenkamp <achim@uni-bielefeld.de> | кому: Alex Komang <studio@nusadua.dev>
