@@ -1,4 +1,6 @@
-# OEIS — what to paste on 10 Sep 2026 (three drafts: A398172, A398184, and one new triangle)
+# OEIS — what to paste on 10 Sep 2026 (three drafts: A398172, A398184, and the new triangle A398580)
+
+A398580 was allocated by Alex on 10.09 (BLOCK T pasted). RULE (Alex, 10.09): every edit is delivered as the FULL record text to be pasted whole — he never changes single lines; the full records are A398172_full_record_2026-09-10.txt and A398184_full_record_2026-09-10.txt in this folder, the b-file is b398580.txt. Uploads go through the file widget (it writes the %H line itself; never add that line by hand).
 
 State measured 10.09 10:3x WITA from oeis.org: A280537 edit APPROVED (#43, Sep 08 2026: a(12) >= 31, a(n) <= 3n,
 the a-file of nonprime sizes 8..18); A000755 a(20) APPROVED (#54, Aug 27 2026); A399138 no pending changes;
@@ -13,9 +15,9 @@ rows T(n,k) for n = 1..7 and the maximal-by-size counts for n = 1..7 (see indepe
 ## Order of operations (the A-number of the triangle is needed inside the other two edits)
 
 1. Contribute -> "new sequence" -> switch to internal format -> paste BLOCK T below -> Save. Note the allocated
-   A-number (call it AXXXXXX). Upload b_triangle.txt renamed to bXXXXXX.txt: tick "This is a b-file"
+   A-number (call it A398580). Upload b_triangle.txt renamed to bXXXXXX.txt: tick "This is a b-file"
    (it IS one); "Text for Link line": Table of n, a(n) for n = 1..63 (rows 1..7, flattened).
-2. Edit A398172 -> internal format -> replace the %C, %o, %H, %Y lines by BLOCK 1 (AXXXXXX filled in), keep
+2. Edit A398172 -> internal format -> replace the %C, %o, %H, %Y lines by BLOCK 1 (A398580 filled in), keep
    %N %S %e %K %O. Upload a398172.txt: do NOT tick the b-file box; Text for Link line:
    Two independent programs (Python) for A398172 and A398184. Then paste REPLY 1 into Discussion, propose.
 3. Edit A398184 -> internal format -> replace the %C, %o, %H, %Y lines by BLOCK 2. Upload a398184.txt (not a
@@ -71,15 +73,15 @@ and by the two programs of 3.09).
 
 %C a(n) is the number of faces (the empty face included) of the independence complex of the 3-uniform hypergraph whose hyperedges are the collinear triples of the n X n grid (there are A000938(n) such triples). The largest faces have 2n points, and there are A000755(n) of them; A398184 counts the maximal faces.
 %C Subsets are counted as sets of grid points; rotations and reflections are not identified (no symmetries are taken into account, as in A000755).
-%C The numbers of such subsets by size are given in AXXXXXX (a triangle whose row sums are this sequence).
+%C The numbers of such subsets by size are given in A398580 (a triangle whose row sums are this sequence).
 %C All terms were computed by two independent programs (exhaustive depth-first enumeration; both are in the attached file).
 %H Aleksei Kudriashov, <a href="/A398172/a398172.txt">Two independent programs (Python) for A398172 and A398184</a>
-%Y Cf. AXXXXXX (by size), A398184 (maximal subsets), A000755, A000769, A000938, A277433, A219760.
+%Y Cf. A398580 (by size), A398184 (maximal subsets), A000755, A000769, A000938, A277433, A219760.
 
 (no %o lines)
 
 REPLY 1 (Discussion of A398172):
-Thank you both. Done in this edit: (1) a statement on symmetries added - subsets are counted as sets of grid points, rotations and reflections are not identified, the same convention as A000755; (2) both programs moved to the attached file a398172.txt; (3) the numbers by size removed here and submitted as a separate triangle, AXXXXXX (row sums = this sequence, right edge = A000755), with cross-references.
+Thank you both. Done in this edit: (1) a statement on symmetries added - subsets are counted as sets of grid points, rotations and reflections are not identified, the same convention as A000755; (2) both programs moved to the attached file a398172.txt; (3) the numbers by size removed here and submitted as a separate triangle, A398580 (row sums = this sequence, right edge = A000755), with cross-references.
 
 ## BLOCK 2 — A398184 (replace %C, %o, %H, %Y; keep %N %S %e %K %O)
 
@@ -88,7 +90,7 @@ Thank you both. Done in this edit: (1) a statement on symmetries added - subsets
 %C The numbers of maximal subsets by size for n <= 7 are given in the attached file.
 %C All terms were computed by two independent programs (exhaustive depth-first enumeration with a maximality check); both programs are attached to A398172.
 %H Aleksei Kudriashov, <a href="/A398184/a398184.txt">Numbers of maximal subsets by size, n = 1..7</a>
-%Y Cf. A398172 (all subsets), AXXXXXX (all subsets by size), A000755, A000769, A000938, A277433, A219760.
+%Y Cf. A398172 (all subsets), A398580 (all subsets by size), A000755, A000769, A000938, A277433, A219760.
 
 (no %o lines)
 

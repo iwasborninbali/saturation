@@ -35,7 +35,8 @@ Zenodo record carries PDF, TeX and a data package):**
 | [A280537](https://oeis.org/A280537) — cube, no four coplanar | a(12) >= 31 (strict improvement), a(n) <= 3n, and an attached file of configurations for the nonprime sizes 8 <= n <= 18 | approved, Sep 08 2026 |
 | [A398172](https://oeis.org/draft/A398172) — subsets of the n X n grid with no three collinear points | new sequence, a(1..7), two independent programs | proposed Sep 03 2026; editors' comments Sep 09, answers prepared in `docs/oeis/2026-09-10/` |
 | [A398184](https://oeis.org/draft/A398184) — maximal such subsets | new sequence, a(1..7) | proposed Sep 03 2026; editor's question Sep 08, answer prepared in `docs/oeis/2026-09-10/` |
-| triangle by size (A-number pending) — k-subsets of the n X n grid with no three collinear points | rows n = 1..7, b-file, program; row sums = A398172, right edge = A000755 | prepared Sep 10 2026, not yet submitted |
+| [A398580](https://oeis.org/draft/A398580) — triangle: k-subsets of the n X n grid with no three collinear points, by size | rows n = 1..7, b-file `docs/oeis/2026-09-10/b398580.txt`, program; row sums = A398172, right edge = A000755 | draft created Sep 10 2026; b-file and cross-references pending |
+| queue for the three draft slots | [`docs/oeis/QUEUE.md`](docs/oeis/QUEUE.md): the A399138 edit (new bounds, a-file), the maximal-by-size triangle, D4 quotients | waiting |
 
 **External:** Achim Flammenkamp's [no-three-in-line database](https://wwwhomes.uni-bielefeld.de/achim/no3in/readme.html)
 (changelog, 17 Aug 2026) records nine new rot2 solutions for n = 33, 36, 37, 39 from this project.

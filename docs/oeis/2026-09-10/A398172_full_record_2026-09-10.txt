@@ -1,0 +1,12 @@
+%I A398172
+%S A398172 2,16,230,4812,109536,3599697,101612896
+%N A398172 Number of subsets of the n X n grid with no three collinear points (the empty set is counted).
+%C A398172 a(n) is the number of faces (the empty face included) of the independence complex of the 3-uniform hypergraph whose hyperedges are the collinear triples of the n X n grid (there are A000938(n) such triples). The largest faces have 2n points, and there are A000755(n) of them; A398184 counts the maximal faces.
+%C A398172 Subsets are counted as sets of grid points; rotations and reflections are not identified (no symmetries are taken into account, as in A000755).
+%C A398172 The numbers of such subsets by size are given in A398580 (a triangle whose row sums are this sequence).
+%C A398172 All terms were computed by two independent programs (exhaustive depth-first enumeration; both are in the attached file).
+%e A398172 For n = 2 every subset of the 2 X 2 grid is admissible, so a(2) = 2^4 = 16. For n = 3, of the 512 subsets exactly 282 contain one of the 8 collinear triples, so a(3) = 230.
+%Y A398172 Cf. A398580 (by size), A398184 (maximal subsets), A000755, A000769, A000938, A277433, A219760.
+%K A398172 nonn,more
+%O A398172 1,1
+%A A398172 _Aleksei Kudriashov_, Sep 03 2026

@@ -1,7 +1,7 @@
 # arXiv submission sheets — prepared 10 Sep 2026
 
 The math.CO endorsement was granted 7 Sep 2026. Submit at https://arxiv.org/submit/ from the account
-olegmikhb@gmail.com. First-time submissions from this account are held for moderation. Upload the package zip;
+studio@nusadua.dev (the arXiv account; the endorsement notice of 7 Sep 2026 arrived there). First-time submissions from this account are held for moderation. Upload the package zip;
 ancillary files must live in a folder named `anc/` inside the upload. Primary category: math.CO. License:
 recommend CC BY 4.0, to match the Zenodo records. After each submission, note the resulting submit/NNNNNNN id
 in this file next to the paper it belongs to.
