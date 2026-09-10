@@ -1,4 +1,5 @@
 # СТАТУС: A399138 ОПУБЛИКОВАНА 23.08.2026 (Greathouse: «I think this is great»)
+# STATUS 10.09.2026: A280537 edit APPROVED Sep 08 (a(12) >= 31, a(n) <= 3n, a-file for nonprime 8..18); A000755 a(20) APPROVED Aug 27; A398172/A398184 in review with editors' comments (symmetry statement, programs to an attachment, counts by size to a separate sequence) — answers and the third draft (triangle by size) prepared in docs/oeis/2026-09-10/OEIS_EDITS_2026-09-10.md.
 
 # OEIS — статус, гейт и уроки. Обновлено 2026-08-23 (вечер), после трёх подач и четырёх писем редакторов.
 

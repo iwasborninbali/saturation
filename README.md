@@ -31,8 +31,11 @@ Zenodo record carries PDF, TeX and a data package):**
 | entry | contribution | status |
 |---|---|---|
 | [A399138](https://oeis.org/A399138) — maximum points in the n X n X n grid, no three collinear | new sequence (1, 8, 16, 28, 40, 64), with attached witness file | approved, Aug 23 2026 |
-| [A000755](https://oeis.org/A000755) — plane, total number of 2n-point solutions | a(20) = 941580 into DATA (from Flammenkamp's database, confirmed by orbit sums) | proposed, in review |
-| [A280537](https://oeis.org/A280537) — cube, no four coplanar | eight strictly improved lower bounds + transcription of the 2016 contest records up to n = 97, with attached witness file | proposed, in review |
+| [A000755](https://oeis.org/A000755) — plane, total number of 2n-point solutions | a(20) = 941580 into DATA (from Flammenkamp's database, confirmed by orbit sums) | approved, Aug 27 2026 |
+| [A280537](https://oeis.org/A280537) — cube, no four coplanar | a(12) >= 31 (strict improvement), a(n) <= 3n, and an attached file of configurations for the nonprime sizes 8 <= n <= 18 | approved, Sep 08 2026 |
+| [A398172](https://oeis.org/draft/A398172) — subsets of the n X n grid with no three collinear points | new sequence, a(1..7), two independent programs | proposed Sep 03 2026; editors' comments Sep 09, answers prepared in `docs/oeis/2026-09-10/` |
+| [A398184](https://oeis.org/draft/A398184) — maximal such subsets | new sequence, a(1..7) | proposed Sep 03 2026; editor's question Sep 08, answer prepared in `docs/oeis/2026-09-10/` |
+| triangle by size (A-number pending) — k-subsets of the n X n grid with no three collinear points | rows n = 1..7, b-file, program; row sums = A398172, right edge = A000755 | prepared Sep 10 2026, not yet submitted |
 
 **External:** Achim Flammenkamp's [no-three-in-line database](https://wwwhomes.uni-bielefeld.de/achim/no3in/readme.html)
 (changelog, 17 Aug 2026) records nine new rot2 solutions for n = 33, 36, 37, 39 from this project.

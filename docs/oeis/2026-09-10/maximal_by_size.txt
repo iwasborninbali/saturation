@@ -1,0 +1,7 @@
+n = 1: sizes 1..1 occur 1 times (total 1)
+n = 2: sizes 4..4 occur 1 times (total 1)
+n = 3: sizes 4..6 occur 5, 16, 2 times (total 23)
+n = 4: sizes 4..8 occur 2, 8, 210, 116, 11 times (total 347)
+n = 5: sizes 6..10 occur 152, 1468, 3474, 520, 32 times (total 5646)
+n = 6: sizes 6..12 occur 8, 172, 11955, 49332, 49830, 5064, 50 times (total 116411)
+n = 7: sizes 8..14 occur 4136, 97712, 864918, 1158976, 305960, 13684, 132 times (total 2445518)

@@ -1,0 +1,127 @@
+% section_blocks.tex — the block decomposition along runs of consecutive quadratic residues (second solver, 19.08)
+\subsection*{The blocks: runs of consecutive quadratic residues}\label{sec:blocks}
+
+The two constructions above (the eight-point groups, the seven-point groups) are special cases of a decomposition of $\Pset_{-1}$ that
+is exact and, as it turns out, carries the whole strength of the line cover by rows, columns and slope-$(\pm1)$ lines.
+
+For a point $q=(x,y)\in\Pset_{-1}$ put $r_+(q)=x-y$ and $r_-(q)=x+y$ modulo $p$.  Since $r_-^2-r_+^2=4xy\equiv\pm4$ according as
+$q\in H(1)$ or $q\in H(-1)$, the two residues of a point are linked; we index everything by
+\[
+ t(q):=\tfrac14\,r_+(q)^2\in\Fp\qquad\text{for }q\in H(1),\qquad t(q):=\tfrac14\,r_-(q)^2\ \ \text{for }q\in H(-1),
+\]
+so that $q\in H(1)$ has $\{\tfrac14r_+^2,\tfrac14r_-^2\}=\{t,t+1\}$ and $q\in H(-1)$ has $\{\tfrac14r_-^2,\tfrac14r_+^2\}=\{t,t+1\}$:
+every point determines an unordered pair of \emph{consecutive} values $t,t+1$, both of which are squares (as $4t=r^2$).  Call
+$\{t,t+1\}$ the \emph{edge} of $q$.
+
+\begin{lemma}[edges]\label{lem:edges}
+Let $t\in\Fp$ be such that $t$ and $t+1$ are both squares (with $0$ counted as a square).  The points of $\Pset_{-1}$ with edge
+$\{t,t+1\}$ are the four lifts of each of the $H(1)$-classes $\kappa$ with $d_\kappa^2\equiv4t$ together with the four lifts of each of
+their images under $R$, which are $H(-1)$-classes.  For $t\ne0,-1$ there are four such $H(1)$-classes (two $\sigma$-pairs, for
+$d_\kappa\equiv\pm2\sqrt t$), hence $32$ points; for $t=0$ there are two (the $\tau$-fixed classes $(1,1)$, $(-1,-1)$) and for $t=-1$ two
+(the $\sigma$-fixed classes, present iff $-1$ is a square), hence $16$ points.  If one of $t,t+1$ is a non-square there are no such points.
+The reflections $R$ and $R'$ preserve the edge, so every row and every column of the box consists of four points with the same edge.
+\end{lemma}
+\begin{proof}
+An $H(1)$-class $\kappa=(a,1/a)$ has $r_+\equiv a-1/a=:d_\kappa$ and $r_-\equiv a+1/a=:e_\kappa$ with $e_\kappa^2-d_\kappa^2=4$, so its edge is
+$\{\tfrac14d_\kappa^2,\tfrac14d_\kappa^2+1\}$; conversely $d_\kappa\equiv\pm2\sqrt t$ determines $a$ up to the two roots of $a^2-d_\kappa a-1$
+(which exist because $d_\kappa^2+4=4(t+1)$ is a square), and those two roots form a $\sigma$-pair, so that the two signs of $d_\kappa$ give
+four classes unless $d_\kappa\equiv-d_\kappa$, i.e.\ $t=0$, when $a^2\equiv1$ gives the single pair $\{(1,1),(-1,-1)\}$; the case $t=-1$ is
+$e_\kappa\equiv0$, i.e.\ $a^2\equiv-1$.  By $R(x,y)=(p-x,y)$ we have $(r_+,r_-)\mapsto(-r_-,-r_+)$ and by $R'(x,y)=(x,2p-y)$ we have
+$(r_+,r_-)\mapsto(r_-,r_+)$: both preserve the pair $\{\tfrac14r_+^2,\tfrac14r_-^2\}$ and exchange $H(1)$ with $H(-1)$, so the classes are as
+stated and rows ($\kappa\cup R\kappa$) and columns ($\kappa\cup R'\kappa$) stay inside the edge (Lemma~\ref{lem:rowsRR}).
+\end{proof}
+
+Let $Q:=\{t\in\Fp:\ t\ \text{is a square}\}$ (including $t=0$) and consider the graph on $Q$ whose edges are the pairs $\{t,t+1\}$ of
+consecutive squares (Lemma~\ref{lem:edges}).  Its connected components are the maximal \emph{runs} of consecutive
+squares $t_0,t_0+1,\dots,t_0+k-1$ (with $0$ joining the runs that end at $-1$ and start at $1$, if $-1$ is a square).  For a run $\varrho$
+let $B_\varrho\subseteq\Pset_{-1}$ be the union of the points of its $k-1$ edges, so that $|B_\varrho|=32(k-1)$ unless the run contains
+$0$, when each of its at most two degenerate edges contributes $16$ instead of $32$.
+
+\begin{theorem}[block decomposition]\label{thm:blocks}
+The sets $B_\varrho$, $\varrho$ a run of consecutive squares, partition $\Pset_{-1}$; each $B_\varrho$ is a union of rows and of columns;
+and every row, every column and every slope-$(\pm1)$ line of the box lies inside a single $B_\varrho$.  Consequently
+\begin{equation}\label{eq:blocks}
+ \alpha(\Pset_{-1})\ \le\ \sum_{\varrho}\beta(B_\varrho),
+\end{equation}
+where $\beta(B)$ is the largest size of an $S\subseteq B$ with at most two points on every row, column and slope-$(\pm1)$ line,
+and the same sum with $\beta$ replaced by the value of the linear relaxation equals the value of the linear relaxation for
+$\Pset_{-1}$ with rows, columns and slope-$(\pm1)$ lines.  (Lines of other slopes may carry three points of $\Pset_{-1}$ --- two from one
+hyperbola and one from the other --- and such a line need not stay inside a block; dropping those constraints is what makes the bound
+block-wise, and it only weakens it.)
+\end{theorem}
+\begin{proof}
+Every point lies on exactly one edge (Lemma~\ref{lem:edges}), and the edges of one run are pairwise disjoint sets of classes, so the
+$B_\varrho$ partition $\Pset_{-1}$; rows and columns stay inside an edge, hence inside a block.  A line of slope $+1$ with residue $d$
+carries the $H(1)$-classes with $d_\kappa\equiv\pm d$ --- edge $\{t,t+1\}$, $t=\tfrac14d^2$ --- and the $H(-1)$-classes with $r_+\equiv\pm d$,
+whose edge is $\{t-1,t\}$ (their $r_-^2=d^2-4$); both edges contain the vertex $t$, so they lie in the same run and the line lies in one
+block.  Slope $-1$ is symmetric under $R$.  Since the blocks partition $\Pset_{-1}$, a lawful $S$ satisfies
+$|S|=\sum_\varrho|S\cap B_\varrho|$, and each $S\cap B_\varrho$ has at most two points on every row, column and slope-$(\pm1)$ line, so
+$|S\cap B_\varrho|\le\beta(B_\varrho)$; the constraint matrix of the linear relaxation over those three families is block diagonal.
+\end{proof}
+
+\input{lemma_run}
+
+The saving $s(\varepsilon):=|B_\varrho|/2-\beta(B_\varrho)$ of a block depends only on its signature (equivalently, on $\varepsilon$): this was
+verified for every block occurring in the primes $p\le20000$.  Combining Proposition~\ref{prop:descent} with the exact values of
+$\beta$ (a finite computation: \texttt{slack/t221/fast\_blocks.py} constructs the block of a run directly from the square roots
+$u_i=\sqrt{t+i-1}$ and \texttt{scipy} solves the integer program), and using that the number of runs of length $k$ is
+$2^{-(k+2)}p+O(\sqrt p\log p)$ (Weil), we obtain the following.
+
+\begin{corollary}\label{cor:blockconst}
+For every $K\ge2$,
+\[
+ \alpha(\Pset_{-1})\ \le\ \Bigl(4-\sum_{k=2}^{K}2^{-(k+2)}\sum_{\varepsilon\in\{0,1\}^{k-1}}\frac{D_k(S_\varepsilon)}{k!}\,s(\varepsilon)+o(1)\Bigr)(p-1),
+\]
+a finite computation for each $K$.  The table of $s(\varepsilon)$ was computed in three independent ways: by constructing the block of every run occurring at the primes
+$p\le20000$ (\texttt{slack/t221/fast\_blocks.py}), by an independent implementation through the $\xi$-bits at $p\le9000$
+(\texttt{slack/sig\_savings.py}), and --- with no prime at all --- from the \emph{standard model} of a block, in which the positions
+$v_i=X(u_i)/p$ are replaced by generic rationals with the prescribed descent pattern and the incidences are decided by exact arithmetic
+(\texttt{slack/t221/standard\_model.py}); the three agree wherever they overlap ($500$ comparisons for $k\le9$, no discrepancy), and the
+standard model supplies every $\varepsilon$, including those too rare to occur at moderate primes.  With $K=9$ the sum equals
+$68350729/123863040$, so
+\[
+ \alpha(\Pset_{-1})\ \le\ \frac{427101431}{123863040}\,(p-1)+o(p)\ =\ (3.44817\ldots+o(1))\,(p-1).
+\]
+Since $s(\varepsilon)\le4(k-1)$, the terms with $k>9$ contribute at most $\sum_{k>9}2^{-(k+2)}4(k-1)=0.0196$, so the constant of this
+certificate lies in $[3.4286,\,3.4482]$; numerically it is $3.4413\ldots$
+\end{corollary}
+
+\begin{remark}\label{rem:blocks}
+(a) The blocks are small: the run through $t$ has length $k$ with probability $\asymp2^{-k}$, so $\beta(B_\varrho)$ is a bounded computation,
+and by Weil's bound the number of runs of a given length and given \emph{type} (the sequence of line-size profiles of the groups at the
+interior vertices, which are the $(4,8,4)$, $(3,7,5,1)$, $(2,6,6,2)$ groups of Section~\ref{sec:two}, the end vertices carrying two-class
+groups) is $c\,p+O(\sqrt p\log^Cp)$ with an explicitly computable $c$ --- the local law of Propositions~\ref{prop:m8asym},
+\ref{prop:m7asym} applied along the run.  Theorem~\ref{thm:two} is the case of a single $(4,8,4)$ interior vertex ($\beta=|B|/2-8$ for the
+two edges at it), Theorem~\ref{thm:seven} the case of a $(3,7,5,1)$ vertex ($\beta=|B|/2-4$).
+(b) Numerically (\texttt{slack/t221/}, all primes $200\le p\le1400$): the saving $|B_\varrho|/2-\beta(B_\varrho)$ depends only on the type of the run
+(no exception among the several hundred blocks tested), and $\sum_\varrho(|B_\varrho|/2-\beta(B_\varrho))=0.5587\,p$ on average over
+$401\le p\le1103$, in agreement with Corollary~\ref{cor:blockconst}; truncating to runs of length $\le L_0$ gives
+$3.595$ for $L_0=5$, $3.480$ for $L_0=7$ and $3.452$ for $L_0=10$.  At a given prime the bound~\eqref{eq:blocks} is at most the value of the linear relaxation with
+all these lines, and strictly below it when integrality bites inside a block ($3.4107$ vs $3.4286$ at $p=113$, $3.3824$ vs $3.3873$ at
+$p=137$, $3.4343$ vs $3.4545$ at $p=199$, $3.4100$ vs $3.4300$ at $p=401$); the \emph{proved} constant $3.4482$ of
+Corollary~\ref{cor:blockconst} is larger than the numerical value $3.4413$ of the same certificate only because of the truncation at $K=9$.
+\emph{Correction (v1.15):} an earlier version of this remark quoted the pair $3.4286$ vs $3.4286$ at $p=113$ and
+the constant $3.4616$ (a $K=8$ truncation surviving from v1.11).  An independent recount --- exact MILP per block,
+the two disputed $64$-point blocks refereed by a SAT solver (satisfiable at $\beta$, unsatisfiable at $\beta+1$),
+and the LP ceilings $\lfloor26.67\rfloor=26$, $\lfloor50.67\rfloor=50$ forcing the same values --- gives
+$\sum_\varrho\beta(B_\varrho)=382=3.4107\,(p-1)$ at $p=113$: the first number of that pair was the LP value, and
+integrality does bite there, in three blocks of twelve.  The other three pairs of this remark were confirmed
+exactly by the same recount, as were the four block-sum anchors and, structurally, the decomposition itself
+(components under rows, columns and slope-$(\pm1)$ lines match the runs of consecutive squares in number, size
+law and total for all $57$ primes $19\le p\le311$).
+(c) The method is special to $k=\pm1$.  For $\Pset_k=H(1)\cup H(k)$ a point of $H(c)$ has $r_-^2-r_+^2=4c$, so with $t=\tfrac14r_+^2$ the points of
+$H(1)$ join $t$ to $t+1$ and those of $H(k)$ join $t$ to $t+k$: for $k=\pm1$ the two rules coincide and the neighbour graph on the squares has mean
+degree $1$ --- subcritical, with components of size $O(\log p)$ --- whereas for every other $k$ the mean degree is $2$, the critical value, and the
+components have size about $p^{2/3}$ (at $p=4001$: largest component $11$ for $k=-1$ against $22$, $32$, $95$, $177$ for $k=2,3,5,7$;
+\texttt{slack/blocks\_general\_k.py}).  So a finite table of block optima exists only for the pair $H(1)\cup H(-1)$; for a general second hyperbola
+the decomposition is still valid but useless, and Section~\ref{sec:general} (a saving of order $\sqrt p$) is what remains.
+(d) There is no local competition between the two hyperbolae at all.  If $O$ is a $V$-orbit of $H(1)$ (Lemma~\ref{lem:orbdec}) and
+$R(O)$ its mirror in $H(-1)$, then the largest lawful subset of $O\cup R(O)$ --- with \emph{all} lines, of every slope --- is exactly
+$16$ for a generic orbit ($32$ points) and $8$ for an exceptional one ($16$ points), i.e.\ exactly the trivial bound ``two per row'',
+although each half alone admits $12$, resp.\ $6$ (\texttt{slack/orbit\_union.py}, all orbits of $p\le23$).  Summing over orbits returns
+$4(p-1)$: the whole gain from $4(p-1)$ down to the computed $3(p-1)+O(1)$ comes from the interaction of \emph{different} orbits through
+three-point lines of general slope.  No certificate that is local for the orbits or for the blocks can therefore reach $3(p-1)$.
+(e) The decomposition explains the plateau of Section~\ref{sec:beyond}: no certificate built from rows, columns and slope-$(\pm1)$ lines can
+give less than $\sum_\varrho\beta(B_\varrho)$, and this is $\approx3.44(p-1)$, far above the computed maxima $3(p-1)+O(1)$.  The remaining
+gap is carried by the three-point lines of the other slopes, which are invisible to the block decomposition.
+\end{remark}

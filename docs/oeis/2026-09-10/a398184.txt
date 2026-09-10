@@ -1,0 +1,15 @@
+A398184: numbers of maximal subsets of the n X n grid with no three collinear points, by size.
+A maximal subset is one to which no further grid point can be added without creating a
+collinear triple. Subsets are counted as sets of grid points; rotations and reflections
+are not identified. Computed by two independent exhaustive programs (both attached to
+A398172 as a398172.txt); the last entry of each row is A000755(n), the first size is
+A277433(n) for n >= 3.
+Aleksei Kudriashov, Sep 10 2026.
+
+n = 1: size 1 occurs 1 time (total 1)
+n = 2: size 4 occurs 1 time (total 1)
+n = 3: sizes 4..6 occur 5, 16, 2 times (total 23)
+n = 4: sizes 4..8 occur 2, 8, 210, 116, 11 times (total 347)
+n = 5: sizes 6..10 occur 152, 1468, 3474, 520, 32 times (total 5646)
+n = 6: sizes 6..12 occur 8, 172, 11955, 49332, 49830, 5064, 50 times (total 116411)
+n = 7: sizes 8..14 occur 4136, 97712, 864918, 1158976, 305960, 13684, 132 times (total 2445518)
