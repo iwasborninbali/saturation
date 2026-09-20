@@ -294,7 +294,7 @@ ancillary files: direction_spectrum_model_values.txt, direction_spectrum_data_by
 ## 7. Combined article — Parts I, I′, II, II′ (the consolidation requested by arXiv moderation MOD-104121, 10 Sep 2026)
 
 Package: `paper/arxiv_no3_certified_combined_v10/`, zipped flat (tex and `anc/` at the root) as
-`paper/arxiv_no3_certified_combined_v10.zip` — sha256 22ea8fcbb161e4676f5a379b98750608de0982fad7a472a0a3cad9ff9895402d; test-compiled from the zip on 2026-09-21
+`paper/arxiv_no3_certified_combined_v10.zip` — sha256 000495d0ac5966fc2e55a74f6b527b4033955db82ad7d30cd94a928bea7fc574; test-compiled from the zip on 2026-09-21
 with pdflatex (TeX Live 2025): 0 errors, 27 pages. Prepared on the branch science/arxiv-combined-2026-09; report in
 `docs/ARXIV-COMBINED-REPORT.md`. Supersedes entries 1, 2, 5 and 6 above (declined as submit/8060684, 8062345, 8062503,
 and the unsubmitted direction-spectrum note); entries 3 (hjsw_window) and 4 (no3inline_defects) stay separate, on later days.
