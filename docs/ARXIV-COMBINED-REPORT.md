@@ -25,6 +25,8 @@ Title: «Certified computations on no-three-in-line problems: exact values and w
 
 ## What remains before Submit
 
+**Submitted 21.09 04:07 WITA as submit/8105835** (Alex's click; receipt in studio@ dated Sun, 20 Sep 2026 16:07:36 -0400). The Conductor diffed the arXiv Preview against card 7: title, author, abstract (1907 chars), comments, license and category identical; the Comments field went in shortened to 353 characters because the form caps it at 400.
+
 1. Alex: confirm the count (three) and the title; the retractions are kept visible on purpose (§3.1 correction, §4.1, §4.7, §5.6).
 2. Adversarial read by the second-model channel (arxiv-funding.md §5 step 3): DONE 21.09 03:08–03:18 WITA — headless Sonnet session, read-only tools, 589 s, briefed on five kinds of blocking defect (contradiction with a source, number mismatch, dropped retraction, notation clash, witness without its file). Result: 1 defect — the bibliography entry for A280537 quoted the OEIS comment's a(17), a(7), a(8) in the article's own a(n) notation (a rename miss; they are b values) — fixed in the commit that follows this report; Sections 3–7 and anc/ otherwise clean. Not in its brief: contradiction against hjsw_window / no3inline_defects (only the grep-level statement check above).
 3. New Zenodo record for the combined text (Alex's login, or the gate's token); then the `\date` line gains the DOI; README paper table and no3-results rows (not touched here: the README lists DOIs and the combined text has none yet).
