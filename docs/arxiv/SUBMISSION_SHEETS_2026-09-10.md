@@ -288,3 +288,28 @@ ancillary files: direction_spectrum_model_values.txt, direction_spectrum_data_by
 **MSC classes:** none stated in the source.
 
 **Related DOI (concept):** 10.5281/zenodo.22275037
+
+---
+
+## 7. Combined article — Parts I, I′, II, II′ (the consolidation requested by arXiv moderation MOD-104121, 10 Sep 2026)
+
+Package: `paper/arxiv_no3_certified_combined_v10/`, zipped flat (tex and `anc/` at the root) as
+`paper/arxiv_no3_certified_combined_v10.zip` — sha256 000495d0ac5966fc2e55a74f6b527b4033955db82ad7d30cd94a928bea7fc574; test-compiled from the zip on 2026-09-21
+with pdflatex (TeX Live 2025): 0 errors, 27 pages. Prepared on the branch science/arxiv-combined-2026-09; report in
+`docs/ARXIV-COMBINED-REPORT.md`. Supersedes entries 1, 2, 5 and 6 above (declined as submit/8060684, 8062345, 8062503,
+and the unsubmitted direction-spectrum note); entries 3 (hjsw_window) and 4 (no3inline_defects) stay separate, on later days.
+
+Submit id: submit/8105835 (21.09 04:07 WITA; receipt mail in studio@ dated Sun, 20 Sep 2026 16:07:36 -0400). Preview diffed by the Conductor against this card before the click: title, author, abstract (1907 chars), comments, license and category identical.
+
+**Title:** Certified computations on no-three-in-line problems: exact values and witnesses in the cube, and the Guy-Kelly count in the plane
+
+**Authors:** Aleksei Kudriashov
+
+**Abstract (1907 characters, macro-free, paste as is):**
+
+We report certified computations on four no-three-in-line questions, two in the cube and two in the plane, by one method: exact decision procedures inside symmetry strata, every witness re-verified by a second program sharing no code, every number traced to a public journal. (I) Let a(n) be the largest number of points of {0,...,n-1}^3 with no three collinear (A399138). We determine a(1),...,a(6) = 1, 8, 16, 28, 40, 64 with DRAT-certified unsatisfiability proofs, give certified lower bounds a(7) >= 73, a(8) >= 94, a(9) >= 116, a(10) >= 138, a(11) >= 164, and prove a(p) >= p^2 for every prime p. The optima share a layer structure 2n^2 - 2n + 4 that provably fails at n = 5 and n = 7. (II) For b(n), the largest number with no four coplanar (A280537), nineteen public configurations give lower bounds for 9 <= n <= 29, four of which improve the known bounds and their monotone closure (b(12) >= 31, b(21) >= 47, b(22) >= 49, b(27) >= 56); the cyclically invariant subspace has maximum 23 at n = 9 and 26 at n = 10; four kinds of symmetry are incompatible with the problem; no upper bound beyond 3n is known. (III) The Guy-Kelly first-moment heuristic for the plane is audited against exact counts (A000755 to n = 20): its corrected constant comes out in closed form, pi/sqrt(3), the threshold crossing n = 493 is reproduced, and its error is shown to depend on the shape of the question rather than on n alone, with an unbounded multiplier; whether the residual error is Theta(n) or Theta(n ln n), which decides whether the constant survives, cannot be told by counting, and we measure how far from telling we are. (IV) The direction spectrum of the 2n-point solutions is measured, and a line model with no fitted parameter reproduces its shape (fifteen constants within 12%, seven predicted blind) but not its scale. Withdrawn claims are kept in the text; each part states what it does not establish.
+
+**Comments (as submitted, 353 characters; the arXiv form caps this field at 400 characters -- applies to entries 3 and 4 and to every future card):** 27 pages; v1.0 (21 Sep 2026). Consolidates and supersedes three notes declined as submit/8060684, 8062345, 8062503 (arXiv moderation MOD-104121) and one unsubmitted note; earlier versions of the parts at Zenodo (DOIs in Sec. 8); witness archive doi:10.5281/zenodo.22271375; ancillary files: two verifiers, thirteen witness configurations, two data files
+
+**Primary category:** math.CO, no cross-list. **License:** CC BY 4.0. **Report-no, DOI, Journal-ref:** leave empty
+(a new Zenodo record for this version is still to be created).
