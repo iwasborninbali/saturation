@@ -39,6 +39,9 @@ The H1-alone theorem (max lawful subset of H1 = 3(p−1)) was also reverified by
 | 11 | 40  | 80  | 208  | 14 | 30 ✓ |
 | 13 | 48  | 96  | 230  | 16 | 36 ✓ |
 | 17 | 68  | 128 | 422  | 26 | 48 ✓ |
+
+> **Correction (4 Nov 2026, audit N-minor).** In the p = 17 row, |H₁| = |H₂| = 4(p−1) = **64**, not 68; the union size 128 is consistent with 64.
+
 | 19 | 72  | 144 | 496  | 26 | 54 ✓ |
 | 23 | 88  | 176 | 668  | 32 | 66 ✓ |
 | 29 | 112 | 224 | 1028 | 40 | 84 ✓ |
@@ -170,6 +173,8 @@ cleanest possible confirmation of slope 1 with C=2.
 
 max_t = **40 at t=2** (known α = 40, exact match, and **t=2 itself is proven optimal** — so p=13's α is also a
 fully rigorous independent re-derivation, not just a numeric coincidence). Gain range [0,4].
+
+> **Correction (4 Nov 2026, audit N-minor).** Optimality within the restricted t = 2 slice alone does not imply the global α = 40. The audit does not dispute α = 40; cite the separate whole-support solve for that bound, not this slice.
 
 ### p = 17 (3(p−1) = 48)
 
