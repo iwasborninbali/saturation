@@ -7,7 +7,7 @@
 \newtheorem{lemma}[proposition]{Lemma}
 \title{Exact values and certified lower bounds for the no-three-in-line problem in the cube}
 \author{Aleksei Kudriashov (Alex Komang)\\ \small Nusa Dua Studio, Nusa Dua, Bali, Indonesia\\ \small ORCID: 0009-0006-8885-5338}
-\date{3 September 2026 --- version 1.5\\ \small\texttt{doi:10.5281/zenodo.22019279}}
+\date{3 September 2026 --- version 1.7 (4 November 2026: a correction in Section~``Structure of the optima'' (1.6) and a nonuniform optimum at $n=5$ (1.7))\\ \small\texttt{doi:10.5281/zenodo.22019279}}
 \begin{document}\maketitle
 \begin{abstract}
 Let $a(n)$ be the largest number of points of the grid $\{0,1,\dots,n-1\}^3$ no three of which are collinear.
@@ -234,8 +234,18 @@ restriction, so an infeasibility obtained that way would exclude only symmetric 
 of points.  Every infeasibility above was therefore re-derived with the profile prescribed along a
 \emph{single} axis, which excludes every configuration with that layer distribution.  The satisfiable rows need
 no such care: a solution is a solution.
-The fourth line is the sharpest: at $n=5$ two outer layers cannot both attain the planar maximum $2n$ at
-\emph{any} total, so the optimum is forced onto a uniform profile.  The same computation at $n=6$ finds the
+The fourth line is the sharpest: at $n=5$ no configuration whose two outer layers both attain the planar
+maximum $2n$ reaches the optimum $40$; the best such total is $39$, priced below.  Among the profiles tested,
+only the uniform one is feasible at $n=5$; whether every optimum has a uniform profile is not established here.
+(\emph{Correction in draft 1.6.}  Version 1.5 said here that the two outer layers cannot both attain $2n$ at
+\emph{any} total, and that the optimum is therefore forced onto a uniform profile.  The first statement
+contradicted the table below and is false: two admissible sets lying in distinct parallel planes always have an
+admissible union, since any three of their points have two in one plane, whose line cannot meet the other
+plane.  The second statement does not follow from the tests reported and is withdrawn.)  (\emph{Added in version 1.7.})  Not every optimum is uniform: the
+$40$-point set in the ancillary file \texttt{n5\_40\_nonuniform.txt} has layer counts $(8,8,7,9,8)$,
+$(9,8,7,9,7)$ and $(8,8,8,8,8)$ along the three axes, and three strictly interior points $(1,3,1)$, $(3,1,3)$,
+$(3,3,2)$, whereas the saved uniform witness has none.  All $\binom{40}{3}=9880$ triples were checked by exact
+integer cross products.  It was found by an unrestricted solver search, without symmetry or profile constraints.  The same computation at $n=6$ finds the
 analogous profile realisable, and at $n=7$ it is again impossible.  The pattern $[2n,(2n-2)^{n-2},2n]$ is thus
 realisable at $n=2,3,4,6$ and impossible at $n=5,7$ --- the obstruction is not an artefact of one case, and it
 is not an obstruction to the idea of maximal outer layers as such.

@@ -132,6 +132,8 @@
 максимум» пусто, и **локальное улучшение не может работать в принципе** — не потому, что
 конфигурации жёстки, а потому, что цели рассыпаны.
 
+> **Correction (4 Nov 2026, audit of rejections, finding N2).** The bold inference above is false as stated. Low average overlap between optima is not a barrier for a particular move path. Counterexample on {0,…,6}²: the maximal safe 13-set (0,2) (0,5) (1,1) (1,2) (2,3) (2,5) (3,6) (4,0) (4,6) (5,1) (5,4) (6,0) (6,4) has no legal insertion, yet removing (4,0) and inserting (3,0) and (4,3) gives a safe 14-set, a maximum. Checked by independent integer geometry (receipt: athanor-instruments `hammer/core/workspace/audit-rejections/independent-local-improvement-n7.json`). This refutes the literal impossibility; it does not show that small local repairs succeed often.
+
 Это объясняет задним числом всё, что мы наблюдали двумя сменами: почему выбивание с полным
 доращиванием не даёт прироста, почему перезапуск от пустоты бьёт улучшение, почему свидетель
 остаётся максимальным и в следующей сетке. И то, что при n=6 истинный оптимум делит с
